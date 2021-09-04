@@ -1,0 +1,39 @@
+<div class="card">
+	<div class="card-header"><h3>List Category</h3></div>
+	<div class="card-body">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Photo</th>
+					<th scope="col">Username</th>
+					<th scope="col">Fullname</th>
+					<th scope="col">Email</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in pager.items">
+					<td width="100px">
+						<img ng-src="{{'/assets/images/' + item.photo}}" width="100%"/>
+					</td>
+					<td>{{item.username}}</td>
+					<td>{{item.fullname}}</td>
+					<td>{{item.email}}</td>
+					<td>
+						<div class="btn-group btn-group-xs">
+							<button class="btn btn-warning" ng-click="edit(item)">Edit</button>
+							<button class="btn btn-danger" ng-click="delete(item)">Delete</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="card-footer text-muted text-center">
+		<button class="btn btn-primary" ng-click="pager.first()">First</button>
+		<button class="btn btn-primary" ng-click="pager.prev()">Prev</button>
+		<button class="btn btn-success">{{pager.page+1}} of {{pager.count}}</button>
+		<button class="btn btn-primary" ng-click="pager.next()">Next</button>
+		<button class="btn btn-primary" ng-click="pager.last()">Last</button>
+	</div>
+</div>

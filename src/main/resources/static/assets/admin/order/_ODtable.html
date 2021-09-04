@@ -1,0 +1,29 @@
+<div class="card">
+	<div class="card-header"><h3>Order ID: {{orderID}}</h3></div>
+	<div class="card-body">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Image</th>
+					<th scope="col">Product ID</th>
+					<th scope="col">Product Name</th>
+					<th scope="col">Price</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Amount</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in ODitems">
+					<td width="100px">
+						<img ng-src="{{'/assets/images/' + item.product.image}}" width="100%"/>
+					</td>
+					<td>{{item.product.id}}</td>
+					<td>{{item.product.name}}</td>
+					<td>${{item.price}}</td>
+					<td>{{item.quantity}}</td>
+					<td>${{item.quantity * item.price}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
