@@ -19,5 +19,3 @@ public class HomeController {
 		return "redirect:/assets/admin/index.html";
 	}
 }
-// ad
-//sp
