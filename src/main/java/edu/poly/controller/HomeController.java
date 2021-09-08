@@ -13,7 +13,7 @@ public class HomeController {
 ///hoang yesy
 	@RequestMapping({"/", "/home/index"})
 	public String home() {
-		return "product/list";
+		return "home/lhome";
 	}
 	
 	@RequestMapping({"/admin", "/admin/home/index"})
