@@ -9,11 +9,9 @@ public class HomeController {
 //	public String home() {
 //		return "redirect:/product/list";
 //	}
-///dsadasdsa	
-///hoang yesy
 	@RequestMapping({"/", "/home/index"})
 	public String home() {
-		return "home/lhome";
+		return "home/home";
 	}
 	
 	@RequestMapping({"/admin", "/admin/home/index"})
