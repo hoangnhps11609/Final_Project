@@ -10,6 +10,7 @@ public class HomeController {
 //		return "redirect:/product/list";
 //	}
 ///dsadasdsa	
+///hoang yesy
 	@RequestMapping({"/", "/home/index"})
 	public String home() {
 		return "product/list";
