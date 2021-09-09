@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i> Home</a>
+                        <a th:href="@{/home/index}"><i class="fa fa-home"></i> Home</a>
                         <span>Login</span>
                     </div>
                 </div>
@@ -25,14 +25,15 @@
                 <div class="col-lg-6 offset-lg-3">
                     <div class="login-form">
                         <h2>Login</h2>
-                        <form action="#">
+                        <form th:action="@{/security/login/form}" method="post">
+                        	<p style="color: red; font-style: italic; font-size: 13pt;">[[${message}]]</p>
                             <div class="group-input">
-                                <label for="username">Username or email address *</label>
-                                <input type="text" id="username">
+                                <label>Username or email address *</label>
+                                <input type="text" name="username">
                             </div>
                             <div class="group-input">
-                                <label for="pass">Password *</label>
-                                <input type="text" id="pass">
+                                <label>Password *</label>
+                                <input type="text" name="password">
                             </div>
                             <div class="group-input gi-check">
                                 <div class="gi-more">
@@ -41,13 +42,13 @@
                                         <input type="checkbox" id="save-pass">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <a href="#" class="forget-pass">Forget your Password</a>
+                                    <a th:href="@{/security/forgot/form}" class="forget-pass">Forget your Password</a>
                                 </div>
                             </div>
                             <button type="submit" class="site-btn login-btn">Sign In</button>
                         </form>
                         <div class="switch-login">
-                            <a href="./register.html" class="or-login">Or Create An Account</a>
+                            <a th:href="@{/security/register/form}" class="or-login">Or Create An Account</a>
                         </div>
                     </div>
                 </div>
