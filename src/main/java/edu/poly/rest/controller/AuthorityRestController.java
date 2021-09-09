@@ -23,7 +23,7 @@ import edu.poly.entity.Category;
 @RequestMapping("/rest/authorities")
 public class AuthorityRestController {
 	@Autowired
-	AuthorityService authoritySerive;
+	edu.poly.authority.service.AuthorityService authoritySerive;
 	
 	@GetMapping
 	public List<Authority> findAll(@RequestParam("admin") Optional<Boolean> admin) {
