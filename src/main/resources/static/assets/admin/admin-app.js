@@ -21,6 +21,6 @@ app.config(function ($routeProvider){
 		templateUrl: "/assets/admin/authority/unauthorized.html",
 		controller: "authority-ctrl"
 	}).otherwise({
-		templateUrl: "/assets/admin/product/index.html"
+		templateUrl: "/assets/admin/home/index.html"
 	})
 })
