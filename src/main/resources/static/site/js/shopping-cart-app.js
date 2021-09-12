@@ -23,6 +23,36 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			alert("Thêm sản phẩm vào giỏ hàng thành công")
 		},
 		
+		//Cộng sản phẩm có sẵn trong giỏ hàng
+		addcart(id){
+			var item = this.items.find(item => item.id == id);
+			if(item){
+				item.qty++;
+				this.saveToLocalStorage();
+			}
+			else {
+				$http.get(`/rest/products/${id}`).then(resp => {
+					resp.data.qty = 1;
+					this.items.push(resp.data);
+					this.saveToLocalStorage();
+				})
+			}
+		},
+		
+		//Trừ sản phẩm có sẵn trong giỏ hàng
+		subcart(id){
+			var item = this.items.find(item => item.id == id);
+			if(item){
+				if(item.qty>1){
+					item.qty--;
+					this.saveToLocalStorage();
+				}else{
+					this.items.splice(item, 1);
+					this.saveToLocalStorage();
+				}
+			}
+		},
+		
 		//Xóa sản phẩm khỏi giỏ hàng
 		remove(id){
 			var index = this.items.findIndex(item => item.id == id);

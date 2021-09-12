@@ -13,8 +13,8 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="breadcrumb-text product-more">
-							<a th:href="@{/home/index}"><i class="fa fa-home"></i> Home</a> 
-							<span>Shopping Cart</span>
+							<a th:href="@{/home/index}"><i class="fa fa-home"></i> Home</a> <span>Shopping
+								Cart</span>
 						</div>
 					</div>
 				</div>
@@ -23,7 +23,7 @@
 		<!-- Breadcrumb Section Begin -->
 
 		<!-- Shopping Cart Section Begin -->
-		<section class="shopping-cart spad" >
+		<section class="shopping-cart spad">
 			<div class="container" th:fragment="shopping_cart">
 				<div class="row">
 					<div class="col-lg-12">
@@ -32,7 +32,7 @@
 								<thead>
 									<tr>
 										<th>Image</th>
-										<th class="p-name">Product Name</th>
+										<th class="p-name" width="250px">Product Name</th>
 										<th>Price</th>
 										<th>Quantity</th>
 										<th>Total</th>
@@ -41,23 +41,30 @@
 								</thead>
 								<tbody>
 									<tr ng-repeat="item in cart.items">
-										<td class="cart-pic first-row">
-											<!-- <img src="/site/img/products/${image}" alt=""> -->
-											{{item.id}}
-										</td> 
+										<td class="cart-pic first-row"><img
+											src="/site/img/products/{{item.image}}" width="100px"
+											height="100px"></td>
 										<td class="cart-title first-row">
 											<h5>{{item.name}}</h5>
 										</td>
 										<td class="p-price first-row">${{item.price|number:2}}</td>
-										<td class="qua-col first-row">
-											<div class="quantity">
-												<div class="pro-qty">
-													<input ng-change="cart.saveToLocalStorage()" ng-model="item.qty" type="number" min="1" value="1">
+
+										<td>
+											<div class="pt-4 text-center">
+												<div class="col-6 row offset-3 border px-0 py-2">
+													<div class="col-4">
+														<a th:attr="ng-click=@{|cart.subcart(item.id)|}">-</a>
+													</div>
+													<div class="col-4 text-center">{{item.qty}}</div>
+													<div class="col-4">
+														<a th:attr="ng-click=@{|cart.addcart(item.id)|}">+</a>
+													</div>
 												</div>
 											</div>
 										</td>
 										<td class="total-price first-row">{{item.qty*item.price|number:2}}</td>
-										<td class="close-td first-row"><i class="ti-close" ng-click="cart.remove(item.id)"></i></td>
+										<td class="close-td first-row"><i class="ti-close"
+											ng-click="cart.remove(item.id)"></i></td>
 									</tr>
 								</tbody>
 							</table>
@@ -65,8 +72,9 @@
 						<div class="row">
 							<div class="col-lg-4">
 								<div class="cart-buttons">
-									<a th:href="@{/product/list}" class="primary-btn up-cart">Continue shopping</a> 
-									<a href="#" class="primary-btn up-cart">Update cart</a>
+									<a th:href="@{/product/list}" class="primary-btn up-cart">Continue
+										shopping</a> 
+									<a ng-click="cart.clear()" class="primary-btn up-cart">Clear cart</a>
 								</div>
 								<div class="discount-coupon">
 									<h6>Discount Codes</h6>
@@ -82,7 +90,8 @@
 										<li class="subtotal">Subtotal <span>$0.0</span></li>
 										<li class="cart-total">Total <span>${{cart.amount|number:2}}</span></li>
 									</ul>
-									<a th:href="@{/order/checkout}" class="proceed-btn">PROCEED TO CHECK OUT</a>
+									<a th:href="@{/order/checkout}" class="proceed-btn">PROCEED
+										TO CHECK OUT</a>
 								</div>
 							</div>
 						</div>

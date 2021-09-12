@@ -112,7 +112,7 @@
 										<i class="icon_heart_alt"></i>
 									</div>
 									<ul>
-										<li class="w-icon active"><a href="#"><i
+										<li class="w-icon active"><a th:attr="ng-click=@{|cart.add(${p.id})|}"><i
 												class="icon_cart_alt"></i></a></li>
 										<li class="quick-view"><a th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
 										<li class="w-icon"><a href="#"><i
@@ -196,7 +196,7 @@
 										<i class="icon_heart_alt"></i>
 									</div>
 									<ul>
-										<li class="w-icon active"><a href="#"><i
+										<li class="w-icon active"><a th:attr="ng-click=@{|cart.add(${p.id})|}"><i
 												class="icon_cart_alt"></i></a></li>
 										<li class="quick-view"><a th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
 										<li class="w-icon"><a href="#"><i

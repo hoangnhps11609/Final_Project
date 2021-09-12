@@ -21,20 +21,26 @@
 						</div>
 					</div>
 					<div class="ht-right">
-						
+
 						<!--Login-->
 						<th:block th:if="${#request.remoteUser}">
-						
-							<a th:href="@{/security/logoff}" class="login-panel"><i class="fa fa-sign-out"></i>Logout</a>
-							<a th:href="@{/security/changepass/form}" class="login-panel" style="margin-right: 20px;"><i class="fa fa-edit"></i>Change Password</a>
-							<a th:href="@{/security/profile/form}" class="login-panel" style="margin-right: 20px;"><i class="fa fa-user-circle"></i>[[${#request.remoteUser}]]</a>
-							
+
+							<a th:href="@{/security/logoff}" class="login-panel"><i
+								class="fa fa-sign-out"></i>Logout</a>
+							<a th:href="@{/security/changepass/form}" class="login-panel"
+								style="margin-right: 20px;"><i class="fa fa-edit"></i>Change
+								Password</a>
+							<a th:href="@{/security/profile/form}" class="login-panel"
+								style="margin-right: 20px;"><i class="fa fa-user-circle"></i>[[${#request.remoteUser}]]</a>
+
 						</th:block>
 						<th:block th:unless="${#request.remoteUser}">
-						
-							<a th:href="@{/security/login/form}" class="login-panel"><i class="fa fa-sign-in"></i>Login</a>							
-							<a th:href="@{/security/register/form}" class="login-panel"  style="margin-right: 20px;"><i class="fa fa-address-book"></i>Register</a>
-						
+
+							<a th:href="@{/security/login/form}" class="login-panel"><i
+								class="fa fa-sign-in"></i>Login</a>
+							<a th:href="@{/security/register/form}" class="login-panel"
+								style="margin-right: 20px;"><i class="fa fa-address-book"></i>Register</a>
+
 						</th:block>
 						<!--Login-->
 
@@ -50,10 +56,9 @@
 						</div>
 
 						<div class="top-social">
-							<a href="#"><i class="ti-facebook"></i></a> 
-							<a href="#"><i class="ti-twitter-alt"></i></a> 
-							<a href="#"><i class="ti-linkedin"></i></a> 
-							<a href="#"><i class="ti-pinterest"></i></a>
+							<a href="#"><i class="ti-facebook"></i></a> <a href="#"><i
+								class="ti-twitter-alt"></i></a> <a href="#"><i
+								class="ti-linkedin"></i></a> <a href="#"><i class="ti-pinterest"></i></a>
 						</div>
 					</div>
 				</div>
@@ -65,7 +70,8 @@
 						<!--Logo-->
 						<div class="col-lg-2 col-md-2">
 							<div class="logo">
-								<a th:href="@{/home/index}"> <img src="/site/img/logo.png" alt="">
+								<a th:href="@{/home/index}"> <img src="/site/img/logo.png"
+									alt="">
 								</a>
 							</div>
 						</div>
@@ -74,7 +80,8 @@
 						<!--Search-->
 						<div class="col-lg-7 col-md-7">
 							<div class="advanced-search">
-								<button type="button" class="category-btn">All Categories</button>							
+								<button type="button" class="category-btn">All
+									Categories</button>
 								<form action="#" class="input-group">
 									<input type="text" placeholder="What do you need?">
 									<button type="button">
@@ -90,36 +97,32 @@
 							<ul class="nav-right">
 
 								<!--Favorite-->
-								<li class="heart-icon">
-									<a th:href="@{/order/list}"> 
-										<i class="icon_heart_alt"></i> <span>0</span>
-									</a>
-								</li>
+								<li class="heart-icon"><a th:href="@{/order/list}"> <i
+										class="icon_heart_alt"></i> <span>0</span>
+								</a></li>
 								<!--Favorite-->
-								
+
 								<!--Dislay Cart-->
-								<li class="cart-icon" th:fragment="shopping_cart">
-									<a th:href="@{/cart/view}"> 
-										<i class="icon_bag_alt"></i> <span>{{cart.count}}</span>
-									</a>
+								<li class="cart-icon" th:fragment="shopping_cart"><a
+									th:href="@{/cart/view}"> <i class="icon_bag_alt"></i> <span>{{cart.count}}</span>
+								</a>
 									<div class="cart-hover">
 										<div class="select-items">
 											<table>
 												<tbody>
 													<tr ng-repeat="item in cart.items">
-														<td class="si-pic">
-															<!-- <img src="img/select-product-1.jpg" alt=""></td>  -->
-															{{item.id}}
-														<td class="si-text">
+														<td class="si-pic col-4"><img
+															src="/site/img/products/{{item.image}}" width="70px" height="70px"></td>
+														<td class="si-text col-5">
 															<div class="product-selected">
-																<p>${{item.price|number:2}} x 
-																<div ng-change="cart.saveToLocalStorage()" ng-model="item.qty" min="1"></div> 
-																</p>
+																<p>${{item.price|number:2}} x {{item.qty}}</p>
 																<h6>{{item.name}}</h6>
 															</div>
 														</td>
-														<td class="si-close"> <i class="ti-close" ng-click="cart.remove(item.id)"></i> </td>
+														<td class="si-close col-2"><i class="ti-close"
+															ng-click="cart.remove(item.id)"></i></td>
 													</tr>
+
 												</tbody>
 											</table>
 										</div>
@@ -130,11 +133,11 @@
 										</div>
 
 										<div class="select-button">
-											<a th:href="@{/cart/view}" class="primary-btn view-card">VIEW CARD</a> 
-											<a th:href="@{/order/list}" class="primary-btn checkout-btn">CHECK OUT</a>
+											<a th:href="@{/cart/view}" class="primary-btn view-card">VIEW
+												CARD</a> <a th:href="@{/order/list}"
+												class="primary-btn checkout-btn">CHECK OUT</a>
 										</div>
-									</div>
-								</li>
+									</div></li>
 								<li class="cart-price">${{cart.amount|number:2}}</li>
 								<!--Dislay Cart-->
 
@@ -149,7 +152,7 @@
 						<div class="depart-btn">
 							<i class="ti-menu"></i> <span>All departments</span>
 							<ul class="depart-hover">
-								<!---->	
+								<!---->
 								<li class="active"><a href="#">Womens Clothing</a></li>
 								<li><a href="#">Mens Clothing</a></li>
 								<li><a href="#">Underwear</a></li>
@@ -158,7 +161,7 @@
 								<li><a href="#">Accessories/Shoes</a></li>
 								<li><a href="#">Luxury Brands</a></li>
 								<li><a href="#">Brand Outdoor Apparel</a></li>
-								<!---->	
+								<!---->
 							</ul>
 						</div>
 					</div>
@@ -182,8 +185,7 @@
 									<li><a href="./faq.html">Faq</a></li>
 									<li><a href="./register.html">Register</a></li>
 									<li><a href="./login.html">Login</a></li>
-								</ul>
-							</li>
+								</ul></li>
 						</ul>
 					</nav>
 					<div id="mobile-menu-wrap"></div>
