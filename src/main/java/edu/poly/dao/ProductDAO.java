@@ -12,8 +12,8 @@ import edu.poly.entity.Product;
 public interface ProductDAO extends JpaRepository<Product, Integer> {
 	
 	@Query
-		("SELECT p FROM Product p WHERE p.category.id=?1")
-		List<Product> findByCategoryId(String cid);
+	("SELECT p FROM Product p WHERE p.category.id=?1")
+	List<Product> findByCategoryId(String cid);
 
 	Page<Product> findByNameContaining(String name, Pageable pageable);
 
