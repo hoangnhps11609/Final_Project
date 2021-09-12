@@ -38,7 +38,7 @@ public class ProductController {
 			@RequestParam(name = "min", required = false) Double min,
 			@RequestParam(name = "max", required = false) Double max) {
 		int currentPage = page.orElse(1);
-		int pageSize = size.orElse(100);		
+		int pageSize = size.orElse(9);		
 		Pageable pageable = PageRequest.of(currentPage-1, pageSize, Sort.by("name"));
 		Page<Product> resultPage = null;
 		if(cid.isPresent()) {
