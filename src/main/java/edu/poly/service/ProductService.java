@@ -39,4 +39,7 @@ public interface ProductService {
 
 	Page<Product> findByPriceContaining(Double min, Double max, Pageable pageable);
 
+
+	Page<Product> findByCategoryIdAndPrice(String categoryID, Double min, Double max, Pageable pageable);
+
 }
