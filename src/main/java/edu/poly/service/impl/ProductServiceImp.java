@@ -81,4 +81,10 @@ public class ProductServiceImp implements ProductService{
 	}
 
 
+	@Override
+	public Page<Product> findByCategoryIdAndPrice(String categoryID, Double min, Double max, Pageable pageable) {
+		return productDAO.findByCategoryIdAndPrice(categoryID, min, max, pageable);
+	}
+
+
 }
