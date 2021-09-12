@@ -184,9 +184,11 @@
 												<i class="icon_heart_alt"></i>
 											</div>
 											<ul>
-												<li class="w-icon active"><a href="#"> <i
-														class="icon_bag_alt"></i>
-												</a></li>
+												<li class="w-icon active">
+													<a th:attr="ng-click=@{|cart.add(${product.id})|}">
+														<i class="icon_bag_alt"></i>
+													</a>
+												</li>
 												<li class="quick-view"><a
 													th:href="@{|/product/detail/${product.id}|}"> + Quick
 														View </a></li>
