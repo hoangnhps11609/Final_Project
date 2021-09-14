@@ -36,6 +36,7 @@
 <link rel="stylesheet" th:href="@{/site/css/slicknav.min.css}"
 	type="text/css">
 <link rel="stylesheet" th:href="@{/site/css/style.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/site/css/image.css}" type="text/css">
 </head>
 <body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
 
@@ -66,9 +67,6 @@
 									$("#amount_end").val(ui.values[1]);
 								}
 							});
-			/* $("#amount").val(
-					"$" + $("#slider-range").slider("values", 0) + " - $"
-							+ $("#slider-range").slider("values", 1)); */
 		});
 
 		function readURL(input) {
@@ -93,8 +91,7 @@
 		}
 
 		function removeUpload() {
-			$('.file-upload-input')
-					.replaceWith($('.file-upload-input').clone());
+			$('.file-upload-input').replaceWith($('.file-upload-input').clone());
 			$('.file-upload-content').hide();
 			$('.image-upload-wrap').show();
 		}

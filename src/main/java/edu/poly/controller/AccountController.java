@@ -54,7 +54,7 @@ public class AccountController {
 		String username = request.getRemoteUser();
 		Account v = adao.findByUsername(username);
 		model.addAttribute("items",v);
-		return "home/info";
+		return "home/profile";
 		
 	}
 	
@@ -85,7 +85,7 @@ public class AccountController {
 			adao.save(item);
 		}
 			model.addAttribute("message","Update Successfully");
-			return "redirect:/home/info";
+			return "redirect:/accounts/info";
 
 	}
 

@@ -27,10 +27,7 @@
 
 							<a th:href="@{/security/logoff}" class="login-panel"><i
 								class="fa fa-sign-out"></i>Logout</a>
-							<a th:href="@{/security/changepass/form}" class="login-panel"
-								style="margin-right: 20px;"><i class="fa fa-edit"></i>Change
-								Password</a>
-							<a th:href="@{/security/profile/form}" class="login-panel"
+							<a th:href="@{/accounts/info}" class="login-panel"
 								style="margin-right: 20px;"><i class="fa fa-user-circle"></i>[[${#request.remoteUser}]]</a>
 
 						</th:block>
@@ -38,7 +35,7 @@
 
 							<a th:href="@{/security/login/form}" class="login-panel"><i
 								class="fa fa-sign-in"></i>Login</a>
-							<a th:href="@{/security/register/form}" class="login-panel"
+							<a th:href="@{/accounts/newaccount}" class="login-panel"
 								style="margin-right: 20px;"><i class="fa fa-address-book"></i>Register</a>
 
 						</th:block>
@@ -112,7 +109,8 @@
 												<tbody>
 													<tr ng-repeat="item in cart.items">
 														<td class="si-pic col-4"><img
-															src="/site/img/products/{{item.image}}" width="70px" height="70px"></td>
+															src="/site/img/products/{{item.image}}" width="70px"
+															height="70px"></td>
 														<td class="si-text col-5">
 															<div class="product-selected">
 																<p>${{item.price|number:2}} x {{item.qty}}</p>
@@ -152,16 +150,9 @@
 						<div class="depart-btn">
 							<i class="ti-menu"></i> <span>All departments</span>
 							<ul class="depart-hover">
-								<!---->
-								<li class="active"><a href="#">Womens Clothing</a></li>
-								<li><a href="#">Mens Clothing</a></li>
-								<li><a href="#">Underwear</a></li>
-								<li><a href="#">Kid's Clothing</a></li>
-								<li><a href="#">Brand Fashion</a></li>
-								<li><a href="#">Accessories/Shoes</a></li>
-								<li><a href="#">Luxury Brands</a></li>
-								<li><a href="#">Brand Outdoor Apparel</a></li>
-								<!---->
+								<div th:each="c:${cates}">
+									<li><a th:href="@{|/product/list?cid=${c.id}|}">[[${c.name}]]</a></li>
+								</div>
 							</ul>
 						</div>
 					</div>
@@ -169,22 +160,26 @@
 						<ul>
 							<li><a th:href="@{/home/index}">Home</a></li>
 							<li><a th:href="@{/product/list}">Shop</a></li>
-							<li><a href="#">Collection</a>
+							<li><a th:href="@{/product/list}">Collection</a>
 								<ul class="dropdown">
-									<li><a href="#">Men's</a></li>
-									<li><a href="#">Women's</a></li>
-									<li><a href="#">Kid's</a></li>
+									<div th:each="c:${cates}">
+										<li><a th:href="@{|/product/list?cid=${c.id}|}">[[${c.name}]]</a></li>
+									</div>
 								</ul></li>
-							<li><a href="./blog.html">Blog</a></li>
-							<li><a href="./contact.html">Contact</a></li>
+							<li><a th:href="@{/blog/list}">Blog</a></li>
+							<li><a th:href="@{/contact}">Contact</a></li>
 							<li><a href="#">Pages</a>
 								<ul class="dropdown">
-									<li><a href="./blog-details.html">Blog Details</a></li>
-									<li><a href="./shopping-cart.html">Shopping Cart</a></li>
-									<li><a href="./check-out.html">Checkout</a></li>
-									<li><a href="./faq.html">Faq</a></li>
-									<li><a href="./register.html">Register</a></li>
-									<li><a href="./login.html">Login</a></li>
+									<th:block th:unless="${#request.remoteUser}">
+										<li><a th:href="@{/security/login/form}">Login</a></li>
+										<li><a th:href="@{/accounts/newaccount}">Register</a></li>
+										<li><a th:href="@{/home/forgot-password}">Forgot Password</a></li>
+									</th:block>
+									<th:block th:if="${#request.remoteUser}">
+										<li><a th:href="@{/home/change-password}">Change Password</a></li>
+										<li><a th:href="@{/accounts/info}">My Profile</a></li>
+										<li><a th:href="@{/security/logoff}">Logout</a></li>
+									</th:block>
 								</ul></li>
 						</ul>
 					</nav>

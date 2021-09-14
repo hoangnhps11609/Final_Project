@@ -36,7 +36,7 @@
 								<h1>Black friday</h1>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
 									sed do eiusmod tempor incididunt ut labore et dolore</p>
-								<a href="#" class="primary-btn">Shop Now</a>
+								<a th:href="@{/product/list}" class="primary-btn">Shop Now</a>
 							</div>
 						</div>
 						<div class="off-card">
@@ -120,7 +120,7 @@
 									</ul>
 								</div>
 								<div class="pi-text">
-									<div class="catagory-name">Coat</div>
+									<div class="catagory-name">[[${p.category.name}]]</div>
 									<a href="#">
 										<h5 th:utext="${p.name}"></h5>
 									</a>
@@ -204,7 +204,7 @@
 									</ul>
 								</div>
 								<div class="pi-text">
-									<div class="catagory-name">Coat</div>
+									<div class="catagory-name">[[${p.category.name}]]</div>
 									<a href="#">
 										<h5 th:utext="${p.name}"></h5>
 									</a>

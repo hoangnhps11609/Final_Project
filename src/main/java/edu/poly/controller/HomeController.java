@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import edu.poly.dao.AccountDAO;
 import edu.poly.dao.OrderDetailDAO;
 import edu.poly.dao.ProductDAO;
+import edu.poly.entity.Category;
 import edu.poly.entity.Product;
+import edu.poly.service.CategoryService;
 import edu.poly.service.ProductService;
 import edu.poly.utils.CookieService;
 import edu.poly.utils.ParamService;
@@ -36,6 +38,8 @@ public class HomeController {
 	@Autowired
 	ProductService productService;
 	
+	@Autowired
+	CategoryService categoryService;
 	
 	@Autowired
 	OrderDetailDAO orderDetailDAO;
@@ -46,6 +50,8 @@ public class HomeController {
 		model.addAttribute("WMitems", wmList);
 		List<Product> mList = productService.findByCategoryId("1001");
 		model.addAttribute("Mitems", mList);
+		List<Category> cate = categoryService.findAll();
+		model.addAttribute("cate", cate);
 		return "home/home";
 	}
 	
