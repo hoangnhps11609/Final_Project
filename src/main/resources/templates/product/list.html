@@ -217,7 +217,7 @@
 									<li
 										th:class="${1 == productPage.number + 1} ? 'page-item active' : 'page-item'">
 										<a
-										th:href="@{/product/list/(name=${name}, size=${productPage.size}, page=${1}, min=${min}, max=${max}, size=${size}, cid=${cid})}"
+										th:href="@{/product/list/(name=${name}, size=${productPage.size}, page=${1}, min=${min}, max=${max}, size=${size}, cid=${cid}, search=${search})}"
 										class="page-link">First</a>
 									</li>
 
@@ -226,7 +226,7 @@
 										th:if="${productPage.totalPages > 1}"
 										th:class="${pageNumber == productPage.number + 1} ? 'page-item active' : 'page-item'">
 										<a
-										th:href="@{/product/list/(name=${name}, size=${productPage.size}, page=${pageNumber}, min=${min}, max=${max}, size=${size}, cid=${cid})}"
+										th:href="@{/product/list/(name=${name}, size=${productPage.size}, page=${pageNumber}, min=${min}, max=${max}, size=${size}, cid=${cid}, search=${search})}"
 										class="page-link" th:text="${pageNumber}"></a>
 									</li>
 
@@ -234,7 +234,7 @@
 									<li
 										th:class="${productPage.totalPages == productPage.number + 1} ? 'page-item active' : 'page-item'">
 										<a
-										th:href="@{/product/list/(name=${name}, size=${productPage.size}, page=${productPage.totalPages}, min=${min}, max=${max}, size=${size}, cid=${cid})}"
+										th:href="@{/product/list/(name=${name}, size=${productPage.size}, page=${productPage.totalPages}, min=${min}, max=${max}, size=${size}, cid=${cid}, search=${search})}"
 										class="page-link">Last</a>
 									</li>
 								</ul>

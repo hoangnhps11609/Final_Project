@@ -30,4 +30,9 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	("SELECT p FROM Product p WHERE p.category.id=?1 and p.price between ?2 and ?3")
 	Page<Product> findByCategoryIdAndPrice(String categoryID, Double min, Double max, Pageable pageable);
 
+	
+	@Query
+	("SELECT p FROM Product p WHERE p.name like ?1")
+	Page<Product> findByKeyword(String search, Pageable pageable);
+
 }

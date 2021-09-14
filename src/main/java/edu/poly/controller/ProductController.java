@@ -37,7 +37,8 @@ public class ProductController {
 			@RequestParam("page") Optional<Integer> page,
 			@RequestParam("size") Optional<Integer> size,
 			@RequestParam(name = "min", required = false) Double min,
-			@RequestParam(name = "max", required = false) Double max) {
+			@RequestParam(name = "max", required = false) Double max,
+			@RequestParam(name = "search", required = false) String search) {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(9);	
 		String categoryID = cid.orElse("");
@@ -58,7 +59,10 @@ public class ProductController {
 			model.addAttribute("max", max);
 			model.addAttribute("min", min);
 			model.addAttribute("cid", categoryID);
-		}else {
+		}else if(search != null){
+			resultPage = productservice.findByKeyword("%" + search + "%", pageable);
+			model.addAttribute("search", search);
+		}else{
 //			List<Product> list = productservice.findAll();
 			resultPage = productservice.findAll(pageable);
 //			model.addAttribute("items", list);

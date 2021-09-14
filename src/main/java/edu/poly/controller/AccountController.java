@@ -88,5 +88,34 @@ public class AccountController {
 			return "redirect:/accounts/info";
 
 	}
+	
+	@PostMapping("/accounts/register")
+	public String register(Model model, Account item,@RequestParam("img") MultipartFile image) {
+		String username = paramService.getString("username", "");
+		String password = paramService.getString("password", "");
+		String fullname = paramService.getString("fullname", "");
+		String email = paramService.getString("email", "");
+		Optional<Account> accOp = adao.findById(username);
+		String filename = image.getOriginalFilename();
+		File file = new File(app.getRealPath("/assets/images/"+filename));
+		if(image.isEmpty()) {
+			item.setFullname(fullname);
+			item.setEmail(email);
+			item.setPassword(password);
+			item.setUsername(username);
+			item.setPhoto(accOp.get().getPhoto());
+			adao.save(item);
+		}else {
+			item.setFullname(fullname);
+			item.setEmail(email);
+			item.setPassword(password);
+			item.setUsername(username);
+			item.setPhoto(image.getOriginalFilename());
+			adao.save(item);
+		}
+			model.addAttribute("message","Update Successfully");
+			return "redirect:/security/login/form";
+
+	}
 
 }

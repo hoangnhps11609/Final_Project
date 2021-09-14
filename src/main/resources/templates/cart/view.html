@@ -13,8 +13,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="breadcrumb-text product-more">
-							<a th:href="@{/home/index}"><i class="fa fa-home"></i> Home</a> <span>Shopping
-								Cart</span>
+							<a th:href="@{/home/index}"><i class="fa fa-home"></i> Home</a> <span>Shopping Cart</span>
 						</div>
 					</div>
 				</div>
@@ -52,12 +51,16 @@
 										<td>
 											<div class="pt-4 text-center">
 												<div class="col-6 row offset-3 border px-0 py-2">
-													<div class="col-4">
-														<a th:attr="ng-click=@{|cart.subcart(item.id)|}">-</a>
+													<div class="col-4 p-0">
+														<a th:attr="ng-click=@{|cart.subcart(item.id)|}">
+															<i class="ti-minus"></i>
+														</a>
 													</div>
 													<div class="col-4 text-center">{{item.qty}}</div>
-													<div class="col-4">
-														<a th:attr="ng-click=@{|cart.addcart(item.id)|}">+</a>
+													<div class="col-4 p-0">
+														<a th:attr="ng-click=@{|cart.addcart(item.id)|}">
+															<i class="ti-plus"></i>
+														</a>
 													</div>
 												</div>
 											</div>

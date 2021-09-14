@@ -160,7 +160,7 @@ ol {
 }
 
 .spad {
-	padding-top: 100px;
+	padding-top: 50px;
 	padding-bottom: 100px;
 }
 
@@ -1271,7 +1271,7 @@ ol {
 -----------------------*/
 
 .deal-of-week {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 80px;
 	margin-left: 65px;
 	margin-right: 65px;
@@ -1316,7 +1316,7 @@ ol {
 .man-banner {
 	padding-right: 65px;
 	padding-left: 65px;
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 80px;
 }
 
@@ -1713,7 +1713,7 @@ ol {
 -----------------------*/
 
 .product-shop {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 80px;
 }
 
@@ -2637,7 +2637,7 @@ ol {
 -----------------------*/
 
 .shopping-cart {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 60px;
 }
 
@@ -2867,7 +2867,7 @@ ol {
 -----------------------*/
 
 .checkout-section {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 80px;
 }
 
@@ -3069,7 +3069,7 @@ ol {
 -----------------------*/
 
 .blog-section {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 80px;
 }
 
@@ -3569,7 +3569,7 @@ ol {
 -----------------------*/
 
 .map {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 0;
 }
 
@@ -3695,7 +3695,7 @@ ol {
 -----------------------*/
 
 .faq-section {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 54px;
 }
 
@@ -3758,8 +3758,8 @@ ol {
 -----------------------*/
 
 .register-login-section {
-	padding-top: 72px;
-	padding-bottom: 80px;
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
 .register-form h2,
