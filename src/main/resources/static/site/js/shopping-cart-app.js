@@ -98,7 +98,47 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 	
 	$scope.cart.loadFormLocalStorage();
 
-	$scope.order = {
+	$scope.order={
+		createDate: new Date(),
+		address: "",
+		account: {username: $("#username").text()},
+		get orderDetails(){
+			return $scope.cart.items.map(item => {
+				return{
+					product: {id: item.id},
+					price: item.price,
+					quantity: item.qty
+				}
+			});
+		},
+		purchase(){
+			var order = angular.copy(this);
+			$http.post("/rest/orders", order).then(resp => {
+				alert("Đặt hàng thành công!");
+				$scope.cart.clear();
+				location.href = "/order/detail/" + resp.data.id;
+			}).catch(error => {
+				alert("Đặt hàng thất bại!")
+				console.log(error)
+			})
+		}
+	}
+	
+	//Thêm account mới
+	$scope.create = function() {
+		var item = angular.copy($scope.form);
+		$http.post(`/rest/accounts`, item).then(resp => {
+			$scope.items.push(resp.data);
+			$scope.reset();
+			alert("Thêm mới thành công");
+			$(".nav-tabs a:eq(1)").tab('show');
+		}).catch(error => {
+			alert("Lỗi thêm sản phẩm");
+			console.log("Error", error);
+		});
+	}
+	
+	$scope.ordernoaccount = {	
 		createDate: new Date(),
 		address: "",
 		account: {username: $("#username").text()},
@@ -111,6 +151,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 				}
 			});
 		},
+		
 		purchase(){
 			var order = angular.copy(this);
 			//Thực hiện đặt hàng

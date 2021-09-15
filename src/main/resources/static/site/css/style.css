@@ -3009,6 +3009,50 @@ ol {
 	float: right;
 }
 
+
+
+
+
+.checkout-form .place-order .order-total .order-table1 {
+	margin-bottom: 20px;
+}
+
+.checkout-form .place-order .order-total .order-table1 li {
+	list-style: none;
+	color: #252525;
+	font-size: 14px;
+	font-weight: 700;
+	text-transform: uppercase;
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 5px;
+	padding-top: 30px;
+}
+
+.checkout-form .place-order .order-total .order-table1 li:first-child {
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 20px;
+	padding-top: 0;
+}
+
+.checkout-form .place-order .order-total .order-table1 li.fw-normal {
+	font-weight: 400;
+	text-transform: capitalize;
+}
+
+.checkout-form .place-order .order-total .order-table1 li.fw-normal span {
+	font-weight: 700;
+}
+
+.checkout-form .place-order .order-total .order-table1 li.total-price span {
+	color: #e7ab3c;
+}
+
+.checkout-form .place-order .order-total .order-table1 li span {
+	float: right;
+}
+
+
+
 .checkout-form .place-order .order-total .payment-check {
 	margin-bottom: 50px;
 }

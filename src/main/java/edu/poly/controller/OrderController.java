@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.poly.dao.AccountDAO;
+import edu.poly.entity.Account;
 import edu.poly.entity.Order;
 import edu.poly.service.OrderService;
 
@@ -26,8 +28,18 @@ public class OrderController {
 	@Autowired
 	OrderService orderService;
 	
+	@Autowired
+	AccountDAO adao;
+	
+	@Autowired
+	HttpServletRequest request;
+
+	
 	@RequestMapping("/order/checkout")
-	public String checkout() {
+	public String checkout(Model model) {
+		String username = request.getRemoteUser();
+		Account v = adao.findByUsername(username);
+		model.addAttribute("items",v);
 		return "order/checkout";
 	}
 	@RequestMapping("/order/list")
