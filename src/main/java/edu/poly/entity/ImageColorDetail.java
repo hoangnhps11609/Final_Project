@@ -16,26 +16,19 @@ import lombok.Data;
 @SuppressWarnings("serial")
 @Data
 @Entity 
-@Table(name = "Orderdetails")
-public class OrderDetail  implements Serializable{
+@Table(name = "Imagecolordetails")
+public class ImageColorDetail  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 	
-	Double price;
-	
-	Integer quantity;
+	String image;
 	
 	@ManyToOne
 	@JoinColumn(name = "Productid")
 	Product product;
 	
 	@ManyToOne
-	@JoinColumn(name = "Orderid")
-	Order order;
-	
-	@OneToOne
-    @JoinColumn(name = "Voucherid")
-    Voucher voucher;
- 
+	@JoinColumn(name = "Colorid")
+	Color color; 
 }
