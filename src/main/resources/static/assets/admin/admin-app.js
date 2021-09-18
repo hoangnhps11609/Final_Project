@@ -1,5 +1,4 @@
 app=angular.module("admin-app", ["ngRoute"]);
-
 app.config(function ($routeProvider){
 	$routeProvider
 	.when("/product", {
@@ -21,6 +20,7 @@ app.config(function ($routeProvider){
 		templateUrl: "/assets/admin/authority/unauthorized.html",
 		controller: "authority-ctrl"
 	}).otherwise({
-		templateUrl: "/assets/admin/home/index.html"
+		templateUrl: "/assets/admin/background.html"
+
 	})
 })
