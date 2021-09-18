@@ -41,6 +41,10 @@ public class Account  implements Serializable{
 	@Column(name = "Createdate")
 	Date createDate = new Date();
 	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "Birthday")
+	Date birthDay;
+	
 	String address;
 	
 	@JsonIgnore

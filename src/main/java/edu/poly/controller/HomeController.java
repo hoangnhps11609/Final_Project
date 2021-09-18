@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.poly.dao.OrderDetailDAO;
 import edu.poly.entity.Category;
+import edu.poly.entity.Gender;
 import edu.poly.entity.Product;
 import edu.poly.service.CategoryService;
 import edu.poly.service.GenderService;
@@ -69,6 +70,9 @@ public class HomeController {
 		
 		List<Category> cate = categoryService.findAll();
 		model.addAttribute("cate", cate);
+		
+		List<Gender> gender = genderService.findAll();
+		model.addAttribute("gender", gender);
 		
 		return "home/home";
 	}

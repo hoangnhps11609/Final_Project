@@ -3,9 +3,9 @@
 <section>
 	<div th:fragment="header">
 		<!-- Page Preloder -->
-<!-- 		<div id="preloder"> -->
-<!-- 			<div class="loader"></div> -->
-<!-- 		</div> -->
+		<div id="preloder">
+			<div class="loader"></div>
+		</div>
 
 		<!-- Header Section Begin -->
 		<header class="header-section">
@@ -162,8 +162,8 @@
 							<li><a th:href="@{/product/list}">Shop</a></li>
 							<li><a th:href="@{/product/list}">Collection</a>
 								<ul class="dropdown">
-									<div th:each="gender:${gender}">
-										<li><a th:href="@{|/product/list?gender=${gender.id}|}">[[${gender.gender}]]</a></li>
+									<div th:each="g:${gender}">
+										<li><a th:href="@{|/product/list?gender=${g.id}|}">[[${g.name}]]</a></li>
 									</div>
 								</ul></li>
 							<li><a th:href="@{/blog/list}">Blog</a></li>
