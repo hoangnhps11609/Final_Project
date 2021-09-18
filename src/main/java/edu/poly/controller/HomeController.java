@@ -3,19 +3,15 @@ package edu.poly.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import edu.poly.dao.AccountDAO;
 import edu.poly.dao.OrderDetailDAO;
-import edu.poly.dao.ProductDAO;
 import edu.poly.entity.Category;
 import edu.poly.entity.Product;
 import edu.poly.service.CategoryService;
+import edu.poly.service.GenderService;
 import edu.poly.service.ProductService;
 import edu.poly.utils.CookieService;
 import edu.poly.utils.ParamService;
@@ -30,8 +26,10 @@ public class HomeController {
 
 	@Autowired
 	CookieService cookieService;
+
 	@Autowired
-	ParamService paramService;
+	GenderService genderService;
+	
 	@Autowired
 	SessionService sessionService;
 	
@@ -44,14 +42,34 @@ public class HomeController {
 	@Autowired
 	OrderDetailDAO orderDetailDAO;
 	
+	@Autowired
+	ParamService paramService;
+	
+	
 	@RequestMapping({"/", "/home/index"})
 	public String home(Model model) {
-		List<Product> wmList = productService.findByCategoryId("1000");
-		model.addAttribute("WMitems", wmList);
-		List<Product> mList = productService.findByCategoryId("1001");
-		model.addAttribute("Mitems", mList);
+		List<Product> wmCloList = productService.findByCategoryIdandGender("1000", 2);
+		model.addAttribute("wmCloList", wmCloList);
+		List<Product> wmHandbagList = productService.findByCategoryIdandGender("1001", 2);
+		model.addAttribute("wmHandbagList", wmHandbagList);
+		List<Product> wmShoesList = productService.findByCategoryIdandGender("1002", 2);
+		model.addAttribute("wmShoesList", wmShoesList);
+		List<Product> wmAccessList = productService.findByCategoryIdandGender("1003", 2);
+		model.addAttribute("wmAccessList", wmAccessList);
+		
+		
+		List<Product> mCloList = productService.findByCategoryIdandGender("1000", 1);
+		model.addAttribute("mCloList", mCloList);
+		List<Product> mHandbagList = productService.findByCategoryIdandGender("1001", 1);
+		model.addAttribute("mHandbagList", mHandbagList);
+		List<Product> mShoesList = productService.findByCategoryIdandGender("1002", 1);
+		model.addAttribute("mShoesList", mShoesList);
+		List<Product> mAccessList = productService.findByCategoryIdandGender("1003", 1);
+		model.addAttribute("mAccessList", mAccessList);
+		
 		List<Category> cate = categoryService.findAll();
 		model.addAttribute("cate", cate);
+		
 		return "home/home";
 	}
 	
@@ -59,4 +77,28 @@ public class HomeController {
 	public String admin() {
 		return "redirect:/assets/admin/index.html";
 	}
+	
+	
+//	@RequestMapping({"/", "/home/index"})
+//	public String home(Model model,
+//			@RequestParam(name="cid", required = false) String cid) {
+//		
+//		
+//		
+//		if(cid!=null) {
+//			List<Product> wmList = productService.findByCategoryIdandGender(cid, 0);
+//			model.addAttribute("wmList", wmList);
+//		}else {
+//			List<Product> wmList = productService.findAll();
+//			model.addAttribute("wmList", wmList);
+//		}
+//		
+//		
+//		
+//		List<Product> mList = productService.findByCategoryId("1001");
+//		model.addAttribute("Mitems", mList);
+//		List<Category> cate = categoryService.findAll();
+//		model.addAttribute("cate", cate);
+//		return "home/home";
+//	}
 }

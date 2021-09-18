@@ -8,11 +8,12 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import edu.poly.dao.SizeDetailDAO;
 import edu.poly.entity.SizeDetail;
 import edu.poly.service.SizeDetailService;
-
+@Service
 public class SizeDetailServiceImpl implements SizeDetailService{
 	@Autowired
 	SizeDetailDAO sizeDetailDAO;

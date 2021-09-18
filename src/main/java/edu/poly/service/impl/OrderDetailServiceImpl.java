@@ -8,11 +8,12 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import edu.poly.dao.OrderDetailDAO;
 import edu.poly.entity.OrderDetail;
 import edu.poly.service.OrderDetailService;
-
+@Service
 public class OrderDetailServiceImpl implements OrderDetailService{
 
 	@Autowired

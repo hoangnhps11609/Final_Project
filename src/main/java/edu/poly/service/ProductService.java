@@ -45,4 +45,9 @@ public interface ProductService {
 
 	Page<Product> findByKeyword(String search, Pageable pageable);
 
+
+	List<Product> findByCategoryIdandGender(String categoryid, int gender);
+
+
+
 }

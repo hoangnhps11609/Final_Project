@@ -8,11 +8,12 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import edu.poly.dao.BlogCategoryDAO;
 import edu.poly.entity.BlogCategory;
 import edu.poly.service.BlogCategoryService;
-
+@Service
 public class BlogCategoryServiceImpl implements BlogCategoryService{
 	
 	@Autowired

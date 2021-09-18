@@ -7,9 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import edu.poly.entity.Order;
-
+@Repository
 public interface OrderDAO extends JpaRepository<Order, Long>{
 
 	@Query("SELECT o From Order o Where o.account.username=?1 Order By o.id DESC")
