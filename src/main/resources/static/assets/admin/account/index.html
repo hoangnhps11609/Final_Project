@@ -1,9 +1,14 @@
 <style>
 	@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
+	.nen {
+		position: relative;
+		background-color: #34495e;
+	}
+
 	.nen .nav {
 		position: relative;
-		width: 100%;
+		width: 60%;
 		height: 50px;
 		background: #34495e;
 		font-size: 0;
@@ -38,7 +43,7 @@
 		width: 180px;
 		text-align: center;
 	}
-	
+
 	.nen .nav .start-home,
 	a:nth-child(1):hover~.animation {
 		width: 180px;
@@ -53,55 +58,62 @@
 		width: 180px;
 		left: 180px;
 	}
-.my-2{
-	margin-left: 20px;
-}
-.search-box1{
-	position: absolute;
-	top:50%;
-	left: 70%;
-	transform: translate(-50%,-50%);
-	background: #2f3640;
-	height: 40px;
-	border-radius: 40px;
-	padding-left: 10px;
-	padding-right: 10px;
-}
-.search-box1:hover > .search-txt1{
-	width: 240px;
-	padding: 0 6px;
-}
-.search-box1:hover > .search-btn1{
-	background: white;
-}
-.search-btn1{
-	color: #1abc9c;
-	float: right;
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-	background-color: #2f3640;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	transition: 0.4s;
-	margin: 5px;
-	margin-right: 0px;
-}
 
-.search-txt1{
-	border: none;
-	background: none;
-	outline: none;
-	float: left;
-	padding: 0;
-	color: white;
-	font-size: 16px;
-	transition: 0.4s;
-	line-height: 40px;
-	width: 0;
-	
-}
+	.my-2 {
+		margin-left: 20px;
+	}
+
+	.search-box1 {
+		position: absolute;
+		top: 50%;
+		right: 0px;
+		transform: translate(-10%, -50%);
+		background: #2f3640;
+		height: 40px;
+		border-radius: 40px;
+		padding-left: 5px;
+		padding-right: 10px;
+	}
+
+	.search-box1:hover>.search-txt1 {
+		width: 240px;
+		padding: 0 6px;
+	}
+
+	.search-box1:hover>.search-btn1 {
+		background: white;
+
+	}
+
+	.search-btn1 {
+		color: #1abc9c;
+		float: right;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		background-color: #2f3640;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: 0.4s;
+		margin: 5px;
+		margin-right: 0px;
+	}
+
+	.search-txt1 {
+		border: none;
+		background: none;
+		outline: none;
+		float: left;
+		padding: 0;
+		color: white;
+		font-size: 16px;
+		transition: 0.4s;
+		line-height: 40px;
+		width: 0;
+
+
+	}
 </style>
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -118,14 +130,16 @@
 				List Account</a>
 			<div class="animation start-home"></div>
 		</li>
-		<div class="search-box1">
-			<input class="search-txt1" name="" type="text" placeholder="Search"/>
-			<a class="search-btn1" href="#">
-				<i class="fa fa-search"></i>
-			</a>
-			
-		</div>
+
 	</ul>
+	<div class="search-box1">
+		<input class="search-txt1" name="" type="text" placeholder="Search" />
+		<a class="search-btn1" href="#">
+			<i class="fa fa-search"></i>
+		</a>
+
+
+	</div>
 </div>
 <div class="tab-content" id="myTabContent">
 	<div class="tab-pane fade show active" id="edit" role="tabpanel" aria-labelledby="home-tab">
