@@ -17,7 +17,6 @@ import edu.poly.entity.MailInfo;
 import edu.poly.service.MailerService;
 
 @Service
-
 public class MailerServiceImpl implements MailerService {
 	@Autowired
 	JavaMailSender sender;

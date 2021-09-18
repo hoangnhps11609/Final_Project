@@ -8,11 +8,12 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import edu.poly.dao.ColorDAO;
 import edu.poly.entity.Color;
 import edu.poly.service.ColorService;
-
+@Service
 public class ColorServiceImpl implements ColorService{
 	@Autowired
 	ColorDAO colorDAO;

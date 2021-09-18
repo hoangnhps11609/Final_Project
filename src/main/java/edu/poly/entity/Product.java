@@ -42,11 +42,13 @@ public class Product  implements Serializable{
 	
 	String description;
 	
-	Integer discount;
+	Float discount;
 	
 	String image;
 	
-	Integer gender;
+	@ManyToOne
+	@JoinColumn(name = "Genderid")
+	Gender gender;
 	
 	@ManyToOne
 	@JoinColumn(name = "Categoryid")

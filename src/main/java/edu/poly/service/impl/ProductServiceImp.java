@@ -90,4 +90,10 @@ public class ProductServiceImp implements ProductService{
 	}
 
 
+	@Override
+	public List<Product> findByCategoryIdandGender(String categoryid, int gender) {
+		return productDAO.findByCategoryIdandGender(categoryid, gender);
+	}
+
+
 }

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.poly.service.BrandService;
+import edu.poly.service.GenderService;
 import edu.poly.service.ProductService;
 import edu.poly.utils.SessionService;
 import edu.poly.entity.Product;
@@ -26,6 +28,10 @@ public class ProductController {
 	
 	@Autowired
 	ProductService productservice;
+	
+	
+	@Autowired
+	BrandService brandService;
 	
 	@Autowired
 	SessionService sessionService;
