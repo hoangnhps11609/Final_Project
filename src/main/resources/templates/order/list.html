@@ -26,11 +26,6 @@
 		<!-- Shopping Cart Section Begin -->
 		<section class="shopping-cart spad">
 			<div class="container">
-				<div class="col">
-					<div class="alert alert-primary" role="alert">
-						<h3>Thanks a lot for your choosing my product!</h3>
-					</div>
-				</div>
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="cart-table">
@@ -40,31 +35,53 @@
 										<th>No.</th>
 										<th>Order ID</th>
 										<th>Create Date</th>
-										<th>Address</th>
+										<th width="300px">Address</th>
 										<th>Order Details</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:set var="i" value="0" />
-									<c:forEach var="item" items="${items}">
-										<tr>
-											<td class="p-price text-dark">${i=i+1}</td>
-											<td class="p-price first-row">
-												<h5>${item.id }</h5>
-											</td>
-											<td class="p-price text-dark first-row">${item.createDate
-												}</td>
-											<td class="cart-title first-row text-dark">${item.address
-												}</td>
-											<td class="total-price first-row"><a
-												href="/home/myOrderDetail?id=${item.id }"
-												style="font-size: 14px">Order Detail</a></td>
-										</tr>
-									</c:forEach>
+									<tr th:each="order, state: ${orderPage}">
+										<td scope="row">[[${state.index +1}]]</td>
+										<td scope="row">[[${order.id}]]</td>
+										<td scope="row">[[${order.createDate}]]</td>
+										<td scope="row">[[${order.address}]]</td>
+										<td><a th:href="@{|/order/detail/${order.id}|}"
+											class="text-success">Detail </a></td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
+				</div>
+				<div class="loading-more">
+					<nav aria-label="Page navigation"
+						th:if="${orderPage.totalPages > 0}">
+						<ul class="pagination justify-content-center">
+							<li
+								th:class="${1 == orderPage.number + 1} ? 'page-item active' : 'page-item'">
+								<a
+								th:href="@{/order/list/(name=${name}, page=${1})}"
+								class="page-link">First</a>
+							</li>
+
+							<li class="page-item active"
+								th:each="pageNumber : ${pageNumbers}"
+								th:if="${orderPage.totalPages > 1}"
+								th:class="${pageNumber == orderPage.number + 1} ? 'page-item active' : 'page-item'">
+								<a
+								th:href="@{/order/list/(name=${name}, page=${pageNumber})}"
+								class="page-link" th:text="${pageNumber}"></a>
+							</li>
+
+
+							<li
+								th:class="${orderPage.totalPages == orderPage.number + 1} ? 'page-item active' : 'page-item'">
+								<a
+								th:href="@{/order/list/(name=${name}, page=${orderPage.totalPages})}"
+								class="page-link">Last</a>
+							</li>
+						</ul>
+					</nav>
 				</div>
 			</div>
 		</section>

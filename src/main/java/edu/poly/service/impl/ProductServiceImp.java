@@ -32,7 +32,6 @@ public class ProductServiceImp implements ProductService{
 
 	@Override
 	public List<Product> findByCategoryId(String cid) {
-		
 		return productDAO.findByCategoryId(cid);
 	}
 
@@ -73,12 +72,21 @@ public class ProductServiceImp implements ProductService{
 	}
 
 
-
-
-
 	@Override
 	public Page<Product> findByPriceContaining(Double min, Double max, Pageable pageable) {
 		return productDAO.findByPriceContaining(min, max, pageable);
+	}
+
+
+	@Override
+	public Page<Product> findByCategoryIdAndPrice(String categoryID, Double min, Double max, Pageable pageable) {
+		return productDAO.findByCategoryIdAndPrice(categoryID, min, max, pageable);
+	}
+
+
+	@Override
+	public Page<Product> findByKeyword(String search, Pageable pageable) {
+		return productDAO.findByKeyword(search, pageable);
 	}
 
 

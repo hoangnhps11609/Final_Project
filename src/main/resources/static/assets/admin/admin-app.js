@@ -21,5 +21,6 @@ app.config(function ($routeProvider){
 		controller: "authority-ctrl"
 	}).otherwise({
 		templateUrl: "/assets/admin/background.html"
+
 	})
 })

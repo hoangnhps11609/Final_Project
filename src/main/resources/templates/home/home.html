@@ -17,7 +17,8 @@
 								<span>Bag,kids</span>
 								<h1>Black friday</h1>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore</p>								<a href="#" class="primary-btn">Shop Thinh</a>
+									sed do eiusmod tempor incididunt ut labore et dolore</p>								
+								<a href="#" class="primary-btn">Shop Now</a>
 							</div>
 						</div>
 						<div class="off-card">
@@ -35,7 +36,7 @@
 								<h1>Black friday</h1>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
 									sed do eiusmod tempor incididunt ut labore et dolore</p>
-								<a href="#" class="primary-btn">Shop Now</a>
+								<a th:href="@{/product/list}" class="primary-btn">Shop Now</a>
 							</div>
 						</div>
 						<div class="off-card">
@@ -96,39 +97,38 @@
 					<div class="col-lg-8 offset-lg-1">
 						<div class="filter-control">
 							<ul>
-								<li class="active">Clothings</li>
-								<li>HandBag</li>
-								<li>Shoes</li>
-								<li>Accessories</li>
+								<li class="active" data-filter="*">Clothings</li>
+								<li data-filter=".vegetables">HandBag</li>
+								<li data-filter=".vegetables">Shoes</li>
+								<li data-filter=".vegetables">Accessories</li>
 							</ul>
 						</div>
 						<div class="product-slider owl-carousel">
-							<div class="product-item">
+							<div class="product-item" th:each="p:${WMitems}">
 								<div class="pi-pic">
-									<img src="/site/img/products/women-1.jpg" alt="">
+									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
 									<div class="sale">Sale</div>
 									<div class="icon">
 										<i class="icon_heart_alt"></i>
 									</div>
 									<ul>
-										<li class="w-icon active"><a href="#"><i
+										<li class="w-icon active"><a th:attr="ng-click=@{|cart.add(${p.id})|}"><i
 												class="icon_cart_alt"></i></a></li>
-										<li class="quick-view"><a href="#">+ Quick View</a></li>
+										<li class="quick-view"><a th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
 										<li class="w-icon"><a href="#"><i
 												class="fa fa-random"></i></a></li>
 									</ul>
 								</div>
 								<div class="pi-text">
-									<div class="catagory-name">Coat</div>
+									<div class="catagory-name">[[${p.category.name}]]</div>
 									<a href="#">
-										<h5>Pure Pineapple</h5>
+										<h5 th:utext="${p.name}"></h5>
 									</a>
 									<div class="product-price">
-										$14.00 <span>$35.00</span>
+										$[[${p.price}]]<span>$35.00</span>
 									</div>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -188,28 +188,28 @@
 							</ul>
 						</div>
 						<div class="product-slider owl-carousel">
-							<div class="product-item">
+							<div class="product-item"  th:each="p:${Mitems}">
 								<div class="pi-pic">
-									<img src="/site/img/products/man-1.jpg" alt="">
+									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
 									<div class="sale">Sale</div>
 									<div class="icon">
 										<i class="icon_heart_alt"></i>
 									</div>
 									<ul>
-										<li class="w-icon active"><a href="#"><i
+										<li class="w-icon active"><a th:attr="ng-click=@{|cart.add(${p.id})|}"><i
 												class="icon_cart_alt"></i></a></li>
-										<li class="quick-view"><a href="#">+ Quick View</a></li>
+										<li class="quick-view"><a th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
 										<li class="w-icon"><a href="#"><i
 												class="fa fa-random"></i></a></li>
 									</ul>
 								</div>
 								<div class="pi-text">
-									<div class="catagory-name">Coat</div>
+									<div class="catagory-name">[[${p.category.name}]]</div>
 									<a href="#">
-										<h5>Pure Pineapple</h5>
+										<h5 th:utext="${p.name}"></h5>
 									</a>
 									<div class="product-price">
-										$14.00 <span>$35.00</span>
+										$[[${p.price}]]<span>$35.00</span>
 									</div>
 								</div>
 							</div>

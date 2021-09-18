@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -46,8 +48,8 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public List<Order> findByUsername(String username) {
-		return dao.findByUsername(username);
+	public Page<Order> findByUsername(String username, Pageable pageable) {
+		return dao.findByUsername(username, pageable);
 	}
 
 	@Override
@@ -86,7 +88,10 @@ public class OrderServiceImpl implements OrderService{
 		return dao.findByDate(fromFormat, toFormat);
 	}
 
-	
-
+	@Override
+	public List<Order> findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

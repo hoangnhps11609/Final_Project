@@ -160,7 +160,7 @@ ol {
 }
 
 .spad {
-	padding-top: 100px;
+	padding-top: 50px;
 	padding-bottom: 100px;
 }
 
@@ -1271,7 +1271,7 @@ ol {
 -----------------------*/
 
 .deal-of-week {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 80px;
 	margin-left: 65px;
 	margin-right: 65px;
@@ -1316,7 +1316,7 @@ ol {
 .man-banner {
 	padding-right: 65px;
 	padding-left: 65px;
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 80px;
 }
 
@@ -1713,7 +1713,7 @@ ol {
 -----------------------*/
 
 .product-shop {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 80px;
 }
 
@@ -2009,7 +2009,7 @@ ol {
 	position: absolute;
 	right: 48px;
 	top: 0;
-	content: "09";
+	content: "";
 	font-size: 16px;
 	color: #252525;
 }
@@ -2637,7 +2637,7 @@ ol {
 -----------------------*/
 
 .shopping-cart {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 60px;
 }
 
@@ -2867,7 +2867,7 @@ ol {
 -----------------------*/
 
 .checkout-section {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 80px;
 }
 
@@ -3009,6 +3009,50 @@ ol {
 	float: right;
 }
 
+
+
+
+
+.checkout-form .place-order .order-total .order-table1 {
+	margin-bottom: 20px;
+}
+
+.checkout-form .place-order .order-total .order-table1 li {
+	list-style: none;
+	color: #252525;
+	font-size: 14px;
+	font-weight: 700;
+	text-transform: uppercase;
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 5px;
+	padding-top: 30px;
+}
+
+.checkout-form .place-order .order-total .order-table1 li:first-child {
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 20px;
+	padding-top: 0;
+}
+
+.checkout-form .place-order .order-total .order-table1 li.fw-normal {
+	font-weight: 400;
+	text-transform: capitalize;
+}
+
+.checkout-form .place-order .order-total .order-table1 li.fw-normal span {
+	font-weight: 700;
+}
+
+.checkout-form .place-order .order-total .order-table1 li.total-price span {
+	color: #e7ab3c;
+}
+
+.checkout-form .place-order .order-total .order-table1 li span {
+	float: right;
+}
+
+
+
 .checkout-form .place-order .order-total .payment-check {
 	margin-bottom: 50px;
 }
@@ -3069,7 +3113,7 @@ ol {
 -----------------------*/
 
 .blog-section {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 80px;
 }
 
@@ -3569,7 +3613,7 @@ ol {
 -----------------------*/
 
 .map {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 0;
 }
 
@@ -3695,7 +3739,7 @@ ol {
 -----------------------*/
 
 .faq-section {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 54px;
 }
 
@@ -3758,8 +3802,8 @@ ol {
 -----------------------*/
 
 .register-login-section {
-	padding-top: 72px;
-	padding-bottom: 80px;
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
 .register-form h2,

@@ -28,10 +28,19 @@ public class Order  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
-	String address;
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Createdate")
 	Date createDate = new Date();
+	
+	String phone;
+	
+	String email;
+	
+	String address;
+	
+	Boolean status;
+	
 	@ManyToOne
 	@JoinColumn(name = "Username")
 	Account account;
@@ -39,4 +48,5 @@ public class Order  implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy = "order")
 	List<OrderDetail> orderDetails;
+
 }

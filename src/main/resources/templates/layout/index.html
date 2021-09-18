@@ -9,6 +9,8 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Fashi | Template</title>
 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
 <!-- Google Font -->
 <link
 	href="
@@ -34,9 +36,9 @@
 <link rel="stylesheet" th:href="@{/site/css/slicknav.min.css}"
 	type="text/css">
 <link rel="stylesheet" th:href="@{/site/css/style.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/site/css/image.css}" type="text/css">
 </head>
 <body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
-
 
 	<main>
 		<header th:insert="~{/layout/_header.html :: header}"></header>
@@ -64,9 +66,6 @@
 									$("#amount_end").val(ui.values[1]);
 								}
 							});
-			/* $("#amount").val(
-					"$" + $("#slider-range").slider("values", 0) + " - $"
-							+ $("#slider-range").slider("values", 1)); */
 		});
 
 		function readURL(input) {
@@ -91,8 +90,7 @@
 		}
 
 		function removeUpload() {
-			$('.file-upload-input')
-					.replaceWith($('.file-upload-input').clone());
+			$('.file-upload-input').replaceWith($('.file-upload-input').clone());
 			$('.file-upload-content').hide();
 			$('.image-upload-wrap').show();
 		}
@@ -113,5 +111,6 @@
 	<script th:src="@{/site/js/jquery.slicknav.js}"></script>
 	<script th:src="@{/site/js/owl.carousel.min.js}"></script>
 	<script th:src="@{/site/js/main.js}"></script>
+	<script th:src="@{/site/js/shopping-cart-app.js}"></script>
 </body>
 </html>

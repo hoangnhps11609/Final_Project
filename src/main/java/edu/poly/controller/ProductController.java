@@ -31,27 +31,38 @@ public class ProductController {
 	SessionService sessionService;
 	
 	@RequestMapping("product/list")
-	public String list(Model model,@RequestParam("cid") Optional<String> cid, 
-			@RequestParam(name = "name", required = false) String name,  
+	public String list(Model model,
+			@RequestParam(name="cid", required = false) Optional<String> cid, 
+			@RequestParam(name = "name", required = false) String name,   
 			@RequestParam("page") Optional<Integer> page,
 			@RequestParam("size") Optional<Integer> size,
 			@RequestParam(name = "min", required = false) Double min,
-			@RequestParam(name = "max", required = false) Double max) {
+			@RequestParam(name = "max", required = false) Double max,
+			@RequestParam(name = "search", required = false) String search) {
 		int currentPage = page.orElse(1);
-		int pageSize = size.orElse(100);		
+		int pageSize = size.orElse(9);	
+		String categoryID = cid.orElse("");
 		Pageable pageable = PageRequest.of(currentPage-1, pageSize, Sort.by("name"));
 		Page<Product> resultPage = null;
-		if(cid.isPresent()) {
-			resultPage = productservice.findByCategoryId(cid.get(), pageable);
-			model.addAttribute("cid", cid);
+		if(categoryID != "" && min == null) {
+			resultPage = productservice.findByCategoryId(categoryID, pageable);
+			model.addAttribute("cid", categoryID);
 		}else if(StringUtils.hasText(name)){
 			resultPage = productservice.findByNameContaining(name, pageable);
 			model.addAttribute("name", name);
-		}else if(max != null){
+		}else if(max != null && categoryID.equals("")){
 			resultPage = productservice.findByPriceContaining(min, max, pageable);
 			model.addAttribute("max", max);
 			model.addAttribute("min", min);
-		}else {
+		}else if(cid.isPresent() && max != null){
+			resultPage = productservice.findByCategoryIdAndPrice(categoryID, min, max, pageable);
+			model.addAttribute("max", max);
+			model.addAttribute("min", min);
+			model.addAttribute("cid", categoryID);
+		}else if(search != null){
+			resultPage = productservice.findByKeyword("%" + search + "%", pageable);
+			model.addAttribute("search", search);
+		}else{
 //			List<Product> list = productservice.findAll();
 			resultPage = productservice.findAll(pageable);
 //			model.addAttribute("items", list);
@@ -69,9 +80,55 @@ public class ProductController {
 					.boxed().collect(Collectors.toList());
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
-		model.addAttribute("items", resultPage);
+		model.addAttribute("productPage", resultPage);
+		model.addAttribute("size", pageSize);
 		return "product/list";
 	}
+	
+//	@RequestMapping("product/list")
+//	public String list(Model model,
+//			@RequestParam("cid") Optional<String> cid, 
+//			@RequestParam(name = "name", required = false) String name,  
+//			@RequestParam("page") Optional<Integer> page,
+//			@RequestParam("size") Optional<Integer> size,
+//			@RequestParam(name = "min", required = false) Double min,
+//			@RequestParam(name = "max", required = false) Double max) {
+//		int currentPage = page.orElse(1);
+//		int pageSize = size.orElse(9);		
+//		Pageable pageable = PageRequest.of(currentPage-1, pageSize, Sort.by("name"));
+//		Page<Product> resultPage = null;
+//		if(cid.isPresent()) {
+//			resultPage = productservice.findByCategoryId(cid.get(), pageable);
+//			model.addAttribute("cid", cid);
+//		}else if(StringUtils.hasText(name)){
+//			resultPage = productservice.findByNameContaining(name, pageable);
+//			model.addAttribute("name", name);
+//		}else if(max != null){
+//			resultPage = productservice.findByPriceContaining(min, max, pageable);
+//			model.addAttribute("max", max);
+//			model.addAttribute("min", min);
+//		}else {
+////			List<Product> list = productservice.findAll();
+//			resultPage = productservice.findAll(pageable);
+////			model.addAttribute("items", list);
+//		}
+//		int totalPages = resultPage.getTotalPages();
+//		if(totalPages > 0) {
+//			int start = Math.max(1, currentPage - 2);
+//			int end = Math.min(currentPage + 2, totalPages);
+//			
+//			if (totalPages > 5) {
+//				if (end == totalPages) start = end - 5;
+//				else if(start ==1 ) end = start + 5;
+//			}
+//			List<Integer> pageNumbers = IntStream.rangeClosed(start, end)
+//					.boxed().collect(Collectors.toList());
+//			model.addAttribute("pageNumbers", pageNumbers);
+//		}
+//		model.addAttribute("productPage", resultPage);
+//		model.addAttribute("size", size);
+//		return "product/list";
+//	}
 	
 	@RequestMapping("product/detail/{id}")
 	public String detail(Model model,@PathVariable("id") Integer id) {
