@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import edu.poly.entity.Product;
+import edu.poly.entity.Report;
+
 
 public interface ProductService {
 
@@ -47,6 +49,9 @@ public interface ProductService {
 
 
 	List<Product> findByCategoryIdandGender(String categoryid, int gender);
+
+
+	List<Report> getReport();
 
 
 

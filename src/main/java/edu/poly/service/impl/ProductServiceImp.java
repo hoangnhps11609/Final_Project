@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import edu.poly.dao.ProductDAO;
 import edu.poly.service.ProductService;
+
 import edu.poly.entity.Product;
+import edu.poly.entity.Report;
 
 @Service
 public class ProductServiceImp implements ProductService{
@@ -94,6 +96,11 @@ public class ProductServiceImp implements ProductService{
 	public List<Product> findByCategoryIdandGender(String categoryid, int gender) {
 		return productDAO.findByCategoryIdandGender(categoryid, gender);
 	}
-
+	
+	@Override
+	public List<Report> getReport() {
+		// TODO Auto-generated method stub
+		return productDAO.getInventoryByCategory();
+	}
 
 }
