@@ -35,7 +35,7 @@ app.controller("product-ctrl", function($scope, $http) {
 	//hiển thị lên form
 	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);
-		$(".nav-tabs a:eq(0)").tab('show')
+		$(".nav a:eq(0)").tab('show')
 	}
 
 	//Thêm sản phẩm mới
