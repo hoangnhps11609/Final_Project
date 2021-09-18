@@ -19,7 +19,9 @@ import lombok.Data;
 public class Role  implements Serializable{
 	@Id
 	private String id;
+	
 	private String name;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "role")
 	List<Authority> authorities;
