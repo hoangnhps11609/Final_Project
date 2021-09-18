@@ -42,7 +42,7 @@ public class Product  implements Serializable{
 	
 	String description;
 	
-	Float discount;
+	Integer discount;
 	
 	String image;
 	

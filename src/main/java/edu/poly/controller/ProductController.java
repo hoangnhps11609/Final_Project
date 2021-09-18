@@ -18,20 +18,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.poly.service.BrandService;
+import edu.poly.service.ColorService;
 import edu.poly.service.GenderService;
 import edu.poly.service.ProductService;
+import edu.poly.service.SizeService;
 import edu.poly.utils.SessionService;
+import edu.poly.entity.Brand;
+import edu.poly.entity.Color;
+import edu.poly.entity.Gender;
 import edu.poly.entity.Product;
+import edu.poly.entity.Size;
 
 @Controller
 public class ProductController {
 	
 	@Autowired
 	ProductService productservice;
+
+	@Autowired
+	GenderService genderService;
 	
 	
 	@Autowired
 	BrandService brandService;
+	
+	@Autowired
+	SizeService sizeService;
+	
+	@Autowired
+	ColorService colorService;
 	
 	@Autowired
 	SessionService sessionService;
@@ -88,6 +103,18 @@ public class ProductController {
 		}
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
+		
+		List<Gender> gender = genderService.findAll();
+		model.addAttribute("gender", gender);
+		
+		List<Brand> brands = brandService.findAll();
+		model.addAttribute("brands", brands);
+		
+		List<Size> sizes = sizeService.findAll();
+		model.addAttribute("sizes", sizes);
+		
+		List<Color> colors = colorService.findAll();
+		model.addAttribute("colors", colors);
 		return "product/list";
 	}
 	
