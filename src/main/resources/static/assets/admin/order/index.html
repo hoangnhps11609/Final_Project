@@ -35,7 +35,6 @@
 		/* bottom: 0; */
 		z-index: 0;
 		background: #1abc9c;
-		border-radius: 8px;
 		transition: all .5s ease 0s;
 	}
 
@@ -44,8 +43,7 @@
 		text-align: center;
 	}
 
-	.nen .nav .start-home,
-	a:nth-child(1):hover~.animation {
+	.nen .nav a:nth-child(1):hover~.animation {
 		width: 180px;
 		left: 0;
 	}
@@ -115,22 +113,19 @@
 
 	}
 </style>
-
-
 <div class="nen">
 	<ul class="nav" id="myTab" role="tablist">
-		<li class="col-sm-9">
-			<a class="nav-link" id="home-tab" data-toggle="tab" data-target="#edit" role="tab" aria-controls="home"
+		<li class="col-sm-9 ">
+			<a class="nav-link " id="home-tab" data-toggle="tab" data-target="#edit" role="tab" aria-controls="home"
 				aria-selected="true">
 				Order List</a>
 
 			<a class="nav-link" id="profile-tab" data-toggle="tab" data-target="#list" role="tab"
 				aria-controls="profile" aria-selected="false">
 				Order Detail</a>
-			<a class="nav-link" id="statistic-tab" data-toggle="tab" data-target="#statistic" role="tab"
-				aria-controls="statistic" aria-selected="false">Order Statistic</a>
 			<div class="animation start-home"></div>
 		</li>
+
 	</ul>
 	<div class="search-box1">
 		<input class="search-txt1" name="" type="text" placeholder="Search" />
@@ -140,8 +135,8 @@
 
 
 	</div>
-
 </div>
+
 
 
 <div class="tab-content" id="myTabContent">
