@@ -22,7 +22,12 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-
+<style>
+body{
+background-image:url(/assets/images/hinhnenadmin.jpg);
+ background-size: 100%;
+}
+</style>
 <body ng-app="admin-app">
     <div class="preloader">
         <div class="lds-ripple">
@@ -192,9 +197,6 @@
                                 <li class="sidebar-item"><a href="#!order" class="sidebar-link"><i
                                             class="ti-shopping-cart"></i><span class="hide-menu"> Order Controller
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i
-                                            class="ti-bag"></i><span class="hide-menu"> Order Details Controller
-                                        </span></a></li>
                                 <li class="sidebar-item"><a href="#!product" class="sidebar-link"><i
                                             class="ti-gift"></i><span class="hide-menu"> Product Controller </span></a>
                                 </li>
@@ -215,9 +217,6 @@
                                             class="ti-shopping-cart"></i><span class="hide-menu"> Order Statistic
                                         </span></a></li>
                                 <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i
-                                            class="ti-bag"></i><span class="hide-menu"> Order Details Statistic
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i
                                             class="ti-gift"></i><span class="hide-menu"> Product Statistic </span></a>
                                 </li>
                             </ul>
@@ -232,11 +231,26 @@
 
 
         <!-- Page wrapper  -->
-        <div class="huan col-sm-10 pull-right" style=" float: right;" >
-            <div class="page-wrapper" style="margin: 0 auto; width: 70% ; margin-top: 20px; border: solid 2px gray;">
+        <style>
+            .huan{
+                margin: 0 auto;
+                width: 68%;
+                margin-top: 15px;
+                border: solid 1px;
+				border-bottom: 0px;
+            }
+            *{
+            	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+            }
+            .borbot{
+            	border-bottom: solid 1px black;
+            }
+        </style>
+        <audio loop autoplay src="/assets/images/Sieunhan.mp3">aaaaaaaaa</audio>
+            <div class="page-wrapper" style="display: none; background-color: inherit;" >
                 <p class="ng-view" />
             </div>
-        </div>
+
         <!-- End Page wrapper  -->
     </div>
     <!-- End Wrapper -->
@@ -279,7 +293,7 @@
     <script src="/assets/assets/libs/flot/jquery.flot.crosshair.js"></script>
     <script src="/assets/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
     <script src="/assets/dist/js/pages/chart/chart-page-init.js"></script>
-
+	
 </body>
 
 </html>
