@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import edu.poly.entity.Product;
+import edu.poly.entity.Report;
 @Repository
 public interface ProductDAO extends JpaRepository<Product, Integer> {
 	
@@ -41,4 +42,8 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	@Query
 	("SELECT p FROM Product p WHERE p.category.id=?1 and p.gender.id=?2")
 	List<Product> findByCategoryIdandGender(String categoryid, int gender);
+	
+
+	  @Query("SELECT new Report(o.category, sum(o.price), count(o))   FROM Product o  GROUP BY o.category" + " ORDER BY sum(o.price) DESC")
+	  List<Report> getInventoryByCategory();
 }

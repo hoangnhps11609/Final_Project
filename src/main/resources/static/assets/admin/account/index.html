@@ -35,7 +35,6 @@
 		/* bottom: 0; */
 		z-index: 0;
 		background: #1abc9c;
-		border-radius: 8px;
 		transition: all .5s ease 0s;
 	}
 
@@ -44,8 +43,7 @@
 		text-align: center;
 	}
 
-	.nen .nav .start-home,
-	a:nth-child(1):hover~.animation {
+	.nen .nav a:nth-child(1):hover~.animation {
 		width: 180px;
 		left: 0;
 	}
@@ -118,34 +116,36 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="nen">
-	<ul class="nav" id="myTab" role="tablist">
-		<li class="col-sm-9 ">
-			<a class="nav-link " id="home-tab" data-toggle="tab" data-target="#edit" role="tab" aria-controls="home"
-				aria-selected="true">
-				Account Edition</a>
-
-			<a class="nav-link" id="profile-tab" data-toggle="tab" data-target="#list" role="tab"
-				aria-controls="profile" aria-selected="false">
-				List Account</a>
-			<div class="animation start-home"></div>
-		</li>
-
-	</ul>
-	<div class="search-box1">
-		<input class="search-txt1" name="" type="text" placeholder="Search" />
-		<a class="search-btn1" href="#">
-			<i class="fa fa-search"></i>
-		</a>
-
-
+<div class="huan">
+	<div class="nen">
+		<ul class="nav" id="myTab" role="tablist">
+			<li class="col-sm-9 ">
+				<a class="nav-link " id="home-tab" data-toggle="tab" data-target="#edit" role="tab" aria-controls="home"
+					aria-selected="true">
+					Account Edition</a>
+	
+				<a class="nav-link" id="profile-tab" data-toggle="tab" data-target="#list" role="tab"
+					aria-controls="profile" aria-selected="false">
+					List Account</a>
+				<div class="animation start-home"></div>
+			</li>
+	
+		</ul>
+		<div class="search-box1">
+			<input class="search-txt1" name="" type="text" placeholder="Search" />
+			<a class="search-btn1" href="#">
+				<i class="fa fa-search"></i>
+			</a>
+	
+	
+		</div>
 	</div>
-</div>
-<div class="tab-content" id="myTabContent">
-	<div class="tab-pane fade show active" id="edit" role="tabpanel" aria-labelledby="home-tab">
-		<div class="" ng-include="'/assets/admin/account/_form.html'"></div>
-	</div>
-	<div class="tab-pane fade" id="list" role="tabpanel" aria-labelledby="profile-tab">
-		<div class="" ng-include="'/assets/admin/account/_table.html'"></div>
+	<div class="tab-content" id="myTabContent">
+		<div class="tab-pane fade show active" id="edit" role="tabpanel" aria-labelledby="home-tab">
+			<div class="" ng-include="'/assets/admin/account/_form.html'"></div>
+		</div>
+		<div class="tab-pane fade" id="list" role="tabpanel" aria-labelledby="profile-tab">
+			<div class="" ng-include="'/assets/admin/account/_table.html'"></div>
+		</div>
 	</div>
 </div>
