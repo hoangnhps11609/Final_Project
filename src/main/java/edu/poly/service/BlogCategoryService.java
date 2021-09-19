@@ -56,7 +56,7 @@ public interface BlogCategoryService {
 
 	<S extends BlogCategory> List<S> saveAll(Iterable<S> entities);
 
-	Optional<BlogCategory> findById(Integer id);
+	BlogCategory findById(Integer id);
 
 	List<BlogCategory> findAllById(Iterable<Integer> ids);
 

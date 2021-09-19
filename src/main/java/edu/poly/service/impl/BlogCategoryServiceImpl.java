@@ -54,8 +54,8 @@ public class BlogCategoryServiceImpl implements BlogCategoryService{
 	}
 
 	@Override
-	public Optional<BlogCategory> findById(Integer id) {
-		return blogCategoryDAO.findById(id);
+	public BlogCategory findById(Integer id) {
+		return blogCategoryDAO.findById(id).get();
 	}
 
 	@Override

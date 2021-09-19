@@ -118,21 +118,39 @@
 						<h2>Register</h2>
 						<form th:action="@{/accounts/register}" method="post"
 							enctype="multipart/form-data">
-							<div class="group-input">
-								<label>Username *</label> <input
-									name="username" class="form-control" >
+							<div class="row">
+								<div class="group-input col-6">
+									<label>Username *</label> <input
+										name="username" class="form-control" >
+								</div>
+								<div class="group-input col-6">
+									<label>Password *</label> <input
+										name="password" class="form-control">
+								</div>
+							</div>
+							<div class="row">
+								<div class="group-input col-6">
+									<label>Fullname *</label> <input
+										type="text" name="fullname" class="form-control">
+								</div>
+								<div class="group-input col-6">
+									<label>Email *</label> <input
+										type="email" name="email" class="form-control">
+								</div>
+							</div>
+							<div class="row">
+								<div class="group-input col-6">
+									<label>Phone * </label> <input
+										type="text" name="phone" class="form-control">
+								</div>
+								<div class="group-input col-6">
+									<label>Birthday * </label> <input
+										type="date"  name="birthDay" class="form-control">
+								</div>
 							</div>
 							<div class="group-input">
-								<label>Password *</label> <input
-									name="password" class="form-control">
-							</div>
-							<div class="group-input">
-								<label>Fullname *</label> <input
-									type="text" name="fullname" class="form-control">
-							</div>
-							<div class="group-input">
-								<label>Email *</label> <input
-									type="email" name="email" class="form-control">
+								<label>Address * </label> 
+								<textarea rows="3" name="address" class="form-control"> </textarea>
 							</div>
 							<div class="file-upload">
 								<div class="image-upload-wrap">
@@ -167,7 +185,6 @@
 		</div>
 	</div>
 	<!-- Register Form Section End -->
-
 
 </main>
 

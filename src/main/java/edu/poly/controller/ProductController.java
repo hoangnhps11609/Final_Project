@@ -167,6 +167,14 @@ public class ProductController {
 	public String detail(Model model,@PathVariable("id") Integer id) {
 		Product item = productservice.findById(id);
 		model.addAttribute("item", item);
+		List<Brand> brands = brandService.findAll();
+		model.addAttribute("brands", brands);
+		
+		List<Size> sizes = sizeService.findAll();
+		model.addAttribute("sizes", sizes);
+		
+		List<Color> colors = colorService.findAll();
+		model.addAttribute("colors", colors);
 		return "product/detail";
 	}
 }

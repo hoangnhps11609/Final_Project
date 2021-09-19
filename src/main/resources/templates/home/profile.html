@@ -41,7 +41,7 @@
 												class=" img-thumbnail">
 											</label>
 											<div class="col">
-												<input type="file" name="img" id="img">
+												<input type="file" name="img" id="img" style="width: 87px;">
 											</div>
 										</div>
 										<div class="col-sm-8">
@@ -50,23 +50,45 @@
 													<label>Username *</label> <input
 														th:field="*{items.username}" name="username"
 														class="form-control" readonly>
-
-												</div>
-												<div class="group-input col-sm-6">
-													<label>Fullname *</label> <input
-														th:field="*{items.fullname}" name="fullname"
-														class="form-control">
-												</div>
-											</div>
-											<div class="row">
-												<div class="group-input col-sm-6">
-													<label>Email *</label> <input th:field="*{items.email}"
-														type="email" name="email" class="form-control">
 												</div>
 												<div class="group-input col-sm-6">
 													<label>Password *</label> <input
 														th:field="*{items.password}" name="password"
 														class="form-control">
+												</div>											
+											</div>
+											<div class="row">
+												<div class="group-input col-sm-6">
+													<label>Fullname *</label> <input
+														th:field="*{items.fullname}" name="fullname"
+														class="form-control">
+												</div>
+												<div class="group-input col-sm-6">
+													<label>Phone *</label> <input
+														th:field="*{items.phone}" name="phone"
+														class="form-control">
+												</div>
+											</div>
+											<div class="row">												
+												<div class="group-input col-sm-6">
+													<label>Birthday *</label> <input th:field="*{items.birthDay}"
+														type="date" name="birthDay" class="form-control">
+												</div>
+												<div class="group-input col-sm-6">
+													<label>CreateDate *</label> <input th:field="*{items.createDate}"
+														type="date" name="createDate" class="form-control">
+												</div>
+											</div>
+											<div class="row">
+												<div class="group-input col-sm-12">
+													<label>Email *</label> <input th:field="*{items.email}"
+														type="email" name="email" class="form-control">
+												</div>
+											</div>
+											<div class="row">
+												<div class="group-input col-sm-12">
+													<label>Address *</label> <textarea rows="3" th:field="*{items.address}"
+														name="address" class="form-control"></textarea>
 												</div>
 											</div>
 											<div class="row">

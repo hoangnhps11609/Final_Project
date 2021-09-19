@@ -3,6 +3,8 @@ app.controller("product-ctrl", function($scope, $http) {
 	$scope.cates = [];
 	$scope.form = {};
 
+	$scope.blogcates = [];
+
 	$scope.initialize = function() {
 		//load products
 		$http.get("/rest/products").then(resp => {
@@ -16,6 +18,11 @@ app.controller("product-ctrl", function($scope, $http) {
 		//load category
 		$http.get("/rest/categories").then(resp => {
 			$scope.cates = resp.data;
+		});
+
+		//load blogcategory
+		$http.get("/rest/blogcates").then(resp => {
+			$scope.blogcates = resp.data;
 		});
 
 	}
