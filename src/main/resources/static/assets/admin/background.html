@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+
+</head>
+<style>
+  .chao {
+    width: 35%;
+    min-height: 50px;
+    background-color: aqua;
+    
+  }
+  .chao>p{
+  font-family: Me;
+  }
+</style>
+
+<body>
+
+  <div class="containerhh" style="position: relative; min-height: 500px">
+    <div class="chao" ng-controller="datCtrl">
+      <p ng-model="hour" style="visibility: hidden;">{{ today | date:"HH" }}</p>
+      <p ng-if="hour < 10">Chào buổi sáng</p>
+      <p ng-if="hour > 10 && hour < 13">Chào buổi Trưa</p>
+      <p ng-if="hour > 13 && hour < 17">Chào buổi Chiều</p>
+      <p ng-if="hour > 17">Chào buổi Tối</p>
+      <p style="font-family: sans-serif">huan </p>
+    </div>
+
+    <div class="card col-sm-7" style="position: absolute; top: 50px;right: 50px ">
+
+      <iframe width="100%" height="400"
+        src="https://www.youtube.com/embed/_au37MZaQQI?enablejsapi=1&rel=0&playsinline=1&autoplay=1&showinfo=0&autohide=1&controls=0&modestbranding=1"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    </div>
+  </div>
+</body>
+
+</html>
