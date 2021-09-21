@@ -53,10 +53,7 @@ public class VoucherServiceImpl implements VoucherService{
 		return voucherDAO.findAllById(ids);
 	}
 
-	@Override
-	public Optional<Voucher> findById(Integer id) {
-		return voucherDAO.findById(id);
-	}
+
 
 	@Override
 	public <S extends Voucher> List<S> saveAll(Iterable<S> entities) {
@@ -166,6 +163,12 @@ public class VoucherServiceImpl implements VoucherService{
 	@Override
 	public <S extends Voucher> List<S> findAll(Example<S> example, Sort sort) {
 		return voucherDAO.findAll(example, sort);
+	}
+
+	@Override
+	public Voucher update(Voucher product) {
+		voucherDAO.save(product);
+		return null;
 	}
 	
 	
