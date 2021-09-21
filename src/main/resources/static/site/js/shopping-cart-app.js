@@ -131,7 +131,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			$scope.items.push(resp.data);
 			$scope.reset();
 			alert("Thêm mới thành công");
-			$(".nav-tabs a:eq(1)").tab('show');
+			location.href = "/";
 		}).catch(error => {
 			alert("Lỗi thêm sản phẩm");
 			console.log("Error", error);

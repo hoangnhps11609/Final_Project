@@ -35,8 +35,6 @@ public class Order  implements Serializable{
 	
 	String phone;
 	
-	String email;
-	
 	String address;
 	
 	Boolean status;

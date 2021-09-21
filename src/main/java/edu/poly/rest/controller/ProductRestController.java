@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.poly.entity.Product;
+import edu.poly.entity.Report;
 import edu.poly.service.ProductService;
 
 @CrossOrigin("*")
@@ -21,30 +22,36 @@ import edu.poly.service.ProductService;
 @RequestMapping("/rest/products")
 public class ProductRestController {
 	@Autowired
-	ProductService productService;
-	
-	@GetMapping("{id}")
-	public Product getOne(@PathVariable("id") Integer id) {
-		return productService.findById(id);
-	}
+	ProductService pService;
 	
 	@GetMapping()
 	public List<Product> getAll() {
-		return productService.findAll();
+		return pService.findAll();
+	}
+	
+	@GetMapping("{id}")
+	public Product getOne(@PathVariable("id") Integer id) {
+		return pService.findById(id);
 	}
 	
 	@PostMapping
 	public Product create(@RequestBody Product product) {
-		return productService.create(product);
+		return pService.create(product);
 	}
 	
 	@PutMapping("{id}")
 	public Product update(@PathVariable("id") Integer id, @RequestBody Product product) {
-		return productService.update(product);
+		return pService.update(product);
 	}
 	
 	@DeleteMapping("{id}")
-	public void update(@PathVariable("id") Integer id) {
-		productService.delete(id);
+	public void delete(@PathVariable("id") Integer id) {
+		pService.delete(id);
 	}
+	
+	@GetMapping("/report1")
+	public List<Report> getReport(){
+		return pService.getReport();
+	}
+	
 }

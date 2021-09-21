@@ -54,5 +54,8 @@ public interface ProductService {
 	List<Report> getReport();
 
 
+	Page<Product> findByBrandId(Integer brand, Pageable pageable);
+
+
 
 }

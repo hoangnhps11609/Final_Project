@@ -66,7 +66,7 @@ public class ChangePasswordController {
 		} catch (Exception e) {
 			model.addAttribute("message", "Account invalid!");
 		}
-		return "redirect:/home/change-password";
+		return "redirect:/security/logoff";
 	}
 	
 	

@@ -1,7 +1,6 @@
 package edu.poly.rest.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,47 +15,45 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.poly.entity.Account;
-import edu.poly.entity.Category;
-import edu.poly.entity.Product;
-import edu.poly.entity.Role;
 import edu.poly.service.AccountService;
-import edu.poly.service.CategoryService;
-import edu.poly.service.ProductService;
-import edu.poly.service.RoleService;
+
+import java.util.Optional;
+
 
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/rest/accounts")
 public class AccountRestController {
 	@Autowired
-	AccountService accountService;
+	AccountService accService;
 	
-	
-	@GetMapping()
-	public List<Account> getAccounts(@RequestParam("admin") Optional<Boolean> admin) {
+	@GetMapping
+	public List<Account> getAccounts(@RequestParam("admin")Optional<Boolean> admin){
 		if (admin.orElse(false)) {
-			return accountService.getAdministrators();
+			return accService.getAdministrators();
 		}
-		return accountService.findAll();
+		return accService.findAll();
+	}
+	
+
+	
+	@GetMapping("{username}")
+	public Account getOne(@PathVariable("username") String username) {
+		return accService.findById(username);
 	}
 	
 	@PostMapping
 	public Account create(@RequestBody Account account) {
-		return accountService.create(account);
+		return accService.create(account);
 	}
 	
 	@PutMapping("{id}")
 	public Account update(@PathVariable("id") String id, @RequestBody Account account) {
-		return accountService.update(account);
+		return accService.update(account);
 	}
 	
 	@DeleteMapping("{id}")
-	public void update(@PathVariable("id") String id) {
-		accountService.delete(id);
-	}
-	
-	@GetMapping("{id}")
-	public Account getOne(@PathVariable("id") String id) {
-		return accountService.findById(id);
+	public void delete(@PathVariable("id") String id) {
+		accService.delete(id);
 	}
 }

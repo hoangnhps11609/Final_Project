@@ -14,40 +14,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.poly.entity.Category;
-import edu.poly.entity.Product;
 import edu.poly.service.CategoryService;
-import edu.poly.service.ProductService;
+
 
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/rest/categories")
 public class CategoryRestController {
 	@Autowired
-	CategoryService categoryService;
-	
+	CategoryService cService;
 	
 	@GetMapping()
 	public List<Category> getAll() {
-		return categoryService.findAll();
-	}
-	
-	@PostMapping
-	public Category create(@RequestBody Category category) {
-		return categoryService.create(category);
-	}
-	
-	@PutMapping("{id}")
-	public Category update(@PathVariable("id") String id, @RequestBody Category category) {
-		return categoryService.update(category);
-	}
-	
-	@DeleteMapping("{id}")
-	public void update(@PathVariable("id") String id) {
-		categoryService.delete(id);
+		return cService.findAll();
 	}
 	
 	@GetMapping("{id}")
 	public Category getOne(@PathVariable("id") String id) {
-		return categoryService.findById(id);
+		return cService.findById(id);
+	}
+	
+	@PostMapping
+	public Category create(@RequestBody Category category) {
+		return cService.create(category);
+	}
+	
+	@PutMapping("{id}")
+	public Category update(@PathVariable("id") String id, @RequestBody Category category) {
+		return cService.update(category);
+	}
+	
+	@DeleteMapping("{id}")
+	public void delete(@PathVariable("id") String id) {
+		cService.delete(id);
 	}
 }

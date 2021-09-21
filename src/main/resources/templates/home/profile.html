@@ -34,79 +34,85 @@
 							<div class="panel panel-default">
 								<div class="panel-body">
 									<div class="row">
-										<div class="col-sm-4 text-center">
-											<label for="photo"> <img
-												th:src="'/site/img/products/' + *{items.photo}" id="img"
-												style="max-width: 100%; height: 200px;"  
-												class=" img-thumbnail">
-											</label>
-											<div class="col">
-												<input type="file" name="img" id="img" style="width: 87px;">
-											</div>
-										</div>
-										<div class="col-sm-8">
+										<div class="col-sm-12">
 											<div class="row">
-												<div class="group-input col-sm-6">
-													<label>Username *</label> <input
-														th:field="*{items.username}" name="username"
-														class="form-control" readonly>
+												<div class="file-upload col-4">
+													<div class="image-upload-wrap">
+														<input class="file-upload-input" type="file" name="img"
+															id="img" onchange="readURL(this);" accept="image/*" />
+														<div class="drag-text">
+															<img class="img-fluid p-2"
+																th:src="'/assets/images/' + *{items.photo}"
+																alt="your image" id="img" />
+															<h5>Drag and drop a file or select add Image</h5>
+														</div>
+													</div>
+													<div class="file-upload-content">
+														<img class="file-upload-image img-fluid"
+															th:src="'/assets/images/' + *{items.photo}"
+															alt="your image" id="img" />
+														<div class="image-title-wrap">
+															<button type="button" onclick="removeUpload()"
+																class="remove-image">
+																Remove <span class="image-title">Uploaded Image</span>
+															</button>
+														</div>
+													</div>
+
+													<div class="group-input col">
+														<input th:field="*{items.password}" type="hidden" readonly
+															name="password" class="form-control">
+													</div>
 												</div>
-												<div class="group-input col-sm-6">
-													<label>Password *</label> <input
-														th:field="*{items.password}" name="password"
-														class="form-control">
-												</div>											
-											</div>
-											<div class="row">
-												<div class="group-input col-sm-6">
-													<label>Fullname *</label> <input
-														th:field="*{items.fullname}" name="fullname"
-														class="form-control">
-												</div>
-												<div class="group-input col-sm-6">
-													<label>Phone *</label> <input
-														th:field="*{items.phone}" name="phone"
-														class="form-control">
-												</div>
-											</div>
-											<div class="row">												
-												<div class="group-input col-sm-6">
-													<label>Birthday *</label> <input th:field="*{items.birthDay}"
-														type="date" name="birthDay" class="form-control">
-												</div>
-												<div class="group-input col-sm-6">
-													<label>CreateDate *</label> <input th:field="*{items.createDate}"
-														type="date" name="createDate" class="form-control">
-												</div>
-											</div>
-											<div class="row">
-												<div class="group-input col-sm-12">
-													<label>Email *</label> <input th:field="*{items.email}"
-														type="email" name="email" class="form-control">
-												</div>
-											</div>
-											<div class="row">
-												<div class="group-input col-sm-12">
-													<label>Address *</label> <textarea rows="3" th:field="*{items.address}"
-														name="address" class="form-control"></textarea>
-												</div>
-											</div>
-											<div class="row">
-												<div class="form-group col-sm-12 text-center">
-													<div style="color: blue;" th:text="*{message}"></div>
+												<div class="col-8">
+													<div class="row">
+														<div class="group-input col-sm-6">
+															<label>Username *</label> <input 
+																th:field="*{items.username}" name="username" id="username" aria-describedby="usernameHid"
+																class="form-control" readonly>
+															<small	class="form-text text-muted">Username is invalid</small>
+														</div>
+
+														<div class="group-input col-sm-6">
+															<label>Fullname *</label> <input
+																th:field="*{items.fullname}" name="fullname" id="fullname" aria-describedby="fullnameHid" class="form-control">
+															<small id="fullnameHid"	class="form-text text-muted">Fullname is invalid</small>
+														</div>
+													</div>
+													<div class="row">
+														<div class="group-input col-sm-6">
+															<label>Email *</label> <input th:field="*{items.email}"
+																type="email" name="email" class="form-control">
+															<small	class="form-text text-muted">Email is invalid</small>
+														</div>
+														<div class="group-input col-sm-6">
+															<label>Phone *</label> <input th:field="*{items.phone}"
+																name="phone" class="form-control">
+															<small	class="form-text text-muted">Phone is invalid</small>
+														</div>
+													</div>
+													<div class="row">
+														<div class="group-input col-sm-12">
+															<label>Address *</label>
+															<textarea rows="3" th:field="*{items.address}"
+																name="address" class="form-control"></textarea>
+															<small	class="form-text text-muted">Address is invalid</small>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 
-								<div class="offset-4 pl-2">
+								<div class=" col p-0 m-0">
 									<button class="site-btn register-btn">
 										<b class="glyphicon glyphicon-refresh"></b>Update Profile
 									</button>
+
 									<div class="switch-login">
-										<a th:href="@{/security/login/form}" class="or-login">Or
-											Login</a>
+										<a th:href="@{/home/change-password}" class="or-login">Or
+											Change Password</a>
 									</div>
 								</div>
 							</div>

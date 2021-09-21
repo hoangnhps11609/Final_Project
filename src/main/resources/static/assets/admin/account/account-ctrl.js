@@ -27,7 +27,7 @@ app.controller("account-ctrl", function($scope, $http) {
 		$(".nav a:eq(0)").tab('show')
 	}
 
-	//Thêm sản phẩm mới
+	//Thêm account mới
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/accounts`, item).then(resp => {

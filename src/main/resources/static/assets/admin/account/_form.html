@@ -15,7 +15,8 @@
 					</div>
 					<div class="form-group col-sm-6">
 						<div>Password:</div>
-						<input type="password" class="form-control"	ng-model="form.password" />
+						<input type="password" class="form-control"
+							ng-model="form.password" />
 					</div>
 				</div>
 				<div class="row">
@@ -26,6 +27,32 @@
 					<div class="form-group col-sm-6">
 						<div>Email:</div>
 						<input type="email" class="form-control" ng-model="form.email" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<div>Phone:</div>
+						<input class="form-control" ng-model="form.phone" />
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Activated:</div>
+						<label class="radio-inline px-3"> <input
+							ng-model="form.activated" ng-value="true" name="activated"
+							type="radio" />Yes
+						</label> <label class="radio-inline"> <input
+							ng-model="form.activated" ng-value="false" name="activated"
+							type="radio" />No
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<div>Create Date:</div>
+						<input type="date" class="form-control" ng-model="form.createDate"/>
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Address:</div>
+						<input type="text" class="form-control" ng-model="form.address" />
 					</div>
 				</div>
 				<div class="row">

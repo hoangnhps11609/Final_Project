@@ -16,7 +16,7 @@ import lombok.Data;
 @SuppressWarnings("serial")
 @Data
 @Entity 
-@Table(name = "Imagecolordetails")
+@Table(name = "Imagecolordetail")
 public class ImageColorDetail  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class ImageColorDetail  implements Serializable{
 	String image;
 	
 	@ManyToOne
-	@JoinColumn(name = "Productid")
+	@JoinColumn(name = "Productsid")
 	Product product;
 	
 	@ManyToOne

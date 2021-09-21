@@ -14,34 +14,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.poly.*;
 import edu.poly.authority.service.AuthorityService;
 import edu.poly.entity.Authority;
-import edu.poly.entity.Category;
 
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/rest/authorities")
 public class AuthorityRestController {
 	@Autowired
-	edu.poly.authority.service.AuthorityService authoritySerive;
+	AuthorityService auService;
 	
 	@GetMapping
-	public List<Authority> findAll(@RequestParam("admin") Optional<Boolean> admin) {
+	public List<Authority> findAll(@RequestParam("admin")Optional<Boolean> admin){
 		if(admin.orElse(false)) {
-			return authoritySerive.findAuthoritiesOfAdministrators();
+			return auService.findAuthoritiesOfAdministrators();
 		}
-		
-		return authoritySerive.findAll();
+		return auService.findAll();
 	}
 	
 	@PostMapping
 	public Authority post(@RequestBody Authority auth) {
-		return authoritySerive.create(auth);
+		return auService.create(auth);
 	}
-	
 	
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable("id") Integer id) {
-		authoritySerive.delete(id);
+		auService.delete(id);
 	}
 }

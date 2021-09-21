@@ -12,27 +12,30 @@ import edu.poly.entity.SizeDetail;
 
 public interface SizeDetailService {
 
+
+	Page<SizeDetail> findBySize(Integer sizepro, Pageable pageable);
+
 	<S extends SizeDetail> List<S> findAll(Example<S> example, Sort sort);
 
 	<S extends SizeDetail> List<S> findAll(Example<S> example);
 
-	SizeDetail getById(Integer id);
+	SizeDetail getById(Long id);
 
 	void deleteAll();
 
 	void deleteAll(Iterable<? extends SizeDetail> entities);
 
-	SizeDetail getOne(Integer id);
+	SizeDetail getOne(Long id);
 
 	void deleteAllInBatch();
 
-	void deleteAllById(Iterable<? extends Integer> ids);
+	void deleteAllById(Iterable<? extends Long> ids);
 
 	void delete(SizeDetail entity);
 
-	void deleteAllByIdInBatch(Iterable<Integer> ids);
+	void deleteAllByIdInBatch(Iterable<Long> ids);
 
-	void deleteById(Integer id);
+	void deleteById(Long id);
 
 	long count();
 
@@ -48,7 +51,7 @@ public interface SizeDetailService {
 
 	<S extends SizeDetail> List<S> saveAllAndFlush(Iterable<S> entities);
 
-	boolean existsById(Integer id);
+	boolean existsById(Long id);
 
 	<S extends SizeDetail> S saveAndFlush(S entity);
 
@@ -56,9 +59,9 @@ public interface SizeDetailService {
 
 	<S extends SizeDetail> List<S> saveAll(Iterable<S> entities);
 
-	Optional<SizeDetail> findById(Integer id);
+	Optional<SizeDetail> findById(Long id);
 
-	List<SizeDetail> findAllById(Iterable<Integer> ids);
+	List<SizeDetail> findAllById(Iterable<Long> ids);
 
 	List<SizeDetail> findAll(Sort sort);
 

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/index :: dynamic(~{::main})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<main>
+		<!-- Breadcrumb Section Begin -->
+		<div class="breacrumb-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="breadcrumb-text">
+							<a th:href="@{/home/index}"><i class="fa fa-home"></i> Home</a> <span>Shop</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Breadcrumb Section Begin -->
+
+		<!-- Product Shop Section Begin -->
+		<section class="product-shop spad">
+			<div class="container">
+				<div class="row">
+					<div
+						class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+						<div class="filter-widget">
+							<h4 class="fw-title">Categories</h4>
+							<ul class="filter-catagories" th:each="c:${cates}">
+								<li><a th:href="@{|/product/list?(cid=${c.id}; size=${size})|}">[[${c.name}]]</a></li>
+							</ul>
+						</div>
+
+
+						<div class="filter-widget" style="padding-bottom: 90px;">
+							<h4 class="fw-title">Brand</h4>
+							<div class="fw-tags" th:each="b:${brands}">
+								<a th:href="@{|/product/list?brand=${b.id}|}"
+									class="float-left ">[[${b.name}]]</a>
+							</div>
+						</div>
+
+						<div class="filter-widget">
+							<h4 class="fw-title">Price</h4>
+							<form action="/product/list" method="post">
+								<div class="filter-range-wrap">
+									<div class="range-slider">
+										<div class="price-input">
+											<!-- 											<input type="text" name="cid" placeholder="${cid}">[[${cid}]] -->
+											<input type="text" id="minamount" name="min"> <input
+												type="text" id="maxamount" name="max">
+										</div>
+									</div>
+									<div
+										class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+										data-min="0" data-max="200">
+										<div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+										<span tabindex="0"
+											class="ui-slider-handle ui-corner-all ui-state-default"></span>
+										<span tabindex="0"
+											class="ui-slider-handle ui-corner-all ui-state-default"></span>
+									</div>
+								</div>
+								<button class="filter-btn" style="border: none">Filter</button>
+							</form>
+						</div>
+
+						<div class="filter-widget">
+							<h4 class="fw-title">Color</h4>
+							<div class="fw-color-choose">
+								<ul class="cs-item" th:each="c:${colors}">
+									<li><a th:href="@{|/product/listcolor?color=${c.id}|}">[[${c.name}]]</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="filter-widget" style="padding-top: 120px;">
+							<h4 class="fw-title">Size</h4>
+							<div class="fw-size-choose">
+								<div class="sc-item" th:each="s:${sizes}">
+									<a th:href="@{|/product/listsize?sizepro=${s.id}|}"><label
+										for="s-size">[[${s.name}]]</label></a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="col-lg-9 order-1 order-lg-2">
+						<div class="product-show-option">
+							<div class="row">
+								<form action="">
+									<div class="col-lg-7 col-md-7">
+										<div class="select-option">
+											<select class="sorting">
+												<option value="">Find By Color</option>
+											</select> 
+											<select class="p-show" name="size" id="size"
+												onchange="this.form.submit()">
+												<option th:selected="${productPage.size == 9} " value="9">Show:
+													9</option>
+												<option th:selected="${productPage.size == 15}" value="15">Show:
+													15</option>
+												<option th:selected="${productPage.size == 21}" value="21">Show:
+													21</option>
+												<option th:selected="${productPage.size == 30}" value="30">Show:
+													30</option>
+												<option th:selected="${productPage.size == 9999}"
+													value="9999">Show: All</option>
+											</select>
+										</div>
+									</div>
+								</form>
+								<div class="col-lg-5 col-md-5 text-right">
+									<p>Show [[${productPage.number*productPage.numberOfElements
+										+ 1 }]] - [[${productPage.number*productPage.numberOfElements
+										+ productPage.numberOfElements}]] Of
+										[[${productPage.totalElements}]] Product</p>
+								</div>
+							</div>
+						</div>
+						<div class="product-list">
+							<div class="row">
+								<div class="col-lg-4 col-sm-6"
+									th:each=" color, iStat : ${productPage.content}">
+									<div class="product-item">
+										<div class="pi-pic">
+											<a th:href="@{|/product/detail/${color.product.id}|}"> <img
+												th:src="${color.image!=null ? '/site/img/products/' + color.image : '/site/img/logo.png'}"
+												width="100px" height="100px" id="image" class="img-fluid"
+												name="image" alt="">
+											</a>
+											<div class="sale pp-sale">Sale:
+												[[${color.product.discount}]]%</div>
+											<div class="icon">
+												<i class="icon_heart_alt"></i>
+											</div>
+											<ul>
+												<li class="w-icon active"><a
+													th:attr="ng-click=@{|cart.add(${color.product.id})|}"> <i
+														class="icon_bag_alt"></i>
+												</a></li>
+												<li class="quick-view"><a
+													th:href="@{|/product/detail/${color.product.id}|}"> + Quick
+														View </a></li>
+												<li class="w-icon"><a href="#"> <i
+														class="fa fa-random"></i>
+												</a></li>
+											</ul>
+										</div>
+										<div class="pi-text">
+											<div class="catagory-name">[[${color.product.category.name}]]</div>
+											<a href="#">
+												<h5 th:utext="${color.product.name}"></h5>
+											</a>
+											<div class="product-price">
+												$[[${color.product.price*(1-color.product.discount*0.01)}]]<span>$[[${color.product.price}]]</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="loading-more">
+							<nav aria-label="Page navigation"
+								th:if="${productPage.totalPages > 0}">
+								<ul class="pagination justify-content-center">
+									<li
+										th:class="${1 == productPage.number + 1} ? 'page-item active' : 'page-item'">
+										<a
+										th:href="@{/product/list/(name=${name}, size=${productPage.size}, page=${1}, min=${min}, max=${max}, cid=${cid}, search=${search}, brand=${brand})}"
+										class="page-link">First</a>
+									</li>
+
+									<li class="page-item active"
+										th:each="pageNumber : ${pageNumbers}"
+										th:if="${productPage.totalPages > 1}"
+										th:class="${pageNumber == productPage.number + 1} ? 'page-item active' : 'page-item'">
+										<a
+										th:href="@{/product/list/(name=${name}, size=${productPage.size}, page=${pageNumber}, min=${min}, max=${max}, cid=${cid}, search=${search}, brand=${brand})}"
+										class="page-link" th:text="${pageNumber}"></a>
+									</li>
+
+
+									<li
+										th:class="${productPage.totalPages == productPage.number + 1} ? 'page-item active' : 'page-item'">
+										<a
+										th:href="@{/product/list/(name=${name}, size=${productPage.size}, page=${productPage.totalPages}, min=${min}, max=${max}, cid=${cid}, search=${search}, brand=${brand})}"
+										class="page-link">Last</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Product Shop Section End -->
+	</main>
+</body>
+</html>

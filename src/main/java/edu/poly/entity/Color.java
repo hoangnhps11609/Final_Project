@@ -26,5 +26,5 @@ public class Color implements Serializable{
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "color")
-	List<ImageColorDetail> imageColorDetails;
+	List<ImageColorDetail> Imagecolordetails;
 }

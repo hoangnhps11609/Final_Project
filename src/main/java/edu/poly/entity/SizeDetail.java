@@ -18,11 +18,11 @@ import lombok.Data;
 @SuppressWarnings("serial")
 @Data
 @Entity 
-@Table(name = "Sizedetails")
+@Table(name = "Sizedetail")
 public class SizeDetail implements Serializable{
 	@Id	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer id;
+	Long id;
 	
 	String description;
 	
@@ -31,6 +31,6 @@ public class SizeDetail implements Serializable{
 	Size size;
 	
 	@ManyToOne
-	@JoinColumn(name = "Productid")
+	@JoinColumn(name = "Productsid")
 	Product product;
 }

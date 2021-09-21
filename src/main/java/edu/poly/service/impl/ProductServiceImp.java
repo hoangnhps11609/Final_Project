@@ -1,6 +1,7 @@
 package edu.poly.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -102,5 +103,13 @@ public class ProductServiceImp implements ProductService{
 		// TODO Auto-generated method stub
 		return productDAO.getInventoryByCategory();
 	}
+
+
+	@Override
+	public Page<Product> findByBrandId(Integer brand, Pageable pageable) {
+		return productDAO.findByBrandId(brand, pageable);
+	}
+
+
 
 }

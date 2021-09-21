@@ -29,7 +29,6 @@
 								class="fa fa-sign-out"></i>Logout</a>
 							<a th:href="@{/accounts/info}" class="login-panel"
 								style="margin-right: 20px;"><i class="fa fa-user-circle"></i>[[${#request.remoteUser}]]</a>
-
 						</th:block>
 						<th:block th:unless="${#request.remoteUser}">
 

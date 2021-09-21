@@ -1,4 +1,135 @@
-<!-- <!doctype html>
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/index :: dynamic(~{::main})}"
+	ng-controller="account-ctrl">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<main>
+	<div class="breacrumb-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcrumb-text">
+						<a th:href="@{/home/index}"><i class="fa fa-home"></i> Home</a> <span>Register</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="register-login-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2">
+					<div class="register-form">
+						<h2>Register</h2>
+						<form>
+							<div class="row">
+								<div class="col-6">
+									<div class="group-input">
+										<label>Username *</label> <input ng-model="form.username">
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="group-input">
+										<label>Password *</label> <input type="password"
+											ng-model="form.password">
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-6">
+									<div class="group-input">
+										<label>Fullname *</label> <input ng-model="form.fullname">
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="group-input">
+										<label>Email *</label> <input ng-model="form.email"
+											type="email">
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-6">
+									<div class="group-input">
+										<label>Phone *</label> <input ng-model="form.phone">
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="">
+										<div>Activited *</div>
+										<label class="radio-inline px-3"> <input
+											ng-model="form.activated" ng-value="true" name="activated"
+											type="radio" />Yes
+										</label> <label class="radio-inline"> <input
+											ng-model="form.activated" ng-value="false" name="activated"
+											type="radio" />No
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-6">
+									<div class="group-input">
+										<label>Create Date *</label> <input ng-model="form.createDate"
+											type="date">
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="group-input">
+										<label>Address *</label> <input ng-model="form.address"
+											type="text">
+									</div>
+								</div>
+							</div>
+							<div class="file-upload">
+								<div class="image-upload-wrap">
+									<input class="file-upload-input" type='file' id="photo"
+										onchange="readURL(this); angular.element(this).scope().imageChanged(this.files); angular.element(this).scope().imageChanged(this.files)"
+										accept="image/*" />
+									<div class="drag-text">
+										<h3>Drag and drop a file or select add Image</h3>
+									</div>
+								</div>
+								<div class="file-upload-content">
+									<img class="file-upload-image"
+										ng-src="{{'/assets/images/' + form.photo}}" alt="your image" />
+									<div class="image-title-wrap">
+										<button type="button" onclick="removeUpload()"
+											class="remove-image">
+											Remove <span class="image-title">Uploaded Image</span>
+										</button>
+									</div>
+								</div>
+							</div>
+
+							<button class="site-btn register-btn" ng-click="create()"
+								style="margin-top: 20px;">REGISTER</button>
+						</form>
+						<div class="switch-login">
+							<a th:href="@{/security/login/form}" class="or-login">Or
+								Login</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+</html>
+
+
+
+<!-- 
+
+<!doctype html>
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{layout/index :: dynamic(~{::main})}"
 	ng-controller="account-ctrl">
@@ -25,50 +156,95 @@
 	Register Section Begin
 	<div class="register-login-section spad">
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 offset-lg-3">
-					<div class="register-form">
-						<h2>Register</h2>
-						<form>
-							<div class="group-input">
-								<label>Username *</label> <input
-									ng-model="form.username">
-							</div>
-							<div class="group-input">
-								<label>Password *</label> <input ng-model="form.password">
-							</div>
-							<div class="group-input">
-								<label>Fullname *</label> <input ng-model="form.fullname">
-							</div>
-							<div class="group-input">
-								<label>Email *</label> <input type="email" ng-model="form.email">
-							</div>
-							<div class="file-upload">
-								<div class="image-upload-wrap">
-									<input class="file-upload-input" type='file' id="photo" 
-										onchange="readURL(this); angular.element(this).scope().imageChanged(this.files)" accept="image/*" />
-									<div class="drag-text">
-										<h3>Drag and drop a file or select add Image</h3>
-									</div>
-								</div>
-								<div class="file-upload-content">
-									<img class="file-upload-image" src="#" alt="your image" />
-									<div class="image-title-wrap">
-										<button type="button" onclick="removeUpload()"
-											class="remove-image">
-											Remove <span class="image-title">Uploaded Image</span>
-										</button>
+			<div class="register-form">
+				<div class="card ">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-4">
+								<label for=""> <img
+									ng-src="{{'/assets/images/' + form.photo}}" class="img-fluid" />
+								</label>
+								<div class="row">
+									<div class="col-6 offset-2">
+										<input type="file" id="photo"
+											onchange="angular.element(this).scope().imageChanged(this.files)" />
 									</div>
 								</div>
 							</div>
-							<i class="pull-left text-danger" th:text="${message}"></i>
-							<button class="site-btn register-btn" ng-click="create()"
-								style="margin-top: 20px;">REGISTER</button>
-						</form>
-						<div class="switch-login">
-							<a th:href="@{/security/login/form}" class="or-login">Or
-								Login</a>
+							<div class="col-8">
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<div>Username:</div>
+										<input class="form-control" ng-model="form.username" />
+									</div>
+									<div class="form-group col-sm-6">
+										<div>Password:</div>
+										<input type="password" class="form-control"
+											ng-model="form.password" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<div>Fullname:</div>
+										<input class="form-control" ng-model="form.fullname" />
+									</div>
+									<div class="form-group col-sm-6">
+										<div>Email:</div>
+										<input type="email" class="form-control" ng-model="form.email" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<div>Phone:</div>
+										<input class="form-control" ng-model="form.phone" />
+									</div>
+									<div class="form-group col-sm-6">
+										<div>Activated:</div>
+										<label class="radio-inline px-3"> <input
+											ng-model="form.activated" ng-value="true" name="activated"
+											type="radio" />Yes
+										</label> <label class="radio-inline"> <input
+											ng-model="form.activated" ng-value="false" name="activated"
+											type="radio" />No
+										</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<div>Create Date:</div>
+										<input type="date" class="form-control"
+											ng-model="form.createDate" />
+									</div>
+									<div class="form-group col-sm-6">
+										<div>Address:</div>
+										<input type="text" class="form-control"
+											ng-model="form.address" />
+									</div>
+								</div>
+								<div class="file-upload">
+									<div class="image-upload-wrap">
+										<input class="file-upload-input" type='file' id="photo"
+											onchange="readURL(this); angular.element(this).scope().imageChanged(this.files); angular.element(this).scope().imageChanged(this.files)"
+											accept="image/*" />
+										<div class="drag-text">
+											<h3>Drag and drop a file or select add Image</h3>
+										</div>
+									</div>
+									<div class="file-upload-content">
+										<img class="file-upload-image" ng-src="{{'/assets/images/' + form.photo}}" alt="your image" />
+										<div class="image-title-wrap">
+											<button type="button" onclick="removeUpload()"
+												class="remove-image">
+												Remove <span class="image-title">Uploaded Image</span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
+					</div>
+					<div class="card-footer text-muted borbot">
+						<button ng-click="create()" class="btn btn-primary">Create</button>
 					</div>
 				</div>
 			</div>
@@ -76,116 +252,6 @@
 	</div>
 	Register Form Section End
 
-
 </main>
 
 </html> -->
-
-
-
-
-
-<!doctype html>
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{layout/index :: dynamic(~{::main})}"
-	ng-controller="account-ctrl">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-
-<main>
-	<!-- Breadcrumb Section Begin -->
-	<div class="breacrumb-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="breadcrumb-text">
-						<a th:href="@{/home/index}"><i class="fa fa-home"></i> Home</a> <span>Register</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Breadcrumb Form Section Begin -->
-
-	<!-- Register Section Begin -->
-	<div class="register-login-section spad">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 offset-lg-3">
-					<div class="register-form">
-						<h2>Register</h2>
-						<form th:action="@{/accounts/register}" method="post"
-							enctype="multipart/form-data">
-							<div class="row">
-								<div class="group-input col-6">
-									<label>Username *</label> <input
-										name="username" class="form-control" >
-								</div>
-								<div class="group-input col-6">
-									<label>Password *</label> <input
-										name="password" class="form-control">
-								</div>
-							</div>
-							<div class="row">
-								<div class="group-input col-6">
-									<label>Fullname *</label> <input
-										type="text" name="fullname" class="form-control">
-								</div>
-								<div class="group-input col-6">
-									<label>Email *</label> <input
-										type="email" name="email" class="form-control">
-								</div>
-							</div>
-							<div class="row">
-								<div class="group-input col-6">
-									<label>Phone * </label> <input
-										type="text" name="phone" class="form-control">
-								</div>
-								<div class="group-input col-6">
-									<label>Birthday * </label> <input
-										type="date"  name="birthDay" class="form-control">
-								</div>
-							</div>
-							<div class="group-input">
-								<label>Address * </label> 
-								<textarea rows="3" name="address" class="form-control"> </textarea>
-							</div>
-							<div class="file-upload">
-								<div class="image-upload-wrap">
-									<input class="file-upload-input" type='file' name="img" id="img"
-										onchange="readURL(this);"
-										accept="image/*" />
-									<div class="drag-text">
-										<h3>Drag and drop a file or select add Image</h3>
-									</div>
-								</div>
-								<div class="file-upload-content">
-									<img class="file-upload-image " src="#" alt="your image" />
-									<div class="image-title-wrap">
-										<button type="button" onclick="removeUpload()"
-											class="remove-image">
-											Remove <span class="image-title">Uploaded Image</span>
-										</button>
-									</div>
-								</div>
-							</div>
-							<i class="pull-left text-danger" th:text="${message}"></i>
-							<button class="site-btn register-btn"
-								style="margin-top: 20px;">REGISTER</button>
-						</form>
-						<div class="switch-login">
-							<a th:href="@{/security/login/form}" class="or-login">Or
-								Login</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Register Form Section End -->
-
-</main>
-
-</html>

@@ -9,30 +9,34 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import edu.poly.entity.ImageColorDetail;
+import edu.poly.entity.Product;
 
 public interface ImageColorDetailService {
+
+
+	Page<ImageColorDetail> findByColor(Integer color, Pageable pageable);
 
 	<S extends ImageColorDetail> List<S> findAll(Example<S> example, Sort sort);
 
 	<S extends ImageColorDetail> List<S> findAll(Example<S> example);
 
-	ImageColorDetail getById(Integer id);
+	ImageColorDetail getById(Long id);
 
 	void deleteAll();
 
 	void deleteAll(Iterable<? extends ImageColorDetail> entities);
 
-	ImageColorDetail getOne(Integer id);
+	ImageColorDetail getOne(Long id);
 
 	void deleteAllInBatch();
 
-	void deleteAllById(Iterable<? extends Integer> ids);
+	void deleteAllById(Iterable<? extends Long> ids);
 
 	void delete(ImageColorDetail entity);
 
-	void deleteAllByIdInBatch(Iterable<Integer> ids);
+	void deleteAllByIdInBatch(Iterable<Long> ids);
 
-	void deleteById(Integer id);
+	void deleteById(Long id);
 
 	long count();
 
@@ -48,7 +52,7 @@ public interface ImageColorDetailService {
 
 	<S extends ImageColorDetail> List<S> saveAllAndFlush(Iterable<S> entities);
 
-	boolean existsById(Integer id);
+	boolean existsById(Long id);
 
 	<S extends ImageColorDetail> S saveAndFlush(S entity);
 
@@ -56,9 +60,9 @@ public interface ImageColorDetailService {
 
 	<S extends ImageColorDetail> List<S> saveAll(Iterable<S> entities);
 
-	Optional<ImageColorDetail> findById(Integer id);
+	Optional<ImageColorDetail> findById(Long id);
 
-	List<ImageColorDetail> findAllById(Iterable<Integer> ids);
+	List<ImageColorDetail> findAllById(Iterable<Long> ids);
 
 	List<ImageColorDetail> findAll(Sort sort);
 
