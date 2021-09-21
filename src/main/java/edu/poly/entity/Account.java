@@ -35,7 +35,7 @@ public class Account  implements Serializable{
 	
 	String photo;
 	
-	Boolean activated;
+	Boolean activated = true;
 	
 	String phone;
 	

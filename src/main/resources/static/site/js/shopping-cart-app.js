@@ -197,7 +197,6 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
         }).then(resp =>{
             $scope.form.photo = resp.data.name;
         }).catch(error => {
-            alert("Lỗi upload hình ảnh!");
             console.log("Error", error);
         })
     }

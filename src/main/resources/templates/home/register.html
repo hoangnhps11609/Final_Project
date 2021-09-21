@@ -22,95 +22,80 @@
 	<div class="register-login-section spad">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 offset-lg-2">
+				<div class="col">
 					<div class="register-form">
 						<h2>Register</h2>
 						<form>
-							<div class="row">
-								<div class="col-6">
-									<div class="group-input">
-										<label>Username *</label> <input ng-model="form.username">
+							<div class="row col-10 offset-1">
+								<div class="file-upload col-4">
+									<div class="image-upload-wrap">
+										<input class="file-upload-input" type="file" id="photo"
+											onchange="readURL(this); angular.element(this).scope().imageChanged(this.files); angular.element(this).scope().imageChanged(this.files)"
+											accept="image/*" />
+										<div class="drag-text">
+											<img class="img-fluid p-2"
+												ng-src="{{form.photo ? '/assets/images/' + form.photo : '/assets/images/5aa47c07.png' }}"
+												alt="your image" id="img" />
+											<h5>Drag and drop a file or select add Image</h5>
+										</div>
+									</div>
+									<div class="file-upload-content">
+										<img class="file-upload-image img-fluid"
+											ng-src="{{'/assets/images/' + form.photo}}" alt="your image" />
+										<div class="image-title-wrap">
+											<button type="button" onclick="removeUpload()"
+												class="remove-image">
+												Remove <span class="image-title">Uploaded Image</span>
+											</button>
+										</div>
 									</div>
 								</div>
-								<div class="col-6">
-									<div class="group-input">
-										<label>Password *</label> <input type="password"
-											ng-model="form.password">
+								<div class="col-8">
+									<div class="row">
+										<div class="col-6">
+											<div class="group-input">
+												<label>Username *</label> <input ng-model="form.username">
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="group-input">
+												<label>Password *</label> <input type="password"
+													ng-model="form.password">
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
 
-							<div class="row">
-								<div class="col-6">
-									<div class="group-input">
-										<label>Fullname *</label> <input ng-model="form.fullname">
+									<div class="row">
+										<div class="col-6">
+											<div class="group-input">
+												<label>Fullname *</label> <input ng-model="form.fullname">
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="group-input">
+												<label>Email *</label> <input ng-model="form.email"
+													type="email">
+											</div>
+										</div>
 									</div>
-								</div>
-								<div class="col-6">
-									<div class="group-input">
-										<label>Email *</label> <input ng-model="form.email"
-											type="email">
-									</div>
-								</div>
-							</div>
 
-							<div class="row">
-								<div class="col-6">
-									<div class="group-input">
-										<label>Phone *</label> <input ng-model="form.phone">
+									<div class="row">
+										<div class="col-6">
+											<div class="group-input">
+												<label>Phone *</label> <input ng-model="form.phone">
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="group-input">
+												<label>Address *</label> <input ng-model="form.address"
+													type="text">
+											</div>
+										</div>
 									</div>
 								</div>
-								<div class="col-6">
-									<div class="">
-										<div>Activited *</div>
-										<label class="radio-inline px-3"> <input
-											ng-model="form.activated" ng-value="true" name="activated"
-											type="radio" />Yes
-										</label> <label class="radio-inline"> <input
-											ng-model="form.activated" ng-value="false" name="activated"
-											type="radio" />No
-										</label>
-									</div>
-								</div>
+								<button class="site-btn register-btn" ng-click="create()"
+									style="margin-top: 20px;">REGISTER</button>
 							</div>
-
-							<div class="row">
-								<div class="col-6">
-									<div class="group-input">
-										<label>Create Date *</label> <input ng-model="form.createDate"
-											type="date">
-									</div>
-								</div>
-								<div class="col-6">
-									<div class="group-input">
-										<label>Address *</label> <input ng-model="form.address"
-											type="text">
-									</div>
-								</div>
-							</div>
-							<div class="file-upload">
-								<div class="image-upload-wrap">
-									<input class="file-upload-input" type='file' id="photo"
-										onchange="readURL(this); angular.element(this).scope().imageChanged(this.files); angular.element(this).scope().imageChanged(this.files)"
-										accept="image/*" />
-									<div class="drag-text">
-										<h3>Drag and drop a file or select add Image</h3>
-									</div>
-								</div>
-								<div class="file-upload-content">
-									<img class="file-upload-image"
-										ng-src="{{'/assets/images/' + form.photo}}" alt="your image" />
-									<div class="image-title-wrap">
-										<button type="button" onclick="removeUpload()"
-											class="remove-image">
-											Remove <span class="image-title">Uploaded Image</span>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<button class="site-btn register-btn" ng-click="create()"
-								style="margin-top: 20px;">REGISTER</button>
 						</form>
 						<div class="switch-login">
 							<a th:href="@{/security/login/form}" class="or-login">Or
