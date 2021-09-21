@@ -103,7 +103,7 @@
 							<div class="blog-item">
 								<div class="bi-pic"> 
 									<a th:href="@{/home/blog-details}">
-										<img th:src="@{|/site/img/${b.images}|}" alt="#blog">
+										<img th:src="@{|/assets/images/${b.images}|}" alt="#blog">
 									</a>
 								</div>
 								<div class="bi-text">
@@ -111,7 +111,7 @@
 										<h4 th:utext="${b.content}"></h4>
 									</a>
 									<p>
-										[[${p.blogCategory.name}]] <span>[[${p.createDate}]]</span>
+										[[${b.BlogCategory.name}]] <span>[[${b.createDate}]]</span>
 									</p>
 								</div>
 							</div>

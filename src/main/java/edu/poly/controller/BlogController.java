@@ -19,9 +19,15 @@ public class BlogController {
 	@Autowired
 	BlogService blogService;
 	
+	@Autowired
+	BlogCategoryService blogcategoryService;
+	
 	@RequestMapping("/blog/list")
 	public String list(Model model) {
 		List<Blog> list = blogService.findAll();
+		List<BlogCategory> blogcates = blogcategoryService.findAll();
+		
+		model.addAttribute("blogcates", blogcates);
 		model.addAttribute("items", list);
 		return "home/blog";
 	}
