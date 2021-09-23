@@ -56,7 +56,6 @@ public interface VoucherService {
 
 	<S extends Voucher> List<S> saveAll(Iterable<S> entities);
 
-	Optional<Voucher> findById(Integer id);
 
 	List<Voucher> findAllById(Iterable<Integer> ids);
 
@@ -69,5 +68,7 @@ public interface VoucherService {
 	<S extends Voucher> Optional<S> findOne(Example<S> example);
 
 	<S extends Voucher> S save(S entity);
+
+	Voucher update(Voucher product);
 
 }
