@@ -1,7 +1,7 @@
 app=angular.module("admin-app", ["ngRoute"]);
 app.controller('datCtrl', function($scope) {
     $scope.today = new Date();
-	$scope.hour ="";
+	$scope.hour =$scope.today.getHours();
 });
 app.config(function ($routeProvider){
 	$routeProvider
