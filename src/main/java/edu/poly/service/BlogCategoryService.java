@@ -28,7 +28,7 @@ public interface BlogCategoryService {
 
 	void deleteAllById(Iterable<? extends Integer> ids);
 
-	void delete(BlogCategory entity);
+	void delete(Integer id);
 
 	void deleteAllByIdInBatch(Iterable<Integer> ids);
 

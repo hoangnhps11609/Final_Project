@@ -26,8 +26,8 @@
 					<div class="blog-sidebar">
 						<div class="search-form">
 							<h4>Search</h4>
-							<form action="#">
-								<input type="text" placeholder="Search . . .  ">
+							<form action="/blog/list" method="post" class="input-group">
+								<input type="text" name="search" placeholder="Search . . .  ">
 								<button type="submit">
 									<i class="fa fa-search"></i>
 								</button>
@@ -35,8 +35,8 @@
 						</div>
 						<div class="blog-catagory">
 							<h4>Blog Categories</h4>
-							<ul th:each="c:${blogcates}">
-								<li><a th:href="@{|/blog/list?cid=${c.id}|}">[[${c.name}]]</a></li>
+							<ul th:each="b:${blogcates}">
+								<li><a th:href="@{|/blog/list?cid=${b.id}|}">[[${b.name}]]</a></li>
 							</ul>
 						</div>
 						<div class="recent-post">
@@ -98,32 +98,90 @@
 					</div>
 				</div>
 				<div class="col-lg-9 order-1 order-lg-2">
+					<div class="product-show-option" style="margin-top: 40px;">
+						<div class="row">
+							<form action="">
+								<div class="col-lg-7 col-md-7">
+									<div class="select-option">
+										<select class="sorting">
+											<option value="">Default By Date</option>
+										</select> <select class="p-show" name="size" id="size"
+											onchange="this.form.submit()">
+											<option th:selected="${blogPage.size == 4} " value="4">Show:
+												4</option>
+											<option th:selected="${blogPage.size == 6}" value="6">Show:
+												6</option>
+											<option th:selected="${blogPage.size == 8}" value="8">Show:
+												8</option>
+											<option th:selected="${blogPage.size == 10}" value="10">Show:
+												10</option>
+											<option th:selected="${blogPage.size == 9999}"
+												value="9999">Show: All</option>
+										</select>
+									</div>
+								</div>
+							</form>
+							<div class="col-lg-5 col-md-5 text-right">
+								<p>Show [[${blogPage.number*size
+									+ 1 }]] - [[${blogPage.number*size
+									+ blogPage.numberOfElements}]] Of
+									[[${blogPage.totalElements}]] Blog</p>
+							</div>
+						</div>
+						</div>
 					<div class="row">
-						<div class="col-lg-6 col-sm-6" th:each="b:${items}">
+						<div class="col-lg-6 col-sm-6" th:each=" blog, iStat : ${blogPage.content}">
 							<div class="blog-item">
 								<div class="bi-pic"> 
-									<a th:href="@{/home/blog-details}">
-										<img th:src="@{|/assets/images/${b.images}|}" alt="#blog">
+									<a th:href="@{|/home/blog-details/${blog.id}|}">
+										<img th:src="@{|/assets/images/${blog.images}|}" alt="#blog">
 									</a>
 								</div>
 								<div class="bi-text">
-									<a th:href="@{/home/blog-details}">
-										<h4 th:utext="${b.content}"></h4>
+									<a th:href="@{|/home/blog-details/${blog.id}|}">
+										<h4 th:utext="${blog.name}"></h4>
 									</a>
 									<p>
-										[[${b.BlogCategory.name}]] <span>[[${b.createDate}]]</span>
+										[[${blog.BlogCategory.name}]] <span>[[${blog.createDate}]]</span>
 									</p>
 								</div>
 							</div>
 						</div>
 
-						<!--
+						
 						<div class="col-lg-12">
 							<div class="loading-more">
-								<i class="icon_loading"></i> <a href="#"> Loading More </a>
+								<nav aria-label="Page navigation"
+									th:if="${blogPage.totalPages > 0}">
+									<ul class="pagination justify-content-center">
+										<li
+											th:class="${1 == blogPage.number + 1} ? 'page-item active' : 'page-item'">
+											<a
+											th:href="@{/blog/list/(name=${name}, size=${blogPage.size}, page=${1}, min=${min}, max=${max}, cid=${cid}, search=${search}, brand=${brand})}"
+											class="page-link">First</a>
+										</li>
+	
+										<li class="page-item active"
+											th:each="pageNumber : ${pageNumbers}"
+											th:if="${blogPage.totalPages > 1}"
+											th:class="${pageNumber == blogPage.number + 1} ? 'page-item active' : 'page-item'">
+											<a
+											th:href="@{/blog/list/(name=${name}, size=${blogPage.size}, page=${pageNumber}, min=${min}, max=${max}, cid=${cid}, search=${search}, brand=${brand})}"
+											class="page-link" th:text="${pageNumber}"></a>
+										</li>
+	
+	
+										<li
+											th:class="${blogPage.totalPages == blogPage.number + 1} ? 'page-item active' : 'page-item'">
+											<a
+											th:href="@{/blog/list/(name=${name}, size=${blogPage.size}, page=${blogPage.totalPages}, min=${min}, max=${max}, cid=${cid}, search=${search}, brand=${brand})}"
+											class="page-link">Last</a>
+										</li>
+									</ul>
+								</nav>
 							</div>
 						</div>
-						-->
+						
 					</div>
 				</div>
 			</div>

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import edu.poly.dao.BlogDAO;
 import edu.poly.entity.Blog;
+import edu.poly.entity.Product;
 import edu.poly.service.BlogService;
 
 @Service
@@ -34,6 +35,16 @@ public class BlogServiceImpl implements BlogService{
 	}
 
 	@Override
+	public List<Blog> findByCategoryId(Integer cid) {
+		return blogDAO.findByCategoryId(cid);
+	}
+	
+	@Override
+	public Page<Blog> findByCategoryId(Integer integer, Pageable pageable) {
+		return  blogDAO.findByCategoryId(integer, pageable);
+	}
+	
+	@Override
 	public Page<Blog> findAll(Pageable pageable) {
 		return blogDAO.findAll(pageable);
 	}
@@ -54,8 +65,8 @@ public class BlogServiceImpl implements BlogService{
 	}
 
 	@Override
-	public Optional<Blog> findById(Integer id) {
-		return blogDAO.findById(id);
+	public Blog findById(Integer id) {
+		return blogDAO.findById(id).get();
 	}
 
 	@Override
@@ -166,6 +177,11 @@ public class BlogServiceImpl implements BlogService{
 	@Override
 	public <S extends Blog> List<S> findAll(Example<S> example, Sort sort) {
 		return blogDAO.findAll(example, sort);
+	}
+
+	@Override
+	public Page<Blog> findByKeyword(String string, Pageable pageable) {
+		return blogDAO.findByKeyword(string, pageable);
 	}
 	
 	

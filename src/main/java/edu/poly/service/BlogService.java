@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import edu.poly.entity.Blog;
+import edu.poly.entity.Product;
 
 public interface BlogService {
 
@@ -56,9 +57,13 @@ public interface BlogService {
 
 	<S extends Blog> List<S> saveAll(Iterable<S> entities);
 
-	Optional<Blog> findById(Integer id);
+	Blog findById(Integer id);
 
 	List<Blog> findAllById(Iterable<Integer> ids);
+	
+	List<Blog> findByCategoryId(Integer cid);
+	
+	Page<Blog> findByCategoryId(Integer integer, Pageable pageable);
 
 	List<Blog> findAll(Sort sort);
 
@@ -69,5 +74,7 @@ public interface BlogService {
 	<S extends Blog> Optional<S> findOne(Example<S> example);
 
 	<S extends Blog> S save(S entity);
+
+	Page<Blog> findByKeyword(String string, Pageable pageable);
 	
 }

@@ -124,10 +124,10 @@ public class BlogCategoryServiceImpl implements BlogCategoryService{
 		blogCategoryDAO.deleteAllByIdInBatch(ids);
 	}
 
-	@Override
-	public void delete(BlogCategory entity) {
-		blogCategoryDAO.delete(entity);
-	}
+//	@Override
+//	public void delete(BlogCategory entity) {
+//		blogCategoryDAO.delete(entity);
+//	}
 
 	@Override
 	public void deleteAllById(Iterable<? extends Integer> ids) {
@@ -167,7 +167,12 @@ public class BlogCategoryServiceImpl implements BlogCategoryService{
 	@Override
 	public <S extends BlogCategory> List<S> findAll(Example<S> example, Sort sort) {
 		return blogCategoryDAO.findAll(example, sort);
-	};
-	
-	
+	}
+
+	@Override
+	public void delete(Integer id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
