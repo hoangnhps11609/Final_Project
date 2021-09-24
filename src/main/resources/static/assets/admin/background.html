@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -9,39 +9,152 @@
 
 
 </head>
-<style>
-  .chao {
-    width: 35%;
-    min-height: 50px;
-    background-color: aqua;
-    
-  }
-  .chao>p{
-  font-family: Me;
-  }
-</style>
+
 
 <body>
 
   <div class="containerhh" style="position: relative; min-height: 500px">
     <div class="chao" ng-controller="datCtrl">
-      <p ng-model="hour" style="visibility: hidden;">{{ today | date:"HH" }}</p>
-      <p ng-if="hour < 10">Chào buổi sáng</p>
-      <p ng-if="hour > 10 && hour < 13">Chào buổi Trưa</p>
-      <p ng-if="hour > 13 && hour < 17">Chào buổi Chiều</p>
-      <p ng-if="hour > 17">Chào buổi Tối</p>
-      <p style="font-family: sans-serif">huan </p>
+      <h1 ng-if="hour <11">
+        <span>G</span>
+        <span>o</span>
+        <span>o</span>
+        <span>d</span>
+        <br>
+        <span>M</span>
+        <span>o</span>
+        <span>r</span>
+        <span>n</span>
+        <span>i</span>
+        <span>n</span>
+        <span>g</span>
+      </h1>
+      <h1 ng-if="hour > 10 && hour < 18">
+        <span>G</span>
+        <span>o</span>
+        <span>o</span>
+        <span>d</span>
+        <br>
+        <span>A</span>
+        <span>f</span>
+        <span>t</span>
+        <span>e</span>
+        <span>r</span>
+        <span>n</span>
+        <span>o</span>
+        <span>o</span>
+        <span>n</span>
+      </h1>
+      <h1 ng-if="hour >17">
+        <span>G</span>
+        <span>o</span>
+        <span>o</span>
+        <span>d</span>
+        <br>
+        <div style="margin-left: 50px;">
+          <span>E</span>
+          <span>v</span>
+          <span>e</span>
+          <span>n</span>
+          <span>i</span>
+          <span>n</span>
+          <span>g</span>
+        </div>
+      </h1>
     </div>
 
-    <div class="card col-sm-7" style="position: absolute; top: 50px;right: 50px ">
+    <div class="card col-sm-7" style="position: absolute; top: 0;right: 50px ">
 
       <iframe width="100%" height="400"
-        src="https://www.youtube.com/embed/_au37MZaQQI?enablejsapi=1&rel=0&playsinline=1&autoplay=1&showinfo=0&autohide=1&controls=0&modestbranding=1"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        src="https://www.youtube.com/embed/_au37MZaQQI"></iframe>
 
     </div>
   </div>
 </body>
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Bad+Script');
 
+  .chao {
+    font-family: 'Bad Script', cursive;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-content: center;
+    background: white;
+
+  }
+  h1{
+    padding: 0;
+    color: rgb(224, 221, 221);
+    margin-left: 20px;
+    margin-top: 50px;
+    
+  }
+  h1 span{
+    display:table-cell;
+    padding: 0;
+    animation: animate 2s linear infinite;
+    font-family: 'Bad Script', cursive;
+    font-size: 3em;
+    font-weight: bold;
+  }
+  h1 span:nth-child(1){
+    animation-delay: 0s;
+  }
+  h1 span:nth-child(2){
+    animation-delay: 0.25s;
+  }
+  h1 span:nth-child(3){
+    animation-delay: 0.5s;
+  }
+  h1 span:nth-child(4){
+    animation-delay: 0.75s;
+  }
+  h1 span:nth-child(5){
+    animation-delay: 1s;
+  }
+  h1 span:nth-child(6){
+    animation-delay: 1.25s;
+  }
+  h1 span:nth-child(7){
+    animation-delay: 1.5s;
+  }
+  h1 span:nth-child(8){
+    animation-delay: 1.75s;
+  }
+  h1 span:nth-child(9){
+    animation-delay: 2s;
+  }
+  h1 span:nth-child(10){
+    animation-delay: 2.25s;
+  }
+  h1 span:nth-child(11){
+    animation-delay: 2.5s;
+  }
+  h1 span:nth-child(12){
+    animation-delay: 2.75s;
+  }
+  h1 span:nth-child(13){
+    animation-delay: 3s;
+  }
+  @keyframes animate{
+    0%,100%{
+      color: #111;
+      filter: blur(2px);
+      text-shadow: 0 0 10px #00b3ff,
+                  0 0 20px #00b3ff,
+                  0 0 40px #00b3ff,
+                  0 0 80px #00b3ff,
+                  0 0 120px #00b3ff,
+                  0 0 200px #00b3ff,
+                  0 0 300px #00b3ff,
+                  0 0 400px #00b3ff;
+    }
+    5%,95%{
+      color: rgb(250, 250, 250);
+      filter: blur(0px);
+      text-shadow:0 0 10px none;
+    }
+  }
+</style>
 </html>
