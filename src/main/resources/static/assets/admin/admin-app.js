@@ -23,6 +23,9 @@ app.config(function ($routeProvider){
 	}).when("/unauthozired", {
 		templateUrl: "/assets/admin/authority/unauthorized.html",
 		controller: "authority-ctrl"
+	}).when("/voucher", {
+		templateUrl: "/assets/admin/voucher/index.html",
+		controller: "voucher-ctrl"
 	}).when("/report1", {
 		templateUrl: "/assets/admin/report/index.html",
 		

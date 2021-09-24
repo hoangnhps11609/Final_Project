@@ -37,7 +37,7 @@ public class AccountRestController {
 	
 
 	
-	@GetMapping("{username}")
+	@GetMapping("get/{username}")
 	public Account getOne(@PathVariable("username") String username) {
 		return accService.findById(username);
 	}
@@ -55,5 +55,10 @@ public class AccountRestController {
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable("id") String id) {
 		accService.delete(id);
+	}
+	
+	@GetMapping("{valued}")
+	public List<Account> getListAccountByValued(@PathVariable("valued") String valued){
+		return accService.getAccountByValud(valued);
 	}
 }

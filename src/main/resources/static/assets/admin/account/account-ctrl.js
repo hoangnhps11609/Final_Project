@@ -2,6 +2,8 @@ app.controller("account-ctrl", function($scope, $http) {
 	$scope.items = [];
 	$scope.form = {};
 
+		$scope.ODitems = [];
+	
 	$scope.initialize = function() {
 		//load accounts
 		$http.get("/rest/accounts").then(resp => {
@@ -10,11 +12,22 @@ app.controller("account-ctrl", function($scope, $http) {
 			})
 		});
 	}
+	
+		$scope.statistic = function() {
+		var statistic = angular.copy($scope.statistic);
+		$http.get(`/rest/accounts/get/${statistic.from}`).then(resp => {
+			$scope.items = resp.data;
+			$(".nav-tabs a:eq(2)").tab('show');
+		}).catch(error => {
+			alert("Thông tin ACC không tìm thấy");
+			console.log("Error", error);
+		});
+	}
 
 	//Khởi tạo
 	$scope.initialize();
 
-	//Xóa form
+	//Xóa form	
 	$scope.reset = function() {
 		$scope.form = {
 			photo: 'user.png'
@@ -55,7 +68,8 @@ app.controller("account-ctrl", function($scope, $http) {
 
 		});
 	}
-
+	
+	
 	//Xóa sản phẩm mới
 	$scope.delete = function(item) {
 		$http.delete(`/rest/accounts/${item.username}`).then(resp => {

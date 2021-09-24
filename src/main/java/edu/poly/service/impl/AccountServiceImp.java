@@ -45,4 +45,10 @@ public class AccountServiceImp implements AccountService{
 		adao.deleteById(id);	
 	}
 
+	@Override
+	public List<Account> getAccountByValud(String valued) {
+		
+		return adao.getListAccountByName(valued);
+	}
+
 }
