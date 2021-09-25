@@ -29,6 +29,9 @@ app.config(function ($routeProvider){
 	}).when("/report1", {
 		templateUrl: "/assets/admin/report/index.html",
 		
+	}).when("/blogcategory", {
+		templateUrl: "/assets/admin/blogc/index.html",
+		controller: "blogcategory-ctrl"
 	}).otherwise({
 		templateUrl: "/assets/admin/background.html"
 

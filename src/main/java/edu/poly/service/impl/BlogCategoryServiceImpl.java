@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import edu.poly.dao.BlogCategoryDAO;
 import edu.poly.entity.BlogCategory;
+import edu.poly.entity.Category;
 import edu.poly.service.BlogCategoryService;
 
 @Service
@@ -43,7 +44,6 @@ public class BlogCategoryServiceImpl implements BlogCategoryService{
 	public List<BlogCategory> findAll() {
 		return blogCategoryDAO.findAll();
 	}
-
 	@Override
 	public List<BlogCategory> findAll(Sort sort) {
 		return blogCategoryDAO.findAll(sort);
@@ -171,8 +171,20 @@ public class BlogCategoryServiceImpl implements BlogCategoryService{
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
+		blogCategoryDAO.deleteById(id);
 		
+	}
+
+	@Override
+	public BlogCategory create(BlogCategory blogcategory) {
+		
+		return blogCategoryDAO.save(blogcategory);
+	}
+
+	@Override
+	public BlogCategory update(BlogCategory blogcategory) {
+		
+		return blogCategoryDAO.save(blogcategory);
 	}
 
 }

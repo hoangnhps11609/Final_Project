@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import edu.poly.entity.BlogCategory;
+import edu.poly.entity.Category;
 
 public interface BlogCategoryService {
 
@@ -69,4 +70,11 @@ public interface BlogCategoryService {
 	<S extends BlogCategory> Optional<S> findOne(Example<S> example);
 
 	<S extends BlogCategory> S save(S entity);
+	
+	BlogCategory create(BlogCategory category);
+
+	BlogCategory update(BlogCategory category);
+
+
+	
 }
