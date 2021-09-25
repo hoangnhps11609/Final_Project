@@ -13,28 +13,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.poly.entity.Blog;
 import edu.poly.entity.BlogCategory;
 import edu.poly.entity.Category;
 import edu.poly.entity.Product;
 import edu.poly.service.BlogCategoryService;
+import edu.poly.service.BlogService;
 import edu.poly.service.CategoryService;
 
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/rest/blogcates")
+@RequestMapping("/rest/blog")
 public class BlogRestController {
 	@Autowired
-	BlogCategoryService bcService;
+	BlogService bService;
 	
 	@GetMapping()
-	public List<BlogCategory> getAll() {
-		return bcService.findAll();
+	public List<Blog> getAll() {
+		return bService.findAll();
 	}
 	
 	@GetMapping("{id}")
-	public BlogCategory getOne(@PathVariable("id") Integer id) {
-		return bcService.findById(id);
+	public Blog getOne(@PathVariable("id") Integer id) {
+		return bService.findById(id);
+	}
+	
+	@PostMapping
+	public Blog create(@RequestBody Blog blog) {
+		return bService.create(blog);
+	}
+	
+	@PutMapping("{id}")
+	public Blog update(@PathVariable("id") Integer id, @RequestBody Blog blog) {
+		return bService.update(blog);
+	}
+	
+	@DeleteMapping("{id}")
+	public void delete(@PathVariable("id") Integer id) {
+		bService.deleteById(id);
 	}
 	
 	

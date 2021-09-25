@@ -42,7 +42,7 @@ public class Blog implements Serializable{
 	
 	
 	@ManyToOne
-	@JoinColumn(name = "Blogcategoryid")
+	@JoinColumn(name = "blogcategoriesid")
 	BlogCategory blogCategory;
 	
 	

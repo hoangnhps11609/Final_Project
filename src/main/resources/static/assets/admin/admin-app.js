@@ -32,6 +32,9 @@ app.config(function ($routeProvider){
 	}).when("/blogcategory", {
 		templateUrl: "/assets/admin/blogc/index.html",
 		controller: "blogcategory-ctrl"
+	}).when("/blog", {
+		templateUrl: "/assets/admin/blog/index.html",
+		controller: "blog-ctrl"
 	}).otherwise({
 		templateUrl: "/assets/admin/background.html"
 

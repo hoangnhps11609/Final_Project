@@ -1,21 +1,30 @@
 app.controller("blog-ctrl", function($scope, $http) {
 	$scope.items = [];
+	$scope.cates = [];
 	$scope.form = {};
 
 	$scope.initialize = function() {
-		//load categories
-		$http.get("/rest/blogcates").then(resp => {
+		$http.get("/rest/blog").then(resp => {
 			$scope.items = resp.data;
+			$scope.items.forEach(item => {
+				item.createDate = new Date(item.createDate);
+				$scope.reset();
+			})
 		});
 
 	}
-
+	$http.get("/rest/blogcategories").then(resp => {
+		$scope.cates = resp.data;
+	});
 	//Khởi tạo
 	$scope.initialize();
 
 	//Xóa form
 	$scope.reset = function() {
-		$scope.form = {};
+		$scope.form = {
+			createDate: new Date(),
+			image: 'user.png',
+		};
 	}
 
 	//hiển thị lên form
@@ -27,7 +36,8 @@ app.controller("blog-ctrl", function($scope, $http) {
 	//Thêm sản phẩm mới
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
-		$http.post(`/rest/blogcates`, item).then(resp => {
+		$http.post(`/rest/blog`, item).then(resp => {
+			resp.data.createDate = new Date(resp.data.createDate)
 			$scope.items.push(resp.data);
 			$scope.reset();
 			alert("Thêm mới thành công");
@@ -41,7 +51,7 @@ app.controller("blog-ctrl", function($scope, $http) {
 	//update sản phẩm mới
 	$scope.update = function() {
 		var item = angular.copy($scope.form);
-		$http.put(`/rest/blogcates/${item.id}`, item).then(resp => {
+		$http.put(`/rest/blog/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
 			alert("Cập nhật thành công");
@@ -55,7 +65,7 @@ app.controller("blog-ctrl", function($scope, $http) {
 
 	//Xóa sản phẩm mới
 	$scope.delete = function(item) {
-		$http.delete(`/rest/blogcates/${item.id}`).then(resp => {
+		$http.delete(`/rest/blog/${item.id}`).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items.splice(index, 1);
 			$scope.reset();
