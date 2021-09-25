@@ -32,14 +32,6 @@ public class Product  implements Serializable{
 	
 	Double price;
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name = "Createdate")
-	Date createDate = new Date();
-	
-	Integer quantity;
-	
-	Boolean available;
-	
 	String description;
 	
 	Integer discount;
@@ -58,19 +50,13 @@ public class Product  implements Serializable{
 	@JoinColumn(name = "Brandid")
 	Brand brand;
 	
+	
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "product")
-	List<OrderDetail> orderDetails;	
+	List<ProductDetail> productDetails;	
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	List<Comment> comments;	
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "product")
-	List<SizeDetail> sizeDetails;	
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "product")
-	List<ImageColorDetail> imageColorDetails;	
 }

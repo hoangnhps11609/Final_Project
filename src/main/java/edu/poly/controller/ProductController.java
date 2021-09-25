@@ -20,18 +20,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import edu.poly.service.BrandService;
 import edu.poly.service.ColorService;
 import edu.poly.service.GenderService;
-import edu.poly.service.ImageColorDetailService;
+import edu.poly.service.ProductDetailService;
 import edu.poly.service.ProductService;
-import edu.poly.service.SizeDetailService;
 import edu.poly.service.SizeService;
 import edu.poly.utils.SessionService;
 import edu.poly.entity.Brand;
 import edu.poly.entity.Color;
+import edu.poly.entity.ColorPro;
 import edu.poly.entity.Gender;
-import edu.poly.entity.ImageColorDetail;
 import edu.poly.entity.Product;
+import edu.poly.entity.ProductDetail;
 import edu.poly.entity.Size;
-import edu.poly.entity.SizeDetail;
+import edu.poly.entity.SizePro;
 
 @Controller
 public class ProductController {
@@ -50,15 +50,12 @@ public class ProductController {
 
 	@Autowired
 	ColorService colorService;
-
-	@Autowired
-	ImageColorDetailService imageColorDetailService;
-
-	@Autowired
-	SizeDetailService sizeDetailService;
 	
 	@Autowired
 	SessionService sessionService;
+	
+	@Autowired
+	ProductDetailService productDetailService;
 
 	@RequestMapping("product/list")
 	public String list(Model model, @RequestParam(name = "cid", required = false) Optional<String> cid,
@@ -121,6 +118,8 @@ public class ProductController {
 		model.addAttribute("colors", colors);
 		return "product/list";
 	}
+	
+	
 
 	@RequestMapping("product/listcolor")
 	public String color(Model model, @RequestParam(name = "color", required = false) Integer color,
@@ -128,9 +127,9 @@ public class ProductController {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(9);
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id"));
-		Page<ImageColorDetail> resultPage = null;
+		Page<ProductDetail> resultPage = null;
 
-		resultPage = imageColorDetailService.findByColor(color, pageable);
+		resultPage = productDetailService.findByColor(color, pageable);
 		model.addAttribute("color", color);
 
 		int totalPages = resultPage.getTotalPages();
@@ -170,9 +169,9 @@ public class ProductController {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(9);
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id"));
-		Page<SizeDetail> resultPage = null;
+		Page<ProductDetail> resultPage = null;
 
-		resultPage = sizeDetailService.findBySize(sizepro, pageable);
+		resultPage = productDetailService.findBySize(sizepro, pageable);
 		model.addAttribute("sizepro", sizepro);
 
 		int totalPages = resultPage.getTotalPages();
@@ -252,9 +251,20 @@ public class ProductController {
 //	}
 
 	@RequestMapping("product/detail/{id}")
-	public String detail(Model model, @PathVariable("id") Integer id) {
+	public String detail(Model model, @PathVariable("id") Integer id,
+			@RequestParam(name = "size", required = false) Double size,
+			@RequestParam(name = "color", required = false) Double color) {
+		
 		Product item = productservice.findById(id);
 		model.addAttribute("item", item);
+		
+		List<ColorPro> colorProlist = productDetailService.getColorByProduct(id);
+		model.addAttribute("colorProlist", colorProlist);
+		
+		List<SizePro> sizeProlist = productDetailService.getSizeByProduct(id);
+		model.addAttribute("sizeProlist", sizeProlist);
+		
+		
 		List<Brand> brands = brandService.findAll();
 		model.addAttribute("brands", brands);
 

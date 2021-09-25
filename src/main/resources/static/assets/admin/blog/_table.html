@@ -1,0 +1,41 @@
+<div class="card">
+	<div class="card-header"><h3>List Category</h3></div>
+	<div class="card-body">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Name</th>
+					<th scope="col">Content</th>
+					<th scope="col">CreateDate</th>
+					<th scope="col">Image</th>
+					<th scope="col">BlogCategory</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in pager.items">
+					<td>{{item.id}}</td>
+					<td>{{item.name}}</td>
+					<td>{{item.content}}</td>
+					<td style="width: 120px;">{{item.createDate | date:'dd-MM-yyyy'}}</td>
+					<td><img ng-src="{{'/assets/images/' + item.image}}" width="100%"/></td>
+					<td>{{item.blogCategory.name}}</td>
+					<td>
+						<div class="btn-group btn-group-xs">
+							<button class="btn btn-warning" ng-click="edit(item)">Edit</button>
+							<button class="btn btn-danger" ng-click="delete(item)">Delete</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="card-footer text-muted text-center">
+		<button class="btn btn-primary" ng-click="pager.first()">First</button>
+		<button class="btn btn-primary" ng-click="pager.prev()">Prev</button>
+		<button class="btn btn-success">{{pager.page+1}} of {{pager.count}}</button>
+		<button class="btn btn-primary" ng-click="pager.next()">Next</button>
+		<button class="btn btn-primary" ng-click="pager.last()">Last</button>
+	</div>
+</div>

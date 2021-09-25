@@ -27,15 +27,11 @@ public class OrderDetail  implements Serializable{
 	Integer quantity;
 	
 	@ManyToOne
-	@JoinColumn(name = "Productid")
-	Product product;
+	@JoinColumn(name = "productDetailid")
+	ProductDetail productDetail;
 	
 	@ManyToOne
 	@JoinColumn(name = "Orderid")
 	Order order;
-	
-	@OneToOne
-    @JoinColumn(name = "Voucherid")
-    Voucher voucher;
  
 }
