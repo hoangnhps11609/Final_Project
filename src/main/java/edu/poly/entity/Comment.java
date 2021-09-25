@@ -40,6 +40,4 @@ public class Comment implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "Productid")
 	Product product;
-	
-	
 }

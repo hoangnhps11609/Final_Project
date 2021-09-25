@@ -23,6 +23,7 @@ public class Brand implements Serializable{
 	Integer id;
 	
 	String name;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "brand")
 	List<Product> products;

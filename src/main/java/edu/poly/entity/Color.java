@@ -12,11 +12,15 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 @SuppressWarnings("serial")
 @Data
 @Entity 
 @Table(name = "Colors")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Color implements Serializable{
 	@Id	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,5 +30,5 @@ public class Color implements Serializable{
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "color")
-	List<ImageColorDetail> Imagecolordetails;
+	List<ProductDetail> productDetails;
 }

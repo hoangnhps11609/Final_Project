@@ -24,7 +24,9 @@ public class Size implements Serializable{
 	
 	String name;
 	
+	String description;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "size")
-	List<SizeDetail> sizeDetails;
+	List<ProductDetail> productDetails;
 }
