@@ -1876,8 +1876,11 @@ ol {
 	color: #636363;
 }
 
-.filter-widget .fw-color-choose .cs-item label.cs-violet:before {
-	background: #8230E3;
+
+/* /------------Color */
+
+.filter-widget .fw-color-choose .cs-item label.cs-gray:before {
+	background: #808080;
 }
 
 .filter-widget .fw-color-choose .cs-item label.cs-blue:before {
@@ -1896,6 +1899,33 @@ ol {
 	background: #81D742;
 }
 
+
+.filter-widget .fw-color-choose .cs-item label.cs-white:before {
+	background: #f9f7f9;
+}
+
+
+.filter-widget .fw-color-choose .cs-item label.cs-black:before {
+	background: #000000;
+}
+
+
+.filter-widget .fw-color-choose .cs-item label.cs-brown:before {
+	background: #804040;
+}
+
+
+.filter-widget .fw-color-choose .cs-item label.cs-orange:before {
+	background: #ff8040;
+}
+
+
+.filter-widget .fw-color-choose .cs-item label.cs-pink:before {
+	background: #ff80ff;
+}
+
+
+
 .filter-widget .fw-color-choose .cs-item label:before {
 	position: absolute;
 	left: 0;
@@ -1904,6 +1934,9 @@ ol {
 	width: 18px;
 	background: #252525;
 	border-radius: 50%;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #c0c0c0;
 	content: "";
 }
 
@@ -2226,17 +2259,60 @@ ol {
 	width: 20px;
 	background: #252525;
 	border-radius: 50%;
+	border-style: solid;
+	border-color: #c0c0c0;
+	border-width: 1px;
 	cursor: pointer;
 	margin-bottom: 0;
 }
 
+
+/* -----------Color------- */
 .product-details .pd-color .pd-color-choose .cc-item label.cc-yellow {
 	background: #EEEE21;
 }
 
-.product-details .pd-color .pd-color-choose .cc-item label.cc-violet {
+.product-details .pd-color .pd-color-choose .cc-item label.cc-gray{
+	background: #808080;
+}
+
+.product-details .pd-color .pd-color-choose .cc-item label.cc-green {
+	background: #00ff40;
+}
+
+.product-details .pd-color .pd-color-choose .cc-item label.cc-white {
+	background: #faf5fe;
+}
+
+.product-details .pd-color .pd-color-choose .cc-item label.cc-black {
+	background: #000000;
+}
+
+.product-details .pd-color .pd-color-choose .cc-item label.cc-blue {
 	background: #8230E3;
 }
+
+.product-details .pd-color .pd-color-choose .cc-item label.cc-brown {
+	background: #804040;
+}
+
+.product-details .pd-color .pd-color-choose .cc-item label.cc-orange {
+	background: #ff8040;
+}
+
+.product-details .pd-color .pd-color-choose .cc-item label.cc-pink {
+	background: #ff00ff;
+}
+
+.product-details .pd-color .pd-color-choose .cc-item label.cc-red {
+	background: #ff0000;
+}
+
+
+
+
+
+
 
 .product-details .pd-size-choose {
 	margin-bottom: 30px;
