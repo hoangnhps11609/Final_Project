@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -22,15 +22,15 @@
         <span>d</span>
         <br>
         <div style="margin-left: 50px;">
-         	<span>M</span>
-	        <span>o</span>
-	        <span>r</span>
-	        <span>n</span>
-	        <span>i</span>
-	        <span>n</span>
-	        <span>g</span>
+          <span>M</span>
+          <span>o</span>
+          <span>r</span>
+          <span>n</span>
+          <span>i</span>
+          <span>n</span>
+          <span>g</span>
         </div>
-        
+
       </h1>
       <h1 ng-if="hour > 10 && hour < 18">
         <span>G</span>
@@ -39,17 +39,17 @@
         <span>d</span>
         <br>
         <div style="margin-left: 50px;">
-         	<span>A</span>
-	        <span>f</span>
-	        <span>t</span>
-	        <span>e</span>
-	        <span>r</span>
-	        <span>n</span>
-	        <span>o</span>
-	        <span>o</span>
-	        <span>n</span>
+          <span>A</span>
+          <span>f</span>
+          <span>t</span>
+          <span>e</span>
+          <span>r</span>
+          <span>n</span>
+          <span>o</span>
+          <span>o</span>
+          <span>n</span>
         </div>
-        
+
       </h1>
       <h1 ng-if="hour >17">
         <span>G</span>
@@ -67,11 +67,17 @@
           <span>g</span>
         </div>
       </h1>hhhhhhhhhhhhh
-      <div ng-repeat="item in pager.items">
-		{{item.fullname}}
+        <div class="ht-right">
+
+          <!--Login-->
+          <th:block th:if="${#request.remoteUser}">
+  
+            [[${#request.remoteUser}]]
+          </th:block>
+  
+        </div>
     </div>
-    </div>
-    
+
     <div class="card col-sm-7" style="position: absolute; top: 0;right: 50px ">
 
       <iframe width="100%" height="400" src="https://www.youtube.com/embed/_au37MZaQQI"></iframe>

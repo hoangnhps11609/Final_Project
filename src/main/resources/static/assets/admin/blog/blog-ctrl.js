@@ -19,7 +19,6 @@ app.controller("blog-ctrl", function($scope, $http) {
 	//Khởi tạo
 	$scope.initialize();
 
-	//Xóa form
 	$scope.reset = function() {
 		$scope.form = {
 			createDate: new Date(),

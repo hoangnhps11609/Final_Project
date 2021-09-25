@@ -8,7 +8,7 @@
 					<th scope="col">Name</th>
 					<th scope="col">Content</th>
 					<th scope="col">CreateDate</th>
-					<th scope="col">Image</th>
+					<th scope="col">Images</th>
 					<th scope="col">BlogCategory</th>
 					<th></th>
 				</tr>
@@ -19,7 +19,7 @@
 					<td>{{item.name}}</td>
 					<td>{{item.content}}</td>
 					<td style="width: 120px;">{{item.createDate | date:'dd-MM-yyyy'}}</td>
-					<td><img ng-src="{{'/assets/images/' + item.image}}" width="100%"/></td>
+					<td><img ng-src="{{'/assets/images/' + item.images}}" width="100%"/></td>
 					<td>{{item.blogCategory.name}}</td>
 					<td>
 						<div class="btn-group btn-group-xs">
