@@ -8,9 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.poly.dao.OrderDetailDAO;
+import edu.poly.entity.Blog;
 import edu.poly.entity.Category;
 import edu.poly.entity.Gender;
 import edu.poly.entity.Product;
+import edu.poly.service.BlogService;
 import edu.poly.service.CategoryService;
 import edu.poly.service.GenderService;
 import edu.poly.service.ProductService;
@@ -46,6 +48,8 @@ public class HomeController {
 	@Autowired
 	ParamService paramService;
 	
+	@Autowired
+	BlogService blogService;
 	
 	@RequestMapping({"/", "/home/index"})
 	public String home(Model model) {
@@ -73,6 +77,9 @@ public class HomeController {
 		
 		List<Gender> gender = genderService.findAll();
 		model.addAttribute("gender", gender);
+		
+		List<Blog> blog = blogService.findAll();
+		model.addAttribute("blogs", blog);
 		
 		return "home/home";
 	}

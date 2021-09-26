@@ -103,9 +103,7 @@
 							<form action="">
 								<div class="col-lg-7 col-md-7">
 									<div class="select-option">
-										<select class="sorting">
-											<option value="">Default By Date</option>
-										</select> <select class="p-show" name="size" id="size"
+										 <select class="p-show" name="size" id="size"
 											onchange="this.form.submit()">
 											<option th:selected="${blogPage.size == 4} " value="4">Show:
 												4</option>
@@ -121,7 +119,7 @@
 									</div>
 								</div>
 							</form>
-							<div class="col-lg-5 col-md-5 text-right">
+							<div class="col-lg-5 col-md-5 text-right" style="margin-left: 290px;">
 								<p>Show [[${blogPage.number*size
 									+ 1 }]] - [[${blogPage.number*size
 									+ blogPage.numberOfElements}]] Of
@@ -142,7 +140,7 @@
 										<h4 th:utext="${blog.name}"></h4>
 									</a>
 									<p>
-										[[${blog.BlogCategory.name}]] <span>[[${blog.createDate}]]</span>
+										[[${blog.BlogCategory.name}]] <span><i class="fa fa-calendar-o"></i> [[${blog.createDate}]]</span>
 									</p>
 								</div>
 							</div>
