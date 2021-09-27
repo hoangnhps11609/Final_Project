@@ -13,7 +13,8 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="breadcrumb-text product-more">
-							<a th:href="@{/home/index}"><i class="fa fa-home"></i> Home</a> <span>Shopping Cart</span>
+							<a th:href="@{/home/index}"><i class="fa fa-home"></i> Home</a> <span>Shopping
+								Cart</span>
 						</div>
 					</div>
 				</div>
@@ -27,12 +28,14 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="cart-table">
-							<table>
+							<table style="width: 100%; table-layout: auto;">
 								<thead>
 									<tr>
 										<th>Image</th>
-										<th class="p-name" width="250px">Product Name</th>
+										<th class="p-name" style="width:15%">Product Name</th>
 										<th>Price</th>
+										<th>Color</th>
+										<th>Size</th>
 										<th>Quantity</th>
 										<th>Total</th>
 										<th><i class="ti-close"></i></th>
@@ -41,31 +44,31 @@
 								<tbody>
 									<tr ng-repeat="item in cart.items">
 										<td class="cart-pic first-row"><img
-											src="/site/img/products/{{item.image}}" width="100px"
-											height="100px"></td>
+											src="/site/img/products/{{item.image}}" width="110px" height="120px"></td>
 										<td class="cart-title first-row">
-											<h5>{{item.name}}</h5>
+											<h5>{{item.product.name}}</h5>
 										</td>
-										<td class="p-price first-row">${{item.price|number:2}}</td>
-
-										<td>
+										<td class="p-price first-row">${{item.product.price*(1-item.product.discount*0.01)|number:2}} <div style="text-decoration: line-through; font-size:14px; color:rgb(224,224,224);">${{item.product.price}}</div></td>
+										<td class="p-price first-row">{{item.color.name}}</td>
+										<td class="p-price first-row">{{item.size.name}}</td>
+										<td style="width:50%">
 											<div class="pt-4 text-center">
 												<div class="col-6 row offset-3 border px-0 py-2">
 													<div class="col-4 p-0">
-														<a th:attr="ng-click=@{|cart.subcart(item.id)|}">
-															<i class="ti-minus"></i>
+														<a th:attr="ng-click=@{|cart.subcart(item.id)|}"> <i
+															class="ti-minus"></i>
 														</a>
 													</div>
 													<div class="col-4 text-center">{{item.qty}}</div>
 													<div class="col-4 p-0">
-														<a th:attr="ng-click=@{|cart.addcart(item.id)|}">
-															<i class="ti-plus"></i>
+														<a th:attr="ng-click=@{|cart.addcart(item.id)|}"> <i
+															class="ti-plus"></i>
 														</a>
 													</div>
 												</div>
 											</div>
 										</td>
-										<td class="total-price first-row">{{item.qty*item.price|number:2}}</td>
+										<td class="total-price first-row">{{item.qty*item.product.price*(1-item.product.discount*0.01)|number:2}}</td>
 										<td class="close-td first-row"><i class="ti-close"
 											ng-click="cart.remove(item.id)"></i></td>
 									</tr>
@@ -76,8 +79,8 @@
 							<div class="col-lg-4">
 								<div class="cart-buttons">
 									<a th:href="@{/product/list}" class="primary-btn up-cart">Continue
-										shopping</a> 
-									<a ng-click="cart.clear()" class="primary-btn up-cart">Clear cart</a>
+										shopping</a> <a ng-click="cart.clear()"
+										class="primary-btn up-cart">Clear cart</a>
 								</div>
 								<div class="discount-coupon">
 									<h6>Discount Codes</h6>

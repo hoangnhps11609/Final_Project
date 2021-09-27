@@ -31,10 +31,23 @@ public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 	Product findByProductId(Integer id);
 	
 	@Query
-	("SELECT new ColorPro(p.color.id, p.color.name) FROM ProductDetail p WHERE p.product.id=?1  group by p.color.id, p.color.name")
-	List<ColorPro> getColorByProduct(Integer id);
+	("SELECT new ColorPro(p.color.id, p.color.name) FROM ProductDetail p WHERE p.product.id=?1 and p.size.id=?2  group by p.color.id, p.color.name")
+	List<ColorPro> getColorByProduct(Integer id, Integer sizepro);
 	
 	@Query
 	("SELECT new SizePro(p.size.id, p.size.name, p.size.description) FROM ProductDetail p WHERE p.product.id=?1  group by p.size.id, p.size.name, p.size.description")
 	List<SizePro> getSizeByProduct(Integer id);
+
+
+	@Query
+	("SELECT new ColorPro(p.color.id, p.color.name) FROM ProductDetail p WHERE p.product.id=?1  group by p.color.id, p.color.name")
+	List<ColorPro> getColorByProduct(Integer id);
+
+	@Query
+	("SELECT new SizePro(p.size.id, p.size.name, p.size.description) FROM ProductDetail p WHERE p.product.id=?1 and p.color.id=?2  group by p.size.id, p.size.name, p.size.description")
+	List<SizePro> getSizeByProduct(Integer id, Integer colorpro);
+
+	@Query
+	("SELECT p FROM ProductDetail p WHERE p.product.id=?1 and p.size.id=?2")
+	List<ProductDetail> findByProductIDandSizeID(Integer id, Integer sizepro);
 }

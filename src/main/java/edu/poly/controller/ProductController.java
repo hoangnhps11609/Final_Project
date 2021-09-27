@@ -252,17 +252,31 @@ public class ProductController {
 
 	@RequestMapping("product/detail/{id}")
 	public String detail(Model model, @PathVariable("id") Integer id,
-			@RequestParam(name = "size", required = false) Double size,
-			@RequestParam(name = "color", required = false) Double color) {
+			@RequestParam(name = "sizepro", required = false) Integer sizepro) {
 		
-		Product item = productservice.findById(id);
-		model.addAttribute("item", item);
-		
-		List<ColorPro> colorProlist = productDetailService.getColorByProduct(id);
-		model.addAttribute("colorProlist", colorProlist);
-		
-		List<SizePro> sizeProlist = productDetailService.getSizeByProduct(id);
-		model.addAttribute("sizeProlist", sizeProlist);
+		if(sizepro != null) {
+//			ProductDetail item = productDetailService.findByIdandSize(id, sizepro);
+//			model.addAttribute("item", item);
+			List<ColorPro> colorProlist = productDetailService.getColorByProduct(id, sizepro);
+			model.addAttribute("colorProlist", colorProlist);
+			Product item = productservice.findById(id);
+			model.addAttribute("item", item);
+			model.addAttribute("productID", id);
+			List<SizePro> sizeProlist = productDetailService.getSizeByProduct(id);
+			model.addAttribute("sizeProlist", sizeProlist);	
+			model.addAttribute("sizepro", sizepro);
+			
+			List<ProductDetail> prodetail = productDetailService.findByProductIDandSizeID(id, sizepro);
+			model.addAttribute("prodetail", prodetail);
+		}else {
+			Product item = productservice.findById(id);
+			model.addAttribute("item", item);
+			model.addAttribute("productID", id);
+			List<SizePro> sizeProlist = productDetailService.getSizeByProduct(id);
+			model.addAttribute("sizeProlist", sizeProlist);
+			List<ColorPro> colorProlist = productDetailService.getColorByProduct(id);
+			model.addAttribute("colorProlist", colorProlist);
+		}
 		
 		
 		List<Brand> brands = brandService.findAll();

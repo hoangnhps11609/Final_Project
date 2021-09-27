@@ -53,4 +53,6 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	("SELECT p FROM Product p WHERE p.brand.id=?1")
 	Page<Product> findByBrandId(Integer brand, Pageable pageable);
 
+	
+
 }

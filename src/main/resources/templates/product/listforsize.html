@@ -137,7 +137,7 @@
 									th:each=" sizepro, iStat : ${productPage.content}">
 									<div class="product-item">
 										<div class="pi-pic">
-											<a th:href="@{|/product/detail/${sizepro.product.id}|}"> <img
+											<a th:href="@{|/product/detail/${sizepro.product.id}?sizepro=${sizepro.size.id}|}"> <img
 												th:src="${sizepro.product.image!=null ? '/site/img/products/' + sizepro.product.image : '/site/img/logo.png'}"
 												width="100px" height="100px" id="image" class="img-fluid"
 												name="image" alt="">

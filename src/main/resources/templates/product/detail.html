@@ -72,8 +72,8 @@
 							<h4 class="fw-title">Color</h4>
 							<div class="fw-color-choose">
 								<div class="cs-item" th:each="c:${colors}">
-									<a th:href="@{|/product/listcolor?color=${c.id}|}">
-										<label class="cs-yellow" th:if="${c.id == 1}" for="cs-yellow">[[${c.name}]]</label>
+									<a th:href="@{|/product/listcolor?color=${c.id}|}"> <label
+										class="cs-yellow" th:if="${c.id == 1}" for="cs-yellow">[[${c.name}]]</label>
 										<label class="cs-gray" th:if="${c.id == 2}" for="cs-gray">[[${c.name}]]</label>
 										<label class="cs-green" th:if="${c.id == 3}" for="cs-green">[[${c.name}]]</label>
 										<label class="cs-white" th:if="${c.id == 4}" for="cs-white">[[${c.name}]]</label>
@@ -111,24 +111,6 @@
 										<i class="fa fa-search-plus"></i>
 									</div>
 								</div>
-								<!---->
-								<div class="product-thumbs">
-									<div class="product-thumbs-track ps-slider owl-carousel">
-										<div class="pt active"
-											data-imgbigurl="/site/img/product-single/product-1.jpg">
-											<img th:src="@{|/site/img/products/*{image}|}" alt="">
-										</div>
-										<div class="pt"
-											data-imgbigurl="/site/img/product-single/product-2.jpg">
-											<img src="/site/img/product-single/product-2.jpg" alt="">
-										</div>
-										<div class="pt"
-											data-imgbigurl="/site/img/product-single/product-3.jpg">
-											<img src="/site/img/product-single/product-3.jpg" alt="">
-										</div>
-									</div>
-								</div>
-								<!---->
 							</div>
 							<div class="col-lg-6">
 								<div class="product-details">
@@ -150,41 +132,133 @@
 											<span th:text="*{price}"></span>
 										</h4>
 									</div>
+
+
+
+
 									<div class="pd-color">
 										<h6>Color</h6>
 										<div class="pd-color-choose"
 											th:each="colorPro:${colorProlist}">
 											<div class="cc-item">
-												<label for="cc-violet"  th:if="${colorPro.id == 1}" class="cc-yellow">[[${colorPro.name}]]</label>
-												<label for="cc-violet"  th:if="${colorPro.id == 2}" class="cc-gray">[[${colorPro.name}]]</label>
-												<label for="cc-violet"  th:if="${colorPro.id == 3}" class="cc-green">[[${colorPro.name}]]</label>
-												<label for="cc-violet"  th:if="${colorPro.id == 4}" class="cc-white">[[${colorPro.name}]]</label>
-												<label for="cc-violet"  th:if="${colorPro.id == 5}" class="cc-black">[[${colorPro.name}]]</label>
-												<label for="cc-violet"  th:if="${colorPro.id == 6}" class="cc-blue">[[${colorPro.name}]]</label>
-												<label for="cc-violet"  th:if="${colorPro.id == 7}" class="cc-brown">[[${colorPro.name}]]</label>
-												<label for="cc-violet"  th:if="${colorPro.id == 8}" class="cc-orange">[[${colorPro.name}]]</label>
-												<label for="cc-violet"  th:if="${colorPro.id == 9}" class="cc-pink">[[${colorPro.name}]]</label>
-												<label for="cc-violet"  th:if="${colorPro.id == 10}" class="cc-red">[[${colorPro.name}]]</label>
+												<label for="cc-violet" th:if="${colorPro.id == 1}"
+													class="cc-yellow"></label> <label for="cc-violet"
+													th:if="${colorPro.id == 2}" class="cc-gray"></label> <label
+													for="cc-violet" th:if="${colorPro.id == 3}"
+													class="cc-green"></label> <label for="cc-violet"
+													th:if="${colorPro.id == 4}" class="cc-white"></label> <label
+													for="cc-violet" th:if="${colorPro.id == 5}"
+													class="cc-black"></label> <label for="cc-violet"
+													th:if="${colorPro.id == 6}" class="cc-blue"></label> <label
+													for="cc-violet" th:if="${colorPro.id == 7}"
+													class="cc-brown"></label> <label for="cc-violet"
+													th:if="${colorPro.id == 8}" class="cc-orange"></label> <label
+													for="cc-violet" th:if="${colorPro.id == 9}" class="cc-pink"></label>
+												<label for="cc-violet" th:if="${colorPro.id == 10}"
+													class="cc-red"></label>
 											</div>
 										</div>
-
 									</div>
+
 									<div class="pd-size-choose">
 										<div class="sc-item" th:each="sizePro:${sizeProlist}">
-											<a th:href="@{|/product/listsize?sizepro=${sizePro.id}|}"><label
-												for="s-size">[[${sizePro.name}]]</label></a>
+											<a
+												th:href="@{|/product/detail/${productID}?sizepro=${sizePro.id}|}">
+												<label for="s-size" th:if="${sizepro == sizePro.id}"
+												style="background-color: black;" class="text-light">[[${sizePro.name}]]</label>
+												<label for="s-size" th:if="${sizepro != sizePro.id}">[[${sizePro.name}]]</label>
+											</a>
 										</div>
-										<div class="sc-item">
-											<input type="radio" id="sm-size"> <label
-												for="sm-size">s</label>
-										</div>
+
+										<!-- <div class="sc-item" th:if="${sizepro} != null"
+											th:object="${sizename}">
+											<a
+												th:href="@{|/product/detail/${productID}?sizepro=${sizepro}|}"><label
+												for="s-size">[[*{name}]]</label></a>
+										</div> -->
 									</div>
+
 									<div class="quantity">
-										<div class="pro-qty">
-											<input type="text" value="1">
-										</div>
-										<a href="#" class="primary-btn pd-cart">Add To Cart</a>
+										<a class="primary-btn pd-cart text-light" data-toggle="modal"
+											data-target="#exampleModalCenter">Choose Color</a>
 									</div>
+
+									<!-- Modal -->
+									<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+										role="dialog" aria-labelledby="exampleModalCenterTitle"
+										aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered"
+											style="max-width: 60%;" role="document">
+											<div class="modal-content">
+												<div class="modal-header bg-warning">
+													<h4 class="modal-title  text-light"
+														id="exampleModalLongTitle">Choose Color</h4>
+													<button type="button" class="close text-light"
+														data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body">
+													<div class="product-slider owl-carousel">
+														<div class="product-item" th:each="p:${prodetail}">
+															<div class="pi-pic">
+																<a> <img th:src="@{|/site/img/products/${p.image}|}"
+																	alt="">
+																</a>
+																<div class="sale pp-sale">Size: [[${p.size.name}]]</div>
+
+																<div class="icon">
+																	<div class="pd-color">
+																		<div class="pd-color-choose">
+																			<div class="cc-item">
+																				<label for="cc-violet" th:if="${p.color.id == 1}"
+																					class="cc-yellow"></label> <label for="cc-violet"
+																					th:if="${p.color.id == 2}" class="cc-gray"></label>
+																				<label for="cc-violet" th:if="${p.color.id == 3}"
+																					class="cc-green"></label> <label for="cc-violet"
+																					th:if="${p.color.id == 4}" class="cc-white"></label>
+																				<label for="cc-violet" th:if="${p.color.id == 5}"
+																					class="cc-black"></label> <label for="cc-violet"
+																					th:if="${p.color.id == 6}" class="cc-blue"></label>
+																				<label for="cc-violet" th:if="${p.color.id == 7}"
+																					class="cc-brown"></label> <label for="cc-violet"
+																					th:if="${p.color.id == 8}" class="cc-orange"></label>
+																				<label for="cc-violet" th:if="${p.color.id == 9}"
+																					class="cc-pink"></label> <label for="cc-violet"
+																					th:if="${p.color.id == 10}" class="cc-red"></label>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<ul>
+																	<li class="quick-view col m-0 p-0"><a
+																		th:attr="ng-click=@{|cart.add(${p.id})|}"
+																		class="btn-warning btn text-light">+ ADD TO CARD</a></li>
+																</ul>
+															</div>
+															<div class="pi-text">
+																<div class="catagory-name">
+																	<h4>[[${p.product.name}]]</h4>
+																</div>
+
+																<div class="catagory-name">Size:
+																	[[${p.size.name}]]</div>
+
+																<div class="catagory-name">Color:
+																	[[${p.color.name}]]</div>
+
+																<div class="product-price">
+																	$[[${p.product.price*(1-p.product.discount*0.01)}]]<span>$[[${p.product.price}]]</span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
 									<ul class="pd-tags">
 										<li><span>CATEGORIES</span>: <o
 												th:text="*{category.name}"></o></li>
@@ -221,17 +295,7 @@
 											<div class="row">
 												<div class="col-lg-7">
 													<h5>Introduction</h5>
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-														elit, sed do eiusmod tempor incididunt ut labore et dolore
-														magna aliqua. Ut enim ad minim veniam, quis nostrud
-														exercitation ullamco laboris nisi ut aliquip ex ea commodo
-														consequat. Duis aute irure dolor in</p>
-													<h5>Features</h5>
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-														elit, sed do eiusmod tempor incididunt ut labore et dolore
-														magna aliqua. Ut enim ad minim veniam, quis nostrud
-														exercitation ullamco laboris nisi ut aliquip ex ea commodo
-														consequat. Duis aute irure dolor in</p>
+													<p>[[*{description}]]</p>
 												</div>
 												<div class="col-lg-5">
 													<img src="/site/img/product-single/tab-desc.jpg" alt="">
@@ -255,13 +319,8 @@
 												<tr>
 													<td class="p-catagory">Price</td>
 													<td>
-														<div class="p-price">$495.00</div>
-													</td>
-												</tr>
-												<tr>
-													<td class="p-catagory">Add To Cart</td>
-													<td>
-														<div class="cart-add">+ add to cart</div>
+														<div class="p-price">
+															$[[*{price*(1-discount*0.01)}]]</div>
 													</td>
 												</tr>
 												<tr>
@@ -271,25 +330,33 @@
 													</td>
 												</tr>
 												<tr>
-													<td class="p-catagory">Weight</td>
-													<td>
-														<div class="p-weight">1,3kg</div>
-													</td>
-												</tr>
-												<tr>
 													<td class="p-catagory">Size</td>
 													<td>
-														<div class="p-size">Xxl</div>
+														<div class="p-size">
+															<span th:each="sizePro:${sizeProlist}" class="px-1">[[${sizePro.name}]]</span>
+														</div>
 													</td>
 												</tr>
 												<tr>
 													<td class="p-catagory">Color</td>
-													<td><span class="cs-color"></span></td>
+													<td><span th:each="colorPro:${colorProlist}"
+														class="px-1"> <span class="cs-color-yellow"
+															th:if="${colorPro.id == 1}"></span> <span
+															class="cs-color-gray" th:if="${colorPro.id == 2}"></span>
+															<span class="cs-color-green" th:if="${colorPro.id == 3}"></span>
+															<span class="cs-color-white" th:if="${colorPro.id == 4}"></span>
+															<span class="cs-color-black" th:if="${colorPro.id == 5}"></span>
+															<span class="cs-color-blue" th:if="${colorPro.id == 6}"></span>
+															<span class="cs-color-brown" th:if="${colorPro.id == 7}"></span>
+															<span class="cs-color-orange" th:if="${colorPro.id == 8}"></span>
+															<span class="cs-color-pink" th:if="${colorPro.id == 9}"></span>
+															<span class="cs-color-red" th:if="${colorPro.id == 10}"></span>
+													</span></td>
 												</tr>
 												<tr>
 													<td class="p-catagory">Sku</td>
 													<td>
-														<div class="p-code">00012</div>
+														<div class="p-code">[[*{id}]]</div>
 													</td>
 												</tr>
 											</table>
@@ -380,33 +447,35 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-lg-3 col-sm-6" th:each="p:*{category.products}">
-						<div class="product-item">
-							<div class="pi-pic">
-								<a th:href="@{|/product/detail/${p.id}|}"> <img
-									th:src="@{|/site/img/products/${p.image}|}" alt="">
-								</a>
-								<div class="sale">Sale</div>
-								<div class="icon">
-									<i class="icon_heart_alt"></i>
+					<div class="col">
+						<div class="product-slider owl-carousel">
+							<div class="product-item" th:each="p:*{category.products}">
+								<div class="pi-pic">
+									<a th:href="@{|/product/detail/${p.id}|}"> <img
+										th:src="@{|/site/img/products/${p.image}|}" alt="">
+									</a>
+									<div class="sale">Sale: [[${p.discount}]]%</div>
+									<div class="icon">
+										<i class="icon_heart_alt"></i>
+									</div>
+									<ul>
+										<li class="w-icon active"><a
+											th:attr="ng-click=@{|cart.add(${p.id})|}"><i
+												class="icon_cart_alt"></i></a></li>
+										<li class="quick-view"><a
+											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+										<li class="w-icon"><a href="#"><i
+												class="fa fa-random"></i></a></li>
+									</ul>
 								</div>
-								<ul>
-									<li class="w-icon active"><a href="#"><i
-											class="icon_bag_alt"></i></a></li>
-									<li class="quick-view"><a
-										th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-									<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a>
-									</li>
-								</ul>
-							</div>
-							<div class="pi-text">
-								<div class="catagory-name">Tags</div>
-								<a href="#">
-									<h5 th:utext="${p.name}"></h5>
-								</a>
-								<div class="product-price">
-									<o> $[[${p.price}]]</o>
-									<span>$35.00</span>
+								<div class="pi-text">
+									<div class="catagory-name">[[${p.category.name}]]</div>
+									<a href="#">
+										<h5 th:utext="${p.name}"></h5>
+									</a>
+									<div class="product-price">
+										$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+									</div>
 								</div>
 							</div>
 						</div>

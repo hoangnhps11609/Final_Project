@@ -188,6 +188,11 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 	}
 
 	@Override
+	public List<ColorPro> getColorByProduct(Integer id, Integer sizepro) {
+		return productDetailDAO.getColorByProduct(id, sizepro);
+	}
+	
+	@Override
 	public List<ColorPro> getColorByProduct(Integer id) {
 		return productDetailDAO.getColorByProduct(id);
 	}
@@ -195,6 +200,36 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 	@Override
 	public List<SizePro> getSizeByProduct(Integer id) {
 		return productDetailDAO.getSizeByProduct(id);
+	}
+
+	@Override
+	public List<SizePro> getSizeByProduct(Integer id, Integer colorpro) {
+		return productDetailDAO.getSizeByProduct(id, colorpro);
+	}
+
+	@Override
+	public List<ProductDetail> findByProductIDandSizeID(Integer id, Integer sizepro) {
+		return productDetailDAO.findByProductIDandSizeID(id, sizepro);
+	}
+
+	@Override
+	public ProductDetail findbyId(Long id) {
+		return productDetailDAO.findById(id).get();
+	}
+
+	@Override
+	public ProductDetail create(ProductDetail product) {
+		return productDetailDAO.save(product);
+	}
+
+	@Override
+	public ProductDetail update(ProductDetail product) {
+		return productDetailDAO.save(product);
+	}
+
+	@Override
+	public void delete(Long id) {
+		productDetailDAO.deleteById(id);		
 	}
 
 }
