@@ -106,9 +106,9 @@
 								<form action="">
 									<div class="col-lg-7 col-md-7">
 										<div class="select-option">
-											<select class="sorting">
+											<!-- <select class="sorting">
 												<option value="">Default By Date</option>
-											</select> <select class="p-show" name="size" id="size"
+											</select> --> <select class="p-show" name="size" id="size"
 												onchange="this.form.submit()">
 												<option th:selected="${productPage.size == 9} " value="9">Show:
 													9</option>
@@ -124,7 +124,7 @@
 										</div>
 									</div>
 								</form>
-								<div class="col-lg-5 col-md-5 text-right">
+								<div class="col-lg-5 col-md-5 text-right" style="margin-left: 290px;">
 									<p>Show [[${productPage.number*size + 1 }]] -
 										[[${productPage.number*size + productPage.numberOfElements}]]
 										Of [[${productPage.totalElements}]] Product</p>
