@@ -1,5 +1,7 @@
 package edu.poly.controller;
 
+import java.util.List;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.poly.dao.AccountDAO;
 import edu.poly.entity.Account;
+import edu.poly.entity.Gender;
 import edu.poly.service.AccountService;
+import edu.poly.service.GenderService;
 import edu.poly.utils.ParamService;
 
 @Controller
@@ -22,7 +26,9 @@ public class ChangePasswordController {
 	
 	@Autowired
 	ServletContext app;
-	
+
+	@Autowired
+	GenderService genderService;
 	
 	@Autowired
 	AccountDAO adao;
@@ -41,6 +47,8 @@ public class ChangePasswordController {
 		String username = request.getRemoteUser();
 		Account v = adao.findByUsername(username);
 		model.addAttribute("items",v);
+		List<Gender> gender = genderService.findAll();
+		model.addAttribute("genderlist", gender);
 		return "home/change-password";
 	}
 	

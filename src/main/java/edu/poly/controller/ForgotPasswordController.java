@@ -1,5 +1,7 @@
 package edu.poly.controller;
 
+import java.util.List;
+
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.poly.dao.AccountDAO;
 import edu.poly.entity.Account;
+import edu.poly.entity.Gender;
+import edu.poly.service.GenderService;
 import edu.poly.service.impl.MailerServiceImpl;
 import edu.poly.utils.ParamService;
 import edu.poly.utils.SessionService;
@@ -29,9 +33,14 @@ public class ForgotPasswordController {
 	MailerServiceImpl mailer;
 	@Autowired
 	ServletContext app;
+
+	@Autowired
+	GenderService genderService;
 	
 	@RequestMapping("forgot-password")
-	public String index() {
+	public String index(Model model) {
+		List<Gender> gender = genderService.findAll();
+		model.addAttribute("genderlist", gender);
 		return "home/forgot-password";
 	}
 	

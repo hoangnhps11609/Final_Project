@@ -22,8 +22,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import edu.poly.dao.AccountDAO;
 import edu.poly.entity.Account;
+import edu.poly.entity.Gender;
 import edu.poly.entity.Order;
 import edu.poly.service.AccountService;
+import edu.poly.service.GenderService;
 import edu.poly.service.OrderService;
 import edu.poly.utils.ParamService;
 
@@ -33,6 +35,9 @@ public class AccountController {
 	AccountService accountService;
 
 	@Autowired
+	GenderService genderService;
+
+	@Autowired
 	ServletContext app;
 
 	@Autowired
@@ -40,16 +45,17 @@ public class AccountController {
 
 	@Autowired
 	AccountDAO adao;
-	
+
 	@Autowired
 	OrderService orderService;
-
 
 	@Autowired
 	HttpServletRequest request;
 
 	@RequestMapping("/accounts/newaccount")
 	public String registerForm(Model model) {
+		List<Gender> gender = genderService.findAll();
+		model.addAttribute("genderlist", gender);
 		model.addAttribute("message", "Vui lòng nhập thông tin đăng ký!");
 		return "home/register";
 	}
@@ -60,12 +66,14 @@ public class AccountController {
 		Account v = adao.findByUsername(username);
 		model.addAttribute("items", v);
 		model.addAttribute("username", username);
+		List<Gender> gender = genderService.findAll();
+		model.addAttribute("genderlist", gender);
 		return "home/profile";
 
 	}
 
 	@PostMapping("/accounts/update")
-	public String Update(Model model, Account item,@RequestParam("img") MultipartFile image) {
+	public String Update(Model model, Account item, @RequestParam("img") MultipartFile image) {
 		String username = paramService.getString("username", "");
 		String fullname = paramService.getString("fullname", "");
 		String email = paramService.getString("email", "");
@@ -73,8 +81,8 @@ public class AccountController {
 		String address = paramService.getString("address", "");
 		Optional<Account> accOp = adao.findById(username);
 		String filename = image.getOriginalFilename();
-		File file = new File(app.getRealPath("/assets/images/"+filename));
-		if(image.isEmpty()) {
+		File file = new File(app.getRealPath("/assets/images/" + filename));
+		if (image.isEmpty()) {
 			item.setFullname(fullname);
 			item.setEmail(email);
 			item.setPhone(phone);
@@ -82,7 +90,7 @@ public class AccountController {
 			item.setActivated(true);
 			item.setPhoto(accOp.get().getPhoto());
 			adao.save(item);
-		}else {
+		} else {
 			item.setFullname(fullname);
 			item.setEmail(email);
 			item.setActivated(true);
@@ -91,14 +99,18 @@ public class AccountController {
 			item.setAddress(address);
 			adao.save(item);
 		}
-			model.addAttribute("message","Update Successfully");
-			return "redirect:/accounts/info";
+		model.addAttribute("message", "Update Successfully");
+		List<Gender> gender = genderService.findAll();
+		model.addAttribute("genderlist", gender);
+		return "redirect:/accounts/info";
 
 	}
 
 	@PostMapping("/accounts/register")
-	public String register(Model model, @Valid  @ModelAttribute("account") Account item) {
+	public String register(Model model, @Valid @ModelAttribute("account") Account item) {
 		accountService.create(item);
+		List<Gender> gender = genderService.findAll();
+		model.addAttribute("genderlist", gender);
 		model.addAttribute("message", "Update Successfully");
 		return "redirect:/security/login/form";
 
