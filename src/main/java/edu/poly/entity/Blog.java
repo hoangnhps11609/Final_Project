@@ -37,10 +37,14 @@ public class Blog implements Serializable{
 	String images;
 	
 	@ManyToOne
-	@JoinColumn(name = "Blogcategoryid")
-	BlogCategory blogCategory;
+
+	@JoinColumn(name = "Username")
+	Account account;	
+	
 	
 	@ManyToOne
-	@JoinColumn(name = "Username")
-	Account account;
+	@JoinColumn(name = "blogcategoriesid")
+	BlogCategory blogCategory;
+	
+
 }

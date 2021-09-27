@@ -183,6 +183,18 @@ public class BlogServiceImpl implements BlogService{
 	public Page<Blog> findByKeyword(String string, Pageable pageable) {
 		return blogDAO.findByKeyword(string, pageable);
 	}
+
+	@Override
+	public Blog create(Blog blog) {
+		// TODO Auto-generated method stub
+		return blogDAO.save(blog);
+	}
+
+	@Override
+	public Blog update(Blog blog) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

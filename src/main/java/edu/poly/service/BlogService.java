@@ -76,5 +76,9 @@ public interface BlogService {
 	<S extends Blog> S save(S entity);
 
 	Page<Blog> findByKeyword(String string, Pageable pageable);
+
+	Blog create(Blog blog);
+
+	Blog update(Blog blog);
 	
 }
