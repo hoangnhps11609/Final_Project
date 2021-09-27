@@ -14,7 +14,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 				this.saveToLocalStorage();
 			}
 			else {
-				$http.get(`/rest/products/${id}`).then(resp => {
+				$http.get(`/rest/productdetails/${id}`).then(resp => {
 					resp.data.qty = 1;
 					this.items.push(resp.data);
 					this.saveToLocalStorage();
@@ -31,7 +31,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 				this.saveToLocalStorage();
 			}
 			else {
-				$http.get(`/rest/products/${id}`).then(resp => {
+				$http.get(`/rest/productdetails/${id}`).then(resp => {
 					resp.data.qty = 1;
 					this.items.push(resp.data);
 					this.saveToLocalStorage();
@@ -79,7 +79,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		//Tổng thành tiền các mặt hàng trong giỏ
 		get amount(){
 			return this.items
-				.map(item => item.qty * item.price)
+				.map(item => item.qty * item.product.price*(1-item.product.discount*0.01))
 				.reduce((total,qty) => total += qty, 0);
 		},
 		
@@ -98,6 +98,9 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 	
 	$scope.cart.loadFormLocalStorage();
 
+
+
+
 	$scope.order={
 		createDate: new Date(),
 		address: "",
@@ -105,8 +108,8 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		get orderDetails(){
 			return $scope.cart.items.map(item => {
 				return{
-					product: {id: item.id},
-					price: item.price,
+					productDetail: {id: item.id},
+					price: item.product.price,
 					quantity: item.qty
 				}
 			});
@@ -145,8 +148,8 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		get orderDetails(){
 			return $scope.cart.items.map(item => {
 				return {
-					product: {id:item.id},
-					price: item.price,
+					productDetail: {id:item.id},
+					price: item.product.price,
 					quantity: item.qty
 				}
 			});

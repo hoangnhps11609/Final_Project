@@ -47,7 +47,6 @@
 .show {
 	display: block;
 }
-
 </style>
 </head>
 <body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
@@ -164,6 +163,12 @@
 			});
 		}
 	</script>
+	<script>
+		$('#blogCarousel').carousel({
+			interval : 5000
+		});
+	</script>
+
 	<script th:src="@{/site/js/jquery-3.3.1.min.js}"></script>
 	<script th:src="@{/site/js/bootstrap.min.js}"></script>
 	<script th:src="@{/site/js/jquery-ui.min.js}"></script>

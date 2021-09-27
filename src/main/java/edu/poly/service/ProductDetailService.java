@@ -81,7 +81,24 @@ public interface ProductDetailService {
 
 	Product findByProductId(Integer id);
 
-	List<ColorPro> getColorByProduct(Integer id);
+	List<ColorPro> getColorByProduct(Integer id, Integer sizepro);
 
 	List<SizePro> getSizeByProduct(Integer id);
+
+	List<ColorPro> getColorByProduct(Integer id);
+
+	List<SizePro> getSizeByProduct(Integer id, Integer colorpro);
+
+	List<ProductDetail> findByProductIDandSizeID(Integer id, Integer sizepro);
+
+	
+	
+	ProductDetail findbyId(Long id);
+	
+	ProductDetail create(ProductDetail product);
+
+	ProductDetail update(ProductDetail product);
+
+	void delete(Long id);
+	
 }

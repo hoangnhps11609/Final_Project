@@ -1884,7 +1884,7 @@ ol {
 }
 
 .filter-widget .fw-color-choose .cs-item label.cs-blue:before {
-	background: #2773BE;
+	background: #0000ff;
 }
 
 .filter-widget .fw-color-choose .cs-item label.cs-yellow:before {
@@ -2289,7 +2289,7 @@ ol {
 }
 
 .product-details .pd-color .pd-color-choose .cc-item label.cc-blue {
-	background: #8230E3;
+	background: #0000ff;
 }
 
 .product-details .pd-color .pd-color-choose .cc-item label.cc-brown {
@@ -2566,6 +2566,8 @@ ol {
 	text-transform: uppercase;
 }
 
+
+/* ---Color detail-- */
 .specification-table table tr td .cs-color {
 	display: inline-block;
 	height: 20px;
@@ -2573,6 +2575,79 @@ ol {
 	background: #252525;
 	border-radius: 50%;
 }
+.specification-table table tr td .cs-color-yellow {
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	background: #ffff00;
+	border-radius: 50%;
+}
+.specification-table table tr td .cs-color-gray {
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	background: #808080;
+	border-radius: 50%;
+}
+.specification-table table tr td .cs-color-green {
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	background: #00ff00;
+	border-radius: 50%;
+}
+.specification-table table tr td .cs-color-white {
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	background: #ffffff;
+	border-radius: 50%;
+}
+.specification-table table tr td .cs-color-black {
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	background: #252525;
+	border-radius: 50%;
+}
+.specification-table table tr td .cs-color-blue {
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	background: #0000ff;
+	border-radius: 50%;
+}
+.specification-table table tr td .cs-color-brown {
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	background: #804040;
+	border-radius: 50%;
+}
+.specification-table table tr td .cs-color-orange {
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	background: #ff8000;
+	border-radius: 50%;
+}
+.specification-table table tr td .cs-color-pink {
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	background: #ff80c0;
+	border-radius: 50%;
+}
+.specification-table table tr td .cs-color-red {
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	background: #ff0000;
+	border-radius: 50%;
+}
+
+
+/* ---Color detail-- */
 
 .customer-review-option {
 	padding-top: 55px;

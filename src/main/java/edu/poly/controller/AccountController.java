@@ -113,7 +113,8 @@ public class AccountController {
 		item.setEmail(email);
 		item.setPassword("123");
 		item.setUsername(username);
-		item.setPhoto("noacc.jpg");
+		item.setPhoto("82829764.png");
+		item.setPhone(username);
 		adao.save(item);
 		Account account = adao.findByUsername(username);
 		model.addAttribute("account", account);

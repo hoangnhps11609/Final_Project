@@ -108,3 +108,11 @@
   border: 0;
   transition: all .2s ease;
 }
+
+.btn-warning{
+	background-color: #e7ab3c;
+}
+
+.text-light{
+	color: white;
+}

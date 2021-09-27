@@ -27,7 +27,7 @@ public class OrderDetail  implements Serializable{
 	Integer quantity;
 	
 	@ManyToOne
-	@JoinColumn(name = "productDetailid")
+	@JoinColumn(name = "productdetailid")
 	ProductDetail productDetail;
 	
 	@ManyToOne

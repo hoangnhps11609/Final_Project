@@ -25,6 +25,7 @@
 <style>
 
 </style>
+
 <body ng-app="admin-app">
     <div class="preloader">
         <div class="lds-ripple">
@@ -67,7 +68,7 @@
                         <li class="nav-item d-none d-md-block"><a
                                 class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
                                 data-sidebartype="mini-sidebar"><i class="ti-menu font-16"></i></a></li>
-       
+
                     </ul>
                     <ul class="navbar-nav float-right">
                         <li class="nav-item dropdown">
@@ -159,8 +160,8 @@
                                 <a class="dropdown-item" href="/security/logoff/success"><i
                                         class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                                 <div class="dropdown-divider"></div>
-                                <div class="p-l-30 p-10"><a href="/"
-                                        class="btn btn-sm btn-success btn-rounded">Return to shop</a></div>
+                                <div class="p-l-30 p-10"><a href="/" class="btn btn-sm btn-success btn-rounded">Return
+                                        to shop</a></div>
                             </div>
                         </li>
                     </ul>
@@ -178,13 +179,13 @@
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
+                <nav class="sidebar-nav huansidebar">
                     <ul id="sidebarnav" class="p-t-30">
                         <li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark"
                                 href="javascript:void(0)" aria-expanded="false"><i class="ti-menu-alt"></i><span
                                     class="hide-menu">
                                     Manage Site Control </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
+                            <ul aria-expanded="false" class="collapse  first-level" style="position: relative;">
                                 <li class="sidebar-item"><a href="#!account" class="sidebar-link"><i
                                             class="ti-user"></i><span class="hide-menu"> Account Controller </span></a>
                                 </li>
@@ -195,17 +196,19 @@
                                             class="ti-shopping-cart"></i><span class="hide-menu"> Order Controller
                                         </span></a></li>
                                 <li class="sidebar-item"><a href="#!product" class="sidebar-link"><i
-                                            class="fab fa-codepen"></i><span class="hide-menu"> Product Controller </span></a>
+                                            class="fab fa-codepen"></i><span class="hide-menu"> Product Controller
+                                        </span></a>
                                 </li>
-                                 <li class="sidebar-item"><a href="#!voucher" class="sidebar-link"><i
+                                <li class="sidebar-item"><a href="#!voucher" class="sidebar-link"><i
                                             class="ti-gift"></i><span class="hide-menu">Voucher Controller </span></a>
                                 </li>
                                 <li class="sidebar-item"><a href="#!blogcategory" class="sidebar-link"><i
-                                    class="fab fa-blogger"></i><span class="hide-menu">Blog Category </span></a>
-                        </li>
-                        <li class="sidebar-item"><a href="#!blog" class="sidebar-link"><i
-                            class="fab fa-blogger-b"></i><span class="hide-menu">Blog Controller </span></a>
-                </li>
+                                            class="fab fa-blogger"></i><span class="hide-menu">Blog Category </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="#!blog" class="sidebar-link"><i
+                                            class="fab fa-blogger-b"></i><span class="hide-menu">Blog Controller
+                                        </span></a>
+                                </li>
                             </ul>
                         </li>
                         <li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark"
@@ -238,24 +241,39 @@
 
         <!-- Page wrapper  -->
         <style>
-            .huan{
+            .huansidebar>ul li ul li:hover {
+                box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+                opacity: 1;
+            }
+
+            .huansidebar ul li ul li a {
+                position: relative;
+                color: #fff;
+                text-decoration: none;
+                opacity: 0.15;
+
+            }
+
+            .huan {
                 margin: 0 auto;
                 width: 68%;
                 margin-top: 15px;
                 border: solid 1px;
-				border-bottom: 0px;
+                border-bottom: 0px;
             }
-            *{
-            	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+
+            * {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
             }
-            .borbot{
-            	border-bottom: solid 1px black;
+
+            .borbot {
+                border-bottom: solid 1px black;
             }
         </style>
-        <audio loop autoplay src="/assets/images/Sieunhan.mp3"></audio>
-            <div class="page-wrapper" style="display: none; background-color: inherit;" >
-                <p class="ng-view" />
-            </div>
+        
+        <div class="page-wrapper" style="display: none; background-color: inherit;">
+            <p class="ng-view" />
+        </div>
 
         <!-- End Page wrapper  -->
     </div>
@@ -276,7 +294,7 @@
     <script src="/assets/admin/voucher/voucher-ctrl.js"></script>
     <script src="/assets/admin/blogc/blogcategory-ctrl.js"></script>
     <script src="/assets/admin/blog/blog-ctrl.js"></script>
-    
+
 
 
 
@@ -303,7 +321,74 @@
     <script src="/assets/assets/libs/flot/jquery.flot.crosshair.js"></script>
     <script src="/assets/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
     <script src="/assets/dist/js/pages/chart/chart-page-init.js"></script>
-	
+
+        <div class="snow1"></div>
+        <div class="snow2"></div>
+        <div class="snow3"></div>
+
+    <style>
+        body{
+            background: url(/assets/images/hinhnen.jpg);
+            background-size: 100%;
+        }
+
+        .snow1{
+            background: url(/assets/images/snow.png);
+            background-repeat: repeat;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation:  animateOne 10s infinite linear;
+        }
+        .snow2{
+            background: url(/assets/images/snow.png);
+            background-repeat: repeat;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation:  animateTwo 10s infinite linear;
+            background-size: 600px;
+        }
+        .snow3{
+            background: url(/assets/images/snow.png);
+            background-repeat: repeat;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation:  animateThree 10s infinite linear;
+            background-size: 1000px;
+        }
+        @keyframes animateOne{
+            0%{
+                background-position: 0px 0px;
+            }
+            100%{
+                background-position: 100px 650px;
+            }
+        }
+        @keyframes animateTwo{
+            0%{
+                background-position: 0px -80px;
+            }
+            100%{
+                background-position: 0px 650px;
+            }
+        }
+        @keyframes animateThree{
+            0%{
+                background-position: 0px 100px;
+            }
+            100%{
+                background-position: 300px 650px;
+            }
+        }
+    </style>
 </body>
 
 </html>

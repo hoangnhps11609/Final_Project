@@ -112,8 +112,8 @@
 															height="70px"></td>
 														<td class="si-text col-5">
 															<div class="product-selected">
-																<p>${{item.price|number:2}} x {{item.qty}}</p>
-																<h6>{{item.name}}</h6>
+																<p>${{item.product.price|number:2}} x {{item.qty}}</p>
+																<h6>{{item.product.name}}</h6>
 															</div>
 														</td>
 														<td class="si-close col-2"><i class="ti-close"
@@ -161,7 +161,7 @@
 							<li><a th:href="@{/product/list}">Shop</a></li>
 							<li><a th:href="@{/product/list}">Collection</a>
 								<ul class="dropdown">
-									<div th:each="g:${gender}">
+									<div th:each="g:${genderlist}">
 										<li><a th:href="@{|/product/list?gender=${g.id}|}">[[${g.name}]]</a></li>
 									</div>
 								</ul></li>

@@ -136,39 +136,33 @@
 						<div class="product-list">
 							<div class="row">
 								<div class="col-lg-4 col-sm-6"
-									th:each=" color, iStat : ${productPage.content}">
+									th:each=" procolor, iStat : ${productPage.content}">
 									<div class="product-item">
 										<div class="pi-pic">
-											<a th:href="@{|/product/detail/${color.id}|}"> <img
-												th:src="${color.image!=null ? '/site/img/products/' + color.image : '/site/img/logo.png'}"
+											<a th:href="@{|/product/detail/${procolor.product.id}?sizepro=1|}"> <img
+												th:src="${procolor.image!=null ? '/site/img/products/' + procolor.image : '/site/img/logo.png'}"
 												width="100px" height="100px" id="image" class="img-fluid"
 												name="image" alt="">
 											</a>
 											<div class="sale pp-sale">Sale:
-												[[${color.product.discount}]]%</div>
+												[[${procolor.product.discount}]]%</div>
 											<div class="icon">
 												<i class="icon_heart_alt"></i>
 											</div>
 											<ul>
-												<li class="w-icon active"><a
-													th:attr="ng-click=@{|cart.add(${color.product.id})|}"> <i
-														class="icon_bag_alt"></i>
-												</a></li>
-												<li class="quick-view"><a
-													th:href="@{|/product/detail/${color.product.id}|}"> + Quick
+												<li class="quick-view col m-0 p-0"><a class="btn-warning text-light"
+													th:href="@{|/product/detail/${procolor.product.id}|}"> + Quick
 														View </a></li>
-												<li class="w-icon"><a href="#"> <i
-														class="fa fa-random"></i>
-												</a></li>
+												
 											</ul>
 										</div>
 										<div class="pi-text">
-											<div class="catagory-name">[[${color.product.category.name}]]</div>
+											<div class="catagory-name">[[${procolor.product.category.name}]]</div>
 											<a href="#">
-												<h5 th:utext="${color.product.name}"></h5>
+												<h5 th:utext="${procolor.product.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${color.product.price*(1-color.product.discount*0.01)}]]<span>$[[${color.product.price}]]</span>
+												$[[${procolor.product.price*(1-procolor.product.discount*0.01)}]]<span>$[[${procolor.product.price}]]</span>
 											</div>
 										</div>
 									</div>

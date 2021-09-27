@@ -53,22 +53,30 @@
 									<table>
 										<thead>
 											<tr>
-												<th>Product ID</th>
-												<th>Product Name</th>
-												<th>Product Price</th>
+												<th>SKU</th>
+												<th>Image</th>
+												<th>Name</th>
+												<th>Price</th>
+												<th>Color</th>
+												<th>Size</th>
 												<th>Quantity</th>
 												<th scope="col">Amount</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr th:each="detail: *{orderDetails}" th:object="${detail}">
-												<td>[[*{product.id}]]</td>
-												<td>[[*{product.name}]]</td>
-												<td>[[*{#numbers.formatDecimal(price, 0, 'COMMA', 2,
-													'POINT')}]]</td>
+												<td>[[*{productDetail.product.id}]]</td>
+												<td class="cart-pic first-row"><img
+													th:src="'/site/img/products/' + *{productDetail.image}"
+													width="110px" height="120px"></td>
+												<td>[[*{productDetail.product.name}]]</td>
+												<td>[[*{#numbers.formatDecimal(productDetail.product.price*(1-productDetail.product.discount*0.01),
+													0, 'COMMA', 2, 'POINT')}]]</td>
+												<td>[[*{productDetail.color.name}]]</td>
+												<td>[[*{productDetail.size.name}]]</td>
 												<td>[[*{quantity}]]</td>
-												<td>$[[*{#numbers.formatDecimal(price*quantity, 0,
-													'COMMA', 2, 'POINT')}]]</td>
+												<td>$[[*{#numbers.formatDecimal(productDetail.product.price*quantity,
+													0, 'COMMA', 2, 'POINT')}]]</td>
 											</tr>
 										</tbody>
 									</table>
@@ -76,9 +84,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="card-footer text-center alert-success">
-							Thank you for purchasing our items, thank you more
-					</div>
+					<div class="card-footer text-center alert-success">Thank you
+						for purchasing our items, thank you more</div>
 				</div>
 			</div>
 		</section>

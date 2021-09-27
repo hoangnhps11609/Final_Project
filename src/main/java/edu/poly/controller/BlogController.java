@@ -18,14 +18,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.poly.entity.Blog;
 import edu.poly.entity.BlogCategory;
+import edu.poly.entity.Gender;
 import edu.poly.entity.Product;
 import edu.poly.service.BlogCategoryService;
 import edu.poly.service.BlogService;
+import edu.poly.service.GenderService;
 
 @Controller
 public class BlogController {
 	@Autowired
 	BlogService blogService;
+	
+	@Autowired
+	GenderService genderService;
 	
 	@Autowired
 	BlogCategoryService blogcategoryService;
@@ -69,6 +74,9 @@ public class BlogController {
 		
 		model.addAttribute("blogPage", resultPage);
 		model.addAttribute("size", pageSize);
+
+		List<Gender> gender = genderService.findAll();
+		model.addAttribute("genderlist", gender);
 		
 		
 //		List<Blog> list = blogService.findAll();

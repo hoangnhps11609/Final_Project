@@ -28,7 +28,6 @@ public class ProductServiceImp implements ProductService{
 
 	@Override
 	public Product findById(Integer id) {
-		
 		return productDAO.findById(id).get();
 	}
 
@@ -53,7 +52,7 @@ public class ProductServiceImp implements ProductService{
 
 	@Override
 	public void delete(Integer id) {
-		 productDAO.deleteById(id);;
+		 productDAO.deleteById(id);
 	}
 
 
@@ -109,6 +108,14 @@ public class ProductServiceImp implements ProductService{
 	public Page<Product> findByBrandId(Integer brand, Pageable pageable) {
 		return productDAO.findByBrandId(brand, pageable);
 	}
+
+
+	@Override
+	public Page<Product> findByGenderId(Integer gender, Pageable pageable) {
+		return productDAO.findByGenderId(gender, pageable);
+	}
+
+
 
 
 

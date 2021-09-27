@@ -137,7 +137,7 @@
 									th:each=" sizepro, iStat : ${productPage.content}">
 									<div class="product-item">
 										<div class="pi-pic">
-											<a th:href="@{|/product/detail/${sizepro.product.id}|}"> <img
+											<a th:href="@{|/product/detail/${sizepro.product.id}?sizepro=${sizepro.size.id}|}"> <img
 												th:src="${sizepro.product.image!=null ? '/site/img/products/' + sizepro.product.image : '/site/img/logo.png'}"
 												width="100px" height="100px" id="image" class="img-fluid"
 												name="image" alt="">
@@ -148,16 +148,9 @@
 												<i class="icon_heart_alt"></i>
 											</div>
 											<ul>
-												<li class="w-icon active"><a
-													th:attr="ng-click=@{|cart.add(${sizepro.product.id})|}"> <i
-														class="icon_bag_alt"></i>
-												</a></li>
-												<li class="quick-view"><a
+												<li class="quick-view col m-0 p-0"><a class="btn-warning text-light"
 													th:href="@{|/product/detail/${sizepro.product.id}|}"> + Quick
 														View </a></li>
-												<li class="w-icon"><a href="#"> <i
-														class="fa fa-random"></i>
-												</a></li>
 											</ul>
 										</div>
 										<div class="pi-text">
