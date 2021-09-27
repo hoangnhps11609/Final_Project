@@ -58,4 +58,7 @@ public interface ProductService {
 	Page<Product> findByBrandId(Integer brand, Pageable pageable);
 
 
+	Page<Product> findByGenderId(Integer gender, Pageable pageable);
+
+
 }

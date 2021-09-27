@@ -161,7 +161,7 @@
 							<li><a th:href="@{/product/list}">Shop</a></li>
 							<li><a th:href="@{/product/list}">Collection</a>
 								<ul class="dropdown">
-									<div th:each="g:${gender}">
+									<div th:each="g:${genderlist}">
 										<li><a th:href="@{|/product/list?gender=${g.id}|}">[[${g.name}]]</a></li>
 									</div>
 								</ul></li>
