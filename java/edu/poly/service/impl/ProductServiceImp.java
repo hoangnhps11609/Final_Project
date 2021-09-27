@@ -110,6 +110,12 @@ public class ProductServiceImp implements ProductService{
 	}
 
 
+	@Override
+	public Page<Product> findByGenderId(Integer gender, Pageable pageable) {
+		return productDAO.findByGenderId(gender, pageable);
+	}
+
+
 
 
 

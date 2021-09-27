@@ -19,7 +19,7 @@ app.controller("account-ctrl", function($scope, $http) {
 			$scope.items = resp.data;
 			$(".nav-tabs a:eq(2)").tab('show');
 		}).catch(error => {
-			alert("Thông tin ACC không tìm thấy");
+	
 			console.log("Error", error);
 		});
 	}

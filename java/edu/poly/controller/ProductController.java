@@ -59,18 +59,24 @@ public class ProductController {
 
 	@RequestMapping("product/list")
 	public String list(Model model, @RequestParam(name = "cid", required = false) Optional<String> cid,
-			@RequestParam(name = "color", required = false) Long color, @RequestParam("page") Optional<Integer> page,
-			@RequestParam("size") Optional<Integer> size, @RequestParam(name = "min", required = false) Double min,
+			@RequestParam(name = "color", required = false) Long color, 
+			@RequestParam("page") Optional<Integer> page,
+			@RequestParam("size") Optional<Integer> size,
+			@RequestParam(name = "min", required = false) Double min,
 			@RequestParam(name = "max", required = false) Double max,
 			@RequestParam(name = "search", required = false) String search,
-			@RequestParam(name = "brand", required = false) Integer brand) {
+			@RequestParam(name = "brand", required = false) Integer brand,
+			@RequestParam(name = "gender", required = false) Integer gender) {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(9);
 		String categoryID = cid.orElse("");
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("name"));
 		Page<Product> resultPage = null;
 
-		if (brand != null) {
+		if (gender != null) {
+			resultPage = productservice.findByGenderId(gender, pageable);
+			model.addAttribute("gender", gender);
+		} else if (brand != null) {
 			resultPage = productservice.findByBrandId(brand, pageable);
 			model.addAttribute("brand", brand);
 		} else if (categoryID != "") {
@@ -105,8 +111,8 @@ public class ProductController {
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
 
-		List<Gender> gender = genderService.findAll();
-		model.addAttribute("gender", gender);
+		List<Gender> genderlist = genderService.findAll();
+		model.addAttribute("genderlist", genderlist);
 
 		List<Brand> brands = brandService.findAll();
 		model.addAttribute("brands", brands);
@@ -149,9 +155,9 @@ public class ProductController {
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
 
-		List<Gender> gender = genderService.findAll();
-		model.addAttribute("gender", gender);
-
+		List<Gender> genderlist = genderService.findAll();
+		model.addAttribute("genderlist", genderlist);
+		
 		List<Brand> brands = brandService.findAll();
 		model.addAttribute("brands", brands);
 
@@ -191,9 +197,9 @@ public class ProductController {
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
 
-		List<Gender> gender = genderService.findAll();
-		model.addAttribute("gender", gender);
-
+		List<Gender> genderlist = genderService.findAll();
+		model.addAttribute("genderlist", genderlist);
+		
 		List<Brand> brands = brandService.findAll();
 		model.addAttribute("brands", brands);
 
@@ -277,7 +283,8 @@ public class ProductController {
 			List<ColorPro> colorProlist = productDetailService.getColorByProduct(id);
 			model.addAttribute("colorProlist", colorProlist);
 		}
-		
+		List<Gender> genderlist = genderService.findAll();
+		model.addAttribute("genderlist", genderlist);
 		
 		List<Brand> brands = brandService.findAll();
 		model.addAttribute("brands", brands);

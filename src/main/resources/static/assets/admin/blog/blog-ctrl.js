@@ -39,6 +39,7 @@ app.controller("blog-ctrl", function($scope, $http) {
 			resp.data.createDate = new Date(resp.data.createDate)
 			$scope.items.push(resp.data);
 			$scope.reset();
+			$scope.initialize();
 			alert("Thêm mới thành công");
 			$(".nav-tabs a:eq(1)").tab('show');
 		}).catch(error => {
@@ -61,6 +62,23 @@ app.controller("blog-ctrl", function($scope, $http) {
 
 		});
 	}
+	
+	
+	//Upload hình
+	$scope.imageChanged = function(files) {
+		var data = new FormData();
+		data.append('file', files[0]);
+		$http.post('/rest/upload/images', data, {
+			transformRequest: angular.identity,
+			headers: { 'Content-Type': undefined }
+		}).then(resp => {
+			$scope.form.image = resp.data.name;
+		}).catch(error => {
+			alert("Lỗi upload hình ảnh");
+			console.log("Error", error);
+		})
+	}
+	
 
 	//Xóa sản phẩm mới
 	$scope.delete = function(item) {

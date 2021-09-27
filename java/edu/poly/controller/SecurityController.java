@@ -1,6 +1,7 @@
 package edu.poly.controller;
 
 import java.io.File;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.ServletContext;
@@ -17,14 +18,22 @@ import org.springframework.web.multipart.MultipartFile;
 
 import edu.poly.dao.AccountDAO;
 import edu.poly.entity.Account;
+import edu.poly.entity.Gender;
+import edu.poly.service.GenderService;
 import edu.poly.service.impl.MailerServiceImpl;
 import edu.poly.utils.ParamService;
 import net.bytebuddy.utility.RandomString;
 
 @Controller
 public class SecurityController {
+	@Autowired
+	GenderService genderService;
+	
+	
 	@RequestMapping("/security/login/form")
 	public String loginForm(Model model) {
+		List<Gender> gender = genderService.findAll();
+		model.addAttribute("genderlist", gender);
 		model.addAttribute("message", "Vui lòng đăng nhập!");
 		return "security/login";
 	}

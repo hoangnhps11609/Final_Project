@@ -60,7 +60,9 @@
 						<div class="single-banner">
 							<img src="/site/img/banner-1.jpg" alt="">
 							<div class="inner-text">
-								<h4>Men’s</h4>
+								<a th:href="@{|/product/list?gender=1|}">
+									<h4>Men’s</h4>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -68,7 +70,9 @@
 						<div class="single-banner">
 							<img src="/site/img/banner-2.jpg" alt="">
 							<div class="inner-text">
-								<h4>Women’s</h4>
+								<a th:href="@{|/product/list?gender=2|}">
+									<h4>Women’s</h4>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -76,7 +80,9 @@
 						<div class="single-banner">
 							<img src="/site/img/banner-3.jpg" alt="">
 							<div class="inner-text">
-								<h4>Kid’s</h4>
+								<a th:href="@{|/product/list?gender=3|}">
+									<h4>Unisex’s</h4>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -110,7 +116,8 @@
 								Accessories</button>
 						</div>
 						<div class="product-slider owl-carousel container">
-							<div class="product-item filterDiv Clothings" th:each="p:${wmCloList}">
+							<div class="product-item filterDiv Clothings"
+								th:each="p:${wmCloList}">
 								<div class="pi-pic">
 									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
 									<div class="sale">Sale: [[${p.discount}]]%</div>
@@ -118,11 +125,9 @@
 										<i class="icon_heart_alt"></i>
 									</div>
 									<ul>
-										<li class="w-icon active"><a th:attr="ng-click=@{|cart.add(${p.id})|}"><i
-												class="icon_cart_alt"></i></a></li>
-										<li class="quick-view"><a th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-										<li class="w-icon"><a href="#"><i
-												class="fa fa-random"></i></a></li>
+										<li class="quick-view col m-0 p-0"><a
+											class="btn-warning text-light"
+											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
 									</ul>
 								</div>
 								<div class="pi-text">
@@ -135,8 +140,9 @@
 									</div>
 								</div>
 							</div>
-							
-							<div class="product-item filterDiv HandBag" th:each="p:${wmHandbagList}">
+
+							<div class="product-item filterDiv HandBag"
+								th:each="p:${wmHandbagList}">
 								<div class="pi-pic">
 									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
 									<div class="sale">Sale: [[${p.discount}]]%</div>
@@ -144,11 +150,9 @@
 										<i class="icon_heart_alt"></i>
 									</div>
 									<ul>
-										<li class="w-icon active"><a th:attr="ng-click=@{|cart.add(${p.id})|}"><i
-												class="icon_cart_alt"></i></a></li>
-										<li class="quick-view"><a th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-										<li class="w-icon"><a href="#"><i
-												class="fa fa-random"></i></a></li>
+										<li class="quick-view col m-0 p-0"><a
+											class="btn-warning text-light"
+											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
 									</ul>
 								</div>
 								<div class="pi-text">
@@ -161,8 +165,9 @@
 									</div>
 								</div>
 							</div>
-							
-							<div class="product-item filterDiv Shoes" th:each="p:${wmShoesList}">
+
+							<div class="product-item filterDiv Shoes"
+								th:each="p:${wmShoesList}">
 								<div class="pi-pic">
 									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
 									<div class="sale">Sale: [[${p.discount}]]%</div>
@@ -170,11 +175,9 @@
 										<i class="icon_heart_alt"></i>
 									</div>
 									<ul>
-										<li class="w-icon active"><a th:attr="ng-click=@{|cart.add(${p.id})|}"><i
-												class="icon_cart_alt"></i></a></li>
-										<li class="quick-view"><a th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-										<li class="w-icon"><a href="#"><i
-												class="fa fa-random"></i></a></li>
+										<li class="quick-view col m-0 p-0"><a
+											class="btn-warning text-light"
+											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
 									</ul>
 								</div>
 								<div class="pi-text">
@@ -187,8 +190,9 @@
 									</div>
 								</div>
 							</div>
-							
-							<div class="product-item filterDiv Accessories" th:each="p:${wmAccessList}">
+
+							<div class="product-item filterDiv Accessories"
+								th:each="p:${wmAccessList}">
 								<div class="pi-pic">
 									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
 									<div class="sale">Sale: [[${p.discount}]]%</div>
@@ -196,11 +200,9 @@
 										<i class="icon_heart_alt"></i>
 									</div>
 									<ul>
-										<li class="w-icon active"><a th:attr="ng-click=@{|cart.add(${p.id})|}"><i
-												class="icon_cart_alt"></i></a></li>
-										<li class="quick-view"><a th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-										<li class="w-icon"><a href="#"><i
-												class="fa fa-random"></i></a></li>
+										<li class="quick-view col m-0 p-0"><a
+											class="btn-warning text-light"
+											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
 									</ul>
 								</div>
 								<div class="pi-text">
@@ -277,7 +279,8 @@
 								Accessories</button>
 						</div>
 						<div class="product-slider owl-carousel container">
-							<div class="product-item filterDiv Clothings" th:each="p:${mCloList}">
+							<div class="product-item filterDiv Clothings"
+								th:each="p:${mCloList}">
 								<div class="pi-pic">
 									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
 									<div class="sale">Sale: [[${p.discount}]]%</div>
@@ -285,11 +288,9 @@
 										<i class="icon_heart_alt"></i>
 									</div>
 									<ul>
-										<li class="w-icon active"><a th:attr="ng-click=@{|cart.add(${p.id})|}"><i
-												class="icon_cart_alt"></i></a></li>
-										<li class="quick-view"><a th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-										<li class="w-icon"><a href="#"><i
-												class="fa fa-random"></i></a></li>
+										<li class="quick-view col m-0 p-0"><a
+											class="btn-warning text-light"
+											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
 									</ul>
 								</div>
 								<div class="pi-text">
@@ -302,8 +303,9 @@
 									</div>
 								</div>
 							</div>
-							
-							<div class="product-item filterDiv HandBag" th:each="p:${mHandbagList}">
+
+							<div class="product-item filterDiv HandBag"
+								th:each="p:${mHandbagList}">
 								<div class="pi-pic">
 									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
 									<div class="sale">Sale: [[${p.discount}]]%</div>
@@ -311,11 +313,9 @@
 										<i class="icon_heart_alt"></i>
 									</div>
 									<ul>
-										<li class="w-icon active"><a th:attr="ng-click=@{|cart.add(${p.id})|}"><i
-												class="icon_cart_alt"></i></a></li>
-										<li class="quick-view"><a th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-										<li class="w-icon"><a href="#"><i
-												class="fa fa-random"></i></a></li>
+										<li class="quick-view col m-0 p-0"><a
+											class="btn-warning text-light"
+											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
 									</ul>
 								</div>
 								<div class="pi-text">
@@ -328,8 +328,9 @@
 									</div>
 								</div>
 							</div>
-							
-							<div class="product-item filterDiv Shoes" th:each="p:${mShoesList}">
+
+							<div class="product-item filterDiv Shoes"
+								th:each="p:${mShoesList}">
 								<div class="pi-pic">
 									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
 									<div class="sale">Sale: [[${p.discount}]]%</div>
@@ -337,11 +338,9 @@
 										<i class="icon_heart_alt"></i>
 									</div>
 									<ul>
-										<li class="w-icon active"><a th:attr="ng-click=@{|cart.add(${p.id})|}"><i
-												class="icon_cart_alt"></i></a></li>
-										<li class="quick-view"><a th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-										<li class="w-icon"><a href="#"><i
-												class="fa fa-random"></i></a></li>
+										<li class="quick-view col m-0 p-0"><a
+											class="btn-warning text-light"
+											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
 									</ul>
 								</div>
 								<div class="pi-text">
@@ -354,8 +353,9 @@
 									</div>
 								</div>
 							</div>
-							
-							<div class="product-item filterDiv Accessories" th:each="p:${mAccessList}">
+
+							<div class="product-item filterDiv Accessories"
+								th:each="p:${mAccessList}">
 								<div class="pi-pic">
 									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
 									<div class="sale">Sale: [[${p.discount}]]%</div>
@@ -363,11 +363,9 @@
 										<i class="icon_heart_alt"></i>
 									</div>
 									<ul>
-										<li class="w-icon active"><a th:attr="ng-click=@{|cart.add(${p.id})|}"><i
-												class="icon_cart_alt"></i></a></li>
-										<li class="quick-view"><a th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-										<li class="w-icon"><a href="#"><i
-												class="fa fa-random"></i></a></li>
+										<li class="quick-view col m-0 p-0"><a
+											class="btn-warning text-light"
+											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
 									</ul>
 								</div>
 								<div class="pi-text">
@@ -457,14 +455,14 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="product-slider owl-carousel container">
 					<div class="product-item filterDiv Clothings" th:each="b:${blogs}">
 						<div class="col-lg-12 col-md-0">
 							<div class="single-latest-blog">
-								<a th:href="@{|/home/blog-details/${b.id}|}">
-										<img th:src="@{|/assets/images/${b.images}|}" alt="#blog">
-									</a>
+								<a th:href="@{|/home/blog-details/${b.id}|}"> <img
+									th:src="@{|/assets/images/${b.images}|}" alt="#blog">
+								</a>
 								<div class="latest-text">
 									<div class="tag-list">
 										<div class="tag-item">
@@ -483,8 +481,8 @@
 						</div>
 					</div>
 				</div>
-				
-				
+
+
 				<div class="benefit-items">
 					<div class="row">
 						<div class="col-lg-4">

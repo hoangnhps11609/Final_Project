@@ -76,7 +76,7 @@ public class HomeController {
 		model.addAttribute("cate", cate);
 		
 		List<Gender> gender = genderService.findAll();
-		model.addAttribute("gender", gender);
+		model.addAttribute("genderlist", gender);
 		
 		List<Blog> blog = blogService.findAll();
 		model.addAttribute("blogs", blog);
