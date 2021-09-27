@@ -75,7 +75,7 @@
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false"> <i class="ti-bell font-16"></i>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu zindex" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Action</a>
                                 <a class="dropdown-item" href="#">Another action</a>
                                 <div class="dropdown-divider"></div>
@@ -141,7 +141,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
                                     src="/assets/assets/images/users/1.jpg" alt="user" class="rounded-circle"
@@ -241,6 +241,11 @@
 
         <!-- Page wrapper  -->
         <style>
+			th img{
+
+				width: 80px;
+				height: 50px;
+			}
             .huansidebar>ul li ul li:hover {
                 box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
                 opacity: 1;
@@ -265,9 +270,14 @@
             * {
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
             }
-
+            .dropdown-menu{
+                z-index: 101;
+            }
             .borbot {
                 border-bottom: solid 1px black;
+            }
+            .page-wrapper{
+            z-index: 11;
             }
         </style>
         
@@ -295,7 +305,9 @@
     <script src="/assets/admin/blogc/blogcategory-ctrl.js"></script>
     <script src="/assets/admin/blog/blog-ctrl.js"></script>
 
-
+    <audio autoplay src="/assets/images/We-Wish-You-A-Merry-Christmas-The-Bell-Kids.mp3"></audio>
+    <img class="caythong" src="/assets/images/caythong.png" alt="">
+    <img class="hopqua" src="/assets/images/hopqua.png" alt="">
 
 
     <script src="/assets/assets/libs/jquery/dist/jquery.min.js"></script>
@@ -327,6 +339,25 @@
         <div class="snow3"></div>
 
     <style>
+    	.caythong{
+    		position: absolute;
+    		bottom: 0;
+            right: 0;
+            z-index: 1;
+            width: 350px;
+            height: 400px;
+    	}
+        .hopqua{
+            position: absolute;
+            width: 7%;
+            height: 12%;
+            bottom: 0;
+            right: 0;
+            z-index:2;
+        }
+        .mgr5px{
+            margin-right: 5px;
+        }
         body{
             background: url(/assets/images/hinhnen.jpg);
             background-size: 100%;
@@ -341,6 +372,7 @@
             top: 0;
             left: 0;
             animation:  animateOne 10s infinite linear;
+            z-index: 3;
         }
         .snow2{
             background: url(/assets/images/snow.png);
@@ -352,6 +384,7 @@
             left: 0;
             animation:  animateTwo 10s infinite linear;
             background-size: 600px;
+            z-index: 3;
         }
         .snow3{
             background: url(/assets/images/snow.png);
@@ -363,6 +396,7 @@
             left: 0;
             animation:  animateThree 10s infinite linear;
             background-size: 1000px;
+            z-index: 3;
         }
         @keyframes animateOne{
             0%{
