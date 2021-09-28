@@ -154,8 +154,8 @@
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i>
                                     Inbox</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i
-                                        class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+                                <a class="dropdown-item" href="#!authority"><i
+                                        class="ti-settings m-r-5 m-l-5"></i> User Authorization</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/security/logoff/success"><i
                                         class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
@@ -209,6 +209,10 @@
                                             class="fab fa-blogger-b"></i><span class="hide-menu">Blog Controller
                                         </span></a>
                                 </li>
+                                <li class="sidebar-item"><a href="#!brand" class="sidebar-link"><i
+                                            class="fa fa-trademark"></i><span class="hide-menu">Brand Controller
+                                        </span></a>
+                                </li>
                             </ul>
                         </li>
                         <li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark"
@@ -241,11 +245,6 @@
 
         <!-- Page wrapper  -->
         <style>
-			th img{
-
-				width: 80px;
-				height: 50px;
-			}
             .huansidebar>ul li ul li:hover {
                 box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
                 opacity: 1;
@@ -304,8 +303,9 @@
     <script src="/assets/admin/voucher/voucher-ctrl.js"></script>
     <script src="/assets/admin/blogc/blogcategory-ctrl.js"></script>
     <script src="/assets/admin/blog/blog-ctrl.js"></script>
+    <script src="/assets/admin/brand/brand-ctrl.js"></script>
 
-    <audio autoplay src="/assets/images/We-Wish-You-A-Merry-Christmas-The-Bell-Kids.mp3"></audio>
+    <!--<audio autoplay src="/assets/images/We-Wish-You-A-Merry-Christmas-The-Bell-Kids.mp3"></audio> -->
     <img class="caythong" src="/assets/images/caythong.png" alt="">
     <img class="hopqua" src="/assets/images/hopqua.png" alt="">
 
@@ -357,6 +357,9 @@
         }
         .mgr5px{
             margin-right: 5px;
+        }
+        .mgr50px{
+            margin-right: 50px;
         }
         body{
             background: url(/assets/images/hinhnen.jpg);

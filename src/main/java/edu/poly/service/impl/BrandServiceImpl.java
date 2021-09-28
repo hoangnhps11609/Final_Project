@@ -53,8 +53,8 @@ public class BrandServiceImpl implements BrandService{
 	}
 
 	@Override
-	public Optional<Brand> findById(Integer id) {
-		return brandDAO.findById(id);
+	public Brand findById(Integer id) {
+		return brandDAO.findById(id).get();
 	}
 
 	@Override
@@ -165,6 +165,24 @@ public class BrandServiceImpl implements BrandService{
 	@Override
 	public <S extends Brand> List<S> findAll(Example<S> example, Sort sort) {
 		return brandDAO.findAll(example, sort);
+	}
+
+	@Override
+	public Brand create(Brand brand) {
+		// TODO Auto-generated method stub
+		return brandDAO.save(brand);
+	}
+
+	@Override
+	public Brand update(Brand brand) {
+		// TODO Auto-generated method stub
+		return brandDAO.save(brand);
+	}
+
+	@Override
+	public void delete(Integer id) {
+		brandDAO.deleteById(id);
+		
 	}
 	
 	

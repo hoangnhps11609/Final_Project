@@ -1,14 +1,12 @@
 <div class="card">
-	<div class="card-header"><h3>List Order</h3></div>
+	<div class="card-header"><h3>List Brands</h3></div>
 	<div class="card-body">
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th> </th>
-					<th scope="col">ID</th>
-					<th scope="col">Username</th>
-					<th scope="col">Create Date</th>
-					<th scope="col">Address</th>
+					<th style="width: 100px"> </th>
+					<th style="width: 250px" scope="col">ID</th>
+					<th scope="col">Name</th>
 					<th><img style="width: 100px;height: 80px;position: absolute;top: 65px;" 
 						src="/assets/images/xenoel1.png" alt="">
 					</th>
@@ -18,12 +16,11 @@
 				<tr ng-repeat="item in pager.items">
 					<th> </th>
 					<td>{{item.id}}</td>
-					<td>{{item.account.username}}</td>
-					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
-					<td>{{item.address}}</td>
+					<td style="width: 250px">{{item.name}}</td>
 					<td>
-						<div class="btn-group btn-group-xs" style="margin-left: 20px" >
-							<button class="btn btn-info" ng-click="detail(item)">Detail</button>
+						<div class="btn-group btn-group-xs">
+							<button class="btn btn-warning mgr5px" ng-click="edit(item)">Edit</button>
+							<button class="btn btn-danger" ng-click="delete(item)">Delete</button>
 						</div>
 					</td>
 				</tr>
