@@ -27,6 +27,9 @@
 </style>
 
 <body ng-app="admin-app">
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
     <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
@@ -154,8 +157,8 @@
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i>
                                     Inbox</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#!authority"><i
-                                        class="ti-settings m-r-5 m-l-5"></i> User Authorization</a>
+                                <a class="dropdown-item" href="#!authority"><i class="ti-settings m-r-5 m-l-5"></i> User
+                                    Authorization</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/security/logoff/success"><i
                                         class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
@@ -269,17 +272,20 @@
             * {
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
             }
-            .dropdown-menu{
+
+            .dropdown-menu {
                 z-index: 101;
             }
+
             .borbot {
                 border-bottom: solid 1px black;
             }
-            .page-wrapper{
-            z-index: 11;
+
+            .page-wrapper {
+                z-index: 11;
             }
         </style>
-        
+
         <div class="page-wrapper" style="display: none; background-color: inherit;">
             <p class="ng-view" />
         </div>
@@ -334,39 +340,43 @@
     <script src="/assets/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
     <script src="/assets/dist/js/pages/chart/chart-page-init.js"></script>
 
-        <div class="snow1"></div>
-        <div class="snow2"></div>
-        <div class="snow3"></div>
+    <div class="snow1"></div>
+    <div class="snow2"></div>
+    <div class="snow3"></div>
 
     <style>
-    	.caythong{
-    		position: absolute;
-    		bottom: 0;
+        .caythong {
+            position: absolute;
+            bottom: 0;
             right: 0;
             z-index: 1;
             width: 350px;
             height: 400px;
-    	}
-        .hopqua{
+        }
+
+        .hopqua {
             position: absolute;
             width: 7%;
             height: 12%;
             bottom: 0;
             right: 0;
-            z-index:2;
+            z-index: 2;
         }
-        .mgr5px{
+
+        .mgr5px {
             margin-right: 5px;
         }
-        .mgr50px{
+
+        .mgr50px {
             margin-right: 50px;
         }
-        body{
+
+        body {
             background: url(/assets/images/hinhnen.jpg);
             background-size: 100%;
         }
 
-        .snow1{
+        .snow1 {
             background: url(/assets/images/snow.png);
             background-repeat: repeat;
             width: 100%;
@@ -374,10 +384,11 @@
             position: absolute;
             top: 0;
             left: 0;
-            animation:  animateOne 10s infinite linear;
+            animation: animateOne 10s infinite linear;
             z-index: 3;
         }
-        .snow2{
+
+        .snow2 {
             background: url(/assets/images/snow.png);
             background-repeat: repeat;
             width: 100%;
@@ -385,11 +396,12 @@
             position: absolute;
             top: 0;
             left: 0;
-            animation:  animateTwo 10s infinite linear;
+            animation: animateTwo 10s infinite linear;
             background-size: 600px;
             z-index: 3;
         }
-        .snow3{
+
+        .snow3 {
             background: url(/assets/images/snow.png);
             background-repeat: repeat;
             width: 100%;
@@ -397,35 +409,121 @@
             position: absolute;
             top: 0;
             left: 0;
-            animation:  animateThree 10s infinite linear;
+            animation: animateThree 10s infinite linear;
             background-size: 1000px;
             z-index: 3;
         }
-        @keyframes animateOne{
-            0%{
+
+        @keyframes animateOne {
+            0% {
                 background-position: 0px 0px;
             }
-            100%{
+
+            100% {
                 background-position: 100px 650px;
             }
         }
-        @keyframes animateTwo{
-            0%{
+
+        @keyframes animateTwo {
+            0% {
                 background-position: 0px -80px;
             }
-            100%{
+
+            100% {
                 background-position: 0px 650px;
             }
         }
-        @keyframes animateThree{
-            0%{
+
+        @keyframes animateThree {
+            0% {
                 background-position: 0px 100px;
             }
-            100%{
+
+            100% {
                 background-position: 300px 650px;
             }
         }
+
+        /* Preloder */
+
+        #preloder {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 999999;
+            background: #000;
+        }
+
+        .loader {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -13px;
+            margin-left: -13px;
+            border-radius: 60px;
+            animation: loader 0.8s linear infinite;
+            -webkit-animation: loader 0.8s linear infinite;
+        }
+
+        @keyframes loader {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+                border: 4px solid #f44336;
+                border-left-color: transparent;
+            }
+
+            50% {
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+                border: 4px solid #673ab7;
+                border-left-color: transparent;
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+                border: 4px solid #f44336;
+                border-left-color: transparent;
+            }
+        }
+
+        @-webkit-keyframes loader {
+            0% {
+                -webkit-transform: rotate(0deg);
+                border: 4px solid #f44336;
+                border-left-color: transparent;
+            }
+
+            50% {
+                -webkit-transform: rotate(180deg);
+                border: 4px solid #673ab7;
+                border-left-color: transparent;
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                border: 4px solid #f44336;
+                border-left-color: transparent;
+            }
+        }
     </style>
+    <script>
+        (function ($) {
+
+            /*------------------
+                Preloader
+            --------------------*/
+            $(window).on('load', function () {
+                $(".loader").fadeOut();
+                $("#preloder").delay(20).fadeOut("slow");
+            });
+        })(jQuery);
+    </script>
 </body>
 
 </html>
