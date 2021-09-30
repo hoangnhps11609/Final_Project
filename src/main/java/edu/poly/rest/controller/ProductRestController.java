@@ -1,7 +1,6 @@
 package edu.poly.rest.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,41 +13,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.poly.entity.Brand;
-import edu.poly.entity.Category;
-import edu.poly.service.BrandService;
-import edu.poly.service.CategoryService;
-
+import edu.poly.entity.Product;
+import edu.poly.entity.ProductDetail;
+import edu.poly.service.ProductService;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/rest/brands")
-public class BrandRestController {
+@RequestMapping("/rest/products")
+public class ProductRestController {
 	@Autowired
-	BrandService bService;
+	ProductService pService;
 	
 	@GetMapping()
-	public List<Brand> getAll() {
-		return bService.findAll();
-	}
-	
-	@GetMapping("{id}")
-	public Brand getOne(@PathVariable("id") Integer id) {
-		return bService.findById(id);
+	public List<Product> getAll() {
+		return pService.findAll();
 	}
 	
 	@PostMapping
-	public Brand create(@RequestBody Brand brand) {
-		return bService.create(brand);
+	public Product create(@RequestBody Product product) {
+		return pService.create(product);
 	}
 	
 	@PutMapping("{id}")
-	public Brand update(@PathVariable("id") Integer id, @RequestBody Brand brand) {
-		return bService.update(brand);
+	public Product update(@PathVariable("id") Integer id, @RequestBody Product product) {
+		return pService.update(product);
 	}
+	
 	
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable("id") Integer id) {
-		bService.delete(id);
+		pService.delete(id);
 	}
 }

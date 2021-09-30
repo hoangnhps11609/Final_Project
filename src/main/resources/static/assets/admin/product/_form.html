@@ -21,21 +21,17 @@
     			</div>
     		</div>
     		<div class="row">
-    			<div class="form-group col-sm-6">
-    				<div>Create Date:</div>
-    				<input type="date" class="form-control" ng-model="form.createDate"/>
+    			<div class="form-group col-sm-12">
+    				<div>Description:</div>
+    				<input type="text" class="form-control" ng-model="form.description"/>
     			</div>
-    			<div class="form-group col-sm-6">
+    		</div>
+    		<div class="row">
+    				<div class="form-group col-sm-6">
     				<div>Category:</div>
     				<select class="form-control"  ng-model="form.category.id">
     					<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
     				</select>
-    			</div>
-    		</div>
-    		<div class="row">
-    			<div class="form-group col-sm-6">
-    				<div>Description:</div>
-    				<input type="text" class="form-control" ng-model="form.description"/>
     			</div>
     			<div class="form-group col-sm-6">
     				<div>Discount:</div>
@@ -62,15 +58,6 @@
     			<div class="col-sm-6">
     				<div>Image:</div>
     				<input type="file" id="image" onchange="angular.element(this).scope().imageChanged(this.files)"/>
-    			</div>
-    			<div class="form-group col-sm-6">
-    				<div>Available:</div>
-    				<label class="radio-inline px-3">
-    					<input  ng-model="form.available" ng-value="true" name="available" type="radio"/>Yes
-    				</label>
-    				<label class="radio-inline">
-    					<input  ng-model="form.available" ng-value="false" name="available" type="radio"/>No
-    				</label>
     			</div>
     		</div>
     	</div>

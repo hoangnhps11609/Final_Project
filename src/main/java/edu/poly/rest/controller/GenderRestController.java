@@ -16,39 +16,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.poly.entity.Brand;
 import edu.poly.entity.Category;
+import edu.poly.entity.Gender;
 import edu.poly.service.BrandService;
 import edu.poly.service.CategoryService;
+import edu.poly.service.GenderService;
 
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/rest/brands")
-public class BrandRestController {
+@RequestMapping("/rest/genders")
+public class GenderRestController {
 	@Autowired
-	BrandService bService;
+	GenderService gService;
 	
 	@GetMapping()
-	public List<Brand> getAll() {
-		return bService.findAll();
+	public List<Gender> getAll() {
+		return gService.findAll();
 	}
 	
-	@GetMapping("{id}")
-	public Brand getOne(@PathVariable("id") Integer id) {
-		return bService.findById(id);
-	}
-	
-	@PostMapping
-	public Brand create(@RequestBody Brand brand) {
-		return bService.create(brand);
-	}
-	
-	@PutMapping("{id}")
-	public Brand update(@PathVariable("id") Integer id, @RequestBody Brand brand) {
-		return bService.update(brand);
-	}
-	
-	@DeleteMapping("{id}")
-	public void delete(@PathVariable("id") Integer id) {
-		bService.delete(id);
-	}
 }
