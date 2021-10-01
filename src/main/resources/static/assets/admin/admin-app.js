@@ -41,6 +41,9 @@ app.config(function ($routeProvider) {
 		}).when("/brand", {
 			templateUrl: "/assets/admin/brand/index.html",
 			controller: "brand-ctrl"
+		}).when("/productdetail", {
+			templateUrl: "/assets/admin/productdetail/index.html",
+			controller: "productdetail-ctrl"
 		}).otherwise({
 			templateUrl: "/assets/admin/background.html"
 

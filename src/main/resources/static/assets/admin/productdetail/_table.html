@@ -1,0 +1,47 @@
+<div class="card">
+	<div class="card-header"><h3>List Products</h3></div>
+	<div class="card-body">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col" >Product Name</th>
+					<th scope="col" >Image</th>
+					<th scope="col" >Create Date</th>
+					<th scope="col" >Quantity</th>
+					<th scope="col" >Size</th>
+					<th scope="col" >Color</th>
+					<th><img style="width: 100px;height: 80px;position: absolute;top: 65px;" 
+						src="/assets/images/xenoel1.png" alt="">
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in pager.items">
+					<td>{{item.id}}</td>
+					<td>{{item.product.name}}</td>
+					<td width="100px">
+						<img ng-src="{{'/assets/images/' + item.image}}" width="100%"/>
+					</td>
+					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
+					<td>{{item.quantity}}</td>
+					<td>{{item.size.name}}</td>
+					<td>{{item.color.name}}</td>
+					<td>
+						<div class="btn-group btn-group-xs">
+							<button class="btn btn-warning mgr5px" ng-click="edit(item)">Edit</button>
+							<button class="btn btn-danger" ng-click="delete(item)">Delete</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="card-footer text-muted text-center">
+		<button class="btn btn-primary" ng-click="pager.first()">First</button>
+		<button class="btn btn-primary" ng-click="pager.prev()">Prev</button>
+		<button class="btn btn-success">{{pager.page+1}} of {{pager.count}}</button>
+		<button class="btn btn-primary" ng-click="pager.next()">Next</button>
+		<button class="btn btn-primary" ng-click="pager.last()">Last</button>
+	</div>
+</div>
