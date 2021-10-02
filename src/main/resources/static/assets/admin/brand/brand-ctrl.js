@@ -4,7 +4,7 @@ app.controller("brand-ctrl", function($scope, $http) {
 
 	$scope.initialize = function() {
 		//load brand
-		$http.get("/rest/brand").then(resp => {
+		$http.get("/rest/brands").then(resp => {
 			$scope.items = resp.data;
 		});
 
@@ -27,7 +27,7 @@ app.controller("brand-ctrl", function($scope, $http) {
 	//Thêm sản phẩm mới
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
-		$http.post(`/rest/brand`, item).then(resp => {
+		$http.post(`/rest/brands`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
 			alert("Thêm mới thành công");
@@ -41,7 +41,7 @@ app.controller("brand-ctrl", function($scope, $http) {
 	//update sản phẩm mới
 	$scope.update = function() {
 		var item = angular.copy($scope.form);
-		$http.put(`/rest/brand/${item.id}`, item).then(resp => {
+		$http.put(`/rest/brands/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
 			alert("Cập nhật thành công");
@@ -55,7 +55,7 @@ app.controller("brand-ctrl", function($scope, $http) {
 
 	//Xóa sản phẩm mới
 	$scope.delete = function(item) {
-		$http.delete(`/rest/brand/${item.id}`).then(resp => {
+		$http.delete(`/rest/brands/${item.id}`).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items.splice(index, 1);
 			$scope.reset();

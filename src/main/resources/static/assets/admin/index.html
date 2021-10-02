@@ -15,6 +15,7 @@
     <link href="/assets/assets/libs/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
     <link href="/assets/assets/extra-libs/calendar/calendar.css" rel="stylesheet" />
     <link href="/assets/dist/css/style.min.css" rel="stylesheet">
+    <link href="/assets/dist/image.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -476,6 +477,60 @@
             });
         })(jQuery);
     </script>
+    
+    <script>
+		$(function() {
+			$("#slider-range")
+					.slider(
+							{
+								range : true,
+								min : 0,
+								max : 200,
+								values : [ 0, 0 ],
+								slide : function(event, ui) {
+									$("#amount").val(
+											"$" + ui.values[0] + " - $"
+													+ ui.values[1]);
+									$("#amount_start").val(ui.values[0]);
+									$("#amount_end").val(ui.values[1]);
+								}
+							});
+		});
+
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					$('.image-upload-wrap').hide();
+
+					$('.file-upload-image').attr('src', e.target.result);
+					$('.file-upload-content').show();
+
+					$('.image-title').html(input.files[0].name);
+				};
+
+				reader.readAsDataURL(input.files[0]);
+
+			} else {
+				removeUpload();
+			}
+		}
+
+		function removeUpload() {
+			$('.file-upload-input')
+					.replaceWith($('.file-upload-input').clone());
+			$('.file-upload-content').hide();
+			$('.image-upload-wrap').show();
+		}
+		$('.image-upload-wrap').bind('dragover', function() {
+			$('.image-upload-wrap').addClass('image-dropping');
+		});
+		$('.image-upload-wrap').bind('dragleave', function() {
+			$('.image-upload-wrap').removeClass('image-dropping');
+		});
+	</script>
 </body>
 
 </html>

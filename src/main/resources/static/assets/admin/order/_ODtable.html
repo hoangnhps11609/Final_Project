@@ -14,14 +14,14 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="item in ODitems">
-					<td width="100px">
-						<img ng-src="{{'/assets/images/' + item.product.image}}" width="100%"/>
+					<td width="150px">
+						<img ng-src="{{'/assets/images/' + item.productDetail.image}}" width="100%"/>
 					</td>
-					<td>{{item.product.id}}</td>
-					<td>{{item.product.name}}</td>
-					<td>${{item.price}}</td>
+					<td>{{item.productDetail.id}}</td>
+					<td>{{item.productDetail.product.name}}</td>
+					<td>${{item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:2}}</td>
 					<td>{{item.quantity}}</td>
-					<td>${{item.quantity * item.price}}</td>
+					<td>${{item.quantity*item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:2}}</td>
 				</tr>
 			</tbody>
 		</table>
