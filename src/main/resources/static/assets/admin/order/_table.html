@@ -1,29 +1,32 @@
 <div class="card">
-	<div class="card-header"><h3>List Order</h3></div>
+	<div class="card-header">
+		<h3>List Order</h3>
+	</div>
 	<div class="card-body">
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th> </th>
+					<th></th>
 					<th scope="col">ID</th>
 					<th scope="col">Username</th>
 					<th scope="col">Create Date</th>
 					<th scope="col">Address</th>
-					<th><img style="width: 100px;height: 80px;position: absolute;top: 65px;" 
-						src="/assets/images/xenoel1.png" alt="">
-					</th>
+					<th><img
+						style="width: 100px; height: 80px; position: absolute; top: 65px;"
+						src="/assets/images/xenoel1.png" alt=""></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="item in pager.items">
-					<th> </th>
+					<th></th>
 					<td>{{item.id}}</td>
 					<td>{{item.account.username}}</td>
 					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 					<td>{{item.address}}</td>
 					<td>
-						<div class="btn-group btn-group-xs" style="margin-left: 20px" >
-							<button class="btn btn-info" ng-click="detail(item)">Detail</button>
+						<div class="btn-group btn-group-xs" style="margin-left: 20px">
+							<button type="button" class="btn btn-primary"
+								ng-click="detail(item)">Detail</button>
 						</div>
 					</td>
 				</tr>
@@ -33,7 +36,8 @@
 	<div class="card-footer text-muted text-center">
 		<button class="btn btn-primary" ng-click="pager.first()">First</button>
 		<button class="btn btn-primary" ng-click="pager.prev()">Prev</button>
-		<button class="btn btn-success">{{pager.page+1}} of {{pager.count}}</button>
+		<button class="btn btn-success">{{pager.page+1}} of
+			{{pager.count}}</button>
 		<button class="btn btn-primary" ng-click="pager.next()">Next</button>
 		<button class="btn btn-primary" ng-click="pager.last()">Last</button>
 	</div>

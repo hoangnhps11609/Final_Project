@@ -21,7 +21,7 @@ app.controller("order-ctrl", function($scope, $http) {
 		$http.get(`/rest/orders/myorder/${item.id}`).then(resp => {
 			$scope.ODitems = resp.data;
 			$scope.orderID = item.id;
-			$(".nav-tabs a:eq(2)").tab('show');
+			$(".nav-tabs a:eq(1)").tab('show');
 		}).catch(error => {
 			alert("Lỗi cập nhật sản phẩm");
 			console.log("Error", error);

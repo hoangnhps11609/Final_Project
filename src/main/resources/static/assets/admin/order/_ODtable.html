@@ -5,8 +5,9 @@
 			<thead>
 				<tr>
 					<th scope="col">Image</th>
-					<th scope="col">Product ID</th>
+					<th scope="col">SKU</th>
 					<th scope="col">Product Name</th>
+					<th scope="col">Color - Size</th>
 					<th scope="col">Price</th>
 					<th scope="col">Quantity</th>
 					<th scope="col">Amount</th>
@@ -17,8 +18,9 @@
 					<td width="150px">
 						<img ng-src="{{'/assets/images/' + item.productDetail.image}}" width="100%"/>
 					</td>
-					<td>{{item.productDetail.id}}</td>
+					<td>{{item.productDetail.product.id}}</td>
 					<td>{{item.productDetail.product.name}}</td>
+					<td>{{item.productDetail.color.name}} - {{item.productDetail.size.name}}</td>
 					<td>${{item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:2}}</td>
 					<td>{{item.quantity}}</td>
 					<td>${{item.quantity*item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:2}}</td>
