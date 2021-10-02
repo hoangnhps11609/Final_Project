@@ -28,15 +28,14 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="cart-table">
-							<table style="width: 100%; table-layout: auto;">
+							<table style="width: 100%;">
 								<thead>
 									<tr>
 										<th>Image</th>
-										<th class="p-name" style="width:15%">Product Name</th>
+										<th>Product</th>
 										<th>Price</th>
-										<th>Color</th>
-										<th>Size</th>
-										<th>Quantity</th>
+										<th>Size - Color</th>
+										<th style="width:20%">Quantity</th>
 										<th>Total</th>
 										<th><i class="ti-close"></i></th>
 									</tr>
@@ -49,9 +48,8 @@
 											<h5>{{item.product.name}}</h5>
 										</td>
 										<td class="p-price first-row">${{item.product.price*(1-item.product.discount*0.01)|number:2}} <div style="text-decoration: line-through; font-size:14px; color:rgb(224,224,224);">${{item.product.price}}</div></td>
-										<td class="p-price first-row">{{item.color.name}}</td>
-										<td class="p-price first-row">{{item.size.name}}</td>
-										<td style="width:50%">
+										<td class="p-price first-row text-dark">{{item.size.name}} - {{item.color.name}}</td>
+										<td>
 											<div class="pt-4 text-center">
 												<div class="col-6 row offset-3 border px-0 py-2">
 													<div class="col-4 p-0">

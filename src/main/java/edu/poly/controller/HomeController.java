@@ -63,6 +63,8 @@ public class HomeController {
 		model.addAttribute("wmAccessList", wmAccessList);
 		
 		
+		
+		
 		List<Product> mCloList = productService.findByCategoryIdandGender("1000", 1);
 		model.addAttribute("mCloList", mCloList);
 		List<Product> mHandbagList = productService.findByCategoryIdandGender("1001", 1);

@@ -133,8 +133,23 @@
 										</h4>
 									</div>
 
+									<div class="pd-size-choose">
+										<div class="sc-item" th:each="sizePro:${sizeProlist}">
+											<a
+												th:href="@{|/product/detail/${productID}?sizepro=${sizePro.id}|}">
+												<label for="s-size" th:if="${sizepro == sizePro.id}"
+												style="background-color: black;" class="text-light">[[${sizePro.name}]]</label>
+												<label for="s-size" th:if="${sizepro != sizePro.id}">[[${sizePro.name}]]</label>
+											</a>
+										</div>
 
-
+										<!-- <div class="sc-item" th:if="${sizepro} != null"
+											th:object="${sizename}">
+											<a
+												th:href="@{|/product/detail/${productID}?sizepro=${sizepro}|}"><label
+												for="s-size">[[*{name}]]</label></a>
+										</div> -->
+									</div>
 
 									<div class="pd-color">
 										<h6>Color</h6>
@@ -160,23 +175,6 @@
 										</div>
 									</div>
 
-									<div class="pd-size-choose">
-										<div class="sc-item" th:each="sizePro:${sizeProlist}">
-											<a
-												th:href="@{|/product/detail/${productID}?sizepro=${sizePro.id}|}">
-												<label for="s-size" th:if="${sizepro == sizePro.id}"
-												style="background-color: black;" class="text-light">[[${sizePro.name}]]</label>
-												<label for="s-size" th:if="${sizepro != sizePro.id}">[[${sizePro.name}]]</label>
-											</a>
-										</div>
-
-										<!-- <div class="sc-item" th:if="${sizepro} != null"
-											th:object="${sizename}">
-											<a
-												th:href="@{|/product/detail/${productID}?sizepro=${sizepro}|}"><label
-												for="s-size">[[*{name}]]</label></a>
-										</div> -->
-									</div>
 
 									<div class="quantity">
 										<a class="primary-btn pd-cart text-light" data-toggle="modal"
