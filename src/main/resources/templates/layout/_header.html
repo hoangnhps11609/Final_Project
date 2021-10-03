@@ -76,10 +76,124 @@
 						<!--Search-->
 						<div class="col-lg-7 col-md-7">
 							<div class="advanced-search">
-								<button type="button" class="category-btn">All
-									Categories</button>
+								<button type="button" class="category-btn" data-toggle="modal"
+									data-target="#exampleModalCenter">All Categories</button>
+
+								<!-- Modal -->
+								<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalCenterTitle"
+									aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered" role="document"
+										style="max-width: 40%;">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLongTitle">Filter
+													All Products</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<form th:action="@{/product/filter}" method="post"
+												enctype="multipart/form-data">
+												<div class="modal-body">
+													<div class="col row">
+														<div class="col-6">
+															<div class="input-group p-0 m-0" style="max-width: 100%">
+																<div class="input-group-prepend">
+																	<label class="input-group-text"
+																		for="inputGroupSelect01">Categories</label>
+																</div>
+																<select class="custom-select" id="cid" name="cid">
+																	<option th:each="cate:${cate}" th:value="${cate.id}">[[${cate.name}]]</option>
+																</select>
+															</div>
+														</div>
+														<div class="col-6">
+															<div class="input-group p-0 m-0" style="max-width: 100%">
+																<div class="input-group-prepend">
+																	<label class="input-group-text"
+																		for="inputGroupSelect01">Brands</label>
+																</div>
+																<select class="custom-select" id="brand" name="brand">
+																	<option th:each="brands:${brands}"
+																		th:value="${brands.id}">[[${brands.name}]]</option>
+																</select>
+															</div>
+														</div>
+													</div>
+
+													<div class="col row py-4">
+														<div class="col-6">
+															<div class="input-group p-0 m-0" style="max-width: 100%">
+																<div class="input-group-prepend">
+																	<label class="input-group-text"
+																		for="inputGroupSelect01">Sizes</label>
+																</div>
+																<select class="custom-select" id="sizepro"
+																	name="sizepro">
+																	<option th:each="sizes:${sizes}" th:value="${sizes.id}">[[${sizes.name}]]</option>
+																</select>
+															</div>
+														</div>
+														<div class="col-6">
+															<div class="input-group p-0 m-0" style="max-width: 100%">
+																<div class="input-group-prepend">
+																	<label class="input-group-text"
+																		for="inputGroupSelect01">Genders</label>
+																</div>
+																<select class="custom-select" id="gender" name="gender">
+																	<option th:each="genderlist:${genderlist}"
+																		th:value="${genderlist.id}">[[${genderlist.name}]]</option>
+																</select>
+															</div>
+														</div>
+													</div>
+
+													<div class="col row">
+														<div class="col-6">
+															<div class="input-group p-0 m-0" style="max-width: 100%">
+																<div class="input-group-prepend">
+																	<label class="input-group-text"
+																		for="inputGroupSelect01">Colors</label>
+																</div>
+																<select class="custom-select" id="color" name="color">
+																	<option th:each="colors:${colors}"
+																		th:value="${colors.id}">[[${colors.name}]]</option>
+																</select>
+															</div>
+														</div>
+														<div class="col-6">
+															<div class="input-group p-0 m-0" style="max-width: 100%">
+																<div class="input-group-prepend">
+																	<label class="input-group-text"
+																		for="inputGroupSelect01">Price</label>
+																</div>
+																<div class="col row">
+																	<div class="col-6">
+																		<input type="number" min=0 name="min" id="min"
+																			placeholder="From">
+																	</div>
+																	<div class="col-6">
+																		<input type="number" min=0 name="max" id="max"
+																			placeholder="To">
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="modal-footer">
+													<button class="btn btn-warning">Filter</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+
 								<form action="/product/list" method="post" class="input-group">
-									<input type="text" placeholder="What do you need?" name="search">
+									<input type="text" placeholder="What do you need?"
+										name="search">
 									<button class="filter-btn">
 										<i class="ti-search"></i>
 									</button>
@@ -172,14 +286,16 @@
 									<th:block th:unless="${#request.remoteUser}">
 										<li><a th:href="@{/security/login/form}">Login</a></li>
 										<li><a th:href="@{/accounts/newaccount}">Register</a></li>
-										<li><a th:href="@{/home/forgot-password}">Forgot Password</a></li>
+										<li><a th:href="@{/home/forgot-password}">Forgot
+												Password</a></li>
 									</th:block>
 									<th:block th:if="${#request.remoteUser}">
-										<li><a th:href="@{/home/change-password}">Change Password</a></li>
+										<li><a th:href="@{/home/change-password}">Change
+												Password</a></li>
 										<li><a th:href="@{/accounts/info}">My Profile</a></li>
 										<li><a th:href="@{/order/list}">My Order</a></li>
 										<li><a th:href="@{/admin/home/index}"
-										th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">Administration</a></li>
+											th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">Administration</a></li>
 										<li><a th:href="@{/security/logoff}">Logout</a></li>
 									</th:block>
 								</ul></li>

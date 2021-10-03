@@ -100,5 +100,7 @@ public interface ProductDetailService {
 	ProductDetail update(ProductDetail product);
 
 	void delete(Long id);
+
+	Page<ProductDetail> filterAllProduct(String cateid, int i, int j, int k, int l,	double m, double n, Pageable pageable);
 	
 }
