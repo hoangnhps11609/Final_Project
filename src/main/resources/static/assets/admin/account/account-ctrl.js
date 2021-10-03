@@ -17,9 +17,12 @@ app.controller("account-ctrl", function($scope, $http) {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/accounts/get/${statistic.from}`).then(resp => {
 			$scope.items = resp.data;
+			$scope.items.forEach(item => {
+			})
+ 			
 			$(".nav-tabs a:eq(2)").tab('show');
 		}).catch(error => {
-	
+			alert();
 			console.log("Error", error);
 		});
 	}

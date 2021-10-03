@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr">
+<html dir="ltr" xmlns="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -15,6 +15,8 @@
     <link href="/assets/assets/libs/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
     <link href="/assets/assets/extra-libs/calendar/calendar.css" rel="stylesheet" />
     <link href="/assets/dist/css/style.min.css" rel="stylesheet">
+    <link href="/assets/dist/image.css" rel="stylesheet">
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -27,6 +29,9 @@
 </style>
 
 <body ng-app="admin-app">
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
     <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
@@ -83,63 +88,10 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i
-                                    class="font-16 ti-comment-alt"></i>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#!authority"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="ti-settings m-r-5 m-l-5"></i>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown"
-                                aria-labelledby="2">
-                                <ul class="list-style-none">
-                                    <li>
-                                        <div class="">
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-success btn-circle"><i
-                                                            class="ti-calendar"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Event today</h5>
-                                                        <span class="mail-desc">Just a reminder that event</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-info btn-circle"><i
-                                                            class="ti-settings"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Settings</h5>
-                                                        <span class="mail-desc">You can customize this template</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-primary btn-circle"><i
-                                                            class="ti-user"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Pavan kumar</h5>
-                                                        <span class="mail-desc">Just see the my admin!</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-danger btn-circle"><i
-                                                            class="fa fa-link"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Luanch Admin</h5>
-                                                        <span class="mail-desc">Just see the my new admin!</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                            
                         </li>
                         <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
@@ -154,8 +106,8 @@
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i>
                                     Inbox</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i
-                                        class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+                                <a class="dropdown-item" href="#!authority"><i class="ti-settings m-r-5 m-l-5"></i> User
+                                    Authorization</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/security/logoff/success"><i
                                         class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
@@ -199,6 +151,10 @@
                                             class="fab fa-codepen"></i><span class="hide-menu"> Product Controller
                                         </span></a>
                                 </li>
+                                   <li class="sidebar-item"><a href="#!productdetail" class="sidebar-link"><i
+                                            class="fab fa-codepen"></i><span class="hide-menu"> Product Detail Controller
+                                        </span></a>
+                                </li>
                                 <li class="sidebar-item"><a href="#!voucher" class="sidebar-link"><i
                                             class="ti-gift"></i><span class="hide-menu">Voucher Controller </span></a>
                                 </li>
@@ -207,6 +163,10 @@
                                 </li>
                                 <li class="sidebar-item"><a href="#!blog" class="sidebar-link"><i
                                             class="fab fa-blogger-b"></i><span class="hide-menu">Blog Controller
+                                        </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="#!brand" class="sidebar-link"><i
+                                            class="fa fa-trademark"></i><span class="hide-menu">Brand Controller
                                         </span></a>
                                 </li>
                             </ul>
@@ -241,11 +201,6 @@
 
         <!-- Page wrapper  -->
         <style>
-			th img{
-
-				width: 80px;
-				height: 50px;
-			}
             .huansidebar>ul li ul li:hover {
                 box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
                 opacity: 1;
@@ -261,7 +216,7 @@
 
             .huan {
                 margin: 0 auto;
-                width: 68%;
+                width: 80%;
                 margin-top: 15px;
                 border: solid 1px;
                 border-bottom: 0px;
@@ -270,19 +225,22 @@
             * {
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
             }
-            .dropdown-menu{
+
+            .dropdown-menu {
                 z-index: 101;
             }
+
             .borbot {
                 border-bottom: solid 1px black;
             }
-            .page-wrapper{
-            z-index: 11;
+
+            .page-wrapper {
+                z-index: 11;
             }
         </style>
-        
+
         <div class="page-wrapper" style="display: none; background-color: inherit;">
-            <p class="ng-view" />
+            <p class="ng-view col-10 offset-1" />
         </div>
 
         <!-- End Page wrapper  -->
@@ -297,6 +255,7 @@
 
     <script src="/assets/admin/admin-app.js"></script>
     <script src="/assets/admin/product/product-ctrl.js"></script>
+     <script src="/assets/admin/productdetail/product-ctrl.js"></script>
     <script src="/assets/admin/account/account-ctrl.js"></script>
     <script src="/assets/admin/category/category-ctrl.js"></script>
     <script src="/assets/admin/order/order-ctrl.js"></script>
@@ -304,8 +263,9 @@
     <script src="/assets/admin/voucher/voucher-ctrl.js"></script>
     <script src="/assets/admin/blogc/blogcategory-ctrl.js"></script>
     <script src="/assets/admin/blog/blog-ctrl.js"></script>
+    <script src="/assets/admin/brand/brand-ctrl.js"></script>
 
-    <audio autoplay src="/assets/images/We-Wish-You-A-Merry-Christmas-The-Bell-Kids.mp3"></audio>
+    <!--<audio autoplay src="/assets/images/We-Wish-You-A-Merry-Christmas-The-Bell-Kids.mp3"></audio> -->
     <img class="caythong" src="/assets/images/caythong.png" alt="">
     <img class="hopqua" src="/assets/images/hopqua.png" alt="">
 
@@ -334,36 +294,43 @@
     <script src="/assets/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
     <script src="/assets/dist/js/pages/chart/chart-page-init.js"></script>
 
-        <div class="snow1"></div>
-        <div class="snow2"></div>
-        <div class="snow3"></div>
+    <div class="snow1"></div>
+    <div class="snow2"></div>
+    <div class="snow3"></div>
 
     <style>
-    	.caythong{
-    		position: absolute;
-    		bottom: 0;
+        .caythong {
+            position: absolute;
+            bottom: 0;
             right: 0;
             z-index: 1;
             width: 350px;
             height: 400px;
-    	}
-        .hopqua{
+        }
+
+        .hopqua {
             position: absolute;
             width: 7%;
             height: 12%;
             bottom: 0;
             right: 0;
-            z-index:2;
+            z-index: 2;
         }
-        .mgr5px{
+
+        .mgr5px {
             margin-right: 5px;
         }
-        body{
+
+        .mgr50px {
+            margin-right: 50px;
+        }
+
+        body {
             background: url(/assets/images/hinhnen.jpg);
             background-size: 100%;
         }
 
-        .snow1{
+        .snow1 {
             background: url(/assets/images/snow.png);
             background-repeat: repeat;
             width: 100%;
@@ -371,10 +338,11 @@
             position: absolute;
             top: 0;
             left: 0;
-            animation:  animateOne 10s infinite linear;
+            animation: animateOne 10s infinite linear;
             z-index: 3;
         }
-        .snow2{
+
+        .snow2 {
             background: url(/assets/images/snow.png);
             background-repeat: repeat;
             width: 100%;
@@ -382,11 +350,12 @@
             position: absolute;
             top: 0;
             left: 0;
-            animation:  animateTwo 10s infinite linear;
+            animation: animateTwo 10s infinite linear;
             background-size: 600px;
             z-index: 3;
         }
-        .snow3{
+
+        .snow3 {
             background: url(/assets/images/snow.png);
             background-repeat: repeat;
             width: 100%;
@@ -394,35 +363,175 @@
             position: absolute;
             top: 0;
             left: 0;
-            animation:  animateThree 10s infinite linear;
+            animation: animateThree 10s infinite linear;
             background-size: 1000px;
             z-index: 3;
         }
-        @keyframes animateOne{
-            0%{
+
+        @keyframes animateOne {
+            0% {
                 background-position: 0px 0px;
             }
-            100%{
+
+            100% {
                 background-position: 100px 650px;
             }
         }
-        @keyframes animateTwo{
-            0%{
+
+        @keyframes animateTwo {
+            0% {
                 background-position: 0px -80px;
             }
-            100%{
+
+            100% {
                 background-position: 0px 650px;
             }
         }
-        @keyframes animateThree{
-            0%{
+
+        @keyframes animateThree {
+            0% {
                 background-position: 0px 100px;
             }
-            100%{
+
+            100% {
                 background-position: 300px 650px;
             }
         }
+
+        /* Preloder */
+
+        #preloder {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 999999;
+            background: #000;
+        }
+
+        .loader {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -13px;
+            margin-left: -13px;
+            border-radius: 60px;
+            animation: loader 0.8s linear infinite;
+            -webkit-animation: loader 0.8s linear infinite;
+        }
+
+        @keyframes loader {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+                border: 4px solid #f44336;
+                border-left-color: transparent;
+            }
+
+            50% {
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+                border: 4px solid #673ab7;
+                border-left-color: transparent;
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+                border: 4px solid #f44336;
+                border-left-color: transparent;
+            }
+        }
+
+        @-webkit-keyframes loader {
+            0% {
+                -webkit-transform: rotate(0deg);
+                border: 4px solid #f44336;
+                border-left-color: transparent;
+            }
+
+            50% {
+                -webkit-transform: rotate(180deg);
+                border: 4px solid #673ab7;
+                border-left-color: transparent;
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                border: 4px solid #f44336;
+                border-left-color: transparent;
+            }
+        }
     </style>
+    <script>
+        (function ($) {
+
+            /*------------------
+                Preloader
+            --------------------*/
+            $(window).on('load', function () {
+                $(".loader").fadeOut();
+                $("#preloder").delay(20).fadeOut("slow");
+            });
+        })(jQuery);
+    </script>
+    
+    <script>
+		$(function() {
+			$("#slider-range")
+					.slider(
+							{
+								range : true,
+								min : 0,
+								max : 200,
+								values : [ 0, 0 ],
+								slide : function(event, ui) {
+									$("#amount").val(
+											"$" + ui.values[0] + " - $"
+													+ ui.values[1]);
+									$("#amount_start").val(ui.values[0]);
+									$("#amount_end").val(ui.values[1]);
+								}
+							});
+		});
+
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					$('.image-upload-wrap').hide();
+
+					$('.file-upload-image').attr('src', e.target.result);
+					$('.file-upload-content').show();
+
+					$('.image-title').html(input.files[0].name);
+				};
+
+				reader.readAsDataURL(input.files[0]);
+
+			} else {
+				removeUpload();
+			}
+		}
+
+		function removeUpload() {
+			$('.file-upload-input')
+					.replaceWith($('.file-upload-input').clone());
+			$('.file-upload-content').hide();
+			$('.image-upload-wrap').show();
+		}
+		$('.image-upload-wrap').bind('dragover', function() {
+			$('.image-upload-wrap').addClass('image-dropping');
+		});
+		$('.image-upload-wrap').bind('dragleave', function() {
+			$('.image-upload-wrap').removeClass('image-dropping');
+		});
+	</script>
 </body>
 
 </html>

@@ -1,9 +1,9 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{layout/index :: dynamic(~{::main})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/index :: dynamic(~{::main})}">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
 
 <main>
@@ -29,8 +29,7 @@
 				<div class="col-lg-10 offset-lg-1">
 					<div class="register-form">
 						<h2>My Profile</h2>
-						<form th:action="@{/accounts/update}" method="post"
-							enctype="multipart/form-data">
+						<form th:action="@{/accounts/update}" method="post" enctype="multipart/form-data">
 							<div class="panel panel-default">
 								<div class="panel-body">
 									<div class="row">
@@ -38,8 +37,8 @@
 											<div class="row">
 												<div class="file-upload col-4">
 													<div class="image-upload-wrap">
-														<input class="file-upload-input" type="file" name="img"
-															id="img" onchange="readURL(this);" accept="image/*" />
+														<input class="file-upload-input" type="file" name="img" id="img"
+															onchange="readURL(this);" accept="image/*" />
 														<div class="drag-text">
 															<img class="img-fluid p-2"
 																th:src="'/assets/images/' + *{items.photo}"
@@ -49,8 +48,8 @@
 													</div>
 													<div class="file-upload-content">
 														<img class="file-upload-image img-fluid"
-															th:src="'/assets/images/' + *{items.photo}"
-															alt="your image" id="img" />
+															th:src="'/assets/images/' + *{items.photo}" alt="your image"
+															id="img" />
 														<div class="image-title-wrap">
 															<button type="button" onclick="removeUpload()"
 																class="remove-image">
@@ -67,28 +66,33 @@
 												<div class="col-8">
 													<div class="row">
 														<div class="group-input col-sm-6">
-															<label>Username *</label> <input 
-																th:field="*{items.username}" name="username" id="username" aria-describedby="usernameHid"
+															<label>Username *</label> <input
+																th:field="*{items.username}" name="username"
+																id="username" aria-describedby="usernameHid"
 																class="form-control" readonly>
-															<small	class="form-text text-muted">Username is invalid</small>
+															<small class="form-text text-muted">Username is
+																invalid</small>
 														</div>
 
 														<div class="group-input col-sm-6">
 															<label>Fullname *</label> <input
-																th:field="*{items.fullname}" name="fullname" id="fullname" aria-describedby="fullnameHid" class="form-control">
-															<small id="fullnameHid"	class="form-text text-muted">Fullname is invalid</small>
+																th:field="*{items.fullname}" name="fullname"
+																id="fullname" aria-describedby="fullnameHid"
+																class="form-control">
+															<small id="fullnameHid"
+																class="form-text text-muted">Fullname is invalid</small>
 														</div>
 													</div>
 													<div class="row">
 														<div class="group-input col-sm-6">
 															<label>Email *</label> <input th:field="*{items.email}"
 																type="email" name="email" class="form-control">
-															<small	class="form-text text-muted">Email is invalid</small>
+															<small class="form-text text-muted">Email is invalid</small>
 														</div>
 														<div class="group-input col-sm-6">
 															<label>Phone *</label> <input th:field="*{items.phone}"
 																name="phone" class="form-control">
-															<small	class="form-text text-muted">Phone is invalid</small>
+															<small class="form-text text-muted">Phone is invalid</small>
 														</div>
 													</div>
 													<div class="row">
@@ -96,7 +100,8 @@
 															<label>Address *</label>
 															<textarea rows="3" th:field="*{items.address}"
 																name="address" class="form-control"></textarea>
-															<small	class="form-text text-muted">Address is invalid</small>
+															<small class="form-text text-muted">Address is
+																invalid</small>
 														</div>
 													</div>
 												</div>

@@ -56,7 +56,7 @@ public interface BrandService {
 
 	<S extends Brand> List<S> saveAll(Iterable<S> entities);
 
-	Optional<Brand> findById(Integer id);
+	Brand findById(Integer id);
 
 	List<Brand> findAllById(Iterable<Integer> ids);
 
@@ -69,5 +69,11 @@ public interface BrandService {
 	<S extends Brand> Optional<S> findOne(Example<S> example);
 
 	<S extends Brand> S save(S entity);
+
+	Brand create(Brand brand);
+
+	Brand update(Brand brand);
+
+	void delete(Integer id);
 
 }

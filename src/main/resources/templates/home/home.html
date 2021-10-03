@@ -104,8 +104,6 @@
 					</div>
 					<div class="col-lg-8 offset-lg-1">
 						<div class="filter-control" id="myBtnContainer">
-							<button class="btn active" onclick="filterSelection('all')">
-								Show all</button>
 							<button class="btn" onclick="filterSelection('Clothings')">
 								Clothings</button>
 							<button class="btn" onclick="filterSelection('HandBag')">
@@ -115,103 +113,116 @@
 							<button class="btn" onclick="filterSelection('Accessories')">
 								Accessories</button>
 						</div>
-						<div class="product-slider owl-carousel container">
-							<div class="product-item filterDiv Clothings"
-								th:each="p:${wmCloList}">
-								<div class="pi-pic">
-									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
-									<div class="sale">Sale: [[${p.discount}]]%</div>
-									<div class="icon">
-										<i class="icon_heart_alt"></i>
-									</div>
-									<ul>
-										<li class="quick-view col m-0 p-0"><a
-											class="btn-warning text-light"
-											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-									</ul>
-								</div>
-								<div class="pi-text">
-									<div class="catagory-name">[[${p.category.name}]]</div>
-									<a href="#">
-										<h5 th:utext="${p.name}"></h5>
-									</a>
-									<div class="product-price">
-										$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
-									</div>
-								</div>
-							</div>
-
-							<div class="product-item filterDiv HandBag"
-								th:each="p:${wmHandbagList}">
-								<div class="pi-pic">
-									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
-									<div class="sale">Sale: [[${p.discount}]]%</div>
-									<div class="icon">
-										<i class="icon_heart_alt"></i>
-									</div>
-									<ul>
-										<li class="quick-view col m-0 p-0"><a
-											class="btn-warning text-light"
-											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-									</ul>
-								</div>
-								<div class="pi-text">
-									<div class="catagory-name">[[${p.category.name}]]</div>
-									<a href="#">
-										<h5 th:utext="${p.name}"></h5>
-									</a>
-									<div class="product-price">
-										$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+						<div class="container">
+							<div class="filterDiv Clothings">
+								<div class="product-slider owl-carousel">
+									<div class="product-item" th:each="p:${wmCloList}">
+										<div class="pi-pic">
+											<img th:src="@{|/site/img/products/${p.image}|}" alt="">
+											<div class="sale">Sale: [[${p.discount}]]%</div>
+											<div class="icon">
+												<i class="icon_heart_alt"></i>
+											</div>
+											<ul>
+												<li class="quick-view col m-0 p-0"><a
+													class="btn-warning text-light"
+													th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+											</ul>
+										</div>
+										<div class="pi-text">
+											<div class="catagory-name">[[${p.category.name}]]</div>
+											<a href="#">
+												<h5 th:utext="${p.name}"></h5>
+											</a>
+											<div class="product-price">
+												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 
-							<div class="product-item filterDiv Shoes"
-								th:each="p:${wmShoesList}">
-								<div class="pi-pic">
-									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
-									<div class="sale">Sale: [[${p.discount}]]%</div>
-									<div class="icon">
-										<i class="icon_heart_alt"></i>
-									</div>
-									<ul>
-										<li class="quick-view col m-0 p-0"><a
-											class="btn-warning text-light"
-											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-									</ul>
-								</div>
-								<div class="pi-text">
-									<div class="catagory-name">[[${p.category.name}]]</div>
-									<a href="#">
-										<h5 th:utext="${p.name}"></h5>
-									</a>
-									<div class="product-price">
-										$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+							<div class="filterDiv HandBag">
+								<div class="product-slider owl-carousel">
+									<div class="product-item HandBag" th:each="p:${wmHandbagList}">
+										<div class="pi-pic">
+											<img th:src="@{|/site/img/products/${p.image}|}" alt="">
+											<div class="sale">Sale: [[${p.discount}]]%</div>
+											<div class="icon">
+												<i class="icon_heart_alt"></i>
+											</div>
+											<ul>
+												<li class="quick-view col m-0 p-0"><a
+													class="btn-warning text-light"
+													th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+											</ul>
+										</div>
+										<div class="pi-text">
+											<div class="catagory-name">[[${p.category.name}]]</div>
+											<a href="#">
+												<h5 th:utext="${p.name}"></h5>
+											</a>
+											<div class="product-price">
+												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 
-							<div class="product-item filterDiv Accessories"
-								th:each="p:${wmAccessList}">
-								<div class="pi-pic">
-									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
-									<div class="sale">Sale: [[${p.discount}]]%</div>
-									<div class="icon">
-										<i class="icon_heart_alt"></i>
+							<div class="filterDiv Shoes">
+								<div class="product-slider owl-carousel">
+									<div class="product-item" th:each="p:${wmShoesList}">
+										<div class="pi-pic">
+											<img th:src="@{|/site/img/products/${p.image}|}" alt="">
+											<div class="sale">Sale: [[${p.discount}]]%</div>
+											<div class="icon">
+												<i class="icon_heart_alt"></i>
+											</div>
+											<ul>
+												<li class="quick-view col m-0 p-0"><a
+													class="btn-warning text-light"
+													th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+											</ul>
+										</div>
+										<div class="pi-text">
+											<div class="catagory-name">[[${p.category.name}]]</div>
+											<a href="#">
+												<h5 th:utext="${p.name}"></h5>
+											</a>
+											<div class="product-price">
+												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+											</div>
+										</div>
 									</div>
-									<ul>
-										<li class="quick-view col m-0 p-0"><a
-											class="btn-warning text-light"
-											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-									</ul>
 								</div>
-								<div class="pi-text">
-									<div class="catagory-name">[[${p.category.name}]]</div>
-									<a href="#">
-										<h5 th:utext="${p.name}"></h5>
-									</a>
-									<div class="product-price">
-										$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+							</div>
+
+							<div class="filterDiv Accessories">
+								<div class="product-slider owl-carousel">
+									<div class="product-item"
+										th:each="p:${wmAccessList}">
+										<div class="pi-pic">
+											<img th:src="@{|/site/img/products/${p.image}|}" alt="">
+											<div class="sale">Sale: [[${p.discount}]]%</div>
+											<div class="icon">
+												<i class="icon_heart_alt"></i>
+											</div>
+											<ul>
+												<li class="quick-view col m-0 p-0"><a
+													class="btn-warning text-light"
+													th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+											</ul>
+										</div>
+										<div class="pi-text">
+											<div class="catagory-name">[[${p.category.name}]]</div>
+											<a href="#">
+												<h5 th:utext="${p.name}"></h5>
+											</a>
+											<div class="product-price">
+												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -267,8 +278,6 @@
 				<div class="row">
 					<div class="col-lg-8 offset-lg-1 pl-0 ml-0 mr-5">
 						<div class="filter-control" id="myBtnContainer">
-							<button class="btn active" onclick="filterSelection('all')">
-								Show all</button>
 							<button class="btn" onclick="filterSelection('Clothings')">
 								Clothings</button>
 							<button class="btn" onclick="filterSelection('HandBag')">
@@ -278,103 +287,116 @@
 							<button class="btn" onclick="filterSelection('Accessories')">
 								Accessories</button>
 						</div>
-						<div class="product-slider owl-carousel container">
-							<div class="product-item filterDiv Clothings"
-								th:each="p:${mCloList}">
-								<div class="pi-pic">
-									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
-									<div class="sale">Sale: [[${p.discount}]]%</div>
-									<div class="icon">
-										<i class="icon_heart_alt"></i>
-									</div>
-									<ul>
-										<li class="quick-view col m-0 p-0"><a
-											class="btn-warning text-light"
-											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-									</ul>
-								</div>
-								<div class="pi-text">
-									<div class="catagory-name">[[${p.category.name}]]</div>
-									<a href="#">
-										<h5 th:utext="${p.name}"></h5>
-									</a>
-									<div class="product-price">
-										$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
-									</div>
-								</div>
-							</div>
-
-							<div class="product-item filterDiv HandBag"
-								th:each="p:${mHandbagList}">
-								<div class="pi-pic">
-									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
-									<div class="sale">Sale: [[${p.discount}]]%</div>
-									<div class="icon">
-										<i class="icon_heart_alt"></i>
-									</div>
-									<ul>
-										<li class="quick-view col m-0 p-0"><a
-											class="btn-warning text-light"
-											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-									</ul>
-								</div>
-								<div class="pi-text">
-									<div class="catagory-name">[[${p.category.name}]]</div>
-									<a href="#">
-										<h5 th:utext="${p.name}"></h5>
-									</a>
-									<div class="product-price">
-										$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+						<div class="container">
+							<div class="filterDiv Clothings">
+								<div class="product-slider owl-carousel">
+									<div class="product-item" th:each="p:${mCloList}">
+										<div class="pi-pic">
+											<img th:src="@{|/site/img/products/${p.image}|}" alt="">
+											<div class="sale">Sale: [[${p.discount}]]%</div>
+											<div class="icon">
+												<i class="icon_heart_alt"></i>
+											</div>
+											<ul>
+												<li class="quick-view col m-0 p-0"><a
+													class="btn-warning text-light"
+													th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+											</ul>
+										</div>
+										<div class="pi-text">
+											<div class="catagory-name">[[${p.category.name}]]</div>
+											<a href="#">
+												<h5 th:utext="${p.name}"></h5>
+											</a>
+											<div class="product-price">
+												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 
-							<div class="product-item filterDiv Shoes"
-								th:each="p:${mShoesList}">
-								<div class="pi-pic">
-									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
-									<div class="sale">Sale: [[${p.discount}]]%</div>
-									<div class="icon">
-										<i class="icon_heart_alt"></i>
-									</div>
-									<ul>
-										<li class="quick-view col m-0 p-0"><a
-											class="btn-warning text-light"
-											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-									</ul>
-								</div>
-								<div class="pi-text">
-									<div class="catagory-name">[[${p.category.name}]]</div>
-									<a href="#">
-										<h5 th:utext="${p.name}"></h5>
-									</a>
-									<div class="product-price">
-										$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+							<div class="filterDiv HandBag">
+								<div class="product-slider owl-carousel">
+									<div class="product-item HandBag" th:each="p:${mHandbagList}">
+										<div class="pi-pic">
+											<img th:src="@{|/site/img/products/${p.image}|}" alt="">
+											<div class="sale">Sale: [[${p.discount}]]%</div>
+											<div class="icon">
+												<i class="icon_heart_alt"></i>
+											</div>
+											<ul>
+												<li class="quick-view col m-0 p-0"><a
+													class="btn-warning text-light"
+													th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+											</ul>
+										</div>
+										<div class="pi-text">
+											<div class="catagory-name">[[${p.category.name}]]</div>
+											<a href="#">
+												<h5 th:utext="${p.name}"></h5>
+											</a>
+											<div class="product-price">
+												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 
-							<div class="product-item filterDiv Accessories"
-								th:each="p:${mAccessList}">
-								<div class="pi-pic">
-									<img th:src="@{|/site/img/products/${p.image}|}" alt="">
-									<div class="sale">Sale: [[${p.discount}]]%</div>
-									<div class="icon">
-										<i class="icon_heart_alt"></i>
+							<div class="filterDiv Shoes">
+								<div class="product-slider owl-carousel">
+									<div class="product-item" th:each="p:${mShoesList}">
+										<div class="pi-pic">
+											<img th:src="@{|/site/img/products/${p.image}|}" alt="">
+											<div class="sale">Sale: [[${p.discount}]]%</div>
+											<div class="icon">
+												<i class="icon_heart_alt"></i>
+											</div>
+											<ul>
+												<li class="quick-view col m-0 p-0"><a
+													class="btn-warning text-light"
+													th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+											</ul>
+										</div>
+										<div class="pi-text">
+											<div class="catagory-name">[[${p.category.name}]]</div>
+											<a href="#">
+												<h5 th:utext="${p.name}"></h5>
+											</a>
+											<div class="product-price">
+												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+											</div>
+										</div>
 									</div>
-									<ul>
-										<li class="quick-view col m-0 p-0"><a
-											class="btn-warning text-light"
-											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-									</ul>
 								</div>
-								<div class="pi-text">
-									<div class="catagory-name">[[${p.category.name}]]</div>
-									<a href="#">
-										<h5 th:utext="${p.name}"></h5>
-									</a>
-									<div class="product-price">
-										$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+							</div>
+
+							<div class="filterDiv Accessories">
+								<div class="product-slider owl-carousel">
+									<div class="product-item"
+										th:each="p:${mAccessList}">
+										<div class="pi-pic">
+											<img th:src="@{|/site/img/products/${p.image}|}" alt="">
+											<div class="sale">Sale: [[${p.discount}]]%</div>
+											<div class="icon">
+												<i class="icon_heart_alt"></i>
+											</div>
+											<ul>
+												<li class="quick-view col m-0 p-0"><a
+													class="btn-warning text-light"
+													th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+											</ul>
+										</div>
+										<div class="pi-text">
+											<div class="catagory-name">[[${p.category.name}]]</div>
+											<a href="#">
+												<h5 th:utext="${p.name}"></h5>
+											</a>
+											<div class="product-price">
+												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -457,7 +479,7 @@
 				</div>
 
 				<div class="product-slider owl-carousel container">
-					<div class="product-item filterDiv Clothings" th:each="b:${blogs}">
+					<div class="product-item" th:each="b:${blogs}">
 						<div class="col-lg-12 col-md-0">
 							<div class="single-latest-blog">
 								<a th:href="@{|/home/blog-details/${b.id}|}"> <img

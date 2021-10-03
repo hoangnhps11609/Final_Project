@@ -1,85 +1,74 @@
 <div class="card ">
-  <div class="card-header">
-    <h3>Edition</h3>
-  </div>
-  <div class="card-body">
-    <div class="row">
-    	<div class="col-4">
-    		<label for="">
-    			<img ng-src="{{'/assets/images/' + form.image}}" class="img-fluid"/>
-    		</label>
-    	</div>
-    	<div class="col-8">
-    		<div class="row">
-    			<div class="form-group col-sm-6">
-    				<div>Name:</div>
-    				<input class="form-control" ng-model="form.name"/>
-    			</div>
-    			<div class="form-group col-sm-6">
-    				<div>Price:</div>
-    				<input class="form-control" ng-model="form.price"/>
-    			</div>
-    		</div>
-    		<div class="row">
-    			<div class="form-group col-sm-6">
-    				<div>Create Date:</div>
-    				<input type="date" class="form-control" ng-model="form.createDate"/>
-    			</div>
-    			<div class="form-group col-sm-6">
-    				<div>Category:</div>
-    				<select class="form-control"  ng-model="form.category.id">
-    					<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
-    				</select>
-    			</div>
-    		</div>
-    		<div class="row">
-    			<div class="form-group col-sm-6">
-    				<div>Description:</div>
-    				<input type="text" class="form-control" ng-model="form.description"/>
-    			</div>
-    			<div class="form-group col-sm-6">
-    				<div>Discount:</div>
-    				<input type="number" class="form-control" ng-model="form.discount"/>
-    			</div>
-    		</div>
-    		
-    		<div class="row">
-    			<div class="form-group col-sm-6">
-    				<div>Gender:</div>
-    				<select class="form-control"  ng-model="form.gender.id">
-    					<option ng-repeat="g in genders" ng-value="g.id">{{g.name}}</option>
-    				</select>
-    			</div>
-    			<div class="form-group col-sm-6">
-    				<div>Brand:</div>
-    				<select class="form-control"  ng-model="form.brand.id">
-    					<option ng-repeat="b in brands" ng-value="b.id">{{b.name}}</option>
-    				</select>
-    			</div>
-    		</div>
-    		
-    		<div class="row">
-    			<div class="col-sm-6">
-    				<div>Image:</div>
-    				<input type="file" id="image" onchange="angular.element(this).scope().imageChanged(this.files)"/>
-    			</div>
-    			<div class="form-group col-sm-6">
-    				<div>Available:</div>
-    				<label class="radio-inline px-3">
-    					<input  ng-model="form.available" ng-value="true" name="available" type="radio"/>Yes
-    				</label>
-    				<label class="radio-inline">
-    					<input  ng-model="form.available" ng-value="false" name="available" type="radio"/>No
-    				</label>
-    			</div>
-    		</div>
-    	</div>
-    </div>
-  </div>
-  <div class="card-footer text-muted">
-    <button ng-click="create()"  class="btn btn-primary">Create</button>
-    <button ng-click="update(item)"  class="btn btn-success">Update</button>
-    <button class="btn btn-danger" ng-click="delete(form)">Delete</button>
-    <button ng-click="reset()" class="btn btn-info">Reset</button>
-  </div>
+	<div class="card-header">
+		<h3>Edition</h3>
+	</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-4">
+				<label for="">
+					<img ng-src="{{'/assets/images/' + form.image}}" class="img-fluid" />
+				</label>
+			</div>
+			<div class="col-8">
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<div>Name:</div>
+						<input class="form-control" ng-model="form.name" />
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Price:</div>
+						<input class="form-control" ng-model="form.price" />
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<div>Category:</div>
+						<select class="form-control" ng-model="form.category.id">
+							<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
+						</select>
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Discount:</div>
+						<input type="number" class="form-control" ng-model="form.discount" />
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<div>Gender:</div>
+						<select class="form-control" ng-model="form.gender.id">
+							<option ng-repeat="g in genders" ng-value="g.id">{{g.name}}</option>
+						</select>
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Brand:</div>
+						<select class="form-control" ng-model="form.brand.id">
+							<option ng-repeat="b in brands" ng-value="b.id">{{b.name}}</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<div>Image:</div>
+						<input type="file" id="image"
+							onchange="angular.element(this).scope().imageChanged(this.files)" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-12">
+						<div>Description:</div>
+						<textarea type="text" class="form-control" ng-model="form.description" rows="6	">	</textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="card-footer text-muted">
+		<button ng-click="create()" class="btn btn-primary">Create</button>
+		<button ng-click="update(item)" class="btn btn-success">Update</button>
+		<button class="btn btn-danger" ng-click="delete(form)">Delete</button>
+		<button ng-click="reset()" class="btn btn-info">Reset</button>
+	</div>
 </div>

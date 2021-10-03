@@ -1,6 +1,8 @@
 app.controller("product-ctrl", function($scope, $http) {
 	$scope.items = [];
 	$scope.cates = [];
+	$scope.brands = [];
+	$scope.genders = [];
 	$scope.form = {};
 
 	$scope.blogcates = [];
@@ -19,10 +21,15 @@ app.controller("product-ctrl", function($scope, $http) {
 		$http.get("/rest/categories").then(resp => {
 			$scope.cates = resp.data;
 		});
+		
+		//load brand
+		$http.get("/rest/brands").then(resp => {
+			$scope.brands = resp.data;
+		});
 
-		//load blogcategory
-		$http.get("/rest/blogcates").then(resp => {
-			$scope.blogcates = resp.data;
+		//load gender
+		$http.get("/rest/genders").then(resp => {
+			$scope.genders = resp.data;
 		});
 
 	}
@@ -49,7 +56,6 @@ app.controller("product-ctrl", function($scope, $http) {
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/products`, item).then(resp => {
-			resp.data.createDate = new Date(resp.data.createDate)
 			$scope.items.push(resp.data);
 			$scope.reset();
 			alert("Thêm mới thành công");
@@ -106,7 +112,7 @@ app.controller("product-ctrl", function($scope, $http) {
 
 	$scope.pager = {
 		page: 0,
-		size: 10,
+		size: 5,
 		get items() {
 			var start = this.page * this.size;
 			return $scope.items.slice(start, start + this.size);

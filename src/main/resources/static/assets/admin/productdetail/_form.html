@@ -1,0 +1,72 @@
+<div class="card ">
+	<div class="card-header">
+		<h3>Edition</h3>
+	</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-4">
+				<label for="">
+					<img ng-src="{{'/assets/images/' + form.image}}" class="img-fluid" />
+				</label>
+			</div>
+			<div class="col-8">
+				<div class="row">
+					<div class="form-group col-sm-12">
+						<div>Product Name</div>
+						<select class="form-control" ng-model="form.product.id">
+							<option ng-repeat="b in products" ng-value="b.id">{{b.name}}</option>
+						</select>
+					</div>
+			
+				</div>
+
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<div>Color:</div>
+						<select class="form-control" ng-model="form.color.id">
+							<option ng-repeat="c in colors" ng-value="c.id">{{c.name}}</option>
+						</select>
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Size:</div>
+						<select class="form-control" ng-model="form.size.id">
+							<option ng-repeat="s in sizes" ng-value="s.id">{{s.name}}</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<div>Quantity:</div>
+						<input type="number" class="form-control" ng-model="form.quantity" />
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<div>Image:</div>
+						<input type="file" id="image"
+							onchange="angular.element(this).scope().imageChanged(this.files)" />
+					</div>
+					<div class="form-group col-sm-6">
+    				<div>Available:</div>
+    				<label class="radio-inline px-3">
+    					<input  ng-model="form.available"  checked="checked" ng-value="true" name="available" type="radio"/>Yes
+    				</label>
+    				<label class="radio-inline">
+    					<input  ng-model="form.available" ng-value="false" name="available" type="radio"/>No
+    				</label>
+    			</div>
+					
+				</div>
+		
+			</div>
+		</div>
+	</div>
+	<div class="card-footer text-muted">
+		<button ng-click="create()" class="btn btn-primary">Create</button>
+		<button ng-click="update(item)" class="btn btn-success">Update</button>
+		<button class="btn btn-danger" ng-click="delete(form)">Delete</button>
+		<button ng-click="reset()" class="btn btn-info">Reset</button>
+	</div>
+</div>

@@ -6,12 +6,16 @@
 				<tr>
 					<th scope="col">Image</th>
 					<th scope="col">ID</th>
-					<th scope="col">Name</th>
+					<th scope="col" >Name</th>
 					<th scope="col">Price</th>
-					<th scope="col">Date</th>
+					<th scope="col">Discount</th>
 					<th scope="col">Category</th>
-					<th scope="col">Available?</th>
-					<th></th>
+					<th scope="col">Gender</th>
+					<th scope="col">Brand</th>
+					
+					<th><img style="width: 100px;height: 80px;position: absolute;top: 65px;" 
+						src="/assets/images/xenoel1.png" alt="">
+					</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -20,11 +24,13 @@
 						<img ng-src="{{'/assets/images/' + item.image}}" width="100%"/>
 					</td>
 					<td>{{item.id}}</td>
-					<td>{{item.name}}</td>
-					<td>{{item.price | number:2}}</td>
-					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
+					<td style="max-width: 250px">{{item.name}}</td>
+					<td>{{item.price | number:1}}</td>
+					<td>{{item.discount}}%</td>
 					<td>{{item.category.name}}</td>
-					<td>{{item.available?'Yes':'No'}}</td>
+					<td>{{item.gender.name}}</td>
+					<td>{{item.brand.name}}</td>
+					
 					<td>
 						<div class="btn-group btn-group-xs">
 							<button class="btn btn-warning mgr5px" ng-click="edit(item)">Edit</button>
