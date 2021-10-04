@@ -1,8 +1,19 @@
 app.controller("account-ctrl", function($scope, $http) {
+
+
 	$scope.items = [];
 	$scope.form = {};
 
 		$scope.ODitems = [];
+		
+		var input = document.getElementById("myInput");
+		input.addEventListener("keyup", function(event) {
+  		if (event.keyCode === 13) {
+   			event.preventDefault();
+   			$scope.statistic();
+   
+  }
+});	
 	
 	$scope.initialize = function() {
 		//load accounts
@@ -15,11 +26,10 @@ app.controller("account-ctrl", function($scope, $http) {
 	
 		$scope.statistic = function() {
 		var statistic = angular.copy($scope.statistic);
-		$http.get(`/rest/accounts/get/${statistic.from}`).then(resp => {
+		$http.get(`/rest/accounts/${statistic.from}`).then(resp => {
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 			})
- 			
 			$(".nav-tabs a:eq(2)").tab('show');
 		}).catch(error => {
 			alert();

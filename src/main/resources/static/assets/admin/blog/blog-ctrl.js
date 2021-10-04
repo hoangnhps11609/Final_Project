@@ -22,7 +22,7 @@ app.controller("blog-ctrl", function($scope, $http) {
 	$scope.reset = function() {
 		$scope.form = {
 			createDate: new Date(),
-			image: 'user.png',
+			images: 'user.png',
 		};
 	}
 
