@@ -117,8 +117,8 @@
 							<div class="filterDiv Clothings">
 								<div class="product-slider owl-carousel">
 									<div class="product-item" th:each="p:${wmCloList}">
-										<div class="pi-pic">
-											<img th:src="@{|/site/img/products/${p.image}|}" alt="">
+										<div class="pi-pic" style="width:357px; height:357px;">
+											<img th:src="@{|/site/img/products/${p.image}|}" alt="" width=357px height=357px class="img-fluid align-center"> 
 											<div class="sale">Sale: [[${p.discount}]]%</div>
 											<div class="icon">
 												<i class="icon_heart_alt"></i>
@@ -126,7 +126,7 @@
 											<ul>
 												<li class="quick-view col m-0 p-0"><a
 													class="btn-warning text-light"
-													th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+													th:href="@{|/product/detail/${p.id}?sizepro=1|}">+ Quick View</a></li>
 											</ul>
 										</div>
 										<div class="pi-text">
@@ -154,7 +154,7 @@
 											<ul>
 												<li class="quick-view col m-0 p-0"><a
 													class="btn-warning text-light"
-													th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+													th:href="@{|/product/detail/${p.id}?sizepro=1|}">+ Quick View</a></li>
 											</ul>
 										</div>
 										<div class="pi-text">
@@ -182,7 +182,7 @@
 											<ul>
 												<li class="quick-view col m-0 p-0"><a
 													class="btn-warning text-light"
-													th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+													th:href="@{|/product/detail/${p.id}?sizepro=1|}">+ Quick View</a></li>
 											</ul>
 										</div>
 										<div class="pi-text">
@@ -211,7 +211,7 @@
 											<ul>
 												<li class="quick-view col m-0 p-0"><a
 													class="btn-warning text-light"
-													th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+													th:href="@{|/product/detail/${p.id}?sizepro=1|}">+ Quick View</a></li>
 											</ul>
 										</div>
 										<div class="pi-text">
@@ -300,7 +300,7 @@
 											<ul>
 												<li class="quick-view col m-0 p-0"><a
 													class="btn-warning text-light"
-													th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+													th:href="@{|/product/detail/${p.id}?sizepro=1|}">+ Quick View</a></li>
 											</ul>
 										</div>
 										<div class="pi-text">
@@ -328,7 +328,7 @@
 											<ul>
 												<li class="quick-view col m-0 p-0"><a
 													class="btn-warning text-light"
-													th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+													th:href="@{|/product/detail/${p.id}?sizepro=1|}">+ Quick View</a></li>
 											</ul>
 										</div>
 										<div class="pi-text">
@@ -356,7 +356,7 @@
 											<ul>
 												<li class="quick-view col m-0 p-0"><a
 													class="btn-warning text-light"
-													th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+													th:href="@{|/product/detail/${p.id}?sizepro=1|}">+ Quick View</a></li>
 											</ul>
 										</div>
 										<div class="pi-text">
@@ -385,7 +385,7 @@
 											<ul>
 												<li class="quick-view col m-0 p-0"><a
 													class="btn-warning text-light"
-													th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
+													th:href="@{|/product/detail/${p.id}?sizepro=1|}">+ Quick View</a></li>
 											</ul>
 										</div>
 										<div class="pi-text">
@@ -405,7 +405,7 @@
 					<div class="col-lg-3 pr-0 mr-0">
 						<div class="product-large set-bg"
 							data-setbg="/site/img/products/man-large.jpg">
-							<h2>Women’s</h2>
+							<h2>Men’s</h2>
 							<a href="#">Discover More</a>
 						</div>
 					</div>

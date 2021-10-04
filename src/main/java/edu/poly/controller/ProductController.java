@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.poly.service.BrandService;
+import edu.poly.service.CategoryService;
 import edu.poly.service.ColorService;
 import edu.poly.service.GenderService;
 import edu.poly.service.ProductDetailService;
@@ -27,6 +28,7 @@ import edu.poly.service.SizeService;
 import edu.poly.utils.ParamService;
 import edu.poly.utils.SessionService;
 import edu.poly.entity.Brand;
+import edu.poly.entity.Category;
 import edu.poly.entity.Color;
 import edu.poly.entity.ColorPro;
 import edu.poly.entity.Gender;
@@ -40,6 +42,9 @@ public class ProductController {
 
 	@Autowired
 	ParamService paramService;
+	
+	@Autowired
+	CategoryService categoryService;
 	
 	@Autowired
 	ProductService productservice;
@@ -92,9 +97,9 @@ public class ProductController {
 			model.addAttribute("max", max);
 			model.addAttribute("min", min);
 		} else if (search != null) {
-			resultPage = productservice.findByKeyword(search, pageable);
+			resultPage = productservice.findByKeyword("%" + search + "%", pageable);
 			model.addAttribute("search", search);
-		} else {
+		} else{
 //			List<Product> list = productservice.findAll();
 			resultPage = productservice.findAll(pageable);
 //			model.addAttribute("items", list);
@@ -127,7 +132,54 @@ public class ProductController {
 
 		List<Color> colors = colorService.findAll();
 		model.addAttribute("colors", colors);
+		
+		List<Category> cate = categoryService.findAll();
+		model.addAttribute("cate", cate);
 		return "product/list";
+	}
+	
+	
+	@RequestMapping("product/listall")
+	public String listall(Model model,
+			@RequestParam("page") Optional<Integer> page,
+			@RequestParam("size") Optional<Integer> size) {
+		int currentPage = page.orElse(1);
+		int pageSize = size.orElse(9);
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("name"));
+		Page<Product> resultPage = null;
+		resultPage = productservice.findAll(pageable);
+		int totalPages = resultPage.getTotalPages();
+		if (totalPages > 0) {
+			int start = Math.max(1, currentPage - 2);
+			int end = Math.min(currentPage + 2, totalPages);
+
+			if (totalPages > 5) {
+				if (end == totalPages)
+					start = end - 5;
+				else if (start == 1)
+					end = start + 5;
+			}
+			List<Integer> pageNumbers = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		model.addAttribute("productPage", resultPage);
+		model.addAttribute("size", pageSize);
+
+		List<Gender> genderlist = genderService.findAll();
+		model.addAttribute("genderlist", genderlist);
+
+		List<Brand> brands = brandService.findAll();
+		model.addAttribute("brands", brands);
+
+		List<Size> sizes = sizeService.findAll();
+		model.addAttribute("sizes", sizes);
+
+		List<Color> colors = colorService.findAll();
+		model.addAttribute("colors", colors);
+		
+		List<Category> cate = categoryService.findAll();
+		model.addAttribute("cate", cate);
+		return "product/listall";
 	}
 	
 	
@@ -169,6 +221,9 @@ public class ProductController {
 		List<Size> sizes = sizeService.findAll();
 		model.addAttribute("sizes", sizes);
 
+		List<Category> cate = categoryService.findAll();
+		model.addAttribute("cate", cate);
+		
 		List<Color> colors = colorService.findAll();
 		model.addAttribute("colors", colors);
 		return "product/listforcolor";
@@ -208,6 +263,9 @@ public class ProductController {
 		List<Brand> brands = brandService.findAll();
 		model.addAttribute("brands", brands);
 
+		List<Category> cate = categoryService.findAll();
+		model.addAttribute("cate", cate);
+		
 		List<Size> sizes = sizeService.findAll();
 		model.addAttribute("sizes", sizes);
 
@@ -249,6 +307,9 @@ public class ProductController {
 		
 		List<Brand> brands = brandService.findAll();
 		model.addAttribute("brands", brands);
+		
+		List<Category> cate = categoryService.findAll();
+		model.addAttribute("cate", cate);
 
 		List<Size> sizes = sizeService.findAll();
 		model.addAttribute("sizes", sizes);
@@ -275,7 +336,7 @@ public class ProductController {
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id"));
 		Page<ProductDetail> resultPage = null;
 
-		resultPage = productDetailService.filterAllProduct(cateid, Integer.parseInt(brandid), Integer.parseInt(sizeproid), Integer.parseInt(genderid), Integer.parseInt(colorid), Double.parseDouble(min), Double.parseDouble(max), pageable);
+		resultPage = productDetailService.filterAllProduct("%" + cateid, brandid, sizeproid, genderid, colorid, Double.parseDouble(min), Double.parseDouble(max), pageable);
 
 		int totalPages = resultPage.getTotalPages();
 		if (totalPages > 0) {
@@ -299,6 +360,9 @@ public class ProductController {
 		
 		List<Brand> brands = brandService.findAll();
 		model.addAttribute("brands", brands);
+		
+		List<Category> cate = categoryService.findAll();
+		model.addAttribute("cate", cate);
 
 		List<Size> sizes = sizeService.findAll();
 		model.addAttribute("sizes", sizes);
