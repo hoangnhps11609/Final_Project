@@ -9,13 +9,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.poly.dao.OrderDetailDAO;
 import edu.poly.entity.Blog;
+import edu.poly.entity.Brand;
 import edu.poly.entity.Category;
+import edu.poly.entity.Color;
 import edu.poly.entity.Gender;
 import edu.poly.entity.Product;
+import edu.poly.entity.Size;
 import edu.poly.service.BlogService;
+import edu.poly.service.BrandService;
 import edu.poly.service.CategoryService;
+import edu.poly.service.ColorService;
 import edu.poly.service.GenderService;
 import edu.poly.service.ProductService;
+import edu.poly.service.SizeService;
 import edu.poly.utils.CookieService;
 import edu.poly.utils.ParamService;
 import edu.poly.utils.SessionService;
@@ -41,6 +47,15 @@ public class HomeController {
 	
 	@Autowired
 	CategoryService categoryService;
+	
+	@Autowired
+	BrandService brandService;	
+	
+	@Autowired
+	ColorService colorService;
+	
+	@Autowired
+	SizeService sizeService;
 	
 	@Autowired
 	OrderDetailDAO orderDetailDAO;
@@ -77,8 +92,17 @@ public class HomeController {
 		List<Category> cate = categoryService.findAll();
 		model.addAttribute("cate", cate);
 		
+		List<Brand> brands = brandService.findAll();
+		model.addAttribute("brands", brands);
+		
 		List<Gender> gender = genderService.findAll();
 		model.addAttribute("genderlist", gender);
+		
+		List<Size> sizes = sizeService.findAll();
+		model.addAttribute("sizes", sizes);
+		
+		List<Color> colors = colorService.findAll();
+		model.addAttribute("colors", colors);
 		
 		List<Blog> blog = blogService.findAll();
 		model.addAttribute("blogs", blog);

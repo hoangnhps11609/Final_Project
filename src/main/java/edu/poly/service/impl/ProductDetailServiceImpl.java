@@ -232,4 +232,12 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 		productDetailDAO.deleteById(id);		
 	}
 
+	@Override
+	public Page<ProductDetail> filterAllProduct(String cateid, String brandid, String sizeproid, String genderid,
+			String colorid,double min, double max, Pageable pageable) {
+		return productDetailDAO.filterAllProduct(cateid, brandid, sizeproid, genderid, colorid, min, max, pageable);
+	}
+
+	
+
 }

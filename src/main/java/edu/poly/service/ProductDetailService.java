@@ -90,8 +90,6 @@ public interface ProductDetailService {
 	List<SizePro> getSizeByProduct(Integer id, Integer colorpro);
 
 	List<ProductDetail> findByProductIDandSizeID(Integer id, Integer sizepro);
-
-	
 	
 	ProductDetail findbyId(Long id);
 	
@@ -100,5 +98,7 @@ public interface ProductDetailService {
 	ProductDetail update(ProductDetail product);
 
 	void delete(Long id);
+
+	Page<ProductDetail> filterAllProduct(String cateid, String brandid, String sizeproid, String genderid, String colorid, double min, double max, Pageable pageable);
 	
 }

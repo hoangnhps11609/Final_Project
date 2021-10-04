@@ -151,7 +151,7 @@
 											</div>
 											<ul>
 												<li class="quick-view col m-0 p-0"><a class="btn-warning text-light"
-													th:href="@{|/product/detail/${product.id}|}"> + Quick
+													th:href="@{|/product/detail/${product.id}?sizepro=1|}"> + Quick
 														View </a></li>
 											</ul>
 										</div>
@@ -175,7 +175,7 @@
 									<li
 										th:class="${1 == productPage.number + 1} ? 'page-item active' : 'page-item'">
 										<a
-										th:href="@{/product/list/(name=${name}, size=${productPage.size}, page=${1}, min=${min}, max=${max}, cid=${cid}, search=${search}, brand=${brand}, gender=${gender})}"
+										th:href="@{/product/listall/(name=${name}, size=${productPage.size}, page=${1})}"
 										class="page-link">First</a>
 									</li>
 
@@ -184,7 +184,7 @@
 										th:if="${productPage.totalPages > 1}"
 										th:class="${pageNumber == productPage.number + 1} ? 'page-item active' : 'page-item'">
 										<a
-										th:href="@{/product/list/(name=${name}, size=${productPage.size}, page=${pageNumber}, min=${min}, max=${max}, cid=${cid}, search=${search}, brand=${brand}, gender=${gender})}"
+										th:href="@{/product/listall/(name=${name}, size=${productPage.size}, page=${pageNumber})}"
 										class="page-link" th:text="${pageNumber}"></a>
 									</li>
 
@@ -192,7 +192,7 @@
 									<li
 										th:class="${productPage.totalPages == productPage.number + 1} ? 'page-item active' : 'page-item'">
 										<a
-										th:href="@{/product/list/(name=${name}, size=${productPage.size}, page=${productPage.totalPages}, min=${min}, max=${max}, cid=${cid}, search=${search}, brand=${brand}, gender=${gender})}"
+										th:href="@{/product/listall/(name=${name}, size=${productPage.size}, page=${productPage.totalPages})}"
 										class="page-link">Last</a>
 									</li>
 								</ul>

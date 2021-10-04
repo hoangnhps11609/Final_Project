@@ -145,7 +145,7 @@
 												name="image" alt="">
 											</a>
 											<div class="sale pp-sale">Sale:
-												[[${product.discount}]]%</div>
+												[[${product.product.discount}]]%</div>
 											<div class="icon">
 												<i class="icon_heart_alt"></i>
 											</div>
@@ -156,12 +156,12 @@
 											</ul>
 										</div>
 										<div class="pi-text">
-											<div class="catagory-name">[[${product.category.name}]]</div>
+											<div class="catagory-name">[[${product.product.category.name}]]</div>
 											<a href="#">
-												<h5 th:utext="${product.name}"></h5>
+												<h5 th:utext="${product.product.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${product.price*(1-product.discount*0.01)}]]<span>$[[${product.price}]]</span>
+												$[[${product.product.price*(1-product.product.discount*0.01)}]]<span>$[[${product.product.price}]]</span>
 											</div>
 										</div>
 									</div>
