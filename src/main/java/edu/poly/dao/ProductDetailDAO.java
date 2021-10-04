@@ -54,9 +54,24 @@ public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 //	@Query
 //	("SELECT p FROM ProductDetail p WHERE p.product.category.id like ?1 and p.product.brand.id like ?2 and p.size.id like ?3 and p.product.gender.id like ?4 and p.color.id like ?5 and p.product.price between ?6 and ?7")
 //	
-	@Query(value = "\r\n"
-			+ "select * \r\n"
-			+ "from ProductDetails pd join Products p  on pd.ProductId = p.Id\r\n"
-			+ "where p.CategoryId like ?1 and p.BrandId like ?2 and pd.SizeId like ?3 and p.GenderId like ?4 and pd.ColorId like ?5 and p.price between ?6 and ?7", nativeQuery = true)
-	Page<ProductDetail> filterAllProduct(String cateid, String brandid, String sizeproid, String genderid, String colorid, double min, double max, Pageable pageable);
+//	@Query(value = "\r\n"
+//			+ "select * \r\n"
+//			+ "from ProductDetails pd join Products p  on pd.ProductId = p.Id\r\n"
+//			+ "where p.CategoryId like ?1 and p.BrandId like ?2 and pd.SizeId like ?3 and p.GenderId like ?4 and pd.ColorId like ?5 and p.price between ?6 and ?7", nativeQuery = true)
+//	Page<ProductDetail> filterAllProduct(String cateid, String brandid, String sizeproid, String genderid, String colorid, double min, double max, Pageable pageable);
+	
+	
+//	@Query(value = "select pd.*\r\n"
+//			+ "from ProductDetails pd join Products p on pd.ProductId = p.Id\r\n"
+//			+ "	join Genders g on p.GenderId = g.id\r\n"
+//			+ "	join Categories c on c.Id = p.CategoryId\r\n"
+//			+ "	join Brands b on b.Id = p.BrandId\r\n"
+//			+ "	join Sizes s on s.Id = pd.SizeId\r\n"
+//			+ "	join Colors co on co.Id = pd.ColorId\r\n"
+//			+ "where p.CategoryId like ?1 and b.Name like ?2 and s.Name like ?3 and g.Name like ?4 and co.Name like ?5 and p.Price between ?6 and ?7\r\n"
+//			, nativeQuery = true)
+	
+	@Query
+	("SELECT p FROM ProductDetail p WHERE p.product.category.id like ?1 and p.product.brand.name like ?2 and p.size.name like ?3 and p.product.gender.name like ?4 and p.color.name like ?5 and p.product.price between ?6 and ?7")
+	Page<ProductDetail> filterAllProduct(String cateid, String brandname, String sizeproname, String gendername, String colorname, double min, double max, Pageable pageable);
 }

@@ -364,47 +364,44 @@
 										<div class="customer-review-option">
 											<h4>2 Comments</h4>
 											<div class="comment-option">
-												<div class="co-item">
+												<div class="co-item" th:each="cmt:${cmtlist}">
 													<div class="avatar-pic">
-														<img src="/site/img/product-single/avatar-1.png" alt="">
+														<img th:src="'/assets/images/'+ ${cmt.account.photo}" alt="">
 													</div>
 													<div class="avatar-text">
-														<div class="at-rating">
+														<div class="at-rating" th:if="${cmt.rate ==1}">
+															<i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i
+																class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
+																class="fa fa-star-o"></i>
+														</div>
+														<div class="at-rating" th:if="${cmt.rate ==2}">
+															<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
+																class="fa fa-star-o"></i>
+														</div>
+														<div class="at-rating" th:if="${cmt.rate ==3}">
+															<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i
+																class="fa fa-star-o"></i>
+														</div>
+														<div class="at-rating" th:if="${cmt.rate ==4}">
 															<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 																class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 																class="fa fa-star-o"></i>
 														</div>
-														<h5>
-															Brandon Kelley <span>27 Aug 2019</span>
-														</h5>
-														<div class="at-reply">Nice !</div>
-													</div>
-												</div>
-												<div class="co-item">
-													<div class="avatar-pic">
-														<img src="/site/img/product-single/avatar-2.png" alt="">
-													</div>
-													<div class="avatar-text">
-														<div class="at-rating">
+														<div class="at-rating" th:if="${cmt.rate ==5}">
 															<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 																class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-																class="fa fa-star-o"></i>
+																class="fa fa-star"></i>
 														</div>
 														<h5>
-															Roy Banks <span>27 Aug 2019</span>
+															[[${cmt.account.fullname}]]
 														</h5>
-														<div class="at-reply">Nice !</div>
+														<div class="at-reply">[[${cmt.content}]]</div>
 													</div>
 												</div>
 											</div>
-											<div class="personal-rating">
-												<h6>Your Ratind</h6>
-												<div class="rating">
-													<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-														class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-														class="fa fa-star-o"></i>
-												</div>
-											</div>
+
 											<div class="leave-comment">
 												<h4>Leave A Comment</h4>
 												<form action="#" class="comment-form">
@@ -483,39 +480,6 @@
 		</div>
 		<!-- Related Products Section End -->
 
-		<!-- Partner Logo Section Begin -->
-		<div class="partner-logo">
-			<div class="container">
-				<div class="logo-carousel owl-carousel">
-					<div class="logo-item">
-						<div class="tablecell-inner">
-							<img src="/site/img/logo-carousel/logo-1.png" alt="">
-						</div>
-					</div>
-					<div class="logo-item">
-						<div class="tablecell-inner">
-							<img src="/site/img/logo-carousel/logo-2.png" alt="">
-						</div>
-					</div>
-					<div class="logo-item">
-						<div class="tablecell-inner">
-							<img src="/site/img/logo-carousel/logo-3.png" alt="">
-						</div>
-					</div>
-					<div class="logo-item">
-						<div class="tablecell-inner">
-							<img src="/site/img/logo-carousel/logo-4.png" alt="">
-						</div>
-					</div>
-					<div class="logo-item">
-						<div class="tablecell-inner">
-							<img src="/site/img/logo-carousel/logo-5.png" alt="">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Partner Logo Section End -->
 	</main>
 </body>
 </html>

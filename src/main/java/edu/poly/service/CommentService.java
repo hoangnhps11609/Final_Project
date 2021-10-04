@@ -70,4 +70,6 @@ public interface CommentService {
 
 	<S extends Comment> S save(S entity);
 
+	List<Comment> findByProductId(Integer id);
+
 }

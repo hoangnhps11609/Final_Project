@@ -139,7 +139,7 @@
 									th:each=" product, iStat : ${productPage.content}">
 									<div class="product-item">
 										<div class="pi-pic">
-											<a th:href="@{|/product/detail/${product.id}?sizepro=1|}"> <img
+											<a th:href="@{|/product/detail/${product.product.id}?sizepro=1|}"> <img
 												th:src="${product.image!=null ? '/site/img/products/' + product.image : '/site/img/logo.png'}"
 												width="100px" height="100px" id="image" class="img-fluid"
 												name="image" alt="">
@@ -151,7 +151,7 @@
 											</div>
 											<ul>
 												<li class="quick-view col m-0 p-0"><a class="btn-warning text-light"
-													th:href="@{|/product/detail/${product.id}|}"> + Quick
+													th:href="@{|/product/detail/${product.product.id}|}"> + Quick
 														View </a></li>
 											</ul>
 										</div>
@@ -175,7 +175,7 @@
 									<li
 										th:class="${1 == productPage.number + 1} ? 'page-item active' : 'page-item'">
 										<a
-										th:href="@{/product/list/(name=${name}, size=${productPage.size}, page=${1}, min=${min}, max=${max}, cid=${cid}, search=${search}, brand=${brand}, gender=${gender})}"
+										th:href="@{/product/filter/(size=${productPage.size}, page=${1})}"
 										class="page-link">First</a>
 									</li>
 
@@ -184,7 +184,7 @@
 										th:if="${productPage.totalPages > 1}"
 										th:class="${pageNumber == productPage.number + 1} ? 'page-item active' : 'page-item'">
 										<a
-										th:href="@{/product/list/(name=${name}, size=${productPage.size}, page=${pageNumber}, min=${min}, max=${max}, cid=${cid}, search=${search}, brand=${brand}, gender=${gender})}"
+										th:href="@{/product/filter/(size=${productPage.size}, page=${pageNumber})}"
 										class="page-link" th:text="${pageNumber}"></a>
 									</li>
 
@@ -192,7 +192,7 @@
 									<li
 										th:class="${productPage.totalPages == productPage.number + 1} ? 'page-item active' : 'page-item'">
 										<a
-										th:href="@{/product/list/(name=${name}, size=${productPage.size}, page=${productPage.totalPages}, min=${min}, max=${max}, cid=${cid}, search=${search}, brand=${brand}, gender=${gender})}"
+										th:href="@{/product/filter/(size=${productPage.size}, page=${productPage.totalPages})}"
 										class="page-link">Last</a>
 									</li>
 								</ul>

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import edu.poly.service.BrandService;
 import edu.poly.service.CategoryService;
 import edu.poly.service.ColorService;
+import edu.poly.service.CommentService;
 import edu.poly.service.GenderService;
 import edu.poly.service.ProductDetailService;
 import edu.poly.service.ProductService;
@@ -31,6 +32,7 @@ import edu.poly.entity.Brand;
 import edu.poly.entity.Category;
 import edu.poly.entity.Color;
 import edu.poly.entity.ColorPro;
+import edu.poly.entity.Comment;
 import edu.poly.entity.Gender;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductDetail;
@@ -60,6 +62,9 @@ public class ProductController {
 
 	@Autowired
 	ColorService colorService;
+	
+	@Autowired
+	CommentService commentService;
 	
 	@Autowired
 	SessionService sessionService;
@@ -302,6 +307,9 @@ public class ProductController {
 			List<ColorPro> colorProlist = productDetailService.getColorByProduct(id);
 			model.addAttribute("colorProlist", colorProlist);
 		}
+		List<Comment> cmtlist = commentService.findByProductId(id);
+		model.addAttribute("cmtlist", cmtlist);
+		
 		List<Gender> genderlist = genderService.findAll();
 		model.addAttribute("genderlist", genderlist);
 		
@@ -323,20 +331,20 @@ public class ProductController {
 	@PostMapping("/product/filter")
 	public String filter(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
 		String cateid = paramService.getString("cid", "");
-		String brandid = paramService.getString("brand", "");
-		String sizeproid = paramService.getString("sizepro", "");
-		String genderid = paramService.getString("gender", "");
-		String colorid = paramService.getString("color", "");
+		String brandname = paramService.getString("brand", "");
+		String sizeproname = paramService.getString("sizepro", "");
+		String gendername = paramService.getString("gender", "");
+		String colorname = paramService.getString("color", "");
 		String min = paramService.getString("min", "");
 		String max = paramService.getString("max", "");
-		System.out.println(cateid + brandid + sizeproid + genderid + colorid + min + max);
+		System.out.println(cateid + brandname + sizeproname + gendername + colorname + min + max);
 		
 		int currentPage = page.orElse(1);
-		int pageSize = size.orElse(9);
+		int pageSize = size.orElse(99);
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id"));
 		Page<ProductDetail> resultPage = null;
 
-		resultPage = productDetailService.filterAllProduct("%" + cateid, brandid, sizeproid, genderid, colorid, Double.parseDouble(min), Double.parseDouble(max), pageable);
+		resultPage = productDetailService.filterAllProduct("%" + cateid, "%" + brandname, "%" + sizeproname, gendername + "%", "%" + colorname, Double.parseDouble(min), Double.parseDouble(max), pageable);
 
 		int totalPages = resultPage.getTotalPages();
 		if (totalPages > 0) {
@@ -354,7 +362,7 @@ public class ProductController {
 		}
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
-
+		
 		List<Gender> genderlist = genderService.findAll();
 		model.addAttribute("genderlist", genderlist);
 		
@@ -372,4 +380,7 @@ public class ProductController {
 		
 		return "product/filter";
 	}
+	
+	
+	
 }
