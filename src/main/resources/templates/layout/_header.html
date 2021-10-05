@@ -117,7 +117,8 @@
 																		for="inputGroupSelect01">Brands</label>
 																</div>
 																<select class="custom-select" id="brand" name="brand">
-																	<option th:each="brands:${brands}" th:value="${brands.id}">[[${brands.name}]]</option>
+																	<option value="">All Brands</option>
+																	<option th:each="brands:${brands}" th:value="${brands.name}">[[${brands.name}]]</option>
 																</select>
 															</div>
 														</div>
@@ -132,7 +133,8 @@
 																</div>
 																<select class="custom-select" id="sizepro"
 																	name="sizepro">
-																	<option th:each="sizes:${sizes}" th:value="${sizes.id}">[[${sizes.name}]]</option>
+																	<option value="">All Sizes</option>
+																	<option th:each="sizes:${sizes}" th:value="${sizes.name}">[[${sizes.name}]]</option>
 																</select>
 															</div>
 														</div>
@@ -143,8 +145,9 @@
 																		for="inputGroupSelect01">Genders</label>
 																</div>
 																<select class="custom-select" id="gender" name="gender">
+																	<option value="">All Genders</option>
 																	<option th:each="genderlist:${genderlist}"
-																		th:value="${genderlist.id}">[[${genderlist.name}]]</option>
+																		th:value="${genderlist.name}">[[${genderlist.name}]]</option>
 																</select>
 															</div>
 														</div>
@@ -158,8 +161,9 @@
 																		for="inputGroupSelect01">Colors</label>
 																</div>
 																<select class="custom-select" id="color" name="color">
+																	<option value="">All Colors</option>
 																	<option th:each="colors:${colors}"
-																		th:value="${colors.id}">[[${colors.name}]]</option>
+																		th:value="${colors.name}">[[${colors.name}]]</option>
 																</select>
 															</div>
 														</div>

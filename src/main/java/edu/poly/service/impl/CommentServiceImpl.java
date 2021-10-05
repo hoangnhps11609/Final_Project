@@ -166,4 +166,9 @@ public class CommentServiceImpl implements CommentService{
 	public <S extends Comment> List<S> findAll(Example<S> example, Sort sort) {
 		return commentDAO.findAll(example, sort);
 	}
+
+	@Override
+	public List<Comment> findByProductId(Integer id) {
+		return commentDAO.findByProductId(id);
+	}
 }

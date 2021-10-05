@@ -233,9 +233,9 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 	}
 
 	@Override
-	public Page<ProductDetail> filterAllProduct(String cateid, String brandid, String sizeproid, String genderid,
-			String colorid,double min, double max, Pageable pageable) {
-		return productDetailDAO.filterAllProduct(cateid, brandid, sizeproid, genderid, colorid, min, max, pageable);
+	public Page<ProductDetail> filterAllProduct(String cateid, String brandname, String sizeproname, String gendername,
+			String colorname,double min, double max, Pageable pageable) {
+		return productDetailDAO.filterAllProduct(cateid, brandname, sizeproname, gendername, colorname, min, max, pageable);
 	}
 
 	

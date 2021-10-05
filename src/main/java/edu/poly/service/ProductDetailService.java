@@ -99,6 +99,6 @@ public interface ProductDetailService {
 
 	void delete(Long id);
 
-	Page<ProductDetail> filterAllProduct(String cateid, String brandid, String sizeproid, String genderid, String colorid, double min, double max, Pageable pageable);
+	Page<ProductDetail> filterAllProduct(String cateid, String brandname, String sizeproname, String gendername, String colorname, double min, double max, Pageable pageable);
 	
 }
