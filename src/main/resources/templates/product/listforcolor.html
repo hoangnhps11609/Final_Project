@@ -89,8 +89,8 @@
 						</div>
 
 						<div class="filter-widget" style="padding-top: 200px;">
-							<h4 class="fw-title">Size</h4>
-							<div class="fw-size-choose">
+							<h4 class="fw-title float-left">Size</h4> <p> &nbsp;(Number for Shoes)</p>
+							<div class="fw-size-choose row col">
 								<div class="sc-item" th:each="s:${sizes}">
 									<a th:href="@{|/product/listsize?sizepro=${s.id}|}"><label
 										for="s-size">[[${s.name}]]</label></a>
@@ -102,34 +102,13 @@
 
 					<div class="col-lg-9 order-1 order-lg-2">
 						<div class="product-show-option">
-							<div class="row">
-								<form action="">
-									<div class="col-lg-7 col-md-7">
-										<div class="select-option">
-											<select class="sorting">
-												<option value="">Find By Color</option>
-											</select> 
-											<select class="p-show" name="size" id="size"
-												onchange="this.form.submit()">
-												<option th:selected="${productPage.size == 9} " value="9">Show:
-													9</option>
-												<option th:selected="${productPage.size == 15}" value="15">Show:
-													15</option>
-												<option th:selected="${productPage.size == 21}" value="21">Show:
-													21</option>
-												<option th:selected="${productPage.size == 30}" value="30">Show:
-													30</option>
-												<option th:selected="${productPage.size == 9999}"
-													value="9999">Show: All</option>
-											</select>
-										</div>
-									</div>
-								</form>
-								<div class="col-lg-5 col-md-5 text-right">
-									<p>Show [[${productPage.number*productPage.numberOfElements
-										+ 1 }]] - [[${productPage.number*size
-										+ productPage.numberOfElements}]] Of
-										[[${productPage.totalElements}]] Product</p>
+							<div class="row col">
+								<div class="col-8">
+								</div>
+								<div class="col-4 text-right">
+									<p>Show [[${productPage.number*size + 1 }]] -
+										[[${productPage.number*size + productPage.numberOfElements}]]
+										Of [[${productPage.totalElements}]] Products</p>
 								</div>
 							</div>
 						</div>
@@ -157,12 +136,12 @@
 											</ul>
 										</div>
 										<div class="pi-text">
-											<div class="catagory-name">[[${procolor.product.category.name}]]</div>
+											<div class="catagory-name">[[${procolor.product.brand.name}]] - [[${procolor.product.category.name}]]</div>
 											<a href="#">
 												<h5 th:utext="${procolor.product.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${procolor.product.price*(1-procolor.product.discount*0.01)}]]<span>$[[${procolor.product.price}]]</span>
+												$[[${procolor.product.price*(1-procolor.product.discount*0.01)}]]<span th:if="${procolor.product.discount != 0}">$[[${procolor.product.price}]]</span>
 											</div>
 										</div>
 									</div>

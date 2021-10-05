@@ -340,7 +340,7 @@ public class ProductController {
 		System.out.println(cateid + brandname + sizeproname + gendername + colorname + min + max);
 		
 		int currentPage = page.orElse(1);
-		int pageSize = size.orElse(99);
+		int pageSize = size.orElse(9999);
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id"));
 		Page<ProductDetail> resultPage = null;
 

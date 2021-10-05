@@ -88,8 +88,8 @@
 						</div>
 
 						<div class="filter-widget" style="padding-top: 200px;">
-							<h4 class="fw-title">Size</h4>
-							<div class="fw-size-choose">
+							<h4 class="fw-title float-left">Size</h4> <p> &nbsp;(Number for Shoes)</p>
+							<div class="fw-size-choose row col">
 								<div class="sc-item" th:each="s:${sizes}">
 									<a th:href="@{|/product/listsize?sizepro=${s.id}|}"><label
 										for="s-size">[[${s.name}]]</label></a>
@@ -129,7 +129,7 @@
 								<div class="col-lg-5 col-md-5 text-right" style="margin-left: 290px;">
 									<p>Show [[${productPage.number*size + 1 }]] -
 										[[${productPage.number*size + productPage.numberOfElements}]]
-										Of [[${productPage.totalElements}]] Product</p>
+										Of [[${productPage.totalElements}]] Products</p>
 								</div>
 							</div>
 						</div>
@@ -156,12 +156,12 @@
 											</ul>
 										</div>
 										<div class="pi-text">
-											<div class="catagory-name">[[${product.category.name}]]</div>
+											<div class="catagory-name">[[${product.brand.name}]] - [[${product.category.name}]]</div>
 											<a href="#">
 												<h5 th:utext="${product.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${product.price*(1-product.discount*0.01)}]]<span>$[[${product.price}]]</span>
+												$[[${product.price*(1-product.discount*0.01)}]]<span th:if="${product.discount != 0}">$[[${product.price}]]</span>
 											</div>
 										</div>
 									</div>

@@ -99,7 +99,7 @@
 						<div class="product-large set-bg"
 							data-setbg="/site/img/products/women-large.jpg">
 							<h2>Women’s</h2>
-							<a href="#">Discover More</a>
+							<a  th:href="@{|/product/list?gender=2|}">Discover More</a>
 						</div>
 					</div>
 					<div class="col-lg-8 offset-lg-1">
@@ -135,7 +135,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -163,7 +163,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -191,7 +191,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -220,7 +220,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -309,7 +309,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -337,7 +337,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -365,7 +365,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -394,7 +394,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -406,7 +406,7 @@
 						<div class="product-large set-bg"
 							data-setbg="/site/img/products/man-large.jpg">
 							<h2>Men’s</h2>
-							<a href="#">Discover More</a>
+							<a  th:href="@{|/product/list?gender=1|}">Discover More</a>
 						</div>
 					</div>
 				</div>

@@ -89,8 +89,8 @@
 						</div>
 
 						<div class="filter-widget" style="padding-top: 200px;">
-							<h4 class="fw-title">Size</h4>
-							<div class="fw-size-choose">
+							<h4 class="fw-title float-left">Size</h4> <p> &nbsp;(Number for Shoes)</p>
+							<div class="fw-size-choose row col">
 								<div class="sc-item" th:each="s:${sizes}">
 									<a th:href="@{|/product/listsize?sizepro=${s.id}|}"><label
 										for="s-size">[[${s.name}]]</label></a>
@@ -129,7 +129,7 @@
 										<h4>
 											$
 											<o>[[*{price*(1-discount*0.01)}]]</o>
-											<span th:text="*{price}"></span>
+											<span th:if="*{discount != 0.0}"> $[[*{price}]]</span>
 										</h4>
 									</div>
 
@@ -246,7 +246,7 @@
 																	[[${p.color.name}]]</div>
 
 																<div class="product-price">
-																	$[[${p.product.price*(1-p.product.discount*0.01)}]]<span>$[[${p.product.price}]]</span>
+																	$[[${p.product.price*(1-p.product.discount*0.01)}]]<span th:if="${p.product.discount != 0.0}">$[[${p.product.price}]]</span>
 																</div>
 															</div>
 														</div>
@@ -255,6 +255,9 @@
 											</div>
 										</div>
 									</div>
+									
+									
+									
 
 
 									<ul class="pd-tags">
@@ -318,7 +321,9 @@
 													<td class="p-catagory">Price</td>
 													<td>
 														<div class="p-price">
-															$[[*{price*(1-discount*0.01)}]]</div>
+															$[[*{price*(1-discount*0.01)}]]&nbsp; 
+														<del style="color:lightgray; font-size:13px;" th:if="*{discount != 0.0}">$[[*{price}]]</del>	
+														</div>
 													</td>
 												</tr>
 												<tr>
@@ -469,7 +474,7 @@
 										<h5 th:utext="${p.name}"></h5>
 									</a>
 									<div class="product-price">
-										$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+										$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 									</div>
 								</div>
 							</div>
