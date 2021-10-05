@@ -19,5 +19,8 @@ public interface OrderDAO extends JpaRepository<Order, Long>{
 	
 	@Query("SELECT o From Order o Where o.createDate between ?1 and ?2 Order By o.id DESC")
 	List<Order> findByDate(Date from, Date to);
+	
+	@Query("SELECT o From Order o Where  o.account.username like ?1 or o.id like ?1")
+	List<Order> FindById(String valued);
 
 }

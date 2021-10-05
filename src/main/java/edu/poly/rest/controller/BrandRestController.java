@@ -51,4 +51,9 @@ public class BrandRestController {
 	public void delete(@PathVariable("id") Integer id) {
 		bService.delete(id);
 	}
+	
+	@GetMapping("get/{valued}")
+	public List<Brand> getAllList(@PathVariable("valued") String valued) {
+		return bService.getListBrand(valued+"%");
+	}
 }

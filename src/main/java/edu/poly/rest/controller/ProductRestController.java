@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.poly.entity.Account;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductDetail;
 import edu.poly.service.ProductService;
@@ -43,5 +44,11 @@ public class ProductRestController {
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable("id") Integer id) {
 		pService.delete(id);
+	}
+	
+	@GetMapping("{valued}")
+	public List<Product> getListAccountByValued(@PathVariable("valued") String valued){
+		return pService.findbyName(valued+"%");
+		
 	}
 }

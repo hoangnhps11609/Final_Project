@@ -130,13 +130,20 @@
 			</li>
 
 		</ul>
-		<div class="search-box1">
-			<input class="search-txt1" name="" type="text" placeholder="Search" />
-			<a class="search-btn1" href="#">
-				<i class="fa fa-search"></i>
+			<div class="search-box1">
+			<input class="search-txt1" name="" type="text" id="myInput"  class="form-control" ng-model="statistic.from"  placeholder="Search	" />
+			<a class="search-btn1" >
+				<button ng-click="statistic()">A</button>
 			</a>
-
-
+	
+	
+		</div>
+		<div class="col-5">
+			<div class="form-group">
+				From :<input type="date" class="form-control" ng-model="statistic1.from1" /> 
+				To: <input type="date" class="form-control" ng-model="statistic1.to1" />
+			</div>
+			<button ng-click="statistic1()" class="btn btn-primary">Create</button>
 		</div>
 	</div>
 

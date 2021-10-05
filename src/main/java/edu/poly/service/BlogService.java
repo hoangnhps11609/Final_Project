@@ -81,4 +81,6 @@ public interface BlogService {
 
 	Blog update(Blog blog);
 	
+	List<Blog> findByName(String valed);
+	
 }

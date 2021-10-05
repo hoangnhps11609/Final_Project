@@ -1,11 +1,15 @@
 app.controller("product-ctrl", function($scope, $http) {
+
 	$scope.items = [];
+	
 	$scope.cates = [];
 	$scope.brands = [];
 	$scope.genders = [];
 	$scope.form = {};
 
 	$scope.blogcates = [];
+	
+
 
 	$scope.initialize = function() {
 		//load products
@@ -32,6 +36,28 @@ app.controller("product-ctrl", function($scope, $http) {
 			$scope.genders = resp.data;
 		});
 
+	}
+	
+			var input = document.getElementById("myInput");
+		input.addEventListener("keyup", function(event) {
+  		if (event.keyCode === 13) {
+   			event.preventDefault();
+   			$scope.statistic();
+   
+  }
+});	
+	
+		$scope.statistic = function() {
+		var statistic = angular.copy($scope.statistic);
+		$http.get(`/rest/products/${statistic.from}`).then(resp => {
+			$scope.items = resp.data;
+			$scope.items.forEach(item => {
+			})
+			$(".nav-tabs a:eq(2)").tab('show');
+		}).catch(error => {
+			alert();
+			console.log("Error", error);
+		});
 	}
 
 	//Khởi tạo

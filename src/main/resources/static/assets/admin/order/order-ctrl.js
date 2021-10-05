@@ -11,6 +11,15 @@ app.controller("order-ctrl", function($scope, $http) {
 			$scope.items = resp.data;
 		});
 	}
+	
+			var input = document.getElementById("myInput");
+		input.addEventListener("keyup", function(event) {
+  		if (event.keyCode === 13) {
+   			event.preventDefault();
+   			$scope.statistic();
+   
+  }
+});	
 
 	//Khởi tạo
 	$scope.initialize();
@@ -29,10 +38,21 @@ app.controller("order-ctrl", function($scope, $http) {
 		});
 	}
 	
-	$scope.statistic = function() {
+			$scope.statistic = function() {
 		var statistic = angular.copy($scope.statistic);
-		$http.get(`/rest/orders/statistic/${statistic.from}/${statistic.to}`).then(resp => {
-			$scope.Staitems = resp.data;
+		$http.get(`/rest/orders/get/${statistic.from}`).then(resp => {
+			$scope.items = resp.data;
+			$(".nav-tabs a:eq(2)").tab('show');
+		}).catch(error => {
+			alert();
+			console.log("Error", error);
+		});
+	}
+	
+	$scope.statistic1 = function() {
+		var statistic = angular.copy($scope.statistic1);
+		$http.get(`/rest/orders/statistic/${statistic.from1}/${statistic.to1}`).then(resp => {
+			$scope.items = resp.data;
 			$(".nav-tabs a:eq(2)").tab('show');
 		}).catch(error => {
 			alert("Lỗi tìm đơn hàng");

@@ -13,12 +13,36 @@ app.controller("blog-ctrl", function($scope, $http) {
 		});
 
 	}
+			var input = document.getElementById("myInput");
+		input.addEventListener("keyup", function(event) {
+  		if (event.keyCode === 13) {
+   			event.preventDefault();
+   			$scope.statistic();
+   
+  }
+});	
+	
 	$http.get("/rest/blogcategories").then(resp => {
 		$scope.cates = resp.data;
 	});
 	//Khởi tạo
 	$scope.initialize();
-
+	
+		$scope.statistic = function() {
+		var statistic = angular.copy($scope.statistic);
+		$http.get(`/rest/blog/get/${statistic.from}`).then(resp => {
+			$scope.items = resp.data;
+			$scope.items.forEach(item => {
+				item.createDate = new Date(item.createDate);
+			
+			})
+			$(".nav-tabs a:eq(2)").tab('show');
+		}).catch(error => {
+			alert('Error');
+			console.log("Error", error);
+		});
+	}
+	
 	$scope.reset = function() {
 		$scope.form = {
 			createDate: new Date(),

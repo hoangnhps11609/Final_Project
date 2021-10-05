@@ -9,6 +9,27 @@ app.controller("brand-ctrl", function($scope, $http) {
 		});
 
 	}
+			var input = document.getElementById("myInput");
+		input.addEventListener("keyup", function(event) {
+  		if (event.keyCode === 13) {
+   			event.preventDefault();
+   			$scope.statistic();
+   
+  }
+});	
+	
+	$scope.statistic = function() {
+		var statistic = angular.copy($scope.statistic);
+		$http.get(`/rest/brands/get/${statistic.from}`).then(resp => {
+			$scope.items = resp.data;
+			$scope.items.forEach(item => {
+			})
+			$(".nav-tabs a:eq(2)").tab('show');
+		}).catch(error => {
+			alert('Error');
+			console.log("Error", error);
+		});
+	}
 
 	//Khởi tạo
 	$scope.initialize();

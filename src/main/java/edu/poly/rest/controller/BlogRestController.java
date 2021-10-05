@@ -54,6 +54,11 @@ public class BlogRestController {
 		bService.deleteById(id);
 	}
 	
+	@GetMapping("get/{valued}")
+	public List<Blog> findbyName(@PathVariable ("valued" ) String valued){
+		return bService.findByName(valued+"%");
+	}
+	
 	
 
 }

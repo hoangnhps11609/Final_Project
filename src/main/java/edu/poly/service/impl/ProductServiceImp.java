@@ -116,6 +116,14 @@ public class ProductServiceImp implements ProductService{
 	}
 
 
+	@Override
+	public List<Product> findbyName(String valued) {
+		
+		return productDAO.findbyName(valued);
+	}
+	
+	
+
 
 
 
