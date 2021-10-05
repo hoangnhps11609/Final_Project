@@ -106,7 +106,7 @@
 							<div class="col-lg-6">
 								<div class="product-pic-zoom">
 									<img class="product-big-img"
-										th:src="@{|/site/img/products/*{image}|}" alt="">
+										th:src="@{|/assets/images/*{image}|}" alt="">
 									<div class="zoom-icon">
 										<i class="fa fa-search-plus"></i>
 									</div>
@@ -200,7 +200,7 @@
 													<div class="product-slider owl-carousel">
 														<div class="product-item" th:each="p:${prodetail}">
 															<div class="pi-pic">
-																<a> <img th:src="@{|/site/img/products/${p.image}|}"
+																<a> <img th:src="@{|/assets/images/${p.image}|}"
 																	alt="">
 																</a>
 																<div class="sale pp-sale">Size: [[${p.size.name}]]</div>
@@ -447,7 +447,7 @@
 							<div class="product-item" th:each="p:*{category.products}">
 								<div class="pi-pic">
 									<a th:href="@{|/product/detail/${p.id}|}"> <img
-										th:src="@{|/site/img/products/${p.image}|}" alt="">
+										th:src="@{|/assets/images/${p.image}|}" alt="">
 									</a>
 									<div class="sale">Sale: [[${p.discount}]]%</div>
 									<div class="icon">
