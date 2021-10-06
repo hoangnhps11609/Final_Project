@@ -166,6 +166,11 @@ public class SizeServiceImpl implements SizeService{
 	public <S extends Size> List<S> findAll(Example<S> example, Sort sort) {
 		return sizeDAO.findAll(example, sort);
 	}
+
+	@Override
+	public List<Size> findSizeByCate(String string) {
+		return sizeDAO.findSizeByCate(string);
+	}
 	
 	
 }

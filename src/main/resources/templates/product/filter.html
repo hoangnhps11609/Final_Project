@@ -88,9 +88,19 @@
 						</div>
 
 						<div class="filter-widget" style="padding-top: 200px;">
-							<h4 class="fw-title float-left">Size</h4> <p> &nbsp;(Number for Shoes)</p>
+							<h4 class="fw-title float-left">Size for Clothings</h4>
 							<div class="fw-size-choose row col">
-								<div class="sc-item" th:each="s:${sizes}">
+								<div class="sc-item" th:each="s:${sizesforclothings}">
+									<a th:href="@{|/product/listsize?sizepro=${s.id}|}"><label
+										for="s-size">[[${s.name}]]</label></a>
+								</div>
+							</div>
+						</div>
+
+						<div class="filter-widget">
+							<h4 class="fw-title float-left">Size for Shoes</h4>
+							<div class="fw-size-choose row col">
+								<div class="sc-item" th:each="s:${sizesforshoes}">
 									<a th:href="@{|/product/listsize?sizepro=${s.id}|}"><label
 										for="s-size">[[${s.name}]]</label></a>
 								</div>
@@ -125,7 +135,7 @@
 												width="100px" height="100px" id="image" class="img-fluid"
 												name="image" alt="">
 											</a>
-											<div class="sale pp-sale">Sale:
+											<div class="sale pp-sale"  th:if="${product.product.discount != 0}">Sale:
 												[[${product.product.discount}]]%</div>
 											<div class="icon">
 												<i class="icon_heart_alt"></i>

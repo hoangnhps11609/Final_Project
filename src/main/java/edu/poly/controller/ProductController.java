@@ -5,6 +5,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.poly.service.AccountService;
 import edu.poly.service.BrandService;
 import edu.poly.service.CategoryService;
 import edu.poly.service.ColorService;
@@ -28,6 +31,7 @@ import edu.poly.service.ProductService;
 import edu.poly.service.SizeService;
 import edu.poly.utils.ParamService;
 import edu.poly.utils.SessionService;
+import edu.poly.entity.Account;
 import edu.poly.entity.Brand;
 import edu.poly.entity.Category;
 import edu.poly.entity.Color;
@@ -53,6 +57,10 @@ public class ProductController {
 
 	@Autowired
 	GenderService genderService;
+	
+
+	@Autowired
+	AccountService accountService;
 
 	@Autowired
 	BrandService brandService;
@@ -68,6 +76,9 @@ public class ProductController {
 	
 	@Autowired
 	SessionService sessionService;
+
+	@Autowired
+	HttpServletRequest request;
 	
 	@Autowired
 	ProductDetailService productDetailService;
@@ -140,6 +151,13 @@ public class ProductController {
 		
 		List<Category> cate = categoryService.findAll();
 		model.addAttribute("cate", cate);
+		
+		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
+		model.addAttribute("sizesforshoes", sizesforshoes);
+		
+		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
+		model.addAttribute("sizesforclothings", sizesforclothings);
+		
 		return "product/list";
 	}
 	
@@ -184,6 +202,14 @@ public class ProductController {
 		
 		List<Category> cate = categoryService.findAll();
 		model.addAttribute("cate", cate);
+		
+		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
+		model.addAttribute("sizesforshoes", sizesforshoes);
+		
+		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
+		model.addAttribute("sizesforclothings", sizesforclothings);
+		
+		
 		return "product/listall";
 	}
 	
@@ -231,6 +257,13 @@ public class ProductController {
 		
 		List<Color> colors = colorService.findAll();
 		model.addAttribute("colors", colors);
+		
+		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
+		model.addAttribute("sizesforshoes", sizesforshoes);
+		
+		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
+		model.addAttribute("sizesforclothings", sizesforclothings);
+		
 		return "product/listforcolor";
 	}
 
@@ -276,6 +309,13 @@ public class ProductController {
 
 		List<Color> colors = colorService.findAll();
 		model.addAttribute("colors", colors);
+		
+		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
+		model.addAttribute("sizesforshoes", sizesforshoes);
+		
+		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
+		model.addAttribute("sizesforclothings", sizesforclothings);
+		
 		return "product/listforsize";
 	}
 
@@ -296,6 +336,9 @@ public class ProductController {
 			model.addAttribute("sizeProlist", sizeProlist);	
 			model.addAttribute("sizepro", sizepro);
 			
+			Size sizeofPro = sizeService.getById(sizepro);
+			model.addAttribute("sizeofPro", sizeofPro);
+			
 			List<ProductDetail> prodetail = productDetailService.findByProductIDandSizeID(id, sizepro);
 			model.addAttribute("prodetail", prodetail);
 		}else {
@@ -307,6 +350,10 @@ public class ProductController {
 			List<ColorPro> colorProlist = productDetailService.getColorByProduct(id);
 			model.addAttribute("colorProlist", colorProlist);
 		}
+		String username = request.getRemoteUser();
+		Account account = accountService.findById(username);
+		model.addAttribute("account", account);
+		
 		List<Comment> cmtlist = commentService.findByProductId(id);
 		model.addAttribute("cmtlist", cmtlist);
 		
@@ -324,6 +371,13 @@ public class ProductController {
 
 		List<Color> colors = colorService.findAll();
 		model.addAttribute("colors", colors);
+		
+		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
+		model.addAttribute("sizesforshoes", sizesforshoes);
+		
+		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
+		model.addAttribute("sizesforclothings", sizesforclothings);
+		
 		return "product/detail";
 	}
 	
@@ -377,6 +431,13 @@ public class ProductController {
 
 		List<Color> colors = colorService.findAll();
 		model.addAttribute("colors", colors);
+		
+		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
+		model.addAttribute("sizesforshoes", sizesforshoes);
+		
+		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
+		model.addAttribute("sizesforclothings", sizesforclothings);
+		
 		
 		return "product/filter";
 	}

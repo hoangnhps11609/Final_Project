@@ -203,5 +203,21 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
             console.log("Error", error);
         })
     }
+    
+    //Thêm Cmt mới
+	$scope.createCmt = function() {
+		var item = angular.copy($scope.form);
+		$http.post(`/rest/comments`, item).then(resp => {
+			$scope.items.push(resp.data);
+			alert("Thêm mới thành công");
+			location.href = "/product/detail/" + resp.data.product.id + "?sizepro=1";
+		}).catch(error => {
+			alert("Lỗi thêm sản phẩm");
+			console.log("Error", error);
+		});
+	}
+	
+	
+	
 });
 
