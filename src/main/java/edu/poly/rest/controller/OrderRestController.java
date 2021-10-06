@@ -46,13 +46,13 @@ public class OrderRestController {
 		return orderService.findByDate(from, to);
 	}
 	
-	@GetMapping("{id}")
-	public List<Order> getbyId(@PathVariable("id") Long id) {
-		return orderService.findbyId(id);
-	}	
 	
-	@GetMapping("get/{valued}")
+	
+	@GetMapping("{valued}")
 	public List<Order> getbyName(@PathVariable("valued") String valued){
+		if(valued==null) {
+			return orderService.findAll(Sort.by(Sort.Direction.DESC, "id"));
+		}
 		return orderService.findbyId(valued+"%");
 	}
 }

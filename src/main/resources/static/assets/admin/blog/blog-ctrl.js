@@ -30,7 +30,7 @@ app.controller("blog-ctrl", function($scope, $http) {
 	
 		$scope.statistic = function() {
 		var statistic = angular.copy($scope.statistic);
-		$http.get(`/rest/blog/get/${statistic.from}`).then(resp => {
+		$http.get(`/rest/blog/${statistic.from}`).then(resp => {
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 				item.createDate = new Date(item.createDate);

@@ -20,11 +20,11 @@ app.controller("brand-ctrl", function($scope, $http) {
 	
 	$scope.statistic = function() {
 		var statistic = angular.copy($scope.statistic);
-		$http.get(`/rest/brands/get/${statistic.from}`).then(resp => {
+		$http.get(`/rest/brands/${statistic.from}`).then(resp => {
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 			})
-			$(".nav-tabs a:eq(2)").tab('show');
+			$(".nav-tabs a:eq(1)").tab('show');
 		}).catch(error => {
 			alert('Error');
 			console.log("Error", error);

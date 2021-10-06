@@ -59,6 +59,9 @@ public class AccountRestController {
 	
 	@GetMapping("{valued}")
 	public List<Account> getListAccountByValued(@PathVariable("valued") String valued){
+		if(valued==null) {
+			return accService.findAll();
+		}
 		return accService.getAccountByValud(valued+"%");
 		
 	}
