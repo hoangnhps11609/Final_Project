@@ -32,10 +32,10 @@ public class BrandRestController {
 		return bService.findAll();
 	}
 	
-	@GetMapping("{id}")
-	public Brand getOne(@PathVariable("id") Integer id) {
-		return bService.findById(id);
-	}
+	//@GetMapping("{id}")
+	//public Brand getOne(@PathVariable("id") Integer id) {
+		//return bService.findById(id);
+	//}
 	
 	@PostMapping
 	public Brand create(@RequestBody Brand brand) {
@@ -52,7 +52,7 @@ public class BrandRestController {
 		bService.delete(id);
 	}
 	
-	@GetMapping("get/{valued}")
+	@GetMapping("{valued}")
 	public List<Brand> getAllList(@PathVariable("valued") String valued) {
 		return bService.getListBrand(valued+"%");
 	}

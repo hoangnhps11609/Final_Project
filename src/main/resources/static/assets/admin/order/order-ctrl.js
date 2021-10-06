@@ -9,6 +9,8 @@ app.controller("order-ctrl", function($scope, $http) {
 		//load orders
 		$http.get("/rest/orders").then(resp => {
 			$scope.items = resp.data;
+			$scope.items.forEach(item => {
+			})
 		});
 	}
 	
@@ -40,8 +42,10 @@ app.controller("order-ctrl", function($scope, $http) {
 	
 			$scope.statistic = function() {
 		var statistic = angular.copy($scope.statistic);
-		$http.get(`/rest/orders/get/${statistic.from}`).then(resp => {
+		$http.get(`/rest/orders/${statistic.from}`).then(resp => {
 			$scope.items = resp.data;
+			$scope.items.forEach(item => {
+			})
 			$(".nav-tabs a:eq(2)").tab('show');
 		}).catch(error => {
 			alert();

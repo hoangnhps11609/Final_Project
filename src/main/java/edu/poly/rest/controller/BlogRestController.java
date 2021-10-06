@@ -34,10 +34,10 @@ public class BlogRestController {
 		return bService.findAll();
 	}
 	
-	@GetMapping("{id}")
-	public Blog getOne(@PathVariable("id") Integer id) {
-		return bService.findById(id);
-	}
+	//@GetMapping("{id}")
+	//public Blog getOne(@PathVariable("id") Integer id) {
+	////	return bService.findById(id);
+	//}
 	
 	@PostMapping
 	public Blog create(@RequestBody Blog blog) {
@@ -54,7 +54,7 @@ public class BlogRestController {
 		bService.deleteById(id);
 	}
 	
-	@GetMapping("get/{valued}")
+	@GetMapping("{valued}")
 	public List<Blog> findbyName(@PathVariable ("valued" ) String valued){
 		return bService.findByName(valued+"%");
 	}
