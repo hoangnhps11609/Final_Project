@@ -75,5 +75,7 @@ public interface BrandService {
 	Brand update(Brand brand);
 
 	void delete(Integer id);
+	
+	List<Brand> getListBrand (String valued);
 
 }

@@ -25,4 +25,8 @@ public interface BlogDAO extends JpaRepository<Blog, Integer>{
 	@Query
 	("SELECT b FROM Blog b WHERE b.name like ?1")
 	Page<Blog> findByKeyword(String search, Pageable pageable);
+	
+	@Query
+	("SELECT b FROM Blog b WHERE b.name like ?1")
+	List<Blog> findbyName(String valued);
 }

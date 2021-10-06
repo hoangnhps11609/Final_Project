@@ -94,4 +94,18 @@ public class OrderServiceImpl implements OrderService{
 		return null;
 	}
 
+	@Override
+	public List<Order> findbyId(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> findbyId(String id) {
+		// TODO Auto-generated method stub
+		return dao.FindById(id);
+	}
+
+
+
 }

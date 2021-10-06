@@ -35,4 +35,8 @@ public interface OrderService {
 	List<Order> findByDate(Date fromFormat, Date toFormat);
 
 	List<Order> findByUsername(String username);
+	
+	List<Order> findbyId(Long id);
+
+	List<Order> findbyId(String id);
 }

@@ -195,6 +195,12 @@ public class BlogServiceImpl implements BlogService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Blog> findByName(String valed) {
+		// TODO Auto-generated method stub
+		return blogDAO.findbyName(valed);
+	}
 	
 	
 }

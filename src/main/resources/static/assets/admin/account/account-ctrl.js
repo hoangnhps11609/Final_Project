@@ -24,7 +24,7 @@ app.controller("account-ctrl", function($scope, $http) {
 		});
 	}
 	
-		$scope.statistic = function() {
+	$scope.statistic = function() {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/accounts/${statistic.from}`).then(resp => {
 			$scope.items = resp.data;

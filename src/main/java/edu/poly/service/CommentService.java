@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import edu.poly.entity.Account;
 import edu.poly.entity.Comment;
 
 public interface CommentService {
@@ -71,5 +72,7 @@ public interface CommentService {
 	<S extends Comment> S save(S entity);
 
 	List<Comment> findByProductId(Integer id);
+
+	Comment create(Comment comment);
 
 }

@@ -184,6 +184,12 @@ public class BrandServiceImpl implements BrandService{
 		brandDAO.deleteById(id);
 		
 	}
+
+	@Override
+	public List<Brand> getListBrand(String valued) {
+		
+		return brandDAO.getListBrand(valued);
+	}
 	
 	
 }

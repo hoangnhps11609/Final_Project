@@ -3,19 +3,19 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th scope="col">Photo</th>
-					<th scope="col">Username</th>
-					<th scope="col">Fullname</th>
-					<th scope="col">Email</th>
-					<th><img style="width: 100px;height: 80px;position: absolute;top: 0;" 
-						src="/assets/images/xenoel1.png" alt="">
+					<th style="width: 20%" scope="col">Photo</th>
+					<th style="width: 20%" scope="col">Username</th>
+					<th style="width: 20%" scope="col">Fullname</th>
+					<th style="width: 20%" scope="col">Email</th>
+					<th style="width: 20%"><img style="width: 100px;height: 80px;position: absolute;top: 0;"
+							src="/assets/images/xenoel1.png" alt="">
 					</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="item in pager.items">
-					<td width="100px">
-						<img ng-src="{{'/assets/images/' + item.photo}}" width="100%"/>
+					<td>
+						<img ng-src="{{'/assets/images/' + item.photo}}" width="50%" />
 					</td>
 					<td>{{item.username}}</td>
 					<td>{{item.fullname}}</td>

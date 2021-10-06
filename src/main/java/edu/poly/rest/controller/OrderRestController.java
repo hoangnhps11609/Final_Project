@@ -45,4 +45,14 @@ public class OrderRestController {
 	public List<Order> getByDate(@PathVariable("from") Date from, @PathVariable("to") Date to){
 		return orderService.findByDate(from, to);
 	}
+	
+	@GetMapping("{id}")
+	public List<Order> getbyId(@PathVariable("id") Long id) {
+		return orderService.findbyId(id);
+	}	
+	
+	@GetMapping("get/{valued}")
+	public List<Order> getbyName(@PathVariable("valued") String valued){
+		return orderService.findbyId(valued+"%");
+	}
 }

@@ -99,7 +99,7 @@
 						<div class="product-large set-bg"
 							data-setbg="/site/img/products/women-large.jpg">
 							<h2>Women’s</h2>
-							<a href="#">Discover More</a>
+							<a  th:href="@{|/product/list?gender=2|}">Discover More</a>
 						</div>
 					</div>
 					<div class="col-lg-8 offset-lg-1">
@@ -118,8 +118,10 @@
 								<div class="product-slider owl-carousel">
 									<div class="product-item" th:each="p:${wmCloList}">
 										<div class="pi-pic" style="width:357px; height:357px;">
-											<img th:src="@{|/site/img/products/${p.image}|}" alt="" width=357px height=357px class="img-fluid align-center"> 
-											<div class="sale">Sale: [[${p.discount}]]%</div>
+											<a th:href="@{|/product/detail/${p.id}?sizepro=1|}">
+												<img th:src="@{|/assets/images/${p.image}|}" alt="">
+											</a>
+											<div class="sale"  th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
 											<div class="icon">
 												<i class="icon_heart_alt"></i>
 											</div>
@@ -135,7 +137,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -146,8 +148,10 @@
 								<div class="product-slider owl-carousel">
 									<div class="product-item HandBag" th:each="p:${wmHandbagList}">
 										<div class="pi-pic">
-											<img th:src="@{|/site/img/products/${p.image}|}" alt="">
-											<div class="sale">Sale: [[${p.discount}]]%</div>
+											<a th:href="@{|/product/detail/${p.id}?sizepro=1|}">
+												<img th:src="@{|/assets/images/${p.image}|}" alt="">
+											</a>
+											<div class="sale"  th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
 											<div class="icon">
 												<i class="icon_heart_alt"></i>
 											</div>
@@ -163,7 +167,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -174,8 +178,10 @@
 								<div class="product-slider owl-carousel">
 									<div class="product-item" th:each="p:${wmShoesList}">
 										<div class="pi-pic">
-											<img th:src="@{|/site/img/products/${p.image}|}" alt="">
-											<div class="sale">Sale: [[${p.discount}]]%</div>
+											<a th:href="@{|/product/detail/${p.id}?sizepro=7|}">
+												<img th:src="@{|/assets/images/${p.image}|}" alt="">
+											</a>
+											<div class="sale"  th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
 											<div class="icon">
 												<i class="icon_heart_alt"></i>
 											</div>
@@ -191,7 +197,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -203,8 +209,10 @@
 									<div class="product-item"
 										th:each="p:${wmAccessList}">
 										<div class="pi-pic">
-											<img th:src="@{|/site/img/products/${p.image}|}" alt="">
-											<div class="sale">Sale: [[${p.discount}]]%</div>
+											<a th:href="@{|/product/detail/${p.id}?sizepro=1|}">
+												<img th:src="@{|/assets/images/${p.image}|}" alt="">
+											</a>
+											<div class="sale"  th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
 											<div class="icon">
 												<i class="icon_heart_alt"></i>
 											</div>
@@ -220,7 +228,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -292,8 +300,10 @@
 								<div class="product-slider owl-carousel">
 									<div class="product-item" th:each="p:${mCloList}">
 										<div class="pi-pic">
-											<img th:src="@{|/site/img/products/${p.image}|}" alt="">
-											<div class="sale">Sale: [[${p.discount}]]%</div>
+											<a th:href="@{|/product/detail/${p.id}?sizepro=1|}">
+												<img th:src="@{|/assets/images/${p.image}|}" alt="">
+											</a>
+											<div class="sale" th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
 											<div class="icon">
 												<i class="icon_heart_alt"></i>
 											</div>
@@ -309,7 +319,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -320,8 +330,10 @@
 								<div class="product-slider owl-carousel">
 									<div class="product-item HandBag" th:each="p:${mHandbagList}">
 										<div class="pi-pic">
-											<img th:src="@{|/site/img/products/${p.image}|}" alt="">
-											<div class="sale">Sale: [[${p.discount}]]%</div>
+											<a th:href="@{|/product/detail/${p.id}?sizepro=1|}">
+												<img th:src="@{|/assets/images/${p.image}|}" alt="">
+											</a>
+											<div class="sale" th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
 											<div class="icon">
 												<i class="icon_heart_alt"></i>
 											</div>
@@ -337,7 +349,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -348,8 +360,10 @@
 								<div class="product-slider owl-carousel">
 									<div class="product-item" th:each="p:${mShoesList}">
 										<div class="pi-pic">
-											<img th:src="@{|/site/img/products/${p.image}|}" alt="">
-											<div class="sale">Sale: [[${p.discount}]]%</div>
+											<a th:href="@{|/product/detail/${p.id}?sizepro=7|}">
+												<img th:src="@{|/assets/images/${p.image}|}" alt="">
+											</a>
+											<div class="sale"  th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
 											<div class="icon">
 												<i class="icon_heart_alt"></i>
 											</div>
@@ -365,7 +379,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -377,8 +391,10 @@
 									<div class="product-item"
 										th:each="p:${mAccessList}">
 										<div class="pi-pic">
-											<img th:src="@{|/site/img/products/${p.image}|}" alt="">
-											<div class="sale">Sale: [[${p.discount}]]%</div>
+											<a th:href="@{|/product/detail/${p.id}?sizepro=1|}">
+												<img th:src="@{|/assets/images/${p.image}|}" alt="">
+											</a>
+											<div class="sale" th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
 											<div class="icon">
 												<i class="icon_heart_alt"></i>
 											</div>
@@ -394,7 +410,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span>$[[${p.price}]]</span>
+												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -406,7 +422,7 @@
 						<div class="product-large set-bg"
 							data-setbg="/site/img/products/man-large.jpg">
 							<h2>Men’s</h2>
-							<a href="#">Discover More</a>
+							<a  th:href="@{|/product/list?gender=1|}">Discover More</a>
 						</div>
 					</div>
 				</div>

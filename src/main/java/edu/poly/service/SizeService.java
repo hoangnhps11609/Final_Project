@@ -70,4 +70,6 @@ public interface SizeService {
 
 	<S extends Size> S save(S entity);
 
+	List<Size> findSizeByCate(String string);
+
 }

@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import edu.poly.dao.CommentDAO;
+import edu.poly.entity.Account;
 import edu.poly.entity.Comment;
 import edu.poly.service.CommentService;
 @Service
@@ -170,5 +171,10 @@ public class CommentServiceImpl implements CommentService{
 	@Override
 	public List<Comment> findByProductId(Integer id) {
 		return commentDAO.findByProductId(id);
+	}
+
+	@Override
+	public Comment create(Comment comment) {
+		return commentDAO.save(comment);
 	}
 }
