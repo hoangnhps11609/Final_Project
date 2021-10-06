@@ -120,25 +120,27 @@
 <div class="huan">
 	<div class="nen">
 		<ul class="nav" id="myTab" role="tablist">
-			<li class="col-sm-9 ">
+			<li class="col-sm-10 ">
 				<a class="nav-link " id="home-tab" data-toggle="tab" data-target="#edit" role="tab" aria-controls="home"
 					aria-selected="true">
 					Account Edition</a>
-	
+
 				<a class="nav-link" id="profile-tab" data-toggle="tab" data-target="#list" role="tab"
 					aria-controls="profile" aria-selected="false">
 					List Account</a>
 				<div class="animation start-home"></div>
 			</li>
-	
+
 		</ul>
 		<div class="search-box1">
-			<input class="search-txt1" name="" type="text" id="myInput"  class="form-control" ng-model="statistic.from"  placeholder="Search	" />
-			<a class="search-btn1" >
-				<button ng-click="statistic()">A</button>
+			<input class="search-txt1" name="" type="text" id="myInput" class="form-control" ng-model="statistic.from"
+				placeholder="Search	" />
+			<a class="search-btn1">
+				<button style="opacity:0 ; z-index: 20" ng-click="statistic()"></button><i style="position: absolute;"
+					class="fa fa-search"></i>
 			</a>
-	
-	
+
+
 		</div>
 	</div>
 	<div class="tab-content" id="myTabContent">

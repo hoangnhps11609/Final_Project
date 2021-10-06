@@ -1,27 +1,29 @@
 <div class="card">
-	<div class="card-header"><h3>List Products</h3></div>
+	<div class="card-header">
+		<h3>List Products</h3>
+	</div>
 	<div class="card-body">
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th scope="col">Image</th>
-					<th scope="col">ID</th>
-					<th scope="col" >Name</th>
-					<th scope="col">Price</th>
-					<th scope="col">Discount</th>
-					<th scope="col">Category</th>
-					<th scope="col">Gender</th>
-					<th scope="col">Brand</th>
-					
-					<th><img style="width: 100px;height: 80px;position: absolute;top: 65px;" 
-						src="/assets/images/xenoel1.png" alt="">
+					<th width="10%" scope="col">Image</th>
+					<th width="3%" scope="col">ID</th>
+					<th width="10%" scope="col">Name</th>
+					<th width="10%" scope="col">Price</th>
+					<th width="10%" scope="col">Discount</th>
+					<th width="10%" scope="col">Category</th>
+					<th width="10%" scope="col">Gender</th>
+					<th width="10%" scope="col">Brand</th>
+
+					<th width="10%"><img style="width: 100px;height: 80px;position: absolute;top: 65px;"
+							src="/assets/images/xenoel1.png" alt="">
 					</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="item in pager.items">
 					<td width="100px">
-						<img ng-src="{{'/assets/images/' + item.image}}" width="100%"/>
+						<img ng-src="{{'/assets/images/' + item.image}}" width="100%" />
 					</td>
 					<td>{{item.id}}</td>
 					<td style="max-width: 250px">{{item.name}}</td>
@@ -30,7 +32,7 @@
 					<td>{{item.category.name}}</td>
 					<td>{{item.gender.name}}</td>
 					<td>{{item.brand.name}}</td>
-					
+
 					<td>
 						<div class="btn-group btn-group-xs">
 							<button class="btn btn-warning mgr5px" ng-click="edit(item)">Edit</button>

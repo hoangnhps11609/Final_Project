@@ -8,7 +8,7 @@
 
 	.nen .nav {
 		position: relative;
-		width: 60%;
+		width: 90%;
 		height: 50px;
 		background: #34495e;
 		font-size: 0;
@@ -57,6 +57,15 @@
 		left: 180px;
 	}
 
+	.nen .nav li a:nth-child(3) {
+		width: 180px;
+	}
+
+	.nen .nav li a:nth-child(3):hover~.animation {
+		width: 180px;
+		left: 360px;
+	}
+
 	.my-2 {
 		margin-left: 20px;
 	}
@@ -75,7 +84,7 @@
 	}
 
 	.search-box1:hover>.search-txt1 {
-		width: 240px;
+		width: 180px;
 		padding: 0 6px;
 	}
 
@@ -119,15 +128,15 @@
 <div class="huan">
 	<div class="nen">
 		<ul class="nav" id="myTab" role="tablist">
-			<li class="col-sm-9">
+			<li class="col-sm-10">
 				<a class="nav-link" id="home-tab" data-toggle="tab" data-target="#edit" role="tab" aria-controls="home"
 					aria-selected="true">
 					Product Edition</a>
-				
+
 				<a class="nav-link" id="profile-tab" data-toggle="tab" data-target="#list" role="tab"
 					aria-controls="profile" aria-selected="false">
 					List Products</a>
-				
+
 				<a class="nav-link" id="profile-tab2" data-toggle="tab" data-target="#list2" role="tab"
 					aria-controls="profile" aria-selected="false">
 					List Products 2</a>
@@ -140,7 +149,7 @@
 				<i class="fa fa-search"></i>
 			</a>
 
-			
+
 		</div>
 
 	</div>
