@@ -122,9 +122,36 @@
 										<a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
 									</div>
 									<div class="pd-rating">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+										<div th:if="0.0<=${ratePro} and ${ratePro} < 1.5">
+											<i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i
+											class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
 											class="fa fa-star-o"></i> <span>(5)</span>
+										</div>
+										
+										<div th:if="1.5<=${ratePro} and ${ratePro} < 2.5">
+											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+											class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
+											class="fa fa-star-o"></i> <span>(5)</span>
+										</div>
+										
+										<div th:if="2.5<=${ratePro} and ${ratePro} < 3.5">
+											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+												class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i
+												class="fa fa-star-o"></i> <span>(5)</span>
+										</div>
+										
+										<div th:if="3.5<=${ratePro} and ${ratePro} < 4.5">
+											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+												class="fa fa-star-o"></i> <span>(5)</span>
+										</div>
+										
+										<div th:if="4.5<=${ratePro} and ${ratePro} <= 5.0">
+											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+											class="fa fa-star"></i> <span>(5)</span>
+										</div>
+										
 									</div>
 									<div class="pd-desc">
 										<p>Product for [[*{gender.name}]]</p>
@@ -318,6 +345,14 @@
 															<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 																class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 																class="fa fa-star-o"></i> <span>(5)</span>
+														</div>
+													</td>
+												</tr>
+												<tr th:if="*{discount} !=0">
+													<td class="p-catagory">Sale off</td>
+													<td>
+														<div class="p-price text-danger">
+															[[*{discount}]]%
 														</div>
 													</td>
 												</tr>

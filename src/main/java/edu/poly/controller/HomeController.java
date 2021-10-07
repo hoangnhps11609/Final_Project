@@ -89,21 +89,6 @@ public class HomeController {
 		List<Product> mAccessList = productService.findByCategoryIdandGender("1003", 1);
 		model.addAttribute("mAccessList", mAccessList);
 		
-		List<Category> cate = categoryService.findAll();
-		model.addAttribute("cate", cate);
-		
-		List<Brand> brands = brandService.findAll();
-		model.addAttribute("brands", brands);
-		
-		List<Gender> gender = genderService.findAll();
-		model.addAttribute("genderlist", gender);
-		
-		List<Size> sizes = sizeService.findAll();
-		model.addAttribute("sizes", sizes);
-		
-		List<Color> colors = colorService.findAll();
-		model.addAttribute("colors", colors);
-		
 		List<Blog> blog = blogService.findAll();
 		model.addAttribute("blogs", blog);
 		

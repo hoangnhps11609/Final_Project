@@ -40,6 +40,7 @@ import edu.poly.entity.Comment;
 import edu.poly.entity.Gender;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductDetail;
+import edu.poly.entity.RateAVG;
 import edu.poly.entity.Size;
 import edu.poly.entity.SizePro;
 
@@ -135,29 +136,7 @@ public class ProductController {
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
 		model.addAttribute("productPage", resultPage);
-		model.addAttribute("size", pageSize);
-
-		List<Gender> genderlist = genderService.findAll();
-		model.addAttribute("genderlist", genderlist);
-
-		List<Brand> brands = brandService.findAll();
-		model.addAttribute("brands", brands);
-
-		List<Size> sizes = sizeService.findAll();
-		model.addAttribute("sizes", sizes);
-
-		List<Color> colors = colorService.findAll();
-		model.addAttribute("colors", colors);
-		
-		List<Category> cate = categoryService.findAll();
-		model.addAttribute("cate", cate);
-		
-		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
-		model.addAttribute("sizesforshoes", sizesforshoes);
-		
-		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
-		model.addAttribute("sizesforclothings", sizesforclothings);
-		
+		model.addAttribute("size", pageSize);		
 		return "product/list";
 	}
 	
@@ -187,28 +166,6 @@ public class ProductController {
 		}
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
-
-		List<Gender> genderlist = genderService.findAll();
-		model.addAttribute("genderlist", genderlist);
-
-		List<Brand> brands = brandService.findAll();
-		model.addAttribute("brands", brands);
-
-		List<Size> sizes = sizeService.findAll();
-		model.addAttribute("sizes", sizes);
-
-		List<Color> colors = colorService.findAll();
-		model.addAttribute("colors", colors);
-		
-		List<Category> cate = categoryService.findAll();
-		model.addAttribute("cate", cate);
-		
-		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
-		model.addAttribute("sizesforshoes", sizesforshoes);
-		
-		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
-		model.addAttribute("sizesforclothings", sizesforclothings);
-		
 		
 		return "product/listall";
 	}
@@ -243,27 +200,6 @@ public class ProductController {
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
 
-		List<Gender> genderlist = genderService.findAll();
-		model.addAttribute("genderlist", genderlist);
-		
-		List<Brand> brands = brandService.findAll();
-		model.addAttribute("brands", brands);
-
-		List<Size> sizes = sizeService.findAll();
-		model.addAttribute("sizes", sizes);
-
-		List<Category> cate = categoryService.findAll();
-		model.addAttribute("cate", cate);
-		
-		List<Color> colors = colorService.findAll();
-		model.addAttribute("colors", colors);
-		
-		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
-		model.addAttribute("sizesforshoes", sizesforshoes);
-		
-		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
-		model.addAttribute("sizesforclothings", sizesforclothings);
-		
 		return "product/listforcolor";
 	}
 
@@ -295,27 +231,6 @@ public class ProductController {
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
 
-		List<Gender> genderlist = genderService.findAll();
-		model.addAttribute("genderlist", genderlist);
-		
-		List<Brand> brands = brandService.findAll();
-		model.addAttribute("brands", brands);
-
-		List<Category> cate = categoryService.findAll();
-		model.addAttribute("cate", cate);
-		
-		List<Size> sizes = sizeService.findAll();
-		model.addAttribute("sizes", sizes);
-
-		List<Color> colors = colorService.findAll();
-		model.addAttribute("colors", colors);
-		
-		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
-		model.addAttribute("sizesforshoes", sizesforshoes);
-		
-		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
-		model.addAttribute("sizesforclothings", sizesforclothings);
-		
 		return "product/listforsize";
 	}
 
@@ -360,30 +275,20 @@ public class ProductController {
 			model.addAttribute("prodetail", prodetail);
 		}
 		
+		RateAVG rateAVG = commentService.rateAVG(id);
+		if (rateAVG == null) {
+			Double ratePro = 5.0;
+			model.addAttribute("ratePro", ratePro);
+		}else {
+			Double ratePro = rateAVG.getAvg();
+			model.addAttribute("ratePro", ratePro);
+		}
+		
+		
 		
 		List<Comment> cmtlist = commentService.findByProductId(id);
 		model.addAttribute("cmtlist", cmtlist);
 		
-		List<Gender> genderlist = genderService.findAll();
-		model.addAttribute("genderlist", genderlist);
-		
-		List<Brand> brands = brandService.findAll();
-		model.addAttribute("brands", brands);
-		
-		List<Category> cate = categoryService.findAll();
-		model.addAttribute("cate", cate);
-
-		List<Size> sizes = sizeService.findAll();
-		model.addAttribute("sizes", sizes);
-
-		List<Color> colors = colorService.findAll();
-		model.addAttribute("colors", colors);
-		
-		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
-		model.addAttribute("sizesforshoes", sizesforshoes);
-		
-		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
-		model.addAttribute("sizesforclothings", sizesforclothings);
 		
 		return "product/detail";
 	}
@@ -423,29 +328,7 @@ public class ProductController {
 		}
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
-		
-		List<Gender> genderlist = genderService.findAll();
-		model.addAttribute("genderlist", genderlist);
-		
-		List<Brand> brands = brandService.findAll();
-		model.addAttribute("brands", brands);
-		
-		List<Category> cate = categoryService.findAll();
-		model.addAttribute("cate", cate);
-
-		List<Size> sizes = sizeService.findAll();
-		model.addAttribute("sizes", sizes);
-
-		List<Color> colors = colorService.findAll();
-		model.addAttribute("colors", colors);
-		
-		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
-		model.addAttribute("sizesforshoes", sizesforshoes);
-		
-		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
-		model.addAttribute("sizesforclothings", sizesforclothings);
-		
-		
+				
 		return "product/filter";
 	}
 	

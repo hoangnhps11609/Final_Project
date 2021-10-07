@@ -17,8 +17,6 @@ public class ShoppingCartController {
 	
 	@RequestMapping("/cart/view")
 	public String cart(Model model) {
-		List<Gender> gender = genderService.findAll();
-		model.addAttribute("genderlist", gender);
 		return "cart/view";
 	}
 }

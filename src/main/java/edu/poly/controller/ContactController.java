@@ -17,8 +17,6 @@ public class ContactController {
 	
 	@RequestMapping("/contact")
 	public String blog(Model model) {
-		List<Gender> gender = genderService.findAll();
-		model.addAttribute("genderlist", gender);
 		return "home/contact";
 	}
 }

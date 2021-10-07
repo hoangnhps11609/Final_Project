@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 
 import edu.poly.entity.Account;
 import edu.poly.entity.Comment;
+import edu.poly.entity.RateAVG;
 
 public interface CommentService {
 
@@ -74,5 +75,7 @@ public interface CommentService {
 	List<Comment> findByProductId(Integer id);
 
 	Comment create(Comment comment);
+
+	RateAVG rateAVG(Integer id);
 
 }

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import edu.poly.entity.Comment;
+import edu.poly.entity.RateAVG;
 @Repository
 public interface CommentDAO extends JpaRepository<Comment, Integer>{
 
@@ -15,4 +16,7 @@ public interface CommentDAO extends JpaRepository<Comment, Integer>{
 	("Select c from Comment c where c.product.id = ?1")
 	List<Comment> findByProductId(Integer id);
 
+	@Query
+	("Select new RateAVG(c.product.id, avg(c.rate)) from Comment c where c.product.id = ?1 group by c.product.id")
+	RateAVG rateAVG(Integer id);
 }
