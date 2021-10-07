@@ -47,8 +47,6 @@ public class ChangePasswordController {
 		String username = request.getRemoteUser();
 		Account v = adao.findByUsername(username);
 		model.addAttribute("items",v);
-		List<Gender> gender = genderService.findAll();
-		model.addAttribute("genderlist", gender);
 		return "home/change-password";
 	}
 	

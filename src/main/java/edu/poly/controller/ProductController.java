@@ -40,6 +40,7 @@ import edu.poly.entity.Comment;
 import edu.poly.entity.Gender;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductDetail;
+import edu.poly.entity.RateAVG;
 import edu.poly.entity.Size;
 import edu.poly.entity.SizePro;
 
@@ -135,29 +136,7 @@ public class ProductController {
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
 		model.addAttribute("productPage", resultPage);
-		model.addAttribute("size", pageSize);
-
-		List<Gender> genderlist = genderService.findAll();
-		model.addAttribute("genderlist", genderlist);
-
-		List<Brand> brands = brandService.findAll();
-		model.addAttribute("brands", brands);
-
-		List<Size> sizes = sizeService.findAll();
-		model.addAttribute("sizes", sizes);
-
-		List<Color> colors = colorService.findAll();
-		model.addAttribute("colors", colors);
-		
-		List<Category> cate = categoryService.findAll();
-		model.addAttribute("cate", cate);
-		
-		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
-		model.addAttribute("sizesforshoes", sizesforshoes);
-		
-		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
-		model.addAttribute("sizesforclothings", sizesforclothings);
-		
+		model.addAttribute("size", pageSize);		
 		return "product/list";
 	}
 	
@@ -187,28 +166,6 @@ public class ProductController {
 		}
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
-
-		List<Gender> genderlist = genderService.findAll();
-		model.addAttribute("genderlist", genderlist);
-
-		List<Brand> brands = brandService.findAll();
-		model.addAttribute("brands", brands);
-
-		List<Size> sizes = sizeService.findAll();
-		model.addAttribute("sizes", sizes);
-
-		List<Color> colors = colorService.findAll();
-		model.addAttribute("colors", colors);
-		
-		List<Category> cate = categoryService.findAll();
-		model.addAttribute("cate", cate);
-		
-		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
-		model.addAttribute("sizesforshoes", sizesforshoes);
-		
-		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
-		model.addAttribute("sizesforclothings", sizesforclothings);
-		
 		
 		return "product/listall";
 	}
@@ -243,27 +200,6 @@ public class ProductController {
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
 
-		List<Gender> genderlist = genderService.findAll();
-		model.addAttribute("genderlist", genderlist);
-		
-		List<Brand> brands = brandService.findAll();
-		model.addAttribute("brands", brands);
-
-		List<Size> sizes = sizeService.findAll();
-		model.addAttribute("sizes", sizes);
-
-		List<Category> cate = categoryService.findAll();
-		model.addAttribute("cate", cate);
-		
-		List<Color> colors = colorService.findAll();
-		model.addAttribute("colors", colors);
-		
-		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
-		model.addAttribute("sizesforshoes", sizesforshoes);
-		
-		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
-		model.addAttribute("sizesforclothings", sizesforclothings);
-		
 		return "product/listforcolor";
 	}
 
@@ -295,38 +231,19 @@ public class ProductController {
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
 
-		List<Gender> genderlist = genderService.findAll();
-		model.addAttribute("genderlist", genderlist);
-		
-		List<Brand> brands = brandService.findAll();
-		model.addAttribute("brands", brands);
-
-		List<Category> cate = categoryService.findAll();
-		model.addAttribute("cate", cate);
-		
-		List<Size> sizes = sizeService.findAll();
-		model.addAttribute("sizes", sizes);
-
-		List<Color> colors = colorService.findAll();
-		model.addAttribute("colors", colors);
-		
-		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
-		model.addAttribute("sizesforshoes", sizesforshoes);
-		
-		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
-		model.addAttribute("sizesforclothings", sizesforclothings);
-		
 		return "product/listforsize";
 	}
 
 
 	@RequestMapping("product/detail/{id}")
-	public String detail(Model model, @PathVariable("id") Integer id,
+	public String detail(Model model, @PathVariable("id") Integer id, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
 			@RequestParam(name = "sizepro", required = false) Integer sizepro) {
-		
-		if(sizepro != null) {
+		String username = request.getRemoteUser();
+		if(username != null) {
 //			ProductDetail item = productDetailService.findByIdandSize(id, sizepro);
 //			model.addAttribute("item", item);
+			Account account = accountService.findById(username);
+			model.addAttribute("account", account);
 			List<ColorPro> colorProlist = productDetailService.getColorByProduct(id, sizepro);
 			model.addAttribute("colorProlist", colorProlist);
 			Product item = productservice.findById(id);
@@ -342,41 +259,54 @@ public class ProductController {
 			List<ProductDetail> prodetail = productDetailService.findByProductIDandSizeID(id, sizepro);
 			model.addAttribute("prodetail", prodetail);
 		}else {
+			List<ColorPro> colorProlist = productDetailService.getColorByProduct(id, sizepro);
+			model.addAttribute("colorProlist", colorProlist);
 			Product item = productservice.findById(id);
 			model.addAttribute("item", item);
 			model.addAttribute("productID", id);
 			List<SizePro> sizeProlist = productDetailService.getSizeByProduct(id);
-			model.addAttribute("sizeProlist", sizeProlist);
-			List<ColorPro> colorProlist = productDetailService.getColorByProduct(id);
-			model.addAttribute("colorProlist", colorProlist);
+			model.addAttribute("sizeProlist", sizeProlist);	
+			model.addAttribute("sizepro", sizepro);
+			
+			Size sizeofPro = sizeService.getById(sizepro);
+			model.addAttribute("sizeofPro", sizeofPro);
+			
+			List<ProductDetail> prodetail = productDetailService.findByProductIDandSizeID(id, sizepro);
+			model.addAttribute("prodetail", prodetail);
 		}
-		String username = request.getRemoteUser();
-		Account account = accountService.findById(username);
-		model.addAttribute("account", account);
 		
-		List<Comment> cmtlist = commentService.findByProductId(id);
-		model.addAttribute("cmtlist", cmtlist);
-		
-		List<Gender> genderlist = genderService.findAll();
-		model.addAttribute("genderlist", genderlist);
-		
-		List<Brand> brands = brandService.findAll();
-		model.addAttribute("brands", brands);
-		
-		List<Category> cate = categoryService.findAll();
-		model.addAttribute("cate", cate);
+		RateAVG rateAVG = commentService.rateAVG(id);
+		if (rateAVG == null) {
+			Double ratePro = 5.0;
+			model.addAttribute("ratePro", ratePro);
+		}else {
+			Double ratePro = rateAVG.getAvg();
+			model.addAttribute("ratePro", ratePro);
+		}
 
-		List<Size> sizes = sizeService.findAll();
-		model.addAttribute("sizes", sizes);
+		int currentPage = page.orElse(1);
+		int pageSize = size.orElse(3);
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id"));
+		Page<Comment> resultPage = null;
+		resultPage = commentService.findByProductId(id, pageable);
 
-		List<Color> colors = colorService.findAll();
-		model.addAttribute("colors", colors);
+		int totalPages = resultPage.getTotalPages();
+		if (totalPages > 0) {
+			int start = Math.max(1, currentPage - 2);
+			int end = Math.min(currentPage + 2, totalPages);
+
+			if (totalPages > 5) {
+				if (end == totalPages)
+					start = end - 5;
+				else if (start == 1)
+					end = start + 5;
+			}
+			List<Integer> pageNumbers = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		model.addAttribute("cmtlist", resultPage);
+		model.addAttribute("size", pageSize);
 		
-		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
-		model.addAttribute("sizesforshoes", sizesforshoes);
-		
-		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
-		model.addAttribute("sizesforclothings", sizesforclothings);
 		
 		return "product/detail";
 	}
@@ -416,29 +346,7 @@ public class ProductController {
 		}
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
-		
-		List<Gender> genderlist = genderService.findAll();
-		model.addAttribute("genderlist", genderlist);
-		
-		List<Brand> brands = brandService.findAll();
-		model.addAttribute("brands", brands);
-		
-		List<Category> cate = categoryService.findAll();
-		model.addAttribute("cate", cate);
-
-		List<Size> sizes = sizeService.findAll();
-		model.addAttribute("sizes", sizes);
-
-		List<Color> colors = colorService.findAll();
-		model.addAttribute("colors", colors);
-		
-		List<Size> sizesforshoes = sizeService.findSizeByCate("Size For Shoes:" + "%");
-		model.addAttribute("sizesforshoes", sizesforshoes);
-		
-		List<Size> sizesforclothings = sizeService.findSizeByCate("Size For Clothings:" + "%");
-		model.addAttribute("sizesforclothings", sizesforclothings);
-		
-		
+				
 		return "product/filter";
 	}
 	

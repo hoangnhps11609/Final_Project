@@ -13,15 +13,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class ColorPro implements Serializable {
+public class RateAVG implements Serializable {
 	@Id
 	Integer id;
 	
-	String name;
-	
-	Integer red;
-	
-	Integer green;
-	
-	Integer blue;
+	Double avg;
 }

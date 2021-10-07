@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import edu.poly.dao.CommentDAO;
 import edu.poly.entity.Account;
 import edu.poly.entity.Comment;
+import edu.poly.entity.RateAVG;
 import edu.poly.service.CommentService;
 @Service
 public class CommentServiceImpl implements CommentService{
@@ -169,12 +170,17 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public List<Comment> findByProductId(Integer id) {
-		return commentDAO.findByProductId(id);
+	public Page<Comment> findByProductId(Integer id, Pageable pageable) {
+		return commentDAO.findByProductId(id, pageable);
 	}
 
 	@Override
 	public Comment create(Comment comment) {
 		return commentDAO.save(comment);
+	}
+
+	@Override
+	public RateAVG rateAVG(Integer id) {
+		return commentDAO.rateAVG(id);
 	}
 }

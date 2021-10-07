@@ -39,8 +39,6 @@ public class ForgotPasswordController {
 	
 	@RequestMapping("forgot-password")
 	public String index(Model model) {
-		List<Gender> gender = genderService.findAll();
-		model.addAttribute("genderlist", gender);
 		return "home/forgot-password";
 	}
 	

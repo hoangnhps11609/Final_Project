@@ -217,7 +217,17 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		});
 	}
 	
+	$scope.colorinitialize = function() {
+		//load accounts
+		$http.get("/rest/colors").then(resp => {
+			$scope.items = resp.data;
+			$scope.items.forEach(coloritem => {
+			})
+		});
+	}
 	
+	//Khởi tạo
+	$scope.colorinitialize();
 	
 });
 

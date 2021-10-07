@@ -28,6 +28,12 @@ public class Color implements Serializable{
 	
 	String name;
 	
+	Integer red;
+	
+	Integer green;
+	
+	Integer blue;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "color")
 	List<ProductDetail> productDetails;

@@ -15,33 +15,33 @@ import edu.poly.entity.Report;
 public interface ProductDAO extends JpaRepository<Product, Integer> {
 	
 	@Query
-	("SELECT p FROM Product p WHERE p.category.id=?1")
+	("SELECT p FROM Product p WHERE p.category.id=?1 and p.available = 'true'")
 	List<Product> findByCategoryId(String cid);
 
 	Page<Product> findByNameContaining(String name, Pageable pageable);
 
 	@Query
-	("SELECT p FROM Product p WHERE p.category.id=?1")
+	("SELECT p FROM Product p WHERE p.category.id=?1 and p.available = 'true'")
 	Page<Product> findByCategoryId(String string, Pageable pageable);
 
 	
 	@Query
-	("SELECT p FROM Product p WHERE p.price between ?1 and ?2")
+	("SELECT p FROM Product p WHERE p.price between ?1 and ?2 and p.available = 'true'")
 	Page<Product> findByPriceContaining(Double min, Double max, Pageable pageable);
 
 	@Query
-	("SELECT p FROM Product p WHERE p.category.id=?1 and p.price between ?2 and ?3")
+	("SELECT p FROM Product p WHERE p.category.id=?1 and p.price between ?2 and ?3 and p.available = 'true'")
 	Page<Product> findByCategoryIdAndPrice(String categoryID, Double min, Double max, Pageable pageable);
 
 	
 	@Query
-	("SELECT p FROM Product p WHERE p.name like ?1")
+	("SELECT p FROM Product p WHERE p.name like ?1 and p.available = 'true'")
 	Page<Product> findByKeyword(String search, Pageable pageable);
 
 	
 	
 	@Query
-	("SELECT p FROM Product p WHERE p.category.id=?1 and p.gender.id=?2")
+	("SELECT p FROM Product p WHERE p.category.id=?1 and p.gender.id=?2 and p.available = 'true'")
 	List<Product> findByCategoryIdandGender(String categoryid, int gender);
 	
 
@@ -50,15 +50,15 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 
 	
 	@Query
-	("SELECT p FROM Product p WHERE p.brand.id=?1")
+	("SELECT p FROM Product p WHERE p.brand.id=?1 and p.available = 'true'")
 	Page<Product> findByBrandId(Integer brand, Pageable pageable);
 
 	@Query
-	("SELECT p FROM Product p WHERE p.gender.id=?1")
+	("SELECT p FROM Product p WHERE p.gender.id=?1 and p.available = 'true'")
 	Page<Product> findByGenderId(Integer gender, Pageable pageable);
 
 	@Query
-	("SELECT p FROM Product p WHERE p.name like ?1 or p.id like ?1")
+	("SELECT p FROM Product p WHERE p.name like ?1 or p.id like ?1 and p.available = 'true'")
 	List<Product> findbyName(String valued);
 
 }

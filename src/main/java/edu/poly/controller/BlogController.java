@@ -75,9 +75,6 @@ public class BlogController {
 		model.addAttribute("blogPage", resultPage);
 		model.addAttribute("size", pageSize);
 
-		List<Gender> gender = genderService.findAll();
-		model.addAttribute("genderlist", gender);
-		
 		
 //		List<Blog> list = blogService.findAll();
 //		model.addAttribute("items", list);
