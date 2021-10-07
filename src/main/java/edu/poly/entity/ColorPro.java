@@ -16,5 +16,12 @@ import lombok.NoArgsConstructor;
 public class ColorPro implements Serializable {
 	@Id
 	Integer id;
+	
 	String name;
+	
+	Integer red;
+	
+	Integer green;
+	
+	Integer blue;
 }

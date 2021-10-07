@@ -323,10 +323,12 @@ public class ProductController {
 	@RequestMapping("product/detail/{id}")
 	public String detail(Model model, @PathVariable("id") Integer id,
 			@RequestParam(name = "sizepro", required = false) Integer sizepro) {
-		
-		if(sizepro != null) {
+		String username = request.getRemoteUser();
+		if(username != null) {
 //			ProductDetail item = productDetailService.findByIdandSize(id, sizepro);
 //			model.addAttribute("item", item);
+			Account account = accountService.findById(username);
+			model.addAttribute("account", account);
 			List<ColorPro> colorProlist = productDetailService.getColorByProduct(id, sizepro);
 			model.addAttribute("colorProlist", colorProlist);
 			Product item = productservice.findById(id);
@@ -342,17 +344,22 @@ public class ProductController {
 			List<ProductDetail> prodetail = productDetailService.findByProductIDandSizeID(id, sizepro);
 			model.addAttribute("prodetail", prodetail);
 		}else {
+			List<ColorPro> colorProlist = productDetailService.getColorByProduct(id, sizepro);
+			model.addAttribute("colorProlist", colorProlist);
 			Product item = productservice.findById(id);
 			model.addAttribute("item", item);
 			model.addAttribute("productID", id);
 			List<SizePro> sizeProlist = productDetailService.getSizeByProduct(id);
-			model.addAttribute("sizeProlist", sizeProlist);
-			List<ColorPro> colorProlist = productDetailService.getColorByProduct(id);
-			model.addAttribute("colorProlist", colorProlist);
+			model.addAttribute("sizeProlist", sizeProlist);	
+			model.addAttribute("sizepro", sizepro);
+			
+			Size sizeofPro = sizeService.getById(sizepro);
+			model.addAttribute("sizeofPro", sizeofPro);
+			
+			List<ProductDetail> prodetail = productDetailService.findByProductIDandSizeID(id, sizepro);
+			model.addAttribute("prodetail", prodetail);
 		}
-		String username = request.getRemoteUser();
-		Account account = accountService.findById(username);
-		model.addAttribute("account", account);
+		
 		
 		List<Comment> cmtlist = commentService.findByProductId(id);
 		model.addAttribute("cmtlist", cmtlist);

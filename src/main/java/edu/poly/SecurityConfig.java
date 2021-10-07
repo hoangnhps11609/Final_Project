@@ -15,6 +15,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 import edu.poly.entity.Account;
 import edu.poly.service.AccountService;
@@ -58,6 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.loginPage("/security/login/form")
 			.loginProcessingUrl("/security/login/form")
 			.defaultSuccessUrl("/security/login/success", false)
+			.successHandler(successHandler())
 			.failureUrl("/security/login/error");
 		
 		http.rememberMe()
@@ -80,5 +83,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	public void configure(WebSecurity web) throws Exception{
 		web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
+	}
+	
+	@Bean
+	public AuthenticationSuccessHandler successHandler() {
+	    SimpleUrlAuthenticationSuccessHandler handler = new SimpleUrlAuthenticationSuccessHandler();
+	    handler.setUseReferer(true);
+	    return handler;
 	}
 }

@@ -1932,7 +1932,7 @@ ol {
 	top: 4px;
 	height: 18px;
 	width: 18px;
-	background: #252525;
+	background: var(--color);
 	border-radius: 50%;
 	border-style: solid;
 	border-width: 1px;
@@ -2257,7 +2257,7 @@ ol {
 .product-details .pd-color .pd-color-choose .cc-item label {
 	height: 20px;
 	width: 20px;
-	background: #252525;
+	background: var(--color);
 	border-radius: 50%;
 	border-style: solid;
 	border-color: #c0c0c0;
@@ -2269,7 +2269,7 @@ ol {
 
 /* -----------Color------- */
 .product-details .pd-color .pd-color-choose .cc-item label.cc-yellow {
-	background: #EEEE21;
+	background: var(--color);
 }
 
 .product-details .pd-color .pd-color-choose .cc-item label.cc-gray{
@@ -2579,8 +2579,11 @@ ol {
 	display: inline-block;
 	height: 20px;
 	width: 20px;
-	background: #ffff00;
+	background: var(--color);
 	border-radius: 50%;
+	border-style: solid;
+    border-color: #c0c0c0;
+    border-width: 1px;
 }
 .specification-table table tr td .cs-color-gray {
 	display: inline-block;

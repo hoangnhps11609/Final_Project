@@ -67,27 +67,20 @@
 							</form>
 						</div>
 
+
+
 						<div class="filter-widget">
 							<h4 class="fw-title">Color</h4>
 							<div class="fw-color-choose">
-								<div class="cs-item" th:each="c:${colors}">
-									<a th:href="@{|/product/listcolor?color=${c.id}|}">
-										<label class="cs-yellow" th:if="${c.id == 1}" for="cs-yellow">[[${c.name}]]</label>
-										<label class="cs-gray" th:if="${c.id == 2}" for="cs-gray">[[${c.name}]]</label>
-										<label class="cs-green" th:if="${c.id == 3}" for="cs-green">[[${c.name}]]</label>
-										<label class="cs-white" th:if="${c.id == 4}" for="cs-white">[[${c.name}]]</label>
-										<label class="cs-black" th:if="${c.id == 5}" for="cs-black">[[${c.name}]]</label>
-										<label class="cs-blue" th:if="${c.id == 6}" for="cs-blue">[[${c.name}]]</label>
-										<label class="cs-brown" th:if="${c.id == 7}" for="cs-brown">[[${c.name}]]</label>
-										<label class="cs-orange" th:if="${c.id == 8}" for="cs-orange">[[${c.name}]]</label>
-										<label class="cs-pink" th:if="${c.id == 9}" for="cs-pink">[[${c.name}]]</label>
-										<label class="cs-red" th:if="${c.id == 10}" for="cs-red">[[${c.name}]]</label>
+								<div class="cs-item" ng-repeat="coloritem in items">
+									<a th:href="@{|/product/listcolor?color={{coloritem.id}}|}">
+										<label class="m-2" style="--color: rgb({{coloritem.red}}, {{coloritem.green}}, {{coloritem.blue}})">{{coloritem.name}}</label>
 									</a>
 								</div>
 							</div>
 						</div>
 						
-						<div class="filter-widget" style="padding-top: 200px;">
+						<div class="filter-widget" style="padding-top: 240px;">
 							<h4 class="fw-title float-left">Size for Clothings</h4>
 							<div class="fw-size-choose row col">
 								<div class="sc-item" th:each="s:${sizesforclothings}">

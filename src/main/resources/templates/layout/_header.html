@@ -32,12 +32,60 @@
 						</th:block>
 						<th:block th:unless="${#request.remoteUser}">
 
-							<a th:href="@{/security/login/form}" class="login-panel"><i
+							<a th:href="@{/security/login/form}" class="login-panel"
+								data-toggle="modal" data-target="#loginModalCenter"><i
 								class="fa fa-sign-in"></i>Login</a>
 							<a th:href="@{/accounts/newaccount}" class="login-panel"
 								style="margin-right: 20px;"><i class="fa fa-address-book"></i>Register</a>
 
 						</th:block>
+
+						<div class="modal fade" id="loginModalCenter" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalCenterTitle"
+							aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" style="max-width: 30%;" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<div class="login-form">
+											<h2>Login</h2>
+											<form th:action="@{/security/login/form}" method="post">
+												<p style="color: red; font-style: italic; font-size: 13pt;">[[${message}]]</p>
+												<div class="group-input">
+													<label>Username or email address *</label> <input
+														type="text" name="username">
+												</div>
+												<div class="group-input">
+													<label>Password *</label> <input type="text"
+														name="password">
+												</div>
+												<div class="group-input gi-check">
+													<div class="gi-more">
+														<label for="save-pass"> Save Password <input
+															type="checkbox" id="save-pass"> <span
+															class="checkmark"></span>
+														</label> <a th:href="@{/home/forgot-password}" class="forget-pass">Forgot
+															your Password</a>
+													</div>
+												</div>
+												<button type="submit" class="site-btn login-btn">Sign
+													In</button>
+											</form>
+											<div class="switch-login">
+												<a th:href="@{/accounts/newaccount}" class="or-login">Or
+													Create An Account</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
 						<!--Login-->
 
 						<div class="lan-selector">
@@ -118,7 +166,8 @@
 																</div>
 																<select class="custom-select" id="brand" name="brand">
 																	<option value="">All Brands</option>
-																	<option th:each="brands:${brands}" th:value="${brands.name}">[[${brands.name}]]</option>
+																	<option th:each="brands:${brands}"
+																		th:value="${brands.name}">[[${brands.name}]]</option>
 																</select>
 															</div>
 														</div>
@@ -134,7 +183,8 @@
 																<select class="custom-select" id="sizepro"
 																	name="sizepro">
 																	<option value="">All Sizes</option>
-																	<option th:each="sizes:${sizes}" th:value="${sizes.name}">[[${sizes.name}]]</option>
+																	<option th:each="sizes:${sizes}"
+																		th:value="${sizes.name}">[[${sizes.name}]]</option>
 																</select>
 															</div>
 														</div>
@@ -175,10 +225,12 @@
 																</div>
 																<div class="col row border mr-1">
 																	<div class="col-6">
-																		<input type="number" min=0 name="min" id="min" placeholder="From" value=0 class="text-dark">
+																		<input type="number" min=0 name="min" id="min"
+																			placeholder="From" value=0 class="text-dark">
 																	</div>
 																	<div class="col-6">
-																		<input type="number" min=0 name="max" id="max" placeholder="To" value = 9999 class="text-dark">
+																		<input type="number" min=0 name="max" id="max"
+																			placeholder="To" value=9999 class="text-dark">
 																	</div>
 																</div>
 															</div>

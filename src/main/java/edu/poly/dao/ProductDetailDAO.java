@@ -31,7 +31,7 @@ public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 	Product findByProductId(Integer id);
 	
 	@Query
-	("SELECT new ColorPro(p.color.id, p.color.name) FROM ProductDetail p WHERE p.product.id=?1 and p.size.id=?2  group by p.color.id, p.color.name")
+	("SELECT new ColorPro(p.color.id, p.color.name, p.color.red, p.color.green, p.color.blue) FROM ProductDetail p WHERE p.product.id=?1 and p.size.id=?2  group by p.color.id, p.color.name, p.color.red, p.color.green, p.color.blue")
 	List<ColorPro> getColorByProduct(Integer id, Integer sizepro);
 	
 	@Query
@@ -40,7 +40,7 @@ public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 
 
 	@Query
-	("SELECT new ColorPro(p.color.id, p.color.name) FROM ProductDetail p WHERE p.product.id=?1  group by p.color.id, p.color.name")
+	("SELECT new ColorPro(p.color.id, p.color.name, p.color.red, p.color.green, p.color.blue) FROM ProductDetail p WHERE p.product.id=?1  group by p.color.id, p.color.name, p.color.red, p.color.green, p.color.blue")
 	List<ColorPro> getColorByProduct(Integer id);
 
 	@Query

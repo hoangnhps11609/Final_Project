@@ -71,24 +71,16 @@
 						<div class="filter-widget">
 							<h4 class="fw-title">Color</h4>
 							<div class="fw-color-choose">
-								<div class="cs-item" th:each="c:${colors}">
-									<a th:href="@{|/product/listcolor?color=${c.id}|}"> <label
-										class="cs-yellow" th:if="${c.id == 1}" for="cs-yellow">[[${c.name}]]</label>
-										<label class="cs-gray" th:if="${c.id == 2}" for="cs-gray">[[${c.name}]]</label>
-										<label class="cs-green" th:if="${c.id == 3}" for="cs-green">[[${c.name}]]</label>
-										<label class="cs-white" th:if="${c.id == 4}" for="cs-white">[[${c.name}]]</label>
-										<label class="cs-black" th:if="${c.id == 5}" for="cs-black">[[${c.name}]]</label>
-										<label class="cs-blue" th:if="${c.id == 6}" for="cs-blue">[[${c.name}]]</label>
-										<label class="cs-brown" th:if="${c.id == 7}" for="cs-brown">[[${c.name}]]</label>
-										<label class="cs-orange" th:if="${c.id == 8}" for="cs-orange">[[${c.name}]]</label>
-										<label class="cs-pink" th:if="${c.id == 9}" for="cs-pink">[[${c.name}]]</label>
-										<label class="cs-red" th:if="${c.id == 10}" for="cs-red">[[${c.name}]]</label>
+								<div class="cs-item" ng-repeat="coloritem in items">
+									<a th:href="@{|/product/listcolor?color={{coloritem.id}}|}">
+										<label class="m-2" style="--color: rgb({{coloritem.red}}, {{coloritem.green}}, {{coloritem.blue}})">{{coloritem.name}}</label>
 									</a>
 								</div>
 							</div>
 						</div>
-
-						<div class="filter-widget" style="padding-top: 200px;">
+						
+						
+						<div class="filter-widget" style="padding-top: 240px;">
 							<h4 class="fw-title float-left">Size for Clothings</h4>
 							<div class="fw-size-choose row col">
 								<div class="sc-item" th:each="s:${sizesforclothings}">
@@ -135,7 +127,7 @@
 											class="fa fa-star-o"></i> <span>(5)</span>
 									</div>
 									<div class="pd-desc">
-										<p>[[*{description}]]</p>
+										<p>Product for [[*{gender.name}]]</p>
 										<h4>
 											$
 											<o>[[*{price*(1-discount*0.01)}]]</o>
@@ -161,26 +153,38 @@
 										</div> -->
 									</div>
 
+									<!-- 									<div class="pd-color"> -->
+									<!-- 										<h6>Color</h6> -->
+									<!-- 										<div class="pd-color-choose" -->
+									<!-- 											th:each="colorPro:${colorProlist}"> -->
+									<!-- 											<div class="cc-item"> -->
+									<!-- 												<label for="cc-violet" th:if="${colorPro.id == 1}" -->
+									<!-- 													class="cc-yellow"></label> <label for="cc-violet" -->
+									<!-- 													th:if="${colorPro.id == 2}" class="cc-gray"></label> <label -->
+									<!-- 													for="cc-violet" th:if="${colorPro.id == 3}" -->
+									<!-- 													class="cc-green"></label> <label for="cc-violet" -->
+									<!-- 													th:if="${colorPro.id == 4}" class="cc-white"></label> <label -->
+									<!-- 													for="cc-violet" th:if="${colorPro.id == 5}" -->
+									<!-- 													class="cc-black"></label> <label for="cc-violet" -->
+									<!-- 													th:if="${colorPro.id == 6}" class="cc-blue"></label> <label -->
+									<!-- 													for="cc-violet" th:if="${colorPro.id == 7}" -->
+									<!-- 													class="cc-brown"></label> <label for="cc-violet" -->
+									<!-- 													th:if="${colorPro.id == 8}" class="cc-orange"></label> <label -->
+									<!-- 													for="cc-violet" th:if="${colorPro.id == 9}" class="cc-pink"></label> -->
+									<!-- 												<label for="cc-violet" th:if="${colorPro.id == 10}" -->
+									<!-- 													class="cc-red"></label> -->
+									<!-- 											</div> -->
+									<!-- 										</div> -->
+									<!-- 									</div> -->
+
 									<div class="pd-color">
 										<h6>Color</h6>
 										<div class="pd-color-choose"
 											th:each="colorPro:${colorProlist}">
 											<div class="cc-item">
-												<label for="cc-violet" th:if="${colorPro.id == 1}"
-													class="cc-yellow"></label> <label for="cc-violet"
-													th:if="${colorPro.id == 2}" class="cc-gray"></label> <label
-													for="cc-violet" th:if="${colorPro.id == 3}"
-													class="cc-green"></label> <label for="cc-violet"
-													th:if="${colorPro.id == 4}" class="cc-white"></label> <label
-													for="cc-violet" th:if="${colorPro.id == 5}"
-													class="cc-black"></label> <label for="cc-violet"
-													th:if="${colorPro.id == 6}" class="cc-blue"></label> <label
-													for="cc-violet" th:if="${colorPro.id == 7}"
-													class="cc-brown"></label> <label for="cc-violet"
-													th:if="${colorPro.id == 8}" class="cc-orange"></label> <label
-													for="cc-violet" th:if="${colorPro.id == 9}" class="cc-pink"></label>
-												<label for="cc-violet" th:if="${colorPro.id == 10}"
-													class="cc-red"></label>
+												<label for="cc-violet"
+													th:style="'--color:' + 'rgb(' + @{${colorPro.red}} + ',' + @{${colorPro.green}} + ',' + @{${colorPro.blue}} + ')'"></label>
+
 											</div>
 										</div>
 									</div>
@@ -219,21 +223,9 @@
 																	<div class="pd-color">
 																		<div class="pd-color-choose">
 																			<div class="cc-item">
-																				<label for="cc-violet" th:if="${p.color.id == 1}"
-																					class="cc-yellow"></label> <label for="cc-violet"
-																					th:if="${p.color.id == 2}" class="cc-gray"></label>
-																				<label for="cc-violet" th:if="${p.color.id == 3}"
-																					class="cc-green"></label> <label for="cc-violet"
-																					th:if="${p.color.id == 4}" class="cc-white"></label>
-																				<label for="cc-violet" th:if="${p.color.id == 5}"
-																					class="cc-black"></label> <label for="cc-violet"
-																					th:if="${p.color.id == 6}" class="cc-blue"></label>
-																				<label for="cc-violet" th:if="${p.color.id == 7}"
-																					class="cc-brown"></label> <label for="cc-violet"
-																					th:if="${p.color.id == 8}" class="cc-orange"></label>
-																				<label for="cc-violet" th:if="${p.color.id == 9}"
-																					class="cc-pink"></label> <label for="cc-violet"
-																					th:if="${p.color.id == 10}" class="cc-red"></label>
+																				<label for="cc-violet"
+																					th:style="'--color:' + 'rgb(' + @{${p.color.red}} + ',' + @{${p.color.green}} + ',' + @{${p.color.blue}} + ')'"
+																					class="cc-yellow"></label>
 																			</div>
 																		</div>
 																	</div>
@@ -297,7 +289,8 @@
 									<li><a class="active" data-toggle="tab" href="#tab-1"
 										role="tab">DESCRIPTION</a></li>
 									<li><a data-toggle="tab" href="#tab-2" role="tab">SPECIFICATIONS</a></li>
-									<li><a data-toggle="tab" href="#tab-3" role="tab">Customer Reviews</a></li>
+									<li><a data-toggle="tab" href="#tab-3" role="tab">Customer
+											Reviews</a></li>
 								</ul>
 							</div>
 							<div class="tab-item-content">
@@ -356,16 +349,8 @@
 													<td class="p-catagory">Color</td>
 													<td><span th:each="colorPro:${colorProlist}"
 														class="px-1"> <span class="cs-color-yellow"
-															th:if="${colorPro.id == 1}"></span> <span
-															class="cs-color-gray" th:if="${colorPro.id == 2}"></span>
-															<span class="cs-color-green" th:if="${colorPro.id == 3}"></span>
-															<span class="cs-color-white" th:if="${colorPro.id == 4}"></span>
-															<span class="cs-color-black" th:if="${colorPro.id == 5}"></span>
-															<span class="cs-color-blue" th:if="${colorPro.id == 6}"></span>
-															<span class="cs-color-brown" th:if="${colorPro.id == 7}"></span>
-															<span class="cs-color-orange" th:if="${colorPro.id == 8}"></span>
-															<span class="cs-color-pink" th:if="${colorPro.id == 9}"></span>
-															<span class="cs-color-red" th:if="${colorPro.id == 10}"></span>
+															th:style="'--color:' + 'rgb(' + @{${colorPro.red}} + ',' + @{${colorPro.green}} + ',' + @{${colorPro.blue}} + ')'"></span>
+
 													</span></td>
 												</tr>
 												<tr>
@@ -379,6 +364,14 @@
 									</div>
 									<div class="tab-pane fade" id="tab-3" role="tabpanel">
 										<div class="customer-review-option">
+											<th:block th:unless="${#request.remoteUser}">
+												<div class="switch-login pb-4">
+													<a th:href="@{/security/login/form}" data-toggle="modal" data-target="#loginModalCenter" class="or-login btn btn-primary col px-5">
+														Please login to comment
+													</a>
+												</div>
+											</th:block>
+											
 											<div class="comment-option">
 												<div class="co-item" th:each="cmt:${cmtlist}">
 													<div class="avatar-pic">
@@ -413,91 +406,22 @@
 														</div>
 														<h5>[[${cmt.account.fullname}]]</h5>
 														<div class="at-reply">[[${cmt.content}]]</div>
-														<button style="border:none" class="p-0">
-															<img th:src="'/assets/images/'+ ${cmt.photo}" alt="" height="120px">
+														<button style="border: none" class="p-0">
+															<img th:src="'/assets/images/'+ ${cmt.photo}" alt=""
+																height="120px">
 														</button>
 													</div>
 												</div>
 											</div>
 											
-											
-											
-
-											<!-- <th:block th:if="${#request.remoteUser}">
-												<button type="button" class="btn btn-primary" ng-click="Pro(${item})"
-													data-toggle="modal" data-target="#exampleModalCenter2">
-													Launch demo modal</button>
-
-												Modal
-												<div class="modal fade" id="exampleModalCenter2"
-													tabindex="-1" role="dialog"
-													aria-labelledby="exampleModalCenterTitle"
-													aria-hidden="true">
-													<div class="modal-dialog modal-dialog-centered"
-														role="document">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h5 class="modal-title" id="exampleModalCenterTitle">Modal
-																	title</h5>
-																<button type="button" class="close" data-dismiss="modal"
-																	aria-label="Close">
-																	<span aria-hidden="true">&times;</span>
-																</button>
-															</div>
-															<div class="modal-body">
-																<div class="leave-comment">
-																	<h4>Leave A Comment</h4>
-																	<form class="comment-form">
-																		<div class="row">
-																			<div class="col-lg-6">
-																				<input type="text" placeholder="ProID" ng-model="form.product.id" th:field="*{id}"
-																					name="productId">
-																			</div>
-																			<div class="col-lg-6">
-																				<select class="col" ng-model="form.rate"
-																					style="height: 50px; color: #636363; border: 1px solid #ebebeb; border-radius: 5px"
-																					name="rate" id="">
-																					<option value="1">Rate: Terrible</option>
-																					<option value="2">Rate: Bad</option>
-																					<option value="3">Rate: Good</option>
-																					<option value="4">Rate: Very Good</option>
-																					<option value="5">Rate: Excellent</option>
-																				</select>
-																			</div>
-																			<div class="col-lg-6">
-																				<div>Image:</div>
-																				<input type="file" id="photo"
-																					onchange="angular.element(this).scope().imageChanged(this.files)" />
-																			</div>
-																			<div class="col-lg-12">
-																				<textarea placeholder="Messages" name="content"
-																					ng-model="form.content"></textarea>
-																				<button type="submit" ng-click="createCmt()"
-																					class="site-btn">Send message</button>
-																			</div>
-																		</div>
-																	</form>
-																</div>
-															</div>
-															<div class="modal-footer">
-																<button type="button" class="btn btn-secondary"
-																	data-dismiss="modal">Close</button>
-																<button type="button" class="btn btn-primary">Save
-																	changes</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</th:block> -->
-
 											<th:block th:if="${#request.remoteUser}">
 												<div class="leave-comment">
 													<h4>Leave A Comment</h4>
 													<form class="comment-form">
 														<div class="row">
 															<div class="col-lg-12">
-																<textarea placeholder="Messages" name="content" class="mb-2"
-																	ng-model="form.content"></textarea>
+																<textarea placeholder="Messages" name="content"
+																	class="mb-2" ng-model="form.content"></textarea>
 															</div>
 															<div class="col-lg-4">
 																Rate: <select class="col" ng-model="form.rate"
@@ -519,7 +443,7 @@
 															<div class="col-lg-4">
 																Enter "[[*{id}]]" to confirm <input type="text"
 																	placeholder="Comfirm This Number"
-																	ng-model="form.product.id" th:field="*{id}"
+																	ng-model="form.product.id" 
 																	name="productId">
 															</div>
 															<div class="col-md-12">
