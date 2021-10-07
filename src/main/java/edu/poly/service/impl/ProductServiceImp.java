@@ -121,6 +121,13 @@ public class ProductServiceImp implements ProductService{
 		
 		return productDAO.findbyName(valued);
 	}
+
+
+	@Override
+	public Optional<Product> getChio(Integer id) {
+		// TODO Auto-generated method stub
+		return productDAO.getChio(id);
+	}
 	
 	
 

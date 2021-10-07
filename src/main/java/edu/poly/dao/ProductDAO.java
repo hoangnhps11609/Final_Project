@@ -60,5 +60,9 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	@Query
 	("SELECT p FROM Product p WHERE p.name like ?1 or p.id like ?1 and p.available = 'true'")
 	List<Product> findbyName(String valued);
+	
+	@Query
+	("SELECT p FROM Product p WHERE p.id = ?1")
+	Optional<Product> getChio(Integer id);
 
 }

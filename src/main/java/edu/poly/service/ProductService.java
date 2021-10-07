@@ -61,5 +61,7 @@ public interface ProductService {
 	Page<Product> findByGenderId(Integer gender, Pageable pageable);
 	
 	List<Product> findbyName(String valued);
+	
+	Optional<Product> getChio(Integer id);
 
 }

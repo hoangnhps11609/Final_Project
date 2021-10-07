@@ -1,6 +1,7 @@
 package edu.poly.rest.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +26,7 @@ public class ProductRestController {
 	@Autowired
 	ProductService pService;
 	
+	
 	@GetMapping()
 	public List<Product> getAll() {
 		return pService.findAll();
@@ -32,11 +34,28 @@ public class ProductRestController {
 	
 	@PostMapping
 	public Product create(@RequestBody Product product) {
+		product.setAvailable(false);
 		return pService.create(product);
 	}
 	
 	@PutMapping("{id}")
 	public Product update(@PathVariable("id") Integer id, @RequestBody Product product) {
+		return pService.update(product);
+	}
+	
+	@PutMapping("get/{id}")
+	public Product update2(@PathVariable("id") Integer id, @RequestBody Product product) {
+		Optional<Product> a = pService.getChio(id);
+		product.setId(id);
+		product.setImage(a.get().getImage());
+		product.setBrand(a.get().getBrand());
+		product.setCategory(a.get().getCategory());
+		product.setDescription(a.get().getDescription());
+		product.setDiscount(a.get().getDiscount());
+		product.setGender(a.get().getGender());
+		product.setName(a.get().getName());
+		product.setPrice(a.get().getPrice());
+		product.setAvailable(true);
 		return pService.update(product);
 	}
 	

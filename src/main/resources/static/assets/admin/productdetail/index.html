@@ -141,9 +141,11 @@
 			</li>
 		</ul>
 		<div class="search-box1">
-			<input class="search-txt1" name="" type="text" placeholder="Search" />
-			<a class="search-btn1" href="#">
-				<i class="fa fa-search"></i>
+			<input class="search-txt1" name="" type="text" id="myInput" class="form-control" ng-model="statistic.from"
+				placeholder="Search	" />
+			<a class="search-btn1">
+				<button style="opacity:0 ; z-index: 20" ng-click="statistic()"></button><i style="position: absolute;"
+					class="fa fa-search"></i>
 			</a>
 
 
