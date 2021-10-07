@@ -72,7 +72,7 @@ public interface CommentService {
 
 	<S extends Comment> S save(S entity);
 
-	List<Comment> findByProductId(Integer id);
+	Page<Comment> findByProductId(Integer id, Pageable pageable);
 
 	Comment create(Comment comment);
 

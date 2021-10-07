@@ -36,6 +36,8 @@ public class Product  implements Serializable{
 	
 	Integer discount;
 	
+	Boolean available;
+	
 	String image;
 	
 	@ManyToOne

@@ -170,8 +170,8 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public List<Comment> findByProductId(Integer id) {
-		return commentDAO.findByProductId(id);
+	public Page<Comment> findByProductId(Integer id, Pageable pageable) {
+		return commentDAO.findByProductId(id, pageable);
 	}
 
 	@Override

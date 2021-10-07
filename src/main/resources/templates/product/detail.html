@@ -78,8 +78,7 @@
 								</div>
 							</div>
 						</div>
-						
-						
+
 						<div class="filter-widget" style="padding-top: 240px;">
 							<h4 class="fw-title float-left">Size for Clothings</h4>
 							<div class="fw-size-choose row col">
@@ -124,34 +123,34 @@
 									<div class="pd-rating">
 										<div th:if="0.0<=${ratePro} and ${ratePro} < 1.5">
 											<i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i
-											class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
-											class="fa fa-star-o"></i> <span>(5)</span>
+												class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
+												class="fa fa-star-o"></i> <span>(5)</span>
 										</div>
-										
+
 										<div th:if="1.5<=${ratePro} and ${ratePro} < 2.5">
 											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
-											class="fa fa-star-o"></i> <span>(5)</span>
+												class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
+												class="fa fa-star-o"></i> <span>(5)</span>
 										</div>
-										
+
 										<div th:if="2.5<=${ratePro} and ${ratePro} < 3.5">
 											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 												class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i
 												class="fa fa-star-o"></i> <span>(5)</span>
 										</div>
-										
+
 										<div th:if="3.5<=${ratePro} and ${ratePro} < 4.5">
 											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 												class="fa fa-star-o"></i> <span>(5)</span>
 										</div>
-										
+
 										<div th:if="4.5<=${ratePro} and ${ratePro} <= 5.0">
 											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <span>(5)</span>
+												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+												class="fa fa-star"></i> <span>(5)</span>
 										</div>
-										
+
 									</div>
 									<div class="pd-desc">
 										<p>Product for [[*{gender.name}]]</p>
@@ -351,9 +350,7 @@
 												<tr th:if="*{discount} !=0">
 													<td class="p-catagory">Sale off</td>
 													<td>
-														<div class="p-price text-danger">
-															[[*{discount}]]%
-														</div>
+														<div class="p-price text-danger">[[*{discount}]]%</div>
 													</td>
 												</tr>
 												<tr>
@@ -401,14 +398,28 @@
 										<div class="customer-review-option">
 											<th:block th:unless="${#request.remoteUser}">
 												<div class="switch-login pb-4">
-													<a th:href="@{/security/login/form}" data-toggle="modal" data-target="#loginModalCenter" class="or-login btn btn-primary col px-5">
-														Please login to comment
-													</a>
+													<a th:href="@{/security/login/form}" data-toggle="modal"
+														data-target="#loginModalCenter"
+														class="or-login btn text-light col px-5"
+														style="background-color: #e7ab3c;"> Please login to
+														comment </a>
 												</div>
 											</th:block>
-											
+
 											<div class="comment-option">
-												<div class="co-item" th:each="cmt:${cmtlist}">
+												<div class="product-show-option">
+													<div class="row">
+														<div class="offset-8 col-4 text-right">
+															<p>Show [[${cmtlist.number*size + 1 }]] -
+																[[${cmtlist.number*size +
+																cmtlist.numberOfElements}]] Of
+																[[${cmtlist.totalElements}]] Comments</p>
+														</div>
+													</div>
+												</div>
+												
+												<div class="co-item"
+													th:each="cmt, iStat : ${cmtlist.content}">
 													<div class="avatar-pic">
 														<img th:src="'/assets/images/'+ ${cmt.account.photo}"
 															alt="">
@@ -441,14 +452,64 @@
 														</div>
 														<h5>[[${cmt.account.fullname}]]</h5>
 														<div class="at-reply">[[${cmt.content}]]</div>
-														<button style="border: none" class="p-0">
+														<button style="border: none" class="p-0"
+															data-toggle="modal" data-target="#photoCmtModalCenter">
 															<img th:src="'/assets/images/'+ ${cmt.photo}" alt=""
 																height="120px">
 														</button>
+														<!-- Modal -->
+														<div class="modal fade" id="photoCmtModalCenter"
+															tabindex="-1" role="dialog"
+															aria-labelledby="exampleModalCenterTitle"
+															aria-hidden="true">
+															<div class="modal-dialog modal-dialog-centered"
+																role="document" style="max-width: 30%;">
+																<div class="modal-content">
+																	<div class="modal-body">
+																		<button type="button" class="close"
+																			data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true">&times;</span>
+																		</button>
+																	</div>
+																	<img th:src="'/assets/images/'+ ${cmt.photo}" alt=""
+																		height="120px" class="img-fluid">
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
+
+												<div class="loading-more">
+													<nav aria-label="Page navigation"
+														th:if="${cmtlist.totalPages > 0}">
+														<ul class="pagination justify-content-center">
+															<li
+																th:class="${1 == cmtlist.number + 1} ? 'page-item active' : 'page-item'">
+																<a
+																th:href="@{|/product/detail/${productID}/?size=${cmtlist.size}&page=${1}&sizepro=1|}"
+																class="page-link">First</a>
+															</li>
+
+															<li class="page-item active"
+																th:each="pageNumber : ${pageNumbers}"
+																th:if="${cmtlist.totalPages > 1}"
+																th:class="${pageNumber == cmtlist.number + 1} ? 'page-item active' : 'page-item'">
+																<a
+																th:href="@{|/product/detail/${productID}/?size=${cmtlist.size}&page=${pageNumber}&sizepro=1|}"
+																class="page-link" th:text="${pageNumber}"></a>
+															</li>
+
+
+															<li
+																th:class="${cmtlist.totalPages == cmtlist.number + 1} ? 'page-item active' : 'page-item'">
+																<a
+																th:href="@{|/product/detail/${productID}/?size=${cmtlist.size}&page=${cmtlist.totalPages}&sizepro=1|}"
+																class="page-link">Last</a>
+															</li>
+														</ul>
+													</nav>
+												</div>
 											</div>
-											
 											<th:block th:if="${#request.remoteUser}">
 												<div class="leave-comment">
 													<h4>Leave A Comment</h4>
@@ -478,8 +539,7 @@
 															<div class="col-lg-4">
 																Enter "[[*{id}]]" to confirm <input type="text"
 																	placeholder="Comfirm This Number"
-																	ng-model="form.product.id" 
-																	name="productId">
+																	ng-model="form.product.id" name="productId">
 															</div>
 															<div class="col-md-12">
 																<button type="submit" ng-click="createCmt()"
