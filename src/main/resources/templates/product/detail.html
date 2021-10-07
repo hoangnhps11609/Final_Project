@@ -179,30 +179,6 @@
 										</div> -->
 									</div>
 
-									<!-- 									<div class="pd-color"> -->
-									<!-- 										<h6>Color</h6> -->
-									<!-- 										<div class="pd-color-choose" -->
-									<!-- 											th:each="colorPro:${colorProlist}"> -->
-									<!-- 											<div class="cc-item"> -->
-									<!-- 												<label for="cc-violet" th:if="${colorPro.id == 1}" -->
-									<!-- 													class="cc-yellow"></label> <label for="cc-violet" -->
-									<!-- 													th:if="${colorPro.id == 2}" class="cc-gray"></label> <label -->
-									<!-- 													for="cc-violet" th:if="${colorPro.id == 3}" -->
-									<!-- 													class="cc-green"></label> <label for="cc-violet" -->
-									<!-- 													th:if="${colorPro.id == 4}" class="cc-white"></label> <label -->
-									<!-- 													for="cc-violet" th:if="${colorPro.id == 5}" -->
-									<!-- 													class="cc-black"></label> <label for="cc-violet" -->
-									<!-- 													th:if="${colorPro.id == 6}" class="cc-blue"></label> <label -->
-									<!-- 													for="cc-violet" th:if="${colorPro.id == 7}" -->
-									<!-- 													class="cc-brown"></label> <label for="cc-violet" -->
-									<!-- 													th:if="${colorPro.id == 8}" class="cc-orange"></label> <label -->
-									<!-- 													for="cc-violet" th:if="${colorPro.id == 9}" class="cc-pink"></label> -->
-									<!-- 												<label for="cc-violet" th:if="${colorPro.id == 10}" -->
-									<!-- 													class="cc-red"></label> -->
-									<!-- 											</div> -->
-									<!-- 										</div> -->
-									<!-- 									</div> -->
-
 									<div class="pd-color">
 										<h6>Color</h6>
 										<div class="pd-color-choose"
@@ -221,7 +197,7 @@
 											data-target="#exampleModalCenter1">Choose Color</a>
 									</div>
 
-									<!-- Modal -->
+									<!-- 									Modal -->
 									<div class="modal fade" id="exampleModalCenter1" tabindex="-1"
 										role="dialog" aria-labelledby="exampleModalCenterTitle"
 										aria-hidden="true">
@@ -229,8 +205,6 @@
 											style="max-width: 60%;" role="document">
 											<div class="modal-content">
 												<div class="modal-header bg-warning">
-													<h4 class="modal-title  text-light"
-														id="exampleModalLongTitle">Choose Color</h4>
 													<button type="button" class="close text-light"
 														data-dismiss="modal" aria-label="Close">
 														<span aria-hidden="true">&times;</span>
@@ -411,13 +385,12 @@
 													<div class="row">
 														<div class="offset-8 col-4 text-right">
 															<p>Show [[${cmtlist.number*size + 1 }]] -
-																[[${cmtlist.number*size +
-																cmtlist.numberOfElements}]] Of
+																[[${cmtlist.number*size + cmtlist.numberOfElements}]] Of
 																[[${cmtlist.totalElements}]] Comments</p>
 														</div>
 													</div>
 												</div>
-												
+
 												<div class="co-item"
 													th:each="cmt, iStat : ${cmtlist.content}">
 													<div class="avatar-pic">
