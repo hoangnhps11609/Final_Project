@@ -41,6 +41,28 @@ app.controller("productdetail-ctrl", function($scope, $http) {
 
 	}
 	
+						var input = document.getElementById("myInput");
+		input.addEventListener("keyup", function(event) {
+  		if (event.keyCode === 13) {
+   			event.preventDefault();
+   			$scope.statistic();
+
+  }
+});	
+	
+	$scope.statistic = function() {
+		var statistic = angular.copy($scope.statistic);
+		
+		$http.get(`/rest/productdetails/get/${statistic.from}`).then(resp => {
+			$scope.items = resp.data;
+			$scope.items.forEach(item => {
+			})
+			$(".nav-tabs a:eq(1)").tab('show');
+		}).catch(error => {
+			alert('Value is invalid');
+			console.log("Error", error);
+		});
+	}
 	
 	
 
@@ -75,6 +97,17 @@ app.controller("productdetail-ctrl", function($scope, $http) {
 			alert("Lỗi thêm sản phẩm");
 			console.log("Error", error);
 		});
+		
+		
+		var statistic = angular.copy($scope.form);
+		$http.put(`/rest/products/get/${statistic.product.id}`, item).then(resp => {
+			$scope.initialize();
+		}).catch(error => {
+			alert("Lỗi cập nhật sản phẩm");
+			console.log("Error", error);
+
+		});
+		
 	}
 
 	//update sản phẩm mới

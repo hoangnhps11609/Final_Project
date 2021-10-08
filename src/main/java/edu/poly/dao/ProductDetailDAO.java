@@ -75,5 +75,7 @@ public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 	("SELECT p FROM ProductDetail p WHERE p.product.category.id like ?1 and p.product.brand.name like ?2 and p.size.name like ?3 and p.product.gender.name like ?4 and p.color.name like ?5 and p.product.price between ?6 and ?7")
 	Page<ProductDetail> filterProductDetail(String cateid, String brandname, String sizeproname, String gendername, String colorname, double min, double max, Pageable pageable);
 	
-	
+	@Query
+	("SELECT p FROM ProductDetail p WHERE p.product.name like ?1")
+	List<ProductDetail> FindProductByName(String valued);
 }

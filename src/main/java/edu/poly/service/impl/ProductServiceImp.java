@@ -136,6 +136,13 @@ public class ProductServiceImp implements ProductService{
 			Pageable pageable) {
 		return productDAO.filterProduct(cateid, brandname, gendername, min, max, pageable);
 	}
+
+
+	@Override
+	public Optional<Product> getChio(Integer id) {
+		// TODO Auto-generated method stub
+		return productDAO.getChio(id);
+	}
 	
 	
 

@@ -238,6 +238,12 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 		return productDetailDAO.filterProductDetail(cateid, brandname, sizeproname, gendername, colorname, min, max, pageable);
 	}
 
+	@Override
+	public List<ProductDetail> findProductByName(String valued) {
+		// TODO Auto-generated method stub
+		return productDetailDAO.FindProductByName(valued);
+	}
+
 
 	
 
