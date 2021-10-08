@@ -101,6 +101,5 @@ public interface ProductDetailService {
 
 	Page<ProductDetail> filterProductDetail(String cateid, String brandname, String sizeproname, String gendername, String colorname, double min, double max, Pageable pageable);
 	
-	List<ProductDetail> findProductByName(String valued);
 
 }

@@ -62,8 +62,6 @@ public interface ProductService {
 	
 	List<Product> findbyName(String valued);
 	
-	Optional<Product> getChio(Integer id);
-
 
 	Page<Product> findAllTrue(Pageable pageable);
 

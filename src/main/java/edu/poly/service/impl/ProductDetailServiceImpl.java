@@ -23,7 +23,6 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 	@Autowired
 	ProductDetailDAO productDetailDAO;
 
-
 	public ProductDetailServiceImpl(ProductDetailDAO productDetailDAO) {
 		this.productDetailDAO = productDetailDAO;
 	}
@@ -237,12 +236,6 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 	public Page<ProductDetail> filterProductDetail(String cateid, String brandname, String sizeproname, String gendername,
 			String colorname,double min, double max, Pageable pageable) {
 		return productDetailDAO.filterProductDetail(cateid, brandname, sizeproname, gendername, colorname, min, max, pageable);
-	}
-
-	@Override
-	public List<ProductDetail> findProductByName(String valued) {
-		// TODO Auto-generated method stub
-		return productDetailDAO.FindProductByName(valued);
 	}
 
 

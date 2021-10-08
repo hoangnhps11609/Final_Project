@@ -124,16 +124,9 @@ public class ProductServiceImp implements ProductService{
 	}
 
 
-	@Override
-	public Optional<Product> getChio(Integer id) {
-		// TODO Auto-generated method stub
-		return productDAO.getChio(id);
-	}
-
 
 	@Override
 	public Page<Product> findAllTrue(Pageable pageable) {
-		// TODO Auto-generated method stub
 		return productDAO.findAllTrue(pageable);
 	}
 

@@ -31,16 +31,14 @@ public class ProductDetailRestController {
 		return productDetailService.findAll();
 	}
 	
-	//@GetMapping("{id}")
-	//public ProductDetail getOne(@PathVariable("id") Long id) {
-	//	return productDetailService.findbyId(id);
-	//}
+	@GetMapping("{id}")
+	public ProductDetail getOne(@PathVariable("id") Long id) {
+		return productDetailService.findbyId(id);
+	}
 	
 	@PostMapping
 	public ProductDetail create(@RequestBody ProductDetail product) {
-		
 		return productDetailService.create(product);
-		
 	}
 	
 	@PutMapping("{id}")
@@ -57,10 +55,6 @@ public class ProductDetailRestController {
 //	public List<Report> getReport(){
 //		return productDetailService.getReport();
 //	}
-	
-	@GetMapping("{valued}")
-	public List<ProductDetail> findbyProductName(@PathVariable("valued") String valued){
-		return productDetailService.findProductByName(valued+"%");
-	}
+
 	
 }
