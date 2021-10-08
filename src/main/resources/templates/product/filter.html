@@ -105,16 +105,15 @@
 
 					<div class="col-lg-9 order-1 order-lg-2">
 						<div class="product-show-option">
-							<div class="row col">
-								<div class="col-8">
-								</div>
-								<div class="col-4 text-right">
+							<div class="row">
+								<div class="col text-right">
 									<p>Show [[${productPage.number*size + 1 }]] -
 										[[${productPage.number*size + productPage.numberOfElements}]]
 										Of [[${productPage.totalElements}]] Products</p>
 								</div>
 							</div>
 						</div>
+												
 						<div class="product-list">
 							<div class="row">
 								<div class="col-lg-4 col-sm-6"
@@ -127,7 +126,8 @@
 												name="image" alt="">
 											</a>
 											<div class="sale pp-sale"  th:if="${product.product.discount != 0}">Sale:
-												[[${product.product.discount}]]%</div>
+												[[${product.product.discount}]]%
+												</div>
 											<div class="icon">
 												<i class="icon_heart_alt"></i>
 											</div>

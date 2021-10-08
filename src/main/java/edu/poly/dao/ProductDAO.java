@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import edu.poly.entity.Product;
+import edu.poly.entity.ProductDetail;
 import edu.poly.entity.Report;
 @Repository
 public interface ProductDAO extends JpaRepository<Product, Integer> {
@@ -62,7 +63,15 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	List<Product> findbyName(String valued);
 	
 	@Query
+	("SELECT p FROM Product p WHERE p.available = 'true'")
+	Page<Product> findAllTrue(Pageable pageable);
+	
+	@Query
 	("SELECT p FROM Product p WHERE p.id = ?1")
 	Optional<Product> getChio(Integer id);
+
+	@Query
+	("SELECT p FROM Product p WHERE p.category.id like ?1 and p.brand.name like ?2 and p.gender.name like ?3 and p.price between ?4 and ?5")
+	Page<Product> filterProduct(String cateid, String brandname, String gendername, double min, double max, Pageable pageable);
 
 }
