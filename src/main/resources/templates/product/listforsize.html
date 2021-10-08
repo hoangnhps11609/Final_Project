@@ -116,17 +116,15 @@
 								<div class="col-lg-4 col-sm-6"
 									th:each=" sizepro, iStat : ${productPage.content}">
 									<div class="product-item">
-										<div class="pi-pic">
+										<div class="pi-pic"  style="width:260px; height:320px;">
 											<a th:href="@{|/product/detail/${sizepro.product.id}?sizepro=${sizepro.size.id}|}"> <img
 												th:src="${sizepro.product.image!=null ? '/assets/images/' + sizepro.product.image : '/assets/images/logo.png'}"
-												width="100px" height="100px" id="image" class="img-fluid"
+												width="260px" height="320px" id="image" 
 												name="image" alt="">
 											</a>
 											<div class="sale pp-sale" th:if="${sizepro.product.discount != 0}">Sale:
 												[[${sizepro.product.discount}]]%</div>
-											<div class="icon">
-												<i class="icon_heart_alt"></i>
-											</div>
+											
 											<ul>
 												<li class="quick-view col m-0 p-0"><a class="btn-warning text-light"
 													th:href="@{|/product/detail/${sizepro.product.id}?sizepro=${sizepro.size.id}|}"> + Quick
@@ -139,7 +137,7 @@
 												<h5 th:utext="${sizepro.product.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${sizepro.product.price*(1-sizepro.product.discount*0.01)}]]<span th:if="${sizepro.product.discount != 0}">$[[${sizepro.product.price}]]</span>
+												$[[*{#numbers.formatDecimal(sizepro.product.price*(1-sizepro.product.discount*0.01), 0, 'COMMA', 1, 'POINT')}]]<span th:if="${sizepro.product.discount != 0}" class="pl-1">$[[${sizepro.product.price}]]</span>
 											</div>
 										</div>
 									</div>

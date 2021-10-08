@@ -118,7 +118,6 @@
 									<div class="pd-title">
 										<span th:text="*{brand.name}"></span>
 										<h3 th:text="*{name}"></h3>
-										<a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
 									</div>
 									<div class="pd-rating">
 										<div th:if="0.0<=${ratePro} and ${ratePro} < 1.5">
@@ -155,8 +154,7 @@
 									<div class="pd-desc">
 										<p>Product for [[*{gender.name}]]</p>
 										<h4>
-											$
-											<o>[[*{price*(1-discount*0.01)}]]</o>
+											<o>$[[*{#numbers.formatDecimal(price*(1-discount*0.01), 0, 'COMMA', 1, 'POINT')}]]</o>
 											<span th:if="*{discount != 0.0}"> $[[*{price}]]</span>
 										</h4>
 									</div>
@@ -197,7 +195,7 @@
 											data-target="#exampleModalCenter1">Choose Color</a>
 									</div>
 
-									<!-- 									Modal -->
+									<!-- Modal -->
 									<div class="modal fade" id="exampleModalCenter1" tabindex="-1"
 										role="dialog" aria-labelledby="exampleModalCenterTitle"
 										aria-hidden="true">
@@ -213,8 +211,8 @@
 												<div class="modal-body">
 													<div class="product-slider owl-carousel">
 														<div class="product-item" th:each="p:${prodetail}">
-															<div class="pi-pic">
-																<a> <img th:src="@{|/assets/images/${p.image}|}"
+															<div class="pi-pic" style="width:349px; height:427px">
+																<a> <img th:src="@{|/assets/images/${p.image}|}" width=349px; height=427px
 																	alt="">
 																</a>
 																<div class="sale pp-sale">Size: [[${p.size.name}]]</div>
@@ -249,7 +247,7 @@
 																<div class="catagory-name">Quantity:
 																	[[${p.quantity}]]</div>
 																<div class="product-price">
-																	$[[${p.product.price*(1-p.product.discount*0.01)}]]<span
+																	$[[${#numbers.formatDecimal(p.product.price*(1-p.product.discount*0.01), 0, 'COMMA', 1, 'POINT')}]]<span
 																		th:if="${p.product.discount != 0.0}">$[[${p.product.price}]]</span>
 																</div>
 															</div>
@@ -331,7 +329,7 @@
 													<td class="p-catagory">Price</td>
 													<td>
 														<div class="p-price">
-															$[[*{price*(1-discount*0.01)}]]&nbsp;
+															$[[*{#numbers.formatDecimal(price*(1-discount*0.01), 0, 'COMMA', 1, 'POINT')}]]&nbsp;
 															<del style="color: lightgray; font-size: 13px;"
 																th:if="*{discount != 0.0}">$[[*{price}]]</del>
 														</div>
@@ -547,22 +545,18 @@
 					<div class="col">
 						<div class="product-slider owl-carousel">
 							<div class="product-item" th:each="p:*{category.products}">
-								<div class="pi-pic">
-									<a th:href="@{|/product/detail/${p.id}|}"> <img
-										th:src="@{|/assets/images/${p.image}|}" alt="">
+								<div class="pi-pic" style="width:363px; height:444px">
+									<a th:href="@{|/product/detail/${p.id}?sizepro=1|}"> <img
+										th:src="@{|/assets/images/${p.image}|}" alt="" width=363px; height=444px>
 									</a>
 									<div class="sale">Sale: [[${p.discount}]]%</div>
 									<div class="icon">
 										<i class="icon_heart_alt"></i>
 									</div>
 									<ul>
-										<li class="w-icon active"><a
-											th:attr="ng-click=@{|cart.add(${p.id})|}"><i
-												class="icon_cart_alt"></i></a></li>
-										<li class="quick-view"><a
-											th:href="@{|/product/detail/${p.id}|}">+ Quick View</a></li>
-										<li class="w-icon"><a href="#"><i
-												class="fa fa-random"></i></a></li>
+										<li class="quick-view col m-0 p-0"><a
+											class="btn-warning text-light"
+													th:href="@{|/product/detail/${p.id}?sizepro=1|}">+ Quick View</a></li>
 									</ul>
 								</div>
 								<div class="pi-text">
@@ -571,7 +565,8 @@
 										<h5 th:utext="${p.name}"></h5>
 									</a>
 									<div class="product-price">
-										$[[${p.price*(1-p.discount*0.01)}]]<span
+										$[[${#numbers.formatDecimal(p.price*(1-p.discount*0.01), 0, 'COMMA', 1, 'POINT')}]]
+										<span
 											th:if="${p.discount != 0}">$[[${p.price}]]</span>
 									</div>
 								</div>

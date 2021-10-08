@@ -116,17 +116,15 @@
 								<div class="col-lg-4 col-sm-6"
 									th:each=" procolor, iStat : ${productPage.content}">
 									<div class="product-item">
-										<div class="pi-pic">
+										<div class="pi-pic"  style="width:260px; height:320px;">
 											<a th:href="@{|/product/detail/${procolor.product.id}?sizepro=1|}"> <img
 												th:src="${procolor.image!=null ? '/assets/images/' + procolor.image : '/assets/images/logo.png'}"
-												width="100px" height="100px" id="image" class="img-fluid"
+												width="260px" height="320px" id="image"
 												name="image" alt="">
 											</a>
 											<div class="sale pp-sale"  th:if="${procolor.product.discount != 0}">Sale:
 												[[${procolor.product.discount}]]%</div>
-											<div class="icon">
-												<i class="icon_heart_alt"></i>
-											</div>
+											
 											<ul>
 												<li class="quick-view col m-0 p-0"><a class="btn-warning text-light"
 													th:href="@{|/product/detail/${procolor.product.id}?sizepro=1|}"> + Quick
@@ -140,7 +138,7 @@
 												<h5 th:utext="${procolor.product.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${procolor.product.price*(1-procolor.product.discount*0.01)}]]<span th:if="${procolor.product.discount != 0}">$[[${procolor.product.price}]]</span>
+												$[[*{#numbers.formatDecimal(procolor.product.price*(1-procolor.product.discount*0.01), 0, 'COMMA', 1, 'POINT')}]]<span th:if="${procolor.product.discount != 0}" class="pl-1">$[[${procolor.product.price}]]</span>
 											</div>
 										</div>
 									</div>
