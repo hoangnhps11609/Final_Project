@@ -61,5 +61,11 @@ public interface ProductService {
 	Page<Product> findByGenderId(Integer gender, Pageable pageable);
 	
 	List<Product> findbyName(String valued);
+	
+
+	Page<Product> findAllTrue(Pageable pageable);
+
+
+	Page<Product> filterProduct(String cateid, String brandname, String gendername, double min, double max, Pageable pageable);
 
 }

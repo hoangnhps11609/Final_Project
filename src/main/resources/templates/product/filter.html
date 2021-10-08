@@ -105,32 +105,29 @@
 
 					<div class="col-lg-9 order-1 order-lg-2">
 						<div class="product-show-option">
-							<div class="row col">
-								<div class="col-8">
-								</div>
-								<div class="col-4 text-right">
+							<div class="row">
+								<div class="col text-right">
 									<p>Show [[${productPage.number*size + 1 }]] -
 										[[${productPage.number*size + productPage.numberOfElements}]]
 										Of [[${productPage.totalElements}]] Products</p>
 								</div>
 							</div>
 						</div>
+												
 						<div class="product-list">
 							<div class="row">
 								<div class="col-lg-4 col-sm-6"
 									th:each=" product, iStat : ${productPage.content}">
 									<div class="product-item">
-										<div class="pi-pic">
+										<div class="pi-pic"  style="width:260px; height:320px;">
 											<a th:href="@{|/product/detail/${product.product.id}?sizepro=1|}"> <img
 												th:src="${product.image!=null ? '/assets/images/' + product.image : '/assets/images/logo.png'}"
-												width="100px" height="100px" id="image" class="img-fluid"
+												width="260px" height="320px" id="image"
 												name="image" alt="">
 											</a>
 											<div class="sale pp-sale"  th:if="${product.product.discount != 0}">Sale:
-												[[${product.product.discount}]]%</div>
-											<div class="icon">
-												<i class="icon_heart_alt"></i>
-											</div>
+												[[${product.product.discount}]]%
+												</div>
 											<ul>
 												<li class="quick-view col m-0 p-0"><a class="btn-warning text-light"
 													th:href="@{|/product/detail/${product.product.id}|}"> + Quick
@@ -143,7 +140,7 @@
 												<h5 th:utext="${product.product.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${product.product.price*(1-product.product.discount*0.01)}]]<span th:if="${product.product.discount != 0}">$[[${product.product.price}]]</span>
+												$[[*{#numbers.formatDecimal(product.product.price*(1-product.product.discount*0.01), 0, 'COMMA', 1, 'POINT')}]]<span th:if="${product.product.discount != 0}" class="pl-1">$[[${product.product.price}]]</span>
 											</div>
 										</div>
 									</div>

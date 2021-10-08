@@ -3,6 +3,10 @@ package edu.poly.rest.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +25,8 @@ public class ColorRestController {
 	
 	@GetMapping()
 	public List<Color> getAll(){
-		return cService.findAll();
+		Pageable pageable = PageRequest.of(0, 10, Sort.by("id").descending());
+		Page<Color> colors = cService.findAll(pageable);
+		return colors.getContent();
 	}
 }

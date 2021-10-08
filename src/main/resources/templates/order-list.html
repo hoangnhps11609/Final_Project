@@ -1,0 +1,71 @@
+<!doctype html>
+<html xmlns="http://www.thymeleaf.org"
+	th:replace="~{/dashboardLayout :: dynamic(~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<body>
+	<!-- Breadcrumb Section Begin -->
+	<div class="breacrumb-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcrumb-text">
+						<a href="#"><i class="fa fa-home"></i> Home</a> <span>My Order</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcrumb Section Begin -->
+
+
+<!-- Shopping Cart Section Begin -->
+<section class="shopping-cart spad">
+	<div class="container">
+		<div class="col">
+			<div class="alert alert-primary" role="alert">
+				<h3>Thanks a lot for your choosing my product!</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="cart-table">
+					<table>
+						<thead>
+							<tr>
+								<th>No.</th>
+								<th>Order ID</th>
+								<th>Create Date</th>
+								<th>Address</th>
+								<th>Order Details</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:set var="i" value="0" />
+							<c:forEach var="item" items="${items}">
+								<tr>
+									<td class="p-price text-dark">${i=i+1}</td>
+									<td class="p-price first-row">
+										<h5>${item.id }</h5>
+									</td>
+									<td class="p-price text-dark first-row">${item.createDate }</td>
+									<td class="cart-title first-row text-dark">${item.address }</td>
+									<td class="total-price first-row">
+										<a href="/home/myOrderDetail?id=${item.id }"
+											style="font-size: 14px">Order Detail</a>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Shopping Cart Section End -->
+</body>
+</html>

@@ -97,7 +97,7 @@ public class ProductController {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(9);
 		String categoryID = cid.orElse("");
-		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("name"));
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id").descending());
 		Page<Product> resultPage = null;
 
 		if (gender != null) {
@@ -144,12 +144,29 @@ public class ProductController {
 	@RequestMapping("product/listall")
 	public String listall(Model model,
 			@RequestParam("page") Optional<Integer> page,
+			@RequestParam("sort") Optional<String> sort,
 			@RequestParam("size") Optional<Integer> size) {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(9);
-		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("name"));
+		String sortType = sort.orElse("id");
 		Page<Product> resultPage = null;
-		resultPage = productservice.findAll(pageable);
+		if (sortType.equals("Price Descending")) {
+			Sort sortprr = Sort.by("price").descending();
+			model.addAttribute("sortPr", sortType);
+			Pageable pageable = PageRequest.of(currentPage - 1, pageSize, sortprr);
+			resultPage = productservice.findAllTrue(pageable);
+		}else if (sortType.equals("Price Ascending")) {
+			Sort sortprr = Sort.by("price").ascending();
+			model.addAttribute("sortPr", sortType);
+			Pageable pageable = PageRequest.of(currentPage - 1, pageSize, sortprr);
+			resultPage = productservice.findAllTrue(pageable);
+		}else {
+			Sort sortprr = Sort.by("id").ascending();
+			model.addAttribute("sortPr", sortType);
+			Pageable pageable = PageRequest.of(currentPage - 1, pageSize, sortprr);
+			resultPage = productservice.findAllTrue(pageable);
+		}
+		
 		int totalPages = resultPage.getTotalPages();
 		if (totalPages > 0) {
 			int start = Math.max(1, currentPage - 2);
@@ -177,7 +194,7 @@ public class ProductController {
 			@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(9);
-		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id"));
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("product.id").descending());
 		Page<ProductDetail> resultPage = null;
 
 		resultPage = productDetailService.findByColor(color, pageable);
@@ -208,7 +225,7 @@ public class ProductController {
 			@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(9);
-		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id"));
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("product.id").descending());
 		Page<ProductDetail> resultPage = null;
 
 		resultPage = productDetailService.findBySize(sizepro, pageable);
@@ -286,7 +303,7 @@ public class ProductController {
 
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(3);
-		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id"));
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id").descending());
 		Page<Comment> resultPage = null;
 		resultPage = commentService.findByProductId(id, pageable);
 
@@ -325,10 +342,10 @@ public class ProductController {
 		
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(9999);
-		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id"));
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("product.id").descending());
 		Page<ProductDetail> resultPage = null;
 
-		resultPage = productDetailService.filterAllProduct("%" + cateid, "%" + brandname, "%" + sizeproname, gendername + "%", "%" + colorname, Double.parseDouble(min), Double.parseDouble(max), pageable);
+		resultPage = productDetailService.filterProductDetail("%" + cateid, "%" + brandname, "%" + sizeproname, gendername + "%", "%" + colorname, Double.parseDouble(min), Double.parseDouble(max), pageable);
 
 		int totalPages = resultPage.getTotalPages();
 		if (totalPages > 0) {

@@ -55,5 +55,6 @@ public class ProductDetailRestController {
 //	public List<Report> getReport(){
 //		return productDetailService.getReport();
 //	}
+
 	
 }

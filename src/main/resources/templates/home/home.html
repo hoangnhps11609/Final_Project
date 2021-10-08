@@ -117,14 +117,11 @@
 							<div class="filterDiv Clothings">
 								<div class="product-slider owl-carousel">
 									<div class="product-item" th:each="p:${wmCloList}">
-										<div class="pi-pic" style="width:357px; height:357px;">
+										<div class="pi-pic" style="width:360px; height:440px;">
 											<a th:href="@{|/product/detail/${p.id}?sizepro=1|}">
-												<img th:src="@{|/assets/images/${p.image}|}" alt="">
+												<img th:src="@{|/assets/images/${p.image}|}" alt="" width=360px; height=440px;>
 											</a>
 											<div class="sale"  th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
-											<div class="icon">
-												<i class="icon_heart_alt"></i>
-											</div>
 											<ul>
 												<li class="quick-view col m-0 p-0"><a
 													class="btn-warning text-light"
@@ -137,7 +134,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
+												$[[*{#numbers.formatDecimal(p.price*(1-p.discount*0.01), 0, 'COMMA', 1, 'POINT')}]]<span th:if="${p.discount != 0}" class="pl-1">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -147,14 +144,11 @@
 							<div class="filterDiv HandBag">
 								<div class="product-slider owl-carousel">
 									<div class="product-item HandBag" th:each="p:${wmHandbagList}">
-										<div class="pi-pic">
+										<div class="pi-pic" style="width:360px; height:440px;">
 											<a th:href="@{|/product/detail/${p.id}?sizepro=1|}">
-												<img th:src="@{|/assets/images/${p.image}|}" alt="">
+												<img th:src="@{|/assets/images/${p.image}|}" alt="" width=360px; height=440px;>
 											</a>
 											<div class="sale"  th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
-											<div class="icon">
-												<i class="icon_heart_alt"></i>
-											</div>
 											<ul>
 												<li class="quick-view col m-0 p-0"><a
 													class="btn-warning text-light"
@@ -167,7 +161,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
+												$[[*{#numbers.formatDecimal(p.price*(1-p.discount*0.01), 0, 'COMMA', 1, 'POINT')}]]<span th:if="${p.discount != 0}" class="pl-1">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -177,14 +171,11 @@
 							<div class="filterDiv Shoes">
 								<div class="product-slider owl-carousel">
 									<div class="product-item" th:each="p:${wmShoesList}">
-										<div class="pi-pic">
+										<div class="pi-pic" style="width:360px; height:440px;">
 											<a th:href="@{|/product/detail/${p.id}?sizepro=7|}">
-												<img th:src="@{|/assets/images/${p.image}|}" alt="">
+												<img th:src="@{|/assets/images/${p.image}|}" alt="" width=360px; height=440px;>
 											</a>
 											<div class="sale"  th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
-											<div class="icon">
-												<i class="icon_heart_alt"></i>
-											</div>
 											<ul>
 												<li class="quick-view col m-0 p-0"><a
 													class="btn-warning text-light"
@@ -197,7 +188,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
+												$[[*{#numbers.formatDecimal(p.price*(1-p.discount*0.01), 0, 'COMMA', 1, 'POINT')}]]<span th:if="${p.discount != 0}" class="pl-1">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -208,14 +199,11 @@
 								<div class="product-slider owl-carousel">
 									<div class="product-item"
 										th:each="p:${wmAccessList}">
-										<div class="pi-pic">
+										<div class="pi-pic" style="width:360px; height:440px;">
 											<a th:href="@{|/product/detail/${p.id}?sizepro=1|}">
-												<img th:src="@{|/assets/images/${p.image}|}" alt="">
+												<img th:src="@{|/assets/images/${p.image}|}" alt="" width=360px; height=440px;>
 											</a>
 											<div class="sale"  th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
-											<div class="icon">
-												<i class="icon_heart_alt"></i>
-											</div>
 											<ul>
 												<li class="quick-view col m-0 p-0"><a
 													class="btn-warning text-light"
@@ -228,7 +216,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
+												$[[*{#numbers.formatDecimal(p.price*(1-p.discount*0.01), 0, 'COMMA', 1, 'POINT')}]]<span th:if="${p.discount != 0}" class="pl-1">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -299,14 +287,11 @@
 							<div class="filterDiv Clothings">
 								<div class="product-slider owl-carousel">
 									<div class="product-item" th:each="p:${mCloList}">
-										<div class="pi-pic">
+										<div class="pi-pic" style="width:360px; height:440px;">
 											<a th:href="@{|/product/detail/${p.id}?sizepro=1|}">
-												<img th:src="@{|/assets/images/${p.image}|}" alt="">
+												<img th:src="@{|/assets/images/${p.image}|}" alt="" width=360px; height=440px;>
 											</a>
 											<div class="sale" th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
-											<div class="icon">
-												<i class="icon_heart_alt"></i>
-											</div>
 											<ul>
 												<li class="quick-view col m-0 p-0"><a
 													class="btn-warning text-light"
@@ -319,7 +304,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
+												$[[*{#numbers.formatDecimal(p.price*(1-p.discount*0.01), 0, 'COMMA', 1, 'POINT')}]]<span th:if="${p.discount != 0}" class="pl-1">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -329,14 +314,11 @@
 							<div class="filterDiv HandBag">
 								<div class="product-slider owl-carousel">
 									<div class="product-item HandBag" th:each="p:${mHandbagList}">
-										<div class="pi-pic">
+										<div class="pi-pic" style="width:360px; height:440px;">
 											<a th:href="@{|/product/detail/${p.id}?sizepro=1|}">
-												<img th:src="@{|/assets/images/${p.image}|}" alt="">
+												<img th:src="@{|/assets/images/${p.image}|}" alt="" width=360px; height=440px;>
 											</a>
 											<div class="sale" th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
-											<div class="icon">
-												<i class="icon_heart_alt"></i>
-											</div>
 											<ul>
 												<li class="quick-view col m-0 p-0"><a
 													class="btn-warning text-light"
@@ -349,7 +331,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
+												$[[*{#numbers.formatDecimal(p.price*(1-p.discount*0.01), 0, 'COMMA', 1, 'POINT')}]]<span th:if="${p.discount != 0}" class="pl-1">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -359,14 +341,11 @@
 							<div class="filterDiv Shoes">
 								<div class="product-slider owl-carousel">
 									<div class="product-item" th:each="p:${mShoesList}">
-										<div class="pi-pic">
+										<div class="pi-pic" style="width:360px; height:440px;">
 											<a th:href="@{|/product/detail/${p.id}?sizepro=7|}">
-												<img th:src="@{|/assets/images/${p.image}|}" alt="">
+												<img th:src="@{|/assets/images/${p.image}|}" alt="" width=360px; height=440px;>
 											</a>
 											<div class="sale"  th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
-											<div class="icon">
-												<i class="icon_heart_alt"></i>
-											</div>
 											<ul>
 												<li class="quick-view col m-0 p-0"><a
 													class="btn-warning text-light"
@@ -379,7 +358,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
+												$[[*{#numbers.formatDecimal(p.price*(1-p.discount*0.01), 0, 'COMMA', 1, 'POINT')}]]<span th:if="${p.discount != 0}" class="pl-1">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>
@@ -390,14 +369,11 @@
 								<div class="product-slider owl-carousel">
 									<div class="product-item"
 										th:each="p:${mAccessList}">
-										<div class="pi-pic">
+										<div class="pi-pic" style="width:360px; height:440px;">
 											<a th:href="@{|/product/detail/${p.id}?sizepro=1|}">
-												<img th:src="@{|/assets/images/${p.image}|}" alt="">
+												<img th:src="@{|/assets/images/${p.image}|}" alt="" width=360px; height=440px;>
 											</a>
 											<div class="sale" th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
-											<div class="icon">
-												<i class="icon_heart_alt"></i>
-											</div>
 											<ul>
 												<li class="quick-view col m-0 p-0"><a
 													class="btn-warning text-light"
@@ -410,7 +386,7 @@
 												<h5 th:utext="${p.name}"></h5>
 											</a>
 											<div class="product-price">
-												$[[${p.price*(1-p.discount*0.01)}]]<span th:if="${p.discount != 0}">$[[${p.price}]]</span>
+												$[[*{#numbers.formatDecimal(p.price*(1-p.discount*0.01), 0, 'COMMA', 1, 'POINT')}]]<span th:if="${p.discount != 0}" class="pl-1">$[[${p.price}]]</span>
 											</div>
 										</div>
 									</div>

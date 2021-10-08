@@ -12,6 +12,7 @@ import edu.poly.dao.ProductDAO;
 import edu.poly.service.ProductService;
 
 import edu.poly.entity.Product;
+import edu.poly.entity.ProductDetail;
 import edu.poly.entity.Report;
 
 @Service
@@ -120,6 +121,20 @@ public class ProductServiceImp implements ProductService{
 	public List<Product> findbyName(String valued) {
 		
 		return productDAO.findbyName(valued);
+	}
+
+
+
+	@Override
+	public Page<Product> findAllTrue(Pageable pageable) {
+		return productDAO.findAllTrue(pageable);
+	}
+
+
+	@Override
+	public Page<Product> filterProduct(String cateid, String brandname, String gendername, double min, double max,
+			Pageable pageable) {
+		return productDAO.filterProduct(cateid, brandname, gendername, min, max, pageable);
 	}
 	
 	

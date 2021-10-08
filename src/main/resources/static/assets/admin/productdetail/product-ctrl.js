@@ -40,6 +40,9 @@ app.controller("productdetail-ctrl", function($scope, $http) {
 		});
 
 	}
+	
+	
+	
 
 	//Khởi tạo
 	$scope.initialize();
@@ -52,7 +55,7 @@ app.controller("productdetail-ctrl", function($scope, $http) {
 			available: true
 		};
 	}
-
+	
 	//hiển thị lên form
 	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);
