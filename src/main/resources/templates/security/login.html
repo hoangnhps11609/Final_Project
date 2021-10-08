@@ -22,18 +22,18 @@
     <div class="register-login-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 offset-lg-3">
+                <div class="col-lg-4 offset-lg-4">
                     <div class="login-form">
                         <h2>Login</h2>
                         <form th:action="@{/security/login/form}" method="post">
                         	<p style="color: red; font-style: italic; font-size: 13pt;">[[${message}]]</p>
                             <div class="group-input">
                                 <label>Username or email address *</label>
-                                <input type="text" name="username">
+                                <input type="text" name="username" required="" pattern="[a-z,A-Z,0-9]{3,25}" title="Tên đăng nhập phải từ 3-25 ký tự">
                             </div>
                             <div class="group-input">
                                 <label>Password *</label>
-                                <input type="text" name="password">
+                                <input type="text" name="password" required="" pattern="[a-z,A-Z,0-9]{3,25}" title="Mật khẩu phải từ 3-25 ký tự">
                             </div>
                             <div class="group-input gi-check">
                                 <div class="gi-more">
