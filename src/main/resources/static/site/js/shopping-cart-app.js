@@ -186,7 +186,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
             alert("Đăng ký thành công");
            location.assign ("http://localhost:8080/");
         }).catch(error =>{
-            alert("Lỗi đăng ký");
+            //alert("Lỗi đăng ký");
             console.log("Error, error");
         });
     }

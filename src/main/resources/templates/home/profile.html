@@ -70,38 +70,38 @@
 																th:field="*{items.username}" name="username"
 																id="username" aria-describedby="usernameHid"
 																class="form-control" readonly>
-															<small class="form-text text-muted">Username is
-																invalid</small>
+															<!-- <small class="form-text text-muted">Username is
+																invalid</small> -->
 														</div>
 
 														<div class="group-input col-sm-6">
 															<label>Fullname *</label> <input
 																th:field="*{items.fullname}" name="fullname"
 																id="fullname" aria-describedby="fullnameHid"
-																class="form-control">
-															<small id="fullnameHid"
-																class="form-text text-muted">Fullname is invalid</small>
+																class="form-control" required="" pattern="[a-z,A-Z]{1,50}" title="Tên người dùng không được chứa số và ký tự đặc biệt">
+															<!-- <small id="fullnameHid"
+																class="form-text text-muted">Fullname is invalid</small> -->
 														</div>
 													</div>
 													<div class="row">
 														<div class="group-input col-sm-6">
 															<label>Email *</label> <input th:field="*{items.email}"
 																type="email" name="email" class="form-control">
-															<small class="form-text text-muted">Email is invalid</small>
+															<!-- <small class="form-text text-muted">Email is invalid</small> -->
 														</div>
 														<div class="group-input col-sm-6">
 															<label>Phone *</label> <input th:field="*{items.phone}"
-																name="phone" class="form-control">
-															<small class="form-text text-muted">Phone is invalid</small>
+																name="phone" class="form-control" required="" pattern="[0-9]{10}" title="Sổ điện thoại phải đầu số là (09|03|07|08|05)+([0-9]{8}) ">
+																<!-- <small class="form-text text-muted">Phone is invalid</small> -->
 														</div>
 													</div>
 													<div class="row">
 														<div class="group-input col-sm-12">
 															<label>Address *</label>
 															<textarea rows="3" th:field="*{items.address}"
-																name="address" class="form-control"></textarea>
-															<small class="form-text text-muted">Address is
-																invalid</small>
+																name="address" class="form-control" pattern="[a-z,A-Z,0-9]{0,255}" title="Địa chỉ không được chứa ký tự đặc biệt"></textarea>
+															<!-- <small class="form-text text-muted">Address is
+																invalid</small> -->
 														</div>
 													</div>
 												</div>
