@@ -35,7 +35,7 @@
 										<th>Product</th>
 										<th>Price</th>
 										<th>Size - Color</th>
-										<th style="width:20%">Quantity</th>
+										<th style="width: 20%">Quantity</th>
 										<th>Total</th>
 										<th><i class="ti-close"></i></th>
 									</tr>
@@ -43,12 +43,17 @@
 								<tbody>
 									<tr ng-repeat="item in cart.items">
 										<td class="cart-pic first-row"><img
-											src="/assets/images/{{item.image}}" width="110px" height="120px"></td>
+											src="/assets/images/{{item.image}}" width="110px"
+											height="120px"></td>
 										<td class="cart-title first-row">
 											<h5>{{item.product.name}}</h5>
 										</td>
-										<td class="p-price first-row">${{item.product.price*(1-item.product.discount*0.01)|number:2}} <div style="text-decoration: line-through; font-size:14px; color:rgb(224,224,224);">${{item.product.price}}</div></td>
-										<td class="p-price first-row text-dark">{{item.size.name}} - {{item.color.name}}</td>
+										<td class="p-price first-row">${{item.product.price*(1-item.product.discount*0.01)|number:2}}
+											<div
+												style="text-decoration: line-through; font-size: 14px; color: rgb(224, 224, 224);">${{item.product.price}}</div>
+										</td>
+										<td class="p-price first-row text-dark">{{item.size.name}}
+											- {{item.color.name}}</td>
 										<td>
 											<div class="pt-4 text-center">
 												<div class="col-6 row offset-3 border px-0 py-2">
@@ -94,8 +99,15 @@
 										<li class="subtotal">Subtotal <span>$0.0</span></li>
 										<li class="cart-total">Total <span>${{cart.amount|number:2}}</span></li>
 									</ul>
-									<a th:href="@{/order/checkout}" class="proceed-btn">PROCEED
-										TO CHECK OUT</a>
+									<th:block th:if="${#request.remoteUser}">
+										<a th:href="@{/order/checkout}" class="proceed-btn">PROCEED
+											TO CHECK OUT</a>
+									</th:block>
+									<th:block th:unless="${#request.remoteUser}">
+										<a th:href="@{/order/checkout}" data-toggle="modal"
+											data-target="#loginModalCenter" class="proceed-btn">PROCEED
+											TO CHECK OUT</a>
+									</th:block>
 								</div>
 							</div>
 						</div>
