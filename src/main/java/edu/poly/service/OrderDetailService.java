@@ -70,6 +70,6 @@ public interface OrderDetailService {
 
 	<S extends OrderDetail> S save(S entity);
 
-	List<OrderDetail> findByOrder(Long id);
+	Page<OrderDetail> findByOrder(Long id, Pageable pageable);
 
 }

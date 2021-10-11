@@ -106,6 +106,11 @@ public class OrderServiceImpl implements OrderService{
 		return dao.FindById(id);
 	}
 
+	@Override
+	public Page<Order> findByUsernameandStatus(String username, Integer sid, Pageable pageable) {
+		return dao.findByUsernameandStatus(username, sid, pageable);
+	}
+
 
 
 }

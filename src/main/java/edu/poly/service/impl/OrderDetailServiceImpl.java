@@ -24,8 +24,8 @@ public class OrderDetailServiceImpl implements OrderDetailService{
 	}
 
 	@Override
-	public List<OrderDetail> findByOrder(Long id) {
-		return orderDetailDAO.findByOrder(id);
+	public Page<OrderDetail> findByOrder(Long id, Pageable pageable) {
+		return orderDetailDAO.findByOrder(id, pageable);
 	}
 
 	@Override

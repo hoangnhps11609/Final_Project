@@ -37,7 +37,9 @@ public class Order  implements Serializable{
 	
 	String address;
 	
-	Boolean status = true;
+	String fullname;
+	
+	Integer status;
 	
 	@ManyToOne
 	@JoinColumn(name = "Username")
