@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import edu.poly.entity.ColorPro;
 import edu.poly.entity.Product;
+import edu.poly.entity.ProductByColor;
+import edu.poly.entity.ProductBySize;
 import edu.poly.entity.ProductDetail;
 import edu.poly.entity.SizePro;
 @Repository
@@ -78,4 +80,13 @@ public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 	@Query
 	("SELECT p FROM ProductDetail p WHERE p.product.name like ?1")
 	List<ProductDetail> FindProductByName(String valued);
+
+	@Query
+	("SELECT new ProductByColor(p.product, count(p.product)) FROM ProductDetail p WHERE p.color.id=?1 group by p.product")
+	Page<ProductByColor> findByProductIDGroupByColor(Integer color, Pageable pageable);
+
+
+	@Query
+	("SELECT new ProductBySize(p.product, count(p.product)) FROM ProductDetail p WHERE p.size.id=?1 group by p.product")
+	Page<ProductBySize> findByProductIDGroupBySize(Integer sizepro, Pageable pageable);
 }

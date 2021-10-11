@@ -70,4 +70,6 @@ public interface GenderService {
 
 	<S extends Gender> S save(S entity);
 
+	Gender findbyGenderId(Integer gender);
+
 }

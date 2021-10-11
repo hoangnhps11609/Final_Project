@@ -171,6 +171,11 @@ public class SizeServiceImpl implements SizeService{
 	public List<Size> findSizeByCate(String string) {
 		return sizeDAO.findSizeByCate(string);
 	}
+
+	@Override
+	public Size findBySizeId(Integer sizepro) {
+		return sizeDAO.findBySizeId(sizepro);
+	}
 	
 	
 }

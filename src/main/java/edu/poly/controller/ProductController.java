@@ -39,6 +39,8 @@ import edu.poly.entity.ColorPro;
 import edu.poly.entity.Comment;
 import edu.poly.entity.Gender;
 import edu.poly.entity.Product;
+import edu.poly.entity.ProductByColor;
+import edu.poly.entity.ProductBySize;
 import edu.poly.entity.ProductDetail;
 import edu.poly.entity.RateAVG;
 import edu.poly.entity.Size;
@@ -103,23 +105,29 @@ public class ProductController {
 		if (gender != null) {
 			resultPage = productservice.findByGenderId(gender, pageable);
 			model.addAttribute("gender", gender);
+			Gender gendername = genderService.findbyGenderId(gender);
+			model.addAttribute("findby", "Find by Gender: " + gendername.getName());
 		} else if (brand != null) {
 			resultPage = productservice.findByBrandId(brand, pageable);
 			model.addAttribute("brand", brand);
+			Brand brandname = brandService.findbyBrandId(brand);
+			model.addAttribute("findby", "Find by Brand: " + brandname.getName());
 		} else if (categoryID != "") {
 			resultPage = productservice.findByCategoryId(categoryID, pageable);
 			model.addAttribute("cid", categoryID);
+			Category catename = categoryService.findbyCateId(categoryID);
+			model.addAttribute("findby", "Find by Category: " + catename.getName());
 		} else if (max != null) {
 			resultPage = productservice.findByPriceContaining(min, max, pageable);
 			model.addAttribute("max", max);
 			model.addAttribute("min", min);
+			model.addAttribute("findby", "Find by Price: to " + min + "$ from " + max + "$");
 		} else if (search != null) {
 			resultPage = productservice.findByKeyword("%" + search + "%", pageable);
 			model.addAttribute("search", search);
+			model.addAttribute("findby", "Find by Keyword: " + search);
 		} else{
-//			List<Product> list = productservice.findAll();
 			resultPage = productservice.findAll(pageable);
-//			model.addAttribute("items", list);
 		}
 		int totalPages = resultPage.getTotalPages();
 		if (totalPages > 0) {
@@ -195,11 +203,10 @@ public class ProductController {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(9);
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("product.id").descending());
-		Page<ProductDetail> resultPage = null;
-
-		resultPage = productDetailService.findByColor(color, pageable);
+		Page<ProductByColor> resultPage = null;
+		resultPage = productDetailService.findByProductIDGroupByColor(color, pageable);
 		model.addAttribute("color", color);
-
+		Color colorname = colorService.findByColorId(color);
 		int totalPages = resultPage.getTotalPages();
 		if (totalPages > 0) {
 			int start = Math.max(1, currentPage - 2);
@@ -216,7 +223,7 @@ public class ProductController {
 		}
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
-
+		model.addAttribute("colorname", colorname);
 		return "product/listforcolor";
 	}
 
@@ -226,10 +233,11 @@ public class ProductController {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(9);
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("product.id").descending());
-		Page<ProductDetail> resultPage = null;
+		Page<ProductBySize> resultPage = null;
 
-		resultPage = productDetailService.findBySize(sizepro, pageable);
+		resultPage = productDetailService.findByProductIDGroupBySize(sizepro, pageable);
 		model.addAttribute("sizepro", sizepro);
+		Size sizename = sizeService.findBySizeId(sizepro);
 
 		int totalPages = resultPage.getTotalPages();
 		if (totalPages > 0) {
@@ -247,7 +255,7 @@ public class ProductController {
 		}
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
-
+		model.addAttribute("sizename", sizename);
 		return "product/listforsize";
 	}
 

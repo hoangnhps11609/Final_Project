@@ -165,6 +165,11 @@ public class ColorServiceImpl implements ColorService{
 	@Override
 	public <S extends Color> List<S> findAll(Example<S> example, Sort sort) {
 		return colorDAO.findAll(example, sort);
+	}
+
+	@Override
+	public Color findByColorId(Integer color) {
+		return colorDAO.findByColorId(color);
 	};
 	
 	

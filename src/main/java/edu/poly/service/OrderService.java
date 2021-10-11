@@ -39,6 +39,4 @@ public interface OrderService {
 	List<Order> findbyId(Long id);
 
 	List<Order> findbyId(String id);
-
-	Page<Order> findByUsernameandStatus(String username, Integer sid, Pageable pageable);
 }
