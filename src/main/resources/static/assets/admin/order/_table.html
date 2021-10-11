@@ -20,6 +20,7 @@
 					<th scope="col">Username</th>
 					<th scope="col">Create Date</th>
 					<th scope="col">Address</th>
+					<th scope="col">Status</th>
 					<th style="position: relative;"><img
 							style="width: 100px; height: 80px; position: absolute; top: -17px;"
 							src="/assets/images/xenoel1.png" alt=""></th>
@@ -31,7 +32,12 @@
 					<td>{{item.id}}</td>
 					<td>{{item.account.username}}</td>
 					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
+					
 					<td>{{item.address}}</td>
+					<td ng:if="item.status==0" style="color: red;">Waiting for Confirm</td>
+					<td ng:if="item.status==1"  style="color: orange;">Confirmed</td>
+					<td ng:if="item.status==2"  style="color: blue;">Shipping</td>
+					<td ng:if="item.status==3" style="color: green;">Complete</td>
 					<td>
 						<div class="btn-group btn-group-xs" style="margin-left: 20px">
 							<button type="button" class="btn btn-primary" ng-click="detail(item)">Detail</button>

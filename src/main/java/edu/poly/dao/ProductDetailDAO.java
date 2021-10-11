@@ -80,12 +80,12 @@ public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 	@Query
 	("SELECT p FROM ProductDetail p WHERE p.product.name like ?1")
 	List<ProductDetail> FindProductByName(String valued);
-<<<<<<< HEAD
+
 	
 	@Query
 	("Select p.product.id,p.product.name ,p.quantity from ProductDetail p group by p.product.id,p.product.name ,p.quantity")
 	List<ProductDetail> getReportSoLuongSanPham();
-=======
+
 
 	@Query
 	("SELECT new ProductByColor(p.product, count(p.product)) FROM ProductDetail p WHERE p.color.id=?1 group by p.product")
@@ -95,5 +95,5 @@ public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 	@Query
 	("SELECT new ProductBySize(p.product, count(p.product)) FROM ProductDetail p WHERE p.size.id=?1 group by p.product")
 	Page<ProductBySize> findByProductIDGroupBySize(Integer sizepro, Pageable pageable);
->>>>>>> a1c09e74e9c0ae4981d7106186815d7742d1050f
+
 }

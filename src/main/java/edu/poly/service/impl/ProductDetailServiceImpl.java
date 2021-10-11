@@ -247,14 +247,14 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public List<ProductDetail> getReport1() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	
-=======
+
 	public Page<ProductByColor> findByProductIDGroupByColor(Integer color, Pageable pageable) {
 		return productDetailDAO.findByProductIDGroupByColor(color, pageable);
 	}
@@ -263,7 +263,7 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 	public Page<ProductBySize> findByProductIDGroupBySize(Integer sizepro, Pageable pageable) {
 		return productDetailDAO.findByProductIDGroupBySize(sizepro, pageable);
 	}
->>>>>>> a1c09e74e9c0ae4981d7106186815d7742d1050f
+
 
 
 	

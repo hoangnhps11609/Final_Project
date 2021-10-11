@@ -17,6 +17,9 @@ app.config(function ($routeProvider) {
 		}).when("/order", {
 			templateUrl: "/assets/admin/order/index.html",
 			controller: "order-ctrl"
+		}).when("/orderstatus", {
+			templateUrl: "/assets/admin/orderstatus/index.html",
+			controller: "orderstatus-ctrl"
 		}).when("/authorize", {
 			templateUrl: "/assets/admin/authority/index.html",
 			controller: "authority-ctrl"

@@ -1,0 +1,127 @@
+
+<div class="card">
+	<div class="card-header">
+		<h3>List Order</h3>
+		<div class="col" style="position: relative;">
+			<div class="form-group col-4">
+				<select name=” optionlist ” onChange=”combo(this, ’demo’)”>
+				<option>option 1</option>
+				<option>option 2</option>
+				<option>option 3</option>
+				<option>option 4 </option>
+				<option>option 5 </option>
+</select>
+			</div>
+		</div>
+	</div>
+	<div class="card-body">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th scope="col">ID</th>
+					<th scope="col">Username</th>
+					<th scope="col">Create Date</th>
+					<th scope="col">Address</th>
+					<th scope="col">Status</th>
+					<th style="position: relative;"><img
+							style="width: 100px; height: 80px; position: absolute; top: -17px;"
+							src="/assets/images/xenoel1.png" alt=""></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in pager.items">
+					<th></th>
+					<td>{{item.id}}</td>
+					<td>{{item.account.username}}</td>
+					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
+					
+					<td>{{item.address}}</td>
+					<td ng:if="item.status==0" style="color: red;">Waiting for Confirm</td>
+					<td ng:if="item.status==1"  style="color: orange;">Confirmed</td>
+					<td ng:if="item.status==2"  style="color: blue;">Shipping</td>
+					<td ng:if="item.status==3" style="color: green;">Complete</td>
+					<td>
+						<div class="btn-group btn-group-xs" style="margin-left: 20px">
+							<button class="btn btn-primary" ng-click="detail(item)">Detail</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="card-footer text-muted text-center">
+		<button class="btn btn-primary" ng-click="pager.first()">First</button>
+		<button class="btn btn-primary" ng-click="pager.prev()">Prev</button>
+		<button class="btn btn-success">{{pager.page+1}} of
+			{{pager.count}}</button>
+		<button class="btn btn-primary" ng-click="pager.next()">Next</button>
+		<button class="btn btn-primary" ng-click="pager.last()">Last</button>
+	</div>
+	
+	<!-- Modal của detail-->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Detailing</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+</div>
+	</div>
+    </div>
+  </div>
+  
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      	<div class="card-header"><h3>Order ID: {{orderID}}</h3></div>
+	<div class="card-body">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Image</th>
+					<th scope="col">SKU</th>
+					<th scope="col">Product Name</th>
+					<th scope="col">Color - Size</th>
+					<th scope="col">Price</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Amount</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in pager2.ODitems">
+					<td width="150px">
+						<img ng-src="{{'/assets/images/' + item.productDetail.image}}" width="100%"/>
+					</td>
+					<td>{{item.productDetail.product.id}}</td>
+					<td>{{item.productDetail.product.name}}</td>
+					<td>{{item.productDetail.color.name}} - {{item.productDetail.size.name}}</td>
+					<td>${{item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:2}}</td>
+					<td>{{item.quantity}}</td>
+					<td>${{item.quantity*item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:2}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+		<div class="card-footer text-muted text-center">
+		<button class="btn btn-primary" ng-click="pager2.first()">First</button>
+		<button class="btn btn-primary" ng-click="pager2.prev()">Prev</button>
+		<button class="btn btn-success">{{pager2.page+1}} of
+			{{pager2.count}}</button>
+		<button class="btn btn-primary" ng-click="pager2.next()">Next</button>
+		<button class="btn btn-primary" ng-click="pager2.last()">Last</button>
+	</div>
+    </div>
+  </div>
+</div>
+  <!-- Modal của detail-->
+</div>
+</div>
+
+
