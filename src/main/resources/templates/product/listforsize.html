@@ -104,7 +104,11 @@
 					<div class="col-lg-9 order-1 order-lg-2">
 						<div class="product-show-option">
 							<div class="row">
-								<div class="col text-right">
+								<div class="col-lg-7 col-md-7">
+									<p>Find by size: <span class="text-light bg-dark p-1" style="font-weight:bolder; font-size:18px">[[${sizename.name}]]</span></p>
+								</div>
+
+								<div class="col-lg-5 col-md-5 text-right">
 									<p>Show [[${productPage.number*size + 1 }]] -
 										[[${productPage.number*size + productPage.numberOfElements}]]
 										Of [[${productPage.totalElements}]] Products</p>
@@ -117,7 +121,7 @@
 									th:each=" sizepro, iStat : ${productPage.content}">
 									<div class="product-item">
 										<div class="pi-pic"  style="width:260px; height:320px;">
-											<a th:href="@{|/product/detail/${sizepro.product.id}?sizepro=${sizepro.size.id}|}"> <img
+											<a th:href="@{|/product/detail/${sizepro.product.id}?sizepro=1|}"> <img
 												th:src="${sizepro.product.image!=null ? '/assets/images/' + sizepro.product.image : '/assets/images/logo.png'}"
 												width="260px" height="320px" id="image" 
 												name="image" alt="">
@@ -127,7 +131,7 @@
 											
 											<ul>
 												<li class="quick-view col m-0 p-0"><a class="btn-warning text-light"
-													th:href="@{|/product/detail/${sizepro.product.id}?sizepro=${sizepro.size.id}|}"> + Quick
+													th:href="@{|/product/detail/${sizepro.product.id}?sizepro=1|}"> + Quick
 														View </a></li>
 											</ul>
 										</div>
@@ -151,7 +155,7 @@
 									<li
 										th:class="${1 == productPage.number + 1} ? 'page-item active' : 'page-item'">
 										<a
-										th:href="@{/product/listsize/( size=${productPage.size}, page=${1}, sizepro=${sizepro})}"
+										th:href="@{/product/listsize/(size=${productPage.size}, page=${1}, sizepro=${sizepro})}"
 										class="page-link">First</a>
 									</li>
 

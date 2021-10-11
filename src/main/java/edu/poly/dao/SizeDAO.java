@@ -14,4 +14,8 @@ public interface SizeDAO extends JpaRepository<Size, Integer>{
 	("Select s from Size s where s.description like ?1")
 	List<Size> findSizeByCate(String string);
 
+	@Query
+	("Select s from Size s where s.id = ?1")
+	Size findBySizeId(Integer sizepro);
+
 }

@@ -70,4 +70,6 @@ public interface ColorService {
 
 	<S extends Color> S save(S entity);
 
+	Color findByColorId(Integer color);
+
 }

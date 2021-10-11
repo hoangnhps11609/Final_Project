@@ -166,6 +166,11 @@ public class GenderServiceImpl implements GenderService{
 	public <S extends Gender> List<S> findAll(Example<S> example, Sort sort) {
 		return genderDAO.findAll(example, sort);
 	}
+
+	@Override
+	public Gender findbyGenderId(Integer gender) {
+		return genderDAO.findbyGenderId(gender);
+	}
 	
 	
 }

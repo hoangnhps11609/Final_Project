@@ -262,12 +262,6 @@
 						<div class="col-lg-3 text-right col-md-3">
 							<ul class="nav-right">
 
-								<!--Favorite-->
-								<li class="heart-icon"><a th:href="@{/order/list}"> <i
-										class="icon_heart_alt"></i> <span>0</span>
-								</a></li>
-								<!--Favorite-->
-
 								<!--Dislay Cart-->
 								<li class="cart-icon" th:fragment="shopping_cart"><a
 									th:href="@{/cart/view}"> <i class="icon_bag_alt"></i> <span>{{cart.count}}</span>
@@ -282,7 +276,7 @@
 															height="70px"></td>
 														<td class="si-text col-5">
 															<div class="product-selected">
-																<p>${{item.product.price|number:2}} x {{item.qty}}</p>
+																<p>${{item.product.price*(1-item.product.discount*0.01)|number:2}} x {{item.qty}}</p>
 																<h6>{{item.product.name}}</h6>
 															</div>
 														</td>
@@ -349,7 +343,7 @@
 										<li><a th:href="@{/home/change-password}">Change
 												Password</a></li>
 										<li><a th:href="@{/accounts/info}">My Profile</a></li>
-										<li><a th:href="@{/order/list}">My Order</a></li>
+										<li><a th:href="@{/order/list?sid=0}">My Order</a></li>
 										<li><a th:href="@{/admin/home/index}"
 											th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">Administration</a></li>
 										<li><a th:href="@{/security/logoff}">Logout</a></li>
