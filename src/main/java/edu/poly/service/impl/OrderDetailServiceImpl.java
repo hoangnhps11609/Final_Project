@@ -13,8 +13,9 @@ import org.springframework.stereotype.Service;
 import edu.poly.dao.OrderDetailDAO;
 import edu.poly.entity.OrderDetail;
 import edu.poly.service.OrderDetailService;
+
 @Service
-public class OrderDetailServiceImpl implements OrderDetailService{
+public class OrderDetailServiceImpl implements OrderDetailService {
 
 	@Autowired
 	OrderDetailDAO orderDetailDAO;
@@ -24,8 +25,8 @@ public class OrderDetailServiceImpl implements OrderDetailService{
 	}
 
 	@Override
-	public List<OrderDetail> findByOrder(Long id) {
-		return orderDetailDAO.findByOrder(id);
+	public Page<OrderDetail> findByOrder(Long id, Pageable pageable) {
+		return orderDetailDAO.findByOrder(id, pageable);
 	}
 
 	@Override
@@ -172,6 +173,5 @@ public class OrderDetailServiceImpl implements OrderDetailService{
 	public <S extends OrderDetail> List<S> findAll(Example<S> example, Sort sort) {
 		return orderDetailDAO.findAll(example, sort);
 	}
-	
-	
+
 }
