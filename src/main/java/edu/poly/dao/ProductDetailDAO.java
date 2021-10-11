@@ -78,4 +78,8 @@ public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 	@Query
 	("SELECT p FROM ProductDetail p WHERE p.product.name like ?1")
 	List<ProductDetail> FindProductByName(String valued);
+	
+	@Query
+	("Select p.product.id,p.product.name ,p.quantity from ProductDetail p group by p.product.id,p.product.name ,p.quantity")
+	List<ProductDetail> getReportSoLuongSanPham();
 }

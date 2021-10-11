@@ -69,5 +69,7 @@ public interface ProductService {
 	Page<Product> filterProduct(String cateid, String brandname, String gendername, double min, double max, Pageable pageable);
 	
 	Optional<Product> getChio(Integer id);
+	
+
 
 }

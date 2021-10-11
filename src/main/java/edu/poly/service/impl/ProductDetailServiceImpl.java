@@ -244,6 +244,14 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 		return productDetailDAO.FindProductByName(valued);
 	}
 
+	@Override
+	public List<ProductDetail> getReport1() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
 
 	
 

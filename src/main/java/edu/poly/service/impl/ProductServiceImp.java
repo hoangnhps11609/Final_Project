@@ -143,6 +143,8 @@ public class ProductServiceImp implements ProductService{
 		// TODO Auto-generated method stub
 		return productDAO.getChio(id);
 	}
+
+
 	
 	
 

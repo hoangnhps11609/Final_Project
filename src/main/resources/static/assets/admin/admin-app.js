@@ -28,6 +28,7 @@ app.config(function ($routeProvider) {
 			controller: "voucher-ctrl"
 		}).when("/report1", {
 			templateUrl: "/assets/admin/report/index.html",
+			controller: "report-ctrl"
 		}).when("/blogcategory", {
 			templateUrl: "/assets/admin/blogc/index.html",
 			controller: "blogcategory-ctrl"
