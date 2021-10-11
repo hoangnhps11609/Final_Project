@@ -343,7 +343,7 @@
 										<li><a th:href="@{/home/change-password}">Change
 												Password</a></li>
 										<li><a th:href="@{/accounts/info}">My Profile</a></li>
-										<li><a th:href="@{/order/list}">My Order</a></li>
+										<li><a th:href="@{/order/list?sid=0}">My Order</a></li>
 										<li><a th:href="@{/admin/home/index}"
 											th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">Administration</a></li>
 										<li><a th:href="@{/security/logoff}">Logout</a></li>
