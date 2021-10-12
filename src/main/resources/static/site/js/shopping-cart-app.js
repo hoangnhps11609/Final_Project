@@ -26,17 +26,27 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		//Cộng sản phẩm có sẵn trong giỏ hàng
 		addcart(id){
 			var item = this.items.find(item => item.id == id);
-			if(item){
-				item.qty++;
-				this.saveToLocalStorage();
-			}
-			else {
-				$http.get(`/rest/productdetails/${id}`).then(resp => {
-					resp.data.qty = 1;
-					this.items.push(resp.data);
-					this.saveToLocalStorage();
-				})
-			}
+					if(item){
+						$http.get(`/rest/productdetails/${id}`).then(resp => {
+							$scope.proDe = resp.data;
+							if(item.qty < $scope.proDe.quantity){
+								item.qty++;
+								this.saveToLocalStorage();
+							}else{
+								item.qty;
+								this.saveToLocalStorage();
+								alert("Out-Of-Stock Product");
+							}
+						})
+					}
+					else {
+						$http.get(`/rest/productdetails/${id}`).then(resp => {
+						resp.data.qty = 1;
+						this.items.push(resp.data);
+						this.saveToLocalStorage();
+						})
+					}
+				
 		},
 		
 		//Trừ sản phẩm có sẵn trong giỏ hàng
@@ -119,7 +129,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			$http.post("/rest/orders", order).then(resp => {
 				alert("Đặt hàng thành công!");
 				$scope.cart.clear();
-				location.href = "/order/success/" + resp.data.id;
+				location.href = "/productdetail/update/" + resp.data.id;
 			}).catch(error => {
 				alert("Đặt hàng thất bại!")
 				console.log(error)

@@ -1,5 +1,7 @@
 package edu.poly.controller;
 
+import java.lang.ProcessBuilder.Redirect;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -7,6 +9,7 @@ import java.util.stream.IntStream;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +29,7 @@ import edu.poly.service.CategoryService;
 import edu.poly.service.ColorService;
 import edu.poly.service.CommentService;
 import edu.poly.service.GenderService;
+import edu.poly.service.OrderDetailService;
 import edu.poly.service.ProductDetailService;
 import edu.poly.service.ProductService;
 import edu.poly.service.SizeService;
@@ -38,6 +42,7 @@ import edu.poly.entity.Color;
 import edu.poly.entity.ColorPro;
 import edu.poly.entity.Comment;
 import edu.poly.entity.Gender;
+import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductBySize;
@@ -85,6 +90,9 @@ public class ProductController {
 	
 	@Autowired
 	ProductDetailService productDetailService;
+	
+	@Autowired
+	OrderDetailService orderDetailService;
 
 	@RequestMapping("product/list")
 	public String list(Model model, @RequestParam(name = "cid", required = false) Optional<String> cid,
@@ -376,5 +384,19 @@ public class ProductController {
 	}
 	
 	
-	
+	@RequestMapping("/productdetail/update/{id}")
+	public String productdetaulupdate(Model model, @PathVariable("id") Long id) {
+		List<OrderDetail> listOrDe = orderDetailService.findByOrder(id);
+		for(int i=0; i<listOrDe.size(); i++) {
+			int OrDeQuan = listOrDe.get(i).getQuantity();
+			Long ProDeId = listOrDe.get(i).getProductDetail().getId();
+			ProductDetail ProDe = productDetailService.findbyId(ProDeId);
+			ProductDetail entity = new ProductDetail();
+			//copy từ dto qua entity
+			BeanUtils.copyProperties(ProDe, entity);
+			entity.setQuantity(entity.getQuantity()-OrDeQuan);
+			productDetailService.save(entity);
+		}
+		return "redirect:/order/success/{id}";
+	}
 }

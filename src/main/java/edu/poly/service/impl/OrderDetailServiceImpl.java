@@ -174,4 +174,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 		return orderDetailDAO.findAll(example, sort);
 	}
 
+	@Override
+	public List<OrderDetail> findByOrder(Long id) {
+		return orderDetailDAO.findByOrder(id);
+	}
+
 }

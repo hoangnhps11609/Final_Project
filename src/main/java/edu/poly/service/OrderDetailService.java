@@ -72,5 +72,7 @@ public interface OrderDetailService {
 
 	Page<OrderDetail> findByOrder(Long id, Pageable pageable);
 
+	List<OrderDetail> findByOrder(Long id);
+
 	
 }

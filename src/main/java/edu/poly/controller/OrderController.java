@@ -68,7 +68,7 @@ public class OrderController {
 	public String list(Model model, @RequestParam("page") Optional<Integer> page,
 			@RequestParam(name = "sid", required = false) Integer sid, HttpServletRequest request) {
 		int currentPage = page.orElse(1);
-		Pageable pageable = PageRequest.of(currentPage - 1, 9, Sort.by("createDate").descending());
+		Pageable pageable = PageRequest.of(currentPage - 1, 9, Sort.by("id").descending());
 		Page<Order> resultPage = null;
 		String username = request.getRemoteUser();
 		resultPage = orderService.findByUsernameandStatus(username, sid, pageable);
