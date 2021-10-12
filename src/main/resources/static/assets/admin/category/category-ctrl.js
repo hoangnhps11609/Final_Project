@@ -1,8 +1,8 @@
-app.controller("category-ctrl", function($scope, $http) {
+app.controller("category-ctrl", function ($scope, $http) {
 	$scope.items = [];
 	$scope.form = {};
 
-	$scope.initialize = function() {
+	$scope.initialize = function () {
 		//load categories
 		$http.get("/rest/categories").then(resp => {
 			$scope.items = resp.data;
@@ -14,18 +14,18 @@ app.controller("category-ctrl", function($scope, $http) {
 	$scope.initialize();
 
 	//Xóa form
-	$scope.reset = function() {
+	$scope.reset = function () {
 		$scope.form = {};
 	}
 
 	//hiển thị lên form
-	$scope.edit = function(item) {
+	$scope.edit = function (item) {
 		$scope.form = angular.copy(item);
 		$(".nav a:eq(0)").tab('show')
 	}
 
 	//Thêm sản phẩm mới
-	$scope.create = function() {
+	$scope.create = function () {
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/categories`, item).then(resp => {
 			$scope.items.push(resp.data);
@@ -39,7 +39,7 @@ app.controller("category-ctrl", function($scope, $http) {
 	}
 
 	//update sản phẩm mới
-	$scope.update = function() {
+	$scope.update = function () {
 		var item = angular.copy($scope.form);
 		$http.put(`/rest/categories/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
@@ -54,7 +54,7 @@ app.controller("category-ctrl", function($scope, $http) {
 	}
 
 	//Xóa sản phẩm mới
-	$scope.delete = function(item) {
+	$scope.delete = function (item) {
 		$http.delete(`/rest/categories/${item.id}`).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items.splice(index, 1);
@@ -74,22 +74,22 @@ app.controller("category-ctrl", function($scope, $http) {
 			var start = this.page * this.size;
 			return $scope.items.slice(start, start + this.size);
 		},
-		get count(){
+		get count() {
 			return Math.ceil(1.0 * $scope.items.length / this.size);
-		}, first(){
+		}, first() {
 			this.page = 0;
-		}, prev(){
+		}, prev() {
 			this.page--;
-			if(this.page<0){
+			if (this.page < 0) {
 				this.last();
 			}
-		}, next(){
+		}, next() {
 			this.page++;
-			if(this.page >= this.count){
+			if (this.page >= this.count) {
 				this.first();
 			}
-		}, last(){
-			this.page = this.count-1;
+		}, last() {
+			this.page = this.count - 1;
 		}
 	}
 });

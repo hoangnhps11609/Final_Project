@@ -51,5 +51,12 @@ app.config(function ($routeProvider) {
 			templateUrl: "/assets/admin/background.html"
 
 		})
-})
-
+});
+function list() {
+	document.getElementById("homes").style.display = "none";
+	document.getElementById("lists").style.display = "block";
+}
+function home() {
+	document.getElementById("homes").style.display = "block";
+	document.getElementById("lists").style.display = "none";
+}

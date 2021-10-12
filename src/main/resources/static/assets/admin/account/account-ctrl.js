@@ -1,21 +1,21 @@
-app.controller("account-ctrl", function($scope, $http) {
+app.controller("account-ctrl", function ($scope, $http) {
 
 
 	$scope.items = [];
 	$scope.form = {};
 
-		$scope.ODitems = [];
-		
-		var input = document.getElementById("myInput");
-		input.addEventListener("keyup", function(event) {
-  		if (event.keyCode === 13) {
-   			event.preventDefault();
-   			$scope.search();
-   
-  }
-});	
-	
-	$scope.initialize = function() {
+	$scope.ODitems = [];
+
+	var input = document.getElementById("myInput");
+	input.addEventListener("keyup", function (event) {
+		if (event.keyCode === 13) {
+			event.preventDefault();
+			$scope.search();
+
+		}
+	});
+
+	$scope.initialize = function () {
 		//load accounts
 		$http.get("/rest/accounts").then(resp => {
 			$scope.items = resp.data;
@@ -23,12 +23,14 @@ app.controller("account-ctrl", function($scope, $http) {
 			})
 		});
 	}
-	
-	$scope.search = function() {
+
+	$scope.search = function () {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/accounts/${statistic.from}`).then(resp => {
 			$scope.items = resp.data;
 			$(".nav a:eq(1)").tab('show');
+			document.getElementById("lists").style.display = "block";
+			document.getElementById("homes").style.display = "none";
 		}).catch(error => {
 			alert();
 			console.log("Error", error);
@@ -39,20 +41,20 @@ app.controller("account-ctrl", function($scope, $http) {
 	$scope.initialize();
 
 	//Xóa form	
-	$scope.reset = function() {
+	$scope.reset = function () {
 		$scope.form = {
 			photo: 'user.png'
 		};
 	}
 
 	//hiển thị lên form
-	$scope.edit = function(item) {
+	$scope.edit = function (item) {
 		$scope.form = angular.copy(item);
 		$(".nav a:eq(0)").tab('show')
 	}
 
 	//Thêm account mới
-	$scope.create = function() {
+	$scope.create = function () {
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/accounts`, item).then(resp => {
 			$scope.items.push(resp.data);
@@ -66,7 +68,7 @@ app.controller("account-ctrl", function($scope, $http) {
 	}
 
 	//update sản phẩm mới
-	$scope.update = function() {
+	$scope.update = function () {
 		var item = angular.copy($scope.form);
 		$http.put(`/rest/accounts/${item.username}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.username == item.username);
@@ -79,10 +81,10 @@ app.controller("account-ctrl", function($scope, $http) {
 
 		});
 	}
-	
-	
+
+
 	//Xóa sản phẩm mới
-	$scope.delete = function(item) {
+	$scope.delete = function (item) {
 		$http.delete(`/rest/accounts/${item.username}`).then(resp => {
 			var index = $scope.items.findIndex(p => p.username == item.username);
 			$scope.items.splice(index, 1);
@@ -96,7 +98,7 @@ app.controller("account-ctrl", function($scope, $http) {
 	}
 
 	//Upload hình
-	$scope.imageChanged = function(files) {
+	$scope.imageChanged = function (files) {
 		var data = new FormData();
 		data.append('file', files[0]);
 		$http.post('/rest/upload/images', data, {
@@ -117,22 +119,22 @@ app.controller("account-ctrl", function($scope, $http) {
 			var start = this.page * this.size;
 			return $scope.items.slice(start, start + this.size);
 		},
-		get count(){
+		get count() {
 			return Math.ceil(1.0 * $scope.items.length / this.size);
-		}, first(){
+		}, first() {
 			this.page = 0;
-		}, prev(){
+		}, prev() {
 			this.page--;
-			if(this.page<0){
+			if (this.page < 0) {
 				this.last();
 			}
-		}, next(){
+		}, next() {
 			this.page++;
-			if(this.page >= this.count){
+			if (this.page >= this.count) {
 				this.first();
 			}
-		}, last(){
-			this.page = this.count-1;
+		}, last() {
+			this.page = this.count - 1;
 		}
 	}
 });

@@ -1,11 +1,11 @@
-app.controller("order-ctrl", function($scope, $http) {
+app.controller("order-ctrl", function ($scope, $http) {
 	$scope.items = [];
 	$scope.cates = [];
 	$scope.form = {};
-	
+
 	$scope.ODitems = [];
 
-	$scope.initialize = function() {
+	$scope.initialize = function () {
 		//load orders
 		$http.get("/rest/orders").then(resp => {
 			$scope.items = resp.data;
@@ -13,22 +13,22 @@ app.controller("order-ctrl", function($scope, $http) {
 			})
 		});
 	}
-	
-			var input = document.getElementById("myInput");
-		input.addEventListener("keyup", function(event) {
-  		if (event.keyCode === 13) {
-   			event.preventDefault();
-   			$scope.statistic();
-   
-  }
-});	
+
+	var input = document.getElementById("myInput");
+	input.addEventListener("keyup", function (event) {
+		if (event.keyCode === 13) {
+			event.preventDefault();
+			$scope.statistic();
+
+		}
+	});
 
 	//Khởi tạo
 	$scope.initialize();
 
-	
+
 	//detail order
-	$scope.detail = function(item){
+	$scope.detail = function (item) {
 		$http.get(`/rest/orders/myorder/${item.id}`).then(resp => {
 			$scope.ODitems = resp.data;
 			$scope.orderID = item.id;
@@ -39,8 +39,8 @@ app.controller("order-ctrl", function($scope, $http) {
 
 		});
 	}
-	
-			$scope.statistic = function() {
+
+	$scope.statistic = function () {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/orders/${statistic.from}`).then(resp => {
 			$scope.items = resp.data;
@@ -52,8 +52,8 @@ app.controller("order-ctrl", function($scope, $http) {
 			console.log("Error", error);
 		});
 	}
-	
-	$scope.statistic1 = function() {
+
+	$scope.statistic1 = function () {
 		var statistic = angular.copy($scope.statistic1);
 		$http.get(`/rest/orders/statistic/${statistic.from1}/${statistic.to1}`).then(resp => {
 			$scope.items = resp.data;
@@ -63,8 +63,8 @@ app.controller("order-ctrl", function($scope, $http) {
 			console.log("Error", error);
 		});
 	}
-	
-	
+
+
 
 	$scope.pager = {
 		page: 0,
@@ -73,22 +73,22 @@ app.controller("order-ctrl", function($scope, $http) {
 			var start = this.page * this.size;
 			return $scope.items.slice(start, start + this.size);
 		},
-		get count(){
+		get count() {
 			return Math.ceil(1.0 * $scope.items.length / this.size);
-		}, first(){
+		}, first() {
 			this.page = 0;
-		}, prev(){
+		}, prev() {
 			this.page--;
-			if(this.page<0){
+			if (this.page < 0) {
 				this.last();
 			}
-		}, next(){
+		}, next() {
 			this.page++;
-			if(this.page >= this.count){
+			if (this.page >= this.count) {
 				this.first();
 			}
-		}, last(){
-			this.page = this.count-1;
+		}, last() {
+			this.page = this.count - 1;
 		}
 	}
 });
