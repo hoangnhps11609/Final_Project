@@ -1,9 +1,9 @@
-app.controller("voucher-ctrl", function($scope, $http) {
+app.controller("voucher-ctrl", function ($scope, $http) {
 	$scope.items = [];
 	$scope.cates = [];
 	$scope.form = {};
 
-	$scope.initialize = function() {
+	$scope.initialize = function () {
 		$http.get("/rest/vouchers").then(resp => {
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
@@ -19,7 +19,7 @@ app.controller("voucher-ctrl", function($scope, $http) {
 	$scope.initialize();
 
 	//Xóa form
-	$scope.reset = function() {
+	$scope.reset = function () {
 		$scope.form = {
 			createDate: new Date(),
 			image: 'user.png',
@@ -28,13 +28,13 @@ app.controller("voucher-ctrl", function($scope, $http) {
 	}
 
 	//hiển thị lên form
-	$scope.edit = function(item) {
+	$scope.edit = function (item) {
 		$scope.form = angular.copy(item);
 		$(".nav a:eq(0)").tab('show')
 	}
 
 	//Thêm sản phẩm mới
-	$scope.create = function() {
+	$scope.create = function () {
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/products`, item).then(resp => {
 			resp.data.createDate = new Date(resp.data.createDate)
@@ -49,7 +49,7 @@ app.controller("voucher-ctrl", function($scope, $http) {
 	}
 
 	//update sản phẩm mới
-	$scope.update = function() {
+	$scope.update = function () {
 		var item = angular.copy($scope.form);
 		$http.put(`/rest/products/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
@@ -64,7 +64,7 @@ app.controller("voucher-ctrl", function($scope, $http) {
 	}
 
 	//Xóa sản phẩm mới
-	$scope.delete = function(item) {
+	$scope.delete = function (item) {
 		$http.delete(`/rest/products/${item.id}`).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items.splice(index, 1);
@@ -78,7 +78,7 @@ app.controller("voucher-ctrl", function($scope, $http) {
 	}
 
 	//Upload hình
-	$scope.imageChanged = function(files) {
+	$scope.imageChanged = function (files) {
 		var data = new FormData();
 		data.append('file', files[0]);
 		$http.post('/rest/upload/images', data, {
@@ -99,22 +99,30 @@ app.controller("voucher-ctrl", function($scope, $http) {
 			var start = this.page * this.size;
 			return $scope.items.slice(start, start + this.size);
 		},
-		get count(){
+		get count() {
 			return Math.ceil(1.0 * $scope.items.length / this.size);
-		}, first(){
+		}, first() {
 			this.page = 0;
-		}, prev(){
+		}, prev() {
 			this.page--;
-			if(this.page<0){
+			if (this.page < 0) {
 				this.last();
 			}
-		}, next(){
+		}, next() {
 			this.page++;
-			if(this.page >= this.count){
+			if (this.page >= this.count) {
 				this.first();
 			}
-		}, last(){
-			this.page = this.count-1;
+		}, last() {
+			this.page = this.count - 1;
 		}
 	}
 });
+function list() {
+	document.getElementById("homes").style.display = "none";
+	document.getElementById("lists").style.display = "block";
+}
+function home() {
+	document.getElementById("homes").style.display = "block";
+	document.getElementById("lists").style.display = "none";
+}

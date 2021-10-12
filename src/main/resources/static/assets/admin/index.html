@@ -17,7 +17,7 @@
     <link href="/assets/dist/css/style.min.css" rel="stylesheet">
     <link href="/assets/dist/image.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -90,9 +90,10 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#!authority"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="ti-settings m-r-5 m-l-5"></i>
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i
+                                    class="ti-settings m-r-5 m-l-5"></i>
                             </a>
-                            
+
                         </li>
                         <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
@@ -149,14 +150,16 @@
                                             class="ti-shopping-cart"></i><span class="hide-menu"> Order Controller
                                         </span></a></li>
                                 <li class="sidebar-item"><a href="#!orderstatus" class="sidebar-link"><i
-                                            class="ti-shopping-cart"></i><span class="hide-menu"> Order Status Controller
+                                            class="ti-shopping-cart"></i><span class="hide-menu"> Order Status
+                                            Controller
                                         </span></a></li>
                                 <li class="sidebar-item"><a href="#!product" class="sidebar-link"><i
                                             class="fab fa-codepen"></i><span class="hide-menu"> Product Controller
                                         </span></a>
                                 </li>
-                                   <li class="sidebar-item"><a href="#!productdetail" class="sidebar-link"><i
-                                            class="fab fa-codepen"></i><span class="hide-menu"> Product Detail Controller
+                                <li class="sidebar-item"><a href="#!productdetail" class="sidebar-link"><i
+                                            class="fab fa-codepen"></i><span class="hide-menu"> Product Detail
+                                            Controller
                                         </span></a>
                                 </li>
                                 <li class="sidebar-item"><a href="#!voucher" class="sidebar-link"><i
@@ -220,7 +223,7 @@
 
             .huan {
                 margin: 0 auto;
-                width: 80%;
+                width: 90%;
                 margin-top: 15px;
                 border: solid 1px;
                 border-bottom: 0px;
@@ -259,14 +262,14 @@
 
     <script src="/assets/admin/admin-app.js"></script>
     <script src="/assets/admin/product/product-ctrl.js"></script>
-     <script src="/assets/admin/productdetail/product-ctrl.js"></script>
+    <script src="/assets/admin/productdetail/product-ctrl.js"></script>
     <script src="/assets/admin/account/account-ctrl.js"></script>
-        <script src="/assets/admin/report/account-ctrl.js"></script>
-    
+    <script src="/assets/admin/report/account-ctrl.js"></script>
+
     <script src="/assets/admin/category/category-ctrl.js"></script>
     <script src="/assets/admin/order/order-ctrl.js"></script>
-        <script src="/assets/admin/orderstatus/orderstatus-ctrl.js"></script>
-    
+    <script src="/assets/admin/orderstatus/orderstatus-ctrl.js"></script>
+
     <script src="/assets/admin/authority/authority-ctrl.js"></script>
     <script src="/assets/admin/voucher/voucher-ctrl.js"></script>
     <script src="/assets/admin/blogc/blogcategory-ctrl.js"></script>
@@ -335,7 +338,7 @@
             background-size: 100%;
         }
 
-        
+
         /* Preloder */
 
         #preloder {
@@ -416,61 +419,61 @@
             });
         })(jQuery);
     </script>
-    
+
     <script>
-		$(function() {
-			$("#slider-range")
-					.slider(
-							{
-								range : true,
-								min : 0,
-								max : 200,
-								values : [ 0, 0 ],
-								slide : function(event, ui) {
-									$("#amount").val(
-											"$" + ui.values[0] + " - $"
-													+ ui.values[1]);
-									$("#amount_start").val(ui.values[0]);
-									$("#amount_end").val(ui.values[1]);
-								}
-							});
-		});
+        $(function () {
+            $("#slider-range")
+                .slider(
+                    {
+                        range: true,
+                        min: 0,
+                        max: 200,
+                        values: [0, 0],
+                        slide: function (event, ui) {
+                            $("#amount").val(
+                                "$" + ui.values[0] + " - $"
+                                + ui.values[1]);
+                            $("#amount_start").val(ui.values[0]);
+                            $("#amount_end").val(ui.values[1]);
+                        }
+                    });
+        });
 
-		function readURL(input) {
-			if (input.files && input.files[0]) {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
 
-				var reader = new FileReader();
+                var reader = new FileReader();
 
-				reader.onload = function(e) {
-					$('.image-upload-wrap').hide();
+                reader.onload = function (e) {
+                    $('.image-upload-wrap').hide();
 
-					$('.file-upload-image').attr('src', e.target.result);
-					$('.file-upload-content').show();
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
 
-					$('.image-title').html(input.files[0].name);
-				};
+                    $('.image-title').html(input.files[0].name);
+                };
 
-				reader.readAsDataURL(input.files[0]);
+                reader.readAsDataURL(input.files[0]);
 
-			} else {
-				removeUpload();
-			}
-		}
+            } else {
+                removeUpload();
+            }
+        }
 
-		function removeUpload() {
-			$('.file-upload-input')
-					.replaceWith($('.file-upload-input').clone());
-			$('.file-upload-content').hide();
-			$('.image-upload-wrap').show();
-		}
-		$('.image-upload-wrap').bind('dragover', function() {
-			$('.image-upload-wrap').addClass('image-dropping');
-		});
-		$('.image-upload-wrap').bind('dragleave', function() {
-			$('.image-upload-wrap').removeClass('image-dropping');
-		});
-	</script>
-	
+        function removeUpload() {
+            $('.file-upload-input')
+                .replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+        }
+        $('.image-upload-wrap').bind('dragover', function () {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function () {
+            $('.image-upload-wrap').removeClass('image-dropping');
+        });
+    </script>
+
 </body>
 
 </html>

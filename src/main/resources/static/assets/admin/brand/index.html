@@ -36,25 +36,27 @@
 		z-index: 0;
 		background: #1abc9c;
 		transition: all .5s ease 0s;
+		width: 180px;
+		left: 0;
+	}
+
+	.nen .nav .animation1 {
+		position: absolute;
+		height: 100%;
+		/* height: 5px; */
+		top: 0;
+		/* bottom: 0; */
+		z-index: 0;
+		background: #1abc9c;
+		transition: all .5s ease 0s;
+		width: 180px;
+		left: 180px;
+		display: none;
 	}
 
 	.nen .nav li a:nth-child(1) {
 		width: 180px;
 		text-align: center;
-	}
-
-	.nen .nav a:nth-child(1):hover~.animation {
-		width: 180px;
-		left: 0;
-	}
-
-	.nen .nav li a:nth-child(2) {
-		width: 180px;
-	}
-
-	.nen .nav li a:nth-child(2):hover~.animation {
-		width: 180px;
-		left: 180px;
 	}
 
 	.my-2 {
@@ -72,17 +74,9 @@
 		padding-left: 5px;
 		padding-right: 10px;
 		z-index: 10;
+		margin-right: -20px;
 	}
 
-	.search-box1:hover>.search-txt1 {
-		width: 240px;
-		padding: 0 6px;
-	}
-
-	.search-box1:hover>.search-btn1 {
-		background: white;
-
-	}
 
 	.search-btn1 {
 		color: #1abc9c;
@@ -90,7 +84,7 @@
 		width: 30px;
 		height: 30px;
 		border-radius: 50%;
-		background-color: #2f3640;
+		background: white;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -104,30 +98,30 @@
 		background: none;
 		outline: none;
 		float: left;
-		padding: 0;
+		padding: 0 6px;
 		color: white;
 		font-size: 16px;
 		transition: 0.4s;
 		line-height: 40px;
-		width: 0;
+		width: 240px;
 
 
 	}
 </style>
 
-
 <div class="huan">
 	<div class="nen">
 		<ul class="nav" id="myTab" role="tablist">
 			<li class="col-sm-10">
-				<a class="nav-link" id="home-tab" data-toggle="tab" data-target="#edit" role="tab" aria-controls="home"
-					aria-selected="true">
+				<a onclick="home()" class="nav-link" id="home-tab" data-toggle="tab" data-target="#edit" role="tab"
+					aria-controls="home" aria-selected="true">
 					Brand Edition</a>
 
-				<a class="nav-link" id="profile-tab" data-toggle="tab" data-target="#list" role="tab"
+				<a onclick="list()" class="nav-link" id="profile-tab" data-toggle="tab" data-target="#list" role="tab"
 					aria-controls="profile" aria-selected="false">
 					List Brand</a>
-				<div class="animation start-home"></div>
+				<div id="homes" class="animation start-home"></div>
+				<div id="lists" class="animation1 start-home1"></div>
 			</li>
 		</ul>
 		<div class="search-box1">
