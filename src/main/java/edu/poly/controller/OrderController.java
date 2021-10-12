@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -126,5 +127,16 @@ public class OrderController {
 		model.addAttribute("id", id);
 		model.addAttribute("OneProInOrder", OneProInOrder);
 		return "order/success";
+	}
+	
+	@RequestMapping("/order/delete/{id}")
+	public String delete(@PathVariable("id") Long id, Model model) {
+		System.out.println(id);
+		Order dto = orderService.findById(id);		
+		Order entity = new Order();
+		BeanUtils.copyProperties(dto, entity);
+		entity.setStatus(4);
+		orderService.save(entity);
+		return "redirect:/order/list?sid=4";
 	}
 }

@@ -41,4 +41,6 @@ public interface OrderService {
 	List<Order> findbyId(String id);
 	
 	Page<Order> findByUsernameandStatus(String username, Integer sid, Pageable pageable);
+
+	<S extends Order> S save(S entity);
 }

@@ -111,4 +111,9 @@ public class OrderServiceImpl implements OrderService{
 		return dao.findByUsernameandStatus(username, sid, pageable);
 	}
 
+	@Override
+	public <S extends Order> S save(S entity) {
+		return dao.save(entity);
+	}
+
 }
