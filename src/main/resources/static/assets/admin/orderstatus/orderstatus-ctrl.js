@@ -1,6 +1,11 @@
 app.controller("orderstatus-ctrl", function($scope, $http) {
+
+	 $scope.myFunction = function() {
+  var x = document.getElementById("mySelect").value;
+  alert(x);
+}
 	$scope.items = [];
-	$scope.cates = [];
+	$scope.cates = [];	
 	$scope.form = {};
 	
 	$scope.ODitems = [];
@@ -23,6 +28,11 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
   }
 });	
 
+
+
+
+
+
 	//Khởi tạo
 	$scope.initialize();
 
@@ -41,16 +51,22 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 		});
 	}
 	
-			$scope.statistic = function() {
-		var statistic = angular.copy($scope.statistic);
-		$http.get(`/rest/orders/${statistic.from}`).then(resp => {
-			$scope.items = resp.data;
-			$scope.items.forEach(item => {
-			})
-			$(".nav-tabs a:eq(2)").tab('show');
-		}).catch(error => {
-			alert();
+	$scope.status = function(item){
+		$scope.form = angular.copy(item);	
+		$('#exampleModalCenter1').appendTo("body").modal('show');
+	}
+	
+	
+	$scope.changeStatus = function () {
+		var item = angular.copy($scope.form);
+		$http.put(`/rest/orders/${item.id}`, item).then(resp => {
+			alert("Cập nhật thành công");
+   			 window.location.reload();
+
+			}).catch(error => {
+			alert("Lỗi cập nhật sản phẩm");
 			console.log("Error", error);
+
 		});
 	}
 	

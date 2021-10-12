@@ -2,6 +2,7 @@ package edu.poly.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import edu.poly.entity.Order;
+import edu.poly.entity.Product;
 @Repository
 public interface OrderDAO extends JpaRepository<Order, Long>{
 
@@ -25,4 +27,8 @@ public interface OrderDAO extends JpaRepository<Order, Long>{
 
 	@Query("SELECT o From Order o Where o.account.username=?1 and o.status = ?2")
 	Page<Order> findByUsernameandStatus(String username, Integer sid, Pageable pageable);
+	
+	@Query
+	("SELECT p FROM Order p WHERE p.id = ?1")
+	Optional<Order> getChio(Long id);
 }

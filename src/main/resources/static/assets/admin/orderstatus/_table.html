@@ -2,17 +2,7 @@
 <div class="card">
 	<div class="card-header">
 		<h3>List Order</h3>
-		<div class="col" style="position: relative;">
-			<div class="form-group col-4">
-				<select name=” optionlist ” onChange=”combo(this, ’demo’)”>
-				<option>option 1</option>
-				<option>option 2</option>
-				<option>option 3</option>
-				<option>option 4 </option>
-				<option>option 5 </option>
-</select>
-			</div>
-		</div>
+
 	</div>
 	<div class="card-body">
 		<table class="table table-striped">
@@ -21,6 +11,8 @@
 					<th></th>
 					<th scope="col">ID</th>
 					<th scope="col">Username</th>
+					<th scope="col">Fullname</th>
+					<th scope="col">Phone</th>		
 					<th scope="col">Create Date</th>
 					<th scope="col">Address</th>
 					<th scope="col">Status</th>
@@ -34,16 +26,22 @@
 					<th></th>
 					<td>{{item.id}}</td>
 					<td>{{item.account.username}}</td>
-					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
+					<td>{{item.fullname}}</td>
+					<td>{{item.phone}}</td>
 					
+					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 					<td>{{item.address}}</td>
 					<td ng:if="item.status==0" style="color: red;">Waiting for Confirm</td>
 					<td ng:if="item.status==1"  style="color: orange;">Confirmed</td>
 					<td ng:if="item.status==2"  style="color: blue;">Shipping</td>
 					<td ng:if="item.status==3" style="color: green;">Complete</td>
+					<td ng:if="item.status==4" style="color: red;"">Cancel Order</td>
+					
 					<td>
 						<div class="btn-group btn-group-xs" style="margin-left: 20px">
 							<button class="btn btn-primary" ng-click="detail(item)">Detail</button>
+							<button class="btn btn-primary" ng-click="status(item)">Status</button>
+							
 						</div>
 					</td>
 				</tr>
@@ -70,14 +68,7 @@
         </button>
       </div>
       <div class="modal-body">
-
-
-</div>
-	</div>
-    </div>
-  </div>
-  
-  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       	<div class="card-header"><h3>Order ID: {{orderID}}</h3></div>
@@ -120,7 +111,112 @@
     </div>
   </div>
 </div>
+
+</div>
+	</div>
+    </div>
+  </div>
+  
+ 
   <!-- Modal của detail-->
+  
+  <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle1">Change Status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        	<div class="card-body">
+		<div class="row">
+			<div class="col-12">
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<div>Order ID:</div>
+						<input class="form-control" disabled="disabled" ng-model="form.id" />
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Create Date:</div>
+						<input type="datetime" disabled="disabled" class="form-control"
+							ng-model="form.createDate" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<div>Phone:</div>
+						<input class="form-control" disabled="disabled" ng-model="form.phone" />
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Address:</div>
+						<input type="email" class="form-control" disabled="disabled" ng-model="form.address" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<div>Username:</div>
+						<input class="form-control" disabled="disabled" ng-model="form.account.username" />
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Status:</div>
+						<input type="text" class="form-control" disabled="disabled" ng-model="form.status" />
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-12">
+						<div>Fullname:</div>
+						<input style="text-align: center;" class="form-control" disabled="disabled" ng-model="form.fullname" />
+					</div>
+				</div>
+				<div class="row">
+					<div  ng-if="form.status==0">
+							<label>Current Status:</label>
+							<label style="color:red;"> Waiting Confirm</label> <br>
+							<label>Next Status:</label>
+							<label style="color: orange;"> Confirmed</label>		
+					</div>
+					
+					<div  ng-if="form.status==1">
+							<label>Current Status:</label>
+						    <label style="color: orange;"> Confirmed</label> <br>
+						    <label>Next Status:</label>
+						    <label style="color: blue;"> Shipping</label>
+					</div>
+					
+					<div  ng-if="form.status==2">
+							<label>Current Status:</label>
+							<label style="color: blue;"> Shipping</label> <br>
+							<label>Next Status:</label>
+							<label style="color: green;"> Complete</label>
+								
+					</div>
+					<div  ng-if="form.status==3">
+							<label style="color: green;"> Complete</label> <br>
+							<label style="color: green;"> This order is successfully done!</label>
+					</div>
+					
+					<div  ng-if="form.status==4">
+							<label style="color: green;"> Cancel order</label> <br>
+							<label style="color: green;"> This order is cancel by user!</label>
+					</div>			
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="card-footer" ng-if="form.status==0 || form.status==1 ||  form.status==2">
+	<button class="btn btn-info"  ng-click="changeStatus()">Next status</button>
+	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 </div>
 

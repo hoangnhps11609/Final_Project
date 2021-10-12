@@ -18,6 +18,8 @@
 					<th></th>
 					<th scope="col">ID</th>
 					<th scope="col">Username</th>
+					<th scope="col">Fullname</th>
+					<th scope="col">Phone</th>		
 					<th scope="col">Create Date</th>
 					<th scope="col">Address</th>
 					<th scope="col">Status</th>
@@ -31,13 +33,17 @@
 					<th></th>
 					<td>{{item.id}}</td>
 					<td>{{item.account.username}}</td>
-					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
+					<td>{{item.fullname}}</td>
+					<td>{{item.phone}}</td>
 					
+					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 					<td>{{item.address}}</td>
 					<td ng:if="item.status==0" style="color: red;">Waiting for Confirm</td>
 					<td ng:if="item.status==1"  style="color: orange;">Confirmed</td>
 					<td ng:if="item.status==2"  style="color: blue;">Shipping</td>
 					<td ng:if="item.status==3" style="color: green;">Complete</td>
+					<td ng:if="item.status==4" style="color: red;">Cancel Order</td>
+					
 					<td>
 						<div class="btn-group btn-group-xs" style="margin-left: 20px">
 							<button type="button" class="btn btn-primary" ng-click="detail(item)">Detail</button>

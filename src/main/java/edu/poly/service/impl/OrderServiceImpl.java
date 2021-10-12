@@ -2,6 +2,7 @@ package edu.poly.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,6 +115,12 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public <S extends Order> S save(S entity) {
 		return dao.save(entity);
+	}
+
+	@Override
+	public Optional<Order> getChio(Long id) {
+		// TODO Auto-generated method stub
+		return dao.getChio(id);
 	}
 
 }

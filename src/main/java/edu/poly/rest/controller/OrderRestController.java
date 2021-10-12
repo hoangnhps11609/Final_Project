@@ -2,6 +2,7 @@ package edu.poly.rest.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +19,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import edu.poly.entity.Order;
 import edu.poly.entity.OrderDetail;
+import edu.poly.entity.Product;
 import edu.poly.service.OrderService;
 
 @CrossOrigin("*")
@@ -45,6 +48,25 @@ public class OrderRestController {
 	@GetMapping("/statistic/{from}/{to}")
 	public List<Order> getByDate(@PathVariable("from") Date from, @PathVariable("to") Date to){
 		return orderService.findByDate(from, to);
+	}
+	
+	
+	@PutMapping("{id}")
+	public Order update2(@PathVariable("id") Long id, @RequestBody Order product) {
+		Optional<Order> a = orderService.getChio(id);
+		product.setId(id);
+		if(a.get().getStatus()==0) {
+			product.setStatus(1);
+		}else if (a.get().getStatus()==1) {
+			product.setStatus(2);
+		}else if(a.get().getStatus()==2) {
+			product.setStatus(3);
+		}
+		product.setFullname(a.get().getFullname());
+		product.setAddress(a.get().getAddress());
+		product.setCreateDate(a.get().getCreateDate());
+		product.setPhone(a.get().getPhone());
+		return orderService.update(product);
 	}
 	
 	

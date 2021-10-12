@@ -2,6 +2,7 @@ package edu.poly.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,4 +44,6 @@ public interface OrderService {
 	Page<Order> findByUsernameandStatus(String username, Integer sid, Pageable pageable);
 
 	<S extends Order> S save(S entity);
+	
+	Optional<Order> getChio(Long id);
 }
