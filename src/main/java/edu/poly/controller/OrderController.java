@@ -50,6 +50,9 @@ public class OrderController {
 
 	@Autowired
 	GenderService genderService;
+	
+	@Autowired
+	ProductDetailService productDetailService;
 
 	@Autowired
 	AccountDAO adao;
@@ -137,6 +140,17 @@ public class OrderController {
 		BeanUtils.copyProperties(dto, entity);
 		entity.setStatus(4);
 		orderService.save(entity);
+		List<OrderDetail> listOrDe = orderDetailService.findByOrder(id);
+		for(int i=0; i<listOrDe.size(); i++) {
+			int OrDeQuan = listOrDe.get(i).getQuantity();
+			Long ProDeId = listOrDe.get(i).getProductDetail().getId();
+			ProductDetail ProDe = productDetailService.findbyId(ProDeId);
+			ProductDetail entityProDe = new ProductDetail();
+			//copy từ dto qua entity
+			BeanUtils.copyProperties(ProDe, entityProDe);
+			entityProDe.setQuantity(entityProDe.getQuantity()+OrDeQuan);
+			productDetailService.save(entityProDe);
+		}
 		return "redirect:/order/list?sid=4";
 	}
 }

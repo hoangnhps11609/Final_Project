@@ -104,6 +104,8 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			var json = localStorage.getItem("cart");
 			this.items = json ? JSON.parse(json):[];
 		}
+		
+		
 	}
 	
 	$scope.cart.loadFormLocalStorage();

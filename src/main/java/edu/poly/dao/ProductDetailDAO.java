@@ -33,24 +33,24 @@ public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 	Product findByProductId(Integer id);
 	
 	@Query
-	("SELECT new ColorPro(p.color.id, p.color.name, p.color.red, p.color.green, p.color.blue) FROM ProductDetail p WHERE p.product.id=?1 and p.size.id=?2  group by p.color.id, p.color.name, p.color.red, p.color.green, p.color.blue")
+	("SELECT new ColorPro(p.color.id, p.color.name, p.color.red, p.color.green, p.color.blue) FROM ProductDetail p WHERE p.product.id=?1 and p.size.id=?2  and p.quantity > 0  group by p.color.id, p.color.name, p.color.red, p.color.green, p.color.blue")
 	List<ColorPro> getColorByProduct(Integer id, Integer sizepro);
 	
 	@Query
-	("SELECT new SizePro(p.size.id, p.size.name, p.size.description) FROM ProductDetail p WHERE p.product.id=?1  group by p.size.id, p.size.name, p.size.description")
+	("SELECT new SizePro(p.size.id, p.size.name, p.size.description) FROM ProductDetail p WHERE p.product.id=?1 and p.quantity > 0  group by p.size.id, p.size.name, p.size.description")
 	List<SizePro> getSizeByProduct(Integer id);
 
 
 	@Query
-	("SELECT new ColorPro(p.color.id, p.color.name, p.color.red, p.color.green, p.color.blue) FROM ProductDetail p WHERE p.product.id=?1  group by p.color.id, p.color.name, p.color.red, p.color.green, p.color.blue")
+	("SELECT new ColorPro(p.color.id, p.color.name, p.color.red, p.color.green, p.color.blue) FROM ProductDetail p WHERE p.product.id=?1 and p.quantity > 0  group by p.color.id, p.color.name, p.color.red, p.color.green, p.color.blue")
 	List<ColorPro> getColorByProduct(Integer id);
 
 	@Query
-	("SELECT new SizePro(p.size.id, p.size.name, p.size.description) FROM ProductDetail p WHERE p.product.id=?1 and p.color.id=?2  group by p.size.id, p.size.name, p.size.description")
+	("SELECT new SizePro(p.size.id, p.size.name, p.size.description) FROM ProductDetail p WHERE p.product.id=?1 and p.color.id=?2  and p.quantity > 0 group by p.size.id, p.size.name, p.size.description")
 	List<SizePro> getSizeByProduct(Integer id, Integer colorpro);
 
 	@Query
-	("SELECT p FROM ProductDetail p WHERE p.product.id=?1 and p.size.id=?2")
+	("SELECT p FROM ProductDetail p WHERE p.product.id=?1 and p.size.id=?2 and p.quantity > 0")
 	List<ProductDetail> findByProductIDandSizeID(Integer id, Integer sizepro);
 
 //	@Query
