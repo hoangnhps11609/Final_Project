@@ -1,5 +1,7 @@
 package edu.poly.controller;
 
+import java.lang.ProcessBuilder.Redirect;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -7,6 +9,7 @@ import java.util.stream.IntStream;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +29,7 @@ import edu.poly.service.CategoryService;
 import edu.poly.service.ColorService;
 import edu.poly.service.CommentService;
 import edu.poly.service.GenderService;
+import edu.poly.service.OrderDetailService;
 import edu.poly.service.ProductDetailService;
 import edu.poly.service.ProductService;
 import edu.poly.service.SizeService;
@@ -38,7 +42,10 @@ import edu.poly.entity.Color;
 import edu.poly.entity.ColorPro;
 import edu.poly.entity.Comment;
 import edu.poly.entity.Gender;
+import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
+import edu.poly.entity.ProductByColor;
+import edu.poly.entity.ProductBySize;
 import edu.poly.entity.ProductDetail;
 import edu.poly.entity.RateAVG;
 import edu.poly.entity.Size;
@@ -83,6 +90,9 @@ public class ProductController {
 	
 	@Autowired
 	ProductDetailService productDetailService;
+	
+	@Autowired
+	OrderDetailService orderDetailService;
 
 	@RequestMapping("product/list")
 	public String list(Model model, @RequestParam(name = "cid", required = false) Optional<String> cid,
@@ -103,23 +113,29 @@ public class ProductController {
 		if (gender != null) {
 			resultPage = productservice.findByGenderId(gender, pageable);
 			model.addAttribute("gender", gender);
+			Gender gendername = genderService.findbyGenderId(gender);
+			model.addAttribute("findby", "Find by Gender: " + gendername.getName());
 		} else if (brand != null) {
 			resultPage = productservice.findByBrandId(brand, pageable);
 			model.addAttribute("brand", brand);
+			Brand brandname = brandService.findbyBrandId(brand);
+			model.addAttribute("findby", "Find by Brand: " + brandname.getName());
 		} else if (categoryID != "") {
 			resultPage = productservice.findByCategoryId(categoryID, pageable);
 			model.addAttribute("cid", categoryID);
+			Category catename = categoryService.findbyCateId(categoryID);
+			model.addAttribute("findby", "Find by Category: " + catename.getName());
 		} else if (max != null) {
 			resultPage = productservice.findByPriceContaining(min, max, pageable);
 			model.addAttribute("max", max);
 			model.addAttribute("min", min);
+			model.addAttribute("findby", "Find by Price: to " + min + "$ from " + max + "$");
 		} else if (search != null) {
 			resultPage = productservice.findByKeyword("%" + search + "%", pageable);
 			model.addAttribute("search", search);
+			model.addAttribute("findby", "Find by Keyword: " + search);
 		} else{
-//			List<Product> list = productservice.findAll();
 			resultPage = productservice.findAll(pageable);
-//			model.addAttribute("items", list);
 		}
 		int totalPages = resultPage.getTotalPages();
 		if (totalPages > 0) {
@@ -195,11 +211,10 @@ public class ProductController {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(9);
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("product.id").descending());
-		Page<ProductDetail> resultPage = null;
-
-		resultPage = productDetailService.findByColor(color, pageable);
+		Page<ProductByColor> resultPage = null;
+		resultPage = productDetailService.findByProductIDGroupByColor(color, pageable);
 		model.addAttribute("color", color);
-
+		Color colorname = colorService.findByColorId(color);
 		int totalPages = resultPage.getTotalPages();
 		if (totalPages > 0) {
 			int start = Math.max(1, currentPage - 2);
@@ -216,7 +231,7 @@ public class ProductController {
 		}
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
-
+		model.addAttribute("colorname", colorname);
 		return "product/listforcolor";
 	}
 
@@ -226,10 +241,11 @@ public class ProductController {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(9);
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("product.id").descending());
-		Page<ProductDetail> resultPage = null;
+		Page<ProductBySize> resultPage = null;
 
-		resultPage = productDetailService.findBySize(sizepro, pageable);
+		resultPage = productDetailService.findByProductIDGroupBySize(sizepro, pageable);
 		model.addAttribute("sizepro", sizepro);
+		Size sizename = sizeService.findBySizeId(sizepro);
 
 		int totalPages = resultPage.getTotalPages();
 		if (totalPages > 0) {
@@ -247,7 +263,7 @@ public class ProductController {
 		}
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
-
+		model.addAttribute("sizename", sizename);
 		return "product/listforsize";
 	}
 
@@ -368,5 +384,19 @@ public class ProductController {
 	}
 	
 	
-	
+	@RequestMapping("/productdetail/update/{id}")
+	public String productdetaulupdate(Model model, @PathVariable("id") Long id) {
+		List<OrderDetail> listOrDe = orderDetailService.findByOrder(id);
+		for(int i=0; i<listOrDe.size(); i++) {
+			int OrDeQuan = listOrDe.get(i).getQuantity();
+			Long ProDeId = listOrDe.get(i).getProductDetail().getId();
+			ProductDetail ProDe = productDetailService.findbyId(ProDeId);
+			ProductDetail entity = new ProductDetail();
+			//copy từ dto qua entity
+			BeanUtils.copyProperties(ProDe, entity);
+			entity.setQuantity(entity.getQuantity()-OrDeQuan);
+			productDetailService.save(entity);
+		}
+		return "redirect:/order/success/{id}";
+	}
 }

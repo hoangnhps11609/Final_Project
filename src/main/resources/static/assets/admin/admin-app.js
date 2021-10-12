@@ -17,6 +17,9 @@ app.config(function ($routeProvider) {
 		}).when("/order", {
 			templateUrl: "/assets/admin/order/index.html",
 			controller: "order-ctrl"
+		}).when("/orderstatus", {
+			templateUrl: "/assets/admin/orderstatus/index.html",
+			controller: "orderstatus-ctrl"
 		}).when("/authorize", {
 			templateUrl: "/assets/admin/authority/index.html",
 			controller: "authority-ctrl"
@@ -28,6 +31,7 @@ app.config(function ($routeProvider) {
 			controller: "voucher-ctrl"
 		}).when("/report1", {
 			templateUrl: "/assets/admin/report/index.html",
+			controller: "report-ctrl"
 		}).when("/blogcategory", {
 			templateUrl: "/assets/admin/blogc/index.html",
 			controller: "blogcategory-ctrl"

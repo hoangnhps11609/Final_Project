@@ -78,4 +78,6 @@ public interface BrandService {
 	
 	List<Brand> getListBrand (String valued);
 
+	Brand findbyBrandId(Integer brand);
+
 }

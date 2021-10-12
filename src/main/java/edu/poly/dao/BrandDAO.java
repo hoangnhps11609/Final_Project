@@ -13,4 +13,7 @@ public interface BrandDAO extends JpaRepository<Brand, Integer>{
 	
 	@Query("SELECT b FROM Brand b where b.name like ?1")
 	List<Brand> getListBrand(String valued);
+
+	@Query("SELECT b FROM Brand b where b.id = ?1")
+	Brand findbyBrandId(Integer brand);
 }

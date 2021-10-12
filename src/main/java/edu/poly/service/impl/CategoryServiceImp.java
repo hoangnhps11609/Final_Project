@@ -36,4 +36,9 @@ public class CategoryServiceImp implements CategoryService{
 		return cdao.findById(id).get();
 	}
 
+	@Override
+	public Category findbyCateId(String categoryID) {
+		return cdao.findbyCateId(categoryID);
+	}
+
 }

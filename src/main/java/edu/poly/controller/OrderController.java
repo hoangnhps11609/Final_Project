@@ -22,6 +22,11 @@ import edu.poly.dao.AccountDAO;
 import edu.poly.entity.Account;
 import edu.poly.entity.Gender;
 import edu.poly.entity.Order;
+import edu.poly.service.GenderService;
+import edu.poly.service.OrderService;
+import edu.poly.entity.Account;
+import edu.poly.entity.Gender;
+import edu.poly.entity.Order;
 import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductDetail;
@@ -35,55 +40,51 @@ import edu.poly.service.ProductService;
 public class OrderController {
 	@Autowired
 	OrderService orderService;
-	
+
 	@Autowired
 	OrderDetailService orderDetailService;
 
 	@Autowired
 	ProductService productService;
-	
+
 	@Autowired
 	GenderService genderService;
-	
+
 	@Autowired
 	AccountDAO adao;
-	
+
 	@Autowired
 	HttpServletRequest request;
 
-	
 	@RequestMapping("/order/checkout")
 	public String checkout(Model model) {
 		String username = request.getRemoteUser();
 		Account v = adao.findByUsername(username);
-		model.addAttribute("items",v);
+		model.addAttribute("items", v);
 		return "order/checkout";
 	}
-	
-	
-	
+
 	@RequestMapping("/order/list")
-	public String list(Model model, 
-			@RequestParam("page") Optional<Integer> page,
-			@RequestParam(name = "sid", required = false) Integer sid,
-			HttpServletRequest request) {
+	public String list(Model model, @RequestParam("page") Optional<Integer> page,
+			@RequestParam(name = "sid", required = false) Integer sid, HttpServletRequest request) {
 		int currentPage = page.orElse(1);
-		Pageable pageable = PageRequest.of(currentPage-1, 9, Sort.by("createDate").descending());
-		Page<Order> resultPage = null;	
+		Pageable pageable = PageRequest.of(currentPage - 1, 9, Sort.by("id").descending());
+		Page<Order> resultPage = null;
 		String username = request.getRemoteUser();
 		resultPage = orderService.findByUsernameandStatus(username, sid, pageable);
-		
+
 		int totalPages = resultPage.getTotalPages();
-		if(totalPages > 0) {
+		if (totalPages > 0) {
 			int start = Math.max(1, currentPage - 2);
 			int end = Math.min(currentPage + 2, totalPages);
-			
+
 			if (totalPages > 5) {
-				if (end == totalPages) start = end - 5;
-				else if(start ==1 ) end = start + 5;
+				if (end == totalPages)
+					start = end - 5;
+				else if (start == 1)
+					end = start + 5;
 			}
-			List<Integer> pageNumbers = IntStream.rangeClosed(start, end)
-					.boxed().collect(Collectors.toList());
+			List<Integer> pageNumbers = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
 		model.addAttribute("orderPage", resultPage);
@@ -92,17 +93,15 @@ public class OrderController {
 		model.addAttribute("account", account);
 		return "order/list";
 	}
-	
-	
+
 	@RequestMapping("/order/detail/{id}")
 	public String detail(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("order", orderService.findById(id));
 		return "order/detail";
 	}
-	
+
 	@RequestMapping("/order/success/{id}")
-	public String success(@PathVariable("id") Long id, Model model,
-			@RequestParam("page") Optional<Integer> page) {
+	public String success(@PathVariable("id") Long id, Model model, @RequestParam("page") Optional<Integer> page) {
 		Page<OrderDetail> OrDe = orderDetailService.findByOrder(id, PageRequest.of(0, 1));
 		String OneProInOrder = OrDe.getContent().get(0).getProductDetail().getProduct().getCategory().getId();
 		int currentPage = page.orElse(1);
@@ -125,8 +124,7 @@ public class OrderController {
 		}
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("id", id);
-		model.addAttribute("OneProInOrder", OneProInOrder);		
+		model.addAttribute("OneProInOrder", OneProInOrder);
 		return "order/success";
 	}
-	
 }

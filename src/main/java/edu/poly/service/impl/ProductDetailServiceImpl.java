@@ -14,6 +14,8 @@ import edu.poly.dao.ProductDetailDAO;
 import edu.poly.entity.Color;
 import edu.poly.entity.ColorPro;
 import edu.poly.entity.Product;
+import edu.poly.entity.ProductByColor;
+import edu.poly.entity.ProductBySize;
 import edu.poly.entity.ProductDetail;
 import edu.poly.entity.SizePro;
 import edu.poly.service.ProductDetailService;
@@ -243,6 +245,25 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 		// TODO Auto-generated method stub
 		return productDetailDAO.FindProductByName(valued);
 	}
+
+	@Override
+
+	public List<ProductDetail> getReport1() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+	public Page<ProductByColor> findByProductIDGroupByColor(Integer color, Pageable pageable) {
+		return productDetailDAO.findByProductIDGroupByColor(color, pageable);
+	}
+
+	@Override
+	public Page<ProductBySize> findByProductIDGroupBySize(Integer sizepro, Pageable pageable) {
+		return productDetailDAO.findByProductIDGroupBySize(sizepro, pageable);
+	}
+
 
 
 	

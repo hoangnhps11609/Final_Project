@@ -190,6 +190,11 @@ public class BrandServiceImpl implements BrandService{
 		
 		return brandDAO.getListBrand(valued);
 	}
+
+	@Override
+	public Brand findbyBrandId(Integer brand) {
+		return brandDAO.findbyBrandId(brand);
+	}
 	
 	
 }

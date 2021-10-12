@@ -21,6 +21,8 @@ public interface CategoryService {
 
 	Category findById(String id);
 
+	Category findbyCateId(String categoryID);
+
 
 
 

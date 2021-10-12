@@ -14,9 +14,9 @@ public interface OrderDetailDAO extends JpaRepository<OrderDetail, Long> {
 
 	
 	@Query("SELECT od FROM OrderDetail od WHERE od.order.id=?1")
-	Page<OrderDetail> findByOrder(Long id, Pageable pageable);
+	List<OrderDetail> findByOrder(Long id);
 
 	@Query("SELECT od FROM OrderDetail od WHERE od.order.id=?1")
-	List<OrderDetail> findByOrder(Long id);
+	Page<OrderDetail> findByOrder(Long id, Pageable pageable);
 
 }

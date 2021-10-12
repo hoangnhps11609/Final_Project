@@ -12,6 +12,8 @@ import edu.poly.entity.Color;
 import edu.poly.entity.ColorPro;
 import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
+import edu.poly.entity.ProductByColor;
+import edu.poly.entity.ProductBySize;
 import edu.poly.entity.ProductDetail;
 import edu.poly.entity.SizePro;
 
@@ -102,6 +104,12 @@ public interface ProductDetailService {
 	Page<ProductDetail> filterProductDetail(String cateid, String brandname, String sizeproname, String gendername, String colorname, double min, double max, Pageable pageable);
 	
 	List<ProductDetail> findProductByName(String valued);
+	
+	List<ProductDetail> getReport1();
+
+	Page<ProductByColor> findByProductIDGroupByColor(Integer color, Pageable pageable);
+
+	Page<ProductBySize> findByProductIDGroupBySize(Integer sizepro, Pageable pageable);
 
 
 }

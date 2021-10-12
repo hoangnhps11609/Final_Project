@@ -1,48 +1,12 @@
-app.controller("product-ctrl", function($scope, $http) {
-
-
+app.controller("report-ctrl", function($scope, $http) {
 
 
 	$scope.items = [];
-	
-	$scope.cates = [];
-	$scope.brands = [];
-	$scope.genders = [];
 	$scope.form = {};
 
-	$scope.blogcates = [];
-	
-	
-
-
-	$scope.initialize = function() {
-		//load products
-		$http.get("/rest/products").then(resp => {
-			$scope.items = resp.data;
-			$scope.items.forEach(item => {
-				item.createDate = new Date(item.createDate);
-				$scope.reset();
-			})
-		});
-
-		//load category
-		$http.get("/rest/categories").then(resp => {
-			$scope.cates = resp.data;
-		});
+		$scope.ODitems = [];
 		
-		//load brand
-		$http.get("/rest/brands").then(resp => {
-			$scope.brands = resp.data;
-		});
-
-		//load gender
-		$http.get("/rest/genders").then(resp => {
-			$scope.genders = resp.data;
-		});
-
-	}
-	
-			var input = document.getElementById("myInput");
+		var input = document.getElementById("myInput");
 		input.addEventListener("keyup", function(event) {
   		if (event.keyCode === 13) {
    			event.preventDefault();
@@ -51,13 +15,20 @@ app.controller("product-ctrl", function($scope, $http) {
   }
 });	
 	
-		$scope.statistic = function() {
-		var statistic = angular.copy($scope.statistic);
-		$http.get(`/rest/products/${statistic.from}`).then(resp => {
+	$scope.initialize = function() {
+		//load accounts
+		$http.get("/rest/report/rp1").then(resp => {
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 			})
-			$(".nav-tabs a:eq(2)").tab('show');
+		});
+	}
+	
+	$scope.statistic = function() {
+		var statistic = angular.copy($scope.statistic);
+		$http.get(`/rest/accounts/${statistic.from}`).then(resp => {
+			$scope.items = resp.data;
+			$(".nav-tabs a:eq(1)").tab('show');
 		}).catch(error => {
 			alert();
 			console.log("Error", error);
@@ -67,12 +38,10 @@ app.controller("product-ctrl", function($scope, $http) {
 	//Khởi tạo
 	$scope.initialize();
 
-	//Xóa form
+	//Xóa form	
 	$scope.reset = function() {
 		$scope.form = {
-			createDate: new Date(),
-			image: 'user.png',
-			available: true
+			photo: 'user.png'
 		};
 	}
 
@@ -81,26 +50,15 @@ app.controller("product-ctrl", function($scope, $http) {
 		$scope.form = angular.copy(item);
 		$(".nav a:eq(0)").tab('show')
 	}
-	
-	
-	
-		$scope.move = function(item) {
-		alert(item.id);
-		window.location.href = "http://localhost:8080/assets/admin/index.html#!/productdetail";
-		document.getElementById("move").selectedIndex = "2";		
-				
-		
-	}
-	
-	
-	//Thêm sản phẩm mới
+
+	//Thêm account mới
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
-		$http.post(`/rest/products`, item).then(resp => {
+		$http.post(`/rest/accounts`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
 			alert("Thêm mới thành công");
-			$scope.initialize();
+			$(".nav-tabs a:eq(1)").tab('show');
 		}).catch(error => {
 			alert("Lỗi thêm sản phẩm");
 			console.log("Error", error);
@@ -110,22 +68,23 @@ app.controller("product-ctrl", function($scope, $http) {
 	//update sản phẩm mới
 	$scope.update = function() {
 		var item = angular.copy($scope.form);
-		$http.put(`/rest/products/${item.id}`, item).then(resp => {
-			var index = $scope.items.findIndex(p => p.id == item.id);
+		$http.put(`/rest/accounts/${item.username}`, item).then(resp => {
+			var index = $scope.items.findIndex(p => p.username == item.username);
 			$scope.items[index] = item;
 			alert("Cập nhật thành công");
-			$scope.initialize();
+			$(".nav-tabs a:eq(1)").tab('show');
 		}).catch(error => {
 			alert("Lỗi cập nhật sản phẩm");
 			console.log("Error", error);
 
 		});
 	}
-
+	
+	
 	//Xóa sản phẩm mới
 	$scope.delete = function(item) {
-		$http.delete(`/rest/products/${item.id}`).then(resp => {
-			var index = $scope.items.findIndex(p => p.id == item.id);
+		$http.delete(`/rest/accounts/${item.username}`).then(resp => {
+			var index = $scope.items.findIndex(p => p.username == item.username);
 			$scope.items.splice(index, 1);
 			$scope.reset();
 			alert("Xóa  thành công");
@@ -144,7 +103,7 @@ app.controller("product-ctrl", function($scope, $http) {
 			transformRequest: angular.identity,
 			headers: { 'Content-Type': undefined }
 		}).then(resp => {
-			$scope.form.image = resp.data.name;
+			$scope.form.photo = resp.data.name;
 		}).catch(error => {
 			alert("Lỗi upload hình ảnh");
 			console.log("Error", error);
@@ -153,7 +112,7 @@ app.controller("product-ctrl", function($scope, $http) {
 
 	$scope.pager = {
 		page: 0,
-		size: 5,
+		size: 10,
 		get items() {
 			var start = this.page * this.size;
 			return $scope.items.slice(start, start + this.size);

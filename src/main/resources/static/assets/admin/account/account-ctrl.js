@@ -10,7 +10,7 @@ app.controller("account-ctrl", function($scope, $http) {
 		input.addEventListener("keyup", function(event) {
   		if (event.keyCode === 13) {
    			event.preventDefault();
-   			$scope.statistic();
+   			$scope.search();
    
   }
 });	
@@ -24,11 +24,11 @@ app.controller("account-ctrl", function($scope, $http) {
 		});
 	}
 	
-	$scope.statistic = function() {
+	$scope.search = function() {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/accounts/${statistic.from}`).then(resp => {
 			$scope.items = resp.data;
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {
 			alert();
 			console.log("Error", error);

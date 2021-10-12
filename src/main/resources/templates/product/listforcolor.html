@@ -104,7 +104,12 @@
 					<div class="col-lg-9 order-1 order-lg-2">
 						<div class="product-show-option">
 							<div class="row">
-								<div class="col text-right">
+								<div class="col-lg-7 col-md-7">
+									<p>Find By Color: 
+										<span th:style="'color:' + 'rgb(' + @{${colorname.red}} + ',' + @{${colorname.green}} + ',' + @{${colorname.blue}} + '); font-weight:bolder; font-size:22px'">&nbsp;[[${colorname.name}]]</span></p>
+								</div>
+
+								<div class="col-lg-5 col-md-5 text-right">
 									<p>Show [[${productPage.number*size + 1 }]] -
 										[[${productPage.number*size + productPage.numberOfElements}]]
 										Of [[${productPage.totalElements}]] Products</p>
@@ -118,7 +123,7 @@
 									<div class="product-item">
 										<div class="pi-pic"  style="width:260px; height:320px;">
 											<a th:href="@{|/product/detail/${procolor.product.id}?sizepro=1|}"> <img
-												th:src="${procolor.image!=null ? '/assets/images/' + procolor.image : '/assets/images/logo.png'}"
+												th:src="${procolor.product.image!=null ? '/assets/images/' + procolor.product.image : '/assets/images/logo.png'}"
 												width="260px" height="320px" id="image"
 												name="image" alt="">
 											</a>

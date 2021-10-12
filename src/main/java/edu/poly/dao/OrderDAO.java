@@ -25,5 +25,4 @@ public interface OrderDAO extends JpaRepository<Order, Long>{
 
 	@Query("SELECT o From Order o Where o.account.username=?1 and o.status = ?2")
 	Page<Order> findByUsernameandStatus(String username, Integer sid, Pageable pageable);
-
 }

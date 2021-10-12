@@ -38,7 +38,7 @@ public class Order  implements Serializable{
 	String address;
 	
 	String fullname;
-	
+
 	Integer status;
 	
 	@ManyToOne
