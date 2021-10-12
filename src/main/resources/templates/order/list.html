@@ -31,19 +31,24 @@
 						<nav class="">
 							<div class="col row ml-0 p-0 nav nav-tabs1 nav-fill">
 								<a th:href="@{|/order/list?sid=0|}"
-									class="text-light col-3 nav-item1 nav-link1 active1"> <i
+									class="text-light col-4 nav-item1 nav-link1 active1"> <i
 									class="fa fa-shopping-basket px-3 p-0" style="font-size: 25px"></i>Wait
 									For Confirmation
-								</a> <a th:href="@{|/order/list?sid=1|}"
-									class="text-light col-3 nav-item1 nav-link1"><i
+								</a> 
+								<a th:href="@{|/order/list?sid=1|}"
+									class="text-light col-2 nav-item1 nav-link1"><i
 									class="fa fa-gift px-3 p-0" style="font-size: 25px"></i>Confirmed</a>
 
 								<a th:href="@{|/order/list?sid=2|}"
-									class="text-light col-3 nav-item1 nav-link1"><i
+									class="text-light col-2 nav-item1 nav-link1"><i
 									class="fa fa-truck px-3 p-0" style="font-size: 25px"></i>To
-									Ship</a> <a th:href="@{|/order/list?sid=3|}"
-									class="text-light col-3 nav-item1 nav-link1"><i
+									Ship</a> 
+								<a th:href="@{|/order/list?sid=3|}"
+									class="text-light col-2 nav-item1 nav-link1"><i
 									class="fa fa-star-o px-3 p-0" style="font-size: 25px"></i>Complete</a>
+								<a th:href="@{|/order/list?sid=4|}"
+									class="text-light col-2 nav-item1 nav-link1"><i
+									class="fa fa-window-close-o px-3 p-0" style="font-size: 25px"></i>Cancelled</a>
 							</div>
 						</nav>
 <div class="tab-content1 tab-content col px-0 py-3"
@@ -75,8 +80,9 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr th:each="order, state: ${orderPage}">
+											<tr th:each="order, state: ${orderPage.content}">
 												<!-- 													<td scope="row">[[${state.index +1}]]</td> -->
+
 												<td scope="row">[[${order.id}]]</td>
 												<td scope="row">[[${order.fullname}]]</td>
 												<td scope="row">[[${order.phone}]]</td>
@@ -86,6 +92,7 @@
 													class="text-success">Detail </a></td>
 											</tr>
 										</tbody>
+										
 									</table>
 								</div>
 							</div>
