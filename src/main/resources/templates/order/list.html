@@ -98,14 +98,14 @@
 							</div>
 							<div class="loading-more">
 								<nav aria-label="Page navigation"
-									th:if="${orderPage.totalPages > 0}">
+									th:if="${orderPage.totalPages > 1}">
 									<ul class="pagination justify-content-center">
 										<li
 											th:class="${1 == orderPage.number + 1} ? 'page-item active' : 'page-item'">
 											<a th:href="@{/order/list/(sid=${sid}, page=1)}"
 											class="page-link">First</a>
 										</li>
-							<li class="page-item active"
+										<li class="page-item active"
 											th:each="pageNumber : ${pageNumbers}"
 											th:if="${orderPage.totalPages > 1}"
 											th:class="${pageNumber == orderPage.number + 1} ? 'page-item active' : 'page-item'">
