@@ -27,7 +27,14 @@
 			<div class="container">
 				<div class="card">
 					<div class="card-header" style="background-color: #e7ab3c">
-						<h3 class="text-light">Order Information</h3>
+						<div class="col row mx-0">
+							<div class="col-10">
+								<h3 class="text-light">Order Information</h3>
+							</div>
+							<div class="col-2 px-0 row float-right">
+								<a class="btn btn-light col" th:href="@{/order/list?sid=0}">My Order</a>
+							</div>
+						</div>
 					</div>
 					<div class="card-body">
 						<div class="row">
@@ -93,7 +100,7 @@
 												<td>$[[*{#numbers.formatDecimal(productDetail.product.price*quantity*(1-productDetail.product.discount*0.01),
 													0, 'COMMA', 1, 'POINT')}]]</td>
 												<td th:if="${order.status == 3 || order.status == 4}">
-													<a class="btn text-light" style="background-color: #e7ab3c" th:attr="ng-click=@{|cart.add(*{productDetail.id})|}">Buy Again</a>
+													<a class="btn text-light" style="background-color: #e7ab3c" th:attr="ng-click=@{|cart.addcart(*{productDetail.id})|}">Buy Again</a>
 												</td>
 											</tr>
 										</tbody>
