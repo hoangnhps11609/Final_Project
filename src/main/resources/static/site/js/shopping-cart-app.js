@@ -41,9 +41,14 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 					}
 					else {
 						$http.get(`/rest/productdetails/${id}`).then(resp => {
-						resp.data.qty = 1;
-						this.items.push(resp.data);
-						this.saveToLocalStorage();
+						$scope.proDe = resp.data;
+							if($scope.proDe.quantity > 0){
+								resp.data.qty = 1;
+								this.items.push(resp.data);
+								this.saveToLocalStorage();
+							}else{
+								alert("Out-Of-Stock Product");
+							}
 						})
 					}
 				
