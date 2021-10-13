@@ -111,5 +111,5 @@ public interface ProductDetailService {
 
 	Page<ProductBySize> findByProductIDGroupBySize(Integer sizepro, Pageable pageable);
 
-
+	List<ProductDetail> findAllbyId(Integer id);
 }

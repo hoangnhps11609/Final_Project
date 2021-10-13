@@ -39,10 +39,12 @@
 
 					<td>
 						<div class="btn-group btn-group-xs">
-							<button class="btn btn-warning mgr5px" ng-click="edit(item)">Edit</button>
+							<!--<button class="btn btn-warning mgr5px" ng-click="edit(item)">Edit</button> -->
 							<!-- <button class="btn btn-danger" ng-click="delete(item)">Delete</button> -->
 							<br>
-							<button class="btn btn-warning mgr5px" ng-click="move(item)">Detail P</button>		
+							<button class="btn btn-warning mgr5px" ng-click="viewall(item)">View Detail</button>
+							<button class="btn btn-warning mgr5px" ng-click="adddetail(item)">Add Detail</button>
+							
 						</div>
 					</td>
 				</tr>
@@ -56,4 +58,161 @@
 		<button class="btn btn-primary" ng-click="pager.next()">Next</button>
 		<button class="btn btn-primary" ng-click="pager.last()">Last</button>
 	</div>
+</div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Detailing</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      	<div class="card-header"><h3>Detail of Product</h3></div>
+	<div class="card-body">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Image</th>
+					<th scope="col">ID</th>
+					<th scope="col">Product ID</th>
+					
+					<th scope="col">Product Name</th>
+					<th scope="col">Available</th>
+					<th scope="col">Color</th>
+					<th scope="col">Size</th>
+					<th scope="col">Quantity</th>		
+					<th scope="col">Create Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item1 in pager2.ODitems">
+					<td width="150px">
+						<img ng-src="{{'/assets/images/' + item1.image}}" width="100%"/>
+					</td>
+					<td>{{item1.id}}</td>
+					<td>{{item1.product.id}}</td>				
+					<td>{{item1.product.name}}</td>		
+					<td>{{item1.available}}</td>
+					<td>{{item1.color.name}}</td>
+					<td>{{item1.size.name}}</td>
+					<td>{{item1.quantity}}</td>
+					<td>{{item1.createDate | date:'dd-MM-yyyy'}}</td>
+					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+								<button class="btn btn-warning mgr5px" ng-click="adddetail(item)">Add Detail</button>
+	
+		<div class="card-footer text-muted text-center">
+		<button class="btn btn-primary" ng-click="pager2.first()">First</button>
+		<button class="btn btn-primary" ng-click="pager2.prev()">Prev</button>
+		<button class="btn btn-success">{{pager2.page2+1}} of
+			{{pager2.count}}</button>
+		<button class="btn btn-primary" ng-click="pager2.next()">Next</button>
+		<button class="btn btn-primary" ng-click="pager2.last()">Last</button>
+	</div>
+    </div>
+  </div>
+</div>
+
+</div>
+	</div>
+    </div>
+  </div>
+   <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle1">Add Detail</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        		<div class="card-body">
+		<div class="row">
+			<div class="file-upload col-4">
+				<div class="image-upload-wrap">
+					<input class="file-upload-input" type="file" id="photo"
+						onchange="readURL(this); angular.element(this).scope().imageChanged(this.files); angular.element(this).scope().imageChanged(this.files)"
+						accept="image/*" />
+					<div class="drag-text">
+						<img class="img-fluid p-2"
+							ng-src="{{form2.photo ? '/assets/images/' + form.photo : '/assets/images/5aa47c07.png' }}"
+							alt="your image" id="img" />
+						<h5>Drag and drop a file or select add Image</h5>
+					</div>
+				</div>
+				<div class="file-upload-content">
+					<img class="file-upload-image img-fluid"
+						ng-src="{{'/assets/images/' + form2.photo}}" alt="your image" />
+					<div class="image-title-wrap">
+						<button type="button" onclick="removeUpload()"
+							class="remove-image">
+							Remove <span class="image-title">Uploaded Image</span>
+						</button>
+					</div>SS
+				</div>
+			</div>
+			<div class="col-8">
+				<div class="row">
+						<div class="form-group col-sm-12">
+						<div>Product Name</div>
+						<select  class="form-control" id="move" name="move" ng-model="form2.id">
+							<option ng-repeat="b in products" disabled="disabled" ng-value="form2.id">{{b.name}}</option>
+						</select>
+					</div>
+			
+				</div>
+
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<div>Color:</div>
+						<select class="form-control" ng-model="form2.color.id">
+							<option ng-repeat="c in colors" ng-value="c.id">{{c.name}}</option>
+						</select>
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Size:</div>
+						<select class="form-control" ng-model="form2.size.id">
+							<option ng-repeat="s in sizes" ng-value="s.id">{{s.name}}</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<div>Quantity:</div>
+						<input type="number" class="form-control" ng-model="form2.quantity" />
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col-sm-6">
+    				<div>Available:</div>
+    				<label class="radio-inline px-3">
+    					<input  ng-model="form2.available"  checked="checked" ng-value="true" name="available" type="radio"/>Yes
+    				</label>
+    				<label class="radio-inline">
+    					<input  ng-model="form2.available" ng-value="false" name="available" type="radio"/>No
+    				</label>
+    			</div>
+					
+				</div>
+		
+			</div>
+		</div>
+	</div>
+      </div>
+      <div class="modal-footer">
+	<button class="btn btn-info"  ng-click="createDetail()">Add Detail</button>
+      </div>
+    </div>
+  </div>
 </div>

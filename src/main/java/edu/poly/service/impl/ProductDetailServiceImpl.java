@@ -264,6 +264,12 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 		return productDetailDAO.findByProductIDGroupBySize(sizepro, pageable);
 	}
 
+	@Override
+	public List<ProductDetail> findAllbyId(Integer id) {
+		// TODO Auto-generated method stub
+		return productDetailDAO.findAllDetail(id);
+	}
+
 
 
 	

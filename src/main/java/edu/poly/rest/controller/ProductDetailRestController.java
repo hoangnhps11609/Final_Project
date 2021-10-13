@@ -1,5 +1,6 @@
 package edu.poly.rest.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,13 @@ public class ProductDetailRestController {
 	
 	@PostMapping
 	public ProductDetail create(@RequestBody ProductDetail product) {
+		
+		return productDetailService.create(product);
+	}
+	
+	@PostMapping("gett")
+	public ProductDetail create2(@RequestBody ProductDetail product) {
+		product.setCreateDate(new Date());
 		return productDetailService.create(product);
 	}
 	
@@ -45,6 +53,8 @@ public class ProductDetailRestController {
 	public ProductDetail update(@PathVariable("id") Integer id, @RequestBody ProductDetail product) {
 		return productDetailService.update(product);
 	}
+	
+	
 	
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable("id") Long id) {
@@ -60,6 +70,12 @@ public class ProductDetailRestController {
 	public List<ProductDetail> findbyProductName(@PathVariable("valued") String valued){
 		return productDetailService.findProductByName(valued+"%");
 	}
+	
+	@GetMapping("getdetail/{valued}")
+	public List<ProductDetail> findbyProductDetail(@PathVariable("valued") Integer valued){
+		return productDetailService.findAllbyId(valued);
+	}
+	
 	
 
 

@@ -2,13 +2,20 @@ app.controller("product-ctrl", function ($scope, $http) {
 
 
 
-
+		$scope.colors = [];
+	$scope.genders = [];
+	$scope.sizes = [];
 	$scope.items = [];
+	$scope.products = [];
 
 	$scope.cates = [];
 	$scope.brands = [];
 	$scope.genders = [];
 	$scope.form = {};
+		$scope.form2 = {};
+				
+		
+	
 
 	$scope.blogcates = [];
 
@@ -34,10 +41,26 @@ app.controller("product-ctrl", function ($scope, $http) {
 		$http.get("/rest/brands").then(resp => {
 			$scope.brands = resp.data;
 		});
+		
+			//load products
+		$http.get("/rest/products").then(resp => {
+			$scope.products = resp.data;
+		});
 
 		//load gender
 		$http.get("/rest/genders").then(resp => {
 			$scope.genders = resp.data;
+		});
+		
+			//load color
+		$http.get("/rest/colors").then(resp => {
+			$scope.colors = resp.data;
+		});
+
+
+		//load size
+		$http.get("/rest/sizes").then(resp => {
+			$scope.sizes = resp.data;
 		});
 
 	}
@@ -68,7 +91,8 @@ app.controller("product-ctrl", function ($scope, $http) {
 
 	//Khởi tạo
 	$scope.initialize();
-
+		$scope.ODitems = [];
+	
 	//Xóa form
 	$scope.reset = function () {
 		$scope.form = {
@@ -84,13 +108,58 @@ app.controller("product-ctrl", function ($scope, $http) {
 		$(".nav a:eq(0)").tab('show')
 	}
 
+	
+	$scope.adddetail = function (item) {
+		alert(item.name);
+		$scope.form2 = angular.copy(item);
+		$('#exampleModalCenter1').appendTo("body").modal('show');
+
+		
 
 
-	$scope.move = function (item) {
-		alert(item.id);
-		window.location.href = "http://localhost:8080/assets/admin/index.html#!/productdetail";
-		document.getElementById("move").selectedIndex = "2";
+	}
 
+	$scope.viewall = function (item) {
+			$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
+				$scope.ODitems = resp.data;
+			
+			$('.bd-example-modal-lg').appendTo("body").modal('show');
+			
+		}).catch(error => {
+			alert("Lỗi cập nhật sản phẩm");
+			console.log("Error", error);
+
+		});
+		
+		
+
+
+	}
+	
+	
+		$scope.createDetail = function () {
+			var item = angular.copy($scope.form2);
+			$http.post(`/rest/productdetails`, item).then(resp => {
+			resp.data.createDate = new Date(resp.data.createDate)
+			resp.data.product.id = item.id
+			$scope.items.push(resp.data);
+			$scope.reset();
+			alert("Thêm mới thành công");
+			$scope.initialize();
+		}).catch(error => {
+			alert("Lỗi thêm sản phẩm a");
+			console.log("Error", error);
+		});
+
+
+		var statistic = angular.copy($scope.form2);
+		$http.put(`/rest/products/get/${statistic.id}`, item).then(resp => {
+			$scope.initialize();
+		}).catch(error => {
+			alert("Lỗi cập nhật sản phẩm");
+			console.log("Error", error);
+
+		});
 
 	}
 
@@ -176,6 +245,32 @@ app.controller("product-ctrl", function ($scope, $http) {
 			}
 		}, last() {
 			this.page = this.count - 1;
+		}
+	}
+	
+			$scope.pager2 = {
+		page2: 0,
+		size2: 4,
+		get ODitems() {
+			var start = this.page2 * this.size2;
+			return $scope.ODitems.slice(start, start + this.size2);
+		},
+		get count(){
+			return Math.ceil(1.0 * $scope.ODitems.length / this.size2);
+		}, first(){
+			this.page2 = 0;
+		}, prev(){
+			this.page2--;
+			if(this.page2<0){
+				this.last();
+			}
+		}, next(){
+			this.page2++;
+			if(this.page2 >= this.count){
+				this.first();
+			}
+		}, last(){
+			this.page2 = this.count-1;
 		}
 	}
 });

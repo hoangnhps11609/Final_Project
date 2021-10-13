@@ -95,5 +95,9 @@ public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 	@Query
 	("SELECT new ProductBySize(p.product, count(p.product)) FROM ProductDetail p WHERE p.size.id=?1 group by p.product")
 	Page<ProductBySize> findByProductIDGroupBySize(Integer sizepro, Pageable pageable);
+	
+	@Query
+	("SELECT p FROM ProductDetail p WHERE p.product.id = ?1")
+	List<ProductDetail> findAllDetail(Integer id);
 
 }
