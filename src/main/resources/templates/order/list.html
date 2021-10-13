@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{layout/index :: dynamic(~{::main})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/index :: dynamic(~{::main})}">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
+
 <body>
 	<main>
 		<!-- Breadcrumb Section Begin -->
@@ -32,27 +33,22 @@
 							<div class="col row ml-0 p-0 nav nav-tabs1 nav-fill">
 								<a th:href="@{|/order/list?sid=0|}"
 									class="text-light col-4 nav-item1 nav-link1 active1"> <i
-									class="fa fa-shopping-basket px-3 p-0" style="font-size: 25px"></i>Wait
+										class="fa fa-shopping-basket px-3 p-0" style="font-size: 25px"></i>Wait
 									For Confirmation
-								</a> 
-								<a th:href="@{|/order/list?sid=1|}"
-									class="text-light col-2 nav-item1 nav-link1"><i
-									class="fa fa-gift px-3 p-0" style="font-size: 25px"></i>Confirmed</a>
+								</a>
+								<a th:href="@{|/order/list?sid=1|}" class="text-light col-2 nav-item1 nav-link1"><i
+										class="fa fa-gift px-3 p-0" style="font-size: 25px"></i>Confirmed</a>
 
-								<a th:href="@{|/order/list?sid=2|}"
-									class="text-light col-2 nav-item1 nav-link1"><i
-									class="fa fa-truck px-3 p-0" style="font-size: 25px"></i>To
-									Ship</a> 
-								<a th:href="@{|/order/list?sid=3|}"
-									class="text-light col-2 nav-item1 nav-link1"><i
-									class="fa fa-star-o px-3 p-0" style="font-size: 25px"></i>Complete</a>
-								<a th:href="@{|/order/list?sid=4|}"
-									class="text-light col-2 nav-item1 nav-link1"><i
-									class="fa fa-window-close-o px-3 p-0" style="font-size: 25px"></i>Cancelled</a>
+								<a th:href="@{|/order/list?sid=2|}" class="text-light col-2 nav-item1 nav-link1"><i
+										class="fa fa-truck px-3 p-0" style="font-size: 25px"></i>To
+									Ship</a>
+								<a th:href="@{|/order/list?sid=3|}" class="text-light col-2 nav-item1 nav-link1"><i
+										class="fa fa-star-o px-3 p-0" style="font-size: 25px"></i>Complete</a>
+								<a th:href="@{|/order/list?sid=4|}" class="text-light col-2 nav-item1 nav-link1"><i
+										class="fa fa-window-close-o px-3 p-0" style="font-size: 25px"></i>Cancelled</a>
 							</div>
 						</nav>
-<div class="tab-content1 tab-content col px-0 py-3"
-							id="nav-tabContent">
+						<div class="tab-content1 tab-content col px-0 py-3" id="nav-tabContent">
 							<div class="row px-3 pb-2">
 								<div class="col-lg-7 col-md-7 ">
 									<h4>Account Purchases</h4>
@@ -89,34 +85,29 @@
 												<td scope="row">[[${order.address}]]</td>
 												<td scope="row">[[${order.createDate}]]</td>
 												<td><a th:href="@{|/order/detail/${order.id}|}"
-													class="text-success">Detail </a></td>
+														class="text-success">Detail </a></td>
 											</tr>
 										</tbody>
-										
+
 									</table>
 								</div>
 							</div>
 							<div class="loading-more">
-								<nav aria-label="Page navigation"
-									th:if="${orderPage.totalPages > 0}">
+								<nav aria-label="Page navigation" th:if="${orderPage.totalPages > 0}">
 									<ul class="pagination justify-content-center">
-										<li
-											th:class="${1 == orderPage.number + 1} ? 'page-item active' : 'page-item'">
-											<a th:href="@{/order/list/(sid=${sid}, page=1)}"
-											class="page-link">First</a>
+										<li th:class="${1 == orderPage.number + 1} ? 'page-item active' : 'page-item'">
+											<a th:href="@{/order/list/(sid=${sid}, page=1)}" class="page-link">First</a>
 										</li>
-							<li class="page-item active"
-											th:each="pageNumber : ${pageNumbers}"
+										<li class="page-item active" th:each="pageNumber : ${pageNumbers}"
 											th:if="${orderPage.totalPages > 1}"
 											th:class="${pageNumber == orderPage.number + 1} ? 'page-item active' : 'page-item'">
 											<a th:href="@{/order/list/(sid=${sid}, page=${pageNumber})}"
-											class="page-link" th:text="${pageNumber}"></a>
+												class="page-link" th:text="${pageNumber}"></a>
 										</li>
 										<li
 											th:class="${orderPage.totalPages == orderPage.number + 1} ? 'page-item active' : 'page-item'">
-											<a
-											th:href="@{/order/list/(sid=${sid}, page=${orderPage.totalPages})}"
-											class="page-link">Last</a>
+											<a th:href="@{/order/list/(sid=${sid}, page=${orderPage.totalPages})}"
+												class="page-link">Last</a>
 										</li>
 									</ul>
 								</nav>
@@ -131,4 +122,5 @@
 		<!-- Shopping Cart Section End -->
 	</main>
 </body>
+
 </html>
