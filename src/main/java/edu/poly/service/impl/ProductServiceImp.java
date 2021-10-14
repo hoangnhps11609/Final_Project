@@ -145,6 +145,13 @@ public class ProductServiceImp implements ProductService{
 	}
 
 
+	@Override
+	public List<Product> ThinhWaMetMoi(Integer id) {
+		// TODO Auto-generated method stub
+		return  productDAO.ThinhWaMetMoi(id);
+	}
+
+
 	
 	
 

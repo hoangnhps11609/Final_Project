@@ -95,7 +95,7 @@
 						<img ng-src="{{'/assets/images/' + item1.image}}" width="100%"/>
 					</td>
 					<td>{{item1.id}}</td>
-					<td>{{item1.product.id}}</td>				
+					<td >{{item1.product.id}}</td>				
 					<td>{{item1.product.name}}</td>		
 					<td>{{item1.available}}</td>
 					<td>{{item1.color.name}}</td>
@@ -107,7 +107,7 @@
 			</tbody>
 		</table>
 	</div>
-								<button class="btn btn-warning mgr5px" ng-click="adddetail(item)">Add Detail</button>
+								<button class="btn btn-warning mgr5px" ng-click="test()">Add Detail</button>
 	
 		<div class="card-footer text-muted text-center">
 		<button class="btn btn-primary" ng-click="pager2.first()">First</button>
@@ -140,32 +140,33 @@
 			<div class="file-upload col-4">
 				<div class="image-upload-wrap">
 					<input class="file-upload-input" type="file" id="photo"
-						onchange="readURL(this); angular.element(this).scope().imageChanged(this.files); angular.element(this).scope().imageChanged(this.files)"
+						onchange="readURL(this); angular.element(this).scope().imageChanged2(this.files); angular.element(this).scope().imageChanged(this.files)"
 						accept="image/*" />
 					<div class="drag-text">
 						<img class="img-fluid p-2"
-							ng-src="{{form2.photo ? '/assets/images/' + form.photo : '/assets/images/5aa47c07.png' }}"
+							ng-src="{{form.photo ? '/assets/images/' + form2.photo : '/assets/images/5aa47c07.png' }}"
 							alt="your image" id="img" />
 						<h5>Drag and drop a file or select add Image</h5>
 					</div>
 				</div>
 				<div class="file-upload-content">
 					<img class="file-upload-image img-fluid"
-						ng-src="{{'/assets/images/' + form2.photo}}" alt="your image" />
+						ng-src="{{'/assets/images/' + form.photo}}" alt="your image" />
 					<div class="image-title-wrap">
 						<button type="button" onclick="removeUpload()"
 							class="remove-image">
 							Remove <span class="image-title">Uploaded Image</span>
 						</button>
-					</div>SS
+					</div>
 				</div>
 			</div>
 			<div class="col-8">
 				<div class="row">
-						<div class="form-group col-sm-12">
-						<div>Product Name</div>
-						<select  class="form-control" id="move" name="move" ng-model="form2.id">
-							<option ng-repeat="b in products" disabled="disabled" ng-value="form2.id">{{b.name}}</option>
+					<div class="form-group col-sm-6">
+						<div>Product ID</div>
+							<input class="form-control"  ng-model="form2.id " />
+						<select class="form-control" id="move" name="move" ng-model="form2.product.id">
+							<option ng-repeat="b in products2"  ng-value="b.id">{{b.name}}</option>
 						</select>
 					</div>
 			
@@ -210,9 +211,8 @@
 		</div>
 	</div>
       </div>
-      <div class="modal-footer">
-	<button class="btn btn-info"  ng-click="createDetail()">Add Detail</button>
-      </div>
+	<button class="btn btn-info"  ng-click="createD()">Add Detail</button>
+    
     </div>
   </div>
 </div>

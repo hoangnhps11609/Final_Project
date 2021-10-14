@@ -50,6 +50,12 @@ public class ProductRestController {
 		pService.delete(id);
 	}
 	
+	@GetMapping("getid/{valued}")
+	public List<Product> getListAccountByValued2(@PathVariable("valued") Integer valued){
+		return pService.ThinhWaMetMoi(valued);
+		
+	}
+	
 	@GetMapping("{valued}")
 	public List<Product> getListAccountByValued(@PathVariable("valued") String valued){
 		return pService.findbyName(valued+"%");

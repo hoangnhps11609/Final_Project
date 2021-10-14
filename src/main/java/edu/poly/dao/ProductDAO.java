@@ -75,6 +75,9 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	("SELECT p FROM Product p WHERE p.id = ?1")
 	Optional<Product> getChio(Integer id);
 	
+	@Query
+	("SELECT p FROM Product p WHERE p.id = ?1")
+	List<Product> ThinhWaMetMoi(Integer id);
 
 
 }

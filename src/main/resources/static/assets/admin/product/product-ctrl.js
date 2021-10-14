@@ -1,6 +1,6 @@
 app.controller("product-ctrl", function ($scope, $http) {
 
-
+var so;
 
 		$scope.colors = [];
 	$scope.genders = [];
@@ -13,6 +13,9 @@ app.controller("product-ctrl", function ($scope, $http) {
 	$scope.genders = [];
 	$scope.form = {};
 		$scope.form2 = {};
+				$scope.form3 = {};
+	$scope.products2 = [];
+	
 				
 		
 	
@@ -110,14 +113,21 @@ app.controller("product-ctrl", function ($scope, $http) {
 
 	
 	$scope.adddetail = function (item) {
-		alert(item.name);
-		$scope.form2 = angular.copy(item);
-		$('#exampleModalCenter1').appendTo("body").modal('show');
-
+			//load products
+			
+					var a = item.id
+			
+		$http.get(`/rest/products/getid/${a}`).then(resp => {
+			$scope.products2 = resp.data;
+		});
 		
-
-
+		$('#exampleModalCenter1').appendTo("body").modal('show');
+		document.getElementById('fee').value = '2';
+		
+		
 	}
+	
+
 
 	$scope.viewall = function (item) {
 			$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
@@ -135,33 +145,27 @@ app.controller("product-ctrl", function ($scope, $http) {
 
 
 	}
-	
-	
-		$scope.createDetail = function () {
-			var item = angular.copy($scope.form2);
-			$http.post(`/rest/productdetails`, item).then(resp => {
-			resp.data.createDate = new Date(resp.data.createDate)
-			resp.data.product.id = item.id
-			$scope.items.push(resp.data);
+	$scope.createD = function () {
+		var item = angular.copy($scope.form2);
+		$http.post(`/rest/productdetails`, item).then(resp => {
+			resp.data.createDate = new Date(resp.data.createDate)	
+			$scope.ODitems.push(resp.data);
 			$scope.reset();
 			alert("Thêm mới thành công");
 			$scope.initialize();
 		}).catch(error => {
-			alert("Lỗi thêm sản phẩm a");
+			alert("Lỗi thêm sản phẩm");
+			alert(error);
+			
 			console.log("Error", error);
 		});
 
 
-		var statistic = angular.copy($scope.form2);
-		$http.put(`/rest/products/get/${statistic.id}`, item).then(resp => {
-			$scope.initialize();
-		}).catch(error => {
-			alert("Lỗi cập nhật sản phẩm");
-			console.log("Error", error);
-
-		});
+	
 
 	}
+	
+	
 
 
 	//Thêm sản phẩm mới
@@ -216,6 +220,19 @@ app.controller("product-ctrl", function ($scope, $http) {
 			headers: { 'Content-Type': undefined }
 		}).then(resp => {
 			$scope.form.image = resp.data.name;
+		}).catch(error => {
+			alert("Lỗi upload hình ảnh");
+			console.log("Error", error);
+		})
+	}
+		$scope.imageChanged2 = function (files) {
+		var data = new FormData();
+		data.append('file', files[0]);
+		$http.post('/rest/upload/images', data, {
+			transformRequest: angular.identity,
+			headers: { 'Content-Type': undefined }
+		}).then(resp => {
+			$scope.form2.image = resp.data.name;
 		}).catch(error => {
 			alert("Lỗi upload hình ảnh");
 			console.log("Error", error);
