@@ -24,6 +24,8 @@
 
 		<!-- Shopping Cart Section Begin -->
 		<section class="shopping-cart spad">
+
+
 			<div class="container">
 				<div class="card">
 					<div class="card-header" style="background-color: #e7ab3c">
@@ -32,42 +34,142 @@
 								<h3 class="text-light">Order Information</h3>
 							</div>
 							<div class="col-2 px-0 row float-right">
-								<a class="btn btn-light col" th:href="@{/order/list?sid=0}">My Order</a>
+								<a class="btn btn-light col" th:href="@{/order/list?sid=0}">My
+									Order</a>
 							</div>
 						</div>
 					</div>
 					<div class="card-body">
-						<div class="row">
-							<div class="form-group col-sm-4">
-								<div class="">Order Number: [[${order.id}]]</div>
-							</div>
-							<div class="form-group col-sm-4">
-								<div class="">Purchaser: [[${order.account.username}]]</div>
-							</div>
-							<div class="form-group col-sm-4">
-								<div class="">Purchased Name: [[${order.account.fullname}]]</div>
+						<div class="px-0 mx-auto">
+							<div class="card cardstatus">
+								<div class="row d-flex justify-content-between px-3 topstatus">
+									<div class="d-flex flex-column text-sm-left">
+										<h5>
+											<span class="text-primary font-weight-bold">Order
+												Info: [[${order.id}]]</span>
+										</h5>
+										<p class="mb-1">
+											Purchased Username:<span class="font-weight-bold">
+												[[${order.account.username}]]</span>
+										</p>
+										<p class="mb-1">
+											Purchased Fullname:<span class="font-weight-bold">
+												[[${order.account.fullname}]]</span>
+										</p>
+										<p class="mb-1">
+											Expected Arrival:<span class="font-weight-bold">
+												[[${order.createDate}]]</span>
+										</p>
+									</div>
+									<div class="d-flex flex-column text-sm-right">
+										<h5>
+											<span class="text-primary font-weight-bold">Receiver
+												Info</span>
+										</h5>
+										<p class="mb-1">
+											Receiver Fullname:<span class="font-weight-bold">
+												[[${order.fullname}]]</span>
+										</p>
+										<p class="mb-1">
+											Receiver Phone:<span class="font-weight-bold">
+												[[${order.phone}]]</span>
+										</p>
+										<p>
+											Receiver Address:<span class="font-weight-bold">
+												[[${order.address}]]</span>
+										</p>
+									</div>
+								</div>
+								<!-- Add class 'active' to progress -->
+								<div class="row d-flex justify-content-center" th:if="${order.status != 4}">
+									<div class="col-12">
+										<ul id="progressbar" class="text-center"
+											th:if="${order.status == 0}">
+											<li class="step0 active"></li>
+											<li class="step0"></li>
+											<li class="step0"></li>
+											<li class="step0"></li>
+										</ul>
+										<ul id="progressbar" class="text-center"
+											th:if="${order.status == 1}">
+											<li class="step0 active"></li>
+											<li class="step0 active"></li>
+											<li class="step0"></li>
+											<li class="step0"></li>
+										</ul>
+										<ul id="progressbar" class="text-center"
+											th:if="${order.status == 2}">
+											<li class="step0 active"></li>
+											<li class="step0 active"></li>
+											<li class="step0 active"></li>
+											<li class="step0"></li>
+										</ul>
+										<ul id="progressbar" class="text-center"
+											th:if="${order.status == 3}">
+											<li class="step0 active"></li>
+											<li class="step0 active"></li>
+											<li class="step0 active"></li>
+											<li class="step0 active"></li>
+										</ul>
+									</div>
+								</div>
+								
+								<div class="row justify-content-between topstatus" th:if="${order.status != 4}">
+									<div class="row d-flex icon-contentstatus">
+										<a th:href="@{|/order/list?sid=0|}"> <img
+											class="iconstatus" src="https://i.imgur.com/9nnc9Et.png"></a>
+										<div class="d-flex flex-column">
+											<a th:href="@{|/order/list?sid=0|}">
+												<p class="font-weight-bold">
+													Waiting<br>Processed
+												</p>
+											</a>
+										</div>
+									</div>
+									<div class="row d-flex icon-contentstatus">
+										<a th:href="@{|/order/list?sid=1|}"> <img
+											class="iconstatus" src="https://i.imgur.com/u1AzR7w.png">
+										</a>
+										<div class="d-flex flex-column">
+											<a th:href="@{|/order/list?sid=1|}">
+												<p class="font-weight-bold">
+													Order<br>Processed
+												</p>
+											</a>
+										</div>
+									</div>
+									<div class="row d-flex icon-contentstatus">
+										<a th:href="@{|/order/list?sid=2|}"> <img
+											class="iconstatus" src="https://i.imgur.com/TkPm63y.png">
+										</a>
+										<div class="d-flex flex-column">
+											<a th:href="@{|/order/list?sid=2|}">
+												<p class="font-weight-bold">
+													To<br>Ship
+												</p>
+											</a>
+										</div>
+									</div>
+									<div class="row d-flex icon-contentstatus">
+										<a th:href="@{|/order/list?sid=3|}"> <img
+											class="iconstatus" src="https://i.imgur.com/HdsziHP.png">
+										</a>
+										<div class="d-flex flex-column">
+											<a th:href="@{|/order/list?sid=3|}">
+												<p class="font-weight-bold">
+													Order<br>Complete
+												</p>
+											</a>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="form-group col-sm-4">
-								<div class="">Receiver Number: [[${order.fullname}]]</div>
-							</div>
-							<div class="form-group col-sm-4">
-								<div class="">Receiver Phone: [[${order.phone}]]</div>
-							</div>
-							<div class="form-group col-sm-4">
-								<div class="">Purchased Date:[[${order.createDate}]]</div>
-							</div>
+	
+						<div class="alert-danger p-0 m-0 py-3" th:if="${order.status == 4}">
+							<h3 class="text-center text-danger" style="font-weight:bolder">Order Cancelled</h3>
 						</div>
-						<div class="row">
-							<div class="form-group col-6">
-								<div class="">Shipping Address: [[${order.address}]]</div>
-							</div>
-							<div class="form-group col-6">
-								<div class="">Status: [[${order.status == 0 ? 'Wait For Confirmation' : order.status == 1 ? 'Confirmed' : order.status == 2 ? 'To Ship' : order.status == 3 ? 'Complete' : 'Cancelled'}]]</div>
-							</div>
-						</div>
-
+						
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="cart-table mb-3">
@@ -82,15 +184,17 @@
 												<th>Size</th>
 												<th>Quantity</th>
 												<th scope="col">Amount</th>
-												<th th:if="${order.status == 3 || order.status == 4}">Buy Again</th>
+												<th th:if="${order.status == 3 || order.status == 4}">Buy
+													Again</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr th:each="detail: *{orderDetails}" th:object="${detail}">
 												<td>[[*{productDetail.product.id}]]</td>
-												<td class="cart-pic first-row"><a th:href="@{|/product/detail/*{productDetail.product.id}?sizepro=1|}"><img
-													th:src="'/assets/images/' + *{productDetail.image}"
-													width="110px" height="120px"></a></td>
+												<td class="cart-pic first-row"><a
+													th:href="@{|/product/detail/*{productDetail.product.id}?sizepro=1|}"><img
+														th:src="'/assets/images/' + *{productDetail.image}"
+														width="110px" height="120px"></a></td>
 												<td>[[*{productDetail.product.name}]]</td>
 												<td>$[[*{#numbers.formatDecimal(productDetail.product.price*(1-productDetail.product.discount*0.01),
 													0, 'COMMA', 1, 'POINT')}]]</td>
@@ -100,7 +204,9 @@
 												<td>$[[*{#numbers.formatDecimal(productDetail.product.price*quantity*(1-productDetail.product.discount*0.01),
 													0, 'COMMA', 1, 'POINT')}]]</td>
 												<td th:if="${order.status == 3 || order.status == 4}">
-													<a class="btn text-light" style="background-color: #e7ab3c" th:attr="ng-click=@{|cart.addcart(*{productDetail.id})|}">Buy Again</a>
+													<a class="btn text-light" style="background-color: #e7ab3c"
+													th:attr="ng-click=@{|cart.addcart(*{productDetail.id})|}">Buy
+														Again</a>
 												</td>
 											</tr>
 										</tbody>
@@ -108,9 +214,11 @@
 								</div>
 							</div>
 						</div>
-						
-						<div class="row float-right pr-3" th:if="${order.status == 0 || order.status == 1}">
-							<a class="btn text-light" style="background-color: #e7ab3c" th:href="@{|/order/delete/${order.id}|}">Cancel Order</a>
+
+						<div class="row float-right pr-3"
+							th:if="${order.status == 0 || order.status == 1}">
+							<a class="btn text-light" style="background-color: #e7ab3c"
+								th:href="@{|/order/delete/${order.id}|}">Cancel Order</a>
 						</div>
 					</div>
 					<div class="card-footer text-center alert-warning">Thank you

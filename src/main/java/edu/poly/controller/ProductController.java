@@ -354,7 +354,6 @@ public class ProductController {
 		String colorname = paramService.getString("color", "");
 		String min = paramService.getString("min", "");
 		String max = paramService.getString("max", "");
-		System.out.println(cateid + brandname + sizeproname + gendername + colorname + min + max);
 		
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(9999);
@@ -379,7 +378,7 @@ public class ProductController {
 		}
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
-				
+		model.addAttribute("size", pageSize);		
 		return "product/filter";
 	}
 	

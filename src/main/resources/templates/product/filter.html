@@ -147,6 +147,37 @@
 								</div>
 							</div>
 						</div>
+						<div class="loading-more">
+							<nav aria-label="Page navigation"
+								th:if="${productPage.totalPages > 1}">
+								<ul class="pagination justify-content-center">
+									<li
+										th:class="${1 == productPage.number + 1} ? 'page-item active' : 'page-item'">
+										<a
+										th:href="@{/product/list/(size=${productPage.size}, page=${1}, min=${min}, max=${max}, cid=${cid}, search=${search}, brand=${brand}, gender=${gender})}"
+										class="page-link">First</a>
+									</li>
+
+									<li class="page-item active"
+										th:each="pageNumber : ${pageNumbers}"
+										th:if="${productPage.totalPages > 1}"
+										th:class="${pageNumber == productPage.number + 1} ? 'page-item active' : 'page-item'">
+										<a
+										th:href="@{/product/list/(size=${productPage.size}, page=${pageNumber}, min=${min}, max=${max}, cid=${cid}, search=${search}, brand=${brand}, gender=${gender})}"
+										class="page-link" th:text="${pageNumber}"></a>
+									</li>
+
+
+									<li
+										th:class="${productPage.totalPages == productPage.number + 1} ? 'page-item active' : 'page-item'">
+										<a
+										th:href="@{/product/list/(size=${productPage.size}, page=${productPage.totalPages}, min=${min}, max=${max}, cid=${cid}, search=${search}, brand=${brand}, gender=${gender})}"
+										class="page-link">Last</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</div>
 					</div>
 				</div>
 			</div>
