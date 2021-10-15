@@ -20,7 +20,12 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 					this.saveToLocalStorage();
 				})
 			}
-			alert("Thêm sản phẩm vào giỏ hàng thành công")
+			//alert("Thêm sản phẩm vào giỏ hàng thành công")
+			Swal.fire(
+			  'Thanks!',
+			  'Add to cart successfully!',
+			  'success'
+			)
 		},
 		
 		//Cộng sản phẩm có sẵn trong giỏ hàng
@@ -35,7 +40,8 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 							}else{
 								item.qty;
 								this.saveToLocalStorage();
-								alert("Out-Of-Stock Product");
+								//alert("Out-Of-Stock Product!")
+								Swal.fire('Out-Of-Stock Product')
 							}
 						})
 					}
@@ -47,7 +53,8 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 								this.items.push(resp.data);
 								this.saveToLocalStorage();
 							}else{
-								alert("Out-Of-Stock Product");
+								//alert("Out-Of-Stock Product!")
+								Swal.fire('Out-Of-Stock Product')
 							}
 						})
 					}
@@ -138,7 +145,13 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 				$scope.cart.clear();
 				location.href = "/productdetail/update/" + resp.data.id;
 			}).catch(error => {
-				alert("Đặt hàng thất bại!")
+				//alert("Đặt hàng thất bại!")
+				Swal.fire({
+				  icon: 'error',
+				  title: 'Oops...',
+				  text: 'Something went wrong!',
+				  //footer: '<a href="">Why do I have this issue?</a>'
+				})
 				console.log(error)
 			})
 		}
