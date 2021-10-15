@@ -104,6 +104,19 @@ var so;
 			available: true
 		};
 	}
+	
+	$scope.reset2 = function () {
+		$scope.form2 = {
+			createDate: new Date(),
+			image: 'user.png',
+			available: true
+		};
+		
+				$http.get(`/rest/products/getid/${a}`).then(resp => {
+			$scope.products2 = resp.data;
+		});
+		
+	}
 
 	//hiển thị lên form
 	$scope.edit = function (item) {
@@ -113,8 +126,7 @@ var so;
 
 	
 	$scope.adddetail = function (item) {
-			//load products
-			
+			//load products		
 					var a = item.id
 			
 		$http.get(`/rest/products/getid/${a}`).then(resp => {
@@ -160,7 +172,16 @@ var so;
 			console.log("Error", error);
 		});
 
+		
+		$http.put(`/rest/products/get/${item.product.id}`, item).then(resp => {
+			$scope.initialize();
+		}).catch(error => {
+			alert("Lỗi cập nhật sản phẩm");
+			console.log("Error", error);
 
+		});
+		
+		$scope.reset2();
 	
 
 	}

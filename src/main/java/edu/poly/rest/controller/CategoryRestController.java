@@ -34,6 +34,11 @@ public class CategoryRestController {
 		return cService.findById(id);
 	}
 	
+	@GetMapping("getname/{valued}")
+	public List<Category> getOne1(@PathVariable("valued") String valued) {
+		return cService.findByName(valued+"%");
+	}
+	
 	@PostMapping
 	public Category create(@RequestBody Category category) {
 		return cService.create(category);

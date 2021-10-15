@@ -78,4 +78,29 @@ public class OrderRestController {
 		}
 		return orderService.findbyId(valued+"%");
 	}
+	
+	@GetMapping("findAllWaitingConfirm")
+	public List<Order> findAllWaitingConfirm () {
+		return orderService.findAllWaitingConfirm();
+	}
+	
+	@GetMapping("findAllConfirmed")
+	public List<Order> findAllConfirmed () {
+		return orderService.findAllConfirmed();
+	}	
+	
+	@GetMapping("findAllShipping")
+	public List<Order> findAllShipping () {
+		return orderService.findAllShipping();
+	}	
+	
+	@GetMapping("findAllComplete")
+	public List<Order> findAllComplete () {
+		return orderService.findAllComplete();
+	}	
+	
+	@GetMapping("findAllCancelOrder")
+	public List<Order> findAllCancelOrder () {
+		return orderService.findAllCancelOrder();
+	}
 }

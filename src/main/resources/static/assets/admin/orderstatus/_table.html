@@ -1,7 +1,23 @@
 
 <div class="card">
 	<div class="card-header">
-		<h3>List Order</h3>
+			<h3>List Order</h3><i class="fa fa-refresh" ng-click="initialize()" style="font-size:18px; position: absolute; right: 20px; top: 20px"> <span>Refresh</span> </i>
+		<div class="col" style="position: relative;">
+			<div class="form-group col-4">
+				From :<input type="date" class="form-control" ng-model="statistic1.from1" />
+			</div>
+			<div class="form-group col-4" style="position: absolute; top: 0; right: 30%">
+				To: <input type="date" class="form-control" ng-model="statistic1.to1" />
+			</div>
+			<button style="position: absolute; top: 38%	; right: 17%" ng-click="statistic1()" class="btn btn-primary">Search</button>
+		</div>
+		<div>
+		<button ng-click="findAllWaitingConfirm()">Waiting Confirm</button>
+		<button ng-click="findAllConfirmed()">Confirmed</button>
+		<button ng-click="findAllShipping()">Shipping</button>
+		<button ng-click="findAllComplete()">Complete</button>
+		<button ng-click="findAllCancelOrder()">Cancel Order</button>	
+		</div>
 
 	</div>
 	<div class="card-body">

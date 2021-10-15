@@ -123,4 +123,34 @@ public class OrderServiceImpl implements OrderService{
 		return dao.getChio(id);
 	}
 
+	@Override
+	public List<Order> findAllWaitingConfirm() {
+		// TODO Auto-generated method stub
+		return dao.findAllWaitingConfirm();
+	}
+
+	@Override
+	public List<Order> findAllConfirmed() {
+		// TODO Auto-generated method stub
+		return dao.findAllConfirmed();
+	}
+
+	@Override
+	public List<Order> findAllShipping() {
+		// TODO Auto-generated method stub
+		return dao.findAllShipping();
+	}
+
+	@Override
+	public List<Order> findAllComplete() {
+		// TODO Auto-generated method stub
+		return dao.findAllComplete();
+	}
+
+	@Override
+	public List<Order> findAllCancelOrder() {
+		// TODO Auto-generated method stub
+		return dao.findAllCancelOrder();
+	}
+
 }

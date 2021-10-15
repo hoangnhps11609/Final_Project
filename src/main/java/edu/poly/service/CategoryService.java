@@ -22,6 +22,8 @@ public interface CategoryService {
 	Category findById(String id);
 
 	Category findbyCateId(String categoryID);
+	
+	List<Category> findByName(String valued);
 
 
 

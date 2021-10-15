@@ -27,10 +27,65 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
    
   }
 });	
+		
+		$scope.findAllWaitingConfirm = function() {
+		//load orders
+		$http.get("/rest/orders/findAllWaitingConfirm").then(resp => {
+			$scope.items = resp.data;
+			$scope.items.forEach(item => {
+			})
+		});
+	}
+	
+		$scope.findAllConfirmed = function() {
+		//load orders
+		$http.get("/rest/orders/findAllConfirmed").then(resp => {
+			$scope.items = resp.data;
+			$scope.items.forEach(item => {
+			})
+		});
+	}
+	
+			$scope.findAllShipping = function() {
+		//load orders
+		$http.get("/rest/orders/findAllShipping").then(resp => {
+			$scope.items = resp.data;
+			$scope.items.forEach(item => {
+			})
+		});
+	}
+	
+			$scope.findAllComplete = function() {
+		//load orders
+		$http.get("/rest/orders/findAllComplete").then(resp => {
+			$scope.items = resp.data;
+			$scope.items.forEach(item => {
+			})
+		});
+	}
+	
+				$scope.findAllCancelOrder = function() {
+		//load orders
+		$http.get("/rest/orders/findAllCancelOrder").then(resp => {
+			$scope.items = resp.data;
+			$scope.items.forEach(item => {
+			})
+		});
+	}
 
 
-
-
+		$scope.statistic = function () {
+		var statistic = angular.copy($scope.statistic);
+		$http.get(`/rest/orders/${statistic.from}`).then(resp => {
+			$scope.items = resp.data;
+			$scope.items.forEach(item => {
+			})
+			$(".nav-tabs a:eq(2)").tab('show');
+		}).catch(error => {
+			alert();
+			console.log("Error", error);
+		});
+	}
 
 
 	//Khởi tạo
@@ -69,6 +124,7 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 
 		});
 	}
+
 	
 	$scope.statistic1 = function() {
 		var statistic = angular.copy($scope.statistic1);

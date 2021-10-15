@@ -31,4 +31,24 @@ public interface OrderDAO extends JpaRepository<Order, Long>{
 	@Query
 	("SELECT p FROM Order p WHERE p.id = ?1")
 	Optional<Order> getChio(Long id);
+	
+	@Query
+	("SELECT p FROM Order p WHERE p.status = 0")
+	List<Order> findAllWaitingConfirm();
+	
+	@Query
+	("SELECT p FROM Order p WHERE p.status = 1")
+	List<Order> findAllConfirmed();
+	
+	@Query
+	("SELECT p FROM Order p WHERE p.status = 2")
+	List<Order> findAllShipping();
+	
+	@Query
+	("SELECT p FROM Order p WHERE p.status = 3")
+	List<Order> findAllComplete();
+	
+	@Query
+	("SELECT p FROM Order p WHERE p.status = 4")
+	List<Order> findAllCancelOrder();
 }

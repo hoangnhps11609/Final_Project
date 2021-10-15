@@ -46,4 +46,15 @@ public interface OrderService {
 	<S extends Order> S save(S entity);
 	
 	Optional<Order> getChio(Long id);
+	
+	List<Order> findAllWaitingConfirm();
+	
+	List<Order> findAllConfirmed();
+	
+	List<Order> findAllShipping();
+	
+	List<Order> findAllComplete();
+	
+	List<Order> findAllCancelOrder();
+
 }

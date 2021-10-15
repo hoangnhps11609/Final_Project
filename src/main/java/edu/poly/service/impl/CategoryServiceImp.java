@@ -41,4 +41,10 @@ public class CategoryServiceImp implements CategoryService{
 		return cdao.findbyCateId(categoryID);
 	}
 
+	@Override
+	public List<Category> findByName(String valued) {
+		// TODO Auto-generated method stub
+		return cdao.findbyName(valued);
+	}
+
 }
