@@ -54,6 +54,6 @@ public class BrandRestController {
 	
 	@GetMapping("{valued}")
 	public List<Brand> getAllList(@PathVariable("valued") String valued) {
-		return bService.getListBrand(valued+"%");
+		return bService.getListBrand("%"+valued+"%");
 	}
 }

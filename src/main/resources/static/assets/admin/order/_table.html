@@ -1,6 +1,6 @@
 <div class="card">
 	<div class="card-header">
-		<h3>List Order</h3><i class="fa fa-refresh" ng-click="initialize()" style="font-size:18px; position: absolute; right: 20px; top: 20px"> <span>Refresh</span> </i>
+		<h3 class="noibacchu">List Order</h3><i class="fa fa-refresh" ng-click="initialize()" style="font-size:18px; position: absolute; right: 20px; top: 20px"> <span>Refresh</span> </i>
 		<div class="col" style="position: relative;">
 			<div class="form-group col-4">
 				From :<input type="date" class="form-control" ng-model="statistic1.from1" />
@@ -38,8 +38,8 @@
 					
 					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 					<td>{{item.address}}</td>
-					<td ng:if="item.status==0" style="color: red;">Waiting for Confirm</td>
-					<td ng:if="item.status==1"  style="color: orange;">Confirmed</td>
+					<td ng:if="item.status==0" style="color: orange;">Waiting for Confirm</td>
+					<td ng:if="item.status==1"  style="color: yellow;">Confirmed</td>
 					<td ng:if="item.status==2"  style="color: blue;">Shipping</td>
 					<td ng:if="item.status==3" style="color: green;">Complete</td>
 					<td ng:if="item.status==4" style="color: red;">Cancel Order</td>

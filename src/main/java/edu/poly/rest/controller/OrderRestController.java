@@ -76,7 +76,7 @@ public class OrderRestController {
 		if(valued==null) {
 			return orderService.findAll(Sort.by(Sort.Direction.DESC, "id"));
 		}
-		return orderService.findbyId(valued+"%");
+		return orderService.findbyId("%"+valued+"%");
 	}
 	
 	@GetMapping("findAllWaitingConfirm")

@@ -109,7 +109,7 @@ var so;
 	$scope.reset = function () {
 		$scope.form = {
 			createDate: new Date(),
-			image: 'user.png',
+			image: '5aa47c07.png',
 			available: true
 		};
 	}
@@ -117,7 +117,7 @@ var so;
 	$scope.reset2 = function () {
 		$scope.form2 = {
 			createDate: new Date(),
-			image: 'user.png',
+			image: '5aa47c07.png',
 			available: true
 		};
 		

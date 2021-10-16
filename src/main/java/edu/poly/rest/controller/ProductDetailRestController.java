@@ -68,7 +68,7 @@ public class ProductDetailRestController {
 	
 	@GetMapping("get/{valued}")
 	public List<ProductDetail> findbyProductName(@PathVariable("valued") String valued){
-		return productDetailService.findProductByName(valued+"%");
+		return productDetailService.findProductByName("%"+valued+"%");
 	}
 	
 	@GetMapping("getdetail/{valued}")
