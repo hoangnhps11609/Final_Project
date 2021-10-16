@@ -11,14 +11,14 @@
 						accept="image/*" />
 					<div class="drag-text">
 						<img class="img-fluid p-2"
-							ng-src="{{form.photo ? '/assets/images/' + form.photo : '/assets/images/5aa47c07.png' }}"
+							ng-src="{{form.images ? '/assets/images/' + form.images : '/assets/images/5aa47c07.png' }}"
 							alt="your image" id="img" />
 						<h5>Drag and drop a file or select add Image</h5>
 					</div>
 				</div>
 				<div class="file-upload-content">
 					<img class="file-upload-image img-fluid"
-						ng-src="{{'/assets/images/' + form.photo}}" alt="your image" />
+						ng-src="{{'/assets/images/' + form.images}}" alt="your image" />
 					<div class="image-title-wrap">
 						<button type="button" onclick="removeUpload()"
 							class="remove-image">

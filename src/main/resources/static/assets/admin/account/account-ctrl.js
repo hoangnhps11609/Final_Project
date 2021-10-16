@@ -43,7 +43,7 @@ app.controller("account-ctrl", function ($scope, $http) {
 	//Xóa form	
 	$scope.reset = function () {
 		$scope.form = {
-			photo: 'user.png'
+			photo: '5aa47c07.png'
 		};
 	}
 

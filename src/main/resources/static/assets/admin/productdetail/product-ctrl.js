@@ -75,7 +75,7 @@ app.controller("productdetail-ctrl", function ($scope, $http) {
 	$scope.reset = function () {
 		$scope.form = {
 			createDate: new Date(),
-			image: 'user.png',
+			image: '5aa47c07.png',
 			available: true
 		};
 	}
