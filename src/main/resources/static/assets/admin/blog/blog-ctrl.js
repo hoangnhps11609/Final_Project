@@ -123,7 +123,7 @@ app.controller("blog-ctrl", function ($scope, $http) {
 
 	$scope.pager = {
 		page: 0,
-		size: 10,
+		size: 3,
 		get items() {
 			var start = this.page * this.size;
 			return $scope.items.slice(start, start + this.size);
