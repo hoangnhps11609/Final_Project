@@ -58,7 +58,7 @@ public class ProductRestController {
 	
 	@GetMapping("{valued}")
 	public List<Product> getListAccountByValued(@PathVariable("valued") String valued){
-		return pService.findbyName(valued+"%");
+		return pService.findbyName("%"+valued+"%");
 		
 	}
 	

@@ -36,7 +36,7 @@ public class CategoryRestController {
 	
 	@GetMapping("getname/{valued}")
 	public List<Category> getOne1(@PathVariable("valued") String valued) {
-		return cService.findByName(valued+"%");
+		return cService.findByName("%"+valued+"%");
 	}
 	
 	@PostMapping

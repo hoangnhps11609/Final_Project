@@ -56,7 +56,7 @@ public class BlogRestController {
 	
 	@GetMapping("{valued}")
 	public List<Blog> findbyName(@PathVariable ("valued" ) String valued){
-		return bService.findByName(valued+"%");
+		return bService.findByName("%"+valued+"%");
 	}
 	
 	
