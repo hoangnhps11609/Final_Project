@@ -82,7 +82,18 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 			})
 			$(".nav-tabs a:eq(2)").tab('show');
 		}).catch(error => {
-			alert();
+			//alert();
+			
+			Swal.fire({
+			  title: 'Please enter search keyword',
+			  showClass: {
+			    popup: 'animate__animated animate__fadeInDown'
+			  },
+			  hideClass: {
+			    popup: 'animate__animated animate__fadeOutUp'
+			  }
+			})
+			
 			console.log("Error", error);
 		});
 	}
@@ -100,7 +111,25 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 			$('.bd-example-modal-lg').appendTo("body").modal('show');
 			
 		}).catch(error => {
-			alert("Lỗi cập nhật sản phẩm");
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
 			console.log("Error", error);
 
 		});
@@ -115,11 +144,47 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 	$scope.changeStatus = function () {
 		var item = angular.copy($scope.form);
 		$http.put(`/rest/orders/${item.id}`, item).then(resp => {
-			alert("Cập nhật thành công");
+			//alert("Cập nhật thành công");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'success',
+			  title: 'Update in successfully'
+			})
+			
    			 window.location.reload();
 
 			}).catch(error => {
-			alert("Lỗi cập nhật sản phẩm");
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
 			console.log("Error", error);
 
 		});
@@ -132,7 +197,18 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 			$scope.items = resp.data;
 			$(".nav-tabs a:eq(2)").tab('show');
 		}).catch(error => {
-			alert("Lỗi tìm đơn hàng");
+			//alert("Lỗi tìm đơn hàng");
+			
+			Swal.fire({
+			  title: 'Please select a date',
+			  showClass: {
+			    popup: 'animate__animated animate__fadeInDown'
+			  },
+			  hideClass: {
+			    popup: 'animate__animated animate__fadeOutUp'
+			  }
+			})
+			
 			console.log("Error", error);
 		});
 	}

@@ -1,6 +1,14 @@
 const app = angular.module("shopping-cart-app",[]);
 app.controller("shopping-cart-ctrl", function($scope, $http){
 	// alert("WELCOME TO FPT POLYTECHNIC")
+//	Swal.fire({
+//	  title: 'WELCOME TO FASHISHOP!',
+//	  text: 'Team 17 FPT Polytechnic',
+//	  imageUrl: 'https://caodang.fpt.edu.vn/wp-content/uploads/OK4-1-768x638.png',
+//	  imageWidth: 468,
+//	  imageHeight: 338,
+//	  imageAlt: 'Custom image',
+//	})
 	
 	/*QUẢN LÝ GIỎ HÀNG*/
 	$scope.cart = {
@@ -141,15 +149,21 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		purchase(){
 			var order = angular.copy(this);
 			$http.post("/rest/orders", order).then(resp => {
-				alert("Đặt hàng thành công!");
+				//alert("Đặt hàng thành công!");
+				Swal.fire({
+				  icon: 'success',
+				  title: 'Order Success',
+				  text: 'Check your order at "My Orders"',
+				  //footer: '<a href="">Why do I have this issue?</a>'
+				})
 				$scope.cart.clear();
 				location.href = "/productdetail/update/" + resp.data.id;
 			}).catch(error => {
 				//alert("Đặt hàng thất bại!")
 				Swal.fire({
 				  icon: 'error',
-				  title: 'Oops...',
-				  text: 'Something went wrong!',
+				  title: 'Order error',
+				  text: 'Please check the information again!',
 				  //footer: '<a href="">Why do I have this issue?</a>'
 				})
 				console.log(error)
@@ -163,10 +177,22 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		$http.post(`/rest/accounts`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
-			alert("Thêm mới thành công");
+			//alert("Thêm mới thành công");
+			Swal.fire({
+				  icon: 'success',
+				  title: 'Successfully',
+				  text: 'Account has been created successfully',
+				  //footer: '<a href="">Why do I have this issue?</a>'
+				})
 			location.href = "/";
 		}).catch(error => {
-			alert("Lỗi thêm sản phẩm");
+			//alert("Lỗi thêm sản phẩm");
+			Swal.fire({
+				  icon: 'error',
+				  title: 'Account error',
+				  text: 'Please check the information again!',
+				  //footer: '<a href="">Why do I have this issue?</a>'
+				})
 			console.log("Error", error);
 		});
 	}
@@ -189,11 +215,23 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			var order = angular.copy(this);
 			//Thực hiện đặt hàng
 			$http.post("/rest/orders", order).then(resp => {
-				alert("Đặt hàng thành công");
+				//alert("Đặt hàng thành công");
+				Swal.fire({
+				  icon: 'success',
+				  title: 'Order Success',
+				  text: 'Check your order at "My Orders"',
+				  //footer: '<a href="">Why do I have this issue?</a>'
+				})
 				$scope.cart.clear();
 				location.href = "/order/detail/" + resp.data.id;
 			}).catch(error => {
-				alert("Đặt hằng thất bại")
+				//alert("Đặt hằng thất bại")
+				Swal.fire({
+				  icon: 'error',
+				  title: 'Order error',
+				  text: 'Please check the information again!',
+				  //footer: '<a href="">Why do I have this issue?</a>'
+				})
 				console.log(error)
 			})
 			
@@ -213,10 +251,22 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
         var item = angular.copy($scope.form);
         $http.post(`/rest/accounts`, item).then(resp =>{
             $scope.items.push(resp.data);
-            alert("Đăng ký thành công");
+            //alert("Đăng ký thành công");
+            Swal.fire({
+				  icon: 'success',
+				  title: 'Successfully',
+				  text: 'Account has been created successfully',
+				  //footer: '<a href="">Why do I have this issue?</a>'
+				})
            location.assign ("http://localhost:8080/");
         }).catch(error =>{
             //alert("Lỗi đăng ký");
+            Swal.fire({
+				  icon: 'error',
+				  title: 'Account error',
+				  text: 'Please check the information again!',
+				  //footer: '<a href="">Why do I have this issue?</a>'
+				})
             console.log("Error, error");
         });
     }
@@ -230,6 +280,12 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
         }).then(resp =>{
             $scope.form.photo = resp.data.name;
         }).catch(error => {
+        	 Swal.fire({
+				  icon: 'error',
+				  title: 'Error image',
+				  //text: '',
+				  //footer: '<a href="">Why do I have this issue?</a>'
+				})
             console.log("Error", error);
         })
     }
@@ -239,10 +295,18 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/comments`, item).then(resp => {
 			$scope.items.push(resp.data);
-			alert("Thêm mới thành công");
+			//alert("Thêm mới thành công");
+			Swal.fire(
+			  'Comment successfully',
+			  'success'
+			)
 			location.href = "/product/detail/" + resp.data.product.id + "?sizepro=1";
 		}).catch(error => {
-			alert("Lỗi thêm sản phẩm");
+			//alert("Lỗi thêm sản phẩm");
+			Swal.fire(
+			  'Error comment',
+			  'error'
+			)
 			console.log("Error", error);
 		});
 	}

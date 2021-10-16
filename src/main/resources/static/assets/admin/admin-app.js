@@ -4,6 +4,14 @@ app.controller('datCtrl', function ($scope) {
 	$scope.hour = $scope.today.getHours();
 });
 app.config(function ($routeProvider) {
+	Swal.fire({
+	  title: 'WELCOME TO ADMIN FASHISHOP!',
+	  text: 'Team 17 FPT Polytechnic',
+	  imageUrl: 'https://caodang.fpt.edu.vn/wp-content/uploads/OK4-1-768x638.png',
+	  imageWidth: 468,
+	  imageHeight: 338,
+	  imageAlt: 'Custom image',
+	})
 	$routeProvider
 		.when("/product", {
 			templateUrl: "/assets/admin/product/index.html",

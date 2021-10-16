@@ -28,7 +28,16 @@ app.controller("brand-ctrl", function ($scope, $http) {
 			document.getElementById("homes").style.display = "none";
 			document.getElementById("lists").style.display = "block";
 		}).catch(error => {
-			alert('Error');
+			//alert('Error');
+			Swal.fire({
+			  title: 'Please enter search keyword',
+			  showClass: {
+			    popup: 'animate__animated animate__fadeInDown'
+			  },
+			  hideClass: {
+			    popup: 'animate__animated animate__fadeOutUp'
+			  }
+			})
 			console.log("Error", error);
 		});
 	}
@@ -53,10 +62,46 @@ app.controller("brand-ctrl", function ($scope, $http) {
 		$http.post(`/rest/brands`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
-			alert("Thêm mới thành công");
+			// alert("Thêm mới thành công");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'success',
+			  title: 'Created in successfully'
+			})
+			
 			$(".nav-tabs a:eq(1)").tab('show');
 		}).catch(error => {
-			alert("Lỗi thêm sản phẩm");
+			//alert("Lỗi thêm sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Create failure'
+			})
+			
 			console.log("Error", error);
 		});
 	}
@@ -67,10 +112,46 @@ app.controller("brand-ctrl", function ($scope, $http) {
 		$http.put(`/rest/brands/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
-			alert("Cập nhật thành công");
+			//alert("Cập nhật thành công");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'success',
+			  title: 'Update in successfully'
+			})
+			
 			$(".nav-tabs a:eq(1)").tab('show');
 		}).catch(error => {
-			alert("Lỗi cập nhật sản phẩm");
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
 			console.log("Error", error);
 
 		});
@@ -82,9 +163,46 @@ app.controller("brand-ctrl", function ($scope, $http) {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items.splice(index, 1);
 			$scope.reset();
-			alert("Xóa  thành công");
+			//alert("Xóa  thành công");
+			
+			Swal.fire({
+			  title: 'Are you sure?',
+			  text: "You won't be able to revert this!",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yes, delete it!'
+			}).then((result) => {
+			  if (result.isConfirmed) {
+			    Swal.fire(
+			      'Deleted!',
+			      'Your file has been deleted.',
+			      'success'
+			    )
+			  }
+			})
+			
 		}).catch(error => {
-			alert("Lỗi xóa sản phẩm");
+			//alert("Lỗi xóa sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Delete failure'
+			})
+			
 			console.log("Error", error);
 
 		});
