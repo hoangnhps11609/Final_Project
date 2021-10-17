@@ -31,7 +31,7 @@
 
 </style>
 
-<body ng-app="admin-app">
+<body ng-app="admin-app" id="bodyh" onload="setbackground()">
     <div id="preloder">
         <div class="loader"></div>
     </div>
@@ -276,8 +276,7 @@
     <script src="/assets/admin/brand/brand-ctrl.js"></script>
 
     <!--<audio autoplay src="/assets/images/We-Wish-You-A-Merry-Christmas-The-Bell-Kids.mp3"></audio> -->
-    <img class="caythong" src="/assets/images/caythong.png" alt="">
-    <img class="hopqua" src="/assets/images/hopqua.png" alt="">
+
 
 
     <script src="/assets/assets/libs/jquery/dist/jquery.min.js"></script>
@@ -306,23 +305,7 @@
 
 
     <style>
-        .caythong {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            z-index: 1;
-            width: 350px;
-            height: 400px;
-        }
 
-        .hopqua {
-            position: absolute;
-            width: 7%;
-            height: 12%;
-            bottom: 0;
-            right: 0;
-            z-index: 2;
-        }
 
         .mgr5px {
             margin-right: 5px;
@@ -332,20 +315,16 @@
             margin-right: 50px;
         }
 
-        body {
-            background: url(/assets/images/hinhnen.jpg);
-            background-size: 100%;
-        }
 
         .noibacchu {
             text-align: center;
             justify-content: center;
             align-items: center;
-            font-family: Arial;
-            font-size: 50px;
+            font-family: 'Bad Script', cursive;
+            font-size: 35px;
             font-weight: bold;
-            color: lavender;
-            text-shadow: 1px 1px 3px rgb(50, 104, 205);
+            background: white;
+            background: rgba(0, 0, 0, 0.005);
         }
 
 

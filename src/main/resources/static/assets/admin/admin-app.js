@@ -68,3 +68,27 @@ function home() {
 	document.getElementById("homes").style.display = "block";
 	document.getElementById("lists").style.display = "none";
 }
+function setbackground(){
+	var dt = new Date();
+	var time = dt.getHours()
+	if(time<11){
+		document.getElementById("bodyh").style.backgroundImage="url(/assets/images/hinhnensang.jpg)";
+		document.getElementById("bodyh").style.backgroundSize="100% 100%";
+	}
+	else{
+		if(time<16){
+			document.getElementById("bodyh").style.backgroundImage="url(/assets/images/hinhnentrua.jpg)";
+			document.getElementById("bodyh").style.backgroundSize="100% 100%";
+		}
+		else{
+			if(time<18){
+				document.getElementById("bodyh").style.backgroundImage="url(/assets/images/hinhnenchieu.jpg)";
+				document.getElementById("bodyh").style.backgroundSize="100% 100%";
+			}
+			else{
+					document.getElementById("bodyh").style.backgroundImage="url(/assets/images/hinhnentoi.jpg)";
+					document.getElementById("bodyh").style.backgroundSize="100% 100%";
+			}
+		}
+	}
+}
