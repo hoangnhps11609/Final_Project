@@ -38,8 +38,8 @@
 					
 					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 					<td>{{item.address}}</td>
-					<td ng:if="item.status==0" style="color: orange;">Waiting for Confirm</td>
-					<td ng:if="item.status==1"  style="color: yellow;">Confirmed</td>
+					<td ng:if="item.status==0"><span class="text-primary">Waiting for Confirm</span></td>
+					<td ng:if="item.status==1"  style="color: red;">Confirmed</td>
 					<td ng:if="item.status==2"  style="color: blue;">Shipping</td>
 					<td ng:if="item.status==3" style="color: green;">Complete</td>
 					<td ng:if="item.status==4" style="color: red;">Cancel Order</td>

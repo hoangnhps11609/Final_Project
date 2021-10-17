@@ -136,13 +136,13 @@ var so;
 	
 	$scope.adddetail = function (item) {
 			//load products		
-					var a = item.id
-			
+		var a = item.id
 		$http.get(`/rest/products/getid/${a}`).then(resp => {
 			$scope.products2 = resp.data;
 		});
 		
 		$('#exampleModalCenter1').appendTo("body").modal('show');
+		$('.bd-example-modal-lg2').appendTo("body").modal('hide');
 		document.getElementById('fee').value = '2';
 		
 		
@@ -151,11 +151,13 @@ var so;
 
 
 	$scope.viewall = function (item) {
-	
-			$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
+		$http.get(`/rest/products/product/${item.id}`).then(resp => {
+				$scope.product = resp.data;
+			});
+		$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
 				$scope.ODitems = resp.data;
-			
-			$('.bd-example-modal-lg2').appendTo("body").modal('show');
+		
+		$('.bd-example-modal-lg2').appendTo("body").modal('show');
 			
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
@@ -180,11 +182,8 @@ var so;
 			console.log("Error", error);
 
 		});
-		
-		
-
-
 	}
+	
 	$scope.createD = function () {
 		var item = angular.copy($scope.form2);
 		$http.post(`/rest/productdetails`, item).then(resp => {
@@ -209,7 +208,6 @@ var so;
 			  icon: 'success',
 			  title: 'Created in successfully'
 			})
-			
 			$scope.initialize();
 		}).catch(error => {
 			//alert("Lỗi thêm sản phẩm");
@@ -514,7 +512,7 @@ var so;
 	
 			$scope.pager2 = {
 		page2: 0,
-		size2: 4,
+		size2: 3,
 		get ODitems() {
 			var start = this.page2 * this.size2;
 			return $scope.ODitems.slice(start, start + this.size2);
@@ -537,4 +535,51 @@ var so;
 			this.page2 = this.count-1;
 		}
 	}
+	
+	//Xóa sản phẩm mới
+	$scope.deletePrDe = function (item) {
+		$http.delete(`/rest/productdetails/${item.id}`).then(resp => {
+			var index = $scope.items.findIndex(p => p.id == item.id);
+			$scope.items.splice(index, 1);
+			$('.bd-example-modal-lg2').appendTo("body").modal('hide');
+			Swal.fire({
+			  title: 'Are you sure?',
+			  text: "You won't be able to revert this!",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yes, delete it!'
+			}).then((result) => {
+			  if (result.isConfirmed) {
+			    Swal.fire(
+			      'Deleted!',
+			      'Your file has been deleted.',
+			      'success'
+			    )
+			  }
+			})
+			
+		}).catch(error => {
+			//alert("Lỗi xóa sản phẩm");
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Delete failure'
+			})
+			console.log("Error", error);
+		});
+		$scope.viewall();
+	}
+	
 });

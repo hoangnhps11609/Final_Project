@@ -39,7 +39,6 @@ public class ProductDetailRestController {
 	
 	@PostMapping
 	public ProductDetail create(@RequestBody ProductDetail product) {
-		
 		return productDetailService.create(product);
 	}
 	

@@ -32,6 +32,11 @@ public class ProductRestController {
 		return pService.findAll();
 	}
 	
+	@GetMapping("product/{id}")
+	public Product getOne(@PathVariable("id") Integer id) {
+		return pService.findById(id);
+	}
+	
 	@GetMapping("category/{cateid}")
 	public List<Product> findbyCategory(@PathVariable("cateid") String cateid) {
 		return pService.findByCategoryId(cateid);

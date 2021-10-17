@@ -233,9 +233,7 @@ app.controller("productdetail-ctrl", function ($scope, $http) {
 			$scope.items.splice(index, 1);
 			$scope.reset();
 			$scope.initialize();
-
 			//alert("Xóa  thành công");
-			
 			Swal.fire({
 			  title: 'Are you sure?',
 			  text: "You won't be able to revert this!",
@@ -253,10 +251,8 @@ app.controller("productdetail-ctrl", function ($scope, $http) {
 			    )
 			  }
 			})
-			
 		}).catch(error => {
 			//alert("Lỗi xóa sản phẩm");
-			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -268,14 +264,11 @@ app.controller("productdetail-ctrl", function ($scope, $http) {
 			    toast.addEventListener('mouseleave', Swal.resumeTimer)
 			  }
 			})
-			
 			Toast.fire({
 			  icon: 'warning',
 			  title: 'Delete failure'
 			})
-			
 			console.log("Error", error);
-
 		});
 	}
 
