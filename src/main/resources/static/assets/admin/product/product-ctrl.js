@@ -151,10 +151,11 @@ var so;
 
 
 	$scope.viewall = function (item) {
+	
 			$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
 				$scope.ODitems = resp.data;
 			
-			$('.bd-example-modal-lg').appendTo("body").modal('show');
+			$('.bd-example-modal-lg2').appendTo("body").modal('show');
 			
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
