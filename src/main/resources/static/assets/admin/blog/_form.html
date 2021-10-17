@@ -8,7 +8,7 @@
 				<div class="image-upload-wrap">
 					<input class="file-upload-input" type="file" id="photo"
 						onchange="readURL(this); angular.element(this).scope().imageChanged(this.files); angular.element(this).scope().imageChanged(this.files)"
-						accept="image/*" />
+						accept="images/*" />
 					<div class="drag-text">
 						<img class="img-fluid p-2"
 							ng-src="{{form.images ? '/assets/images/' + form.images : '/assets/images/5aa47c07.png' }}"
