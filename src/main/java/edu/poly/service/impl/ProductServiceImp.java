@@ -152,6 +152,13 @@ public class ProductServiceImp implements ProductService{
 	}
 
 
+	@Override
+	public List<Product> findByBrandId(Integer brandid) {
+		// TODO Auto-generated method stub
+		return productDAO.findByBrandId(brandid);
+	}
+
+
 	
 	
 

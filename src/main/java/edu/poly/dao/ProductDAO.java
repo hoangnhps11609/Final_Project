@@ -80,4 +80,9 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	List<Product> ThinhWaMetMoi(Integer id);
 
 
+	@Query
+	("SELECT p FROM Product p WHERE p.brand.id=?1")
+	List<Product> findByBrandId(Integer brandid);
+
+
 }

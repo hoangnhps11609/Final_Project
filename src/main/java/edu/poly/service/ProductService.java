@@ -71,6 +71,9 @@ public interface ProductService {
 	Optional<Product> getChio(Integer id);
 	
 	List<Product> ThinhWaMetMoi(Integer id);
+
+
+	List<Product> findByBrandId(Integer brandid);
 	
 
 

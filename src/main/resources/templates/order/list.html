@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/index :: dynamic(~{::main})}">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/index :: dynamic(~{::main})}">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 
 <body>
@@ -29,60 +30,148 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 px-3">
-						<nav class="">
-							<div class="col row ml-0 p-0 nav nav-tabs1 nav-fill huansite "
-								style="position: relative;  ">
+						<nav th:if="${sid == 0}" >
+							<div class="col row ml-0 p-0 nav nav-tabs1 nav-fill huansite" style="position: relative;">
 								<a onclick="waiting()" th:href="@{|/order/list?sid=0|}"
-									class="text-light col-3 nav-item1 nav-link1 active1"> <i
-										class="fa fa-shopping-basket px-3 p-0"
-										style="font-size: 25px; z-index: 1;"></i>Waiting Processed
-								</a>
-								<a onclick="process()" th:href="@{|/order/list?sid=1|}"
-									class="text-light col-3 nav-item1 nav-link1"><i class="fa fa-gift px-3 p-0"
-										style="font-size: 25px"></i>Order Processed</a>
-
-								<a onclick="toship()" th:href="@{|/order/list?sid=2|}"
-									class="text-light col-2 nav-item1 nav-link1"><i class="fa fa-truck px-3 p-0"
-										style="font-size: 25px"></i>To
-									Ship</a>
-								<a onclick="comlete()" th:href="@{|/order/list?sid=3|}"
-									class="text-light col-2 nav-item1 nav-link1"><i class="fa fa-star-o px-3 p-0"
-										style="font-size: 25px"></i>Complete</a>
+									class="text-light col-3 nav-item1 nav-link1 active1" style="background-color:#e7ab3c"> <i
+									class="fa fa-shopping-basket px-3 p-0"
+									style="font-size: 25px; z-index: 1;"></i>Waiting Processed
+								</a> <a onclick="process()" th:href="@{|/order/list?sid=1|}"
+									class="text-light col-3 nav-item1 nav-link1"><i
+									class="fa fa-gift px-3 p-0" style="font-size: 25px"></i>Order
+									Processed</a> <a onclick="toship()"
+									th:href="@{|/order/list?sid=2|}"
+									class="text-light col-2 nav-item1 nav-link1"><i
+									class="fa fa-truck px-3 p-0" style="font-size: 25px"></i>To
+									Ship</a> <a onclick="comlete()" th:href="@{|/order/list?sid=3|}"
+									class="text-light col-2 nav-item1 nav-link1"><i
+									class="fa fa-star-o px-3 p-0" style="font-size: 25px"></i>Complete</a>
 								<a onclick="cancel()" th:href="@{|/order/list?sid=4|}"
 									class="text-light col-2 nav-item1 nav-link1"><i
-										class="fa fa-window-close-o px-3 p-0" style="font-size: 25px"></i>Cancelled</a>
-
-
+									class="fa fa-window-close-o px-3 p-0" style="font-size: 25px"></i>Cancelled</a>
 							</div>
 						</nav>
-						<style>
-							.animationsite1 {
-								position: absolute;
-								height: 100%;
-								/* height: 5px; */
-								top: 0;
-								/* bottom: 0; */
-								z-index: 0;
-								background: blue;
-								transition: all .5s ease 0s;
-								width: 290px;
-								left: 0;
-							}
-						</style>
-						<div class="tab-content1 tab-content col px-0 py-3" id="nav-tabContent">
-							<div class="row px-3 pb-2">
-								<div class="col-lg-7 col-md-7 ">
-									<h4>Account Purchases</h4>
-									Username: [[${account.username}]] <br />
-									Fullname: [[${account.fullname}]]
+						<nav th:if="${sid == 1}" >
+							<div class="col row ml-0 p-0 nav nav-tabs1 nav-fill huansite" style="position: relative;">
+								<a onclick="waiting()" th:href="@{|/order/list?sid=0|}"
+									class="text-light col-3 nav-item1 nav-link1 active1"> <i
+									class="fa fa-shopping-basket px-3 p-0"
+									style="font-size: 25px; z-index: 1;"></i>Waiting Processed
+								</a> <a onclick="process()" th:href="@{|/order/list?sid=1|}"  style="background-color:#e7ab3c"
+									class="text-light col-3 nav-item1 nav-link1"><i
+									class="fa fa-gift px-3 p-0" style="font-size: 25px"></i>Order
+									Processed</a> <a onclick="toship()"
+									th:href="@{|/order/list?sid=2|}"
+									class="text-light col-2 nav-item1 nav-link1"><i
+									class="fa fa-truck px-3 p-0" style="font-size: 25px"></i>To
+									Ship</a> <a onclick="comlete()" th:href="@{|/order/list?sid=3|}"
+									class="text-light col-2 nav-item1 nav-link1"><i
+									class="fa fa-star-o px-3 p-0" style="font-size: 25px"></i>Complete</a>
+								<a onclick="cancel()" th:href="@{|/order/list?sid=4|}"
+									class="text-light col-2 nav-item1 nav-link1"><i
+									class="fa fa-window-close-o px-3 p-0" style="font-size: 25px"></i>Cancelled</a>
+							</div>
+						</nav>
+						<nav th:if="${sid == 2}" >
+							<div class="col row ml-0 p-0 nav nav-tabs1 nav-fill huansite" style="position: relative;">
+								<a onclick="waiting()" th:href="@{|/order/list?sid=0|}"
+									class="text-light col-3 nav-item1 nav-link1 active1"> <i
+									class="fa fa-shopping-basket px-3 p-0"
+									style="font-size: 25px; z-index: 1;"></i>Waiting Processed
+								</a> <a onclick="process()" th:href="@{|/order/list?sid=1|}"
+									class="text-light col-3 nav-item1 nav-link1"><i
+									class="fa fa-gift px-3 p-0" style="font-size: 25px"></i>Order
+									Processed</a> <a onclick="toship()"  style="background-color:#e7ab3c"
+									th:href="@{|/order/list?sid=2|}"
+									class="text-light col-2 nav-item1 nav-link1"><i
+									class="fa fa-truck px-3 p-0" style="font-size: 25px"></i>To
+									Ship</a> <a onclick="comlete()" th:href="@{|/order/list?sid=3|}"
+									class="text-light col-2 nav-item1 nav-link1"><i
+									class="fa fa-star-o px-3 p-0" style="font-size: 25px"></i>Complete</a>
+								<a onclick="cancel()" th:href="@{|/order/list?sid=4|}"
+									class="text-light col-2 nav-item1 nav-link1"><i
+									class="fa fa-window-close-o px-3 p-0" style="font-size: 25px"></i>Cancelled</a>
+							</div>
+						</nav>
+						<nav th:if="${sid == 3}" >
+							<div class="col row ml-0 p-0 nav nav-tabs1 nav-fill huansite" style="position: relative;">
+								<a onclick="waiting()" th:href="@{|/order/list?sid=0|}"
+									class="text-light col-3 nav-item1 nav-link1 active1"> <i
+									class="fa fa-shopping-basket px-3 p-0"
+									style="font-size: 25px; z-index: 1;"></i>Waiting Processed
+								</a> <a onclick="process()" th:href="@{|/order/list?sid=1|}"
+									class="text-light col-3 nav-item1 nav-link1"><i
+									class="fa fa-gift px-3 p-0" style="font-size: 25px"></i>Order
+									Processed</a> <a onclick="toship()"
+									th:href="@{|/order/list?sid=2|}"
+									class="text-light col-2 nav-item1 nav-link1"><i
+									class="fa fa-truck px-3 p-0" style="font-size: 25px"></i>To
+									Ship</a> <a onclick="comlete()" th:href="@{|/order/list?sid=3|}"  style="background-color:#e7ab3c"
+									class="text-light col-2 nav-item1 nav-link1"><i
+									class="fa fa-star-o px-3 p-0" style="font-size: 25px"></i>Complete</a>
+								<a onclick="cancel()" th:href="@{|/order/list?sid=4|}"
+									class="text-light col-2 nav-item1 nav-link1"><i
+									class="fa fa-window-close-o px-3 p-0" style="font-size: 25px"></i>Cancelled</a>
+							</div>
+						</nav>
+						<nav th:if="${sid == 4}" >
+							<div class="col row ml-0 p-0 nav nav-tabs1 nav-fill huansite" style="position: relative;">
+								<a onclick="waiting()" th:href="@{|/order/list?sid=0|}"
+									class="text-light col-3 nav-item1 nav-link1 active1"> <i
+									class="fa fa-shopping-basket px-3 p-0"
+									style="font-size: 25px; z-index: 1;"></i>Waiting Processed
+								</a> <a onclick="process()" th:href="@{|/order/list?sid=1|}"
+									class="text-light col-3 nav-item1 nav-link1"><i
+									class="fa fa-gift px-3 p-0" style="font-size: 25px"></i>Order
+									Processed</a> <a onclick="toship()"
+									th:href="@{|/order/list?sid=2|}"
+									class="text-light col-2 nav-item1 nav-link1"><i
+									class="fa fa-truck px-3 p-0" style="font-size: 25px"></i>To
+									Ship</a> <a onclick="comlete()" th:href="@{|/order/list?sid=3|}"
+									class="text-light col-2 nav-item1 nav-link1"><i
+									class="fa fa-star-o px-3 p-0" style="font-size: 25px"></i>Complete</a>
+								<a onclick="cancel()" th:href="@{|/order/list?sid=4|}" style="background-color:#e7ab3c"
+									class="text-light col-2 nav-item1 nav-link1"><i
+									class="fa fa-window-close-o px-3 p-0" style="font-size: 25px"></i>Cancelled</a>
+							</div>
+						</nav>
+						<div class="tab-content1 tab-content col px-0 py-3"
+							id="nav-tabContent">
+							<div class="px-3 pb-2">
+								<div th:if="${sid == 0}" class="alert-primary p-0 m-0 py-3">
+									<h3 class="text-center text-primary"
+										style="font-weight: bolder">Waiting Processed</h3>
 								</div>
+								<div class="alert-info p-0 m-0 py-3" th:if="${sid == 1}">
+									<h3 class="text-center text-info" style="font-weight: bolder">Order
+										Processed</h3>
+								</div>
+								<div class="alert-warning p-0 m-0 py-3" th:if="${sid == 2}">
+									<h3 class="text-center text-warning" style="font-weight: bolder">To
+										Ship</h3>
+								</div>
+								<div class="alert-success p-0 m-0 py-3" th:if="${sid == 3}">
+									<h3 class="text-center text-success" style="font-weight: bolder">Complete</h3>
+								</div>
+								<div class="alert-danger p-0 m-0 py-3" th:if="${sid == 4}">
+									<h3 class="text-center text-danger" style="font-weight: bolder">Order
+										Cancelled</h3>
+								</div>
+								<div class="row px-2 pt-2">
+									<div class="col-lg-7 col-md-7 ">
+										<h4>Account Purchases</h4>
+										Username: [[${account.username}]] <br /> Fullname:
+										[[${account.fullname}]]
+									</div>
 
-								<div class="col-lg-5 col-md-5 text-right pt-5">
-									<p>Show [[${orderPage.number*9 + 1 }]] -
-										[[${orderPage.number*9 + orderPage.numberOfElements}]] Of
-										[[${orderPage.totalElements}]] Orders</p>
+									<div class="col-lg-5 col-md-5 text-right pt-5">
+										<p>Show [[${orderPage.number*9 + 1 }]] -
+											[[${orderPage.number*9 + orderPage.numberOfElements}]] Of
+											[[${orderPage.totalElements}]] Orders</p>
+									</div>
 								</div>
 							</div>
+
 							<div class="col">
 								<div class="cart-table">
 									<table style="width: 1138px">
@@ -106,7 +195,7 @@
 												<td scope="row">[[${order.address}]]</td>
 												<td scope="row">[[${order.createDate}]]</td>
 												<td><a th:href="@{|/order/detail/${order.id}|}"
-														class="text-success">Detail </a></td>
+													class="text-success">Detail </a></td>
 											</tr>
 										</tbody>
 
@@ -114,21 +203,26 @@
 								</div>
 							</div>
 							<div class="loading-more">
-								<nav aria-label="Page navigation" th:if="${orderPage.totalPages > 1}">
+								<nav aria-label="Page navigation"
+									th:if="${orderPage.totalPages > 1}">
 									<ul class="pagination justify-content-center">
-										<li th:class="${1 == orderPage.number + 1} ? 'page-item active' : 'page-item'">
-											<a th:href="@{/order/list/(sid=${sid}, page=1)}" class="page-link">First</a>
+										<li
+											th:class="${1 == orderPage.number + 1} ? 'page-item active' : 'page-item'">
+											<a th:href="@{/order/list/(sid=${sid}, page=1)}"
+											class="page-link">First</a>
 										</li>
-										<li class="page-item active" th:each="pageNumber : ${pageNumbers}"
+										<li class="page-item active"
+											th:each="pageNumber : ${pageNumbers}"
 											th:if="${orderPage.totalPages > 1}"
 											th:class="${pageNumber == orderPage.number + 1} ? 'page-item active' : 'page-item'">
 											<a th:href="@{/order/list/(sid=${sid}, page=${pageNumber})}"
-												class="page-link" th:text="${pageNumber}"></a>
+											class="page-link" th:text="${pageNumber}"></a>
 										</li>
 										<li
 											th:class="${orderPage.totalPages == orderPage.number + 1} ? 'page-item active' : 'page-item'">
-											<a th:href="@{/order/list/(sid=${sid}, page=${orderPage.totalPages})}"
-												class="page-link">Last</a>
+											<a
+											th:href="@{/order/list/(sid=${sid}, page=${orderPage.totalPages})}"
+											class="page-link">Last</a>
 										</li>
 									</ul>
 								</nav>

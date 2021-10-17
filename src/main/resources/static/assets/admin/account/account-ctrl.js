@@ -87,7 +87,7 @@ app.controller("account-ctrl", function ($scope, $http) {
 			  title: 'Created in successfully'
 			})
 			
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show')
 		}).catch(error => {
 			//alert("Lỗi thêm sản phẩm");
 			
@@ -137,7 +137,7 @@ app.controller("account-ctrl", function ($scope, $http) {
 			  title: 'Update in successfully'
 			})
 			
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 			
@@ -166,33 +166,22 @@ app.controller("account-ctrl", function ($scope, $http) {
 
 	//Xóa sản phẩm mới
 	$scope.delete = function (item) {
-		$http.delete(`/rest/accounts/${item.username}`).then(resp => {
-			var index = $scope.items.findIndex(p => p.username == item.username);
-			$scope.items.splice(index, 1);
-			$scope.reset();
-			//alert("Xóa  thành công");
-			
-			Swal.fire({
-			  title: 'Are you sure?',
+	var username = item.username;
+		Swal.fire({
+			  title: 'Are you sure delete "' + username + '"?',
 			  text: "You won't be able to revert this!",
 			  icon: 'warning',
 			  showCancelButton: true,
 			  confirmButtonColor: '#3085d6',
 			  cancelButtonColor: '#d33',
 			  confirmButtonText: 'Yes, delete it!'
-			}).then((result) => {
+		}).then((result) => {
 			  if (result.isConfirmed) {
-			    Swal.fire(
-			      'Deleted!',
-			      'Your file has been deleted.',
-			      'success'
-			    )
-			  }
-			})
-			
+			  $http.delete(`/rest/accounts/${item.username}`).then(resp => {
+			var index = $scope.items.findIndex(p => p.username == item.username);
+			$scope.items.splice(index, 1);
+			$scope.reset();
 		}).catch(error => {
-			//alert("Lỗi xóa sản phẩm");
-			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -213,6 +202,14 @@ app.controller("account-ctrl", function ($scope, $http) {
 			console.log("Error", error);
 
 		});
+			    Swal.fire(
+			      'Deleted!',
+			      'Account "'+ username +'" has been deleted.',
+			      'success'
+			    )
+			  }
+			})
+		
 	}
 
 	//Upload hình

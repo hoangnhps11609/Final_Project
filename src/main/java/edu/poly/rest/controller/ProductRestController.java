@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,17 @@ public class ProductRestController {
 	public List<Product> getAll() {
 		return pService.findAll();
 	}
+	
+	@GetMapping("category/{cateid}")
+	public List<Product> findbyCategory(@PathVariable("cateid") String cateid) {
+		return pService.findByCategoryId(cateid);
+	}
+	
+	@GetMapping("brand/{brandid}")
+	public List<Product> findbyBrand(@PathVariable("brandid") Integer brandid) {
+		return pService.findByBrandId(brandid);
+	}
+	
 	
 	@PostMapping
 	public Product create(@RequestBody Product product) {
