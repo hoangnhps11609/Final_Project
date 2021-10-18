@@ -18,6 +18,9 @@ public interface CategoryDAO extends JpaRepository<Category, String>{
 	("SELECT c FROM Category c WHERE c.name like ?1")
 	List<Category> findbyName(String valued);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 683e88af5f6b16de8a1789e2c3a65698f08a8027
 
 }

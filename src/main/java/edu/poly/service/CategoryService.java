@@ -25,7 +25,10 @@ public interface CategoryService {
 	
 	List<Category> findByName(String valued);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 683e88af5f6b16de8a1789e2c3a65698f08a8027
 
 
 
