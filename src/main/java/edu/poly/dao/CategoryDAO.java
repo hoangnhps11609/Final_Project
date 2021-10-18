@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import edu.poly.entity.Category;
+import edu.poly.entity.CountProInCate;
 @Repository
 public interface CategoryDAO extends JpaRepository<Category, String>{
 
@@ -17,5 +18,9 @@ public interface CategoryDAO extends JpaRepository<Category, String>{
 	@Query
 	("SELECT c FROM Category c WHERE c.name like ?1")
 	List<Category> findbyName(String valued);
+
+	@Query
+	("SELECT new CountProInCate(p.category, count(p.category.id)) FROM Product p group by p.category.id")
+	List<CountProInCate> findAllCountPr();
 
 }

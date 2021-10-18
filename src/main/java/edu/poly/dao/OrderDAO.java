@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -34,21 +35,21 @@ public interface OrderDAO extends JpaRepository<Order, Long>{
 	
 	@Query
 	("SELECT p FROM Order p WHERE p.status = 0")
-	List<Order> findAllWaitingConfirm();
+	List<Order> findAllWaitingConfirm(Sort sort);
 	
 	@Query
 	("SELECT p FROM Order p WHERE p.status = 1")
-	List<Order> findAllConfirmed();
+	List<Order> findAllConfirmed(Sort sort);
 	
 	@Query
 	("SELECT p FROM Order p WHERE p.status = 2")
-	List<Order> findAllShipping();
+	List<Order> findAllShipping(Sort sort);
 	
 	@Query
 	("SELECT p FROM Order p WHERE p.status = 3")
-	List<Order> findAllComplete();
+	List<Order> findAllComplete(Sort sort);
 	
 	@Query
 	("SELECT p FROM Order p WHERE p.status = 4")
-	List<Order> findAllCancelOrder();
+	List<Order> findAllCancelOrder(Sort sort);
 }

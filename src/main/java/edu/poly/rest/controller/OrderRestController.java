@@ -81,26 +81,26 @@ public class OrderRestController {
 	
 	@GetMapping("findAllWaitingConfirm")
 	public List<Order> findAllWaitingConfirm () {
-		return orderService.findAllWaitingConfirm();
+		return orderService.findAllWaitingConfirm(Sort.by(Sort.Direction.DESC, "createDate"));
 	}
 	
 	@GetMapping("findAllConfirmed")
 	public List<Order> findAllConfirmed () {
-		return orderService.findAllConfirmed();
+		return orderService.findAllConfirmed(Sort.by(Sort.Direction.DESC, "createDate"));
 	}	
 	
 	@GetMapping("findAllShipping")
 	public List<Order> findAllShipping () {
-		return orderService.findAllShipping();
+		return orderService.findAllShipping(Sort.by(Sort.Direction.DESC, "createDate"));
 	}	
 	
 	@GetMapping("findAllComplete")
 	public List<Order> findAllComplete () {
-		return orderService.findAllComplete();
+		return orderService.findAllComplete(Sort.by(Sort.Direction.DESC, "createDate"));
 	}	
 	
 	@GetMapping("findAllCancelOrder")
 	public List<Order> findAllCancelOrder () {
-		return orderService.findAllCancelOrder();
+		return orderService.findAllCancelOrder(Sort.by(Sort.Direction.DESC, "createDate"));
 	}
 }

@@ -1,108 +1,155 @@
 <div class="card">
 	<div class="card-header">
+		<button type="button" class="btn btn-secondary"
+			ng-click="findbyDate()">Find by Date: {{from|
+			date:'dd/MM/yyyy'}} --- {{to | date:'dd/MM/yyyy'}}</button>
 		<h3 class="noibacchu">List Order</h3>
 		<i class="fa fa-refresh" ng-click="initialize()"
 			style="font-size: 18px; position: absolute; right: 20px; top: 20px">
 			<span>Refresh</span>
 		</i>
-		<div class="col" style="position: relative;">
-			<div class="form-group col-4">
-				From :<input type="date" class="form-control" ng-model="statistic1.from1" />
+		<div class="col row pt-4">
+			<div class="buttonorderstatus text-right">
+				<button ng-click="findAllWaitingConfirm()" class="btn-primary btn">
+					<i class="fa fa-shopping-basket "
+						style="font-size: 20px; z-index: 1;"></i>Waiting Confirm
+				</button>
+				<button ng-click="findAllConfirmed()" class="btn-info btn">
+					<i class="fa fa-gift" style="font-size: 20px"></i>Confirmed
+				</button>
+				<button ng-click="findAllShipping()" class="btn-warning btn">
+					<i class="fa fa-truck p-0" style="font-size: 20px"></i>Shipping
+				</button>
+				<button ng-click="findAllComplete()" class="btn-success btn">
+					<i class="fa fa-star-o  p-0" style="font-size: 20px"></i>Complete
+				</button>
+				<button ng-click="findAllCancelOrder()" class="btn-danger btn">
+					<i class="fa fa-window-close-o  p-0" style="font-size: 20px"></i>Cancel
+					Order
+				</button>
 			</div>
-			<div class="form-group col-4" style="position: absolute; top: 0; right: 33%">
-				To: <input type="date" class="form-control" ng-model="statistic1.to1" />
-			</div>
-			<button style="position: absolute; top: 38%; right: 25.5%" ng-click="statistic1()"
-				class="btn btn-primary">Search</button>
-		</div>
-		<style>
-			.buttonorderstatus i {
-				margin-right: 5px;
-			}
 
-			.buttonorderstatus button {
-				border: 0;
-				border-radius: 12px;
-				color: #FFFFFF;
-				cursor: pointer;
-				display: inline-block;
-				font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-				font-size: 16px;
-				font-weight: 500;
-				line-height: 2.5;
-				outline: transparent;
-				padding: 0 10px;
-				text-align: center;
-				text-decoration: none;
-				transition: box-shadow .2s ease-in-out;
-				user-select: none;
-				-webkit-user-select: none;
-				touch-action: manipulation;
-				white-space: nowrap;
-				text-align: center;
-				justify-content: center;
-				align-items: center;
-				text-align: center;
-			}
-		</style>
-		<div class="buttonorderstatus" style="justify-content: center; align-items: center;text-align: center;">
-			<button ng-click="findAllWaitingConfirm()"style="background: linear-gradient(to bottom right, #47efa9, #1aaa5b)"><i class="fa fa-shopping-basket "
-					style="font-size: 25px; z-index: 1;"></i>Waiting Confirm</button>
-			<button ng-click="findAllConfirmed()" style="background: linear-gradient(to bottom right, #d0ef47, #48aa1a)"><i class="fa fa-gift" style="font-size: 25px"></i>Confirmed</button>
-			<button ng-click="findAllShipping()" style="background: linear-gradient(to bottom right, #47bfef, #2083d4)"><i class="fa fa-truck p-0"
-					style="font-size: 25px"></i>Shipping</button>
-			<button ng-click="findAllComplete()" style="background: linear-gradient(to bottom right, #47efa9, #1aaa5b)"><i class="fa fa-star-o  p-0"
-					style="font-size: 25px"></i>Complete</button>
-			<button ng-click="findAllCancelOrder()" style="background: linear-gradient(to bottom right, #ff7426, #f93a13)"><i class="fa fa-window-close-o  p-0"
-					style="font-size: 25px"></i>Cancel Order</button>
 		</div>
 
-		<div class="card-body">
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th></th>
-						<th scope="col">ID</th>
-						<th scope="col">Username</th>
-						<th scope="col">Fullname</th>
-						<th scope="col">Phone</th>
-						<th scope="col" style="min-width: 120px">Create Date</th>
-						<th scope="col">Address</th>
-						<th scope="col">Status</th>
-						<th style="position: relative;"><img
-								style="width: 100px; height: 80px; position: absolute; top: -17px; left: 30px"
-								src="/assets/images/xenoel1.png" alt=""></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="item in pager.items">
-						<th></th>
-						<td>{{item.id}}</td>
-						<td>{{item.account.username}}</td>
-						<td>{{item.fullname}}</td>
-						<td>{{item.phone}}</td>
-
-						<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
-						<td>{{item.address}}</td>
-						<td ng:if="item.status==0" class="text-primary">Waiting for
-							Confirm</td>
-						<td ng:if="item.status==1" class="text-info">Confirmed</td>
-						<td ng:if="item.status==2" class="text-warning">To Ship</td>
-						<td ng:if="item.status==3" class="text-success">Complete</td>
-						<td ng:if="item.status==4" class="text-danger">Cancel Order</td>
-
-						<td>
-							<div class="btn-group btn-group-xs">
-								<button class="btn btn-primary" ng-click="detail(item)">Detail</button>
-								<button class="btn btn-primary" style="margin-left: 5px"
-									ng-click="status(item)">Status</button>
-
+		<!-- Modal Find By Date -->
+		<div class="modal fade" id="findByDateModalCenter" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="false">
+			<div class="modal-dialog " role="document" style="max-width: 20%">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalCenterTitle">Find
+							Order By Date</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="col">
+							<div class="form-group row col">
+								<input type="date" placeholder="dd-mm-yyyy" class="form-control"
+									ng-model="statistic1.from1" />
 							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+							<div class="form-group row col">
+								<input type="date" placeholder="dd-mm-yyyy" class="form-control"
+									ng-model="statistic1.to1" />
+							</div>
+							<button ng-click="statistic1()"
+								class="btn btn-primary float-right mr-4">Search</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
+
+		<style>
+.buttonorderstatus i {
+	margin-right: 5px;
+}
+
+.buttonorderstatus button {
+	border: 0;
+	border-radius: 12px;
+	color: #FFFFFF;
+	cursor: pointer;
+	display: inline-block;
+	font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica,
+		Arial, sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 2.5;
+	outline: transparent;
+	padding: 0 10px;
+	text-align: center;
+	text-decoration: none;
+	transition: box-shadow .2s ease-in-out;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	white-space: nowrap;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+</style>
+	</div>
+
+	<div class="card-body">
+		<table class="table table-striped text-center">
+			<thead>
+				<tr>
+					<th scope="col" width="15%">Order ID <br /> "Click to view
+						Detail"
+					</th>
+					<th scope="col" width="10%">Username Purchase</th>
+					<th scope="col" width="10%">Fullname Receiver</th>
+					<th scope="col" width="10%">Phone Receiver</th>
+					<th scope="col" width="10%">Update Date</th>
+					<th scope="col" width="20%">Address Receiver</th>
+					<th scope="col" width="10%">Status Order</th>
+					<th style="position: relative;" width="15%">Change Next Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in pager.items">
+					<td ng-click="detail(item)"><a href="">{{item.id}}</a></td>
+					<td>{{item.account.username}}</td>
+					<td>{{item.fullname}}</td>
+					<td>{{item.phone}}</td>
+
+					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
+					<td>{{item.address}}</td>
+					<td ng:if="item.status==0" class="text-primary"
+						style="font-weight: bolder">Waiting for Confirm</td>
+					<td ng:if="item.status==1" class="text-info"
+						style="font-weight: bolder">Confirmed</td>
+					<td ng:if="item.status==2" class="text-warning"
+						style="font-weight: bolder">To Ship</td>
+					<td ng:if="item.status==3" class="text-success"
+						style="font-weight: bolder">Complete</td>
+					<td ng:if="item.status==4" class="text-danger"
+						style="font-weight: bolder">Cancel Order</td>
+
+					<td>
+						<div class="btn-group btn-group-xs">
+							<button class="btn btn-info" style="margin-left: 5px"
+								ng:if="item.status==0" ng-click="changeStatus(item)">Change
+								To 'Comfirmed'</button>
+							<button class="btn btn-warning" style="margin-left: 5px"
+								ng:if="item.status==1" ng-click="changeStatus(item)">Change
+								To 'Shipping'</button>
+							<button class="btn btn-success" style="margin-left: 5px"
+								ng:if="item.status==2" ng-click="changeStatus(item)">Change
+								To 'Completed'</button>
+							<div class="bg-danger text-light p-2" style="margin-left: 5px"
+								ng:if="item.status==4 || item.status ==3">Not To Change</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 		<div class="card-footer text-muted text-center">
 			<button class="btn btn-primary" ng-click="pager.first()">First</button>
 			<button class="btn btn-primary" ng-click="pager.prev()">Prev</button>
@@ -111,58 +158,63 @@
 			<button class="btn btn-primary" ng-click="pager.next()">Next</button>
 			<button class="btn btn-primary" ng-click="pager.last()">Last</button>
 		</div>
+	</div>
 
-		<!-- Modal của detail-->
-		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-body">
-					<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
-						aria-labelledby="myLargeModalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-lg">
-							<div class="modal-content">
-								<div class="card-header">
-									<h3>Order ID: {{orderID}}</h3>
-								</div>
-								<div class="card-body">
-									<table class="table table-striped">
-										<thead>
-											<tr>
-												<th scope="col">Image</th>
-												<th scope="col">SKU</th>
-												<th scope="col">Product Name</th>
-												<th scope="col">Color - Size</th>
-												<th scope="col">Price</th>
-												<th scope="col">Quantity</th>
-												<th scope="col">Amount</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr ng-repeat="item in pager2.ODitems">
-												<td width="150px"><img
-														ng-src="{{'/assets/images/' + item.productDetail.image}}"
-														width="100%" /></td>
-												<td>{{item.productDetail.product.id}}</td>
-												<td>{{item.productDetail.product.name}}</td>
-												<td>{{item.productDetail.color.name}} -
-													{{item.productDetail.size.name}}</td>
-												<td>${{item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:2}}
-												</td>
-												<td>{{item.quantity}}</td>
-												<td>${{item.quantity*item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:2}}
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="card-footer text-muted text-center">
-									<button class="btn btn-primary" ng-click="pager2.first()">First</button>
-									<button class="btn btn-primary" ng-click="pager2.prev()">Prev</button>
-									<button class="btn btn-success">{{pager2.page2+1}} of
-										{{pager2.count}}</button>
-									<button class="btn btn-primary" ng-click="pager2.next()">Next</button>
-									<button class="btn btn-primary" ng-click="pager2.last()">Last</button>
-								</div>
+
+
+
+	<!-- Modal của detail-->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-body">
+				<div class="modal fade bd-example-modal-lg" tabindex="-1"
+					role="dialog" aria-labelledby="myLargeModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="card-header">
+								<h3>Order ID: {{orderID}}</h3>
+							</div>
+							<div class="card-body">
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th scope="col">Image</th>
+											<th scope="col">SKU</th>
+											<th scope="col">Product Name</th>
+											<th scope="col">Color - Size</th>
+											<th scope="col">Price</th>
+											<th scope="col">Quantity</th>
+											<th scope="col">Amount</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="item in pager2.ODitems">
+											<td width="150px"><img
+												ng-src="{{'/assets/images/' + item.productDetail.image}}"
+												width="100%" /></td>
+											<td>{{item.productDetail.product.id}}</td>
+											<td>{{item.productDetail.product.name}}</td>
+											<td>{{item.productDetail.color.name}} -
+												{{item.productDetail.size.name}}</td>
+											<td>${{item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:2}}
+											</td>
+											<td>{{item.quantity}}</td>
+											<td>${{item.quantity*item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:2}}
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="card-footer text-muted text-center">
+								<button class="btn btn-primary" ng-click="pager2.first()">First</button>
+								<button class="btn btn-primary" ng-click="pager2.prev()">Prev</button>
+								<button class="btn btn-success">{{pager2.page2+1}} of
+									{{pager2.count}}</button>
+								<button class="btn btn-primary" ng-click="pager2.next()">Next</button>
+								<button class="btn btn-primary" ng-click="pager2.last()">Last</button>
 							</div>
 						</div>
 					</div>
@@ -171,17 +223,18 @@
 		</div>
 	</div>
 
-
 	<!-- Modal của detail-->
-
-	<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalCenterTitle1" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 40%">
+	<div class="modal fade" id="exampleModalCenter1" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle1"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document"
+			style="max-width: 40%">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLongTitle1">Change
 						Status</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
@@ -192,18 +245,20 @@
 								<div class="row">
 									<div class="form-group col-sm-6">
 										<div>Order ID:</div>
-										<input class="form-control" disabled="disabled" ng-model="form.id" />
+										<input class="form-control" disabled="disabled"
+											ng-model="form.id" />
 									</div>
 									<div class="form-group col-sm-6">
 										<div>Create Date:</div>
-										<input type="datetime" disabled="disabled" class="form-control"
-											ng-model="form.createDate" />
+										<input type="datetime" disabled="disabled"
+											class="form-control" ng-model="form.createDate" />
 									</div>
 								</div>
 								<div class="row">
 									<div class="form-group col-sm-6">
 										<div>Phone:</div>
-										<input class="form-control" disabled="disabled" ng-model="form.phone" />
+										<input class="form-control" disabled="disabled"
+											ng-model="form.phone" />
 									</div>
 									<div class="form-group col-sm-6">
 										<div>Address:</div>
@@ -227,8 +282,8 @@
 								<div class="row">
 									<div class="form-group col-sm-12">
 										<div>Fullname:</div>
-										<input style="text-align: center;" class="form-control" disabled="disabled"
-											ng-model="form.fullname" />
+										<input style="text-align: center;" class="form-control"
+											disabled="disabled" ng-model="form.fullname" />
 									</div>
 								</div>
 								<div class="row">
@@ -257,16 +312,16 @@
 									</div>
 
 									<div ng-if="form.status==4">
-										<label style="color: green;"> Cancel order</label> <br>
-										<label style="color: green;"> This order is cancel by
-											user!</label>
+										<label style="color: green;"> Cancel order</label> <br> <label
+											style="color: green;"> This order is cancel by user!</label>
 									</div>
 								</div>
 
 							</div>
 						</div>
 					</div>
-					<div class="card-footer" ng-if="form.status==0 || form.status==1 ||  form.status==2">
+					<div class="card-footer"
+						ng-if="form.status==0 || form.status==1 ||  form.status==2">
 						<button class="btn btn-info" ng-click="changeStatus()">Next
 							status</button>
 					</div>

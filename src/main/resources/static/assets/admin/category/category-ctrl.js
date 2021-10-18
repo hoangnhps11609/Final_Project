@@ -14,7 +14,7 @@ app.controller("category-ctrl", function ($scope, $http) {
 	
 		$scope.search = function () {
 		var statistic = angular.copy($scope.statistic);
-		$http.get(`/rest/categories/getname/${statistic.from}`).then(resp => {
+		$http.get(`/rest/categories/${statistic.from}`).then(resp => {
 			$scope.items = resp.data;
 			$(".nav a:eq(1)").tab('show');
 			document.getElementById("lists").style.display = "block";
@@ -65,7 +65,7 @@ app.controller("category-ctrl", function ($scope, $http) {
 			$scope.items.push(resp.data);
 			$scope.reset();
 			//alert("Thêm mới thành công");
-			
+			$scope.initialize();
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -115,7 +115,7 @@ app.controller("category-ctrl", function ($scope, $http) {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
 			//alert("Cập nhật thành công");
-			
+			$scope.initialize();
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -231,7 +231,7 @@ app.controller("category-ctrl", function ($scope, $http) {
 	$scope.viewProductToCate = function (item) {
 			$http.get(`/rest/products/category/${item.id}`).then(resp => {
 				$scope.ProCateItems = resp.data;
-			
+				$scope.category = item;
 			$('#exampleModalCenter').appendTo("body").modal('show');
 			
 		}).catch(error => {

@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.UpdateTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
@@ -31,6 +33,7 @@ public class Order  implements Serializable{
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Createdate")
+	@UpdateTimestamp
 	Date createDate = new Date();
 	
 	String phone;

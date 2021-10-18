@@ -47,14 +47,14 @@ public interface OrderService {
 	
 	Optional<Order> getChio(Long id);
 	
-	List<Order> findAllWaitingConfirm();
+	List<Order> findAllWaitingConfirm(Sort sort);
 	
-	List<Order> findAllConfirmed();
+	List<Order> findAllConfirmed(Sort sort);
 	
-	List<Order> findAllShipping();
+	List<Order> findAllShipping(Sort sort);
 	
-	List<Order> findAllComplete();
+	List<Order> findAllComplete(Sort sort);
 	
-	List<Order> findAllCancelOrder();
+	List<Order> findAllCancelOrder(Sort sort);
 
 }

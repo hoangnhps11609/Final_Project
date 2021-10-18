@@ -124,33 +124,33 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public List<Order> findAllWaitingConfirm() {
+	public List<Order> findAllWaitingConfirm(Sort sort) {
 		// TODO Auto-generated method stub
-		return dao.findAllWaitingConfirm();
+		return dao.findAllWaitingConfirm(sort);
 	}
 
 	@Override
-	public List<Order> findAllConfirmed() {
+	public List<Order> findAllConfirmed(Sort sort) {
 		// TODO Auto-generated method stub
-		return dao.findAllConfirmed();
+		return dao.findAllConfirmed(sort);
 	}
 
 	@Override
-	public List<Order> findAllShipping() {
+	public List<Order> findAllShipping(Sort sort) {
 		// TODO Auto-generated method stub
-		return dao.findAllShipping();
+		return dao.findAllShipping(sort);
 	}
 
 	@Override
-	public List<Order> findAllComplete() {
+	public List<Order> findAllComplete(Sort sort) {
 		// TODO Auto-generated method stub
-		return dao.findAllComplete();
+		return dao.findAllComplete(sort);
 	}
 
 	@Override
-	public List<Order> findAllCancelOrder() {
+	public List<Order> findAllCancelOrder(Sort sort) {
 		// TODO Auto-generated method stub
-		return dao.findAllCancelOrder();
+		return dao.findAllCancelOrder(sort);
 	}
 
 }

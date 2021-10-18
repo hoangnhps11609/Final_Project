@@ -135,17 +135,20 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 		});
 	}
 	
+	
+	$scope.findbyDate = function(){
+		$('#findByDateModalCenter').appendTo("body").modal('show');
+	}
+	
 	$scope.status = function(item){
 		$scope.form = angular.copy(item);	
 		$('#exampleModalCenter1').appendTo("body").modal('show');
 	}
 	
 	
-	$scope.changeStatus = function () {
-		var item = angular.copy($scope.form);
+	$scope.changeStatus = function (item) {
+		var status = item.status;
 		$http.put(`/rest/orders/${item.id}`, item).then(resp => {
-			//alert("Cập nhật thành công");
-			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -162,9 +165,13 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 			  icon: 'success',
 			  title: 'Update in successfully'
 			})
-			
-   			 window.location.reload();
-
+			if(status == 0){
+				$scope.findAllConfirmed();
+			}else if(status == 1){
+				$scope.findAllShipping();
+			}else{
+				$scope.findAllComplete();
+			}
 			}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 			
@@ -195,7 +202,9 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 		var statistic = angular.copy($scope.statistic1);
 		$http.get(`/rest/orders/statistic/${statistic.from1}/${statistic.to1}`).then(resp => {
 			$scope.items = resp.data;
-			$(".nav-tabs a:eq(2)").tab('show');
+			$scope.from = statistic.from1;
+			$scope.to = statistic.to1;
+			$('#findByDateModalCenter').appendTo("body").modal('hide');
 		}).catch(error => {
 			//alert("Lỗi tìm đơn hàng");
 			

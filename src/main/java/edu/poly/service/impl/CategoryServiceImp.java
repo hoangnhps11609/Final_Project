@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import edu.poly.dao.CategoryDAO;
 import edu.poly.service.CategoryService;
 import edu.poly.entity.Category;
+import edu.poly.entity.CountProInCate;
 @Service
 public class CategoryServiceImp implements CategoryService{
 
@@ -45,6 +46,11 @@ public class CategoryServiceImp implements CategoryService{
 	public List<Category> findByName(String valued) {
 		// TODO Auto-generated method stub
 		return cdao.findbyName(valued);
+	}
+
+	@Override
+	public List<CountProInCate> findAllCountPr() {
+		return cdao.findAllCountPr();
 	}
 
 }

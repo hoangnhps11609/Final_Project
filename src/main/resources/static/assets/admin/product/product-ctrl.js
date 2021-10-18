@@ -12,18 +12,10 @@ var so;
 	$scope.brands = [];
 	$scope.genders = [];
 	$scope.form = {};
-		$scope.form2 = {};
-				$scope.form3 = {};
+	$scope.form2 = {};
+	$scope.form3 = {};
 	$scope.products2 = [];
-	
-				
-		
-	
-
 	$scope.blogcates = [];
-
-
-
 
 	$scope.initialize = function () {
 		//load products

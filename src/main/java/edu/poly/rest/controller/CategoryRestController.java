@@ -29,12 +29,12 @@ public class CategoryRestController {
 		return cService.findAll();
 	}
 	
-	@GetMapping("{id}")
-	public Category getOne(@PathVariable("id") String id) {
-		return cService.findById(id);
-	}
+//	@GetMapping("getcate/{id}")
+//	public Category getOne(@PathVariable("id") String id) {
+//		return cService.findById(id);
+//	}
 	
-	@GetMapping("getname/{valued}")
+	@GetMapping("{valued}")
 	public List<Category> getOne1(@PathVariable("valued") String valued) {
 		return cService.findByName("%"+valued+"%");
 	}
