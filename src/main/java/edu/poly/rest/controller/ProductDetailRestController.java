@@ -75,6 +75,12 @@ public class ProductDetailRestController {
 		return productDetailService.findAllbyId(valued);
 	}
 	
+
+	@GetMapping("color/{id}")
+	public List<ProductDetail> TimTatCaSanPhamKhiColorBang(@PathVariable("id") Integer id){
+		return productDetailService.TimTatCaSanPhamKhiColorBang(id);
+	}
+	
 	
 
 

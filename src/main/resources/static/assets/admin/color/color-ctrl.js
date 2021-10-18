@@ -1,67 +1,26 @@
-app.controller("productdetail-ctrl", function ($scope, $http) {
+app.controller("color-ctrl", function ($scope, $http) {
 	$scope.items = [];
-	$scope.products = [];
-	$scope.colors = [];
-	$scope.genders = [];
-	$scope.sizes = [];
-
 	$scope.form = {};
 
-	$scope.blogcates = [];
-
 	$scope.initialize = function () {
-		//load products detail
-		$http.get("/rest/productdetails").then(resp => {
-			$scope.items = resp.data;
-			$scope.items.forEach(item => {
-				item.createDate = new Date(item.createDate);
-				$scope.reset();
-			})
-		});
-
-		//load products
-		$http.get("/rest/products").then(resp => {
-			$scope.products = resp.data;
-		});
-
-		//load color
+		//load categories
 		$http.get("/rest/colors").then(resp => {
-			$scope.colors = resp.data;
-		});
-
-		//load color
-		$http.get("/rest/genders").then(resp => {
-			$scope.genders = resp.data;
-		});
-
-		//load size
-		$http.get("/rest/sizes").then(resp => {
-			$scope.sizes = resp.data;
+			$scope.items = resp.data;
 		});
 
 	}
+	
 
-	var input = document.getElementById("myInput");
-	input.addEventListener("keyup", function (event) {
-		if (event.keyCode === 13) {
-			event.preventDefault();
-			$scope.statistic();
-
-		}
-	});
-
-	$scope.statistic = function () {
+	
+		$scope.search = function () {
 		var statistic = angular.copy($scope.statistic);
-
-		$http.get(`/rest/productdetails/get/${statistic.from}`).then(resp => {
+		$http.get(`/rest/categories/${statistic.from}`).then(resp => {
 			$scope.items = resp.data;
-			$scope.items.forEach(item => {
-			})
 			$(".nav a:eq(1)").tab('show');
 			document.getElementById("lists").style.display = "block";
 			document.getElementById("homes").style.display = "none";
 		}).catch(error => {
-			//alert('Value is invalid');
+			//alert();
 			Swal.fire({
 			  title: 'Please enter search keyword',
 			  showClass: {
@@ -74,19 +33,21 @@ app.controller("productdetail-ctrl", function ($scope, $http) {
 			console.log("Error", error);
 		});
 	}
+	
+		var input = document.getElementById("myInput");
+	input.addEventListener("keyup", function (event) {
+		if (event.keyCode === 13) {
+			event.preventDefault();
+			$scope.search();
 
-
-
+		}
+	});
 	//Khởi tạo
 	$scope.initialize();
 
 	//Xóa form
 	$scope.reset = function () {
-		$scope.form = {
-			createDate: new Date(),
-			image: '5aa47c07.png',
-			available: true
-		};
+		$scope.form = {};
 	}
 
 	//hiển thị lên form
@@ -94,17 +55,17 @@ app.controller("productdetail-ctrl", function ($scope, $http) {
 		$scope.form = angular.copy(item);
 		$(".nav a:eq(0)").tab('show')
 	}
+	
+
 
 	//Thêm sản phẩm mới
 	$scope.create = function () {
 		var item = angular.copy($scope.form);
-		$http.post(`/rest/productdetails`, item).then(resp => {
-			resp.data.createDate = new Date(resp.data.createDate)
+		$http.post(`/rest/colors`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
 			//alert("Thêm mới thành công");
-				$scope.initialize();
-			
+			$scope.initialize();
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -122,9 +83,9 @@ app.controller("productdetail-ctrl", function ($scope, $http) {
 			  title: 'Created in successfully'
 			})
 			
-			$scope.initialize();
+			$(".nav-tabs a:eq(1)").tab('show');
 		}).catch(error => {
-			// alert("Lỗi thêm sản phẩm");
+			//alert("Lỗi thêm sản phẩm");
 			
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -145,45 +106,17 @@ app.controller("productdetail-ctrl", function ($scope, $http) {
 			
 			console.log("Error", error);
 		});
-
-
-		var statistic = angular.copy($scope.form);
-		$http.put(`/rest/products/get/${statistic.product.id}`, item).then(resp => {
-			$scope.initialize();
-		}).catch(error => {
-			//alert("Lỗi cập nhật sản phẩm");
-			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Update failure'
-			})
-			
-			console.log("Error", error);
-
-		});
-
 	}
 
 	//update sản phẩm mới
 	$scope.update = function () {
 		var item = angular.copy($scope.form);
-		$http.put(`/rest/productdetails/${item.id}`, item).then(resp => {
+		$http.put(`/rest/colors/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
 			//alert("Cập nhật thành công");
-				$scope.initialize();
+			$scope.initialize();
+			$scope.reset();
 			
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -199,10 +132,10 @@ app.controller("productdetail-ctrl", function ($scope, $http) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Update in successfully'
+			  title: 'Updated in successfully'
 			})
 			
-			$scope.initialize();
+			$(".nav-tabs a:eq(1)").tab('show');
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 			
@@ -230,12 +163,32 @@ app.controller("productdetail-ctrl", function ($scope, $http) {
 
 	//Xóa sản phẩm mới
 	$scope.delete = function (item) {
-		$http.delete(`/rest/productdetails/${item.id}`).then(resp => {
+			var id = item.username;
+		
+		$http.delete(`/rest/colors/${item.id}`).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items.splice(index, 1);
 			$scope.reset();
-			$scope.initialize();
 			//alert("Xóa  thành công");
+				$scope.initialize();
+			
+//			const Toast = Swal.mixin({
+//			  toast: true,
+//			  position: 'top-end',
+//			  showConfirmButton: false,
+//			  timer: 1500,
+//			  timerProgressBar: true,
+//			  didOpen: (toast) => {
+//			    toast.addEventListener('mouseenter', Swal.stopTimer)
+//			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+//			  }
+//			})
+//			
+//			Toast.fire({
+//			  icon: 'success',
+//			  title: 'Deleted in successfully'
+//			})
+			
 			Swal.fire({
 			  title: 'Are you sure?',
 			  text: "You won't be able to revert this!",
@@ -253,8 +206,10 @@ app.controller("productdetail-ctrl", function ($scope, $http) {
 			    )
 			  }
 			})
+			
 		}).catch(error => {
-			//alert("Lỗi xóa sản phẩm");
+			// alert("Lỗi xóa sản phẩm");
+			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -266,25 +221,27 @@ app.controller("productdetail-ctrl", function ($scope, $http) {
 			    toast.addEventListener('mouseleave', Swal.resumeTimer)
 			  }
 			})
+			
 			Toast.fire({
 			  icon: 'warning',
 			  title: 'Delete failure'
 			})
+			
 			console.log("Error", error);
+
 		});
 	}
-
-	//Upload hình
-	$scope.imageChanged = function (files) {
-		var data = new FormData();
-		data.append('file', files[0]);
-		$http.post('/rest/upload/images', data, {
-			transformRequest: angular.identity,
-			headers: { 'Content-Type': undefined }
-		}).then(resp => {
-			$scope.form.image = resp.data.name;
+	
+	
+	$scope.viewProductFromColor = function (item) {
+			$http.get(`/rest/productdetails/color/${item.id}`).then(resp => {
+				$scope.ProCateItems = resp.data;
+				$scope.color = item;
+				
+			$('#exampleModalCenter69').appendTo("body").modal('show');
+			
 		}).catch(error => {
-			//alert("Lỗi upload hình ảnh");
+			//alert("Lỗi cập nhật sản phẩm");
 			
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -300,22 +257,53 @@ app.controller("productdetail-ctrl", function ($scope, $http) {
 			
 			Toast.fire({
 			  icon: 'warning',
-			  title: 'Upload image failure'
+			  title: 'Update failure'
 			})
 			
 			console.log("Error", error);
-		})
+
+		});
+		
+		
+
+
 	}
 
 	$scope.pager = {
 		page: 0,
-		size: 4,
+		size: 10,
 		get items() {
 			var start = this.page * this.size;
 			return $scope.items.slice(start, start + this.size);
 		},
 		get count() {
 			return Math.ceil(1.0 * $scope.items.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
+	
+	$scope.pager2 = {
+		page: 0,
+		size: 5,
+		get ProCateItems() {
+			var start = this.page * this.size;
+			return $scope.ProCateItems.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.ProCateItems.length / this.size);
 		}, first() {
 			this.page = 0;
 		}, prev() {

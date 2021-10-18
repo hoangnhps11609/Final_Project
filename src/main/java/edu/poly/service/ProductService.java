@@ -76,5 +76,4 @@ public interface ProductService {
 	List<Product> findByBrandId(Integer brandid);
 	
 
-
 }

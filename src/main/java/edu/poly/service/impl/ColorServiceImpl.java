@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import edu.poly.dao.ColorDAO;
+import edu.poly.entity.Account;
 import edu.poly.entity.Color;
 import edu.poly.service.ColorService;
 @Service
@@ -170,6 +171,12 @@ public class ColorServiceImpl implements ColorService{
 	@Override
 	public Color findByColorId(Integer color) {
 		return colorDAO.findByColorId(color);
+	}
+
+	@Override
+	public Color update(Account account) {
+		// TODO Auto-generated method stub
+		return null;
 	};
 	
 	

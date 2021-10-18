@@ -270,6 +270,12 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 		return productDetailDAO.findAllDetail(id);
 	}
 
+	@Override
+	public List<ProductDetail> TimTatCaSanPhamKhiColorBang(Integer id) {
+		// TODO Auto-generated method stub
+		return productDetailDAO.TimTatCaSanPhamKhiColorBang(id);
+	}
+
 
 
 	

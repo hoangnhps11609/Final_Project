@@ -42,6 +42,8 @@ public class ProductRestController {
 		return pService.findByCategoryId(cateid);
 	}
 	
+
+	
 	@GetMapping("brand/{brandid}")
 	public List<Product> findbyBrand(@PathVariable("brandid") Integer brandid) {
 		return pService.findByBrandId(brandid);

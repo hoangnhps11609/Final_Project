@@ -183,6 +183,7 @@ var so;
 			$scope.ODitems.push(resp.data);
 			$scope.reset();
 			//alert("Thêm mới thành công");
+				$scope.initialize();
 			
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -267,6 +268,7 @@ var so;
 			$scope.items.push(resp.data);
 			$scope.reset();
 			// alert("Thêm mới thành công");
+				$scope.initialize();
 			
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -317,6 +319,7 @@ var so;
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
 			//alert("Cập nhật thành công");
+				$scope.initialize();
 			
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -531,6 +534,7 @@ var so;
 	//Xóa sản phẩm mới
 	$scope.deletePrDe = function (item) {
 		$http.delete(`/rest/productdetails/${item.id}`).then(resp => {
+			$scope.initialize();
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items.splice(index, 1);
 			$('.bd-example-modal-lg2').appendTo("body").modal('hide');

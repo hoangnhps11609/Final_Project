@@ -63,6 +63,7 @@ app.controller("brand-ctrl", function ($scope, $http) {
 			$scope.items.push(resp.data);
 			$scope.reset();
 			// alert("Thêm mới thành công");
+				$scope.initialize();
 			
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -113,6 +114,7 @@ app.controller("brand-ctrl", function ($scope, $http) {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
 			//alert("Cập nhật thành công");
+				$scope.initialize();
 			
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -164,6 +166,7 @@ app.controller("brand-ctrl", function ($scope, $http) {
 			$scope.items.splice(index, 1);
 			$scope.reset();
 			//alert("Xóa  thành công");
+				$scope.initialize();
 			
 			Swal.fire({
 			  title: 'Are you sure?',

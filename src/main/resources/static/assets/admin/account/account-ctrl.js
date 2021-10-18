@@ -51,6 +51,8 @@ app.controller("account-ctrl", function ($scope, $http) {
 
 	//Xóa form	
 	$scope.reset = function () {
+		$scope.initialize();
+	
 		$scope.form = {
 			photo: '5aa47c07.png'
 		};
@@ -69,6 +71,7 @@ app.controller("account-ctrl", function ($scope, $http) {
 			$scope.items.push(resp.data);
 			$scope.reset();
 			//alert("Thêm mới thành công");
+				$scope.initialize();
 			
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -119,6 +122,7 @@ app.controller("account-ctrl", function ($scope, $http) {
 			var index = $scope.items.findIndex(p => p.username == item.username);
 			$scope.items[index] = item;
 			//alert("Cập nhật thành công");
+				$scope.initialize();
 			
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -180,6 +184,8 @@ app.controller("account-ctrl", function ($scope, $http) {
 			  $http.delete(`/rest/accounts/${item.username}`).then(resp => {
 			var index = $scope.items.findIndex(p => p.username == item.username);
 			$scope.items.splice(index, 1);
+				$scope.initialize();
+			
 			$scope.reset();
 		}).catch(error => {
 			const Toast = Swal.mixin({

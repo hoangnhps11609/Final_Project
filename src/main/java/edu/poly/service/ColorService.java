@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import edu.poly.entity.Account;
 import edu.poly.entity.Color;
 
 public interface ColorService {
@@ -71,5 +72,10 @@ public interface ColorService {
 	<S extends Color> S save(S entity);
 
 	Color findByColorId(Integer color);
+	
+	
+	Color update(Account account);
+
+	
 
 }

@@ -5,7 +5,6 @@ import java.util.List;
 
 
 import edu.poly.entity.Category;
-import edu.poly.entity.CountProInCate;
 import edu.poly.entity.Product;
 
 
@@ -26,7 +25,6 @@ public interface CategoryService {
 	
 	List<Category> findByName(String valued);
 
-	List<CountProInCate> findAllCountPr();
 
 
 

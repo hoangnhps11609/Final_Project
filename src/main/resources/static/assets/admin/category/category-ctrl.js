@@ -1,4 +1,4 @@
-app.controller("category-ctrl", function ($scope, $http) {
+app.controller("color-ctrl", function ($scope, $http) {
 	$scope.items = [];
 	$scope.form = {};
 
@@ -166,6 +166,7 @@ app.controller("category-ctrl", function ($scope, $http) {
 			$scope.items.splice(index, 1);
 			$scope.reset();
 			//alert("Xóa  thành công");
+				$scope.initialize();
 			
 //			const Toast = Swal.mixin({
 //			  toast: true,
