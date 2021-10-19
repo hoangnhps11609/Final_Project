@@ -366,14 +366,9 @@ var so;
 
 	//Xóa sản phẩm mới
 	$scope.delete = function (item) {
-		$http.delete(`/rest/products/${item.id}`).then(resp => {
-			var index = $scope.items.findIndex(p => p.id == item.id);
-			$scope.items.splice(index, 1);
-			$scope.reset();
-			//alert("Xóa  thành công");
-			
+	var name = item.name; 		
 			Swal.fire({
-			  title: 'Are you sure?',
+			  title: 'Are you sure delete "' + name + '"?',
 			  text: "You won't be able to revert this!",
 			  icon: 'warning',
 			  showCancelButton: true,
@@ -382,14 +377,10 @@ var so;
 			  confirmButtonText: 'Yes, delete it!'
 			}).then((result) => {
 			  if (result.isConfirmed) {
-			    Swal.fire(
-			      'Deleted!',
-			      'Your file has been deleted.',
-			      'success'
-			    )
-			  }
-			})
-			
+			  	$http.delete(`/rest/products/${item.id}`).then(resp => {
+					var index = $scope.items.findIndex(p => p.id == item.id);
+					$scope.items.splice(index, 1);
+					$scope.reset();	
 		}).catch(error => {
 			//alert("Lỗi xóa sản phẩm");
 			
@@ -413,6 +404,14 @@ var so;
 			console.log("Error", error);
 
 		});
+		
+		Swal.fire(
+			      'Deleted!',
+			      'Product "'+ name +'" has been deleted.',
+			      'success'
+			    )
+			  }
+			})
 	}
 
 	//Upload hình

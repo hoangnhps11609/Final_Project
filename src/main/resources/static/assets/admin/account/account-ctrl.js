@@ -181,12 +181,11 @@ app.controller("account-ctrl", function ($scope, $http) {
 			  confirmButtonText: 'Yes, delete it!'
 		}).then((result) => {
 			  if (result.isConfirmed) {
-			  $http.delete(`/rest/accounts/${item.username}`).then(resp => {
-			var index = $scope.items.findIndex(p => p.username == item.username);
-			$scope.items.splice(index, 1);
-				$scope.initialize();
-			
-			$scope.reset();
+				  $http.delete(`/rest/accounts/${item.username}`).then(resp => {
+					var index = $scope.items.findIndex(p => p.username == item.username);
+					$scope.items.splice(index, 1);
+					$scope.initialize();
+					$scope.reset();
 		}).catch(error => {
 			const Toast = Swal.mixin({
 			  toast: true,

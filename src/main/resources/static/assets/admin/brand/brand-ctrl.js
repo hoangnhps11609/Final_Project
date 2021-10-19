@@ -161,15 +161,9 @@ app.controller("brand-ctrl", function ($scope, $http) {
 
 	//Xóa sản phẩm mới
 	$scope.delete = function (item) {
-		$http.delete(`/rest/brands/${item.id}`).then(resp => {
-			var index = $scope.items.findIndex(p => p.id == item.id);
-			$scope.items.splice(index, 1);
-			$scope.reset();
-			//alert("Xóa  thành công");
-				$scope.initialize();
-			
+	var name = item.name;
 			Swal.fire({
-			  title: 'Are you sure?',
+			  title: 'Are you sure delete "' + name + '"?',
 			  text: "You won't be able to revert this!",
 			  icon: 'warning',
 			  showCancelButton: true,
@@ -178,14 +172,11 @@ app.controller("brand-ctrl", function ($scope, $http) {
 			  confirmButtonText: 'Yes, delete it!'
 			}).then((result) => {
 			  if (result.isConfirmed) {
-			    Swal.fire(
-			      'Deleted!',
-			      'Your file has been deleted.',
-			      'success'
-			    )
-			  }
-			})
-			
+			  	$http.delete(`/rest/brands/${item.id}`).then(resp => {
+				var index = $scope.items.findIndex(p => p.id == item.id);
+				$scope.items.splice(index, 1);
+				$scope.reset();
+				$scope.initialize();
 		}).catch(error => {
 			//alert("Lỗi xóa sản phẩm");
 			
@@ -209,6 +200,13 @@ app.controller("brand-ctrl", function ($scope, $http) {
 			console.log("Error", error);
 
 		});
+		 Swal.fire(
+			      'Deleted!',
+			      'Brand "'+ name +'" has been deleted.',
+			      'success'
+			    )
+			  }
+			})
 	}
 	
 	$scope.viewProductToBrand = function (item) {

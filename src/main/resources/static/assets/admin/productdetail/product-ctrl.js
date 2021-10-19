@@ -230,29 +230,23 @@ app.controller("productdetail-ctrl", function ($scope, $http, $window) {
 
 	//Xóa sản phẩm mới
 	$scope.delete = function (item) {
-		$http.delete(`/rest/productdetails/${item.id}`).then(resp => {
-			var index = $scope.items.findIndex(p => p.id == item.id);
-			$scope.items.splice(index, 1);
-			$scope.reset();
-			$scope.initialize();
-			//alert("Xóa  thành công");
-			Swal.fire({
-			  title: 'Are you sure?',
-			  text: "You won't be able to revert this!",
-			  icon: 'warning',
-			  showCancelButton: true,
-			  confirmButtonColor: '#3085d6',
-			  cancelButtonColor: '#d33',
-			  confirmButtonText: 'Yes, delete it!'
-			}).then((result) => {
-			  if (result.isConfirmed) {
-			    Swal.fire(
-			      'Deleted!',
-			      'Your file has been deleted.',
-			      'success'
-			    )
-			  }
-			})
+	var id = item.id;
+		Swal.fire({
+		  title: 'Are you sure delete "' + id + '"?',
+		  text: "You won't be able to revert this!",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Yes, delete it!'
+		}).then((result) => {
+		  if (result.isConfirmed) {
+		  	$http.delete(`/rest/productdetails/${item.id}`).then(resp => {
+				var index = $scope.items.findIndex(p => p.id == item.id);
+				$scope.items.splice(index, 1);
+				$scope.reset();
+				$scope.initialize();
+		   
 		}).catch(error => {
 			//alert("Lỗi xóa sản phẩm");
 			const Toast = Swal.mixin({
@@ -272,6 +266,13 @@ app.controller("productdetail-ctrl", function ($scope, $http, $window) {
 			})
 			console.log("Error", error);
 		});
+			 Swal.fire(
+			      'Deleted!',
+			      'Product detail "'+ id +'" has been deleted.',
+			      'success'
+			    )
+			  }
+			})
 	}
 
 	//Upload hình
