@@ -56,8 +56,6 @@ app.controller("blog-ctrl", function ($scope, $http) {
 	}
 
 	$scope.reset = function () {
-		$scope.initialize();
-	
 		$scope.form = {
 			createDate: new Date(),
 			images: '5aa47c07.png',
@@ -72,7 +70,6 @@ app.controller("blog-ctrl", function ($scope, $http) {
 
 	//Thêm sản phẩm mới
 	$scope.create = function () {
-	
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/blog`, item).then(resp => {
 			resp.data.createDate = new Date(resp.data.createDate)
@@ -130,7 +127,6 @@ app.controller("blog-ctrl", function ($scope, $http) {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
 			//alert("Cập nhật thành công");
-				$scope.initialize();
 			
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -184,7 +180,7 @@ app.controller("blog-ctrl", function ($scope, $http) {
 			transformRequest: angular.identity,
 			headers: { 'Content-Type': undefined }
 		}).then(resp => {
-			$scope.form.image = resp.data.name;
+			$scope.form.images = resp.data.name;
 		}).catch(error => {
 			//alert("Lỗi upload hình ảnh");
 			
@@ -217,7 +213,6 @@ app.controller("blog-ctrl", function ($scope, $http) {
 			$scope.items.splice(index, 1);
 			$scope.reset();
 			//alert("Xóa  thành công");
-				$scope.initialize();
 			
 			Swal.fire({
 			  title: 'Are you sure?',
