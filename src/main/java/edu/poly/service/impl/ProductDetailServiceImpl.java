@@ -276,6 +276,12 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 		return productDetailDAO.TimTatCaSanPhamKhiColorBang(id);
 	}
 
+	@Override
+	public List<ProductDetail> TimTatCaSanPhamKhiSizeBang(Integer id) {
+		// TODO Auto-generated method stub
+		return productDetailDAO.TimTatCaSanPhamKhiSizeBang(id);
+	}
+
 
 
 	

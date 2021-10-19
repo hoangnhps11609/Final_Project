@@ -114,4 +114,6 @@ public interface ProductDetailService {
 	List<ProductDetail> findAllbyId(Integer id);
 	
 	List<ProductDetail> TimTatCaSanPhamKhiColorBang (Integer id);
+	
+	List<ProductDetail> TimTatCaSanPhamKhiSizeBang (Integer id);
 }

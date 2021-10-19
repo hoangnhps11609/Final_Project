@@ -22,6 +22,9 @@ app.config(function ($routeProvider) {
 		}).when("/color", {
 			templateUrl: "/assets/admin/color/index.html",
 			controller: "color-ctrl"
+		}).when("/size", {
+			templateUrl: "/assets/admin/size/index.html",
+			controller: "size-ctrl"
 		}).when("/account", {
 			templateUrl: "/assets/admin/account/index.html",
 			controller: "account-ctrl"
