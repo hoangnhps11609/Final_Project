@@ -1,4 +1,4 @@
-app.controller("color-ctrl", function ($scope, $http) {
+app.controller("category-ctrl", function ($scope, $http) {
 	$scope.items = [];
 	$scope.form = {};
 
@@ -9,8 +9,6 @@ app.controller("color-ctrl", function ($scope, $http) {
 		});
 
 	}
-	
-
 	
 		$scope.search = function () {
 		var statistic = angular.copy($scope.statistic);

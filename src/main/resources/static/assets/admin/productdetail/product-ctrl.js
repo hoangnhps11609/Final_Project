@@ -1,4 +1,4 @@
-app.controller("productdetail-ctrl", function ($scope, $http) {
+app.controller("productdetail-ctrl", function ($scope, $http, $window) {
 	$scope.items = [];
 	$scope.products = [];
 	$scope.colors = [];
@@ -29,7 +29,7 @@ app.controller("productdetail-ctrl", function ($scope, $http) {
 			$scope.colors = resp.data;
 		});
 
-		//load color
+		//load gender
 		$http.get("/rest/genders").then(resp => {
 			$scope.genders = resp.data;
 		});
@@ -331,5 +331,73 @@ app.controller("productdetail-ctrl", function ($scope, $http) {
 		}, last() {
 			this.page = this.count - 1;
 		}
+	}
+	
+	
+	$scope.CreateNewColor = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/color';
+	}
+	
+	$scope.CreateNewProduct = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/product';
+	}
+	
+	$scope.CreateNewSize = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/size';
+	}
+	
+	$scope.CreateNewColorModal = function(){
+		$('#createNewColoreModalCenter').appendTo("body").modal('show');
+	}
+	
+	//Thêm color mới
+	$scope.createColor = function () {
+		var item = angular.copy($scope.form);
+		$http.post(`/rest/colors`, item).then(resp => {
+			$scope.items.push(resp.data);
+			$scope.reset();
+			//alert("Thêm mới thành công");
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'success',
+			  title: 'Created in successfully'
+			})
+			
+			$(".nav-tabs a:eq(1)").tab('show');
+		}).catch(error => {
+			//alert("Lỗi thêm sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Create failure'
+			})
+			
+			console.log("Error", error);
+		});
+		$('#createNewColoreModalCenter').appendTo("body").modal('hide');
+		$window.location.reload();
 	}
 });

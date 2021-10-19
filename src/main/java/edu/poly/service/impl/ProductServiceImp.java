@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import edu.poly.dao.ProductDAO;
@@ -19,6 +20,17 @@ import edu.poly.entity.Report;
 public class ProductServiceImp implements ProductService{
 	@Autowired
 	ProductDAO productDAO;
+
+	public ProductServiceImp(ProductDAO productDAO) {
+		this.productDAO = productDAO;
+	}
+
+
+	@Override
+	public List<Product> findAll(Sort sort) {
+		return productDAO.findAll(sort);
+	}
+
 
 	@Override
 	public List<Product> findAll() {

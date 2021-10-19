@@ -1,4 +1,4 @@
-app.controller("product-ctrl", function ($scope, $http) {
+app.controller("product-ctrl", function ($scope, $http, $window) {
 
 var so;
 
@@ -578,4 +578,11 @@ var so;
 		$scope.viewall();
 	}
 	
+	$scope.CreateNewCategory = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/category';
+	}
+	
+	$scope.CreateNewBrand = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/brand';
+	}
 });

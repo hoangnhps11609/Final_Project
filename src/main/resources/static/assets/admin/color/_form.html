@@ -1,31 +1,49 @@
 <div class="card ">
 	<div class="card-header">
-		<h3 class="noibacchu">Category Edition</h3>
+		<h3 class="noibacchu">Color Edition</h3>
 	</div>
 	<div class="card-body">
-		<div class="row">
-			<div class="offset-3 col-6">
-				<div class="form-group">
-					<div>Category ID:</div>
-					<input class="form-control" disabled="disabled" ng-model="form.id" />
+		<div class="row col">
+			<div class="col-4">
+				<div class="first">
+					<canvas id="canvas" width="357px" height="437px" class="border"></canvas>
+					<input type="file" accept="image/*" name="image" id="file"
+						onchange="loadFile(event)">
+					<div id="status" hidden="hidden"></div>
 				</div>
+			</div>
+			<div class="col-8">
 				<div class="form-group">
+					<input class="form-control" disabled="disabled" ng-model="form.id" hidden="hidden"/>
+				</div>
+				<div class="row pb-2">
+					<div class="col-6">
+						<div class="row pl-2" style="height: 21px;">New Color: <p style="height: 21px;">&nbsp</p><p id="show2" class="pr-2 m-0" style="height: 21px;"></p></div>
+						<div id="color" style="height: 35px;"></div>
+					</div>
+					<div class="col-6">
+						<div class="pl-2" style="height: 21px;">Old Color: rgb({{form.red}}, {{form.green}}, {{form.blue}})</div>
+						<div class="mr-0" style="background-color: rgb({{form.red}},{{form.green}},{{form.blue}}); height: 35px;"></div>
+					</div>
+				</div>
+				<div class="form-group pt-1">
 					<div>Name:</div>
 					<input class="form-control" ng-model="form.name" />
 				</div>
-			</div>
-			<div class="offset-3 col-6">
 				<div class="form-group">
 					<div>Red:</div>
-					<input class="form-control"  ng-model="form.red" />
+					<input class="form-control" ng-model="form.red" id="red"
+						value="red" />
 				</div>
 				<div class="form-group">
 					<div>Green:</div>
-					<input class="form-control" ng-model="form.green" />
+					<input class="form-control" ng-model="form.green" id="green"
+						value="green" />
 				</div>
 				<div class="form-group">
 					<div>Blue:</div>
-					<input class="form-control" ng-model="form.blue" />
+					<input class="form-control" ng-model="form.blue" id="blue"
+						value="blue" />
 				</div>
 			</div>
 		</div>

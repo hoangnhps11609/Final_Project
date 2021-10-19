@@ -313,7 +313,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 	
 	$scope.colorinitialize = function() {
 		//load accounts
-		$http.get("/rest/colors").then(resp => {
+		$http.get("/rest/colors/top10").then(resp => {
 			$scope.items = resp.data;
 			$scope.items.forEach(coloritem => {
 			})

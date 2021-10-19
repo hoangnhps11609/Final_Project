@@ -1,4 +1,4 @@
-app.controller("color-ctrl", function ($scope, $http) {
+app.controller("color-ctrl", function ($scope, $http, $route) {
 	$scope.items = [];
 	$scope.form = {};
 
@@ -9,8 +9,6 @@ app.controller("color-ctrl", function ($scope, $http) {
 		});
 
 	}
-	
-
 	
 		$scope.search = function () {
 		var statistic = angular.copy($scope.statistic);
@@ -47,13 +45,13 @@ app.controller("color-ctrl", function ($scope, $http) {
 
 	//Xóa form
 	$scope.reset = function () {
-		$scope.form = {};
+		$route.reload();
 	}
 
 	//hiển thị lên form
 	$scope.edit = function (item) {
 		$scope.form = angular.copy(item);
-		$(".nav a:eq(0)").tab('show')
+		$(".nav a:eq(0)").tab('show');
 	}
 	
 
