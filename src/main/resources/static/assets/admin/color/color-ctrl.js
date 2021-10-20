@@ -40,6 +40,8 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 
 		}
 	});
+	
+	
 	//Khởi tạo
 	$scope.initialize();
 
@@ -59,10 +61,10 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 	//Thêm sản phẩm mới
 	$scope.create = function () {
 		var item = angular.copy($scope.form);
+		var name = item.name;
 		$http.post(`/rest/colors`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
-			//alert("Thêm mới thành công");
 			$scope.initialize();
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -78,7 +80,7 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Created in successfully'
+			  title: 'Create in successfully "' + name + '" color'
 			})
 			
 			$(".nav-tabs a:eq(1)").tab('show');
@@ -109,6 +111,7 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 	//update sản phẩm mới
 	$scope.update = function () {
 		var item = angular.copy($scope.form);
+		var name = item.name;
 		$http.put(`/rest/colors/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
@@ -130,7 +133,7 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Updated in successfully'
+			  title: 'Update in successfully "' + name + '" color'
 			})
 			
 			$(".nav-tabs a:eq(1)").tab('show');

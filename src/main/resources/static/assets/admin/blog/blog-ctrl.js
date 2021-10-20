@@ -71,13 +71,12 @@ app.controller("blog-ctrl", function ($scope, $http) {
 	//Thêm sản phẩm mới
 	$scope.create = function () {
 		var item = angular.copy($scope.form);
+		var name = item.name;
 		$http.post(`/rest/blog`, item).then(resp => {
 			resp.data.createDate = new Date(resp.data.createDate)
 			$scope.items.push(resp.data);
 			$scope.reset();
 			$scope.initialize();
-			//alert("Thêm mới thành công");
-			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -92,7 +91,7 @@ app.controller("blog-ctrl", function ($scope, $http) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Created in successfully'
+			  title: 'Create in successfully "' + name + '" blog'
 			})
 			
 			$(".nav-tabs a:eq(1)").tab('show');
@@ -123,11 +122,12 @@ app.controller("blog-ctrl", function ($scope, $http) {
 	//update sản phẩm mới
 	$scope.update = function () {
 		var item = angular.copy($scope.form);
+		var name = item.name;
 		$http.put(`/rest/blog/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
-			$scope.items[index] = item;
-			//alert("Cập nhật thành công");
-			
+			$scope.items[index] = item;	
+			$scope.reset();
+			$scope.initialize();		
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -142,13 +142,11 @@ app.controller("blog-ctrl", function ($scope, $http) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Update in successfully'
+			  title: 'Update in successfully "' + name + '" blog'
 			})
 			
 			$(".nav-tabs a:eq(1)").tab('show');
-		}).catch(error => {
-			//alert("Lỗi cập nhật sản phẩm");
-			
+		}).catch(error => {			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -223,9 +221,7 @@ app.controller("blog-ctrl", function ($scope, $http) {
 						var index = $scope.items.findIndex(p => p.id == item.id);
 						$scope.items.splice(index, 1);
 						$scope.reset();
-		}).catch(error => {
-			//alert("Lỗi xóa sản phẩm");
-			
+		}).catch(error => {			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
