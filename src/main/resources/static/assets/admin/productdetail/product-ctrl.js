@@ -347,6 +347,37 @@ app.controller("productdetail-ctrl", function ($scope, $http, $window) {
 		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/size';
 	}
 	
+	$scope.CreateNewCategory = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/category';
+	}
+	
+	$scope.CreateNewOrder = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/order';
+	}
+	
+	$scope.CreateNewBrand = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/brand';
+	}
+	
+	$scope.CreateNewProductDetail = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/productdetail';
+	}
+	
+	$scope.CreateNewAccount = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/account';
+	}
+	
+	$scope.CreateNewBlog = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/blog';
+	}
+	
+	$scope.CreateNewBlogCategory = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/blogcategory';
+	}
+	
+	
+	
+	
 	$scope.CreateNewColorModal = function(){
 		$('#createNewColoreModalCenter').appendTo("body").modal('show');
 	}

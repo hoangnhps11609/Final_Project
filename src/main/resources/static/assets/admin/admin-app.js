@@ -43,9 +43,6 @@ app.config(function ($routeProvider) {
 		}).when("/voucher", {
 			templateUrl: "/assets/admin/voucher/index.html",
 			controller: "voucher-ctrl"
-		}).when("/report1", {
-			templateUrl: "/assets/admin/report/index.html",
-			controller: "report-ctrl"
 		}).when("/blogcategory", {
 			templateUrl: "/assets/admin/blogc/index.html",
 			controller: "blogcategory-ctrl"
@@ -61,6 +58,12 @@ app.config(function ($routeProvider) {
 		}).when("/productdetail", {
 			templateUrl: "/assets/admin/productdetail/index.html",
 			controller: "productdetail-ctrl"
+		}).when("/accountreport", {
+			templateUrl: "/assets/admin/accountreport/index.html",
+			controller: "accountreport-ctrl"
+		}).when("/report", {
+			templateUrl: "/assets/admin/report/index.html",
+			controller: "report-ctrl"
 		}).otherwise({
 			templateUrl: "/assets/admin/background.html"
 

@@ -4,11 +4,13 @@ package edu.poly.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import edu.poly.dao.AccountDAO;
 import edu.poly.service.AccountService;
 import edu.poly.entity.Account;
+import edu.poly.entity.CountOrderOfAccount;
 @Service
 public class AccountServiceImp implements AccountService{
 
@@ -50,5 +52,16 @@ public class AccountServiceImp implements AccountService{
 		
 		return adao.getListAccountByName(valued);
 	}
+
+	public List<Account> findAll(Sort sort) {
+		return adao.findAll(sort);
+	}
+
+	@Override
+	public List<CountOrderOfAccount> getCountOrder() {
+		return adao.getCountOrder();
+	}
+
+	
 
 }

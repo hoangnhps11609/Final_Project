@@ -1,30 +1,61 @@
 <div class="card ">
 	<div class="card-header">
 		<h3 class="noibacchu">Product Detail Edition</h3>
-		<div class="row pt-3">
-			<div class="col-4">
+		<!-- <div class="row pt-3">
+			<div class="col-1">
 				<button class="btn btn-info"
 					style="width: 100%; font-weight: bolder"
-					ng-click="CreateNewProduct()">Create New Product</button>
+					ng-click="CreateNewProduct()">Product Controller</button>
 			</div>
-			<div class="col-4">
+			<div class="col-1">
 				<button class="btn btn-secondary"
 					style="width: 100%; font-weight: bolder"
-					ng-click="CreateNewColor()">Create New Color</button>
+					ng-click="CreateNewColor()">Color Controller</button>
 			</div>
-			<div class="col-4">
+			<div class="col-1">
 				<button class="btn btn-primary"
-					style="width: 100%; font-weight: bolder" ng-click="CreateNewSize()">Create
-					New Size</button>
+					style="width: 100%; font-weight: bolder" ng-click="CreateNewSize()">Size Controller</button>
 			</div>
-		</div>
+			<div class="col-1">
+				<button class="btn btn-info"
+					style="width: 100%; font-weight: bolder"
+					ng-click="CreateNewCategory()">Category Controller</button>
+			</div>
+			<div class="col-1">
+				<button class="btn btn-secondary"
+					style="width: 100%; font-weight: bolder"
+					ng-click="CreateNewBrand()">Brand Contrroller</button>
+			</div>
+			<div class="col-1">
+				<button class="btn btn-primary"
+					style="width: 100%; font-weight: bolder" ng-click="CreateNewOrder()">Order Controller</button>
+			</div>
+			<div class="col-1">
+				<button class="btn btn-primary"
+					style="width: 100%; font-weight: bolder" ng-click="CreateNewAccount()">Account Controller</button>
+			</div>
+			<div class="col-1">
+				<button class="btn btn-info"
+					style="width: 100%; font-weight: bolder"
+					ng-click="CreateNewProductDetail()">ProductDetail Controller</button>
+			</div>
+			<div class="col-1">
+				<button class="btn btn-secondary"
+					style="width: 100%; font-weight: bolder"
+					ng-click="CreateNewBlog()">Blog Contrroller</button>
+			</div>
+			<div class="col-1">
+				<button class="btn btn-primary"
+					style="width: 100%; font-weight: bolder" ng-click="CreateNewBlogCategory()">Blog Controller Controller</button>
+			</div>
+		</div> -->
 	</div>
 	<div class="card-body">
 		<div class="row">
 			<div class="file-upload col-4">
 				<div class="image-upload-wrap">
 					<input class="file-upload-input" type="file" id="photo"
-						onchange="readURL(this); angular.element(this).scope().imageChanged(this.files)"
+						onchange="readURL(this); angular.element(this).scope().imageChanged(this.files); loadFile(event)"
 						accept="image/*" />
 					<div class="drag-text">
 						<img class="p-2 img-fluid"
@@ -126,7 +157,7 @@
 				<div class="row col">
 					<div class="col-5">
 						<div class="first">
-							<canvas id="canvas" width="280px" height="350px" class="border"></canvas>
+							<canvas id="canvas" width="280px" height="354px" class="border"></canvas>
 							<input type="file" accept="image/*" name="image" id="file"
 								onchange="loadFile(event)">
 							<div id="status" hidden="hidden"></div>

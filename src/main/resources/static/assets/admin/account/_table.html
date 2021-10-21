@@ -1,29 +1,48 @@
 <div class="card">
-<div class="card-header">
-		<h3 class="noibacchu">List Account</h3><i class="fa fa-refresh " ng-click="initialize()" style="font-size:18px; position: absolute; right: 20px; top: 20px"> <span>Refresh</span> </i>
+	<div class="card-header">
+		<h3 class="noibacchu">List Account</h3>
+		<i class="fa fa-refresh " ng-click="initialize()"
+			style="font-size: 18px; position: absolute; right: 20px; top: 20px">
+			<span>Refresh</span>
+		</i>
+		<div class="row pt-3">
+			<div class="col-2">
+				<button class="btn btn-info"
+					style="width: 100%; font-weight: bolder"
+					ng-click="AccountMuaNhieuNhat()">Account mua nhiều nhất</button>
+			</div>
+			<div class="col-2">
+				<button class="btn btn-primary"
+					style="width: 100%; font-weight: bolder"
+					ng-click="AccountDuocTao()">Số Account tạo trong time</button>
+			</div>
+		</div>
 	</div>
 	<div class="card-body">
 		<table class="table table-striped">
 			<thead>
 				<tr style="position: relative;">
-					<th style="width: 20%" scope="col">Photo</th>
-					<th style="width: 20%" scope="col">Username</th>
-					<th style="width: 20%" scope="col">Fullname</th>
-					<th style="width: 20%" scope="col">Email</th>
-					<th style="width: 20%" scope="col">Createdate</th>
-					<th style="width: 20%"><img style="width: 100px;height: 80px;position: absolute;top: -17px;"
-							src="/assets/images/xenoel1.png" alt="">
-					</th>
+					<th style="width: 15%" scope="col">Photo</th>
+					<th style="width: 10%" scope="col">Username</th>
+					<th style="width: 15%" scope="col">Fullname</th>
+					<th style="width: 10%" scope="col">Phone</th>
+					<th style="width: 15%" scope="col">Email</th>
+					<th style="width: 25%" scope="col">Address</th>
+					<th style="width: 10%" scope="col">Createdate</th>
+					<th style="width: 20%"><img
+						style="width: 100px; height: 80px; position: absolute; top: -17px;"
+						src="/assets/images/xenoel1.png" alt=""></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="item in pager.items">
-					<td>
-						<img ng-src="{{'/assets/images/' + item.photo}}" width="50%" />
-					</td>
+					<td><img ng-src="{{'/assets/images/' + item.photo}}"
+						width="50%" /></td>
 					<td>{{item.username}}</td>
 					<td>{{item.fullname}}</td>
+					<td>{{item.phone}}</td>
 					<td>{{item.email}}</td>
+					<td>{{item.address}}</td>
 					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 					<td>
 						<div class="btn-group btn-group-xs">
@@ -38,8 +57,110 @@
 	<div class="card-footer text-muted text-center">
 		<button class="btn btn-primary" ng-click="pager.first()">First</button>
 		<button class="btn btn-primary" ng-click="pager.prev()">Prev</button>
-		<button class="btn btn-success">{{pager.page+1}} of {{pager.count}}</button>
+		<button class="btn btn-success">{{pager.page+1}} of
+			{{pager.count}}</button>
 		<button class="btn btn-primary" ng-click="pager.next()">Next</button>
 		<button class="btn btn-primary" ng-click="pager.last()">Last</button>
+	</div>
+</div>
+
+<div class="modal fade" id="AccountMuaNhieuNhatModalCenter"
+	tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+		style="max-width: 60%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Account mua
+					nhieu nhat</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-striped">
+					<thead>
+						<tr style="position: relative;">
+							<th style="width: 20%" scope="col">Photo</th>
+							<th style="width: 20%" scope="col">Username</th>
+							<th style="width: 20%" scope="col">Fullname</th>
+							<th style="width: 20%" scope="col">Phone</th>
+							<th style="width: 20%" scope="col">Quantity Orders</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in countOrders">
+							<td><img ng-src="{{'/assets/images/' + item.account.photo}}"
+								width="50%" /></td>
+							<td>{{item.account.username}}</td>
+							<td>{{item.account.fullname}}</td>
+							<td>{{item.account.phone}}</td>
+							<td>{{item.count}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button ng-click="createColor()" class="btn btn-primary">Create</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="AccountMuaNhieuNhatModalCenter"
+	tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+		style="max-width: 60%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Account mua
+					nhieu nhat</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="col" style="position: relative;">
+					<div class="form-group col-4">
+						From :<input type="date" class="form-control"
+							ng-model="statistic1.from1" />
+					</div>
+					<div class="form-group col-4"
+						style="position: absolute; top: 0; right: 30%">
+						To: <input type="date" class="form-control"
+							ng-model="statistic1.to1" />
+					</div>
+					<button style="position: absolute; top: 38%; right: 17%"
+						ng-click="statistic1()" class="btn btn-primary">Search</button>
+				</div>
+				<table class="table table-striped">
+					<thead>
+						<tr style="position: relative;">
+							<th style="width: 20%" scope="col">Photo</th>
+							<th style="width: 20%" scope="col">Username</th>
+							<th style="width: 20%" scope="col">Fullname</th>
+							<th style="width: 20%" scope="col">Phone</th>
+							<th style="width: 20%" scope="col">Quantity Orders</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in countOrders">
+							<td><img ng-src="{{'/assets/images/' + item.account.photo}}"
+								width="50%" /></td>
+							<td>{{item.account.username}}</td>
+							<td>{{item.account.fullname}}</td>
+							<td>{{item.account.phone}}</td>
+							<td>{{item.count}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button ng-click="createColor()" class="btn btn-primary">Create</button>
+			</div>
+		</div>
 	</div>
 </div>

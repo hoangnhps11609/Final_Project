@@ -275,4 +275,13 @@ app.controller("account-ctrl", function ($scope, $http) {
 			this.page = this.count - 1;
 		}
 	}
+	
+	
+	$scope.AccountMuaNhieuNhat = function(){
+		$http.get("/rest/accounts/toporder").then(resp => {
+			$scope.countOrders = resp.data;
+			$('#AccountMuaNhieuNhatModalCenter').appendTo("body").modal('show');
+		});
+		
+	}
 });

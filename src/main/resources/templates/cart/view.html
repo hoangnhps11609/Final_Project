@@ -51,7 +51,7 @@
 											<h5>{{item.product.name}}</h5>
 										</td>
 										<td class="p-price first-row">
-											${{item.product.price*(1-item.product.discount*0.01)|number:2}}
+											${{item.product.price*(1-item.product.discount*0.01)|number:1}}
 											<div
 												style="text-decoration: line-through; font-size: 14px; color: rgb(224, 224, 224);">
 												${{item.product.price}}</div>
@@ -78,7 +78,7 @@
 											</div>
 										</td>
 										<td class="total-price first-row">
-											{{item.qty*item.product.price*(1-item.product.discount*0.01)|number:2}}</td>
+											{{item.qty*item.product.price*(1-item.product.discount*0.01)|number:1}}</td>
 										<td class="close-td first-row"><i class="ti-close"
 											ng-click="cart.remove(item.id)"></i></td>
 									</tr>
@@ -104,7 +104,7 @@
 								<div class="proceed-checkout">
 									<ul>
 										<li class="subtotal">Subtotal <span>$0.0</span></li>
-										<li class="cart-total">Total <span>${{cart.amount|number:2}}</span></li>
+										<li class="cart-total">Total <span>${{cart.amount|number:1}}</span></li>
 									</ul>
 									<div ng-repeat="item in cart.items" ng:show="$index == 0">
 										<div ng-if="!item.view">

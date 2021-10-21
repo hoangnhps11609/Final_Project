@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.poly.entity.Account;
+import edu.poly.entity.CountOrderOfAccount;
 import edu.poly.service.AccountService;
 
 import java.util.Optional;
@@ -33,7 +34,7 @@ public class AccountRestController {
 		if (admin.orElse(false)) {
 			return accService.getAdministrators();
 		}
-		return accService.findAll();
+		return accService.findAll(Sort.by("createDate").descending());
 	}
 	
 
@@ -63,7 +64,14 @@ public class AccountRestController {
 		if(valued==null) {
 			return accService.findAll();
 		}
-		return accService.getAccountByValud("%"+valued+"%");
-		
+		return accService.getAccountByValud("%"+valued+"%");	
+	}
+	
+	
+//	Account có nhiều order nhất
+	@GetMapping("toporder")
+	public	List<CountOrderOfAccount> getCountOrder(){
+		List<CountOrderOfAccount> countOrder = accService.getCountOrder();
+		return countOrder;
 	}
 }
