@@ -183,4 +183,10 @@ public class CommentServiceImpl implements CommentService{
 	public RateAVG rateAVG(Integer id) {
 		return commentDAO.rateAVG(id);
 	}
+
+	@Override
+	public Optional<Comment> getChio(Integer id) {
+		// TODO Auto-generated method stub
+		return commentDAO.getChio(id);
+	}
 }

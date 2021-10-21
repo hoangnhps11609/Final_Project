@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.poly.entity.Account;
 import edu.poly.entity.Comment;
+import edu.poly.entity.Product;
+import edu.poly.entity.Size;
 import edu.poly.service.AccountService;
 import edu.poly.service.CommentService;
 
@@ -53,6 +55,12 @@ public class CommentRestController {
 //		return accService.findById(username);
 //	}
 	
+	@GetMapping
+	public List<Comment> getAll(){
+		return commentService.findAll();
+	}
+		
+	
 	@PostMapping
 	public Comment create(@RequestBody Comment comment) {
 		String username = request.getRemoteUser();
@@ -61,6 +69,21 @@ public class CommentRestController {
 		comment.setAccount(account);
 		return commentService.create(comment);
 	}
+	
+	@PutMapping("get/{id}")
+	public Comment update2(@PathVariable("id") Integer id, @RequestBody Comment comment) {
+		Optional<Comment> a = commentService.getChio(id);
+		comment.setId(id);
+		comment.setAccount(a.get().getAccount());
+		comment.setContent(a.get().getContent());
+		comment.setCreateDate(a.get().getCreateDate());
+		comment.setPhoto(a.get().getPhoto());
+		comment.setProduct(a.get().getProduct());
+		comment.setRate(a.get().getRate());
+		comment.setStatus(true);
+		return commentService.save(comment);
+	}
+	
 //	
 //	@PutMapping("{id}")
 //	public Account update(@PathVariable("id") String id, @RequestBody Account account) {

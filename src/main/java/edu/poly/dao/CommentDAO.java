@@ -1,6 +1,7 @@
 package edu.poly.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,4 +22,9 @@ public interface CommentDAO extends JpaRepository<Comment, Integer>{
 	@Query
 	("Select new RateAVG(c.product.id, avg(c.rate)) from Comment c where c.product.id = ?1 group by c.product.id")
 	RateAVG rateAVG(Integer id);
+	
+	
+	@Query
+	("Select c from Comment c where c.id = ?1")
+	Optional<Comment> getChio(Integer id);
 }

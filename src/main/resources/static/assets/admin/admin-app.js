@@ -25,6 +25,9 @@ app.config(function ($routeProvider) {
 		}).when("/size", {
 			templateUrl: "/assets/admin/size/index.html",
 			controller: "size-ctrl"
+		}).when("/comment", {
+			templateUrl: "/assets/admin/comment/index.html",
+			controller: "comment-ctrl"
 		}).when("/account", {
 			templateUrl: "/assets/admin/account/index.html",
 			controller: "account-ctrl"
