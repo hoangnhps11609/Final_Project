@@ -19,6 +19,8 @@ app.controller("account-ctrl", function ($scope, $http) {
 		//load accounts
 		$http.get("/rest/accounts").then(resp => {
 			$scope.items = resp.data;
+			$scope.count = resp.data.length;
+			$scope.message= "";
 			$scope.items.forEach(item => {
 			})
 		});
@@ -274,11 +276,84 @@ app.controller("account-ctrl", function ($scope, $http) {
 	}
 	
 	
-	$scope.AccountMuaNhieuNhat = function(){
-		$http.get("/rest/accounts/toporder").then(resp => {
+	$scope.GoldenCustomer = function(){
+		$http.get("/rest/accounts/goldencustomer/30").then(resp => {
 			$scope.countOrders = resp.data;
+			$scope.title = "Golden Customer"
 			$('#AccountMuaNhieuNhatModalCenter').appendTo("body").modal('show');
 		});
-		
+	}
+	
+	$scope.SilverCustomer = function(){
+		$http.get("/rest/accounts/goldencustomer/15").then(resp => {
+			$scope.countOrders = resp.data;			
+			$scope.title = "Silver Customer"
+			$('#AccountMuaNhieuNhatModalCenter').appendTo("body").modal('show');
+		});
+	}
+	
+	$scope.LoyalCustomer = function(){
+		$http.get("/rest/accounts/loyalcustomer").then(resp => {
+			$scope.items = resp.data;			
+			$scope.message = "Loyal Customer"
+		});
+	}
+	
+	$scope.findbyDate = function(){
+		$('#AccountDuocTaoModalCenter').appendTo("body").modal('show');
+	}
+	
+	$scope.duoctao = function() {
+		var duoctao = angular.copy($scope.duoctao);
+		$http.get(`/rest/accounts/duoctao/${duoctao.from}/${duoctao.to}`).then(resp => {
+			$scope.items = resp.data;
+			$scope.from = duoctao.from;
+			$scope.to = duoctao.to;
+			$scope.message = "Have " + resp.data.length + " Registered Account From " + duoctao.from + " To " + duoctao.to;
+			
+			//$scope.countDate = resp.data.length;
+			$('#AccountDuocTaoModalCenter').appendTo("body").modal('hide');
+		}).catch(error => {
+			//alert("Lỗi tìm đơn hàng");
+			
+			Swal.fire({
+			  title: 'Please select a date',
+			  showClass: {
+			    popup: 'animate__animated animate__fadeInDown'
+			  },
+			  hideClass: {
+			    popup: 'animate__animated animate__fadeOutUp'
+			  }
+			})
+			
+			console.log("Error", error);
+		});
+	}
+	
+	
+	$scope.pager1 = {
+		page: 0,
+		size: 5,
+		get countOrders() {
+			var start = this.page * this.size;
+			return $scope.countOrders.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.countOrders.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
 	}
 });

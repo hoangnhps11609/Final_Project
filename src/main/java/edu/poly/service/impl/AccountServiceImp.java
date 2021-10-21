@@ -1,6 +1,7 @@
 package edu.poly.service.impl;
 
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,8 +59,18 @@ public class AccountServiceImp implements AccountService{
 	}
 
 	@Override
-	public List<CountOrderOfAccount> getCountOrder() {
-		return adao.getCountOrder();
+	public List<CountOrderOfAccount> getCountOrder(Long count) {
+		return adao.getCountOrder(count);
+	}
+
+	@Override
+	public List<Account> findByDate(Date from, Date to) {
+		return adao.findByDate(from, to);
+	}
+
+	@Override
+	public List<Account> getLoyalCustomer() {
+		return adao.getLoyalCustomer();
 	}
 
 	

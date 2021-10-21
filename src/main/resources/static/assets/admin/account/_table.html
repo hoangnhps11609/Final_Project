@@ -7,18 +7,43 @@
 		</i>
 		<div class="row pt-3">
 			<div class="col-2">
-				<button class="btn btn-info"
+				<button class="btn btn-outline-warning"
 					style="width: 100%; font-weight: bolder"
-					ng-click="AccountMuaNhieuNhat()">Account mua nhiều nhất</button>
+					ng-click="GoldenCustomer()">Golden Customer</button>
 			</div>
 			<div class="col-2">
-				<button class="btn btn-primary"
+				<button class="btn btn-outline-success"
 					style="width: 100%; font-weight: bolder"
-					ng-click="AccountDuocTao()">Số Account tạo trong time</button>
+					ng-click="SilverCustomer()">Silver Customer</button>
+			</div>
+			<div class="col-2">
+				<button class="btn btn-outline-primary"
+					style="width: 100%; font-weight: bolder"
+					ng-click="LoyalCustomer()">Loyal Customer</button>
+			</div>
+			<div class="offset-4 col-2">
+				<button class="btn btn-info"
+					style="width: 100%; font-weight: bolder" ng-click="findbyDate()">Find
+					by Date</button>
 			</div>
 		</div>
 	</div>
 	<div class="card-body">
+		<!-- <div class="row p-2">
+			<div class="alert-success col px-0 text-center" ng-show="countDate">
+				<h5>
+					Have <span class="text-success"
+						style="font-weight: bolder; font-size: 20px">{{countDate}}</span>
+					Registered Account From {{from| date:'dd/MM/yyyy'}} To {{to |
+					date:'dd/MM/yyyy'}}
+				</h5>
+			</div>
+		</div> -->
+		<div class="row p-2">
+			<div class="alert-success col px-0 text-center" ng-show="message">
+				<h5>{{message}}</h5>
+			</div>
+		</div>
 		<table class="table table-striped">
 			<thead>
 				<tr style="position: relative;">
@@ -35,7 +60,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="item in pager.items">
+				<tr ng-repeat="item in filtered = (pager.items | filter: query)">
 					<td><img ng-src="{{'/assets/images/' + item.photo}}"
 						width="50%" /></td>
 					<td>{{item.username}}</td>
@@ -70,9 +95,8 @@
 	<div class="modal-dialog modal-dialog-centered" role="document"
 		style="max-width: 60%">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">Account mua
-					nhieu nhat</h5>
+			<div class="modal-header bg-warning">
+				<h5 class="modal-title" id="exampleModalLongTitle">{{title}}</h5>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -90,7 +114,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="item in countOrders">
+						<tr ng-repeat="item in pager1.countOrders">
 							<td><img ng-src="{{'/assets/images/' + item.account.photo}}"
 								width="50%" /></td>
 							<td>{{item.account.username}}</td>
@@ -101,65 +125,42 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="modal-footer">
-				<button ng-click="createColor()" class="btn btn-primary">Create</button>
+			<div class="modal-footer text-muted text-center">
+				<button class="btn btn-primary" ng-click="pager1.first()">First</button>
+				<button class="btn btn-primary" ng-click="pager1.prev()">Prev</button>
+				<button class="btn btn-success">{{pager1.page+1}} of
+					{{pager1.count}}</button>
+				<button class="btn btn-primary" ng-click="pager1.next()">Next</button>
+				<button class="btn btn-primary" ng-click="pager1.last()">Last</button>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="modal fade" id="AccountMuaNhieuNhatModalCenter"
-	tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-	aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document"
-		style="max-width: 60%">
+<!-- Modal Find By Date -->
+<div class="modal fade" id="AccountDuocTaoModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="false">
+	<div class="modal-dialog " role="document" style="max-width: 15%">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">Account mua
-					nhieu nhat</h5>
+				<h5 class="modal-title" id="exampleModalCenterTitle">Find
+					Account By Date</h5>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<div class="col" style="position: relative;">
-					<div class="form-group col-4">
-						From :<input type="date" class="form-control"
-							ng-model="statistic1.from1" />
-					</div>
-					<div class="form-group col-4"
-						style="position: absolute; top: 0; right: 30%">
-						To: <input type="date" class="form-control"
-							ng-model="statistic1.to1" />
-					</div>
-					<button style="position: absolute; top: 38%; right: 17%"
-						ng-click="statistic1()" class="btn btn-primary">Search</button>
+				<div class="form-group">
+					<input type="date" placeholder="dd-mm-yyyy" class="form-control"
+						ng-model="duoctao.from" />
 				</div>
-				<table class="table table-striped">
-					<thead>
-						<tr style="position: relative;">
-							<th style="width: 20%" scope="col">Photo</th>
-							<th style="width: 20%" scope="col">Username</th>
-							<th style="width: 20%" scope="col">Fullname</th>
-							<th style="width: 20%" scope="col">Phone</th>
-							<th style="width: 20%" scope="col">Quantity Orders</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="item in countOrders">
-							<td><img ng-src="{{'/assets/images/' + item.account.photo}}"
-								width="50%" /></td>
-							<td>{{item.account.username}}</td>
-							<td>{{item.account.fullname}}</td>
-							<td>{{item.account.phone}}</td>
-							<td>{{item.count}}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="modal-footer">
-				<button ng-click="createColor()" class="btn btn-primary">Create</button>
+				<div class="form-group">
+					<input type="date" placeholder="dd-mm-yyyy" class="form-control"
+						ng-model="duoctao.to" />
+				</div>
+				<button ng-click="duoctao()" class="btn btn-primary float-right">Search</button>
 			</div>
 		</div>
 	</div>

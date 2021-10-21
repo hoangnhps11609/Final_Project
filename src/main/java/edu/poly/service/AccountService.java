@@ -1,5 +1,6 @@
 package edu.poly.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Sort;
@@ -24,5 +25,9 @@ public interface AccountService {
 
 	List<Account> findAll(Sort sort);
 
-	List<CountOrderOfAccount> getCountOrder();
+	List<CountOrderOfAccount> getCountOrder(Long count);
+
+	List<Account> findByDate(Date from, Date to);
+
+	List<Account> getLoyalCustomer();
 }

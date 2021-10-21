@@ -1,5 +1,6 @@
 package edu.poly.rest.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.poly.entity.Account;
 import edu.poly.entity.CountOrderOfAccount;
+import edu.poly.entity.Order;
 import edu.poly.service.AccountService;
 
 import java.util.Optional;
@@ -37,7 +39,11 @@ public class AccountRestController {
 		return accService.findAll(Sort.by("createDate").descending());
 	}
 	
-
+	//Acc duoc tao trong time
+	@GetMapping("/duoctao/{from}/{to}")
+	public List<Account> getByDate(@PathVariable("from") Date from, @PathVariable("to") Date to){
+		return accService.findByDate(from, to);
+	}
 	
 	@GetMapping("get/{username}")
 	public Account getOne(@PathVariable("username") String username) {
@@ -68,10 +74,17 @@ public class AccountRestController {
 	}
 	
 	
-//	Account có nhiều order nhất
-	@GetMapping("toporder")
-	public	List<CountOrderOfAccount> getCountOrder(){
-		List<CountOrderOfAccount> countOrder = accService.getCountOrder();
+//	Account vàng bạc
+	@GetMapping("goldencustomer/{count}")
+	public	List<CountOrderOfAccount> getRankCustomer(@PathVariable("count") Long count){
+		List<CountOrderOfAccount> countOrder = accService.getCountOrder(count);
 		return countOrder;
+	}
+	
+//	Account trên 2 năm
+	@GetMapping("loyalcustomer")
+	public	List<Account> getLoyalCustomer(){
+		List<Account> loyalcustomer = accService.getLoyalCustomer();
+		return loyalcustomer;
 	}
 }
