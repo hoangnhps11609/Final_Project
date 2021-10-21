@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import edu.poly.entity.Order;
 import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
+import edu.poly.service.OrderDetailService;
 import edu.poly.service.OrderService;
 
 @CrossOrigin("*")
@@ -29,9 +30,11 @@ public class OrderRestController {
 	@Autowired
 	OrderService orderService;
 	
+	@Autowired
+	OrderDetailService orderDetailService;
+	
 	@PostMapping()
-	public Order create(@RequestBody JsonNode orderData) {
-		
+	public Order create(@RequestBody JsonNode orderData) {		
 		return orderService.create(orderData);
 	}
 	
@@ -67,6 +70,16 @@ public class OrderRestController {
 		product.setCreateDate(a.get().getCreateDate());
 		product.setPhone(a.get().getPhone());
 		return orderService.update(product);
+	}
+	
+	@PutMapping("/info")
+	public Order updateIndo(@RequestBody Long id) {
+		Double total = orderDetailService.getTotal(id);
+		Long quantity = orderDetailService.getQuantity(id);
+		Order order = orderService.findById(id);
+		order.setQuantity(quantity);
+		order.setTotal(total);
+		return orderService.update(order);
 	}
 	
 	

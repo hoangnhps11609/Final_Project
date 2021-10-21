@@ -19,4 +19,11 @@ public interface OrderDetailDAO extends JpaRepository<OrderDetail, Long> {
 	@Query("SELECT od FROM OrderDetail od WHERE od.order.id=?1")
 	Page<OrderDetail> findByOrder(Long id, Pageable pageable);
 
+	
+	@Query("SELECT sum(od.quantity*od.price) FROM OrderDetail od WHERE od.order.id=?1 group by od.order.id")
+	Double getTotal(Long id);
+	
+	@Query("SELECT sum(od.quantity) FROM OrderDetail od WHERE od.order.id=?1 group by od.order.id")
+	Long getQuantity(Long id);
+
 }

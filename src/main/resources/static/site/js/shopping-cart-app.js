@@ -149,6 +149,12 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		purchase(){
 			var order = angular.copy(this);
 			$http.post("/rest/orders", order).then(resp => {
+			var orderId = resp.data.id;
+			$http.put("/rest/orders/info/", orderId).then(resp =>{
+			
+			})
+				alert(resp.data.id);
+			
 				//alert("Đặt hàng thành công!");
 				Swal.fire({
 				  icon: 'success',

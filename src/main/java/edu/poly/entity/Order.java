@@ -38,6 +38,10 @@ public class Order  implements Serializable{
 	
 	String phone;
 	
+	Long quantity;
+	
+	Double total;
+	
 	String address;
 	
 	String fullname;

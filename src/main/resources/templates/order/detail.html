@@ -45,7 +45,7 @@
 								<div class="row d-flex justify-content-between px-3 topstatus">
 									<div class="d-flex flex-column text-sm-left">
 										<h5>
-											<span class="text-primary font-weight-bold">Order
+											<span class="text-primary font-weight-bold">Purchased
 												Info: [[${order.id}]]</span>
 										</h5>
 										<p class="mb-1">
@@ -168,6 +168,12 @@
 	
 						<div class="alert-danger p-0 m-0 py-3" th:if="${order.status == 4}">
 							<h3 class="text-center text-danger" style="font-weight:bolder">Order Cancelled</h3>
+						</div>
+						
+						<div class="alert-info p-0 m-0 py-3">
+							<h3 class="text-center text-info" style="font-weight:bolder">Order Info</h3>
+							<h5 class="text-center text-info">Quantity Product: [[${order.quantity}]]</h5>
+							<h5 class="text-center text-info">Total: $[[${order.total}]]</h5>
 						</div>
 						
 						<div class="row">

@@ -179,4 +179,14 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 		return orderDetailDAO.findByOrder(id);
 	}
 
+	@Override
+	public Double getTotal(Long id) {
+		return orderDetailDAO.getTotal(id);
+	}
+
+	@Override
+	public Long getQuantity(Long id) {
+		return orderDetailDAO.getQuantity(id);
+	}
+
 }
