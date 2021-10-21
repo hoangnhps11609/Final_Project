@@ -59,10 +59,10 @@ app.controller("size-ctrl", function ($scope, $http) {
 	//Thêm sản phẩm mới
 	$scope.create = function () {
 		var item = angular.copy($scope.form);
+		var name = item.name;
 		$http.post(`/rest/sizes`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
-			//alert("Thêm mới thành công");
 			$scope.initialize();
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -78,7 +78,7 @@ app.controller("size-ctrl", function ($scope, $http) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Created in successfully'
+			  title: 'Create in successfully "' + name + '" size'
 			})
 			
 			$(".nav-tabs a:eq(1)").tab('show');
@@ -109,12 +109,11 @@ app.controller("size-ctrl", function ($scope, $http) {
 	//update sản phẩm mới
 	$scope.update = function () {
 		var item = angular.copy($scope.form);
+		var name = item.name;
 		$http.put(`/rest/sizes/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
-			//alert("Cập nhật thành công");
-						$scope.reset();
-			
+			$scope.reset();
 			$scope.initialize();
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -130,7 +129,7 @@ app.controller("size-ctrl", function ($scope, $http) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Updated in successfully'
+			  title: 'Update in successfully "' + name + '" size'
 			})
 			
 			$(".nav-tabs a:eq(1)").tab('show');

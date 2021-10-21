@@ -51,6 +51,7 @@ app.controller("account-ctrl", function ($scope, $http) {
 
 	//Xóa form	
 	$scope.reset = function () {
+		
 		$scope.initialize();
 	
 		$scope.form = {
@@ -67,11 +68,11 @@ app.controller("account-ctrl", function ($scope, $http) {
 	//Thêm account mới
 	$scope.create = function () {
 		var item = angular.copy($scope.form);
+		var username = item.username;
 		$http.post(`/rest/accounts`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
-			//alert("Thêm mới thành công");
-				$scope.initialize();
+			$scope.initialize();
 			
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -87,13 +88,11 @@ app.controller("account-ctrl", function ($scope, $http) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Created in successfully'
+			  title: 'Created in successfully "' + username + '" account'
 			})
 			
 			$(".nav a:eq(1)").tab('show')
-		}).catch(error => {
-			//alert("Lỗi thêm sản phẩm");
-			
+		}).catch(error => {			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -118,12 +117,12 @@ app.controller("account-ctrl", function ($scope, $http) {
 	//update sản phẩm mới
 	$scope.update = function () {
 		var item = angular.copy($scope.form);
+		var username = item.username;
 		$http.put(`/rest/accounts/${item.username}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.username == item.username);
 			$scope.items[index] = item;
-			//alert("Cập nhật thành công");
-				$scope.initialize();
-			
+			$scope.reset();
+			$scope.initialize();			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -138,13 +137,11 @@ app.controller("account-ctrl", function ($scope, $http) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Update in successfully'
+			  title: 'Updated in successfully "' + username + '" account'
 			})
 			
 			$(".nav a:eq(1)").tab('show');
-		}).catch(error => {
-			//alert("Lỗi cập nhật sản phẩm");
-			
+		}).catch(error => {			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',

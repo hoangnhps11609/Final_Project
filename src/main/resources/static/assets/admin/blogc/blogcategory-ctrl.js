@@ -27,12 +27,11 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 	//Thêm sản phẩm mới
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
+		var name = item.name;
 		$http.post(`/rest/blogcategories`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
-			//alert("Thêm mới thành công");
-				$scope.initialize();
-			
+			$scope.initialize();
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -47,13 +46,11 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Created in successfully'
+			  title: 'Create in successfully "' + name + '" blog category'
 			})
 			
 			$(".nav-tabs a:eq(1)").tab('show');
-		}).catch(error => {
-			//alert("Lỗi thêm sản phẩm");
-			
+		}).catch(error => {			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -78,11 +75,12 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 	//update sản phẩm mới
 	$scope.update = function() {
 		var item = angular.copy($scope.form);
+		var name = item.name;
 		$http.put(`/rest/blogcategories/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
-			//alert("Cập nhật thành công");
-				$scope.initialize();
+			$scope.reset();
+			$scope.initialize();
 			
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -98,7 +96,7 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Update in successfully'
+			  title: 'Update in successfully "' + name + '" blog category'
 			})
 			
 			$(".nav-tabs a:eq(1)").tab('show');

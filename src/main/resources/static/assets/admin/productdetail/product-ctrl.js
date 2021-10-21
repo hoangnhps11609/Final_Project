@@ -98,12 +98,12 @@ app.controller("productdetail-ctrl", function ($scope, $http, $window) {
 	//Thêm sản phẩm mới
 	$scope.create = function () {
 		var item = angular.copy($scope.form);
+		var id = item.id;
 		$http.post(`/rest/productdetails`, item).then(resp => {
 			resp.data.createDate = new Date(resp.data.createDate)
 			$scope.items.push(resp.data);
 			$scope.reset();
-			//alert("Thêm mới thành công");
-				$scope.initialize();
+			$scope.initialize();
 			
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -119,7 +119,7 @@ app.controller("productdetail-ctrl", function ($scope, $http, $window) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Created in successfully'
+			  title: 'Create in successfully "' + id + '" product detail'
 			})
 			
 			$scope.initialize();
@@ -150,9 +150,7 @@ app.controller("productdetail-ctrl", function ($scope, $http, $window) {
 		var statistic = angular.copy($scope.form);
 		$http.put(`/rest/products/get/${statistic.product.id}`, item).then(resp => {
 			$scope.initialize();
-		}).catch(error => {
-			//alert("Lỗi cập nhật sản phẩm");
-			
+		}).catch(error => {			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -179,12 +177,12 @@ app.controller("productdetail-ctrl", function ($scope, $http, $window) {
 	//update sản phẩm mới
 	$scope.update = function () {
 		var item = angular.copy($scope.form);
+		var id = item.id;
 		$http.put(`/rest/productdetails/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
-			//alert("Cập nhật thành công");
-				$scope.initialize();
-			
+			$scope.reset();
+			$scope.initialize();
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -199,7 +197,7 @@ app.controller("productdetail-ctrl", function ($scope, $http, $window) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Update in successfully'
+			  title: 'Update in successfully "' + id + '" product detail'
 			})
 			
 			$scope.initialize();
