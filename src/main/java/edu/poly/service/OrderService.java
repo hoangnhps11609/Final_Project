@@ -57,4 +57,6 @@ public interface OrderService {
 	
 	List<Order> findAllCancelOrder(Sort sort);
 
+	List<Order> findByUsernameandStatus(String username, Sort sort);
+
 }

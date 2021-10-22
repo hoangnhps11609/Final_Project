@@ -277,15 +277,15 @@ app.controller("account-ctrl", function ($scope, $http) {
 	
 	
 	$scope.GoldenCustomer = function(){
-		$http.get("/rest/accounts/goldencustomer/30").then(resp => {
+		$http.get("/rest/accounts/goldencustomer/5").then(resp => {
 			$scope.countOrders = resp.data;
-			$scope.title = "Golden Customer"
+			$scope.title = "Rank Customer"
 			$('#AccountMuaNhieuNhatModalCenter').appendTo("body").modal('show');
 		});
 	}
 	
 	$scope.SilverCustomer = function(){
-		$http.get("/rest/accounts/goldencustomer/15").then(resp => {
+		$http.get("/rest/accounts/goldencustomer/2").then(resp => {
 			$scope.countOrders = resp.data;			
 			$scope.title = "Silver Customer"
 			$('#AccountMuaNhieuNhatModalCenter').appendTo("body").modal('show');
@@ -302,6 +302,58 @@ app.controller("account-ctrl", function ($scope, $http) {
 	$scope.findbyDate = function(){
 		$('#AccountDuocTaoModalCenter').appendTo("body").modal('show');
 	}
+	
+	$scope.detailOrder = function(account){
+		$http.get(`/rest/orders/getorder/${account.username}`).then(resp => {
+			$('#MyOrderModalCenter').appendTo("body").modal('show');
+			$('#AccountMuaNhieuNhatModalCenter').appendTo("body").modal('hide');
+			$scope.myorders = resp.data;
+			$scope.account = account;
+			$scope.countOrder = resp.data.length;
+		});
+	}
+	
+	$scope.closeOrder = function(){
+		$('#MyOrderModalCenter').appendTo("body").modal('hide');
+		$('#AccountMuaNhieuNhatModalCenter').appendTo("body").modal('show');
+	}
+	
+	$scope.closeOrderDetail = function(){
+		$('#MyOrderModalCenter').appendTo("body").modal('show');
+			$('#MyOrderDetailModalCenter').appendTo("body").modal('hide');
+	}
+	
+	$scope.viewOrderDetail = function(item){
+		$http.get(`/rest/orders/myorder/${item.id}`).then(resp => {
+			$scope.ODitems = resp.data;
+			$scope.order = item;
+			$('#MyOrderDetailModalCenter').appendTo("body").modal('show');
+			$('#MyOrderModalCenter').appendTo("body").modal('hide');
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+	}
+	
 	
 	$scope.duoctao = function() {
 		var duoctao = angular.copy($scope.duoctao);
@@ -354,6 +406,58 @@ app.controller("account-ctrl", function ($scope, $http) {
 			}
 		}, last() {
 			this.page = this.count - 1;
+		}
+	}
+	
+	$scope.pager2 = {
+		page: 0,
+		size: 15,
+		get myorders() {
+			var start = this.page * this.size;
+			return $scope.myorders.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.myorders.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
+	
+	$scope.pager3 = {
+		page2: 0,
+		size2: 2,
+		get ODitems() {
+			var start = this.page2 * this.size2;
+			return $scope.ODitems.slice(start, start + this.size2);
+		},
+		get count(){
+			return Math.ceil(1.0 * $scope.ODitems.length / this.size2);
+		}, first(){
+			this.page2 = 0;
+		}, prev(){
+			this.page2--;
+			if(this.page2<0){
+				this.last();
+			}
+		}, next(){
+			this.page2++;
+			if(this.page2 >= this.count){
+				this.first();
+			}
+		}, last(){
+			this.page2 = this.count-1;
 		}
 	}
 });

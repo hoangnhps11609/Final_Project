@@ -298,4 +298,94 @@ app.controller("category-ctrl", function ($scope, $http) {
 			this.page = this.count - 1;
 		}
 	}
+	
+	
+	$scope.topCategory = function(){
+		$http.get(`/rest/products/category/${item.id}`).then(resp => {
+				$scope.ProCateItems = resp.data;
+				$scope.category = item;
+			$('#TopCategoryModalCenter').appendTo("body").modal('show');
+			
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+	}
+	
+	$scope.inventoryProduct = function(){
+		$('#InventoryCategoryModalCenter').appendTo("body").modal('show');
+		$http.get("/rest/categories/inventory").then(resp => {
+			$scope.inventories = resp.data;
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+	}
+	
+	$scope.topCategory = function(){
+		$('#TopCategoryModalCenter').appendTo("body").modal('show');
+		$http.get("/rest/categories/top").then(resp => {
+			$scope.tops = resp.data;
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+	}
 });

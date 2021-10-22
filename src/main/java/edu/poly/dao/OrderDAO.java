@@ -52,4 +52,8 @@ public interface OrderDAO extends JpaRepository<Order, Long>{
 	@Query
 	("SELECT p FROM Order p WHERE p.status = 4")
 	List<Order> findAllCancelOrder(Sort sort);
+
+
+	@Query("SELECT o From Order o Where o.account.username=?1 and o.status = 3")
+	List<Order> findByUsernameandStatus(String username, Sort sort);
 }

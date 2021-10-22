@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import edu.poly.entity.Account;
 import edu.poly.entity.Order;
 import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
@@ -45,7 +49,16 @@ public class OrderRestController {
 	
 	@GetMapping("/myorder/{id}")
 	public List<OrderDetail> getOrderDetail(@PathVariable("id") Long id) {
+		System.out.println(id);
+		
 		return orderService.findByOrder(id);
+	}
+	
+	
+	@GetMapping("/getorder/{username}")
+	public List<Order> getOrder(@PathVariable("username") String username){
+		List<Order> orderlist = orderService.findByUsernameandStatus(username, Sort.by(Sort.Direction.DESC, "id"));
+		return orderlist;
 	}
 	
 	@GetMapping("/statistic/{from}/{to}")

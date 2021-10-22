@@ -9,17 +9,12 @@
 			<div class="col-2">
 				<button class="btn btn-outline-warning"
 					style="width: 100%; font-weight: bolder"
-					ng-click="GoldenCustomer()">Golden Customer</button>
-			</div>
-			<div class="col-2">
-				<button class="btn btn-outline-success"
-					style="width: 100%; font-weight: bolder"
-					ng-click="SilverCustomer()">Silver Customer</button>
+					ng-click="GoldenCustomer()">Rank Customer</button>
 			</div>
 			<div class="col-2">
 				<button class="btn btn-outline-primary"
-					style="width: 100%; font-weight: bolder"
-					ng-click="LoyalCustomer()">Loyal Customer</button>
+					style="width: 100%; font-weight: bolder" ng-click="LoyalCustomer()">Loyal
+					Customer</button>
 			</div>
 			<div class="offset-4 col-2">
 				<button class="btn btn-info"
@@ -44,26 +39,24 @@
 				<h5>{{message}}</h5>
 			</div>
 		</div>
-		<table class="table table-striped">
+		<table class="table table-striped text-center">
 			<thead>
 				<tr style="position: relative;">
 					<th style="width: 15%" scope="col">Photo</th>
-					<th style="width: 10%" scope="col">Username</th>
+					<th style="width: 15%" scope="col">Username <br />(View Order)</th>
 					<th style="width: 15%" scope="col">Fullname</th>
 					<th style="width: 10%" scope="col">Phone</th>
 					<th style="width: 15%" scope="col">Email</th>
-					<th style="width: 25%" scope="col">Address</th>
+					<th style="width: 20%" scope="col">Address</th>
 					<th style="width: 10%" scope="col">Createdate</th>
-					<th style="width: 20%"><img
-						style="width: 100px; height: 80px; position: absolute; top: -17px;"
-						src="/assets/images/xenoel1.png" alt=""></th>
+					<th style="width: 20%"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="item in filtered = (pager.items | filter: query)">
 					<td><img ng-src="{{'/assets/images/' + item.photo}}"
 						width="50%" /></td>
-					<td>{{item.username}}</td>
+					<td ng-click="detailOrder(item)"><a href="" class="btn btn-outline-success">{{item.username}}</a></td>
 					<td>{{item.fullname}}</td>
 					<td>{{item.phone}}</td>
 					<td>{{item.email}}</td>
@@ -95,7 +88,7 @@
 	<div class="modal-dialog modal-dialog-centered" role="document"
 		style="max-width: 60%">
 		<div class="modal-content">
-			<div class="modal-header bg-warning">
+			<div class="modal-header bg-warning text-light">
 				<h5 class="modal-title" id="exampleModalLongTitle">{{title}}</h5>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -103,14 +96,17 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<table class="table table-striped">
+				<table class="table table-striped text-center">
 					<thead>
 						<tr style="position: relative;">
-							<th style="width: 20%" scope="col">Photo</th>
-							<th style="width: 20%" scope="col">Username</th>
-							<th style="width: 20%" scope="col">Fullname</th>
-							<th style="width: 20%" scope="col">Phone</th>
+							<th style="width: 15%" scope="col">Photo</th>
+							<th style="width: 15%" scope="col">Username</th>
+							<th style="width: 15%" scope="col">Fullname</th>
+							<th style="width: 15%" scope="col">Phone</th>
 							<th style="width: 20%" scope="col">Quantity Orders</th>
+							<th style="width: 20%" scope="col">Rank Customer <br />
+								(View Detail)
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -121,17 +117,25 @@
 							<td>{{item.account.fullname}}</td>
 							<td>{{item.account.phone}}</td>
 							<td>{{item.count}}</td>
+							<td ng-show="item.count >= 7"><button
+									ng-click="detailOrder(item.account)"
+									class="btn btn-outline-warning"
+									style="font-weight: bolder; font-size: 16px">Golden</button></td>
+							<td ng-show="item.count >= 5 && item.count < 7"><button
+									ng-click="detailOrder(item.account)"
+									class="btn btn-outline-info"
+									style="font-weight: bolder; font-size: 16px">Silver</button></td>
 						</tr>
 					</tbody>
 				</table>
-			</div>
-			<div class="modal-footer text-muted text-center">
-				<button class="btn btn-primary" ng-click="pager1.first()">First</button>
-				<button class="btn btn-primary" ng-click="pager1.prev()">Prev</button>
-				<button class="btn btn-success">{{pager1.page+1}} of
-					{{pager1.count}}</button>
-				<button class="btn btn-primary" ng-click="pager1.next()">Next</button>
-				<button class="btn btn-primary" ng-click="pager1.last()">Last</button>
+				<div class="text-muted text-center float-center">
+					<button class="btn btn-primary" ng-click="pager1.first()">First</button>
+					<button class="btn btn-primary" ng-click="pager1.prev()">Prev</button>
+					<button class="btn btn-success">{{pager1.page+1}} of
+						{{pager1.count}}</button>
+					<button class="btn btn-primary" ng-click="pager1.next()">Next</button>
+					<button class="btn btn-primary" ng-click="pager1.last()">Last</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -165,3 +169,133 @@
 		</div>
 	</div>
 </div>
+
+<!--My Order-->
+<div class="modal fade" id="MyOrderModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+		style="max-width: 70%">
+		<div class="modal-content">
+			<div class="modal-header bg-warning">
+				<div class="col row">
+					<h5 class="modal-title text-light" id="exampleModalLongTitle">
+						Order of Account: <span
+							style="text-transform: uppercase; font-weight: bolder">{{account.username}}</span>
+					</h5>
+					<h5 class="modal-title text-light px-5" id="exampleModalLongTitle">
+						Sum of Product: <span
+							style="text-transform: uppercase; font-weight: bolder">{{totalPro}}
+							items</span>
+					</h5>
+					<h5 class="modal-title text-light" id="exampleModalLongTitle">
+						Sum of Bill: <span
+							style="text-transform: uppercase; font-weight: bolder">${{totalBill}}</span>
+					</h5>
+					<button type="button" class="close " data-dismiss="modal" ng-click="GoldenCustomer()"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</div>
+			<div class="modal-body">
+				<table class="table table-striped text-center" ng-init="totalPro =0">
+					<thead>
+						<tr style="position: relative;">
+							<th style="width: 15%" scope="col">ID <br />(View Detail)
+							</th>
+							<th style="width: 15%" scope="col">Receiver Name</th>
+							<th style="width: 15%" scope="col">Receiver Phone</th>
+							<th style="width: 15%" scope="col">Receiver Address</th>
+							<th style="width: 20%" scope="col">Create Date</th>
+							<th style="width: 20%" scope="col">Quantity Product</th>
+							<th style="width: 20%" scope="col">Bill</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in pager2.myorders">
+							<td><a ng-click="viewOrderDetail(item)"
+								class="btn btn-outline-secondary">{{item.id}}</a></td>
+							<td>{{item.fullname}}</td>
+							<td>{{item.phone}}</td>
+							<td>{{item.address}}</td>
+							<td>{{item.createDate}}</td>
+							<td ng-init="$parent.totalPro = $parent.totalPro + item.quantity">{{item.quantity}}</td>
+							<td ng-init="$parent.totalBill = $parent.totalBill + item.total">{{item.total}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="text-muted text-center">
+					<button class="btn btn-primary" ng-click="pager2.first()">First</button>
+					<button class="btn btn-primary" ng-click="pager2.prev()">Prev</button>
+					<button class="btn btn-success">{{pager2.page+1}} of
+						{{pager2.count}}</button>
+					<button class="btn btn-primary" ng-click="pager2.next()">Next</button>
+					<button class="btn btn-primary" ng-click="pager2.last()">Last</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--My Order Detail-->
+<div class="modal fade" id="MyOrderDetailModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+		style="max-width: 70%">
+		<div class="modal-content">
+			<div class="modal-header bg-warning">
+				<div class="col row">
+					<h5>Order ID: {{order.id}}</h5>
+					<h5 class="px-5">Quantity Item: {{order.quantity}}</h5>
+					<h5>Order Bill: ${{order.total|number:1}}</h5>
+					<button type="button" class="close " data-dismiss="modal" ng-click="closeOrderDetail()"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</div>
+			<div class="modal-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Image</th>
+							<th scope="col">SKU</th>
+							<th scope="col">Product Name</th>
+							<th scope="col">Color - Size</th>
+							<th scope="col">Price</th>
+							<th scope="col">Quantity</th>
+							<th scope="col">Amount</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in pager3.ODitems">
+							<td width="150px"><img
+								ng-src="{{'/assets/images/' + item.productDetail.image}}"
+								width="100%" /></td>
+							<td>{{item.productDetail.product.id}}</td>
+							<td>{{item.productDetail.product.name}}</td>
+							<td>{{item.productDetail.color.name}} -
+								{{item.productDetail.size.name}}</td>
+							<td>${{item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:2}}
+							</td>
+							<td>{{item.quantity}}</td>
+							<td>${{item.quantity*item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:2}}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="text-muted text-center">
+					<button class="btn btn-primary" ng-click="pager2.first()">First</button>
+					<button class="btn btn-primary" ng-click="pager2.prev()">Prev</button>
+					<button class="btn btn-success">{{pager2.page2+1}} of
+						{{pager2.count}}</button>
+					<button class="btn btn-primary" ng-click="pager2.next()">Next</button>
+					<button class="btn btn-primary" ng-click="pager2.last()">Last</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
