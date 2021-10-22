@@ -28,7 +28,7 @@ app.controller("accountreport-ctrl", function($scope, $http) {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/accounts/${statistic.from}`).then(resp => {
 			$scope.items = resp.data;
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {
 			alert();
 			console.log("Error", error);
@@ -48,7 +48,9 @@ app.controller("accountreport-ctrl", function($scope, $http) {
 	//hiển thị lên form
 	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);
-		$(".nav a:eq(0)").tab('show')
+		$(".nav a:eq(0)").tab('show');
+		document.getElementById("homes").style.display = "block";
+		document.getElementById("lists").style.display = "none";
 	}
 
 	//Thêm account mới
@@ -58,7 +60,7 @@ app.controller("accountreport-ctrl", function($scope, $http) {
 			$scope.items.push(resp.data);
 			$scope.reset();
 			alert("Thêm mới thành công");
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {
 			alert("Lỗi thêm sản phẩm");
 			console.log("Error", error);
@@ -72,7 +74,7 @@ app.controller("accountreport-ctrl", function($scope, $http) {
 			var index = $scope.items.findIndex(p => p.username == item.username);
 			$scope.items[index] = item;
 			alert("Cập nhật thành công");
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {
 			alert("Lỗi cập nhật sản phẩm");
 			console.log("Error", error);
