@@ -2,9 +2,11 @@ package edu.poly.service;
 
 import java.util.List;
 
-
+import org.springframework.data.domain.Sort;
 
 import edu.poly.entity.Category;
+import edu.poly.entity.CategoryInventory;
+import edu.poly.entity.CategoryTop;
 import edu.poly.entity.Product;
 
 
@@ -12,6 +14,8 @@ import edu.poly.entity.Product;
 public interface CategoryService {
 
 	List<Category> findAll();
+	
+	List<Category> findAll(Sort sort);
 
 	Category create(Category category);
 
@@ -25,10 +29,9 @@ public interface CategoryService {
 	
 	List<Category> findByName(String valued);
 
-<<<<<<< HEAD
+	List<CategoryInventory> findCategoryInventory();
 
-=======
->>>>>>> 683e88af5f6b16de8a1789e2c3a65698f08a8027
+	List<CategoryTop> findCategoryTop();
 
 
 
