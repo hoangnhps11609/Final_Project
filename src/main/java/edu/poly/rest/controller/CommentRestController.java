@@ -59,6 +59,22 @@ public class CommentRestController {
 	public List<Comment> getAll(){
 		return commentService.findAll();
 	}
+	
+	@GetMapping("chuadoc")
+	public List<Comment> getAlCommentChuaDoc(){
+		return commentService.XemTatCaCommentChuaDoc();
+	}
+	
+	@GetMapping("dadoc")
+	public List<Comment> getAllCommentDaDoc(){
+		return commentService.XemTatCaCommentDaDoc();
+	}
+	
+	@GetMapping("{valued}")
+	public List<Comment> getListAccountByValued(@PathVariable("valued") String valued){
+	
+		return commentService.XemTatCaCommentThuocFullnameHoacProductName("%"+valued+"%");	
+	}
 		
 	
 	@PostMapping

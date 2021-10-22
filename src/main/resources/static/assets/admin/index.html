@@ -31,7 +31,7 @@
 
 </style>
 
-<body ng-app="admin-app" id="bodyh" onload="setbackground()">
+<body ng-app="admin-app" id="bodyh"  onload="setbackground()">
     <div id="preloder">
         <div class="loader"></div>
     </div>
@@ -90,14 +90,13 @@
 						<li class="nav-item d-none d-md-block"><a class="nav-link waves-effect waves-light" href="#!brand">Brand Controller</a></li>
 						<li class="nav-item d-none d-md-block"><a class="nav-link waves-effect waves-light" href="#!size">Size Controller</a></li>
                     </ul>
-                    <ul class="navbar-nav float-right">
+                    <ul class="navbar-nav float-right" >
                          <li class="nav-item dropdown">
                              <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" 
                                 aria-haspopup="true" aria-expanded="false"> <i class="ti-bell font-16"></i> 
                              </a> 
                            <div class="dropdown-menu zindex" aria-labelledby="navbarDropdown">
-                               <a class="dropdown-item" href="#">Action</a> 
-                                <a class="dropdown-item" href="#">Another action</a>
+                               <a class="dropdown-item" href="#" onclick="test()">=)))</a> 
                                 <div class="dropdown-divider"></div> 
                                 <a class="dropdown-item" href="#">Something else here</a> 
                             </div> 
@@ -481,6 +480,7 @@
             $('.image-upload-wrap').removeClass('image-dropping');
         });
     </script>
+ 
 
 </body>
 

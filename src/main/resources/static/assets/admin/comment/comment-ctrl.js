@@ -3,20 +3,33 @@ app.controller("comment-ctrl", function ($scope, $http) {
 	$scope.form = {};
 
 	$scope.initialize = function () {
-		//load categories
 		$http.get("/rest/comments").then(resp => {
 			$scope.items = resp.data;
 		});
 
 	}
 	
+	$scope.XemTatCaCommentChuaDoc = function () {
+		$http.get("/rest/comments/chuadoc").then(resp => {
+			$scope.items = resp.data;
+		});
+
+	}
+	
+		$scope.XemTatCaCommentDaDoc = function () {
+		//load categories
+		$http.get("/rest/comments/dadoc").then(resp => {
+			$scope.items = resp.data;
+		});
+
+	}
+	
+	
 		$scope.search = function () {
 		var statistic = angular.copy($scope.statistic);
-		$http.get(`/rest/sizes/${statistic.from}`).then(resp => {
+		$http.get(`/rest/comments/${statistic.from}`).then(resp => {
 			$scope.items = resp.data;
-			$(".nav a:eq(1)").tab('show');
-			document.getElementById("lists").style.display = "block";
-			document.getElementById("homes").style.display = "none";
+
 		}).catch(error => {
 			//alert();
 			Swal.fire({
@@ -47,6 +60,11 @@ app.controller("comment-ctrl", function ($scope, $http) {
 	$scope.reset = function () {
 		$scope.form = {};
 	}
+	
+	
+	$scope.test = function () {
+		alert('Test');
+	}
 
 	//hiển thị lên form
 	$scope.edit = function (item) {
@@ -64,196 +82,6 @@ app.controller("comment-ctrl", function ($scope, $http) {
 		
 	}
 	
-
-
-	//Thêm sản phẩm mới
-	$scope.create = function () {
-		var item = angular.copy($scope.form);
-		var name = item.name;
-		$http.post(`/rest/sizes`, item).then(resp => {
-			$scope.items.push(resp.data);
-			$scope.reset();
-			$scope.initialize();
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'success',
-			  title: 'Create in successfully "' + name + '" size'
-			})
-			
-			$(".nav-tabs a:eq(1)").tab('show');
-		}).catch(error => {
-			//alert("Lỗi thêm sản phẩm");
-			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Create failure'
-			})
-			
-			console.log("Error", error);
-		});
-	}
-
-	//update sản phẩm mới
-	$scope.update = function () {
-		var item = angular.copy($scope.form);
-		var name = item.name;
-		$http.put(`/rest/sizes/${item.id}`, item).then(resp => {
-			var index = $scope.items.findIndex(p => p.id == item.id);
-			$scope.items[index] = item;
-			$scope.reset();
-			$scope.initialize();
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'success',
-			  title: 'Update in successfully "' + name + '" size'
-			})
-			
-			$(".nav-tabs a:eq(1)").tab('show');
-		}).catch(error => {
-			//alert("Lỗi cập nhật sản phẩm");
-			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Update failure'
-			})
-			
-			console.log("Error", error);
-
-		});
-	}
-
-	//Xóa sản phẩm mới
-	$scope.delete = function (item) {
-			var name = item.name;
-			Swal.fire({
-			  title: 'Are you sure delete "' + name + '"?',
-			  text: "You won't be able to revert this!",
-			  icon: 'warning',
-			  showCancelButton: true,
-			  confirmButtonColor: '#3085d6',
-			  cancelButtonColor: '#d33',
-			  confirmButtonText: 'Yes, delete it!'
-			}).then((result) => {
-			  if (result.isConfirmed) {
-			  $http.delete(`/rest/sizes/${item.id}`).then(resp => {
-					var index = $scope.items.findIndex(p => p.id == item.id);
-					$scope.items.splice(index, 1);
-					$scope.reset();
-					$scope.initialize();
-		}).catch(error => {
-			// alert("Lỗi xóa sản phẩm");
-			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Delete failure'
-			})
-			
-			console.log("Error", error);
-
-		});
-		Swal.fire(
-			      'Deleted!',
-			      'Size "'+ name +'" has been deleted.',
-			      'success'
-			    )
-			  }
-			})
-			
-	}
-	
-	
-	$scope.TimKiemTatCaSanPhamThuocSize = function (item) {
-			$http.get(`/rest/productdetails/size/${item.id}`).then(resp => {
-				$scope.ProCateItems = resp.data;
-				$scope.category = item;
-			$('#exampleModalCenter22').appendTo("body").modal('show');
-			
-		}).catch(error => {
-			//alert("Lỗi cập nhật sản phẩm");
-			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Update failure'
-			})
-			
-			console.log("Error", error);
-
-		});
-		
-		
-
-
-	}
 
 	$scope.pager = {
 		page: 0,
