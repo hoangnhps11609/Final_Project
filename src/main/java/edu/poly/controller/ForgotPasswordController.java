@@ -48,7 +48,6 @@ public class ForgotPasswordController {
 		String username = paramService.getString("username", "");
 		String subject = "Send your Password!";
 		String body = "Your Password: ";
-		String password;
 		String randomPassword = RandomString.make(6);
 		
 		try {

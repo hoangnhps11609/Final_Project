@@ -81,6 +81,12 @@ public class ProductDetailRestController {
 		return productDetailService.TimTatCaSanPhamKhiColorBang(id);
 	}
 	
+
+	@GetMapping("size/{id}")
+	public List<ProductDetail> TimTatCaSanPhamKhiSizeBang(@PathVariable("id") Integer id){
+		return productDetailService.TimTatCaSanPhamKhiSizeBang(id);
+	}
+	
 	
 
 

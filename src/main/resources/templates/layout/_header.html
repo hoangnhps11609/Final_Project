@@ -280,7 +280,7 @@
 															height="70px"></td>
 														<td class="si-text col-5">
 															<div class="product-selected">
-																<p>${{item.product.price*(1-item.product.discount*0.01)|number:2}}
+																<p>${{item.product.price*(1-item.product.discount*0.01)|number:1}}
 																	x {{item.qty}}</p>
 																<h6>{{item.product.name}}</h6>
 															</div>
@@ -295,7 +295,7 @@
 
 										<div class="select-total">
 											<span>Total:</span>
-											<h5>${{cart.amount|number:2}}</h5>
+											<h5>${{cart.amount|number:1}}</h5>
 										</div>
 
 										<div class="select-button">
@@ -316,7 +316,7 @@
 											</div>
 										</div>
 									</div></li>
-								<li class="cart-price">${{cart.amount|number:2}}</li>
+								<li class="cart-price">${{cart.amount|number:1}}</li>
 								<!--Dislay Cart-->
 
 							</ul>

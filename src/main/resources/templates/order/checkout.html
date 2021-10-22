@@ -53,7 +53,7 @@
 					<div class="checkout-form">
 						<div class="row">
 							<div class="col-lg-6">
-								<h4>Biiling Details</h4>
+								<h4>Biiling Details</h4> {{cart.count}} {{cart.amount}}
 								<div class="row Biiling-Details">
 									<div class="col-lg-6">
 										<label for="fir">Purchaser</label>
@@ -94,12 +94,12 @@
 										</ul>
 										<ul class="order-table1" ng-repeat="item in cart.items">
 											<li class="fw-normal">{{item.product.name}} x
-												{{item.qty}} <span>${{item.qty*item.product.price|number:2}}</span>
+												{{item.qty}} <span>${{item.qty*item.product.price*(1-item.product.discount*0.01)|number:1}}</span>
 											</li>
 										</ul>
 										<ul class="order-table mb-4">
-											<li class="fw-normal">Subtotal <span>$240.00??</span></li>
-											<li class="total-price">Total <span>${{cart.amount|number:2}}</span></li>
+											<li class="fw-normal">Subtotal <span>${{item.product.price}}</span></li>
+											<li class="total-price">Total <span ng-model="order.total">${{cart.amount|number:1}}</span></li>
 										</ul>
 										<div class="col row px-0 float-left">
 											<div class="col-1 pr-0" style="margin-bottom: 0">

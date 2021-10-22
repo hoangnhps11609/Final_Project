@@ -17,5 +17,13 @@ public interface SizeDAO extends JpaRepository<Size, Integer>{
 	@Query
 	("Select s from Size s where s.id = ?1")
 	Size findBySizeId(Integer sizepro);
+	
+	@Query
+	("Select s from Size s where s.name like ?1")
+	List<Size> TimKiemBoiNameCuaSize(String size);
+	
+	@Query
+	("Select s from Size s where s.name = ?1")
+	List<Size> TimKiemTatCaSanPhanThuocSize (String size);
 
 }

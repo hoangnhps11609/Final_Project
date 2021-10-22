@@ -176,6 +176,18 @@ public class SizeServiceImpl implements SizeService{
 	public Size findBySizeId(Integer sizepro) {
 		return sizeDAO.findBySizeId(sizepro);
 	}
+
+	@Override
+	public List<Size> TimTheoNameCuaSize(String size) {
+		// TODO Auto-generated method stub
+		return sizeDAO.TimKiemBoiNameCuaSize(size);
+	}
+
+	@Override
+	public List<Size> TimKiemTatCaSanPhamThuocSize(String size) {
+		// TODO Auto-generated method stub
+		return sizeDAO.TimKiemTatCaSanPhanThuocSize(size);
+	}
 	
 	
 }

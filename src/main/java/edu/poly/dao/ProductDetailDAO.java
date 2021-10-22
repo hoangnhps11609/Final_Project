@@ -104,5 +104,9 @@ public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 	("SELECT p FROM ProductDetail p WHERE p.color.id=?1")
 	List<ProductDetail> TimTatCaSanPhamKhiColorBang(Integer id);
 	
+	@Query
+	("SELECT p FROM ProductDetail p WHERE p.size.id= ?1")
+	List<ProductDetail> TimTatCaSanPhamKhiSizeBang(Integer id);
+	
 
 }

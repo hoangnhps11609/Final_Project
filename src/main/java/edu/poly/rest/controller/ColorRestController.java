@@ -29,11 +29,17 @@ public class ColorRestController {
 	@Autowired
 	ColorService cService;
 	
-	@GetMapping()
-	public List<Color> getAll(){
+	@GetMapping("top10")
+	public List<Color> getTop10(){
 		Pageable pageable = PageRequest.of(0, 10, Sort.by("id").descending());
 		Page<Color> colors = cService.findAll(pageable);
 		return colors.getContent();
+	}
+	
+	@GetMapping()
+	public List<Color> getAll(){
+		List<Color> colors = cService.findAll(Sort.by("id").descending());
+		return colors;
 	}
 	
 	@PostMapping

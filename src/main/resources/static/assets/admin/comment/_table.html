@@ -1,0 +1,130 @@
+<div class="card">
+	<div class="card-header">
+		<div class="row">
+			<h3 class="noibacchu pl-2 ">List Size</h3>
+			<i ng-click="initialize()" class="fa fa-refresh"
+				style="font-size: 18px; position: absolute; right: 20px; top: 20px">
+				<span>Refresh</span>
+			</i>
+		</div>
+		<button class="btn-btn primary" ng-click="XemTatCaCommentDaDoc()">Đã đọc</button>
+		<button class="btn-btn primary" ng-click="XemTatCaCommentChuaDoc()">Chưa đọc</button>
+		
+	</div>
+
+	<div class="card-body">
+		<table class="table table-striped text-center">
+			<thead>
+				<tr style="position: relative;">
+					<th style="width: 5%" scope="col">ID</th>
+					<th style="width: 50%" scope="col">Rate</th>
+					<th style="width: 40%">Content</th>
+					<th style="width: 40%">Photo</th>
+					<th style="width: 40%">User</th>
+					<th style="width: 40%">Product Name</th>
+					<th style="width: 40%">Product Image</th>
+					<th style="width: 40%">Status</th>
+					<th style="width: 40%">CMT Date</th>
+					
+					
+								
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in pager.items">
+					<td>{{item.id}}</td>
+				    <td ng-if="item.rate==1"><img ng-src="{{'/assets/images/star-1.png'}}"
+						width="50%" /></td>
+					  <td ng-if="item.rate==2"><img ng-src="{{'/assets/images/star-2.png'}}"
+						width="50%" /></td>
+						  <td ng-if="item.rate==3"><img ng-src="{{'/assets/images/star-3.png'}}"
+						width="50%" /></td>
+						  <td ng-if="item.rate==4"><img ng-src="{{'/assets/images/star-4.png'}}"
+						width="50%" /></td>
+						  <td ng-if="item.rate==5"><img ng-src="{{'/assets/images/star-5.png'}}"
+						width="50%" /></td>
+				    <td>{{item.content}}</td>
+					<td><img ng-src="{{'/assets/images/' + item.photo}}"
+						width="50%" /></td>
+					<td>{{item.account.fullname}}</td>
+					<td>{{item.product.name}}</td>		
+					<td><img ng-src="{{'/assets/images/' + item.product.image}}"
+						width="50%" /></td>	
+					<td ng-if="item.status==false" style="color: green;">Chưa đọc</td>
+					<td ng-if="item.status==true">Đã đọc</td>		
+					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
+						
+					<td>
+						<div class="btn-group btn-group-xs">
+							<button class="btn btn-warning mgr5px" ng-click="edit(item)">Open Product</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="card-footer text-muted text-center">
+		<button class="btn btn-primary" ng-click="pager.first()">First</button>
+		<button class="btn btn-primary" ng-click="pager.prev()">Prev</button>
+		<button class="btn btn-success">{{pager.page+1}} of
+			{{pager.count}}</button>
+		<button class="btn btn-primary" ng-click="pager.next()">Next</button>
+		<button class="btn btn-primary" ng-click="pager.last()">Last</button>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter22" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+		style="max-width: 70%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Product Of Category : {{category.name}}</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-striped">
+						<thead>
+						<tr>
+							<th width="10%" scope="col">Image</th>
+							<th width="3%" scope="col">ID</th>
+							<th width="10%" scope="col">Name</th>
+							<th width="10%" scope="col">Color</th>
+							<th width="10%" scope="col">Size</th>
+							<th width="10%" scope="col">Create Date</th>
+							<th width="10%" scope="col">Quantity</th>
+						</tr>
+					</thead>
+					<tbody>
+							<tr ng-repeat="item in pager2.ProCateItems">
+							<td width="100px"><img
+								ng-src="{{'/assets/images/' + item.image}}" width="100%" /></td>
+							<td>{{item.id}}</td>
+							<td style="max-width: 250px">{{item.product.name}}</td>
+							<td>{{item.color.name}}</td>
+							<td>{{item.size.name}}</td>		
+							<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>		
+							<td>{{item.quantity}}%</td>
+							<td></td>
+
+
+						</tr>
+					</tbody>
+				</table>
+				<div class="card-footer text-muted text-center">
+					<button class="btn btn-primary" ng-click="pager2.first()">First</button>
+					<button class="btn btn-primary" ng-click="pager2.prev()">Prev</button>
+					<button class="btn btn-success">{{pager2.page+1}} of
+						{{pager2.count}}</button>
+					<button class="btn btn-primary" ng-click="pager2.next()">Next</button>
+					<button class="btn btn-primary" ng-click="pager2.last()">Last</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

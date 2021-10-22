@@ -141,7 +141,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			return $scope.cart.items.map(item => {
 				return{
 					productDetail: {id: item.id},
-					price: item.product.price,
+					price: item.product.price*(1 - item.product.discount*0.01),
 					quantity: item.qty
 				}
 			});
@@ -149,6 +149,12 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		purchase(){
 			var order = angular.copy(this);
 			$http.post("/rest/orders", order).then(resp => {
+			var orderId = resp.data.id;
+			$http.put("/rest/orders/info/", orderId).then(resp =>{
+			
+			})
+				alert(resp.data.id);
+			
 				//alert("Đặt hàng thành công!");
 				Swal.fire({
 				  icon: 'success',
@@ -313,7 +319,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 	
 	$scope.colorinitialize = function() {
 		//load accounts
-		$http.get("/rest/colors").then(resp => {
+		$http.get("/rest/colors/top10").then(resp => {
 			$scope.items = resp.data;
 			$scope.items.forEach(coloritem => {
 			})

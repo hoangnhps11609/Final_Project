@@ -1,0 +1,32 @@
+<div class="card ">
+	<div class="card-header">
+		<h3 class="noibacchu">Size Edition</h3>
+	</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="offset-3 col-6">
+				<div class="form-group">
+					<div>Category ID:</div>
+					<input class="form-control" disabled="disabled" ng-model="form.id" />
+				</div>
+				<div class="form-group">
+					<div>Name:</div>
+					<input class="form-control" ng-model="form.name" />
+				</div>
+			</div>
+			<div class="offset-3 col-6">
+				<div class="form-group">
+					<div>Description:</div>
+					<input class="form-control"  ng-model="form.description" />
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<div class="card-footer text-muted borbot">
+		<button ng-click="create()" class="btn btn-primary">Create</button>
+		<button ng-click="update(item)" class="btn btn-success">Update</button>
+		<button class="btn btn-danger" ng-click="delete(form)">Delete</button>
+		<button ng-click="reset()" class="btn btn-info">Reset</button>
+	</div>
+</div>

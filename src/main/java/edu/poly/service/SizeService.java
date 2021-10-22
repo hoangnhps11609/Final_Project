@@ -73,5 +73,9 @@ public interface SizeService {
 	List<Size> findSizeByCate(String string);
 
 	Size findBySizeId(Integer sizepro);
+	
+	List<Size> TimTheoNameCuaSize(String size);
+	
+	List<Size> TimKiemTatCaSanPhamThuocSize(String size);
 
 }

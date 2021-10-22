@@ -56,8 +56,6 @@ app.controller("blog-ctrl", function ($scope, $http) {
 	}
 
 	$scope.reset = function () {
-		$scope.initialize();
-	
 		$scope.form = {
 			createDate: new Date(),
 			images: '5aa47c07.png',
@@ -72,15 +70,13 @@ app.controller("blog-ctrl", function ($scope, $http) {
 
 	//Thêm sản phẩm mới
 	$scope.create = function () {
-	
 		var item = angular.copy($scope.form);
+		var name = item.name;
 		$http.post(`/rest/blog`, item).then(resp => {
 			resp.data.createDate = new Date(resp.data.createDate)
 			$scope.items.push(resp.data);
 			$scope.reset();
 			$scope.initialize();
-			//alert("Thêm mới thành công");
-			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -95,7 +91,7 @@ app.controller("blog-ctrl", function ($scope, $http) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Created in successfully'
+			  title: 'Create in successfully "' + name + '" blog'
 			})
 			
 			$(".nav-tabs a:eq(1)").tab('show');
@@ -126,12 +122,12 @@ app.controller("blog-ctrl", function ($scope, $http) {
 	//update sản phẩm mới
 	$scope.update = function () {
 		var item = angular.copy($scope.form);
+		var name = item.name;
 		$http.put(`/rest/blog/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
-			$scope.items[index] = item;
-			//alert("Cập nhật thành công");
-				$scope.initialize();
-			
+			$scope.items[index] = item;	
+			$scope.reset();
+			$scope.initialize();		
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -146,13 +142,11 @@ app.controller("blog-ctrl", function ($scope, $http) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Update in successfully'
+			  title: 'Update in successfully "' + name + '" blog'
 			})
 			
 			$(".nav-tabs a:eq(1)").tab('show');
-		}).catch(error => {
-			//alert("Lỗi cập nhật sản phẩm");
-			
+		}).catch(error => {			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -184,7 +178,7 @@ app.controller("blog-ctrl", function ($scope, $http) {
 			transformRequest: angular.identity,
 			headers: { 'Content-Type': undefined }
 		}).then(resp => {
-			$scope.form.image = resp.data.name;
+			$scope.form.images = resp.data.name;
 		}).catch(error => {
 			//alert("Lỗi upload hình ảnh");
 			
@@ -212,15 +206,9 @@ app.controller("blog-ctrl", function ($scope, $http) {
 
 	//Xóa sản phẩm mới
 	$scope.delete = function (item) {
-		$http.delete(`/rest/blog/${item.id}`).then(resp => {
-			var index = $scope.items.findIndex(p => p.id == item.id);
-			$scope.items.splice(index, 1);
-			$scope.reset();
-			//alert("Xóa  thành công");
-				$scope.initialize();
-			
+		var name = item.name;
 			Swal.fire({
-			  title: 'Are you sure?',
+			  title: 'Are you sure delete "' + name + '"?',
 			  text: "You won't be able to revert this!",
 			  icon: 'warning',
 			  showCancelButton: true,
@@ -229,17 +217,11 @@ app.controller("blog-ctrl", function ($scope, $http) {
 			  confirmButtonText: 'Yes, delete it!'
 			}).then((result) => {
 			  if (result.isConfirmed) {
-			    Swal.fire(
-			      'Deleted!',
-			      'Your file has been deleted.',
-			      'success'
-			    )
-			  }
-			})
-			
-		}).catch(error => {
-			//alert("Lỗi xóa sản phẩm");
-			
+			  		$http.delete(`/rest/blog/${item.id}`).then(resp => {
+						var index = $scope.items.findIndex(p => p.id == item.id);
+						$scope.items.splice(index, 1);
+						$scope.reset();
+		}).catch(error => {			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -260,6 +242,13 @@ app.controller("blog-ctrl", function ($scope, $http) {
 			console.log("Error", error);
 
 		});
+		Swal.fire(
+			      'Deleted!',
+			      'Blog "'+ name +'" has been deleted.',
+			      'success'
+			    )
+			  }
+			})
 	}
 
 	$scope.pager = {

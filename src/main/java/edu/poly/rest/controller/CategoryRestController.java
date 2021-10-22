@@ -3,6 +3,7 @@ package edu.poly.rest.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.poly.entity.Category;
+import edu.poly.entity.CategoryInventory;
+import edu.poly.entity.CategoryTop;
 import edu.poly.service.CategoryService;
 
 
@@ -26,7 +29,19 @@ public class CategoryRestController {
 	
 	@GetMapping()
 	public List<Category> getAll() {
-		return cService.findAll();
+		return cService.findAll(Sort.by("id").descending());
+	}
+	
+	@GetMapping("/top")
+	public List<CategoryTop> getCategoryTop() {
+		List<CategoryTop> list = cService.findCategoryTop();
+		return list;
+	}
+	
+	@GetMapping("/inventory")
+	public List<CategoryInventory> getCategoryInventory() {
+		List<CategoryInventory> list = cService.findCategoryInventory();
+		return list;
 	}
 	
 	@GetMapping("getcate/{id}")

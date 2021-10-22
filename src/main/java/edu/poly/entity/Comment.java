@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Data;
 @SuppressWarnings("serial")
@@ -29,6 +30,14 @@ public class Comment implements Serializable{
 	Integer rate;
 	
 	String content;
+	
+	boolean status ;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "Createdate")
+	@UpdateTimestamp
+	Date createDate = new Date();
+	
 	
 	String photo;
 	

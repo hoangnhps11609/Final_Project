@@ -77,5 +77,11 @@ public interface CommentService {
 	Comment create(Comment comment);
 
 	RateAVG rateAVG(Integer id);
-
+	
+	Optional<Comment> getChio(Integer id);
+	
+	List<Comment> XemTatCaCommentDaDoc();
+	List<Comment> XemTatCaCommentChuaDoc();
+	
+	List<Comment> XemTatCaCommentThuocFullnameHoacProductName(String valued);
 }

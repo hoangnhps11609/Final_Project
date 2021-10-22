@@ -1,16 +1,64 @@
 <div class="card ">
 	<div class="card-header">
 		<h3 class="noibacchu">Product Detail Edition</h3>
+		<!-- <div class="row pt-3">
+			<div class="col-1">
+				<button class="btn btn-info"
+					style="width: 100%; font-weight: bolder"
+					ng-click="CreateNewProduct()">Product Controller</button>
+			</div>
+			<div class="col-1">
+				<button class="btn btn-secondary"
+					style="width: 100%; font-weight: bolder"
+					ng-click="CreateNewColor()">Color Controller</button>
+			</div>
+			<div class="col-1">
+				<button class="btn btn-primary"
+					style="width: 100%; font-weight: bolder" ng-click="CreateNewSize()">Size Controller</button>
+			</div>
+			<div class="col-1">
+				<button class="btn btn-info"
+					style="width: 100%; font-weight: bolder"
+					ng-click="CreateNewCategory()">Category Controller</button>
+			</div>
+			<div class="col-1">
+				<button class="btn btn-secondary"
+					style="width: 100%; font-weight: bolder"
+					ng-click="CreateNewBrand()">Brand Contrroller</button>
+			</div>
+			<div class="col-1">
+				<button class="btn btn-primary"
+					style="width: 100%; font-weight: bolder" ng-click="CreateNewOrder()">Order Controller</button>
+			</div>
+			<div class="col-1">
+				<button class="btn btn-primary"
+					style="width: 100%; font-weight: bolder" ng-click="CreateNewAccount()">Account Controller</button>
+			</div>
+			<div class="col-1">
+				<button class="btn btn-info"
+					style="width: 100%; font-weight: bolder"
+					ng-click="CreateNewProductDetail()">ProductDetail Controller</button>
+			</div>
+			<div class="col-1">
+				<button class="btn btn-secondary"
+					style="width: 100%; font-weight: bolder"
+					ng-click="CreateNewBlog()">Blog Contrroller</button>
+			</div>
+			<div class="col-1">
+				<button class="btn btn-primary"
+					style="width: 100%; font-weight: bolder" ng-click="CreateNewBlogCategory()">Blog Controller Controller</button>
+			</div>
+		</div> -->
 	</div>
 	<div class="card-body">
 		<div class="row">
 			<div class="file-upload col-4">
 				<div class="image-upload-wrap">
 					<input class="file-upload-input" type="file" id="photo"
-						onchange="readURL(this); angular.element(this).scope().imageChanged(this.files); angular.element(this).scope().imageChanged(this.files)"
+						onchange="readURL(this); angular.element(this).scope().imageChanged(this.files); loadFile(event)"
 						accept="image/*" />
 					<div class="drag-text">
-						<img class="img-fluid p-2"
+						<img class="p-2 img-fluid"
 							ng-src="{{form.image ? '/assets/images/' + form.image : '/assets/images/5aa47c07.png' }}"
 							alt="your image" id="img" />
 						<h5>Drag and drop a file or select add Image</h5>
@@ -18,7 +66,7 @@
 				</div>
 				<div class="file-upload-content">
 					<img class="file-upload-image img-fluid"
-						ng-src="{{'/assets/images/' + form.image}}"/>
+						ng-src="{{'/assets/images/' + form.image}}" />
 					<div class="image-title-wrap">
 						<button type="button" onclick="removeUpload()"
 							class="remove-image">
@@ -31,25 +79,36 @@
 				<div class="row">
 					<div class="form-group col-sm-12">
 						<div>Product Name</div>
-						<select class="form-control" id="move" name="move" ng-model="form.product.id">
-							<option ng-repeat="b in products"  ng-value="b.id">{{b.name}}</option>
+						<select class="form-control" id="move" name="move"
+							ng-model="form.product.id">
+							<option ng-repeat="b in products" ng-value="b.id">{{b.name}}</option>
 						</select>
 					</div>
-			
+
 				</div>
 
 				<div class="row">
-					<div class="form-group col-sm-6">
-						<div>Color:</div>
-						<select class="form-control" ng-model="form.color.id">
-							<option ng-repeat="c in colors" ng-value="c.id">{{c.name}}</option>
-						</select>
-					</div>
 					<div class="form-group col-sm-6">
 						<div>Size:</div>
 						<select class="form-control" ng-model="form.size.id">
 							<option ng-repeat="s in sizes" ng-value="s.id">{{s.name}}</option>
 						</select>
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Color:</div>
+						<div class="row">
+							<div class="col-7">
+								<select class="form-control" ng-model="form.color.id">
+									<option class="text-light" ng-repeat="c in colors"
+										ng-value="c.id" style="background-color: rgb({{c.red}}, {{c.green}}, {{c.blue}})">{{c.name}}</option>
+								</select>
+							</div>
+							<div class="col-5">
+								<button class="btn btn-outline-dark"
+									style="width: 100%; font-weight: bolder"
+									ng-click="CreateNewColorModal()">Create New Color</button>
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -58,21 +117,17 @@
 						<div>Quantity:</div>
 						<input type="number" class="form-control" ng-model="form.quantity" />
 					</div>
-				</div>
-
-				<div class="row">
 					<div class="form-group col-sm-6">
-    				<div>Available:</div>
-    				<label class="radio-inline px-3">
-    					<input  ng-model="form.available"  checked="checked" ng-value="true" name="available" type="radio"/>Yes
-    				</label>
-    				<label class="radio-inline">
-    					<input  ng-model="form.available" ng-value="false" name="available" type="radio"/>No
-    				</label>
-    			</div>
-					
+						<div>Available:</div>
+						<label class="radio-inline px-3"> <input
+							ng-model="form.available" checked="checked" ng-value="true"
+							name="available" type="radio" />Yes
+						</label> <label class="radio-inline"> <input
+							ng-model="form.available" ng-value="false" name="available"
+							type="radio" />No
+						</label>
+					</div>
 				</div>
-		
 			</div>
 		</div>
 	</div>
@@ -81,5 +136,73 @@
 		<button ng-click="update(item)" class="btn btn-success">Update</button>
 		<button class="btn btn-danger" ng-click="delete(form)">Delete</button>
 		<button ng-click="reset()" class="btn btn-info">Reset</button>
+	</div>
+</div>
+
+
+<div class="modal fade" id="createNewColoreModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document" style="max-width:40%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Create New
+					Color</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row col">
+					<div class="col-5">
+						<div class="first">
+							<canvas id="canvas" width="280px" height="354px" class="border"></canvas>
+							<input type="file" accept="image/*" name="image" id="file"
+								onchange="loadFile(event)">
+							<div id="status" hidden="hidden"></div>
+						</div>
+					</div>
+					<div class="col-7">
+						<div class="form-group">
+							<input class="form-control" disabled="disabled"
+								ng-model="form.id" hidden="hidden" />
+						</div>
+						<div class="row pb-2">
+							<div class="col-12">
+								<div class="row pl-2" style="height: 21px;">
+									New Color:
+									<p style="height: 21px;">&nbsp</p>
+									<p id="show2" class="pr-2 m-0" style="height: 21px;"></p>
+								</div>
+								<div id="color" style="height: 35px;"></div>
+							</div>
+						</div>
+						<div class="form-group pt-1">
+							<div>Name:</div>
+							<input class="form-control" ng-model="form.name" />
+						</div>
+						<div class="form-group">
+							<div>Red:</div>
+							<input class="form-control" ng-model="form.red" id="red"
+								value="red" />
+						</div>
+						<div class="form-group">
+							<div>Green:</div>
+							<input class="form-control" ng-model="form.green" id="green"
+								value="green" />
+						</div>
+						<div class="form-group">
+							<div>Blue:</div>
+							<input class="form-control" ng-model="form.blue" id="blue"
+								value="blue" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button ng-click="createColor()" class="btn btn-primary">Create</button>
+			</div>
+		</div>
 	</div>
 </div>

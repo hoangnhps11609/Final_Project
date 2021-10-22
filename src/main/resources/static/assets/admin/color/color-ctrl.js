@@ -1,4 +1,4 @@
-app.controller("color-ctrl", function ($scope, $http) {
+app.controller("color-ctrl", function ($scope, $http, $route) {
 	$scope.items = [];
 	$scope.form = {};
 
@@ -9,8 +9,6 @@ app.controller("color-ctrl", function ($scope, $http) {
 		});
 
 	}
-	
-
 	
 		$scope.search = function () {
 		var statistic = angular.copy($scope.statistic);
@@ -42,18 +40,20 @@ app.controller("color-ctrl", function ($scope, $http) {
 
 		}
 	});
+	
+	
 	//Khởi tạo
 	$scope.initialize();
 
 	//Xóa form
 	$scope.reset = function () {
-		$scope.form = {};
+		$route.reload();
 	}
 
 	//hiển thị lên form
 	$scope.edit = function (item) {
 		$scope.form = angular.copy(item);
-		$(".nav a:eq(0)").tab('show')
+		$(".nav a:eq(0)").tab('show');
 	}
 	
 
@@ -61,10 +61,10 @@ app.controller("color-ctrl", function ($scope, $http) {
 	//Thêm sản phẩm mới
 	$scope.create = function () {
 		var item = angular.copy($scope.form);
+		var name = item.name;
 		$http.post(`/rest/colors`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
-			//alert("Thêm mới thành công");
 			$scope.initialize();
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -80,7 +80,7 @@ app.controller("color-ctrl", function ($scope, $http) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Created in successfully'
+			  title: 'Create in successfully "' + name + '" color'
 			})
 			
 			$(".nav-tabs a:eq(1)").tab('show');
@@ -111,6 +111,7 @@ app.controller("color-ctrl", function ($scope, $http) {
 	//update sản phẩm mới
 	$scope.update = function () {
 		var item = angular.copy($scope.form);
+		var name = item.name;
 		$http.put(`/rest/colors/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
@@ -132,7 +133,7 @@ app.controller("color-ctrl", function ($scope, $http) {
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Updated in successfully'
+			  title: 'Update in successfully "' + name + '" color'
 			})
 			
 			$(".nav-tabs a:eq(1)").tab('show');
@@ -164,33 +165,10 @@ app.controller("color-ctrl", function ($scope, $http) {
 	//Xóa sản phẩm mới
 	$scope.delete = function (item) {
 			var id = item.username;
-		
-		$http.delete(`/rest/colors/${item.id}`).then(resp => {
-			var index = $scope.items.findIndex(p => p.id == item.id);
-			$scope.items.splice(index, 1);
-			$scope.reset();
-			//alert("Xóa  thành công");
-				$scope.initialize();
-			
-//			const Toast = Swal.mixin({
-//			  toast: true,
-//			  position: 'top-end',
-//			  showConfirmButton: false,
-//			  timer: 1500,
-//			  timerProgressBar: true,
-//			  didOpen: (toast) => {
-//			    toast.addEventListener('mouseenter', Swal.stopTimer)
-//			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-//			  }
-//			})
-//			
-//			Toast.fire({
-//			  icon: 'success',
-//			  title: 'Deleted in successfully'
-//			})
+			var name = item.name;
 			
 			Swal.fire({
-			  title: 'Are you sure?',
+			  title: 'Are you sure delete "' + name + '"?',
 			  text: "You won't be able to revert this!",
 			  icon: 'warning',
 			  showCancelButton: true,
@@ -199,13 +177,11 @@ app.controller("color-ctrl", function ($scope, $http) {
 			  confirmButtonText: 'Yes, delete it!'
 			}).then((result) => {
 			  if (result.isConfirmed) {
-			    Swal.fire(
-			      'Deleted!',
-			      'Your file has been deleted.',
-			      'success'
-			    )
-			  }
-			})
+			  		$http.delete(`/rest/colors/${item.id}`).then(resp => {
+						var index = $scope.items.findIndex(p => p.id == item.id);
+						$scope.items.splice(index, 1);
+						$scope.reset();
+						$scope.initialize();
 			
 		}).catch(error => {
 			// alert("Lỗi xóa sản phẩm");
@@ -230,6 +206,14 @@ app.controller("color-ctrl", function ($scope, $http) {
 			console.log("Error", error);
 
 		});
+		
+		Swal.fire(
+			      'Deleted!',
+			      'Color "'+ name +'" has been deleted.',
+			      'success'
+			    )
+			  }
+			})
 	}
 	
 	

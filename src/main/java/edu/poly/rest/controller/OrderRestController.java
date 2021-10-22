@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import edu.poly.entity.Account;
 import edu.poly.entity.Order;
 import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
+import edu.poly.service.OrderDetailService;
 import edu.poly.service.OrderService;
 
 @CrossOrigin("*")
@@ -29,9 +34,11 @@ public class OrderRestController {
 	@Autowired
 	OrderService orderService;
 	
+	@Autowired
+	OrderDetailService orderDetailService;
+	
 	@PostMapping()
-	public Order create(@RequestBody JsonNode orderData) {
-		
+	public Order create(@RequestBody JsonNode orderData) {		
 		return orderService.create(orderData);
 	}
 	
@@ -42,7 +49,16 @@ public class OrderRestController {
 	
 	@GetMapping("/myorder/{id}")
 	public List<OrderDetail> getOrderDetail(@PathVariable("id") Long id) {
+		System.out.println(id);
+		
 		return orderService.findByOrder(id);
+	}
+	
+	
+	@GetMapping("/getorder/{username}")
+	public List<Order> getOrder(@PathVariable("username") String username){
+		List<Order> orderlist = orderService.findByUsernameandStatus(username, Sort.by(Sort.Direction.DESC, "id"));
+		return orderlist;
 	}
 	
 	@GetMapping("/statistic/{from}/{to}")
@@ -67,6 +83,16 @@ public class OrderRestController {
 		product.setCreateDate(a.get().getCreateDate());
 		product.setPhone(a.get().getPhone());
 		return orderService.update(product);
+	}
+	
+	@PutMapping("/info")
+	public Order updateIndo(@RequestBody Long id) {
+		Double total = orderDetailService.getTotal(id);
+		Long quantity = orderDetailService.getQuantity(id);
+		Order order = orderService.findById(id);
+		order.setQuantity(quantity);
+		order.setTotal(total);
+		return orderService.update(order);
 	}
 	
 	

@@ -74,5 +74,9 @@ public interface OrderDetailService {
 
 	List<OrderDetail> findByOrder(Long id);
 
+	Double getTotal(Long id);
+
+	Long getQuantity(Long id);
+
 	
 }

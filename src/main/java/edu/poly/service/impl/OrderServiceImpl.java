@@ -153,4 +153,9 @@ public class OrderServiceImpl implements OrderService{
 		return dao.findAllCancelOrder(sort);
 	}
 
+	@Override
+	public List<Order> findByUsernameandStatus(String username, Sort sort) {
+		return dao.findByUsernameandStatus(username, sort);
+	}
+
 }

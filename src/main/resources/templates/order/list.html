@@ -182,6 +182,8 @@
 												<th>Phone Number</th>
 												<th width="300px">Address</th>
 												<th>Create Date</th>
+												<th>Quantity</th>
+												<th>Total</th>
 												<th>Order Details</th>
 											</tr>
 										</thead>
@@ -194,6 +196,8 @@
 												<td scope="row">[[${order.phone}]]</td>
 												<td scope="row">[[${order.address}]]</td>
 												<td scope="row">[[${order.createDate}]]</td>
+												<td scope="row">[[${order.quantity}]]</td>
+												<td scope="row">[[${order.total}]]</td>
 												<td><a th:href="@{|/order/detail/${order.id}|}"
 													class="text-success">Detail </a></td>
 											</tr>

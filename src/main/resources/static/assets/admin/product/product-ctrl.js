@@ -1,4 +1,4 @@
-app.controller("product-ctrl", function ($scope, $http) {
+app.controller("product-ctrl", function ($scope, $http, $window) {
 
 var so;
 
@@ -229,9 +229,7 @@ var so;
 		
 		$http.put(`/rest/products/get/${item.product.id}`, item).then(resp => {
 			$scope.initialize();
-		}).catch(error => {
-			//alert("Lỗi cập nhật sản phẩm");
-			
+		}).catch(error => {			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -264,11 +262,11 @@ var so;
 	//Thêm sản phẩm mới
 	$scope.create = function () {
 		var item = angular.copy($scope.form);
+		var name = item.name;
 		$http.post(`/rest/products`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
-			// alert("Thêm mới thành công");
-				$scope.initialize();
+			$scope.initialize();
 			
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -284,7 +282,7 @@ var so;
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Created in successfully'
+			  title: 'Create in successfully "' + name + '" product'
 			})
 			
 			$scope.initialize();
@@ -315,6 +313,7 @@ var so;
 	//update sản phẩm mới
 	$scope.update = function () {
 		var item = angular.copy($scope.form);
+		var name = item.name;
 		$http.put(`/rest/products/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
@@ -335,7 +334,7 @@ var so;
 			
 			Toast.fire({
 			  icon: 'success',
-			  title: 'Update in successfully'
+			  title: 'Update in successfully "' + name + '" product'
 			})
 			
 			$scope.initialize();
@@ -366,14 +365,9 @@ var so;
 
 	//Xóa sản phẩm mới
 	$scope.delete = function (item) {
-		$http.delete(`/rest/products/${item.id}`).then(resp => {
-			var index = $scope.items.findIndex(p => p.id == item.id);
-			$scope.items.splice(index, 1);
-			$scope.reset();
-			//alert("Xóa  thành công");
-			
+	var name = item.name; 		
 			Swal.fire({
-			  title: 'Are you sure?',
+			  title: 'Are you sure delete "' + name + '"?',
 			  text: "You won't be able to revert this!",
 			  icon: 'warning',
 			  showCancelButton: true,
@@ -382,14 +376,10 @@ var so;
 			  confirmButtonText: 'Yes, delete it!'
 			}).then((result) => {
 			  if (result.isConfirmed) {
-			    Swal.fire(
-			      'Deleted!',
-			      'Your file has been deleted.',
-			      'success'
-			    )
-			  }
-			})
-			
+			  	$http.delete(`/rest/products/${item.id}`).then(resp => {
+					var index = $scope.items.findIndex(p => p.id == item.id);
+					$scope.items.splice(index, 1);
+					$scope.reset();	
 		}).catch(error => {
 			//alert("Lỗi xóa sản phẩm");
 			
@@ -413,6 +403,14 @@ var so;
 			console.log("Error", error);
 
 		});
+		
+		Swal.fire(
+			      'Deleted!',
+			      'Product "'+ name +'" has been deleted.',
+			      'success'
+			    )
+			  }
+			})
 	}
 
 	//Upload hình
@@ -578,4 +576,11 @@ var so;
 		$scope.viewall();
 	}
 	
+	$scope.CreateNewCategory = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/category';
+	}
+	
+	$scope.CreateNewBrand = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/brand';
+	}
 });
