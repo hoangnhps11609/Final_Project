@@ -1,4 +1,4 @@
-app.controller("category-ctrl", function ($scope, $http) {
+app.controller("category-ctrl", function ($scope, $http, $window) {
 	$scope.items = [];
 	$scope.form = {};
 
@@ -51,7 +51,9 @@ app.controller("category-ctrl", function ($scope, $http) {
 	//hiển thị lên form
 	$scope.edit = function (item) {
 		$scope.form = angular.copy(item);
-		$(".nav a:eq(0)").tab('show')
+		$(".nav a:eq(0)").tab('show');
+		document.getElementById("homes").style.display = "block";
+		document.getElementById("lists").style.display = "none";
 	}
 	
 
@@ -60,6 +62,7 @@ app.controller("category-ctrl", function ($scope, $http) {
 	$scope.create = function () {
 		var item = angular.copy($scope.form);
 		var name = item.name;
+<<<<<<< HEAD
 		
 		Swal.fire({
 			  title: 'Confirm adding "' + name + '" to the category list?',
@@ -82,6 +85,31 @@ app.controller("category-ctrl", function ($scope, $http) {
 			      'success'
 			    )
 				$(".nav-tabs a:eq(1)").tab('show');
+=======
+		$http.post(`/rest/categories`, item).then(resp => {
+			$scope.items.push(resp.data);
+			$scope.reset();
+			//alert("Thêm mới thành công");
+			$scope.initialize();
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'success',
+			  title: 'Create in successfully "' + name + '" category'
+			})
+			
+			$(".nav a:eq(1)").tab('show');
+>>>>>>> refs/remotes/origin/main
 		}).catch(error => {
 
 			Swal.fire(
@@ -101,6 +129,7 @@ app.controller("category-ctrl", function ($scope, $http) {
 	$scope.update = function () {
 		var item = angular.copy($scope.form);
 		var name = item.name;
+<<<<<<< HEAD
 		Swal.fire({
 			  title: 'Confirm edit information "' + name + '" !',
 			  text: "New information will be saved to the category list",
@@ -129,6 +158,50 @@ app.controller("category-ctrl", function ($scope, $http) {
 			      'Can not update "'+ name +'" !',
 			      'error'
 			    )
+=======
+		$http.put(`/rest/categories/${item.id}`, item).then(resp => {
+			var index = $scope.items.findIndex(p => p.id == item.id);
+			$scope.items[index] = item;
+			$scope.reset();
+			$scope.initialize();
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'success',
+			  title: 'Update in successfully "' + name + '" category'
+			})
+			
+			$(".nav a:eq(1)").tab('show');
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+>>>>>>> refs/remotes/origin/main
 			
 			console.log("Error", error);
 
@@ -182,7 +255,9 @@ app.controller("category-ctrl", function ($scope, $http) {
 				$scope.ProCateItems = resp.data;
 				$scope.category = item;
 			$('#exampleModalCenter').appendTo("body").modal('show');
-			
+			$http.get(`/rest/products/category/count/${item.id}`).then(resp => {
+				$scope.sumProInCate = resp.data;
+			})
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 			
@@ -240,7 +315,7 @@ app.controller("category-ctrl", function ($scope, $http) {
 	
 	$scope.pager2 = {
 		page: 0,
-		size: 5,
+		size: 3,
 		get ProCateItems() {
 			var start = this.page * this.size;
 			return $scope.ProCateItems.slice(start, start + this.size);
@@ -353,4 +428,82 @@ app.controller("category-ctrl", function ($scope, $http) {
 
 		});
 	}
+	
+	$scope.proDetail = function(item){
+		$('#exampleModalCenter').appendTo("body").modal('hide');
+		$http.get(`/rest/products/product/${item.id}`).then(resp => {
+				$scope.product = resp.data;
+			});
+		$http.get(`/rest/products/productdetail/count/${item.id}`).then(resp => {
+				$scope.countProDetail = resp.data;
+		});
+		$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
+			$scope.ProDetailitems = resp.data;
+			$('#ProDetailModalCenter').appendTo("body").modal('show');
+			
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+	}
+	
+	$scope.pagerProDet = {
+		page: 0,
+		size: 3,
+		get ProDetailitems() {
+			var start = this.page * this.size;
+			return $scope.ProDetailitems.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.ProDetailitems.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
+	
+	$scope.closeProDetail = function(){
+		$('#exampleModalCenter').appendTo("body").modal('show');
+	}
+	
+	$scope.CreateNewProduct = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/product';
+	}
+	$scope.CreateNewCategory = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/category';
+	}
+	$scope.CreateNewBrand = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/brand';
+	}
 });
+

@@ -13,6 +13,7 @@ import edu.poly.dao.ProductDAO;
 import edu.poly.service.ProductService;
 
 import edu.poly.entity.Product;
+import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductDetail;
 import edu.poly.entity.Report;
 
@@ -46,8 +47,8 @@ public class ProductServiceImp implements ProductService{
 
 
 	@Override
-	public List<Product> findByCategoryId(String cid) {
-		return productDAO.findByCategoryId(cid);
+	public List<Product> findByCategoryId(String cid, Sort sort) {
+		return productDAO.findByCategoryId(cid, sort);
 	}
 
 
@@ -168,6 +169,24 @@ public class ProductServiceImp implements ProductService{
 	public List<Product> findByBrandId(Integer brandid) {
 		// TODO Auto-generated method stub
 		return productDAO.findByBrandId(brandid);
+	}
+
+
+	@Override
+	public Long getCount(String cateid) {
+		return productDAO.getCount(cateid);
+	}
+
+
+	@Override
+	public Long getCountProDetail(Integer id) {
+		return productDAO.getCountProDetail(id);
+	}
+
+
+	@Override
+	public List<ProductByColor> getProInColor(Integer id) {
+		return productDAO.getProInColor(id);
 	}
 
 

@@ -189,4 +189,22 @@ public class CommentServiceImpl implements CommentService{
 		// TODO Auto-generated method stub
 		return commentDAO.getChio(id);
 	}
+
+	@Override
+	public List<Comment> XemTatCaCommentDaDoc() {
+		// TODO Auto-generated method stub
+		return commentDAO.XemTatCaCommentDaDoc();
+	}
+
+	@Override
+	public List<Comment> XemTatCaCommentChuaDoc() {
+		// TODO Auto-generated method stub
+		return commentDAO.XemTatCaCommentChuaDoc();
+	}
+
+	@Override
+	public List<Comment> XemTatCaCommentThuocFullnameHoacProductName(String valued) {
+		// TODO Auto-generated method stub
+		return commentDAO.XemTatCaCommentThuocFullnameHoacProductName(valued);
+	}
 }

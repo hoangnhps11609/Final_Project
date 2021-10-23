@@ -1,14 +1,14 @@
 <div class="card ">
 	<div class="card-header">
 		<h3 class="noibacchu">Product Edition</h3>
-		<div class="row pt-3">
-			<div class="col-6">
-				<button class="btn btn-info" style="width:100%; font-weight:bolder" ng-click="CreateNewCategory()">Create New Category</button>
-			</div>
-			<div class="col-6">
-				<button class="btn btn-primary" style="width:100%; font-weight:bolder" ng-click="CreateNewBrand()">Create New Brand</button>
-			</div>
-		</div>
+		<a ng-click="CreateNewCategory()" class="btn btn-outline-dark"
+				style="font-size: 14px; position: absolute; right: 155px; top: 10px">
+				<span>Create New Category</span>
+		</a>
+		<a ng-click="CreateNewBrand()" class="btn btn-outline-dark"
+				style="font-size: 14px; position: absolute; right: 10px; top: 10px">
+				<span>Create New Brand</span>
+		</a>
 	</div>
 	<div class="card-body">
 		<div class="row">

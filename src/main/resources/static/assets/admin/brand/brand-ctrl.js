@@ -1,4 +1,4 @@
-app.controller("brand-ctrl", function ($scope, $http) {
+app.controller("brand-ctrl", function ($scope, $http, $window) {
 	$scope.items = [];
 	$scope.form = {};
 
@@ -53,7 +53,9 @@ app.controller("brand-ctrl", function ($scope, $http) {
 	//hiển thị lên form
 	$scope.edit = function (item) {
 		$scope.form = angular.copy(item);
-		$(".nav a:eq(0)").tab('show')
+		$(".nav a:eq(0)").tab('show');
+		document.getElementById("homes").style.display = "block";
+		document.getElementById("lists").style.display = "none";
 	}
 
 	//Thêm sản phẩm mới
@@ -82,7 +84,7 @@ app.controller("brand-ctrl", function ($scope, $http) {
 			      'success'
 			    )
 			
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {			
 			Swal.fire(
 			      'Create Failure!',
@@ -122,7 +124,7 @@ app.controller("brand-ctrl", function ($scope, $http) {
 					      'success'
 				    	)
 			
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {
 			Swal.fire(
 			      'Update Failure!',
@@ -267,5 +269,9 @@ app.controller("brand-ctrl", function ($scope, $http) {
 		}, last() {
 			this.page = this.count - 1;
 		}
+	}
+	
+	$scope.CreateNewProduct = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/product';
 	}
 });

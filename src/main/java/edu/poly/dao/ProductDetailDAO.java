@@ -107,6 +107,10 @@ public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 	@Query
 	("SELECT p FROM ProductDetail p WHERE p.size.id= ?1")
 	List<ProductDetail> TimTatCaSanPhamKhiSizeBang(Integer id);
+
+	@Query
+	("SELECT sum(p.quantity) FROM ProductDetail p WHERE p.color.id= ?1 group by p.color")
+	Long getCountProInColor(Integer id);
 	
 
 }

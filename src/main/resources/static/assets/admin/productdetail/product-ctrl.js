@@ -92,7 +92,9 @@ app.controller("productdetail-ctrl", function ($scope, $http, $window) {
 	//hiển thị lên form
 	$scope.edit = function (item) {
 		$scope.form = angular.copy(item);
-		$(".nav a:eq(0)").tab('show')
+		$(".nav a:eq(0)").tab('show');
+		document.getElementById("homes").style.display = "block";
+		document.getElementById("lists").style.display = "none";
 	}
 
 	//Thêm sản phẩm mới
@@ -379,7 +381,7 @@ app.controller("productdetail-ctrl", function ($scope, $http, $window) {
 			  title: 'Created in successfully'
 			})
 			
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {
 			//alert("Lỗi thêm sản phẩm");
 			

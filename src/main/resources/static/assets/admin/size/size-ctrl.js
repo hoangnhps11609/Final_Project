@@ -51,7 +51,9 @@ app.controller("size-ctrl", function ($scope, $http) {
 	//hiển thị lên form
 	$scope.edit = function (item) {
 		$scope.form = angular.copy(item);
-		$(".nav a:eq(0)").tab('show')
+		$(".nav a:eq(0)").tab('show');
+		document.getElementById("homes").style.display = "block";
+		document.getElementById("lists").style.display = "none";
 	}
 	
 
@@ -60,6 +62,7 @@ app.controller("size-ctrl", function ($scope, $http) {
 	$scope.create = function () {
 		var item = angular.copy($scope.form);
 		var name = item.name;
+<<<<<<< HEAD
 		Swal.fire({
 			  title: 'Confirm adding "' + name + '" to the size list?',
 			  text: "",
@@ -81,6 +84,30 @@ app.controller("size-ctrl", function ($scope, $http) {
 				    )
 				
 			$(".nav-tabs a:eq(1)").tab('show');
+=======
+		$http.post(`/rest/sizes`, item).then(resp => {
+			$scope.items.push(resp.data);
+			$scope.reset();
+			$scope.initialize();
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'success',
+			  title: 'Create in successfully "' + name + '" size'
+			})
+			
+			$(".nav a:eq(1)").tab('show');
+>>>>>>> refs/remotes/origin/main
 		}).catch(error => {
 			Swal.fire(
 			      'Create Failure!',
@@ -98,6 +125,7 @@ app.controller("size-ctrl", function ($scope, $http) {
 	$scope.update = function () {
 		var item = angular.copy($scope.form);
 		var name = item.name;
+<<<<<<< HEAD
 		Swal.fire({
 			  title: 'Confirm edit information "' + name + '" !',
 			  text: "New information will be saved to the size list",
@@ -119,6 +147,31 @@ app.controller("size-ctrl", function ($scope, $http) {
 					      'success'
 				    	)
 			$(".nav-tabs a:eq(1)").tab('show');
+=======
+		$http.put(`/rest/sizes/${item.id}`, item).then(resp => {
+			var index = $scope.items.findIndex(p => p.id == item.id);
+			$scope.items[index] = item;
+			$scope.reset();
+			$scope.initialize();
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'success',
+			  title: 'Update in successfully "' + name + '" size'
+			})
+			
+			$(".nav a:eq(1)").tab('show');
+>>>>>>> refs/remotes/origin/main
 		}).catch(error => {
 			Swal.fire(
 			      'Update Failure!',

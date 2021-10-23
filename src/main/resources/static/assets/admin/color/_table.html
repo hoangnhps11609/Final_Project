@@ -1,7 +1,7 @@
 <div class="card">
 	<div class="card-header">
 		<div class="row">
-			<h3 class="noibacchu pl-2 ">List Category</h3>
+			<h3 class="noibacchu pl-2 ">List Color</h3>
 			<i ng-click="initialize()" class="fa fa-refresh"
 				style="font-size: 18px; position: absolute; right: 20px; top: 20px">
 				<span>Refresh</span>
@@ -14,25 +14,22 @@
 		<table class="table table-striped text-center">
 			<thead>
 				<tr style="position: relative;">
-					<th style="width: 25%" scope="col">ID</th>
-					<th style="width: 25%" scope="col">Name <br />(Click to view
-						Product)</th>
-					<th style="width: 25%" scope="col">R</th>
-					<th style="width: 25%" scope="col">G</th>
-					<th style="width: 25%" scope="col">B</th>
-			
-					<th style="width: 25%"></th>
+					<th scope="col">ID</th>
+					<th scope="col">Name <br />(Click to view Product)</th>
+					<th scope="col">Red</th>
+					<th scope="col">Green</th>
+					<th scope="col">Blue</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="item in pager.items">
 					<td>{{item.id}}</td>
-					<td style="width: 250px" ng-click="viewProductFromColor(item)"><a
+					<td style="width: 250px"><a class="btn text-light" style="background-color:rgb({{item.red}}, {{item.green}}, {{item.blue}})" ng-click="viewProductFromColor(item)"
 						href="">{{item.name}}</a></td>
-											<td>{{item.red}}</td>
-											<td>{{item.green}}</td>
-											<td>{{item.blue}}</td>
-						
+					<td>{{item.red}}</td>
+					<td>{{item.green}}</td>
+					<td>{{item.blue}}</td>
 					<td>
 						<div class="btn-group btn-group-xs">
 							<button class="btn btn-warning mgr5px" ng-click="edit(item)">Edit</button>
@@ -60,39 +57,39 @@
 	<div class="modal-dialog modal-dialog-centered" role="document"
 		style="max-width: 70%">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">Product Of Color : {{item.name}}</h5>
-				<button type="button" class="close" data-dismiss="modal"
+			<div class="modal-header" style="background-color: {{rgb}}">
+				<h5 class="modal-title text-light" id="exampleModalLongTitle">Product In {{color.name}}: {{countPro}} Products</h5>
+				<h5 class="modal-title text-light px-5" id="exampleModalLongTitle">Sum Inventory: {{sumProDet}} Items</h5>
+				<button type="button" class="close text-light" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<table class="table table-striped">
+				<table class="table table-striped text-center">
 					<thead>
 						<tr>
-							<th width="10%" scope="col">Image</th>
-							<th width="3%" scope="col">ID</th>
-							<th width="10%" scope="col">Name</th>
-							<th width="10%" scope="col">Color</th>
-							<th width="10%" scope="col">Size</th>
-							<th width="10%" scope="col">Create Date</th>
-							<th width="10%" scope="col">Quantity</th>
+							<th scope="col">Image</th>
+							<th scope="col">ID</th>
+							<th scope="col">Name <br />(Click to View Details)</th>
+							<th scope="col">Price</th>
+							<th scope="col">Discount</th>
+							<th scope="col">Category</th>
+							<th scope="col">Brand</th>
+							<th scope="col">Genrder</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat="item in pager2.ProCateItems">
 							<td width="100px"><img
-								ng-src="{{'/assets/images/' + item.image}}" width="100%" /></td>
-							<td>{{item.id}}</td>
-							<td style="max-width: 250px">{{item.product.name}}</td>
-							<td>{{item.color.name}}</td>
-							<td>{{item.size.name}}</td>		
-							<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>		
-							<td>{{item.quantity}}%</td>
-							<td></td>
-
-
+								ng-src="{{'/assets/images/' + item.product.image}}" width="100%" /></td>
+							<td>{{item.product.id}}</td>
+							<td style="max-width: 250px"><a href="" ng-click="viewProDetail(item.product)" class="btn btn-outline-primary">{{item.product.name}}</a></td>
+							<td>{{item.product.price}}</td>
+							<td>{{item.product.discount}}</td>
+							<td>{{item.product.category.name}}</td>
+							<td>{{item.product.brand.name}}</td>
+							<td>{{item.product.gender.name}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -103,6 +100,65 @@
 						{{pager2.count}}</button>
 					<button class="btn btn-primary" ng-click="pager2.next()">Next</button>
 					<button class="btn btn-primary" ng-click="pager2.last()">Last</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--Product Detail-->
+<div class="modal fade" id="ProDetailModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+		style="max-width: 70%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="col row">
+					<div class="col-4">
+						<h5>Product ID: {{product.id}}</h5>
+						<h5>Name: {{product.name}}</h5>
+						<h5>Available: {{product.available}}</h5>
+						<h5>Count ProductDetail: {{countProDet}}</h5>
+						<h5>Sum Inventory: {{countProDetail}}</h5>
+					</div>
+					<button type="button" class="close " data-dismiss="modal"
+						style="width: 20px; height: 20px" ng-click="closeProDetail()"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</div>
+			<div class="modal-body">
+				<table class="table table-striped text-center">
+					<thead>
+						<tr style="position: relative;">
+							<th scope="col">Image</th>
+							<th scope="col">Color</th>
+							<th scope="col">Size</th>
+							<th scope="col">Quantity</th>
+							<th scope="col">Create Date</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in pagerProDet.ProDetailitems">
+							<td width="150px"><img
+								ng-src="{{'/assets/images/' + item.image}}" width="100%" /></td>
+							<td><span class="p-2 text-light" style="background-color:rgb({{item.color.red}}, {{item.color.green}}, {{item.color.blue}})">{{item.color.name}}</span></td>
+							<td>{{item.size.name}}</td>
+							<td ng-init="$parent.totalPro = $parent.totalPro + item.quantity">{{item.quantity}}</td>
+							<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="text-muted text-center">
+					<button class="btn btn-primary" ng-click="pagerProDet.first()">First</button>
+					<button class="btn btn-primary" ng-click="pagerProDet.prev()">Prev</button>
+					<button class="btn btn-success">{{pagerProDet.page+1}} of
+						{{pagerProDet.count}}</button>
+					<button class="btn btn-primary" ng-click="pagerProDet.next()">Next</button>
+					<button class="btn btn-primary" ng-click="pagerProDet.last()">Last</button>
 				</div>
 			</div>
 		</div>

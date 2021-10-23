@@ -21,13 +21,16 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 	//hiển thị lên form
 	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);
-		$(".nav a:eq(0)").tab('show')
+		$(".nav a:eq(0)").tab('show');
+		document.getElementById("homes").style.display = "block";
+		document.getElementById("lists").style.display = "none";
 	}
 
 	//Thêm sản phẩm mới
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
 		var name = item.name;
+<<<<<<< HEAD
 		
 		Swal.fire({
 			  title: 'Confirm adding "' + name + '" to the blog category list?',
@@ -49,6 +52,30 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 				      'success'
 				    )
 			$(".nav-tabs a:eq(1)").tab('show');
+=======
+		$http.post(`/rest/blogcategories`, item).then(resp => {
+			$scope.items.push(resp.data);
+			$scope.reset();
+			$scope.initialize();
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'success',
+			  title: 'Create in successfully "' + name + '" blog category'
+			})
+			
+			$(".nav a:eq(1)").tab('show');
+>>>>>>> refs/remotes/origin/main
 		}).catch(error => {			
 			Swal.fire(
 			      'Create Failure!',
@@ -89,7 +116,7 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 				      'success'
 			    	)
 			
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {
 			Swal.fire(
 			      'Update Failure!',
