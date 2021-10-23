@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import edu.poly.entity.Product;
+import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductDetail;
 import edu.poly.entity.Report;
 
@@ -20,7 +21,7 @@ public interface ProductService {
 	Product findById(Integer id);
 //
 //
-	List<Product> findByCategoryId(String cid);
+	List<Product> findByCategoryId(String cid, Sort sort);
 
 
 	Product create(Product product);
@@ -77,6 +78,15 @@ public interface ProductService {
 	List<Product> findByBrandId(Integer brandid);
 
 
-	List<Product> findAll(Sort sort);	
+	List<Product> findAll(Sort sort);
+
+
+	Long getCount(String cateid);
+
+
+	Long getCountProDetail(Integer id);
+
+
+	List<ProductByColor> getProInColor(Integer id);	
 
 }

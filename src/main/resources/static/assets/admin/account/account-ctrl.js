@@ -247,34 +247,7 @@ app.controller("account-ctrl", function ($scope, $http) {
 			
 			console.log("Error", error);
 		})
-	}
-
-	$scope.pager = {
-		page: 0,
-		size: 10,
-		get items() {
-			var start = this.page * this.size;
-			return $scope.items.slice(start, start + this.size);
-		},
-		get count() {
-			return Math.ceil(1.0 * $scope.items.length / this.size);
-		}, first() {
-			this.page = 0;
-		}, prev() {
-			this.page--;
-			if (this.page < 0) {
-				this.last();
-			}
-		}, next() {
-			this.page++;
-			if (this.page >= this.count) {
-				this.first();
-			}
-		}, last() {
-			this.page = this.count - 1;
-		}
-	}
-	
+	}	
 	
 	$scope.GoldenCustomer = function(){
 		$http.get("/rest/accounts/goldencustomer/5").then(resp => {
@@ -382,10 +355,35 @@ app.controller("account-ctrl", function ($scope, $http) {
 		});
 	}
 	
+	$scope.pager = {
+		page: 0,
+		size: 5,
+		get items() {
+			var start = this.page * this.size;
+			return $scope.items.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.items.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
 	
 	$scope.pager1 = {
 		page: 0,
-		size: 5,
+		size: 4,
 		get countOrders() {
 			var start = this.page * this.size;
 			return $scope.countOrders.slice(start, start + this.size);
@@ -411,7 +409,7 @@ app.controller("account-ctrl", function ($scope, $http) {
 	
 	$scope.pager2 = {
 		page: 0,
-		size: 15,
+		size: 8,
 		get myorders() {
 			var start = this.page * this.size;
 			return $scope.myorders.slice(start, start + this.size);
@@ -437,7 +435,7 @@ app.controller("account-ctrl", function ($scope, $http) {
 	
 	$scope.pager3 = {
 		page2: 0,
-		size2: 2,
+		size2: 3,
 		get ODitems() {
 			var start = this.page2 * this.size2;
 			return $scope.ODitems.slice(start, start + this.size2);

@@ -52,6 +52,7 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 
 	//hiển thị lên form
 	$scope.edit = function (item) {
+		$scope.oldColor = "Old Color: rgb(" + item.red + ", " + item.green + ", " + item.blue + ")";
 		$scope.form = angular.copy(item);
 		$(".nav a:eq(0)").tab('show');
 	}
@@ -218,12 +219,15 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 	
 	
 	$scope.viewProductFromColor = function (item) {
-			$http.get(`/rest/productdetails/color/${item.id}`).then(resp => {
-				$scope.ProCateItems = resp.data;
-				$scope.color = item;
-				
-			$('#exampleModalCenter69').appendTo("body").modal('show');
-			
+		$http.get(`/rest/productdetails/color/count/${item.id}`).then(resp => {
+			$scope.sumProDet = resp.data;
+		})
+		$http.get(`/rest/products/color/${item.id}`).then(resp => {
+			$scope.ProCateItems = resp.data;
+			$scope.countPro = resp.data.length;
+			$scope.color = item;
+			$scope.rgb = "rgb(" + item.red + ", " + item.green + ", " + item.blue + ")"
+			$('#exampleModalCenter69').appendTo("body").modal('show');			
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 			
@@ -253,9 +257,49 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 
 	}
 
+	
+	$scope.viewProDetail = function(item){
+		$('#ProDetailModalCenter').appendTo("body").modal('show');
+		$http.get(`/rest/products/product/${item.id}`).then(resp => {
+				$scope.product = resp.data;
+			});
+		$http.get(`/rest/products/productdetail/count/${item.id}`).then(resp => {
+				$scope.countProDetail = resp.data;
+		});
+		$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
+			$scope.ProDetailitems = resp.data;
+			$scope.countProDet = resp.data.length;
+			$('#ProDetailModalCenter').appendTo("body").modal('show');
+			
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+	}
+	
+	
 	$scope.pager = {
 		page: 0,
-		size: 10,
+		size: 8,
 		get items() {
 			var start = this.page * this.size;
 			return $scope.items.slice(start, start + this.size);
@@ -288,6 +332,33 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 		},
 		get count() {
 			return Math.ceil(1.0 * $scope.ProCateItems.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
+	
+	
+	$scope.pagerProDet = {
+		page: 0,
+		size: 3,
+		get ProDetailitems() {
+			var start = this.page * this.size;
+			return $scope.ProDetailitems.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.ProDetailitems.length / this.size);
 		}, first() {
 			this.page = 0;
 		}, prev() {

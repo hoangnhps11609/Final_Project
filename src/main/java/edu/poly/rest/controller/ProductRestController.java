@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.poly.entity.Account;
 import edu.poly.entity.Product;
+import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductDetail;
 import edu.poly.service.ProductService;
 
@@ -40,11 +41,19 @@ public class ProductRestController {
 	
 	@GetMapping("category/{cateid}")
 	public List<Product> findbyCategory(@PathVariable("cateid") String cateid) {
-		return pService.findByCategoryId(cateid);
+		return pService.findByCategoryId(cateid, Sort.by("id").descending());
 	}
 	
-
+	@GetMapping("category/count/{cateid}")
+	public Long getCountInCategory(@PathVariable("cateid") String cateid) {
+		return pService.getCount(cateid);
+	}
 	
+	@GetMapping("productdetail/count/{id}")
+	public Long getCountProDetail(@PathVariable("id") Integer id) {
+		return pService.getCountProDetail(id);
+	}
+		
 	@GetMapping("brand/{brandid}")
 	public List<Product> findbyBrand(@PathVariable("brandid") Integer brandid) {
 		return pService.findByBrandId(brandid);
@@ -95,5 +104,10 @@ public class ProductRestController {
 		product.setPrice(a.get().getPrice());
 		product.setAvailable(true);
 		return pService.update(product);
+	}
+	
+	@GetMapping("/color/{id}")
+	public List<ProductByColor> getProInColor(@PathVariable("id") Integer id){
+		return pService.getProInColor(id);
 	}
 }

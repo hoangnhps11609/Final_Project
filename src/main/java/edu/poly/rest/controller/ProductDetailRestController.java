@@ -81,6 +81,10 @@ public class ProductDetailRestController {
 		return productDetailService.TimTatCaSanPhamKhiColorBang(id);
 	}
 	
+	@GetMapping("color/count/{id}")
+	public Long getCountProInColor(@PathVariable("id") Integer id){
+		return productDetailService.getCountProInColor(id);
+	}
 
 	@GetMapping("size/{id}")
 	public List<ProductDetail> TimTatCaSanPhamKhiSizeBang(@PathVariable("id") Integer id){

@@ -44,13 +44,11 @@ public class OrderRestController {
 	
 	@GetMapping()
 	public List<Order> getAll() {
-		return orderService.findAll(Sort.by(Sort.Direction.DESC, "id"));
+		return orderService.findAll(Sort.by(Sort.Direction.DESC, "createDate"));
 	}	
 	
 	@GetMapping("/myorder/{id}")
 	public List<OrderDetail> getOrderDetail(@PathVariable("id") Long id) {
-		System.out.println(id);
-		
 		return orderService.findByOrder(id);
 	}
 	

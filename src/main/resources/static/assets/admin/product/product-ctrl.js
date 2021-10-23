@@ -1,8 +1,8 @@
-app.controller("product-ctrl", function ($scope, $http, $window) {
+app.controller("product-ctrl", function($scope, $http, $window) {
 
-var so;
+	var so;
 
-		$scope.colors = [];
+	$scope.colors = [];
 	$scope.genders = [];
 	$scope.sizes = [];
 	$scope.items = [];
@@ -17,7 +17,7 @@ var so;
 	$scope.products2 = [];
 	$scope.blogcates = [];
 
-	$scope.initialize = function () {
+	$scope.initialize = function() {
 		//load products
 		$http.get("/rest/products").then(resp => {
 			$scope.items = resp.data;
@@ -36,8 +36,8 @@ var so;
 		$http.get("/rest/brands").then(resp => {
 			$scope.brands = resp.data;
 		});
-		
-			//load products
+
+		//load products
 		$http.get("/rest/products").then(resp => {
 			$scope.products = resp.data;
 		});
@@ -46,8 +46,8 @@ var so;
 		$http.get("/rest/genders").then(resp => {
 			$scope.genders = resp.data;
 		});
-		
-			//load color
+
+		//load color
 		$http.get("/rest/colors").then(resp => {
 			$scope.colors = resp.data;
 		});
@@ -61,7 +61,7 @@ var so;
 	}
 
 	var input = document.getElementById("myInput");
-	input.addEventListener("keyup", function (event) {
+	input.addEventListener("keyup", function(event) {
 		if (event.keyCode === 13) {
 			event.preventDefault();
 			$scope.statistic();
@@ -69,7 +69,7 @@ var so;
 		}
 	});
 
-	$scope.statistic = function () {
+	$scope.statistic = function() {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/products/${statistic.from}`).then(resp => {
 			$scope.items = resp.data;
@@ -81,13 +81,13 @@ var so;
 		}).catch(error => {
 			//alert();
 			Swal.fire({
-			  title: 'Please enter search keyword',
-			  showClass: {
-			    popup: 'animate__animated animate__fadeInDown'
-			  },
-			  hideClass: {
-			    popup: 'animate__animated animate__fadeOutUp'
-			  }
+				title: 'Please enter search keyword',
+				showClass: {
+					popup: 'animate__animated animate__fadeInDown'
+				},
+				hideClass: {
+					popup: 'animate__animated animate__fadeOutUp'
+				}
 			})
 			console.log("Error", error);
 		});
@@ -95,326 +95,354 @@ var so;
 
 	//Khởi tạo
 	$scope.initialize();
-		$scope.ODitems = [];
-	
+	$scope.ODitems = [];
+
 	//Xóa form
-	$scope.reset = function () {
+	$scope.reset = function() {
 		$scope.form = {
 			createDate: new Date(),
 			image: '5aa47c07.png',
 			available: true
 		};
 	}
-	
-	$scope.reset2 = function () {
+
+	$scope.reset2 = function() {
 		$scope.form2 = {
 			createDate: new Date(),
 			image: '5aa47c07.png',
 			available: true
 		};
-		
-				$http.get(`/rest/products/getid/${a}`).then(resp => {
+
+		$http.get(`/rest/products/getid/${a}`).then(resp => {
 			$scope.products2 = resp.data;
 		});
-		
+
 	}
 
 	//hiển thị lên form
-	$scope.edit = function (item) {
+	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);
 		$(".nav a:eq(0)").tab('show')
 	}
 
-	
-	$scope.adddetail = function (item) {
-			//load products		
+
+	$scope.adddetail = function(item) {
+		//load products		
 		var a = item.id
 		$http.get(`/rest/products/getid/${a}`).then(resp => {
 			$scope.products2 = resp.data;
+			$scope.product = item;
 		});
-		
 		$('#exampleModalCenter1').appendTo("body").modal('show');
+		$scope.resetD();
 		$('.bd-example-modal-lg2').appendTo("body").modal('hide');
 		document.getElementById('fee').value = '2';
-		
-		
+
+
 	}
-	
 
 
-	$scope.viewall = function (item) {
+
+	$scope.viewall = function(item) {
 		$http.get(`/rest/products/product/${item.id}`).then(resp => {
-				$scope.product = resp.data;
-			});
+			$scope.product = resp.data;
+		});
 		$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
-				$scope.ODitems = resp.data;
-		
-		$('.bd-example-modal-lg2').appendTo("body").modal('show');
-			
+			$scope.ODitems = resp.data;
+
+			$('.bd-example-modal-lg2').appendTo("body").modal('show');
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
-			
+
 			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
 			})
-			
+
 			Toast.fire({
-			  icon: 'warning',
-			  title: 'Update failure'
+				icon: 'warning',
+				title: 'Update failure'
 			})
-			
+
 			console.log("Error", error);
 
 		});
 	}
-	
-	$scope.createD = function () {
+
+	$scope.resetD = function() {
+		$scope.form2 = {
+			createDate: new Date(),
+			image: '5aa47c07.png',
+			available: true
+		};
+	}
+
+	$scope.createD = function() {
 		var item = angular.copy($scope.form2);
 		$http.post(`/rest/productdetails`, item).then(resp => {
-			resp.data.createDate = new Date(resp.data.createDate)	
+			resp.data.createDate = new Date(resp.data.createDate)
 			$scope.ODitems.push(resp.data);
-			$scope.reset();
+			$scope.resetD();
 			//alert("Thêm mới thành công");
-				$scope.initialize();
-			
 			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
 			})
-			
 			Toast.fire({
-			  icon: 'success',
-			  title: 'Created in successfully'
+				icon: 'success',
+				title: 'Created in successfully'
 			})
 			$scope.initialize();
 		}).catch(error => {
 			//alert("Lỗi thêm sản phẩm");
 			//alert(error);
-			
+
 			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
 			})
-			
+
 			Toast.fire({
-			  icon: 'warning',
-			  title: 'Create failure'
+				icon: 'warning',
+				title: 'Create failure'
 			})
-			
+
 			console.log("Error", error);
 		});
-
-		
-		$http.put(`/rest/products/get/${item.product.id}`, item).then(resp => {
-			$scope.initialize();
-		}).catch(error => {			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Update failure'
-			})
-			
-			console.log("Error", error);
-
-		});
-		
-		$scope.reset2();
-	
-
 	}
-	
-	
+
+	//update sản phẩm mới
+	$scope.updateD = function() {
+		var item = angular.copy($scope.form2);
+		var id = item.id;
+		$http.put(`/rest/productdetails/${item.id}`, item).then(resp => {
+			var index = $scope.items.findIndex(p => p.id == item.id);
+			$scope.items[index] = item;
+			$scope.resetD();
+			
+			const Toast = Swal.mixin({
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
+			})
+
+			Toast.fire({
+				icon: 'success',
+				title: 'Update in successfully "' + id + '" product detail'
+			})
+
+			$scope.initialize();
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+
+			const Toast = Swal.mixin({
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
+			})
+
+			Toast.fire({
+				icon: 'warning',
+				title: 'Update failure'
+			})
+
+			console.log("Error", error);
+
+		});
+	}
+
+
 
 
 	//Thêm sản phẩm mới
-	$scope.create = function () {
+	$scope.create = function() {
 		var item = angular.copy($scope.form);
 		var name = item.name;
 		$http.post(`/rest/products`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
 			$scope.initialize();
-			
+
 			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
 			})
-			
+
 			Toast.fire({
-			  icon: 'success',
-			  title: 'Create in successfully "' + name + '" product'
+				icon: 'success',
+				title: 'Create in successfully "' + name + '" product'
 			})
-			
+
 			$scope.initialize();
 		}).catch(error => {
 			//alert("Lỗi thêm sản phẩm");
-			
+
 			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
 			})
-			
+
 			Toast.fire({
-			  icon: 'warning',
-			  title: 'Create failure'
+				icon: 'warning',
+				title: 'Create failure'
 			})
-			
+
 			console.log("Error", error);
 		});
 	}
 
 	//update sản phẩm mới
-	$scope.update = function () {
+	$scope.update = function() {
 		var item = angular.copy($scope.form);
 		var name = item.name;
 		$http.put(`/rest/products/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
 			//alert("Cập nhật thành công");
-				$scope.initialize();
-			
+			$scope.initialize();
+
 			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
 			})
-			
+
 			Toast.fire({
-			  icon: 'success',
-			  title: 'Update in successfully "' + name + '" product'
+				icon: 'success',
+				title: 'Update in successfully "' + name + '" product'
 			})
-			
+
 			$scope.initialize();
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
-			
+
 			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
 			})
-			
+
 			Toast.fire({
-			  icon: 'warning',
-			  title: 'Update failure'
+				icon: 'warning',
+				title: 'Update failure'
 			})
-			
+
 			console.log("Error", error);
 
 		});
 	}
 
 	//Xóa sản phẩm mới
-	$scope.delete = function (item) {
-	var name = item.name; 		
-			Swal.fire({
-			  title: 'Are you sure delete "' + name + '"?',
-			  text: "You won't be able to revert this!",
-			  icon: 'warning',
-			  showCancelButton: true,
-			  confirmButtonColor: '#3085d6',
-			  cancelButtonColor: '#d33',
-			  confirmButtonText: 'Yes, delete it!'
-			}).then((result) => {
-			  if (result.isConfirmed) {
-			  	$http.delete(`/rest/products/${item.id}`).then(resp => {
+	$scope.delete = function(item) {
+		var name = item.name;
+		Swal.fire({
+			title: 'Are you sure delete "' + name + '"?',
+			text: "You won't be able to revert this!",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, delete it!'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				$http.delete(`/rest/products/${item.id}`).then(resp => {
 					var index = $scope.items.findIndex(p => p.id == item.id);
 					$scope.items.splice(index, 1);
-					$scope.reset();	
-		}).catch(error => {
-			//alert("Lỗi xóa sản phẩm");
-			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Delete failure'
-			})
-			
-			console.log("Error", error);
+					$scope.reset();
+				}).catch(error => {
+					//alert("Lỗi xóa sản phẩm");
 
-		});
-		
-		Swal.fire(
-			      'Deleted!',
-			      'Product "'+ name +'" has been deleted.',
-			      'success'
-			    )
-			  }
-			})
+					const Toast = Swal.mixin({
+						toast: true,
+						position: 'top-end',
+						showConfirmButton: false,
+						timer: 1500,
+						timerProgressBar: true,
+						didOpen: (toast) => {
+							toast.addEventListener('mouseenter', Swal.stopTimer)
+							toast.addEventListener('mouseleave', Swal.resumeTimer)
+						}
+					})
+
+					Toast.fire({
+						icon: 'warning',
+						title: 'Delete failure'
+					})
+
+					console.log("Error", error);
+
+				});
+
+				Swal.fire(
+					'Deleted!',
+					'Product "' + name + '" has been deleted.',
+					'success'
+				)
+			}
+		})
 	}
 
 	//Upload hình
-	$scope.imageChanged = function (files) {
+	$scope.imageChanged = function(files) {
 		var data = new FormData();
 		data.append('file', files[0]);
 		$http.post('/rest/upload/images', data, {
@@ -424,28 +452,28 @@ var so;
 			$scope.form.image = resp.data.name;
 		}).catch(error => {
 			//alert("Lỗi upload hình ảnh");
-			
+
 			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
 			})
-			
+
 			Toast.fire({
-			  icon: 'warning',
-			  title: 'Upload image failure'
+				icon: 'warning',
+				title: 'Upload image failure'
 			})
-			
+
 			console.log("Error", error);
 		})
 	}
-		$scope.imageChanged2 = function (files) {
+	$scope.imageChanged2 = function(files) {
 		var data = new FormData();
 		data.append('file', files[0]);
 		$http.post('/rest/upload/images', data, {
@@ -455,24 +483,24 @@ var so;
 			$scope.form2.image = resp.data.name;
 		}).catch(error => {
 			//alert("Lỗi upload hình ảnh");
-			
+
 			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
 			})
-			
+
 			Toast.fire({
-			  icon: 'warning',
-			  title: 'Upload image failure'
+				icon: 'warning',
+				title: 'Upload image failure'
 			})
-			
+
 			console.log("Error", error);
 		})
 	}
@@ -502,85 +530,155 @@ var so;
 			this.page = this.count - 1;
 		}
 	}
-	
-			$scope.pager2 = {
+
+	$scope.pager2 = {
 		page2: 0,
 		size2: 3,
 		get ODitems() {
 			var start = this.page2 * this.size2;
 			return $scope.ODitems.slice(start, start + this.size2);
 		},
-		get count(){
+		get count() {
 			return Math.ceil(1.0 * $scope.ODitems.length / this.size2);
-		}, first(){
+		}, first() {
 			this.page2 = 0;
-		}, prev(){
+		}, prev() {
 			this.page2--;
-			if(this.page2<0){
+			if (this.page2 < 0) {
 				this.last();
 			}
-		}, next(){
+		}, next() {
 			this.page2++;
-			if(this.page2 >= this.count){
+			if (this.page2 >= this.count) {
 				this.first();
 			}
-		}, last(){
-			this.page2 = this.count-1;
+		}, last() {
+			this.page2 = this.count - 1;
 		}
 	}
-	
+
 	//Xóa sản phẩm mới
-	$scope.deletePrDe = function (item) {
+	$scope.deletePrDe = function(item) {
 		$http.delete(`/rest/productdetails/${item.id}`).then(resp => {
 			$scope.initialize();
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items.splice(index, 1);
 			$('.bd-example-modal-lg2').appendTo("body").modal('hide');
 			Swal.fire({
-			  title: 'Are you sure?',
-			  text: "You won't be able to revert this!",
-			  icon: 'warning',
-			  showCancelButton: true,
-			  confirmButtonColor: '#3085d6',
-			  cancelButtonColor: '#d33',
-			  confirmButtonText: 'Yes, delete it!'
+				title: 'Are you sure?',
+				text: "You won't be able to revert this!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, delete it!'
 			}).then((result) => {
-			  if (result.isConfirmed) {
-			    Swal.fire(
-			      'Deleted!',
-			      'Your file has been deleted.',
-			      'success'
-			    )
-			  }
+				if (result.isConfirmed) {
+					Swal.fire(
+						'Deleted!',
+						'Your file has been deleted.',
+						'success'
+					)
+				}
 			})
-			
+
 		}).catch(error => {
 			//alert("Lỗi xóa sản phẩm");
 			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
 			})
 			Toast.fire({
-			  icon: 'warning',
-			  title: 'Delete failure'
+				icon: 'warning',
+				title: 'Delete failure'
 			})
 			console.log("Error", error);
 		});
 		$scope.viewall();
 	}
-	
-	$scope.CreateNewCategory = function(){
+
+	$scope.editPrDe = function(item) {
+		$scope.form2 = angular.copy(item);
+		$scope.isEdit = "edit";
+		$('#exampleModalCenter1').appendTo("body").modal('show');
+		$('.bd-example-modal-lg2').appendTo("body").modal('hide');
+	}
+
+	$scope.CreateNewCategory = function() {
 		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/category';
 	}
-	
-	$scope.CreateNewBrand = function(){
+
+	$scope.CreateNewBrand = function() {
 		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/brand';
+	}
+
+	$scope.showCategory = function() {
+		$('#showCategoryModalCenter').appendTo("body").modal('show');
+	}
+
+	$scope.ProductInCategory = function(c) {
+		alert(c.name);
+	}
+
+	$scope.CreateNewColorModal = function() {
+		$('#createNewColoreModalCenter').appendTo("body").modal('show');
+	}
+
+	//Thêm color mới
+	$scope.createColor = function() {
+		var item = angular.copy($scope.form);
+		$http.post(`/rest/colors`, item).then(resp => {
+			$scope.items.push(resp.data);
+			$scope.reset();
+			//alert("Thêm mới thành công");
+			const Toast = Swal.mixin({
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
+			})
+
+			Toast.fire({
+				icon: 'success',
+				title: 'Created in successfully'
+			})
+
+			$(".nav-tabs a:eq(1)").tab('show');
+		}).catch(error => {
+			//alert("Lỗi thêm sản phẩm");
+
+			const Toast = Swal.mixin({
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
+			})
+
+			Toast.fire({
+				icon: 'warning',
+				title: 'Create failure'
+			})
+
+			console.log("Error", error);
+		});
+		$('#createNewColoreModalCenter').appendTo("body").modal('hide');
+		$window.location.reload();
 	}
 });

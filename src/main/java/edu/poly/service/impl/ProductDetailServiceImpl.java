@@ -282,6 +282,11 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 		return productDetailDAO.TimTatCaSanPhamKhiSizeBang(id);
 	}
 
+	@Override
+	public Long getCountProInColor(Integer id) {
+		return productDetailDAO.getCountProInColor(id);
+	}
+
 
 
 	

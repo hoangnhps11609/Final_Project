@@ -1,4 +1,4 @@
-app.controller("brand-ctrl", function ($scope, $http) {
+app.controller("brand-ctrl", function ($scope, $http, $window) {
 	$scope.items = [];
 	$scope.form = {};
 
@@ -288,5 +288,9 @@ app.controller("brand-ctrl", function ($scope, $http) {
 		}, last() {
 			this.page = this.count - 1;
 		}
+	}
+	
+	$scope.CreateNewProduct = function(){
+		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/product';
 	}
 });

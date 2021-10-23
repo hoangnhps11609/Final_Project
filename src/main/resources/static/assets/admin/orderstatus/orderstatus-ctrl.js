@@ -1,4 +1,4 @@
-app.controller("orderstatus-ctrl", function($scope, $http) {
+app.controller("orderstatus-ctrl", function($scope, $http, $window, $route) {
 
 	 $scope.myFunction = function() {
   var x = document.getElementById("mySelect").value;
@@ -13,6 +13,8 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 	$scope.initialize = function() {
 		//load orders
 		$http.get("/rest/orders").then(resp => {
+			$scope.message="";
+			$scope.message1="";
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 			})
@@ -32,6 +34,8 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 		//load orders
 		$http.get("/rest/orders/findAllWaitingConfirm").then(resp => {
 			$scope.items = resp.data;
+			$scope.message = "Waiting Comfirm Order";
+			$scope.message1= "";
 			$scope.items.forEach(item => {
 			})
 		});
@@ -41,6 +45,8 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 		//load orders
 		$http.get("/rest/orders/findAllConfirmed").then(resp => {
 			$scope.items = resp.data;
+			$scope.message = "Confirmed Order";
+			$scope.message1= "";
 			$scope.items.forEach(item => {
 			})
 		});
@@ -50,6 +56,8 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 		//load orders
 		$http.get("/rest/orders/findAllShipping").then(resp => {
 			$scope.items = resp.data;
+			$scope.message = "Shipping Order";
+			$scope.message1= "";
 			$scope.items.forEach(item => {
 			})
 		});
@@ -59,15 +67,19 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 		//load orders
 		$http.get("/rest/orders/findAllComplete").then(resp => {
 			$scope.items = resp.data;
+			$scope.message = "Completed Order";
+			$scope.message1= "";
 			$scope.items.forEach(item => {
 			})
 		});
 	}
 	
-				$scope.findAllCancelOrder = function() {
+		$scope.findAllCancelOrder = function() {
 		//load orders
 		$http.get("/rest/orders/findAllCancelOrder").then(resp => {
 			$scope.items = resp.data;
+			$scope.message = "Cancelled Order";
+			$scope.message1= "";
 			$scope.items.forEach(item => {
 			})
 		});
@@ -77,6 +89,9 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 		$scope.statistic = function () {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/orders/${statistic.from}`).then(resp => {
+			$scope.message = "Find by Keyword: '" + statistic.from + "'";
+			$scope.message1 = "";
+			$scope.statistic.from = "";
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 			})
@@ -107,7 +122,7 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 	$scope.detail = function(item){
 		$http.get(`/rest/orders/myorder/${item.id}`).then(resp => {
 			$scope.ODitems = resp.data;
-			$scope.orderID = item.id;
+			$scope.order = item;
 			$('.bd-example-modal-lg').appendTo("body").modal('show');
 			
 		}).catch(error => {
@@ -204,6 +219,8 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 			$scope.items = resp.data;
 			$scope.from = statistic.from1;
 			$scope.to = statistic.to1;
+			$scope.message = "";
+			$scope.message1 = "Find by Date: From " + statistic.from1 + " To " + statistic.to1;
 			$('#findByDateModalCenter').appendTo("body").modal('hide');
 		}).catch(error => {
 			//alert("Lỗi tìm đơn hàng");
@@ -252,7 +269,7 @@ app.controller("orderstatus-ctrl", function($scope, $http) {
 	
 		$scope.pager2 = {
 		page2: 0,
-		size2: 2,
+		size2: 3,
 		get ODitems() {
 			var start = this.page2 * this.size2;
 			return $scope.ODitems.slice(start, start + this.size2);

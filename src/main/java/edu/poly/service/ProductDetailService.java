@@ -116,4 +116,6 @@ public interface ProductDetailService {
 	List<ProductDetail> TimTatCaSanPhamKhiColorBang (Integer id);
 	
 	List<ProductDetail> TimTatCaSanPhamKhiSizeBang (Integer id);
+
+	Long getCountProInColor(Integer id);
 }
