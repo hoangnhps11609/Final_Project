@@ -1,7 +1,7 @@
 <div class="card">
 	<div class="card-header"><h3 class="noibacchu">List Product Detail</h3><i  ng-click="initialize()" class="fa fa-refresh" style="font-size:18px; position: absolute; right: 20px; top: 20px"> <span>Refresh</span> </i></div>
 	<div class="card-body">
-		<table class="table table-striped">
+		<table class="table table-striped text-center">
 			<thead>
 				<tr>
 					<th scope="col">ID</th>
@@ -11,7 +11,7 @@
 					<th scope="col" >Quantity</th>
 					<th scope="col" >Size</th>
 					<th scope="col" >Color</th>
-					<th style="position: relative;"><img style="width: 100px;height: 80px;position: absolute;top: -17px;" 
+					<th style="position: relative;"><img style="width: 100px;height: 80px;position: absolute;top: -17px;right: 37px" 
 						src="/assets/images/xenoel1.png" alt="">
 					</th>
 				</tr>
@@ -19,9 +19,9 @@
 			<tbody>
 				<tr ng-repeat="item in pager.items">
 					<td>{{item.id}}</td>
-					<td>{{item.product.name}}</td>
-					<td width="100px">
-						<img ng-src="{{'/assets/images/' + item.image}}" width="100%"/>
+					<td style="font-weight: bold;">{{item.product.name}}</td>
+					<td width="150px" height="160px">
+						<img ng-src="{{'/assets/images/' + item.image}}" width="100%" height="100%"/>
 					</td>
 					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 					<td>{{item.quantity}}</td>

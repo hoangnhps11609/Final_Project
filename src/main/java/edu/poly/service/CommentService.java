@@ -79,4 +79,9 @@ public interface CommentService {
 	RateAVG rateAVG(Integer id);
 	
 	Optional<Comment> getChio(Integer id);
+	
+	List<Comment> XemTatCaCommentDaDoc();
+	List<Comment> XemTatCaCommentChuaDoc();
+	
+	List<Comment> XemTatCaCommentThuocFullnameHoacProductName(String valued);
 }

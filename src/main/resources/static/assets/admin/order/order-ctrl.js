@@ -32,7 +32,7 @@ app.controller("order-ctrl", function ($scope, $http) {
 		$http.get(`/rest/orders/myorder/${item.id}`).then(resp => {
 			$scope.ODitems = resp.data;
 			$scope.orderID = item.id;
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 			
@@ -64,7 +64,7 @@ app.controller("order-ctrl", function ($scope, $http) {
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 			})
-			$(".nav-tabs a:eq(2)").tab('show');
+			$(".nav a:eq(2)").tab('show');
 		}).catch(error => {
 			//alert();
 			Swal.fire({
@@ -84,7 +84,7 @@ app.controller("order-ctrl", function ($scope, $http) {
 		var statistic = angular.copy($scope.statistic1);
 		$http.get(`/rest/orders/statistic/${statistic.from1}/${statistic.to1}`).then(resp => {
 			$scope.items = resp.data;
-			$(".nav-tabs a:eq(2)").tab('show');
+			$(".nav a:eq(2)").tab('show');
 		}).catch(error => {
 			//alert("Lỗi tìm đơn hàng");
 			Swal.fire({

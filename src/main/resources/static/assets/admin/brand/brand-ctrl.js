@@ -53,7 +53,9 @@ app.controller("brand-ctrl", function ($scope, $http, $window) {
 	//hiển thị lên form
 	$scope.edit = function (item) {
 		$scope.form = angular.copy(item);
-		$(".nav a:eq(0)").tab('show')
+		$(".nav a:eq(0)").tab('show');
+		document.getElementById("homes").style.display = "block";
+		document.getElementById("lists").style.display = "none";
 	}
 
 	//Thêm sản phẩm mới
@@ -82,7 +84,7 @@ app.controller("brand-ctrl", function ($scope, $http, $window) {
 			  title: 'Create in successfully "' + name + '" brand'
 			})
 			
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {			
 			const Toast = Swal.mixin({
 			  toast: true,
@@ -132,7 +134,7 @@ app.controller("brand-ctrl", function ($scope, $http, $window) {
 			  title: 'Update in successfully "' + name + '" brand'
 			})
 			
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 			

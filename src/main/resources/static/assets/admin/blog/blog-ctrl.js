@@ -65,7 +65,9 @@ app.controller("blog-ctrl", function ($scope, $http) {
 	//hiển thị lên form
 	$scope.edit = function (item) {
 		$scope.form = angular.copy(item);
-		$(".nav a:eq(0)").tab('show')
+		$(".nav a:eq(0)").tab('show');
+		document.getElementById("homes").style.display = "block";
+		document.getElementById("lists").style.display = "none";
 	}
 
 	//Thêm sản phẩm mới
@@ -94,7 +96,7 @@ app.controller("blog-ctrl", function ($scope, $http) {
 			  title: 'Create in successfully "' + name + '" blog'
 			})
 			
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {
 			//alert("Lỗi thêm sản phẩm");
 			
@@ -145,7 +147,7 @@ app.controller("blog-ctrl", function ($scope, $http) {
 			  title: 'Update in successfully "' + name + '" blog'
 			})
 			
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {			
 			const Toast = Swal.mixin({
 			  toast: true,

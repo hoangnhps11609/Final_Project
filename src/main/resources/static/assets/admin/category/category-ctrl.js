@@ -51,7 +51,9 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 	//hiển thị lên form
 	$scope.edit = function (item) {
 		$scope.form = angular.copy(item);
-		$(".nav a:eq(0)").tab('show')
+		$(".nav a:eq(0)").tab('show');
+		document.getElementById("homes").style.display = "block";
+		document.getElementById("lists").style.display = "none";
 	}
 	
 
@@ -82,7 +84,7 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 			  title: 'Create in successfully "' + name + '" category'
 			})
 			
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {
 			//alert("Lỗi thêm sản phẩm");
 			
@@ -133,7 +135,7 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 			  title: 'Update in successfully "' + name + '" category'
 			})
 			
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 			
@@ -468,3 +470,4 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/brand';
 	}
 });
+

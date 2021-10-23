@@ -122,7 +122,9 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 	//hiển thị lên form
 	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);
-		$(".nav a:eq(0)").tab('show')
+		$(".nav a:eq(0)").tab('show');
+		document.getElementById("homes").style.display = "block";
+		document.getElementById("lists").style.display = "none";
 	}
 
 

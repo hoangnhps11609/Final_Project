@@ -95,7 +95,7 @@ app.controller("orderstatus-ctrl", function($scope, $http, $window, $route) {
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 			})
-			$(".nav-tabs a:eq(2)").tab('show');
+			$(".nav a:eq(2)").tab('show');
 		}).catch(error => {
 			//alert();
 			

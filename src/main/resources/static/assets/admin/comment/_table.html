@@ -7,6 +7,8 @@
 				<span>Refresh</span>
 			</i>
 		</div>
+		<button class="btn-btn primary" ng-click="XemTatCaCommentDaDoc()">Đã đọc</button>
+		<button class="btn-btn primary" ng-click="XemTatCaCommentChuaDoc()">Chưa đọc</button>
 		
 	</div>
 
@@ -15,7 +17,7 @@
 			<thead>
 				<tr style="position: relative;">
 					<th style="width: 5%" scope="col">ID</th>
-					<th style="width: 10%" scope="col">Rate</th>
+					<th style="width: 50%" scope="col">Rate</th>
 					<th style="width: 40%">Content</th>
 					<th style="width: 40%">Photo</th>
 					<th style="width: 40%">User</th>
@@ -31,7 +33,16 @@
 			<tbody>
 				<tr ng-repeat="item in pager.items">
 					<td>{{item.id}}</td>
-				    <td style="color: yellow;">{{item.rate}} Stars</td>
+				    <td ng-if="item.rate==1"><img ng-src="{{'/assets/images/star-1.png'}}"
+						width="50%" /></td>
+					  <td ng-if="item.rate==2"><img ng-src="{{'/assets/images/star-2.png'}}"
+						width="50%" /></td>
+						  <td ng-if="item.rate==3"><img ng-src="{{'/assets/images/star-3.png'}}"
+						width="50%" /></td>
+						  <td ng-if="item.rate==4"><img ng-src="{{'/assets/images/star-4.png'}}"
+						width="50%" /></td>
+						  <td ng-if="item.rate==5"><img ng-src="{{'/assets/images/star-5.png'}}"
+						width="50%" /></td>
 				    <td>{{item.content}}</td>
 					<td><img ng-src="{{'/assets/images/' + item.photo}}"
 						width="50%" /></td>
@@ -45,7 +56,7 @@
 						
 					<td>
 						<div class="btn-group btn-group-xs">
-							<button class="btn btn-warning mgr5px" ng-click="edit(item)">Edit</button>
+							<button class="btn btn-warning mgr5px" ng-click="edit(item)">Open Product</button>
 						</div>
 					</td>
 				</tr>

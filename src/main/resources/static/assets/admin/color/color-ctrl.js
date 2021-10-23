@@ -55,6 +55,8 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 		$scope.oldColor = "Old Color: rgb(" + item.red + ", " + item.green + ", " + item.blue + ")";
 		$scope.form = angular.copy(item);
 		$(".nav a:eq(0)").tab('show');
+		document.getElementById("homes").style.display = "block";
+		document.getElementById("lists").style.display = "none";
 	}
 	
 
@@ -84,7 +86,7 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 			  title: 'Create in successfully "' + name + '" color'
 			})
 			
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {
 			//alert("Lỗi thêm sản phẩm");
 			
@@ -137,7 +139,7 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 			  title: 'Update in successfully "' + name + '" color'
 			})
 			
-			$(".nav-tabs a:eq(1)").tab('show');
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 			
@@ -299,7 +301,11 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 	
 	$scope.pager = {
 		page: 0,
+<<<<<<< HEAD
 		size: 8,
+=======
+		size: 5,
+>>>>>>> a4b36e5425dbe2e7fc2ee3a366670e98abecd42e
 		get items() {
 			var start = this.page * this.size;
 			return $scope.items.slice(start, start + this.size);
