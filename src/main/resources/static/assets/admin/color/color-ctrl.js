@@ -301,11 +301,8 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 	
 	$scope.pager = {
 		page: 0,
-<<<<<<< HEAD
 		size: 8,
-=======
 		size: 5,
->>>>>>> a4b36e5425dbe2e7fc2ee3a366670e98abecd42e
 		get items() {
 			var start = this.page * this.size;
 			return $scope.items.slice(start, start + this.size);
