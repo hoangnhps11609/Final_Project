@@ -71,99 +71,82 @@ app.controller("account-ctrl", function ($scope, $http) {
 	$scope.create = function () {
 		var item = angular.copy($scope.form);
 		var username = item.username;
-		$http.post(`/rest/accounts`, item).then(resp => {
-			$scope.items.push(resp.data);
-			$scope.reset();
-			$scope.initialize();
-			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'success',
-			  title: 'Created in successfully "' + username + '" account'
-			})
+		
+		Swal.fire({
+			  title: 'Confirm adding "' + username + '" to the account list?',
+			  text: "",
+			  icon: 'info',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yes'
+			}).then((result) => {
+			  if (result.isConfirmed) {
+				$http.post(`/rest/accounts`, item).then(resp => {
+					$scope.items.push(resp.data);
+					$scope.reset();
+					$scope.initialize();
+			Swal.fire(
+			      'Successfully!',
+			      'Added "'+ username +'" to account list.',
+			      'success'
+			    )
 			
 			$(".nav a:eq(1)").tab('show')
 		}).catch(error => {			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
 			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Create failure'
-			})
+			Swal.fire(
+			      'Create Failure!',
+			      'Can not add "'+ username +'" !',
+			      'error'
+			    )
 			
 			console.log("Error", error);
 		});
+			}
+			})
 	}
 
 	//update sản phẩm mới
 	$scope.update = function () {
 		var item = angular.copy($scope.form);
 		var username = item.username;
-		$http.put(`/rest/accounts/${item.username}`, item).then(resp => {
-			var index = $scope.items.findIndex(p => p.username == item.username);
-			$scope.items[index] = item;
-			$scope.reset();
-			$scope.initialize();			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
+		
+		Swal.fire({
+			  title: 'Confirm edit information "' + username + '" !',
+			  text: "New information will be saved to the account list",
+			  icon: 'info',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yes'
+			}).then((result) => {
+			  if (result.isConfirmed) {
+				$http.put(`/rest/accounts/${item.username}`, item).then(resp => {
+					var index = $scope.items.findIndex(p => p.username == item.username);
+					$scope.items[index] = item;
+					$scope.reset();
+					$scope.initialize();			
 			
-			Toast.fire({
-			  icon: 'success',
-			  title: 'Updated in successfully "' + username + '" account'
-			})
+				Swal.fire(
+				      'Successfully!',
+				      'Updated "'+ username +'" to account list.',
+				      'success'
+			    	)
 			
 			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Update failure'
-			})
+			Swal.fire(
+			      'Update Failure!',
+			      'Can not update "'+ username +'" !',
+			      'error'
+			    )
 			
 			console.log("Error", error);
 
 		});
+		 	}
+			})
 	}
 
 

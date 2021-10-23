@@ -39,37 +39,37 @@
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<div>Name:</div>
-						<input class="form-control" ng-model="form.name" />
+						<input class="form-control" ng-model="form.name" required=""/>
 					</div>
 					<div class="form-group col-sm-6">
 						<div>Price:</div>
-						<input class="form-control" ng-model="form.price" />
+						<input class="form-control" ng-model="form.price" required=""/>
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<div>Category:</div>
-						<select class="form-control" ng-model="form.category.id">
+						<select class="form-control" ng-model="form.category.id" required="">
 							<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
 						</select>
 					</div>
 					<div class="form-group col-sm-6">
 						<div>Discount:</div>
-						<input type="number" class="form-control" ng-model="form.discount" />
+						<input type="number" class="form-control" ng-model="form.discount" required=""/>
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<div>Gender:</div>
-						<select class="form-control" ng-model="form.gender.id">
+						<select class="form-control" ng-model="form.gender.id" required="">
 							<option ng-repeat="g in genders" ng-value="g.id">{{g.name}}</option>
 						</select>
 					</div>
 					<div class="form-group col-sm-6">
 						<div>Brand:</div>
-						<select class="form-control" ng-model="form.brand.id">
+						<select class="form-control" ng-model="form.brand.id" required="">
 							<option ng-repeat="b in brands" ng-value="b.id">{{b.name}}</option>
 						</select>
 					</div>

@@ -28,101 +28,80 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
 		var name = item.name;
-		$http.post(`/rest/blogcategories`, item).then(resp => {
-			$scope.items.push(resp.data);
-			$scope.reset();
-			$scope.initialize();
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'success',
-			  title: 'Create in successfully "' + name + '" blog category'
-			})
-			
+		
+		Swal.fire({
+			  title: 'Confirm adding "' + name + '" to the blog category list?',
+			  text: "",
+			  icon: 'info',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yes'
+			}).then((result) => {
+			  if (result.isConfirmed) {
+				$http.post(`/rest/blogcategories`, item).then(resp => {
+					$scope.items.push(resp.data);
+					$scope.reset();
+					$scope.initialize();
+				Swal.fire(
+				      'Successfully!',
+				      'Added "'+ name +'" to blog category list.',
+				      'success'
+				    )
 			$(".nav-tabs a:eq(1)").tab('show');
 		}).catch(error => {			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Create failure'
-			})
+			Swal.fire(
+			      'Create Failure!',
+			      'Can not add "'+ name +'" !',
+			      'error'
+			    )
 			
 			console.log("Error", error);
 		});
+			}
+			})
 	}
 
 	//update sản phẩm mới
 	$scope.update = function() {
 		var item = angular.copy($scope.form);
 		var name = item.name;
-		$http.put(`/rest/blogcategories/${item.id}`, item).then(resp => {
-			var index = $scope.items.findIndex(p => p.id == item.id);
-			$scope.items[index] = item;
-			$scope.reset();
-			$scope.initialize();
+		
+		Swal.fire({
+			  title: 'Confirm edit information "' + name + '" !',
+			  text: "New information will be saved to the blog category list",
+			  icon: 'info',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yes'
+			}).then((result) => {
+			  if (result.isConfirmed) {
+				$http.put(`/rest/blogcategories/${item.id}`, item).then(resp => {
+					var index = $scope.items.findIndex(p => p.id == item.id);
+					$scope.items[index] = item;
+					$scope.reset();
+					$scope.initialize();
 			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'success',
-			  title: 'Update in successfully "' + name + '" blog category'
-			})
+				Swal.fire(
+				      'Successfully!',
+				      'Updated "'+ name +'" to blog category list.',
+				      'success'
+			    	)
 			
 			$(".nav-tabs a:eq(1)").tab('show');
 		}).catch(error => {
-			//alert("Lỗi cập nhật sản phẩm");
-			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Update failure'
-			})
+			Swal.fire(
+			      'Update Failure!',
+			      'Can not update "'+ name +'" !',
+			      'error'
+			    )
 			
 			console.log("Error", error);
 
 		});
+			}
+			})
 	}
 
 	//Xóa sản phẩm mới
