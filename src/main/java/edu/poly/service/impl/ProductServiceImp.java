@@ -15,7 +15,6 @@ import edu.poly.service.ProductService;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductDetail;
-import edu.poly.entity.Report;
 
 @Service
 public class ProductServiceImp implements ProductService{
@@ -110,13 +109,6 @@ public class ProductServiceImp implements ProductService{
 	public List<Product> findByCategoryIdandGender(String categoryid, int gender) {
 		return productDAO.findByCategoryIdandGender(categoryid, gender);
 	}
-	
-	@Override
-	public List<Report> getReport() {
-		// TODO Auto-generated method stub
-		return productDAO.getInventoryByCategory();
-	}
-
 
 	@Override
 	public Page<Product> findByBrandId(Integer brand, Pageable pageable) {
@@ -187,13 +179,7 @@ public class ProductServiceImp implements ProductService{
 	@Override
 	public List<ProductByColor> getProInColor(Integer id) {
 		return productDAO.getProInColor(id);
-	}
-
-
-
-
-	
-	
+	}	
 
 
 

@@ -10,8 +10,6 @@ import org.springframework.data.domain.Sort;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductDetail;
-import edu.poly.entity.Report;
-
 
 public interface ProductService {
 
@@ -52,10 +50,6 @@ public interface ProductService {
 
 
 	List<Product> findByCategoryIdandGender(String categoryid, int gender);
-
-
-	List<Report> getReport();
-
 
 	Page<Product> findByBrandId(Integer brand, Pageable pageable);
 

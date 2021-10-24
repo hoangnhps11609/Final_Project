@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductDetail;
-import edu.poly.entity.Report;
 import edu.poly.service.ProductDetailService;
 import edu.poly.service.ProductService;
 

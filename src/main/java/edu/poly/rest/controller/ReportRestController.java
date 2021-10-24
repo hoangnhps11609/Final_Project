@@ -1,8 +1,10 @@
 package edu.poly.rest.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,7 @@ import edu.poly.service.ProductService;
 @RestController
 @RequestMapping("/rest/reports")
 public class ReportRestController {
+	
 	
 	@Autowired
 	OrderService orderService;
@@ -45,6 +48,8 @@ public class ReportRestController {
 	public Long customers() {
 		return accountService.countCustomers();
 	}
+	
+	
 
 
 }

@@ -74,11 +74,6 @@ public class AccountServiceImp implements AccountService{
 	}
 
 	@Override
-	public Double test() {
-		return adao.test();
-	}
-
-	@Override
 	public Long countCustomers() {
 		return adao.countCustomers();
 	}

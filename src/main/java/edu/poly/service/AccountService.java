@@ -31,7 +31,5 @@ public interface AccountService {
 
 	List<Account> getLoyalCustomer();
 
-	Double test();
-
 	Long countCustomers();
 }

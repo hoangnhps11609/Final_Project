@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductDetail;
-import edu.poly.entity.Report;
 @Repository
 public interface ProductDAO extends JpaRepository<Product, Integer> {
 	
@@ -46,11 +45,6 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	@Query
 	("SELECT p FROM Product p WHERE p.category.id=?1 and p.gender.id=?2 and p.available = 'true'")
 	List<Product> findByCategoryIdandGender(String categoryid, int gender);
-	
-
-	@Query("SELECT new Report(o.category, sum(o.price), count(o))   FROM Product o  GROUP BY o.category" + " ORDER BY sum(o.price) DESC")
-	List<Report> getInventoryByCategory();
-
 	
 	@Query
 	("SELECT p FROM Product p WHERE p.brand.id=?1 and p.available = 'true'")
@@ -99,7 +93,4 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	("SELECT new ProductByColor(p.product, count(p.product)) FROM ProductDetail p WHERE p.color.id=?1 group by p.product")
 	List<ProductByColor> getProInColor(Integer id);
 	
-
-
-
 }
