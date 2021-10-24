@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.poly.entity.BrandTop;
 import edu.poly.entity.Category;
 import edu.poly.entity.Color;
+import edu.poly.entity.ColorTop;
 import edu.poly.service.ColorService;
 
 @CrossOrigin("*")
@@ -55,6 +57,12 @@ public class ColorRestController {
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable("id") Integer id) {
 		cService.deleteById(id);
+	}
+	
+	@GetMapping("/top")
+	public List<ColorTop> getColorTop() {
+		List<ColorTop> list = cService.findColorTop();
+		return list;
 	}
 	
 	

@@ -22,6 +22,7 @@ public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 	@Query
 	("SELECT p FROM ProductDetail p WHERE p.color.id=?1")
 	Page<ProductDetail> findByColor(Integer color, Pageable pageable);
+	
 
 	
 	@Query

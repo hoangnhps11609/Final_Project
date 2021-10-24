@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import edu.poly.dao.BrandDAO;
 import edu.poly.entity.Brand;
+import edu.poly.entity.BrandInventory;
+import edu.poly.entity.BrandTop;
 import edu.poly.service.BrandService;
 @Service
 public class BrandServiceImpl implements BrandService{
@@ -194,6 +196,18 @@ public class BrandServiceImpl implements BrandService{
 	@Override
 	public Brand findbyBrandId(Integer brand) {
 		return brandDAO.findbyBrandId(brand);
+	}
+
+	@Override
+	public List<BrandTop> findBrandTop() {
+		// TODO Auto-generated method stub
+		return brandDAO.findBrandTop();
+	}
+
+	@Override
+	public List<BrandInventory> findBrandInventory() {
+		// TODO Auto-generated method stub
+		return brandDAO.findBrandInventory();
 	}
 	
 	

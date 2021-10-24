@@ -22,6 +22,8 @@ public interface ProductService {
 //
 //
 	List<Product> findByCategoryId(String cid, Sort sort);
+	
+	List<Product> findByBrandId(Integer cid, Sort sort);
 
 
 	Product create(Product product);
@@ -82,6 +84,8 @@ public interface ProductService {
 
 
 	Long getCount(String cateid);
+
+	Long getCountBrand(Integer brandid);
 
 
 	Long getCountProDetail(Integer id);

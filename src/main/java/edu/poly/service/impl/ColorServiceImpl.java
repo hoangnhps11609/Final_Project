@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import edu.poly.dao.ColorDAO;
 import edu.poly.entity.Account;
 import edu.poly.entity.Color;
+import edu.poly.entity.ColorTop;
 import edu.poly.service.ColorService;
 @Service
 public class ColorServiceImpl implements ColorService{
@@ -177,6 +178,12 @@ public class ColorServiceImpl implements ColorService{
 	public Color update(Account account) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<ColorTop> findColorTop() {
+		// TODO Auto-generated method stub
+		return colorDAO.findColorTop();
 	};
 	
 	

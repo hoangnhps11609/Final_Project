@@ -44,9 +44,18 @@ public class ProductRestController {
 		return pService.findByCategoryId(cateid, Sort.by("id").descending());
 	}
 	
+
+	
+
+	
 	@GetMapping("category/count/{cateid}")
 	public Long getCountInCategory(@PathVariable("cateid") String cateid) {
 		return pService.getCount(cateid);
+	}
+	
+	@GetMapping("brand/count/{brandid}")
+	public Long getCountInCategory(@PathVariable("brandid") Integer brandid) {
+		return pService.getCountBrand(brandid);
 	}
 	
 	@GetMapping("productdetail/count/{id}")

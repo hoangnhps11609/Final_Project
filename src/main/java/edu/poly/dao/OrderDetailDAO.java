@@ -25,5 +25,6 @@ public interface OrderDetailDAO extends JpaRepository<OrderDetail, Long> {
 	
 	@Query("SELECT sum(od.quantity) FROM OrderDetail od WHERE od.order.id=?1 group by od.order.id")
 	Long getQuantity(Long id);
+	
 
 }

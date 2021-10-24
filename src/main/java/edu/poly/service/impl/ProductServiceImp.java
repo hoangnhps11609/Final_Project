@@ -190,6 +190,20 @@ public class ProductServiceImp implements ProductService{
 	}
 
 
+	@Override
+	public List<Product> findByBrandId(Integer cid, Sort sort) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Long getCountBrand(Integer brandid) {
+		// TODO Auto-generated method stub
+		return productDAO.getCountBrand(brandid);
+	}
+
+
 
 
 	
