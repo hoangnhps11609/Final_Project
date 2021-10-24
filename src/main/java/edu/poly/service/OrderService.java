@@ -59,4 +59,11 @@ public interface OrderService {
 
 	List<Order> findByUsernameandStatus(String username, Sort sort);
 
+	Double getRevenue();
+
+	Long getSales();
+
+	Long countOrders();
+
+
 }

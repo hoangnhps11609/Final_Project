@@ -61,9 +61,6 @@ app.config(function ($routeProvider) {
 		}).when("/productdetail", {
 			templateUrl: "/assets/admin/productdetail/index.html",
 			controller: "productdetail-ctrl"
-		}).when("/accountreport", {
-			templateUrl: "/assets/admin/accountreport/index.html",
-			controller: "accountreport-ctrl"
 		}).when("/report", {
 			templateUrl: "/assets/admin/report/index.html",
 			controller: "report-ctrl"

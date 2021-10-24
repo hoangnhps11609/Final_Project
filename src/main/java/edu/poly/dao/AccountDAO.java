@@ -32,6 +32,10 @@ public interface AccountDAO extends JpaRepository<Account, String>{
 
 	@Query("SELECT a FROM Account a where DATEDIFF(day, a.createDate, GETDATE()) >= 20")
 	List<Account> getLoyalCustomer();
+
+
+	@Query("Select count(a) from Account a")
+	Long countCustomers();
 	
 	
 //	@Query(value="select acc.*, o.sodonhang, o.Tongtien\r\n"

@@ -73,6 +73,16 @@ public class AccountServiceImp implements AccountService{
 		return adao.getLoyalCustomer();
 	}
 
+	@Override
+	public Double test() {
+		return adao.test();
+	}
+
+	@Override
+	public Long countCustomers() {
+		return adao.countCustomers();
+	}
+
 	
 
 }

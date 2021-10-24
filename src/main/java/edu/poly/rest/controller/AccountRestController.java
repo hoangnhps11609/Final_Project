@@ -20,6 +20,7 @@ import edu.poly.entity.Account;
 import edu.poly.entity.CountOrderOfAccount;
 import edu.poly.entity.Order;
 import edu.poly.service.AccountService;
+import edu.poly.service.OrderService;
 
 import java.util.Optional;
 
@@ -30,6 +31,9 @@ import java.util.Optional;
 public class AccountRestController {
 	@Autowired
 	AccountService accService;
+	
+	@Autowired
+	OrderService orderService;
 	
 	@GetMapping
 	public List<Account> getAccounts(@RequestParam("admin")Optional<Boolean> admin){
@@ -49,6 +53,8 @@ public class AccountRestController {
 	public Account getOne(@PathVariable("username") String username) {
 		return accService.findById(username);
 	}
+	
+	
 	
 	@PostMapping
 	public Account create(@RequestBody Account account) {
