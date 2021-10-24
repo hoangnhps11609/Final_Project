@@ -59,8 +59,8 @@ public class AccountServiceImp implements AccountService{
 	}
 
 	@Override
-	public List<CountOrderOfAccount> getCountOrder(Long count) {
-		return adao.getCountOrder(count);
+	public List<CountOrderOfAccount> getCountOrder() {
+		return adao.getCountOrder();
 	}
 
 	@Override

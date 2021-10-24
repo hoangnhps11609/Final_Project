@@ -30,7 +30,6 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
 		var name = item.name;
-<<<<<<< HEAD
 		
 		Swal.fire({
 			  title: 'Confirm adding "' + name + '" to the blog category list?',
@@ -52,7 +51,6 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 				      'success'
 				    )
 			$(".nav-tabs a:eq(1)").tab('show');
-=======
 		$http.post(`/rest/blogcategories`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
@@ -75,7 +73,6 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 			})
 			
 			$(".nav a:eq(1)").tab('show');
->>>>>>> refs/remotes/origin/main
 		}).catch(error => {			
 			Swal.fire(
 			      'Create Failure!',
@@ -85,7 +82,7 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 			
 			console.log("Error", error);
 		});
-			}
+			})}
 			})
 	}
 

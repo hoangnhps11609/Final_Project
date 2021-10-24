@@ -235,7 +235,7 @@ app.controller("account-ctrl", function ($scope, $http) {
 	}	
 	
 	$scope.GoldenCustomer = function(){
-		$http.get("/rest/accounts/goldencustomer/5").then(resp => {
+		$http.get("/rest/accounts/goldencustomer").then(resp => {
 			$scope.countOrders = resp.data;
 			$scope.title = "Rank Customer"
 			$('#AccountMuaNhieuNhatModalCenter').appendTo("body").modal('show');

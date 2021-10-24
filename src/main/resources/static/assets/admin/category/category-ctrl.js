@@ -61,9 +61,7 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 	//Thêm sản phẩm mới
 	$scope.create = function () {
 		var item = angular.copy($scope.form);
-		var name = item.name;
-<<<<<<< HEAD
-		
+		var name = item.name;		
 		Swal.fire({
 			  title: 'Confirm adding "' + name + '" to the category list?',
 			  text: "",
@@ -85,7 +83,6 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 			      'success'
 			    )
 				$(".nav-tabs a:eq(1)").tab('show');
-=======
 		$http.post(`/rest/categories`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
@@ -109,7 +106,6 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 			})
 			
 			$(".nav a:eq(1)").tab('show');
->>>>>>> refs/remotes/origin/main
 		}).catch(error => {
 
 			Swal.fire(
@@ -121,7 +117,7 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 			console.log("Error", error);
 		});
 		
-			  }
+			})}
 			})
 	}
 
@@ -129,7 +125,6 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 	$scope.update = function () {
 		var item = angular.copy($scope.form);
 		var name = item.name;
-<<<<<<< HEAD
 		Swal.fire({
 			  title: 'Confirm edit information "' + name + '" !',
 			  text: "New information will be saved to the category list",
@@ -158,7 +153,6 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 			      'Can not update "'+ name +'" !',
 			      'error'
 			    )
-=======
 		$http.put(`/rest/categories/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
@@ -195,19 +189,15 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 			    toast.addEventListener('mouseenter', Swal.stopTimer)
 			    toast.addEventListener('mouseleave', Swal.resumeTimer)
 			  }
-			})
+			});
 			
 			Toast.fire({
 			  icon: 'warning',
 			  title: 'Update failure'
-			})
->>>>>>> refs/remotes/origin/main
-			
+			});
 			console.log("Error", error);
-
 		});
-		
-			  }
+			})}
 			})
 	}
 
