@@ -10,6 +10,64 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 
 	}
 	
+	$scope.inventoryColor = function(){
+		$('#InventoryColorModalCenter').appendTo("body").modal('show');
+		$http.get("/rest/colors/inventory").then(resp => {
+			$scope.inventories = resp.data;
+		}).catch(error => {
+			alert(error);
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+	}
+	
+	$scope.topColor = function(){
+		$('#TopColorModalCenter').appendTo("body").modal('show');
+		$http.get("/rest/colors/top").then(resp => {
+			$scope.tops = resp.data;
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+	}
+	
 		$scope.search = function () {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/categories/${statistic.from}`).then(resp => {
@@ -140,6 +198,8 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 			}
 			})
 	}
+	
+	
 
 	//Xóa sản phẩm mới
 	$scope.delete = function (item) {
@@ -234,6 +294,45 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 
 
 	}
+	
+	$scope.viewProductToColorTrenTop = function (item) {
+			$http.get(`/rest/productdetails/color2/${item.id}`).then(resp => {
+				$scope.ProColorItems = resp.data;
+				$scope.color = item;
+			$('#exampleModalCenterColor22').appendTo("body").modal('show');
+			$http.get(`/rest/productdetails/color/count/${item.id}`).then(resp => {
+				$scope.sumProInColor = resp.data;
+			})
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+		
+		
+
+
+	}
+	
+	
 
 	
 	$scope.viewProDetail = function(item){
@@ -302,6 +401,32 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 		}
 	}
 	
+	$scope.pager3 = {
+		page: 0,
+		size: 5,
+		get ProColorItems() {
+			var start = this.page * this.size;
+			return $scope.ProColorItems.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.ProColorItems.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
+	
 	$scope.pager2 = {
 		page: 0,
 		size: 5,
@@ -311,6 +436,32 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 		},
 		get count() {
 			return Math.ceil(1.0 * $scope.ProCateItems.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
+	
+		$scope.pagerTopColor = {
+		page: 0,
+		size: 3,
+		get tops() {
+			var start = this.page * this.size;
+			return $scope.tops.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.tops.length / this.size);
 		}, first() {
 			this.page = 0;
 		}, prev() {
@@ -338,6 +489,32 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 		},
 		get count() {
 			return Math.ceil(1.0 * $scope.ProDetailitems.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
+	
+	$scope.InventoryColorModalCenter = {
+		page: 0,
+		size: 3,
+		get inventories() {
+			var start = this.page * this.size;
+			return $scope.inventories.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.inventories.length / this.size);
 		}, first() {
 			this.page = 0;
 		}, prev() {

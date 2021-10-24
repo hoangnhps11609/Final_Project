@@ -1,6 +1,19 @@
 <div class="card">
-	<div class="card-header"><h3 class="noibacchu">List Product Detail</h3><i  ng-click="initialize()" class="fa fa-refresh" style="font-size:18px; position: absolute; right: 20px; top: 20px"> <span>Refresh</span> </i></div>
-
+	<div class="card-header"><h3 class="noibacchu">List Product Detail</h3><i  ng-click="initialize()" class="fa fa-refresh" style="font-size:18px; position: absolute; right: 20px; top: 20px"> <span>Refresh</span> </i>
+			<div class="row pt-3">
+			<div class="col-2">
+				<button class="btn btn-outline-warning"
+					style="width: 100%; font-weight: bolder" ng-click="topSize()">Top
+					Size</button>
+			</div>
+			<div class="col-2">
+				<button class="btn btn-outline-primary"
+					style="width: 100%; font-weight: bolder"
+					ng-click="inventorySize()">Inventory Size</button>
+			</div>
+		</div>
+	</div>
+		
 	<div class="card-body">
 		<table class="table table-striped text-center">
 			<thead>
@@ -88,6 +101,167 @@
 						{{pager2.count}}</button>
 					<button class="btn btn-primary" ng-click="pager2.next()">Next</button>
 					<button class="btn btn-primary" ng-click="pager2.last()">Last</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--Top Size-->
+<div class="modal fade" id="TopSizeModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+		style="max-width: 70%">
+		<div class="modal-content">
+			<div class="modal-header bg-warning">
+				<div class="col row">
+					<h5>Top Size</h5>
+					<button type="button" class="close " data-dismiss="modal"
+						ng-click="closeOrderDetail()" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</div>
+			<div class="modal-body">
+				<table class="table table-striped text-center">
+					<thead>
+						<tr style="position: relative;">
+							<th style="width: 10%"></th>
+							<th style="width: 25%" scope="col">ID</th>
+							<th style="width: 25%" scope="col">Name <br />(Click to
+								view Product)
+							</th>
+							<th>Seller</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in pagerTopSize.tops">
+							<th></th>
+							<td>{{item.size.id}}</td>
+							<td style="width: 250px"><a href="" class="btn btn-outline-primary" ng-click="viewProductToSizeTrenTop(item.size)">{{item.size.name}}</a></td>
+							<td>{{item.seller}}</td>
+						</tr>
+					</tbody>
+				</table>
+					<div class="card-footer text-muted text-center">
+					<button class="btn btn-primary" ng-click="pagerTopSize.first()">First</button>
+					<button class="btn btn-primary" ng-click="pagerTopSize.prev()">Prev</button>
+					<button class="btn btn-success">{{pagerTopSize.page+1}} of
+						{{pagerTopSize.count}}</button>
+					<button class="btn btn-primary" ng-click="pagerTopSize.next()">Next</button>
+					<button class="btn btn-primary" ng-click="pagerTopSize.last()">Last</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenterSize22" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+		style="max-width: 70%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitleBrand">ProductDetail Of
+					Size : {{color.name}}</h5>
+				<h5 class="modal-title px-5" id="exampleModalLongTitleBrand">Inventory:
+					{{sumProInSize}}</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-striped text-center">
+					<thead>
+						<tr>
+							<th width="10%" scope="col">Image</th>
+							<th width="3%" scope="col">ID</th>
+							<th width="10%" scope="col">Name
+							</th>
+							<th width="10%" scope="col">Color</th>
+							<th width="10%" scope="col">Size</th>
+							<th width="10%" scope="col">Quantity</th>
+							<th width="10%" scope="col">Create Date</th>
+							<th width="10%" scope="col">Available</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in pager3.ProSizeItems">
+							<td width="100px"><img
+								ng-src="{{'/assets/images/' + item.image}}" width="100%" /></td>
+							<td>{{item.id}}</td>
+							<td style="max-width: 250px">
+								{{item.product.name}}</td>
+							<td>{{item.color.name}}</td>
+							<td>{{item.size.name}}</td>
+							<td>{{item.quantity}}</td>
+							<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
+							<td>{{item.available}}</td>
+
+						</tr>
+					</tbody>
+				</table>
+				<div class="card-footer text-muted text-center">
+					<button class="btn btn-primary" ng-click="pager3.first()">First</button>
+					<button class="btn btn-primary" ng-click="pager3.prev()">Prev</button>
+					<button class="btn btn-success">{{pager3.page+1}} of
+						{{pager3.count}}</button>
+					<button class="btn btn-primary" ng-click="pager3.next()">Next</button>
+					<button class="btn btn-primary" ng-click="pager3.last()">Last</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--Inventory Size-->
+<div class="modal fade" id="InventorySizeModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+		style="max-width: 70%">
+		<div class="modal-content">
+			<div class="modal-header bg-warning">
+				<div class="col row">
+					<h5>Inventory Size</h5>
+					<button type="button" class="close " data-dismiss="modal"
+						ng-click="closeOrderDetail()" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</div>
+			<div class="modal-body">
+				<table class="table table-striped text-center">
+					<thead>
+						<tr style="position: relative;">
+							<th style="width: 10%"></th>
+							<th style="width: 25%" scope="col">ID</th>
+							<th style="width: 25%" scope="col">Name <br />(Click to
+								view Product)
+							</th>
+							<th>Inventory</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in InventorySizeModalCenter.inventories">
+							<th></th>
+							<td>{{item.size.id}}</td>
+							<td style="width: 250px"><a href="" class="btn btn-outline-primary" ng-click="viewProductToSizeTrenTop(item.size)">{{item.size.name}}</a></td>
+							<td>{{item.inventory}}</td>
+						</tr>
+					</tbody>
+				</table>
+						<div class="card-footer text-muted text-center">
+					<button class="btn btn-primary" ng-click="InventorySizeModalCenter.first()">First</button>
+					<button class="btn btn-primary" ng-click="InventorySizeModalCenterprev()">Prev</button>
+					<button class="btn btn-success">{{InventorySizeModalCenter.page+1}} of
+						{{InventorySizeModalCenter.count}}</button>
+					<button class="btn btn-primary" ng-click="InventorySizeModalCenter.next()">Next</button>
+					<button class="btn btn-primary" ng-click="InventorySizeModalCenter.last()">Last</button>
 				</div>
 			</div>
 		</div>

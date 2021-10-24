@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import edu.poly.dao.SizeDAO;
 import edu.poly.entity.Size;
+import edu.poly.entity.SizeInventory;
+import edu.poly.entity.SizeTop;
 import edu.poly.service.SizeService;
 @Service
 public class SizeServiceImpl implements SizeService{
@@ -187,6 +189,18 @@ public class SizeServiceImpl implements SizeService{
 	public List<Size> TimKiemTatCaSanPhamThuocSize(String size) {
 		// TODO Auto-generated method stub
 		return sizeDAO.TimKiemTatCaSanPhanThuocSize(size);
+	}
+
+	@Override
+	public List<SizeTop> findSizeTop() {
+		// TODO Auto-generated method stub
+		return sizeDAO.findSizeTop();
+	}
+
+	@Override
+	public List<SizeInventory> findSizeInventory() {
+		// TODO Auto-generated method stub
+		return sizeDAO.findSizeInventory();
 	}
 	
 	

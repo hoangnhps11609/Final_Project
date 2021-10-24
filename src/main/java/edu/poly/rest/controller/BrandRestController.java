@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.poly.entity.Brand;
+import edu.poly.entity.BrandInventory;
+import edu.poly.entity.BrandTop;
 import edu.poly.entity.Category;
+import edu.poly.entity.CategoryInventory;
+import edu.poly.entity.CategoryTop;
 import edu.poly.service.BrandService;
 import edu.poly.service.CategoryService;
 
@@ -42,9 +46,21 @@ public class BrandRestController {
 		return bService.create(brand);
 	}
 	
+	@GetMapping("/top")
+	public List<BrandTop> getBrandTop() {
+		List<BrandTop> list = bService.findBrandTop();
+		return list;
+	}
+	
 	@PutMapping("{id}")
 	public Brand update(@PathVariable("id") Integer id, @RequestBody Brand brand) {
 		return bService.update(brand);
+	}
+	
+	@GetMapping("/inventory")
+	public List<BrandInventory> getBrandInventory() {
+		List<BrandInventory> list = bService.findBrandInventory();
+		return list;
 	}
 	
 	@DeleteMapping("{id}")

@@ -80,9 +80,19 @@ public class ProductDetailRestController {
 		return productDetailService.TimTatCaSanPhamKhiColorBang(id);
 	}
 	
+	@GetMapping("color2/{id}")
+	public List<ProductDetail> TimTatCaSanPhamKhiColorBang2(@PathVariable("id") Integer id){
+		return productDetailService.TimTatCaSanPhamKhiColorBang(id);
+	}
+	
 	@GetMapping("color/count/{id}")
 	public Long getCountProInColor(@PathVariable("id") Integer id){
 		return productDetailService.getCountProInColor(id);
+	}
+	
+	@GetMapping("size/count/{id}")
+	public Long getCountProInSize(@PathVariable("id") Integer id){
+		return productDetailService.getCountProInSize(id);
 	}
 
 	@GetMapping("size/{id}")

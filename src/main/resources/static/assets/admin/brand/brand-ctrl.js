@@ -57,6 +57,44 @@ app.controller("brand-ctrl", function ($scope, $http, $window) {
 		document.getElementById("homes").style.display = "block";
 		document.getElementById("lists").style.display = "none";
 	}
+	
+	
+	$scope.proDetail = function(item){
+		$('#exampleModalCenter').appendTo("body").modal('hide');
+		$http.get(`/rest/products/product/${item.id}`).then(resp => {
+				$scope.product = resp.data;
+			});
+		$http.get(`/rest/products/productdetail/count/${item.id}`).then(resp => {
+				$scope.countProDetail = resp.data;
+		});
+		$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
+			$scope.ProDetailitems = resp.data;
+			$('#ProDetailModalCenterBrand').appendTo("body").modal('show');
+			
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+	}
 
 	//Thêm sản phẩm mới
 	$scope.create = function () {
@@ -96,6 +134,72 @@ app.controller("brand-ctrl", function ($scope, $http, $window) {
 		});
 			}
 			})
+	}
+	
+		$scope.viewProductToBrandTrenTop = function (item) {
+			$http.get(`/rest/products/brand/${item.id}`).then(resp => {
+				$scope.ProBrandItems = resp.data;
+				$scope.brand = item;
+			$('#exampleModalCenterBrand22').appendTo("body").modal('show');
+			$http.get(`/rest/products/brand/count/${item.id}`).then(resp => {
+				$scope.sumProInBrand = resp.data;
+			})
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+		
+		
+
+
+	}
+	
+	$scope.topBrand = function(){
+		$('#TopBrandModalCenter').appendTo("body").modal('show');
+		$http.get("/rest/brands/top").then(resp => {
+			$scope.tops = resp.data;
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
 	}
 
 	//update sản phẩm mới
@@ -245,6 +349,36 @@ app.controller("brand-ctrl", function ($scope, $http, $window) {
 		}
 	}
 	
+	
+	$scope.inventoryProduct = function(){
+		$('#InventoryBrandModalCenter').appendTo("body").modal('show');
+		$http.get("/rest/brands/inventory").then(resp => {
+			$scope.inventories = resp.data;
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+	}
+	
 	$scope.pager2 = {
 		page: 0,
 		size: 5,
@@ -271,7 +405,88 @@ app.controller("brand-ctrl", function ($scope, $http, $window) {
 		}
 	}
 	
+		$scope.pagerProDet = {
+		page: 0,
+		size: 3,
+		get ProDetailitems() {
+			var start = this.page * this.size;
+			return $scope.ProDetailitems.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.ProDetailitems.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
+	
+	$scope.pagerTopBrand = {
+		page: 0,
+		size: 3,
+		get tops() {
+			var start = this.page * this.size;
+			return $scope.tops.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.tops.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
+	
+	$scope.pagerBrandInventory = {
+		page: 0,
+		size: 3,
+		get inventories() {
+			var start = this.page * this.size;
+			return $scope.inventories.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.inventories.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
+	
 	$scope.CreateNewProduct = function(){
 		$window.location.href = 'http://localhost:8080/assets/admin/index.html#!/product';
+	}
+	$scope.closeProDetail = function(){
+		$('#exampleModalCenterBrand22').appendTo("body").modal('show');
 	}
 });

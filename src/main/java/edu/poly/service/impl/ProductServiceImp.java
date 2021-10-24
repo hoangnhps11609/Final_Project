@@ -179,7 +179,31 @@ public class ProductServiceImp implements ProductService{
 	@Override
 	public List<ProductByColor> getProInColor(Integer id) {
 		return productDAO.getProInColor(id);
+<<<<<<< HEAD
 	}	
+=======
+	}
+
+
+	@Override
+	public List<Product> findByBrandId(Integer cid, Sort sort) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Long getCountBrand(Integer brandid) {
+		// TODO Auto-generated method stub
+		return productDAO.getCountBrand(brandid);
+	}
+
+
+
+
+	
+	
+>>>>>>> b0d6ed2e1cadf84390a2d5cff0619dd3862de88e
 
 
 

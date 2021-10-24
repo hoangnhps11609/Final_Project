@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.poly.entity.Color;
+import edu.poly.entity.ColorInventory;
+import edu.poly.entity.ColorTop;
 import edu.poly.entity.Size;
+import edu.poly.entity.SizeInventory;
+import edu.poly.entity.SizeTop;
 import edu.poly.service.ColorService;
 import edu.poly.service.SizeService;
 
@@ -51,8 +55,20 @@ public class SizeRestController {
 		cService.deleteById(id);
 	}
 	
+	@GetMapping("/top")
+	public List<SizeTop> getColorTop() {
+		List<SizeTop> list = cService.findSizeTop();
+		return list;
+	}
+	
 	@GetMapping("get/{valued}")
 	public List<Size> TimTatCaSanPhamThuocSize(@PathVariable ("valued")String valued){
 		return cService.TimKiemTatCaSanPhamThuocSize(valued);
+	}
+	
+	@GetMapping("/inventory")
+	public List<SizeInventory> getSizeInventory() {
+		List<SizeInventory> list = cService.findSizeInventory();
+		return list;
 	}
 }

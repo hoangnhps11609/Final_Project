@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import edu.poly.entity.Size;
+import edu.poly.entity.SizeInventory;
+import edu.poly.entity.SizeTop;
 
 public interface SizeService {
 
@@ -77,5 +79,10 @@ public interface SizeService {
 	List<Size> TimTheoNameCuaSize(String size);
 	
 	List<Size> TimKiemTatCaSanPhamThuocSize(String size);
+	
+	List<SizeTop> findSizeTop();
+	
+	List<SizeInventory> findSizeInventory();
+
 
 }

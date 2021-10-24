@@ -9,6 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import edu.poly.entity.Brand;
+import edu.poly.entity.BrandInventory;
+import edu.poly.entity.BrandTop;
+import edu.poly.entity.CategoryInventory;
 
 public interface BrandService {
 
@@ -79,5 +82,10 @@ public interface BrandService {
 	List<Brand> getListBrand (String valued);
 
 	Brand findbyBrandId(Integer brand);
+	
+	List<BrandTop> findBrandTop();
+	
+	List<BrandInventory> findBrandInventory();
+
 
 }

@@ -19,6 +19,10 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	@Query
 	("SELECT p FROM Product p WHERE p.category.id=?1 and p.available = 'true'")
 	List<Product> findByCategoryId(String cid, Sort sort);
+	
+	@Query
+	("SELECT p FROM Product p WHERE p.brand.id=?1 and p.available = 'true'")
+	List<Product> findByBrandId(Integer cid, Sort sort);
 
 	Page<Product> findByNameContaining(String name, Pageable pageable);
 
@@ -84,6 +88,10 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	@Query
 	("Select sum(pd.quantity) from ProductDetail pd where pd.product.category.id = ?1 group by pd.product.category")
 	Long getCount(String cateid);
+	
+	@Query
+	("Select sum(pd.quantity) from ProductDetail pd where pd.product.brand.id = ?1 group by pd.product.brand")
+	Long getCountBrand(Integer cateid);
 
 	@Query
 	("Select sum(pd.quantity) from ProductDetail pd where pd.product.id = ?1 group by pd.product")

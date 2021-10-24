@@ -151,7 +151,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="item in tops">
+						<tr ng-repeat="item in pagerProCate.tops">
 							<th></th>
 							<td>{{item.category.id}}</td>
 							<td style="width: 250px"><a href="" class="btn btn-outline-primary" ng-click="viewProductToCate(item.category)">{{item.category.name}}</a></td>
@@ -159,6 +159,14 @@
 						</tr>
 					</tbody>
 				</table>
+					<div class="card-footer text-muted text-center">
+					<button class="btn btn-primary" ng-click="pagerProCate.first()">First</button>
+					<button class="btn btn-primary" ng-click="pagerProCate.prev()">Prev</button>
+					<button class="btn btn-success">{{pagerProCate.page+1}} of
+						{{pagerProCate.count}}</button>
+					<button class="btn btn-primary" ng-click="pagerProCate.next()">Next</button>
+					<button class="btn btn-primary" ng-click="pagerProCate.last()">Last</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -193,7 +201,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="item in inventories">
+						<tr ng-repeat="item in pagerInventory.inventories">
 							<th></th>
 							<td>{{item.category.id}}</td>
 							<td style="width: 250px"><a href="" class="btn btn-outline-primary" ng-click="viewProductToCate(item.category)">{{item.category.name}}</a></td>
@@ -201,6 +209,14 @@
 						</tr>
 					</tbody>
 				</table>
+					<div class="card-footer text-muted text-center">
+					<button class="btn btn-primary" ng-click="pagerInventory.first()">First</button>
+					<button class="btn btn-primary" ng-click="pagerInventory.prev()">Prev</button>
+					<button class="btn btn-success">{{pagerInventory.page+1}} of
+						{{pagerInventory.count}}</button>
+					<button class="btn btn-primary" ng-click="pagerInventory.next()">Next</button>
+					<button class="btn btn-primary" ng-click="pagerInventory.last()">Last</button>
+				</div>
 			</div>
 		</div>
 	</div>
