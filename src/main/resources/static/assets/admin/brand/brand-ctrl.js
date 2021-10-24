@@ -137,7 +137,7 @@ app.controller("brand-ctrl", function ($scope, $http, $window) {
 	}
 	
 		$scope.viewProductToBrandTrenTop = function (item) {
-			$http.get(`/rest/productdetails/color/${item.id}`).then(resp => {
+			$http.get(`/rest/products/brand/${item.id}`).then(resp => {
 				$scope.ProBrandItems = resp.data;
 				$scope.brand = item;
 			$('#exampleModalCenterBrand22').appendTo("body").modal('show');
