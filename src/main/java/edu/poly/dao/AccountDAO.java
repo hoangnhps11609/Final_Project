@@ -22,8 +22,8 @@ public interface AccountDAO extends JpaRepository<Account, String>{
 	List<Account> getListAccountByName(String valued);
 
 	
-	@Query("SELECT new CountOrderOfAccount(o.account, count(o.account.username)) FROM Order o where o.status = 3  group by o.account.username having count(o.account.username) >= ?1 order by count(o.account.username) desc")
-	List<CountOrderOfAccount> getCountOrder(Long count);
+	@Query("SELECT new CountOrderOfAccount(o.account, count(o.account.username)) FROM Order o where o.status = 3  group by o.account.username having count(o.account.username) >= 5 order by count(o.account.username) desc")
+	List<CountOrderOfAccount> getCountOrder();
 
 	@Query("SELECT a FROM Account a where a.createDate between ?1 and ?2")
 	List<Account> findByDate(Date from, Date to);

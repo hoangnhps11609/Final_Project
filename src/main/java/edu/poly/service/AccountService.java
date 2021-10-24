@@ -25,7 +25,7 @@ public interface AccountService {
 
 	List<Account> findAll(Sort sort);
 
-	List<CountOrderOfAccount> getCountOrder(Long count);
+	List<CountOrderOfAccount> getCountOrder();
 
 	List<Account> findByDate(Date from, Date to);
 

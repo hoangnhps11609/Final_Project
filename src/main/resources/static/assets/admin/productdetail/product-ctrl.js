@@ -101,52 +101,40 @@ app.controller("productdetail-ctrl", function ($scope, $http, $window) {
 	$scope.create = function () {
 		var item = angular.copy($scope.form);
 		var id = item.id;
-		$http.post(`/rest/productdetails`, item).then(resp => {
-			resp.data.createDate = new Date(resp.data.createDate)
-			$scope.items.push(resp.data);
-			$scope.reset();
-			$scope.initialize();
+		
+		Swal.fire({
+			  title: 'Confirm adding "' + id + '" to the product detail list?',
+			  text: "",
+			  icon: 'info',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yes'
+			}).then((result) => {
+			  if (result.isConfirmed) {
+				$http.post(`/rest/productdetails`, item).then(resp => {
+					resp.data.createDate = new Date(resp.data.createDate)
+					$scope.items.push(resp.data);
+					$scope.reset();
+					$scope.initialize();
 			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'success',
-			  title: 'Create in successfully "' + id + '" product detail'
-			})
-			
-			$scope.initialize();
+				Swal.fire(
+			      'Successfully!',
+			      'Added "'+ id +'" to product detail list.',
+			      'success'
+			    )
+				$(".nav-tabs a:eq(1)").tab('show');
 		}).catch(error => {
-			// alert("Lỗi thêm sản phẩm");
-			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Create failure'
-			})
+			Swal.fire(
+			      'Create Failure!',
+			      'Can not add "'+ id +'" !',
+			      'error'
+			    )
 			
 			console.log("Error", error);
 		});
+		 }
+	})
 
 
 		var statistic = angular.copy($scope.form);
@@ -180,52 +168,39 @@ app.controller("productdetail-ctrl", function ($scope, $http, $window) {
 	$scope.update = function () {
 		var item = angular.copy($scope.form);
 		var id = item.id;
-		$http.put(`/rest/productdetails/${item.id}`, item).then(resp => {
-			var index = $scope.items.findIndex(p => p.id == item.id);
-			$scope.items[index] = item;
-			$scope.reset();
-			$scope.initialize();
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
+		Swal.fire({
+			  title: 'Confirm edit information "' + id + '" !',
+			  text: "New information will be saved to the product detail list",
+			  icon: 'info',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yes'
+			}).then((result) => {
+			  if (result.isConfirmed) {
+				$http.put(`/rest/productdetails/${item.id}`, item).then(resp => {
+					var index = $scope.items.findIndex(p => p.id == item.id);
+					$scope.items[index] = item;
+					$scope.reset();
+					$scope.initialize();
+				Swal.fire(
+					      'Successfully!',
+					      'Updated "'+ id +'" to product detail list.',
+					      'success'
+				    	)
 			
-			Toast.fire({
-			  icon: 'success',
-			  title: 'Update in successfully "' + id + '" product detail'
-			})
-			
-			$scope.initialize();
+			$(".nav-tabs a:eq(1)").tab('show');
 		}).catch(error => {
-			//alert("Lỗi cập nhật sản phẩm");
-			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Update failure'
-			})
-			
+			Swal.fire(
+			      'Update Failure!',
+			      'Can not update "'+ id +'" !',
+			      'error'
+			    )
 			console.log("Error", error);
 
 		});
+			}
+			})
 	}
 
 	//Xóa sản phẩm mới

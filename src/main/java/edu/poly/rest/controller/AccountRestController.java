@@ -75,9 +75,9 @@ public class AccountRestController {
 	
 	
 //	Account vàng bạc
-	@GetMapping("goldencustomer/{count}")
-	public	List<CountOrderOfAccount> getRankCustomer(@PathVariable("count") Long count){
-		List<CountOrderOfAccount> countOrder = accService.getCountOrder(count);
+	@GetMapping("goldencustomer")
+	public	List<CountOrderOfAccount> getRankCustomer(){
+		List<CountOrderOfAccount> countOrder = accService.getCountOrder();
 		return countOrder;
 	}
 	

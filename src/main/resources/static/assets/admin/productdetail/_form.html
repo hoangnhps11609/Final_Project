@@ -80,7 +80,7 @@
 					<div class="form-group col-sm-12">
 						<div>Product Name</div>
 						<select class="form-control" id="move" name="move"
-							ng-model="form.product.id">
+							ng-model="form.product.id" required="">
 							<option ng-repeat="b in products" ng-value="b.id">{{b.name}}</option>
 						</select>
 					</div>
@@ -90,7 +90,7 @@
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<div>Size:</div>
-						<select class="form-control" ng-model="form.size.id">
+						<select class="form-control" ng-model="form.size.id" required="">
 							<option ng-repeat="s in sizes" ng-value="s.id">{{s.name}}</option>
 						</select>
 					</div>
@@ -98,7 +98,7 @@
 						<div>Color:</div>
 						<div class="row">
 							<div class="col-7">
-								<select class="form-control" ng-model="form.color.id">
+								<select class="form-control" ng-model="form.color.id" required="">
 									<option class="text-light" ng-repeat="c in colors"
 										ng-value="c.id" style="background-color: rgb({{c.red}}, {{c.green}}, {{c.blue}})">{{c.name}}</option>
 								</select>
@@ -115,7 +115,7 @@
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<div>Quantity:</div>
-						<input type="number" class="form-control" ng-model="form.quantity" />
+						<input type="number" class="form-control" ng-model="form.quantity" required=""/>
 					</div>
 					<div class="form-group col-sm-6">
 						<div>Available:</div>
