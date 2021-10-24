@@ -287,6 +287,12 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 		return productDetailDAO.getCountProInColor(id);
 	}
 
+	@Override
+	public Long getCountProInSize(Integer id) {
+		// TODO Auto-generated method stub
+		return productDetailDAO.getCountProInSize(id);
+	}
+
 
 
 	

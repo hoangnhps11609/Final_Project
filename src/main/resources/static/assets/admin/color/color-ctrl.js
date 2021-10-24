@@ -10,6 +10,35 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 
 	}
 	
+	$scope.inventoryColor = function(){
+		$('#InventoryColorModalCenter').appendTo("body").modal('show');
+		$http.get("/rest/colors/inventory").then(resp => {
+			$scope.inventories = resp.data;
+		}).catch(error => {
+			alert(error);
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+	}
+	
 	$scope.topColor = function(){
 		$('#TopColorModalCenter').appendTo("body").modal('show');
 		$http.get("/rest/colors/top").then(resp => {
@@ -302,6 +331,8 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 
 
 	}
+	
+	
 
 	
 	$scope.viewProDetail = function(item){
@@ -458,6 +489,32 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 		},
 		get count() {
 			return Math.ceil(1.0 * $scope.ProDetailitems.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
+	
+	$scope.InventoryColorModalCenter = {
+		page: 0,
+		size: 3,
+		get inventories() {
+			var start = this.page * this.size;
+			return $scope.inventories.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.inventories.length / this.size);
 		}, first() {
 			this.page = 0;
 		}, prev() {

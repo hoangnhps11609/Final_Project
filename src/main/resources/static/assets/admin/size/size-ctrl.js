@@ -117,6 +117,72 @@ app.controller("size-ctrl", function ($scope, $http) {
 			})}
 			})
 	}
+	
+	$scope.topSize = function(){
+		$('#TopSizeModalCenter').appendTo("body").modal('show');
+		$http.get("/rest/sizes/top").then(resp => {
+			$scope.tops = resp.data;
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+	}
+	
+	$scope.viewProductToSizeTrenTop = function (item) {
+			$http.get(`/rest/productdetails/size/${item.id}`).then(resp => {
+				$scope.ProSizeItems = resp.data;
+				$scope.color = item;
+			$('#exampleModalCenterSize22').appendTo("body").modal('show');
+			$http.get(`/rest/productdetails/size/count/${item.id}`).then(resp => {
+				$scope.sumProInSize = resp.data;
+			})
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+		
+		
+
+
+	}
 
 	//update sản phẩm mới
 	$scope.update = function () {
@@ -231,6 +297,35 @@ app.controller("size-ctrl", function ($scope, $http) {
 			
 	}
 	
+		$scope.inventorySize = function(){
+		$('#InventorySizeModalCenter').appendTo("body").modal('show');
+		$http.get("/rest/sizes/inventory").then(resp => {
+			$scope.inventories = resp.data;
+		}).catch(error => {
+			alert(error);
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+	}
+	
 	
 	$scope.TimKiemTatCaSanPhamThuocSize = function (item) {
 			$http.get(`/rest/productdetails/size/${item.id}`).then(resp => {
@@ -266,6 +361,32 @@ app.controller("size-ctrl", function ($scope, $http) {
 
 
 	}
+	
+	$scope.pager3 = {
+		page: 0,
+		size: 5,
+		get ProSizeItems() {
+			var start = this.page * this.size;
+			return $scope.ProSizeItems.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.ProSizeItems.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
 
 	$scope.pager = {
 		page: 0,
@@ -276,6 +397,58 @@ app.controller("size-ctrl", function ($scope, $http) {
 		},
 		get count() {
 			return Math.ceil(1.0 * $scope.items.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
+	
+	$scope.pagerTopSize = {
+		page: 0,
+		size: 3,
+		get tops() {
+			var start = this.page * this.size;
+			return $scope.tops.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.tops.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
+	
+	$scope.InventorySizeModalCenter = {
+		page: 0,
+		size: 3,
+		get inventories() {
+			var start = this.page * this.size;
+			return $scope.inventories.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.inventories.length / this.size);
 		}, first() {
 			this.page = 0;
 		}, prev() {

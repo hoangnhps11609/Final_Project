@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import edu.poly.entity.Account;
 import edu.poly.entity.BrandTop;
 import edu.poly.entity.Color;
+import edu.poly.entity.ColorInventory;
 import edu.poly.entity.ColorTop;
 
 public interface ColorService {
@@ -79,6 +80,8 @@ public interface ColorService {
 	Color update(Account account);
 	
 	List<ColorTop> findColorTop();
+	
+	List<ColorInventory> findByColorInventory();
 
 
 	
