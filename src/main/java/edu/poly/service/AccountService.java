@@ -30,4 +30,8 @@ public interface AccountService {
 	List<Account> findByDate(Date from, Date to);
 
 	List<Account> getLoyalCustomer();
+
+	Double test();
+
+	Long countCustomers();
 }

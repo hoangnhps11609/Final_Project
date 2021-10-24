@@ -1,140 +1,93 @@
-app.controller("report-ctrl", function($scope, $http) {
+app.controller("report-ctrl", function($scope, $http, $location) {
+	$scope.roles = [];
+	$scope.admins = [];
+	$scope.authorities = [];
 
-
-	$scope.items = [];
-	$scope.form = {};
-
-		$scope.ODitems = [];
-		
-		var input = document.getElementById("myInput");
-		input.addEventListener("keyup", function(event) {
-  		if (event.keyCode === 13) {
-   			event.preventDefault();
-   			$scope.statistic();
-   
-  }
-});	
-	
 	$scope.initialize = function() {
-		//load accounts
-		$http.get("/rest/report/rp1").then(resp => {
-			$scope.items = resp.data;
-			$scope.items.forEach(item => {
-			})
-		});
-	}
-	
-	$scope.statistic = function() {
-		var statistic = angular.copy($scope.statistic);
-		$http.get(`/rest/accounts/${statistic.from}`).then(resp => {
-			$scope.items = resp.data;
-			$(".nav a:eq(1)").tab('show');
+		//load all roles
+		$http.get("/rest/roles").then(resp => {
+			$scope.roles = resp.data;
+		})
+
+		//load staffs and directors (administrators)
+		$http.get("/rest/accounts?admin=true").then(resp => {
+			$scope.admins = resp.data;
+		})
+
+		//load authorities of staffs and directors
+		$http.get("/rest/authorities?admin=true").then(resp => {
+			$scope.authorities = resp.data;
 		}).catch(error => {
-			alert();
-			console.log("Error", error);
+			$location.path("/unauthorized");
+		})
+		
+		//revenue
+		$http.get("/rest/reports/revenue").then(resp => {
+			$scope.revenue = resp.data;
+		});
+		
+		//sales
+		$http.get("/rest/reports/sales").then(resp => {
+			$scope.sales = resp.data;
+		});
+		
+		//orders
+		$http.get("/rest/reports/orders").then(resp => {
+			$scope.orders = resp.data;
+		});
+		
+		//customers
+		$http.get("/rest/reports/customers").then(resp => {
+			$scope.customers = resp.data;
 		});
 	}
 
-	//Khởi tạo
 	$scope.initialize();
-
-	//Xóa form	
-	$scope.reset = function() {
-		$scope.form = {
-			photo: 'user.png'
-		};
-	}
-
-	//hiển thị lên form
-	$scope.edit = function(item) {
-		$scope.form = angular.copy(item);
-		$(".nav a:eq(0)").tab('show');
-		document.getElementById("homes").style.display = "block";
-		document.getElementById("lists").style.display = "none";
-	}
-
-	//Thêm account mới
-	$scope.create = function() {
-		var item = angular.copy($scope.form);
-		$http.post(`/rest/accounts`, item).then(resp => {
-			$scope.items.push(resp.data);
-			$scope.reset();
-			alert("Thêm mới thành công");
-			$(".nav a:eq(1)").tab('show');
-		}).catch(error => {
-			alert("Lỗi thêm sản phẩm");
-			console.log("Error", error);
-		});
-	}
-
-	//update sản phẩm mới
-	$scope.update = function() {
-		var item = angular.copy($scope.form);
-		$http.put(`/rest/accounts/${item.username}`, item).then(resp => {
-			var index = $scope.items.findIndex(p => p.username == item.username);
-			$scope.items[index] = item;
-			alert("Cập nhật thành công");
-			$(".nav a:eq(1)").tab('show');
-		}).catch(error => {
-			alert("Lỗi cập nhật sản phẩm");
-			console.log("Error", error);
-
+	
+	$scope.test1 = function(){
+		$http.get("/rest/accounts/test").then(resp => {
+			$scope.test = resp.data;
 		});
 	}
 	
-	
-	//Xóa sản phẩm mới
-	$scope.delete = function(item) {
-		$http.delete(`/rest/accounts/${item.username}`).then(resp => {
-			var index = $scope.items.findIndex(p => p.username == item.username);
-			$scope.items.splice(index, 1);
-			$scope.reset();
-			alert("Xóa  thành công");
-		}).catch(error => {
-			alert("Lỗi xóa sản phẩm");
-			console.log("Error", error);
-
-		});
+	$scope.authority_of = function(acc, role) {
+		if ($scope.authorities) {
+			return $scope.authorities.find(ur => ur.account.username==acc.username && ur.role.id==role.id);
+		}
 	}
 
-	//Upload hình
-	$scope.imageChanged = function(files) {
-		var data = new FormData();
-		data.append('file', files[0]);
-		$http.post('/rest/upload/images', data, {
-			transformRequest: angular.identity,
-			headers: { 'Content-Type': undefined }
-		}).then(resp => {
-			$scope.form.photo = resp.data.name;
+	$scope.authority_changed = function(acc, role){
+		var authority = $scope.authority_of(acc, role);
+		if(authority){
+			$scope.revoke_authority(authority);
+		}
+		else{
+			authority = {account:acc, role:role };
+			$scope.grant_authority(authority);
+		}
+	}
+
+	//thêm mới authority
+	$scope.grant_authority = function(authority) {
+		$http.post(`/rest/authorities`, authority).then(resp => {
+			$scope.authorities.push(resp.data);
+			alert("Cấp quyền sử dụng thành công");
 		}).catch(error => {
-			alert("Lỗi upload hình ảnh");
+			alert("Cấp quyền sử dụng thất bại!");
 			console.log("Error", error);
 		})
 	}
 
-	$scope.pager = {
-		page: 0,
-		size: 10,
-		get items() {
-			var start = this.page * this.size;
-			return $scope.items.slice(start, start + this.size);
-		},
-		get count(){
-			return Math.ceil(1.0 * $scope.items.length / this.size);
-		}, first(){
-			this.page = 0;
-		}, prev(){
-			this.page--;
-			if(this.page<0){
-				this.last();
-			}
-		}, next(){
-			this.page++;
-			if(this.page >= this.count){
-				this.first();
-			}
-		}, last(){
-			this.page = this.count-1;
-		}
+	//xóa author
+	$scope.revoke_authority = function(authority) {
+		$http.delete(`/rest/authorities/${authority.id}`).then(resp => {
+			var index = $scope.authorities.findIndex(a => a.id == authority.id);
+			$scope.authorities.splice(index, 1);
+			alert("Thu quyền sử dụng thành công");
+		}).catch(error => {
+			alert("Thu quyền sử dụng thất bại!");
+			console.log("Error", error);
+		})
 	}
+	
 });

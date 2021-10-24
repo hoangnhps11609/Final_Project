@@ -242,6 +242,12 @@ app.controller("account-ctrl", function ($scope, $http) {
 		});
 	}
 	
+	$scope.test1 = function(){
+		$http.get("/rest/accounts/test").then(resp => {
+			$scope.test = resp.data;
+		});
+	}
+	
 	$scope.SilverCustomer = function(){
 		$http.get("/rest/accounts/goldencustomer/2").then(resp => {
 			$scope.countOrders = resp.data;			

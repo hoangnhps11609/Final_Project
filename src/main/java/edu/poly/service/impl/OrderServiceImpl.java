@@ -158,4 +158,20 @@ public class OrderServiceImpl implements OrderService{
 		return dao.findByUsernameandStatus(username, sort);
 	}
 
+	@Override
+	public Double getRevenue() {
+		return dao.getRevenue();
+	}
+
+	@Override
+	public Long getSales() {
+		return dao.getSales();
+	}
+
+	@Override
+	public Long countOrders() {
+		return dao.countOrders();
+	}
+
+
 }

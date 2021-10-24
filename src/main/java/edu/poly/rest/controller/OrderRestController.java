@@ -42,6 +42,15 @@ public class OrderRestController {
 		return orderService.create(orderData);
 	}
 	
+	@GetMapping("revenue")
+	public Double getRevenue(){
+		System.out.println("sssss222");
+		Double revenue = orderService.getRevenue();
+		System.out.println(revenue);
+		return revenue;
+	}
+
+	
 	@GetMapping()
 	public List<Order> getAll() {
 		return orderService.findAll(Sort.by(Sort.Direction.DESC, "createDate"));

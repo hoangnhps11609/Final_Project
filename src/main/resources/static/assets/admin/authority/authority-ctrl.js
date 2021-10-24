@@ -10,7 +10,7 @@ app.controller("authority-ctrl", function($scope, $http, $location) {
 		})
 
 		//load staffs and directors (administrators)
-		$http.get("/rest/accounts?admin=true").then(resp => {
+		$http.get("/rest/accounts").then(resp => {
 			$scope.admins = resp.data;
 		})
 

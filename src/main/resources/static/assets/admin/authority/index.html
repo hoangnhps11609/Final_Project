@@ -4,13 +4,17 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th scope="col">Full name</th>
+					<th scope="col">Username</th>
+					<th scope="col">Fullname</th>
+					<th scope="col">Phone</th>
 					<th scope="col" ng-repeat="role in roles" class="text-center">{{role.name}}</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="acc in admins">
+					<th scope="row">{{acc.username}}</th>
 					<th scope="row">{{acc.fullname}}</th>
+					<th scope="row">{{acc.phone}}</th>
 					<td ng-repeat="role in roles" class="text-center">
 						<input type="checkbox" ng-checked="authority_of(acc, role)"
 							ng-click="authority_changed(acc, role)"/>

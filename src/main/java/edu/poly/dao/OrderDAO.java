@@ -56,4 +56,16 @@ public interface OrderDAO extends JpaRepository<Order, Long>{
 
 	@Query("SELECT o From Order o Where o.account.username=?1 and o.status = 3")
 	List<Order> findByUsernameandStatus(String username, Sort sort);
+
+	@Query("SELECT sum(o.total) From Order o Where o.status = 3")
+	Double getRevenue();
+
+
+	@Query("SELECT sum(o.quantity) From Order o Where o.status = 3")
+	Long getSales();
+
+
+	@Query("SELECT count(o) From Order o Where o.status = 3")
+	Long countOrders();
+
 }

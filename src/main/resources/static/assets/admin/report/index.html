@@ -1,154 +1,54 @@
-<style>
-	@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-
-	.nen {
-		position: relative;
-		background-color: #34495e;
-	}
-
-	.nen .nav {
-		position: relative;
-		width: 60%;
-		height: 50px;
-		background: #34495e;
-		font-size: 0;
-		box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1);
-	}
-
-	.nen .nav li a {
-		font-size: 15px;
-		text-transform: uppercase;
-		color: white;
-		text-decoration: none;
-		position: relative;
-		z-index: 1;
-		display: inline-block;
-		text-align: center;
-		margin-top: 8px;
-	}
-
-	.nen .nav .animation {
-		position: absolute;
-		height: 100%;
-		/* height: 5px; */
-		top: 0;
-		/* bottom: 0; */
-		z-index: 0;
-		background: #1abc9c;
-		transition: all .5s ease 0s;
-	}
-
-	.nen .nav li a:nth-child(1) {
-		width: 180px;
-		text-align: center;
-	}
-
-	.nen .nav a:nth-child(1):hover~.animation {
-		width: 180px;
-		left: 0;
-	}
-
-	.nen .nav li a:nth-child(2) {
-		width: 180px;
-	}
-
-	.nen .nav li a:nth-child(2):hover~.animation {
-		width: 180px;
-		left: 180px;
-	}
-
-	.my-2 {
-		margin-left: 20px;
-	}
-
-	.search-box1 {
-		position: absolute;
-		top: 50%;
-		right: 0px;
-		transform: translate(-10%, -50%);
-		background: #2f3640;
-		height: 40px;
-		border-radius: 40px;
-		padding-left: 5px;
-		padding-right: 10px;
-		z-index: 10;
-	}
-
-	.search-box1:hover>.search-txt1 {
-		width: 240px;
-		padding: 0 6px;
-	}
-
-	.search-box1:hover>.search-btn1 {
-		background: white;
-
-	}
-
-	.search-btn1 {
-		color: #1abc9c;
-		float: right;
-		width: 30px;
-		height: 30px;
-		border-radius: 50%;
-		background-color: #2f3640;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		transition: 0.4s;
-		margin: 5px;
-		margin-right: 0px;
-	}
-
-	.search-txt1 {
-		border: none;
-		background: none;
-		outline: none;
-		float: left;
-		padding: 0;
-		color: white;
-		font-size: 16px;
-		transition: 0.4s;
-		line-height: 40px;
-		width: 0;
-
-
-	}
-</style>
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="huan">
-	<div class="nen">
-		<ul class="nav" id="myTab" role="tablist">
-			<li class="col-sm-10 ">
-				<a class="nav-link " id="home-tab" data-toggle="tab" data-target="#edit" role="tab" aria-controls="home"
-					aria-selected="true">
-					Account Edition</a>
-
-				<a class="nav-link" id="profile-tab" data-toggle="tab" data-target="#list" role="tab"
-					aria-controls="profile" aria-selected="false">
-					List Account</a>
-				<div class="animation start-home"></div>
-			</li>
-
-		</ul>
-		<div class="search-box1">
-			<input class="search-txt1" name="" type="text" id="myInput" class="form-control" ng-model="statistic.from"
-				placeholder="Search	" />
-			<a class="search-btn1">
-				<button style="opacity:0 ; z-index: 20" ng-click="statistic()"></button><i style="position: absolute;"
-					class="fa fa-search"></i>
-			</a>
-
-
-		</div>
+<div class="card" style="margin: 20px auto; width: 80%">
+	<div class="card-header" style="background: #34495e; color: white;">
+		<h5>Statistis</h5>
 	</div>
-	<div class="tab-content" id="myTabContent">
-		<div class="tab-pane fade show active" id="edit" role="tabpanel" aria-labelledby="home-tab">
-			<div class="" ng-include="'/assets/admin/report/_form.html'"></div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="card card-hover">
+					<div class="box bg-info text-center">
+						<h1 class="font-light text-white">
+							{{customers}}
+						</h1>
+						<h6 class="text-white">Accounts</h6>
+					</div>
+				</div>
+			</div>
+			<!-- Column -->
+			<div class="col-lg-3">
+				<div class="card card-hover">
+					<div class="box bg-warning text-center">
+						<h1 class="font-light text-white">
+							{{sales}} Items
+						</h1>
+						<h6 class="text-white">Sales</h6>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3">
+				<div class="card card-hover">
+					<div class="box bg-success text-center">
+						<h1 class="font-light text-white">
+							${{revenue|number:1}}
+						</h1>
+						<h6 class="text-white">Revenue</h6>
+					</div>
+				</div>
+			</div>
+			<!-- Column -->
+			<div class="col-lg-3">
+				<div class="card card-hover">
+					<div class="box bg-primary text-center">
+						<h1 class="font-light text-white">
+							{{orders}} 
+						</h1>
+						<h6 class="text-white">Completed Orders</h6>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="tab-pane fade" id="list" role="tabpanel" aria-labelledby="profile-tab">
-			<div class="" ng-include="'/assets/admin/report/_table.html'"></div>
-		</div>
+		
+		
+
 	</div>
 </div>

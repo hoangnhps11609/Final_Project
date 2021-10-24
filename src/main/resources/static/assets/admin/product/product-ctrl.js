@@ -293,7 +293,6 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
 		var name = item.name;
-<<<<<<< HEAD
 		Swal.fire({
 			  title: 'Confirm adding "' + name + '" to the product list?',
 			  text: "",
@@ -323,7 +322,6 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 			      'error'
 			    )
 			
-=======
 		$http.post(`/rest/products`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
@@ -367,10 +365,9 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 				title: 'Create failure'
 			})
 
->>>>>>> refs/remotes/origin/main
 			console.log("Error", error);
 		});
-			}
+			})}
 			})
 	}
 
@@ -378,7 +375,6 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 	$scope.update = function() {
 		var item = angular.copy($scope.form);
 		var name = item.name;
-<<<<<<< HEAD
 		Swal.fire({
 			  title: 'Confirm edit information "' + name + '" !',
 			  text: "New information will be saved to the product list",
@@ -408,7 +404,7 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 			      'error'
 			    )
 			
-=======
+
 		$http.put(`/rest/products/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
@@ -453,11 +449,10 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 				title: 'Update failure'
 			})
 
->>>>>>> refs/remotes/origin/main
 			console.log("Error", error);
 
 		});
-			}
+			})}
 			})
 	}
 
