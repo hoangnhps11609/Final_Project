@@ -170,32 +170,22 @@ app.controller("account-ctrl", function ($scope, $http) {
 					$scope.items.splice(index, 1);
 					$scope.initialize();
 					$scope.reset();
-		}).catch(error => {
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Delete failure'
-			})
-			
-			console.log("Error", error);
-
-		});
-			    Swal.fire(
+				Swal.fire(
 			      'Deleted!',
 			      'Account "'+ username +'" has been deleted.',
 			      'success'
 			    )
+		}).catch(error => {
+			Swal.fire(
+			      'Delete Failure!',
+			      'Can not delete "'+ username +'" !',
+			      'error'
+			    )
+			
+			console.log("Error", error);
+
+		});
+			    
 			  }
 			})
 		

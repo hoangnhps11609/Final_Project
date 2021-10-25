@@ -14,7 +14,8 @@
 					<div class="col-lg-12">
 						<div class="breadcrumb-text product-more">
 							<a th:href="@{/home/index}"><i class="fa fa-home"></i> Home</a> <a
-								th:href="@{/product/list}">Shop</a> <span>Product Detail</span>
+								th:href="@{/product/listall}">Shop</a> <span>Product
+								Detail</span>
 						</div>
 					</div>
 				</div>
@@ -154,7 +155,8 @@
 									<div class="pd-desc">
 										<p>Product for [[*{gender.name}]]</p>
 										<h4>
-											<o>$[[*{#numbers.formatDecimal(price*(1-discount*0.01), 0, 'COMMA', 1, 'POINT')}]]</o>
+											<o>$[[*{#numbers.formatDecimal(price*(1-discount*0.01),
+											0, 'COMMA', 1, 'POINT')}]]</o>
 											<span th:if="*{discount != 0.0}"> $[[*{price}]]</span>
 										</h4>
 									</div>
@@ -211,9 +213,9 @@
 												<div class="modal-body">
 													<div class="product-slider owl-carousel">
 														<div class="product-item" th:each="p:${prodetail}">
-															<div class="pi-pic" style="width:349px; height:427px">
-																<a> <img th:src="@{|/assets/images/${p.image}|}" width=349px; height=427px
-																	alt="">
+															<div class="pi-pic" style="width: 349px; height: 427px">
+																<a> <img th:src="@{|/assets/images/${p.image}|}"
+																	width=349px; height=427px alt="">
 																</a>
 																<div class="sale pp-sale">Size: [[${p.size.name}]]</div>
 
@@ -247,7 +249,8 @@
 																<div class="catagory-name">Quantity:
 																	[[${p.quantity}]]</div>
 																<div class="product-price">
-																	$[[${#numbers.formatDecimal(p.product.price*(1-p.product.discount*0.01), 0, 'COMMA', 1, 'POINT')}]]<span
+																	$[[${#numbers.formatDecimal(p.product.price*(1-p.product.discount*0.01),
+																	0, 'COMMA', 1, 'POINT')}]]<span
 																		th:if="${p.product.discount != 0.0}">$[[${p.product.price}]]</span>
 																</div>
 															</div>
@@ -273,9 +276,13 @@
 										</div>
 
 										<div class="pd-social">
-											<a href="https://www.facebook.com/profile.php?id=100001628739372"><i class="ti-facebook"></i></a> 
-											<a href="https://www.facebook.com/loser226"><i class="ti-twitter-alt"></i></a> 
-											<a href="https://www.facebook.com/DH.0.1.2.7"><i class="ti-linkedin"></i></a> 
+											<a
+												href="https://www.facebook.com/profile.php?id=100001628739372"><i
+												class="ti-facebook"></i></a> <a
+												href="https://www.facebook.com/loser226"><i
+												class="ti-twitter-alt"></i></a> <a
+												href="https://www.facebook.com/DH.0.1.2.7"><i
+												class="ti-linkedin"></i></a>
 										</div>
 									</div>
 								</div>
@@ -313,9 +320,36 @@
 													<td class="p-catagory">Customer Rating</td>
 													<td>
 														<div class="pd-rating">
-															<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-																class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-																class="fa fa-star-o"></i> <span>(5)</span>
+															<div th:if="0.0<=${ratePro} and ${ratePro} < 1.5">
+																<i class="fa fa-star"></i> <i class="fa fa-star-o"></i>
+																<i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
+																<i class="fa fa-star-o"></i> <span>(5)</span>
+															</div>
+
+															<div th:if="1.5<=${ratePro} and ${ratePro} < 2.5">
+																<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																	class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
+																<i class="fa fa-star-o"></i> <span>(5)</span>
+															</div>
+
+															<div th:if="2.5<=${ratePro} and ${ratePro} < 3.5">
+																<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																	class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i
+																	class="fa fa-star-o"></i> <span>(5)</span>
+															</div>
+
+															<div th:if="3.5<=${ratePro} and ${ratePro} < 4.5">
+																<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																	class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																	class="fa fa-star-o"></i> <span>(5)</span>
+															</div>
+
+															<div th:if="4.5<=${ratePro} and ${ratePro} <= 5.0">
+																<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																	class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																	class="fa fa-star"></i> <span>(5)</span>
+															</div>
+
 														</div>
 													</td>
 												</tr>
@@ -329,7 +363,8 @@
 													<td class="p-catagory">Price</td>
 													<td>
 														<div class="p-price">
-															$[[*{#numbers.formatDecimal(price*(1-discount*0.01), 0, 'COMMA', 1, 'POINT')}]]&nbsp;
+															$[[*{#numbers.formatDecimal(price*(1-discount*0.01), 0,
+															'COMMA', 1, 'POINT')}]]&nbsp;
 															<del style="color: lightgray; font-size: 13px;"
 																th:if="*{discount != 0.0}">$[[*{price}]]</del>
 														</div>
@@ -546,9 +581,10 @@
 					<div class="col">
 						<div class="product-slider owl-carousel">
 							<div class="product-item" th:each="p:*{category.products}">
-								<div class="pi-pic" style="width:363px; height:444px">
+								<div class="pi-pic" style="width: 363px; height: 444px">
 									<a th:href="@{|/product/detail/${p.id}?sizepro=1|}"> <img
-										th:src="@{|/assets/images/${p.image}|}" alt="" width=363px; height=444px>
+										th:src="@{|/assets/images/${p.image}|}" alt="" width=363px;
+										height=444px>
 									</a>
 									<div class="sale">Sale: [[${p.discount}]]%</div>
 									<div class="icon">
@@ -557,7 +593,8 @@
 									<ul>
 										<li class="quick-view col m-0 p-0"><a
 											class="btn-warning text-light"
-													th:href="@{|/product/detail/${p.id}?sizepro=1|}">+ Quick View</a></li>
+											th:href="@{|/product/detail/${p.id}?sizepro=1|}">+ Quick
+												View</a></li>
 									</ul>
 								</div>
 								<div class="pi-text">
@@ -566,9 +603,8 @@
 										<h5 th:utext="${p.name}"></h5>
 									</a>
 									<div class="product-price">
-										$[[${#numbers.formatDecimal(p.price*(1-p.discount*0.01), 0, 'COMMA', 1, 'POINT')}]]
-										<span
-											th:if="${p.discount != 0}">$[[${p.price}]]</span>
+										$[[${#numbers.formatDecimal(p.price*(1-p.discount*0.01), 0,
+										'COMMA', 1, 'POINT')}]] <span th:if="${p.discount != 0}">$[[${p.price}]]</span>
 									</div>
 								</div>
 							</div>

@@ -51,28 +51,7 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 				      'success'
 				    )
 			$(".nav-tabs a:eq(1)").tab('show');
-		$http.post(`/rest/blogcategories`, item).then(resp => {
-			$scope.items.push(resp.data);
-			$scope.reset();
-			$scope.initialize();
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'success',
-			  title: 'Create in successfully "' + name + '" blog category'
-			})
-			
-			$(".nav a:eq(1)").tab('show');
+		
 		}).catch(error => {			
 			Swal.fire(
 			      'Create Failure!',
@@ -82,7 +61,7 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 			
 			console.log("Error", error);
 		});
-			})}
+			}
 			})
 	}
 
@@ -146,35 +125,22 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 					$scope.items.splice(index, 1);
 					$scope.reset();
 					$scope.initialize();
+					Swal.fire(
+			      'Deleted!',
+			      'Blog category "'+ name +'" has been deleted.',
+			      'success'
+			    )
 		}).catch(error => {
-			//alert("Lỗi xóa sản phẩm");
-			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Delete failure'
-			})
+			Swal.fire(
+			      'Delete Failure!',
+			      'Can not delete "'+ name +'" !',
+			      'error'
+			    )
 			
 			console.log("Error", error);
 
 		});
 		
-		Swal.fire(
-			      'Deleted!',
-			      'Blog category "'+ name +'" has been deleted.',
-			      'success'
-			    )
 			  }
 			})
 	}

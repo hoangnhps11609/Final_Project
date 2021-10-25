@@ -1,0 +1,267 @@
+<div class="card">
+	<div class="card-header">
+		<div class="row">
+			<h3 class="noibacchu pl-2 ">List Category</h3>
+			<i ng-click="initialize()" class="fa fa-refresh"
+				style="font-size: 18px; position: absolute; right: 20px; top: 20px">
+				<span>Refresh</span>
+			</i>
+		</div>
+		<div class="row pt-3">
+			<div class="col-2">
+				<button class="btn btn-outline-warning"
+					style="width: 100%; font-weight: bolder" ng-click="topCategory()">Top
+					Category</button>
+			</div>
+			<div class="col-2">
+				<button class="btn btn-outline-primary"
+					style="width: 100%; font-weight: bolder"
+					ng-click="inventoryProduct()">Inventory Product</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="card-body">
+		<table class="table table-striped text-center">
+			<thead>
+				<tr style="position: relative;">
+					<th style="width: 10%"></th>
+					<th style="width: 25%" scope="col">ID</th>
+					<th style="width: 25%" scope="col">Name <br />(Click to view
+						Product)
+					</th>
+					<th style="width: 25%"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in pager.items">
+					<th></th>
+					<td>{{item.id}}</td>
+					<td style="width: 250px"><a class="btn btn-outline-primary" ng-click="viewProductToCate(item)"
+						href="">{{item.name}}</a></td>
+					<td>
+						<div class="btn-group btn-group-xs">
+							<button class="btn btn-warning mgr5px" ng-click="edit(item)">Edit</button>
+							<button class="btn btn-danger" ng-click="delete(item)">Delete</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="card-footer text-muted text-center">
+		<button class="btn btn-primary" ng-click="pager.first()">First</button>
+		<button class="btn btn-primary" ng-click="pager.prev()">Prev</button>
+		<button class="btn btn-success">{{pager.page+1}} of
+			{{pager.count}}</button>
+		<button class="btn btn-primary" ng-click="pager.next()">Next</button>
+		<button class="btn btn-primary" ng-click="pager.last()">Last</button>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+		style="max-width: 70%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Product Of
+					Category : {{category.name}}</h5>
+				<h5 class="modal-title px-5" id="exampleModalLongTitle">Inventory:
+					{{sumProInCate}}</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-striped text-center">
+					<thead>
+						<tr>
+							<th width="10%" scope="col">Image</th>
+							<th width="3%" scope="col">ID</th>
+							<th width="10%" scope="col">Name <br />(Click to view
+								Details)
+							</th>
+							<th width="10%" scope="col">Price</th>
+							<th width="10%" scope="col">Discount</th>
+							<th width="10%" scope="col">Gender</th>
+							<th width="10%" scope="col">Brand</th>
+							<th width="10%" scope="col">Available</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in pager2.ProCateItems">
+							<td width="100px"><img
+								ng-src="{{'/assets/images/' + item.image}}" width="100%" /></td>
+							<td>{{item.id}}</td>
+							<td style="max-width: 250px"><a href=""
+								ng-click="proDetail(item)" class="btn btn-outline-primary">{{item.name}}</a></td>
+							<td>{{item.price | number:1}}</td>
+							<td>{{item.discount}}%</td>
+							<td>{{item.gender.name}}</td>
+							<td>{{item.brand.name}}</td>
+							<td>{{item.available}}</td>
+
+						</tr>
+					</tbody>
+				</table>
+				<div class="card-footer text-muted text-center">
+					<button class="btn btn-primary" ng-click="pager2.first()">First</button>
+					<button class="btn btn-primary" ng-click="pager2.prev()">Prev</button>
+					<button class="btn btn-success">{{pager2.page+1}} of
+						{{pager2.count}}</button>
+					<button class="btn btn-primary" ng-click="pager2.next()">Next</button>
+					<button class="btn btn-primary" ng-click="pager2.last()">Last</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--Top Category-->
+<div class="modal fade" id="TopCategoryModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+		style="max-width: 70%">
+		<div class="modal-content">
+			<div class="modal-header bg-warning">
+				<div class="col row">
+					<h5>Top Category</h5>
+					<button type="button" class="close " data-dismiss="modal"
+						ng-click="closeOrderDetail()" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</div>
+			<div class="modal-body">
+				<table class="table table-striped text-center">
+					<thead>
+						<tr style="position: relative;">
+							<th style="width: 10%"></th>
+							<th style="width: 25%" scope="col">ID</th>
+							<th style="width: 25%" scope="col">Name <br />(Click to
+								view Product)
+							</th>
+							<th>Seller</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in tops">
+							<th></th>
+							<td>{{item.category.id}}</td>
+							<td style="width: 250px"><a href="" class="btn btn-outline-primary" ng-click="viewProductToCate(item.category)">{{item.category.name}}</a></td>
+							<td>{{item.seller}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--Inventory Category-->
+<div class="modal fade" id="InventoryCategoryModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+		style="max-width: 70%">
+		<div class="modal-content">
+			<div class="modal-header bg-warning">
+				<div class="col row">
+					<h5>Inventory Category</h5>
+					<button type="button" class="close " data-dismiss="modal"
+						ng-click="closeOrderDetail()" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</div>
+			<div class="modal-body">
+				<table class="table table-striped text-center">
+					<thead>
+						<tr style="position: relative;">
+							<th style="width: 10%"></th>
+							<th style="width: 25%" scope="col">ID</th>
+							<th style="width: 25%" scope="col">Name <br />(Click to
+								view Product)
+							</th>
+							<th>Inventory</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in inventories">
+							<th></th>
+							<td>{{item.category.id}}</td>
+							<td style="width: 250px"><a href="" class="btn btn-outline-primary" ng-click="viewProductToCate(item.category)">{{item.category.name}}</a></td>
+							<td>{{item.inventory}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!--Product Detail-->
+<div class="modal fade" id="ProDetailModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+		style="max-width: 70%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="col row">
+					<div class="col-4">
+						<h3>Detail of Product</h3>
+						<h5>ID: {{product.id}}</h5>
+						<h5>Name: {{product.name}}</h5>
+						<h5>Available: {{product.available}}</h5>
+						<h5>Sum Quantity: {{countProDetail}}</h5>
+					</div>
+					<button type="button" class="close " data-dismiss="modal"
+						style="width: 20px; height: 20px" ng-click="closeProDetail()"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</div>
+			<div class="modal-body">
+				<table class="table table-striped text-center">
+					<thead>
+						<tr style="position: relative;">
+							<th scope="col">Image</th>
+							<th scope="col">Color</th>
+							<th scope="col">Size</th>
+							<th scope="col">Quantity</th>
+							<th scope="col">Create Date</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in pagerProDet.ProDetailitems">
+							<td width="150px"><img
+								ng-src="{{'/assets/images/' + item.image}}" width="100%" /></td>
+							<td>{{item.color.name}}</td>
+							<td>{{item.size.name}}</td>
+							<td ng-init="$parent.totalPro = $parent.totalPro + item.quantity">{{item.quantity}}</td>
+							<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="text-muted text-center">
+					<button class="btn btn-primary" ng-click="pagerProDet.first()">First</button>
+					<button class="btn btn-primary" ng-click="pagerProDet.prev()">Prev</button>
+					<button class="btn btn-success">{{pagerProDet.page+1}} of
+						{{pagerProDet.count}}</button>
+					<button class="btn btn-primary" ng-click="pagerProDet.next()">Next</button>
+					<button class="btn btn-primary" ng-click="pagerProDet.last()">Last</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

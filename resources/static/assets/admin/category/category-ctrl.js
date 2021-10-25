@@ -83,7 +83,29 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 			      'success'
 			    )
 				$(".nav-tabs a:eq(1)").tab('show');
-		
+		$http.post(`/rest/categories`, item).then(resp => {
+			$scope.items.push(resp.data);
+			$scope.reset();
+			//alert("Thêm mới thành công");
+			$scope.initialize();
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'success',
+			  title: 'Create in successfully "' + name + '" category'
+			})
+			
+			$(".nav a:eq(1)").tab('show');
 		}).catch(error => {
 
 			Swal.fire(
@@ -95,7 +117,7 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 			console.log("Error", error);
 		});
 		
-			}
+			})}
 			})
 	}
 
@@ -131,10 +153,51 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 			      'Can not update "'+ name +'" !',
 			      'error'
 			    )
-				
+		$http.put(`/rest/categories/${item.id}`, item).then(resp => {
+			var index = $scope.items.findIndex(p => p.id == item.id);
+			$scope.items[index] = item;
+			$scope.reset();
+			$scope.initialize();
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'success',
+			  title: 'Update in successfully "' + name + '" category'
+			})
+			
+			$(".nav a:eq(1)").tab('show');
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			});
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			});
 			console.log("Error", error);
 		});
-			}
+			})}
 			})
 	}
 
@@ -393,43 +456,6 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 		});
 	}
 	
-	$scope.proDetailofOrder = function(item){
-		$('#exampleModalCenter').appendTo("body").modal('hide');
-		$http.get(`/rest/products/product/${item.id}`).then(resp => {
-				$scope.product = resp.data;
-			});
-		$http.get(`/rest/products/productdetail/count/${item.id}`).then(resp => {
-				$scope.countProDetail = resp.data;
-		});
-		$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
-			$scope.ProDetailitems = resp.data;
-			$('#ProDetailModalCenter').appendTo("body").modal('show');
-			
-		}).catch(error => {
-			//alert("Lỗi cập nhật sản phẩm");
-			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Update failure'
-			})
-			
-			console.log("Error", error);
-
-		});
-	}
-	
 	$scope.pagerProDet = {
 		page: 0,
 		size: 3,
@@ -455,60 +481,6 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 			this.page = this.count - 1;
 		}
 	}
-	
-	$scope.pagerProCate = {
-		page: 0,
-		size: 3,
-		get tops() {
-			var start = this.page * this.size;
-			return $scope.tops.slice(start, start + this.size);
-		},
-		get count() {
-			return Math.ceil(1.0 * $scope.tops.length / this.size);
-		}, first() {
-			this.page = 0;
-		}, prev() {
-			this.page--;
-			if (this.page < 0) {
-				this.last();
-			}
-		}, next() {
-			this.page++;
-			if (this.page >= this.count) {
-				this.first();
-			}
-		}, last() {
-			this.page = this.count - 1;
-		}
-	}
-	
-	$scope.pagerInventory = {
-		page: 0,
-		size: 3,
-		get inventories() {
-			var start = this.page * this.size;
-			return $scope.inventories.slice(start, start + this.size);
-		},
-		get count() {
-			return Math.ceil(1.0 * $scope.inventories.length / this.size);
-		}, first() {
-			this.page = 0;
-		}, prev() {
-			this.page--;
-			if (this.page < 0) {
-				this.last();
-			}
-		}, next() {
-			this.page++;
-			if (this.page >= this.count) {
-				this.first();
-			}
-		}, last() {
-			this.page = this.count - 1;
-		}
-	}
-	
-	
 	
 	$scope.closeProDetail = function(){
 		$('#exampleModalCenter').appendTo("body").modal('show');
