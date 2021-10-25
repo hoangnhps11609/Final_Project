@@ -350,7 +350,7 @@ app.controller("brand-ctrl", function ($scope, $http, $window) {
 	}
 	
 	
-	$scope.inventoryProduct = function(){
+	$scope.inventoryBrand = function(){
 		$('#InventoryBrandModalCenter').appendTo("body").modal('show');
 		$http.get("/rest/brands/inventory").then(resp => {
 			$scope.inventories = resp.data;
