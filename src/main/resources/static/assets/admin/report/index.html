@@ -4,9 +4,7 @@
 			<div class="col-lg-3">
 				<div class="card card-hover">
 					<div class="box bg-info text-center">
-						<h1 class="font-light text-white">
-							{{customers}}
-						</h1>
+						<h1 class="font-light text-white">{{customers}}</h1>
 						<h6 class="text-white">Accounts</h6>
 					</div>
 				</div>
@@ -15,19 +13,16 @@
 			<div class="col-lg-3">
 				<div class="card card-hover">
 					<div class="box bg-warning text-center">
-						<h1 class="font-light text-white">
-							{{sales}} Items
-						</h1>
+						<h1 class="font-light text-white">{{sales}} Items</h1>
 						<h6 class="text-white">Sales</h6>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-3">
 				<div class="card card-hover">
-					<div class="box bg-success text-center">
-						<h1 class="font-light text-white">
-							${{revenue|number:1}}
-						</h1>
+					<div class="box bg-success text-center"
+						ng-click="getRevenue10Day()">
+						<h1 class="font-light text-white">${{revenue|number:1}}</h1>
 						<h6 class="text-white">Revenue</h6>
 					</div>
 				</div>
@@ -36,16 +31,139 @@
 			<div class="col-lg-3">
 				<div class="card card-hover">
 					<div class="box bg-primary text-center">
-						<h1 class="font-light text-white">
-							{{orders}} 
-						</h1>
+						<h1 class="font-light text-white">{{orders}}</h1>
 						<h6 class="text-white">Completed Orders</h6>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		
 
+		<div ng-if="title == 'Revenue'" class="border">
+			<div class="bg-success text-light text-center py-2">
+				<h1>REVENUE STATISTIC</h1>
+				<div class="col row text-center py-1 pl-4">
+					<div class="col-2 offset-2" ng-click="getRevenue10Day()">
+						<button class="btn btn-light col" style="font-weight:bolder">Revenue 10 Days
+							Ago</button>
+					</div>
+					<div class="col-2" ng-click="getRevenueMonth()">
+						<button class="btn btn-light col" style="font-weight:bolder">Revenue This
+							Month</button>
+					</div>
+					<div class="col-2" ng-click="getRevenueYear()">
+						<button class="btn btn-light col" style="font-weight:bolder">Revenue This Year
+						</button>
+					</div>
+					<div class="col-2" ng-click="showModalRevenueByTime()">
+						<button class="btn btn-light col" style="font-weight:bolder">Revenue By Time</button>
+					</div>
+				</div>
+			</div>
+			<div class="row pt-3">
+				<div class="col-6 offset-3" ng-if="type =='10DayRevenue'">
+					<div class="alert-info text-center text-info"><h3 class="p-3">{{message}}</h3></div>
+					<table class="table table-striped text-center">
+						<thead>
+							<tr style="position: relative;">
+								<th style="width: 10%">Day(MM/dd/yyyy)</th>
+								<th style="width: 25%" scope="col">Revenue</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in revenue10Day">
+								<th>{{item.day | date:'MM/dd/yyyy'}}</th>
+								<td>${{item.revenue | number:1}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="col-6 offset-3" ng-if="type =='MonthRevenue'">
+					<div class="alert-info text-center text-info"><h3 class="p-3">{{message}}</h3></div>
+					<table class="table table-striped text-center">
+						<thead>
+							<tr style="position: relative;">
+								<th style="width: 10%">Day(MM/dd/yyyy)</th>
+								<th style="width: 25%" scope="col">Revenue</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in revenueMonth">
+								<th>{{item.day | date:'MM/dd/yyyy'}}</th>
+								<td>${{item.revenue | number:1}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="col-6 offset-3" ng-if="type =='YearRevenue'">
+					<div class="alert-info text-center text-info"><h3 class="p-3">{{message}}</h3></div>
+					<table class="table table-striped text-center">
+						<thead>
+							<tr style="position: relative;">
+								<th style="width: 10%">Month</th>
+								<th style="width: 25%" scope="col">Revenue</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in revenueYear">
+								<th>{{item.month}}/{{item.year}}</th>
+								<td>${{item.revenue | number:1}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="col-6 offset-3" ng-if="type =='TimeRevenue'">
+					<div class="alert-info text-center text-info"><h3 class="p-3">Revenue By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}} - {{to| date:'MM/dd/yyyy'}}</h3></div>
+					<table class="table table-striped text-center">
+						<thead>
+							<tr style="position: relative;">
+								<th style="width: 10%">Month</th>
+								<th style="width: 25%" scope="col">Revenue</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in revenueTime">
+								<th>{{item.month}}/{{item.year}}</th>
+								<td>${{item.revenue | number:1}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="RevenueByTimeModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="false">
+	<div class="modal-dialog " role="document" style="max-width: 15%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalCenterTitle">Revenue By
+					Time</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="">
+					<div class="form-group">
+						<input type="date" placeholder="dd-mm-yyyy" class="form-control"
+							ng-model="revenueByTime.from" />
+					</div>
+					<div class="form-group">
+						<input type="date" placeholder="dd-mm-yyyy" class="form-control"
+							ng-model="revenueByTime.to" />
+					</div>
+					<button ng-click="getRevenueByTime()"
+						class="btn btn-primary float-right">Get Revenue</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

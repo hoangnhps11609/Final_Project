@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 
 import edu.poly.entity.Order;
 import edu.poly.entity.Product;
+import edu.poly.entity.RevenueDay;
+import edu.poly.entity.RevenueMonth;
 @Repository
 public interface OrderDAO extends JpaRepository<Order, Long>{
 
@@ -67,5 +69,20 @@ public interface OrderDAO extends JpaRepository<Order, Long>{
 
 	@Query("SELECT count(o) From Order o Where o.status = 3")
 	Long countOrders();
+
+
+	@Query("Select New RevenueDay(o.createDate, sum(o.total)) from Order o where o.status = 3 and o.createDate between DATEADD(DAY, -10, GETDATE()) and GETDATE() group by o.createDate")
+	List<RevenueDay> getRevenue10Day(Sort sort);
+
+
+	@Query("Select New RevenueDay(o.createDate, sum(o.total)) from Order o where o.status = 3 and MONTH(CreateDate) = MONTH(GETDATE()) and YEAR(CreateDate) = YEAR(GETDATE()) group by o.createDate")
+	List<RevenueDay> getRevenueMonth(Sort sort);
+
+	@Query("Select New RevenueMonth(Month(o.createDate), Year(o.createDate), sum(o.total)) from Order o where o.status = 3 and YEAR(CreateDate) = YEAR(GETDATE()) group by Month(o.createDate), Year(o.createDate)")
+	List<RevenueMonth> getRevenueYear();
+
+
+	@Query("Select New RevenueMonth(Month(o.createDate), Year(o.createDate), sum(o.total)) from Order o where o.status = 3 and o.createDate between ?1 and ?2 group by Month(o.createDate), Year(o.createDate)")
+	List<RevenueMonth> getRevenueByTime(Date from, Date to);
 
 }

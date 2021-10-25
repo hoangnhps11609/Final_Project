@@ -179,9 +179,6 @@ public class ProductServiceImp implements ProductService{
 	@Override
 	public List<ProductByColor> getProInColor(Integer id) {
 		return productDAO.getProInColor(id);
-<<<<<<< HEAD
-	}	
-=======
 	}
 
 
@@ -199,11 +196,6 @@ public class ProductServiceImp implements ProductService{
 	}
 
 
-
-
-	
-	
->>>>>>> b0d6ed2e1cadf84390a2d5cff0619dd3862de88e
 
 
 

@@ -20,6 +20,8 @@ import edu.poly.dao.OrderDetailDAO;
 import edu.poly.service.OrderService;
 import edu.poly.entity.Order;
 import edu.poly.entity.OrderDetail;
+import edu.poly.entity.RevenueDay;
+import edu.poly.entity.RevenueMonth;
 
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -171,6 +173,26 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public Long countOrders() {
 		return dao.countOrders();
+	}
+
+	@Override
+	public List<RevenueDay> getRevenue10Day(Sort sort) {
+		return dao.getRevenue10Day(sort);
+	}
+
+	@Override
+	public List<RevenueDay> getRevenueMonth(Sort sort) {
+		return dao.getRevenueMonth(sort);
+	}
+
+	@Override
+	public List<RevenueMonth> getRevenueYear() {
+		return dao.getRevenueYear();
+	}
+
+	@Override
+	public List<RevenueMonth> getRevenueByTime(Date from, Date to) {
+		return dao.getRevenueByTime(from, to);
 	}
 
 
