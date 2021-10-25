@@ -26,6 +26,10 @@ public interface ColorDAO extends JpaRepository<Color, Integer>{
 	@Query
 	("SELECT new ColorInventory(pd.color, sum(pd.quantity)) FROM ProductDetail pd group by pd.color")
 	List<ColorInventory> findColorInventory();
+
+	@Query
+	("Select c from Color c where c.name like ?1")
+	List<Color> findByName(String string);
 	
 
 	

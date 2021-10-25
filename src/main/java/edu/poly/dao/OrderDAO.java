@@ -107,6 +107,12 @@ public interface OrderDAO extends JpaRepository<Order, Long>{
 
 	@Query("Select New ReportOrderMonth(Month(o.createDate), Year(o.createDate), count(o)) from Order o where o.status = 4 and YEAR(CreateDate) = YEAR(GETDATE()) group by Month(o.createDate), Year(o.createDate) order by month(o.createDate) desc")
 	List<ReportOrderMonth> getOrderCancelledYear();
+
+	@Query("Select sum(o.total) from Order o where o.status = 3 and o.createDate between DATEADD(DAY, -10, GETDATE()) and GETDATE() group by o.createDate order by sum(o.total) desc")
+	List<Double> getTopInDay();
+
+	@Query("Select sum(o.total) from Order o where o.status = 3 and MONTH(CreateDate) = MONTH(GETDATE()) and YEAR(CreateDate) = YEAR(GETDATE()) group by o.createDate order by sum(o.total) desc")
+	List<Double> getTopInRevenueMonth();
 	
 	
 

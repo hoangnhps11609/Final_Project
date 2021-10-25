@@ -90,4 +90,8 @@ public interface OrderService {
 	List<ReportOrderMonth> getOrderByTime(Date from, Date to);
 
 	List<ReportOrderMonth> getOrderCancelledYear();
+
+	List<Double> getTopIn10Day();
+
+	List<Double> getTopInRevenueMonth();
 }

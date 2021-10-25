@@ -12,7 +12,8 @@
 			<!-- Column -->
 			<div class="col-lg-3">
 				<div class="card card-hover">
-					<div class="box bg-warning text-center" ng-click="getItemMonth()">
+					<div class="box text-center" ng-click="getItemMonth()"
+						style="background-color: #e7ab3c">
 						<h1 class="font-light text-white">{{sales}} Items</h1>
 						<h6 class="text-white">Sales</h6>
 					</div>
@@ -43,25 +44,28 @@
 				<h1>REVENUE STATISTIC</h1>
 				<div class="col row text-center py-1 pl-4">
 					<div class="col-2 offset-2" ng-click="getRevenue10Day()">
-						<button class="btn btn-light col" style="font-weight:bolder">Revenue 10 Days
-							Ago</button>
+						<button class="btn btn-light col" style="font-weight: bolder">Revenue
+							10 Days Ago</button>
 					</div>
 					<div class="col-2" ng-click="getRevenueMonth()">
-						<button class="btn btn-light col" style="font-weight:bolder">Revenue This
-							Month</button>
+						<button class="btn btn-light col" style="font-weight: bolder">Revenue
+							This Month</button>
 					</div>
 					<div class="col-2" ng-click="getRevenueYear()">
-						<button class="btn btn-light col" style="font-weight:bolder">Revenue This Year
-						</button>
+						<button class="btn btn-light col" style="font-weight: bolder">Revenue
+							This Year</button>
 					</div>
 					<div class="col-2" ng-click="showModalRevenueByTime()">
-						<button class="btn btn-light col" style="font-weight:bolder">Revenue By Time</button>
+						<button class="btn btn-light col" style="font-weight: bolder">Revenue
+							By Time</button>
 					</div>
 				</div>
 			</div>
 			<div class="row pt-3">
 				<div class="col-6 offset-3" ng-if="type =='10DayRevenue'">
-					<div class="alert-info text-center text-info"><h3 class="p-3">{{message}}</h3></div>
+					<div class="alert-info text-center text-info">
+						<h3 class="p-3">{{message}}</h3>
+					</div>
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
@@ -76,10 +80,15 @@
 							</tr>
 						</tbody>
 					</table>
+					<p>
+						<button ng-click="showChart10DayRevenue()">Show Chart</button>
+					</p>
 				</div>
 
 				<div class="col-6 offset-3" ng-if="type =='MonthRevenue'">
-					<div class="alert-info text-center text-info"><h3 class="p-3">{{message}}</h3></div>
+					<div class="alert-info text-center text-info">
+						<h3 class="p-3">{{message}}</h3>
+					</div>
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
@@ -94,10 +103,15 @@
 							</tr>
 						</tbody>
 					</table>
+					<p>
+						<button ng-click="showChartMonthRevenue()">Show Chart</button>
+					</p>
 				</div>
 
 				<div class="col-6 offset-3" ng-if="type =='YearRevenue'">
-					<div class="alert-info text-center text-info"><h3 class="p-3">{{message}}</h3></div>
+					<div class="alert-info text-center text-info">
+						<h3 class="p-3">{{message}}</h3>
+					</div>
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
@@ -115,7 +129,12 @@
 				</div>
 
 				<div class="col-6 offset-3" ng-if="type =='TimeRevenue'">
-					<div class="alert-info text-center text-info"><h3 class="p-3">Revenue By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}} - {{to| date:'MM/dd/yyyy'}}</h3></div>
+					<div class="alert-info text-center text-info">
+						<h3 class="p-3">
+							Revenue By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}}
+							- {{to| date:'MM/dd/yyyy'}}
+						</h3>
+					</div>
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
@@ -133,28 +152,33 @@
 				</div>
 			</div>
 		</div>
-		
-		
-		
-<!-- 		Account Report -->
+
+
+
+		<!-- 		Account Report -->
 		<div ng-if="title == 'Account'" class="border">
 			<div class="bg-info text-light text-center py-2">
 				<h1>ACCOUNT STATISTIC</h1>
 				<div class="col row text-center py-1 pl-0">
 					<div class="col-3 offset-2" ng-click="getAccount6Month()">
-						<button class="btn btn-light col" style="font-weight:bolder">Account In 6 Months Ago</button>
+						<button class="btn btn-light col" style="font-weight: bolder">Account
+							In 6 Months Ago</button>
 					</div>
 					<div class="col-3" ng-click="getAccountNoOrder()">
-						<button class="btn btn-light col" style="font-weight:bolder">Account No Order</button>
+						<button class="btn btn-light col" style="font-weight: bolder">Account
+							No Order</button>
 					</div>
 					<div class="col-3" ng-click="showModalAccountByTime()">
-						<button class="btn btn-light col" style="font-weight:bolder">Account By Time</button>
+						<button class="btn btn-light col" style="font-weight: bolder">Account
+							By Time</button>
 					</div>
 				</div>
 			</div>
 			<div class="row pt-3">
 				<div class="col-6 offset-3" ng-if="type =='Account6Month'">
-					<div class="alert-info text-center text-info"><h3 class="p-3">{{message}}</h3></div>
+					<div class="alert-info text-center text-info">
+						<h3 class="p-3">{{message}}</h3>
+					</div>
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
@@ -169,9 +193,15 @@
 							</tr>
 						</tbody>
 					</table>
+					
 				</div>
 				<div class="col-6 offset-3" ng-if="type =='TimeAccount'">
-					<div class="alert-info text-center text-info"><h3 class="p-3">Account By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}} - {{to| date:'MM/dd/yyyy'}}</h3></div>
+					<div class="alert-info text-center text-info">
+						<h3 class="p-3">
+							Account By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}}
+							- {{to| date:'MM/dd/yyyy'}}
+						</h3>
+					</div>
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
@@ -188,7 +218,12 @@
 					</table>
 				</div>
 				<div class="col-6 offset-3" ng-if="type =='AccountNoOrder'">
-					<div class="alert-info text-center text-info"><h3 class="p-3">Number of New Account: <br />Don't have any Order in 6 months ago</h3></div>
+					<div class="alert-info text-center text-info">
+						<h3 class="p-3">
+							Number of New Account: <br />Don't have any Order in 6 months
+							ago
+						</h3>
+					</div>
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
@@ -206,27 +241,33 @@
 				</div>
 			</div>
 		</div>
-		
-		
+
+
 		<!-- Item -->
 		<div ng-if="title == 'Item'" class="border">
-			<div class="bg-warning text-light text-center py-2">
+			<div class="text-light text-center py-2"
+				style="background-color: #e7ab3c">
 				<h1>ITEM STATISTIC</h1>
 				<div class="col row text-center py-1 pl-0">
 					<div class="col-3 offset-2" ng-click="getItem6Month()">
-						<button class="btn btn-light col" style="font-weight:bolder">Item In 6 Months Ago</button>
+						<button class="btn btn-light col" style="font-weight: bolder">Item
+							In 6 Months Ago</button>
 					</div>
 					<div class="col-3" ng-click="getItemMonth()">
-						<button class="btn btn-light col" style="font-weight:bolder">Item This Month</button>
+						<button class="btn btn-light col" style="font-weight: bolder">Item
+							This Month</button>
 					</div>
 					<div class="col-3" ng-click="showModalItemByTime()">
-						<button class="btn btn-light col" style="font-weight:bolder">Item By Time</button>
+						<button class="btn btn-light col" style="font-weight: bolder">Item
+							By Time</button>
 					</div>
 				</div>
 			</div>
 			<div class="row pt-3">
 				<div class="col-6 offset-3" ng-if="type =='Item6Month'">
-					<div class="alert-info text-center text-info"><h3 class="p-3">{{message}}</h3></div>
+					<div class="alert-info text-center text-info">
+						<h3 class="p-3">{{message}}</h3>
+					</div>
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
@@ -243,7 +284,9 @@
 					</table>
 				</div>
 				<div class="col-6 offset-3" ng-if="type =='MonthItem'">
-					<div class="alert-info text-center text-info"><h3 class="p-3">{{message}}</h3></div>
+					<div class="alert-info text-center text-info">
+						<h3 class="p-3">{{message}}</h3>
+					</div>
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
@@ -260,12 +303,17 @@
 					</table>
 				</div>
 				<div class="col-6 offset-3" ng-if="type =='TimeItem'">
-					<div class="alert-info text-center text-info"><h3 class="p-3">Item By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}} - {{to| date:'MM/dd/yyyy'}}</h3></div>
+					<div class="alert-info text-center text-info">
+						<h3 class="p-3">
+							Item By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}} -
+							{{to| date:'MM/dd/yyyy'}}
+						</h3>
+					</div>
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
 								<th style="width: 10%">Month</th>
-								<th style="width: 25%" scope="col">Account</th>
+								<th style="width: 25%" scope="col">Item</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -278,27 +326,32 @@
 				</div>
 			</div>
 		</div>
-		
-		
+
+
 		<!-- Order -->
 		<div ng-if="title == 'Order'" class="border">
 			<div class="bg-primary text-light text-center py-2">
 				<h1>ORDER STATISTIC</h1>
 				<div class="col row text-center py-1 pl-0">
 					<div class="col-3 offset-2" ng-click="getOrderCancelledMonth()">
-						<button class="btn btn-danger col" style="font-weight:bolder">Order Cancelled</button>
+						<button class="btn btn-danger col" style="font-weight: bolder">Order
+							Cancelled</button>
 					</div>
 					<div class="col-3" ng-click="getOrderMonth()">
-						<button class="btn btn-light col" style="font-weight:bolder">Order Completed This Month</button>
+						<button class="btn btn-light col" style="font-weight: bolder">Order
+							Completed This Month</button>
 					</div>
 					<div class="col-3" ng-click="showModalItemByTime()">
-						<button class="btn btn-light col" style="font-weight:bolder">Order Completed By Time</button>
+						<button class="btn btn-light col" style="font-weight: bolder">Order
+							Completed By Time</button>
 					</div>
 				</div>
 			</div>
 			<div class="row pt-3">
 				<div class="col-6 offset-3" ng-if="type =='YearOrderCancelled'">
-					<div class="alert-info text-center text-info"><h3 class="p-3">{{message}}</h3></div>
+					<div class="alert-info text-center text-info">
+						<h3 class="p-3">{{message}}</h3>
+					</div>
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
@@ -315,7 +368,9 @@
 					</table>
 				</div>
 				<div class="col-6 offset-3" ng-if="type =='MonthOrder'">
-					<div class="alert-info text-center text-info"><h3 class="p-3">{{message}}</h3></div>
+					<div class="alert-info text-center text-info">
+						<h3 class="p-3">{{message}}</h3>
+					</div>
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
@@ -332,7 +387,12 @@
 					</table>
 				</div>
 				<div class="col-6 offset-3" ng-if="type =='TimeOrder'">
-					<div class="alert-info text-center text-info"><h3 class="p-3">Order By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}} - {{to| date:'MM/dd/yyyy'}}</h3></div>
+					<div class="alert-info text-center text-info">
+						<h3 class="p-3">
+							Order By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}} -
+							{{to| date:'MM/dd/yyyy'}}
+						</h3>
+					</div>
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
@@ -436,13 +496,13 @@
 				<div class="">
 					<div class="form-group">
 						<input type="date" placeholder="dd-mm-yyyy" class="form-control"
-							ng-model="orderByTime.from" />
+							ng-model="itemByTime.from" />
 					</div>
 					<div class="form-group">
 						<input type="date" placeholder="dd-mm-yyyy" class="form-control"
-							ng-model="orderByTime.to" />
+							ng-model="itemByTime.to" />
 					</div>
-					<button ng-click="getOrderByTime()"
+					<button ng-click="getItemByTime()"
 						class="btn btn-primary float-right">Get Order</button>
 				</div>
 			</div>

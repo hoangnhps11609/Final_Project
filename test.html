@@ -1,21 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-</head>
-<body ng-app style="background-color: {{mycolor}};">
+    <!-- Including AngularJS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+    <!-- Including the fusioncharts core library -->
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+    <!-- Including the angularjs-fusioncharts directive-->
+    <script type="text/javascript" src="https://unpkg.com/angularjs-fusioncharts@4.0.1/dist/angular-fusioncharts.js"></script>
+    <!-- Including the fusion theme -->
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+    <script type="text/javascript">
+        var myApp = angular.module('myApp', ['ng-fusioncharts']);
+        //STEP 2 - Chart Data
+        const chartData = [
+            { label: 'Venezuela', value: '290' },
+            { label: 'Saudi', value: '260' },
+            { label: 'Canada', value: '180' },
+            { label: 'Iran', value: '140' },
+            { label: 'Russia', value: '115' },
+            { label: 'UAE', value: '100' },
+            { label: 'US', value: '30' },
+            { label: 'China', value: '30' }
+        ];
 
-        <select ng-model="mycolor" name="" id="">
-            <option value="black">Black</option>
-            <option value="blue">Blue</option>
-            <option value="green">Green</option>
-            <option value="yellow">Yellow</option>
-            <option value="white">White</option>
-        </select>
+        // STEP 3 - Chart Configurations
+        const dataSource = {
+            chart: {
+                caption: "Countries With Most Oil Reserves [2017-18]",
+                subCaption: "In MMbbl = One Million barrels",
+                xAxisName: "Country",
+                yAxisName: "Reserves (MMbbl)",
+                numberSuffix: "K",
+                theme: "fusion",
+            },
+            // Chart Data - from step 2
+            "data": chartData
+        };
+        myApp.controller('MyController', ['$scope', function($scope) {
+            // datasource
+            $scope.myDataSource = dataSource
+        }]);
+    </script>
+
+</head>
+
+<body ng-app="myApp">
+<div ng-controller="MyController">
+<div fusioncharts id="my-chart-id" width="700" height="400" type="column2d" dataSource="{{myDataSource}}">
+</div>
+</div>
 </body>
 </html>

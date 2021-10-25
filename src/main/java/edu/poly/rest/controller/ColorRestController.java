@@ -74,5 +74,10 @@ public class ColorRestController {
 		return list;
 	}
 	
+	@GetMapping("{valued}")
+	public List<Color> getOne1(@PathVariable("valued") String valued) {
+		return cService.findByName("%"+valued+"%");
+	}
+	
 	
 }

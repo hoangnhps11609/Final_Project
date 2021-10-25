@@ -2,485 +2,458 @@
 <html dir="ltr" xmlns="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/assets/images/favicon.png">
-    <title>Matrix Template - The Ultimate Multipurpose admin template</title>
-    <!-- Custom CSS -->
-    <link href="/assets/assets/libs/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
-    <link href="/assets/assets/extra-libs/calendar/calendar.css" rel="stylesheet" />
-    <link href="/assets/dist/css/style.min.css" rel="stylesheet">
-    <link href="/assets/dist/image.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.8/dist/sweetalert2.all.min.js"></script>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/assets/assets/images/favicon.png">
+<title>Matrix Template - The Ultimate Multipurpose admin
+	template</title>
+<!-- Custom CSS -->
+<link href="/assets/assets/libs/fullcalendar/dist/fullcalendar.min.css"
+	rel="stylesheet" />
+<link href="/assets/assets/extra-libs/calendar/calendar.css"
+	rel="stylesheet" />
+<link href="/assets/dist/css/style.min.css" rel="stylesheet">
+<link href="/assets/dist/image.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.8/dist/sweetalert2.all.min.js"></script>
+
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <style>
-
 </style>
 
-<body ng-app="admin-app" id="bodyh"  onload="setbackground()">
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-    <div class="preloader">
-        <div class="lds-ripple">
-            <div class="lds-pos"></div>
-            <div class="lds-pos"></div>
-        </div>
-    </div>
+<body ng-app="admin-app" id="bodyh" onload="setbackground()">
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+	<div class="preloader">
+		<div class="lds-ripple">
+			<div class="lds-pos"></div>
+			<div class="lds-pos"></div>
+		</div>
+	</div>
 
-    <div id="main-wrapper">
-        <header class="topbar" data-navbarbg="skin5">
-            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin5">
-                    <!-- This is for the sidebar toggle which is visible on mobile only -->
-                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
-                            class="ti-menu ti-close"></i></a>
-                    <a class="navbar-brand" href="index.html">
-                        <!-- Logo icon -->
-                        <b class="logo-icon p-l-10">
-                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            <!-- Dark Logo icon -->
-                            <img src="/assets/assets/images/logo-icon.png" alt="homepage" class="light-logo" />
+	<div id="main-wrapper">
+		<header class="topbar" data-navbarbg="skin5">
+			<nav class="navbar top-navbar navbar-expand-md navbar-dark">
+				<div class="navbar-header" data-logobg="skin5">
+					<!-- This is for the sidebar toggle which is visible on mobile only -->
+					<a class="nav-toggler waves-effect waves-light d-block d-md-none"
+						href="javascript:void(0)"><i class="ti-menu ti-close"></i></a> <a
+						class="navbar-brand" href="index.html"> <!-- Logo icon --> <b
+						class="logo-icon p-l-10"> <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+							<!-- Dark Logo icon --> <img
+							src="/assets/assets/images/logo-icon.png" alt="homepage"
+							class="light-logo" />
 
-                        </b>
-                        <!--End Logo icon -->
-                        <!-- Logo text -->
-                        <span class="logo-text">
-                            <!-- dark Logo text -->
-                            <img src="/assets/assets/images/logo-text.png" alt="homepage" class="light-logo" />
+					</b> <!--End Logo icon --> <!-- Logo text --> <span class="logo-text">
+							<!-- dark Logo text --> <img
+							src="/assets/assets/images/logo-text.png" alt="homepage"
+							class="light-logo" />
 
-                        </span>
-                    </a>
-                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
-                        data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i
-                            class="ti-more"></i></a>
-                </div>
+					</span>
+					</a> <a
+						class="topbartoggler d-block d-md-none waves-effect waves-light"
+						href="javascript:void(0)" data-toggle="collapse"
+						data-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation"><i class="ti-more"></i></a>
+				</div>
 
-                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                    <ul class="navbar-nav float-left mr-auto">
-                        <li class="nav-item d-none d-md-block"><a
-                                class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
-                                data-sidebartype="mini-sidebar"><i class="ti-menu font-16"></i></a></li>
-
-                    </ul>
-                    <ul class="navbar-nav float-left mr-auto">
-                        <li class="nav-item d-none d-md-block"><a class="nav-link waves-effect waves-light" href="#!account">Account Controller</a></li>
-						<li class="nav-item d-none d-md-block"><a class="nav-link waves-effect waves-light" href="#!category">Category Controller</a></li>
-						<li class="nav-item d-none d-md-block"><a class="nav-link waves-effect waves-light" href="#!color">Color Controller</a></li>
-						<li class="nav-item d-none d-md-block"><a class="nav-link waves-effect waves-light" href="#!order">Order Controller</a></li>
-						<li class="nav-item d-none d-md-block"><a class="nav-link waves-effect waves-light" href="#!product">Product Controller</a></li>
-						<li class="nav-item d-none d-md-block"><a class="nav-link waves-effect waves-light" href="#!productdetail">Product Detail Controller</a></li>
-						<li class="nav-item d-none d-md-block"><a class="nav-link waves-effect waves-light" href="#!blog">Blog Controller</a></li>
-						<li class="nav-item d-none d-md-block"><a class="nav-link waves-effect waves-light" href="#!blogcategory">Blog Category Controller</a></li>
-						<li class="nav-item d-none d-md-block"><a class="nav-link waves-effect waves-light" href="#!brand">Brand Controller</a></li>
-						<li class="nav-item d-none d-md-block"><a class="nav-link waves-effect waves-light" href="#!size">Size Controller</a></li>
-                    </ul>
-                    <ul class="navbar-nav float-right" >
-                         <li class="nav-item dropdown">
-                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" 
-                                aria-haspopup="true" aria-expanded="false"> <i class="ti-bell font-16"></i> 
-                             </a> 
-                           <div class="dropdown-menu zindex" aria-labelledby="navbarDropdown">
-                               <a class="dropdown-item" href="#" onclick="test()">=)))</a> 
-                                <div class="dropdown-divider"></div> 
-                                <a class="dropdown-item" href="#">Something else here</a> 
-                            </div> 
-                        </li> 
-                        <li class="nav-item dropdown ">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                                    src="/assets/assets/images/users/1.jpg" alt="user" class="rounded-circle"
-                                    width="31"></a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>
-                                    My Profile</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#!authority"><i class="ti-settings m-r-5 m-l-5"></i> User
-                                    Authorization</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/security/logoff"><i
-                                        class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                                <div class="dropdown-divider"></div>
-                                <div class="p-l-30 p-10"><a href="/" class="btn btn-sm btn-success btn-rounded">Return
-                                        to shop</a></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
+				<div class="navbar-collapse collapse" id="navbarSupportedContent"
+					data-navbarbg="skin5">
+					<ul class="navbar-nav float-left mr-auto">
+						<li class="nav-item d-none d-md-block"><a
+							class="nav-link sidebartoggler waves-effect waves-light"
+							href="javascript:void(0)" data-sidebartype="mini-sidebar"><i
+								class="ti-menu font-16"></i></a></li>
+					</ul>
+					<ul class="navbar-nav float-right">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle waves-effect waves-dark" href=""
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="ti-bell font-16"></i>
+						</a>
+							<div class="dropdown-menu zindex"
+								aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="#" onclick="test()">=)))</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#">Something else here</a>
+							</div></li>
+						<li class="nav-item dropdown "><a
+							class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic"
+							href="" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"><img
+								src="/assets/assets/images/users/1.jpg" alt="user"
+								class="rounded-circle" width="31"></a>
+							<div class="dropdown-menu dropdown-menu-right user-dd animated">
+								<a class="dropdown-item" href="javascript:void(0)"><i
+									class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#!authority"><i
+									class="ti-settings m-r-5 m-l-5"></i> User Authorization</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="/security/logoff"><i
+									class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+								<div class="dropdown-divider"></div>
+								<div class="p-l-30 p-10">
+									<a href="/" class="btn btn-sm btn-success btn-rounded">Return
+										to shop</a>
+								</div>
+							</div></li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<!-- ============================================================== -->
+		<!-- End Topbar header -->
+		<!-- ============================================================== -->
 
 
 
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <aside class="left-sidebar" data-sidebarbg="skin5">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav huansidebar">
-                    <ul id="sidebarnav" class="p-t-30">
-                        <li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="ti-menu-alt"></i><span
-                                    class="hide-menu">
-                                    Manage Site Control </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level" style="position: relative;">
-                                <li class="sidebar-item"><a href="#!account" class="sidebar-link"><i
-                                            class="ti-user"></i><span class="hide-menu"> Account Controller </span></a>
-                                </li>
-                                <li class="sidebar-item"><a href="#!category" class="sidebar-link"><i
-                                            class="ti-layers-alt"></i><span class="hide-menu"> Category Controller
-                                        </span></a></li>
-                                 <li class="sidebar-item"><a href="#!color" class="sidebar-link"><i
-                                            class="ti-layers-alt"></i><span class="hide-menu"> Color Controller
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="#!orderstatus" class="sidebar-link"><i
-                                            class="ti-shopping-cart"></i><span class="hide-menu"> Order Status
-                                            Controller
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="#!product" class="sidebar-link"><i
-                                            class="fab fa-codepen"></i><span class="hide-menu"> Product Controller
-                                        </span></a>
-                                </li>
-                                <li class="sidebar-item"><a href="#!productdetail" class="sidebar-link"><i
-                                            class="fab fa-codepen"></i><span class="hide-menu"> Product Detail
-                                            Controller
-                                        </span></a>
-                                </li>
-                                <li class="sidebar-item"><a href="#!voucher" class="sidebar-link"><i
-                                            class="ti-gift"></i><span class="hide-menu">Voucher Controller </span></a>
-                                </li>
-                                <li class="sidebar-item"><a href="#!blogcategory" class="sidebar-link"><i
-                                            class="fab fa-blogger"></i><span class="hide-menu">Blog Category </span></a>
-                                </li>
-                                <li class="sidebar-item"><a href="#!blog" class="sidebar-link"><i
-                                            class="fab fa-blogger-b"></i><span class="hide-menu">Blog Controller
-                                        </span></a>
-                                </li>
-                                <li class="sidebar-item"><a href="#!brand" class="sidebar-link"><i
-                                            class="fa fa-trademark"></i><span class="hide-menu">Brand Controller
-                                        </span></a>
-                                </li>
-                                  <li class="sidebar-item"><a href="#!size" class="sidebar-link"><i
-                                            class="fa fa-trademark"></i><span class="hide-menu">Size Controller
-                                        </span></a>
-                                </li>
-                                  <li class="sidebar-item"><a href="#!comment" class="sidebar-link"><i
-                                            class="fa fa-trademark"></i><span class="hide-menu">Comment Controller
-                                        </span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="ti-bar-chart-alt"></i><span
-                                    class="hide-menu">
-                                    Manage Report Control </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="#!report" class="sidebar-link"><i
-                                            class="ti-user"></i><span class="hide-menu">Account Report</span></a>
-                                </li>
-                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i
-                                            class="ti-layers-alt"></i><span class="hide-menu"> Category Statistic
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i
-                                            class="ti-shopping-cart"></i><span class="hide-menu"> Order Statistic
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i
-                                            class="ti-gift"></i><span class="hide-menu"> Product Statistic </span></a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- End Sidebar navigation -->
-            </div>
-            <!-- End Sidebar scroll-->
-        </aside>
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+		<!-- Left Sidebar - style you can find in sidebar.scss  -->
+		<aside class="left-sidebar" data-sidebarbg="skin5">
+			<!-- Sidebar scroll-->
+			<div class="scroll-sidebar">
+				<!-- Sidebar navigation-->
+				<nav class="sidebar-nav huansidebar">
+					<ul id="sidebarnav" class="p-t-30">
+						<li class="sidebar-item bg-success text-success"><a href="#!report"
+							class="sidebar-link"><i class="ti-user"></i><span
+								class="hide-menu">Report For Director</span></a></li>
+								
+						<li class="sidebar-item"><a
+							class="sidebar-link has-arrow waves-effect waves-dark"
+							href="javascript:void(0)" aria-expanded="false"><i
+								class="ti-menu-alt"></i><span class="hide-menu"> Manage
+									Site Control </span></a>
+							<ul aria-expanded="false" class="collapse  first-level"
+								style="position: relative;">
+								<li class="sidebar-item"><a href="#!account"
+									class="sidebar-link"><i class="ti-user"></i><span
+										class="hide-menu"> Account Controller </span></a></li>
+										
+								<li class="sidebar-item"><a href="#!category"
+									class="sidebar-link"><i class="ti-layers-alt"></i><span
+										class="hide-menu"> Category Controller </span></a></li>
+								<li class="sidebar-item"><a href="#!color"
+									class="sidebar-link"><i class="ti-layers-alt"></i><span
+										class="hide-menu"> Color Controller </span></a></li>
+								<li class="sidebar-item"><a href="#!orderstatus"
+									class="sidebar-link"><i class="ti-shopping-cart"></i><span
+										class="hide-menu"> Order Status Controller </span></a></li>
+								<li class="sidebar-item"><a href="#!product"
+									class="sidebar-link"><i class="fab fa-codepen"></i><span
+										class="hide-menu"> Product Controller </span></a></li>
+								<li class="sidebar-item"><a href="#!productdetail"
+									class="sidebar-link"><i class="fab fa-codepen"></i><span
+										class="hide-menu"> Product Detail Controller </span></a></li>
+								<li class="sidebar-item"><a href="#!voucher"
+									class="sidebar-link"><i class="ti-gift"></i><span
+										class="hide-menu">Voucher Controller </span></a></li>
+								<li class="sidebar-item"><a href="#!blogcategory"
+									class="sidebar-link"><i class="fab fa-blogger"></i><span
+										class="hide-menu">Blog Category </span></a></li>
+								<li class="sidebar-item"><a href="#!blog"
+									class="sidebar-link"><i class="fab fa-blogger-b"></i><span
+										class="hide-menu">Blog Controller </span></a></li>
+								<li class="sidebar-item"><a href="#!brand"
+									class="sidebar-link"><i class="fa fa-trademark"></i><span
+										class="hide-menu">Brand Controller </span></a></li>
+								<li class="sidebar-item"><a href="#!size"
+									class="sidebar-link"><i class="fa fa-trademark"></i><span
+										class="hide-menu">Size Controller </span></a></li>
+								<li class="sidebar-item"><a href="#!comment"
+									class="sidebar-link"><i class="fa fa-trademark"></i><span
+										class="hide-menu">Comment Controller </span></a></li>
+							</ul></li>
+					</ul>
+				</nav>
+				<!-- End Sidebar navigation -->
+			</div>
+			<!-- End Sidebar scroll-->
+		</aside>
+		<!-- End Left Sidebar - style you can find in sidebar.scss  -->
 
 
-        <!-- Page wrapper  -->
-        <style>
-            .huansidebar>ul li ul li:hover {
-                box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
-                opacity: 1;
-            }
+		<!-- Page wrapper  -->
+		<style>
+.huansidebar>ul li ul li:hover {
+	box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+	opacity: 1;
+}
 
-            .huansidebar ul li ul li a {
-                position: relative;
-                color: #fff;
-                text-decoration: none;
-                opacity: 0.15;
+.huansidebar ul li ul li a {
+	position: relative;
+	color: #fff;
+	text-decoration: none;
+	opacity: 0.15;
+}
 
-            }
+.huan {
+	margin: 0 auto;
+	width: 90%;
+	margin-top: 15px;
+	border: solid 1px;
+	border-bottom: 0px;
+}
 
-            .huan {
-                margin: 0 auto;
-                width: 90%;
-                margin-top: 15px;
-                border: solid 1px;
-                border-bottom: 0px;
-            }
+* {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
 
-            * {
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
-            }
+.dropdown-menu {
+	z-index: 101;
+}
 
-            .dropdown-menu {
-                z-index: 101;
-            }
+.borbot {
+	border-bottom: solid 1px black;
+}
 
-            .borbot {
-                border-bottom: solid 1px black;
-            }
+.page-wrapper {
+	z-index: 11;
+}
+</style>
 
-            .page-wrapper {
-                z-index: 11;
-            }
-        </style>
+		<div class="page-wrapper"
+			style="display: none; background-color: inherit;">
+			<p class="ng-view col-10 offset-1" />
+		</div>
 
-        <div class="page-wrapper" style="display: none; background-color: inherit;">
-            <p class="ng-view col-10 offset-1" />
-        </div>
-
-        <!-- End Page wrapper  -->
-    </div>
-    <!-- End Wrapper -->
+		<!-- End Page wrapper  -->
+	</div>
+	<!-- End Wrapper -->
 
 
 
-    <!-- All Jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+	<!-- All Jquery -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 
-    <script src="/assets/admin/admin-app.js"></script>
-    <script src="/assets/admin/function.js"></script>
-    <script src="/assets/admin/product/product-ctrl.js"></script>
-    <script src="/assets/admin/productdetail/product-ctrl.js"></script>
-    <script src="/assets/admin/account/account-ctrl.js"></script>
-    <script src="/assets/admin/report/report-ctrl.js"></script>
+	<script src="/assets/admin/admin-app.js"></script>
+	<script src="/assets/admin/function.js"></script>
+	<script src="/assets/admin/product/product-ctrl.js"></script>
+	<script src="/assets/admin/productdetail/product-ctrl.js"></script>
+	<script src="/assets/admin/account/account-ctrl.js"></script>
+	<script src="/assets/admin/report/report-ctrl.js"></script>
 
-    <script src="/assets/admin/category/category-ctrl.js"></script>
-    <script src="/assets/admin/color/color-ctrl.js"></script>
-        <script src="/assets/admin/size/size-ctrl.js"></script>
-        
-     <script src="/assets/admin/comment/comment-ctrl.js"></script>
-    
-    
-    <script src="/assets/admin/order/order-ctrl.js"></script>
-    <script src="/assets/admin/orderstatus/orderstatus-ctrl.js"></script>
+	<script src="/assets/admin/category/category-ctrl.js"></script>
+	<script src="/assets/admin/color/color-ctrl.js"></script>
+	<script src="/assets/admin/size/size-ctrl.js"></script>
 
-    <script src="/assets/admin/authority/authority-ctrl.js"></script>
-    <script src="/assets/admin/voucher/voucher-ctrl.js"></script>
-    <script src="/assets/admin/blogc/blogcategory-ctrl.js"></script>
-    <script src="/assets/admin/blog/blog-ctrl.js"></script>
-    <script src="/assets/admin/brand/brand-ctrl.js"></script>
-
-    <!--<audio autoplay src="/assets/images/We-Wish-You-A-Merry-Christmas-The-Bell-Kids.mp3"></audio> -->
+	<script src="/assets/admin/comment/comment-ctrl.js"></script>
 
 
+	<script src="/assets/admin/order/order-ctrl.js"></script>
+	<script src="/assets/admin/orderstatus/orderstatus-ctrl.js"></script>
 
-    <script src="/assets/assets/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="/assets/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="/assets/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/assets/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="/assets/assets/extra-libs/sparkline/sparkline.js"></script>
-    <!--Wave Effects -->
-    <script src="/assets/dist/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="/assets/dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="/assets/dist/js/custom.min.js"></script>
-    <!--This page JavaScript -->
-    <!-- <script src="dist/js/pages/dashboards/dashboard1.js"></script> -->
-    <!-- Charts js Files -->
-    <script src="/assets/assets/assets/assets/libs/flot/excanvas.js"></script>
-    <script src="/assets/assets/libs/flot/jquery.flot.js"></script>
-    <script src="/assets/assets/libs/flot/jquery.flot.pie.js"></script>
-    <script src="/assets/assets/libs/flot/jquery.flot.time.js"></script>
-    <script src="/assets/assets/libs/flot/jquery.flot.stack.js"></script>
-    <script src="/assets/assets/libs/flot/jquery.flot.crosshair.js"></script>
-    <script src="/assets/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-    <script src="/assets/dist/js/pages/chart/chart-page-init.js"></script>
+	<script src="/assets/admin/authority/authority-ctrl.js"></script>
+	<script src="/assets/admin/voucher/voucher-ctrl.js"></script>
+	<script src="/assets/admin/blogc/blogcategory-ctrl.js"></script>
+	<script src="/assets/admin/blog/blog-ctrl.js"></script>
+	<script src="/assets/admin/brand/brand-ctrl.js"></script>
+
+	<!--<audio autoplay src="/assets/images/We-Wish-You-A-Merry-Christmas-The-Bell-Kids.mp3"></audio> -->
 
 
-    <style>
+
+	<script src="/assets/assets/libs/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap tether Core JavaScript -->
+	<script src="/assets/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+	<script src="/assets/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script
+		src="/assets/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+	<script src="/assets/assets/extra-libs/sparkline/sparkline.js"></script>
+	<!--Wave Effects -->
+	<script src="/assets/dist/js/waves.js"></script>
+	<!--Menu sidebar -->
+	<script src="/assets/dist/js/sidebarmenu.js"></script>
+	<!--Custom JavaScript -->
+	<script src="/assets/dist/js/custom.min.js"></script>
+	<!--This page JavaScript -->
+	<!-- <script src="dist/js/pages/dashboards/dashboard1.js"></script> -->
+	<!-- Charts js Files -->
+	<script src="/assets/assets/assets/assets/libs/flot/excanvas.js"></script>
+	<script src="/assets/assets/libs/flot/jquery.flot.js"></script>
+	<script src="/assets/assets/libs/flot/jquery.flot.pie.js"></script>
+	<script src="/assets/assets/libs/flot/jquery.flot.time.js"></script>
+	<script src="/assets/assets/libs/flot/jquery.flot.stack.js"></script>
+	<script src="/assets/assets/libs/flot/jquery.flot.crosshair.js"></script>
+	<script
+		src="/assets/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+	<script src="/assets/dist/js/pages/chart/chart-page-init.js"></script>
 
 
-        .mgr5px {
-            margin-right: 5px;
-        }
+	<style>
+.mgr5px {
+	margin-right: 5px;
+}
 
-        .mgr50px {
-            margin-right: 50px;
-        }
+.mgr50px {
+	margin-right: 50px;
+}
 
+.noibacchu {
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Bad Script', cursive;
+	font-size: 35px;
+	font-weight: bold;
+	background: white;
+	background: rgba(0, 0, 0, 0.005);
+}
 
-        .noibacchu {
-            text-align: center;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Bad Script', cursive;
-            font-size: 35px;
-            font-weight: bold;
-            background: white;
-            background: rgba(0, 0, 0, 0.005);
-        }
+/* Preloder */
+#preloder {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 999999;
+	background: #000;
+}
 
+.loader {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -13px;
+	margin-left: -13px;
+	border-radius: 60px;
+	animation: loader 0.8s linear infinite;
+	-webkit-animation: loader 0.8s linear infinite;
+}
 
-        /* Preloder */
+@
+keyframes loader {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+		border: 4px solid #f44336;
+		border-left-color: transparent;
+	}
+	
+	50%{
+		-webkit-transform:rotate(180deg);
+		transform:rotate(180deg);
+		border:4px solid #673ab7;
+		border-left-color:transparent;
+	}
+	100%{
+		-webkit-transform:rotate(360deg);
+		transform:rotate(360deg);
+		border:4px solid #f44336;
+		border-left-color:transparent;
+	}
+}
 
-        #preloder {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 999999;
-            background: #000;
-        }
+@-webkit-keyframes loader { 
+0% {
+	-webkit-transform: rotate(0deg);
+	border: 4px solid #f44336;
+	border-left-color: transparent;
+}
+50%{
+	-webkit-transform:rotate(180deg);
+	border:4px solid #673ab7;
+	border-left-color:transparent;
+}
+100%{
+	-webkit-transform:rotate(360deg);
+	border:4px solid #f44336;
+	border-left-color:transparent;
+}
+}
+</style>
+	<script>
+		(function($) {
 
-        .loader {
-            width: 40px;
-            height: 40px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-top: -13px;
-            margin-left: -13px;
-            border-radius: 60px;
-            animation: loader 0.8s linear infinite;
-            -webkit-animation: loader 0.8s linear infinite;
-        }
+			/*------------------
+			    Preloader
+			--------------------*/
+			$(window).on('load', function() {
+				$(".loader").fadeOut();
+				$("#preloder").delay(20).fadeOut("slow");
+			});
+		})(jQuery);
+	</script>
 
-        @keyframes loader {
-            0% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-                border: 4px solid #f44336;
-                border-left-color: transparent;
-            }
+	<script>
+		$(function() {
+			$("#slider-range")
+					.slider(
+							{
+								range : true,
+								min : 0,
+								max : 200,
+								values : [ 0, 0 ],
+								slide : function(event, ui) {
+									$("#amount").val(
+											"$" + ui.values[0] + " - $"
+													+ ui.values[1]);
+									$("#amount_start").val(ui.values[0]);
+									$("#amount_end").val(ui.values[1]);
+								}
+							});
+		});
 
-            50% {
-                -webkit-transform: rotate(180deg);
-                transform: rotate(180deg);
-                border: 4px solid #673ab7;
-                border-left-color: transparent;
-            }
+		function readURL(input) {
+			if (input.files && input.files[0]) {
 
-            100% {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-                border: 4px solid #f44336;
-                border-left-color: transparent;
-            }
-        }
+				var reader = new FileReader();
 
-        @-webkit-keyframes loader {
-            0% {
-                -webkit-transform: rotate(0deg);
-                border: 4px solid #f44336;
-                border-left-color: transparent;
-            }
+				reader.onload = function(e) {
+					$('.image-upload-wrap').hide();
 
-            50% {
-                -webkit-transform: rotate(180deg);
-                border: 4px solid #673ab7;
-                border-left-color: transparent;
-            }
+					$('.file-upload-image').attr('src', e.target.result);
+					$('.file-upload-content').show();
 
-            100% {
-                -webkit-transform: rotate(360deg);
-                border: 4px solid #f44336;
-                border-left-color: transparent;
-            }
-        }
-    </style>
-    <script>
-        (function ($) {
+					$('.image-title').html(input.files[0].name);
+				};
 
-            /*------------------
-                Preloader
-            --------------------*/
-            $(window).on('load', function () {
-                $(".loader").fadeOut();
-                $("#preloder").delay(20).fadeOut("slow");
-            });
-        })(jQuery);
-    </script>
+				reader.readAsDataURL(input.files[0]);
 
-    <script>
-        $(function () {
-            $("#slider-range")
-                .slider(
-                    {
-                        range: true,
-                        min: 0,
-                        max: 200,
-                        values: [0, 0],
-                        slide: function (event, ui) {
-                            $("#amount").val(
-                                "$" + ui.values[0] + " - $"
-                                + ui.values[1]);
-                            $("#amount_start").val(ui.values[0]);
-                            $("#amount_end").val(ui.values[1]);
-                        }
-                    });
-        });
+			} else {
+				removeUpload();
+			}
+		}
 
-        function readURL(input) {
-            if (input.files && input.files[0]) {
+		function removeUpload() {
+			$('.file-upload-input')
+					.replaceWith($('.file-upload-input').clone());
+			$('.file-upload-content').hide();
+			$('.image-upload-wrap').show();
+		}
+		$('.image-upload-wrap').bind('dragover', function() {
+			$('.image-upload-wrap').addClass('image-dropping');
+		});
+		$('.image-upload-wrap').bind('dragleave', function() {
+			$('.image-upload-wrap').removeClass('image-dropping');
+		});
+	</script>
 
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('.image-upload-wrap').hide();
-
-                    $('.file-upload-image').attr('src', e.target.result);
-                    $('.file-upload-content').show();
-
-                    $('.image-title').html(input.files[0].name);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-
-            } else {
-                removeUpload();
-            }
-        }
-
-        function removeUpload() {
-            $('.file-upload-input')
-                .replaceWith($('.file-upload-input').clone());
-            $('.file-upload-content').hide();
-            $('.image-upload-wrap').show();
-        }
-        $('.image-upload-wrap').bind('dragover', function () {
-            $('.image-upload-wrap').addClass('image-dropping');
-        });
-        $('.image-upload-wrap').bind('dragleave', function () {
-            $('.image-upload-wrap').removeClass('image-dropping');
-        });
-    </script>
- 
 
 </body>
 

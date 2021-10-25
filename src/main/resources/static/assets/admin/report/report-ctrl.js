@@ -1,4 +1,4 @@
-app.controller("report-ctrl", function($scope, $http, $location) {
+app.controller("report-ctrl", function($scope, $http, $location, $window) {
 
 
 	$scope.initialize = function() {
@@ -29,6 +29,13 @@ app.controller("report-ctrl", function($scope, $http, $location) {
 			$scope.title= "Revenue";
 			$scope.message= "Revenue 10 Days Ago";
 		});
+		
+		//load authorities of staffs and directors
+		$http.get("/rest/authorities?admin=true").then(resp => {
+			$scope.authorities = resp.data;
+		}).catch(error => {
+			$location.path("/unauthorized");
+		})
 	}
 
 	$scope.initialize();
@@ -93,7 +100,15 @@ app.controller("report-ctrl", function($scope, $http, $location) {
 		});
 	}
 	
+	$scope.showChart10DayRevenue = function(){
+		url = "http://localhost:8080/report/revenue/10daysAgo"
+		window.open(url, '_blank');
+	}
 	
+	$scope.showChartMonthRevenue = function(){
+		url = "http://localhost:8080/report/revenue/thisMonth"
+		window.open(url, '_blank');
+	}
 	
 	///Account
 	$scope.getAccount6Month = function(){

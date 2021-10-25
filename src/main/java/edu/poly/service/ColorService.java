@@ -83,6 +83,8 @@ public interface ColorService {
 	
 	List<ColorInventory> findByColorInventory();
 
+	List<Color> findByName(String string);
+
 
 	
 

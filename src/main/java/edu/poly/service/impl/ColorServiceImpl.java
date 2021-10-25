@@ -193,6 +193,11 @@ public class ColorServiceImpl implements ColorService{
 		return colorDAO.findColorInventory();
 	}
 
+	@Override
+	public List<Color> findByName(String string) {
+		return colorDAO.findByName(string);
+	}
+
 
 	
 }

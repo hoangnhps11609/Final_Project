@@ -229,5 +229,15 @@ public class OrderServiceImpl implements OrderService{
 		return dao.getOrderCancelledYear();
 	}
 
+	@Override
+	public List<Double> getTopIn10Day() {
+		return dao.getTopInDay();
+	}
+
+	@Override
+	public List<Double> getTopInRevenueMonth() {
+		return dao.getTopInRevenueMonth();
+	}
+
 
 }

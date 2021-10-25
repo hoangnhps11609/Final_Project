@@ -2,21 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
-
-</head>
-<body>
-	<div class="container">
-		<h2 align="center">Rì pọt con cak</h2>
-		[[${sum}]]
-		<div id="container"
-			style="width: 550px; height: 400px; margin: 0 auto"></div>
-	</div>
+	<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<!-- Optional theme -->
+	<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
@@ -24,6 +12,14 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h2 align="center">[[${typeName}]]</h2>
+		<div id="container"
+			style="width: 550px; height: 400px; margin: 0 auto"></div>
+	</div>
+	
 	<script th:inline="javascript">
     $(function(){
     Highcharts.chart('container', {
@@ -31,21 +27,21 @@
             type: 'column'
         },
         title: {
-            text: 'Thống kê'
+            text: [[${titleName}]]
         },
         subtitle: {
-            text: 'Tổng loại hàng bán được'
+            text: ''
         },
         xAxis: {
-            categories: [[${name}]],
+            categories: [[${xValue}]],
             crosshair: true
         
         },
         yAxis: {
             min: 0,
-            max: 10000,
+            max: [[${y}]],
             title: {
-                text: 'Quantity'
+                text: [[${yName}]]
             }
         },
         tooltip: {
@@ -63,8 +59,8 @@
             }
         },
         series: [{
-            name: 'Số lượng bán',
-            data: [[${sum}]]
+            name: [[${seriesName}]],
+            data: [[${value}]]
         }]
       });
     });

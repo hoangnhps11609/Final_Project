@@ -70,7 +70,7 @@ app.controller("color-ctrl", function ($scope, $http, $route) {
 	
 		$scope.search = function () {
 		var statistic = angular.copy($scope.statistic);
-		$http.get(`/rest/categories/${statistic.from}`).then(resp => {
+		$http.get(`/rest/colors/${statistic.from}`).then(resp => {
 			$scope.items = resp.data;
 			$(".nav a:eq(1)").tab('show');
 			document.getElementById("lists").style.display = "block";
