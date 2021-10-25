@@ -15,6 +15,8 @@ import edu.poly.service.ProductService;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductDetail;
+import edu.poly.entity.ProductInventory;
+import edu.poly.entity.ProductTop;
 
 @Service
 public class ProductServiceImp implements ProductService{
@@ -193,6 +195,27 @@ public class ProductServiceImp implements ProductService{
 	public Long getCountBrand(Integer brandid) {
 		// TODO Auto-generated method stub
 		return productDAO.getCountBrand(brandid);
+	}
+
+
+	@Override
+	public List<ProductTop> findProductTop() {
+		// TODO Auto-generated method stub
+		return productDAO.findProductTop();
+	}
+
+
+	@Override
+	public List<ProductInventory> findProductInventory() {
+		// TODO Auto-generated method stub
+		return productDAO.findProductInventory();
+	}
+
+
+	@Override
+	public List<Product> findProductByCategory(String cateid) {
+		// TODO Auto-generated method stub
+		return productDAO.findProductByCategory(cateid);
 	}
 
 

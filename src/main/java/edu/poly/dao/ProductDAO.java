@@ -10,9 +10,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import edu.poly.entity.BrandInventory;
+import edu.poly.entity.BrandTop;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductDetail;
+import edu.poly.entity.ProductInventory;
+import edu.poly.entity.ProductTop;
 @Repository
 public interface ProductDAO extends JpaRepository<Product, Integer> {
 	
@@ -100,5 +104,18 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	@Query
 	("SELECT new ProductByColor(p.product, count(p.product)) FROM ProductDetail p WHERE p.color.id=?1 group by p.product")
 	List<ProductByColor> getProInColor(Integer id);
+	
+	@Query
+	("SELECT new ProductTop(od.productDetail.product, sum(od.quantity)) FROM OrderDetail od where od.order.status = 3 group by od.productDetail.product")
+	List<ProductTop> findProductTop();
+	
+	@Query
+	("SELECT new ProductInventory(pd.product, sum(pd.quantity)) FROM ProductDetail pd group by pd.product")
+	List<ProductInventory> findProductInventory();
+	
+	@Query
+	("SELECT p FROM Product p WHERE p.category.id = ?1")
+	List<Product> findProductByCategory(String cateid);
+
 	
 }

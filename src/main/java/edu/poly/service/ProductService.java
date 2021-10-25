@@ -10,6 +10,8 @@ import org.springframework.data.domain.Sort;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductDetail;
+import edu.poly.entity.ProductInventory;
+import edu.poly.entity.ProductTop;
 
 public interface ProductService {
 
@@ -86,5 +88,12 @@ public interface ProductService {
 
 
 	List<ProductByColor> getProInColor(Integer id);	
+	
+	List<ProductTop> findProductTop();
+	
+	List<ProductInventory> findProductInventory();
+	
+	List<Product> findProductByCategory(String cateid);
+
 
 }
