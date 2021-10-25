@@ -20,6 +20,10 @@ import edu.poly.dao.OrderDetailDAO;
 import edu.poly.service.OrderService;
 import edu.poly.entity.Order;
 import edu.poly.entity.OrderDetail;
+import edu.poly.entity.ReportItemDay;
+import edu.poly.entity.ReportItemMonth;
+import edu.poly.entity.ReportOrderDay;
+import edu.poly.entity.ReportOrderMonth;
 import edu.poly.entity.RevenueDay;
 import edu.poly.entity.RevenueMonth;
 
@@ -193,6 +197,36 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public List<RevenueMonth> getRevenueByTime(Date from, Date to) {
 		return dao.getRevenueByTime(from, to);
+	}
+
+	@Override
+	public List<ReportItemMonth> getItem6Month() {
+		return dao.getItem6Month();
+	}
+
+	@Override
+	public List<ReportItemMonth> getItemByTime(Date from, Date to) {
+		return dao.getItemByTime(from, to);
+	}
+
+	@Override
+	public List<ReportItemDay> getItemMonth(Sort sort) {
+		return dao.getItemMonth(sort);
+	}
+
+	@Override
+	public List<ReportOrderDay> getOrderMonth(Sort sort) {
+		return dao.getOrderMonth(sort);
+	}
+
+	@Override
+	public List<ReportOrderMonth> getOrderByTime(Date from, Date to) {
+		return dao.getOrderByTime(from, to);
+	}
+
+	@Override
+	public List<ReportOrderMonth> getOrderCancelledYear() {
+		return dao.getOrderCancelledYear();
 	}
 
 

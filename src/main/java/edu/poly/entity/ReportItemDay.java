@@ -1,6 +1,7 @@
 package edu.poly.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,12 +14,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class ReportRevenueMonth implements Serializable {
+public class ReportItemDay implements Serializable {
 	@Id
-	Integer month;
+	Date day;
 	
-	Integer year;
-	
-	Double revenue;
-	
+	Long sum;
 }

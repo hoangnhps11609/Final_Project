@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-lg-3">
 				<div class="card card-hover">
-					<div class="box bg-info text-center">
+					<div class="box bg-info text-center" ng-click="getAccount6Month()">
 						<h1 class="font-light text-white">{{customers}}</h1>
 						<h6 class="text-white">Accounts</h6>
 					</div>
@@ -12,7 +12,7 @@
 			<!-- Column -->
 			<div class="col-lg-3">
 				<div class="card card-hover">
-					<div class="box bg-warning text-center">
+					<div class="box bg-warning text-center" ng-click="getItemMonth()">
 						<h1 class="font-light text-white">{{sales}} Items</h1>
 						<h6 class="text-white">Sales</h6>
 					</div>
@@ -30,7 +30,7 @@
 			<!-- Column -->
 			<div class="col-lg-3">
 				<div class="card card-hover">
-					<div class="box bg-primary text-center">
+					<div class="box bg-primary text-center" ng-click="getOrderMonth()">
 						<h1 class="font-light text-white">{{orders}}</h1>
 						<h6 class="text-white">Completed Orders</h6>
 					</div>
@@ -133,10 +133,227 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		
+<!-- 		Account Report -->
+		<div ng-if="title == 'Account'" class="border">
+			<div class="bg-info text-light text-center py-2">
+				<h1>ACCOUNT STATISTIC</h1>
+				<div class="col row text-center py-1 pl-0">
+					<div class="col-3 offset-2" ng-click="getAccount6Month()">
+						<button class="btn btn-light col" style="font-weight:bolder">Account In 6 Months Ago</button>
+					</div>
+					<div class="col-3" ng-click="getAccountNoOrder()">
+						<button class="btn btn-light col" style="font-weight:bolder">Account No Order</button>
+					</div>
+					<div class="col-3" ng-click="showModalAccountByTime()">
+						<button class="btn btn-light col" style="font-weight:bolder">Account By Time</button>
+					</div>
+				</div>
+			</div>
+			<div class="row pt-3">
+				<div class="col-6 offset-3" ng-if="type =='Account6Month'">
+					<div class="alert-info text-center text-info"><h3 class="p-3">{{message}}</h3></div>
+					<table class="table table-striped text-center">
+						<thead>
+							<tr style="position: relative;">
+								<th style="width: 10%">Month</th>
+								<th style="width: 25%" scope="col">Account</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in account6Month">
+								<th>{{item.month}}/{{item.year}}</th>
+								<td>{{item.count}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-6 offset-3" ng-if="type =='TimeAccount'">
+					<div class="alert-info text-center text-info"><h3 class="p-3">Account By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}} - {{to| date:'MM/dd/yyyy'}}</h3></div>
+					<table class="table table-striped text-center">
+						<thead>
+							<tr style="position: relative;">
+								<th style="width: 10%">Month</th>
+								<th style="width: 25%" scope="col">Account</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in accountTime">
+								<th>{{item.month}}/{{item.year}}</th>
+								<td>{{item.count}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-6 offset-3" ng-if="type =='AccountNoOrder'">
+					<div class="alert-info text-center text-info"><h3 class="p-3">Number of New Account: <br />Don't have any Order in 6 months ago</h3></div>
+					<table class="table table-striped text-center">
+						<thead>
+							<tr style="position: relative;">
+								<th style="width: 10%">Month</th>
+								<th style="width: 25%" scope="col">Account</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in accountNoOrder">
+								<th>{{item.month}}/{{item.year}}</th>
+								<td>{{item.count}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		
+		<!-- Item -->
+		<div ng-if="title == 'Item'" class="border">
+			<div class="bg-warning text-light text-center py-2">
+				<h1>ITEM STATISTIC</h1>
+				<div class="col row text-center py-1 pl-0">
+					<div class="col-3 offset-2" ng-click="getItem6Month()">
+						<button class="btn btn-light col" style="font-weight:bolder">Item In 6 Months Ago</button>
+					</div>
+					<div class="col-3" ng-click="getItemMonth()">
+						<button class="btn btn-light col" style="font-weight:bolder">Item This Month</button>
+					</div>
+					<div class="col-3" ng-click="showModalItemByTime()">
+						<button class="btn btn-light col" style="font-weight:bolder">Item By Time</button>
+					</div>
+				</div>
+			</div>
+			<div class="row pt-3">
+				<div class="col-6 offset-3" ng-if="type =='Item6Month'">
+					<div class="alert-info text-center text-info"><h3 class="p-3">{{message}}</h3></div>
+					<table class="table table-striped text-center">
+						<thead>
+							<tr style="position: relative;">
+								<th style="width: 10%">Month</th>
+								<th style="width: 25%" scope="col">Item</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in item6Month">
+								<th>{{item.month}}/{{item.year}}</th>
+								<td>{{item.sum}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-6 offset-3" ng-if="type =='MonthItem'">
+					<div class="alert-info text-center text-info"><h3 class="p-3">{{message}}</h3></div>
+					<table class="table table-striped text-center">
+						<thead>
+							<tr style="position: relative;">
+								<th style="width: 10%">Day(MM/dd/yyyy)</th>
+								<th style="width: 25%" scope="col">Item</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in itemMonth">
+								<th>{{item.day | date:'MM/dd/yyyy'}}</th>
+								<td>{{item.sum}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-6 offset-3" ng-if="type =='TimeItem'">
+					<div class="alert-info text-center text-info"><h3 class="p-3">Item By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}} - {{to| date:'MM/dd/yyyy'}}</h3></div>
+					<table class="table table-striped text-center">
+						<thead>
+							<tr style="position: relative;">
+								<th style="width: 10%">Month</th>
+								<th style="width: 25%" scope="col">Account</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in itemTime">
+								<th>{{item.month}}/{{item.year}}</th>
+								<td>{{item.sum}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		
+		<!-- Order -->
+		<div ng-if="title == 'Order'" class="border">
+			<div class="bg-primary text-light text-center py-2">
+				<h1>ORDER STATISTIC</h1>
+				<div class="col row text-center py-1 pl-0">
+					<div class="col-3 offset-2" ng-click="getOrderCancelledMonth()">
+						<button class="btn btn-danger col" style="font-weight:bolder">Order Cancelled</button>
+					</div>
+					<div class="col-3" ng-click="getOrderMonth()">
+						<button class="btn btn-light col" style="font-weight:bolder">Order Completed This Month</button>
+					</div>
+					<div class="col-3" ng-click="showModalItemByTime()">
+						<button class="btn btn-light col" style="font-weight:bolder">Order Completed By Time</button>
+					</div>
+				</div>
+			</div>
+			<div class="row pt-3">
+				<div class="col-6 offset-3" ng-if="type =='YearOrderCancelled'">
+					<div class="alert-info text-center text-info"><h3 class="p-3">{{message}}</h3></div>
+					<table class="table table-striped text-center">
+						<thead>
+							<tr style="position: relative;">
+								<th style="width: 10%">Month</th>
+								<th style="width: 25%" scope="col">Order</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in orderCancelledYear">
+								<th>{{item.month}}/{{item.year}}</th>
+								<td>{{item.count}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-6 offset-3" ng-if="type =='MonthOrder'">
+					<div class="alert-info text-center text-info"><h3 class="p-3">{{message}}</h3></div>
+					<table class="table table-striped text-center">
+						<thead>
+							<tr style="position: relative;">
+								<th style="width: 10%">Day(MM/dd/yyyy)</th>
+								<th style="width: 25%" scope="col">Orders</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in orderMonth">
+								<th>{{item.day | date:'MM/dd/yyyy'}}</th>
+								<td>{{item.count}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-6 offset-3" ng-if="type =='TimeOrder'">
+					<div class="alert-info text-center text-info"><h3 class="p-3">Order By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}} - {{to| date:'MM/dd/yyyy'}}</h3></div>
+					<table class="table table-striped text-center">
+						<thead>
+							<tr style="position: relative;">
+								<th style="width: 10%">Month</th>
+								<th style="width: 25%" scope="col">Order</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in orderTime">
+								<th>{{item.month}}/{{item.year}}</th>
+								<td>{{item.count}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
-
+<!-- Revenue Modal -->
 <div class="modal fade" id="RevenueByTimeModalCenter" tabindex="-1"
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="false">
@@ -162,6 +379,71 @@
 					</div>
 					<button ng-click="getRevenueByTime()"
 						class="btn btn-primary float-right">Get Revenue</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Account Modal -->
+<div class="modal fade" id="AccountByTimeModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="false">
+	<div class="modal-dialog " role="document" style="max-width: 15%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalCenterTitle">Account By
+					Time</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="">
+					<div class="form-group">
+						<input type="date" placeholder="dd-mm-yyyy" class="form-control"
+							ng-model="accountByTime.from" />
+					</div>
+					<div class="form-group">
+						<input type="date" placeholder="dd-mm-yyyy" class="form-control"
+							ng-model="accountByTime.to" />
+					</div>
+					<button ng-click="getAccountByTime()"
+						class="btn btn-primary float-right">Get Account</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Item Modal -->
+<div class="modal fade" id="ItemByTimeModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="false">
+	<div class="modal-dialog " role="document" style="max-width: 15%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalCenterTitle">Item By
+					Time</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="">
+					<div class="form-group">
+						<input type="date" placeholder="dd-mm-yyyy" class="form-control"
+							ng-model="orderByTime.from" />
+					</div>
+					<div class="form-group">
+						<input type="date" placeholder="dd-mm-yyyy" class="form-control"
+							ng-model="orderByTime.to" />
+					</div>
+					<button ng-click="getOrderByTime()"
+						class="btn btn-primary float-right">Get Order</button>
 				</div>
 			</div>
 		</div>

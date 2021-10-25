@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 
 import edu.poly.entity.Account;
 import edu.poly.entity.CountOrderOfAccount;
+import edu.poly.entity.ReportAccountMonth;
 
 public interface AccountService {
 	Account findById(String username);
@@ -32,4 +33,10 @@ public interface AccountService {
 	List<Account> getLoyalCustomer();
 
 	Long countCustomers();
+
+	List<ReportAccountMonth> getAccount6Month();
+
+	List<ReportAccountMonth> getAccountByTime(Date from, Date to);
+
+	List<ReportAccountMonth> getAccountNoOrder();
 }

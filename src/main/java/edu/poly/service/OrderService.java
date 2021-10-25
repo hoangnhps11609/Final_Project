@@ -12,6 +12,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import edu.poly.entity.Order;
 import edu.poly.entity.OrderDetail;
+import edu.poly.entity.ReportItemDay;
+import edu.poly.entity.ReportItemMonth;
+import edu.poly.entity.ReportOrderDay;
+import edu.poly.entity.ReportOrderMonth;
 import edu.poly.entity.RevenueDay;
 import edu.poly.entity.RevenueMonth;
 
@@ -75,5 +79,15 @@ public interface OrderService {
 
 	List<RevenueMonth> getRevenueByTime(Date from, Date to);
 
+	List<ReportItemMonth> getItem6Month();
 
+	List<ReportItemMonth> getItemByTime(Date from, Date to);
+
+	List<ReportItemDay> getItemMonth(Sort sort);
+
+	List<ReportOrderDay> getOrderMonth(Sort sort);
+
+	List<ReportOrderMonth> getOrderByTime(Date from, Date to);
+
+	List<ReportOrderMonth> getOrderCancelledYear();
 }

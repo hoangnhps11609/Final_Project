@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import edu.poly.entity.Account;
 import edu.poly.entity.CountOrderOfAccount;
+import edu.poly.entity.ReportAccountMonth;
 
 @Repository
 public interface AccountDAO extends JpaRepository<Account, String>{
@@ -36,6 +37,19 @@ public interface AccountDAO extends JpaRepository<Account, String>{
 
 	@Query("Select count(a) from Account a")
 	Long countCustomers();
+
+	@Query("Select new ReportAccountMonth(Month(a.createDate), Year(a.createDate), count(a)) from Account a where a.createDate between DATEADD(MONTH, -6, GETDATE()) and GETDATE() group by MONTH(a.createDate), YEAR(a.createDate)  order by month(a.createDate) desc")
+	List<ReportAccountMonth> getAccount6Month();
+
+	@Query("Select new ReportAccountMonth(Month(a.createDate), Year(a.createDate), count(a)) from Account a where a.createDate between ?1 and ?2 group by MONTH(a.createDate), YEAR(a.createDate)  order by month(a.createDate) desc")
+	List<ReportAccountMonth> getAccountByTime(Date from, Date to);
+
+	@Query("select new ReportAccountMonth(Month(a.createDate), Year(a.createDate), count(a))\r\n"
+			+ "from Account a\r\n"
+			+ "where a.username not in (select distinct o.account.username from Order o	where o.status=3)\r\n"
+			+ "	and a.createDate between DATEADD(MONTH, -6, GETDATE()) and GETDATE()\r\n"
+			+ "group by MONTH(a.createDate), YEAR(a.createDate) order by month(a.createDate) desc")
+	List<ReportAccountMonth> getAccountNoOrder();
 	
 	
 //	@Query(value="select acc.*, o.sodonhang, o.Tongtien\r\n"

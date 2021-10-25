@@ -12,6 +12,7 @@ import edu.poly.dao.AccountDAO;
 import edu.poly.service.AccountService;
 import edu.poly.entity.Account;
 import edu.poly.entity.CountOrderOfAccount;
+import edu.poly.entity.ReportAccountMonth;
 @Service
 public class AccountServiceImp implements AccountService{
 
@@ -76,6 +77,21 @@ public class AccountServiceImp implements AccountService{
 	@Override
 	public Long countCustomers() {
 		return adao.countCustomers();
+	}
+
+	@Override
+	public List<ReportAccountMonth> getAccount6Month() {
+		return adao.getAccount6Month();
+	}
+
+	@Override
+	public List<ReportAccountMonth> getAccountByTime(Date from, Date to) {
+		return adao.getAccountByTime(from, to);
+	}
+
+	@Override
+	public List<ReportAccountMonth> getAccountNoOrder() {
+		return adao.getAccountNoOrder();
 	}
 
 	

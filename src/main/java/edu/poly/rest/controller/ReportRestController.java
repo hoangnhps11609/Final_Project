@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductDetail;
+import edu.poly.entity.ReportAccountMonth;
+import edu.poly.entity.ReportItemDay;
+import edu.poly.entity.ReportItemMonth;
+import edu.poly.entity.ReportOrderDay;
+import edu.poly.entity.ReportOrderMonth;
 import edu.poly.entity.RevenueDay;
 import edu.poly.entity.RevenueMonth;
 import edu.poly.service.AccountService;
@@ -54,7 +59,7 @@ public class ReportRestController {
 		return accountService.countCustomers();
 	}
 	
-	
+	//Revenue
 	@GetMapping("getRevenue10Day")
 	public List<RevenueDay> getRevenue10Day() {
 		return orderService.getRevenue10Day(Sort.by("createDate").descending());
@@ -72,7 +77,55 @@ public class ReportRestController {
 	
 	@GetMapping("getRevenueByTime/{from}/{to}")
 	public List<RevenueMonth> getRevenueByTime(@PathVariable("from") Date from, @PathVariable("to") Date to) {
-		System.out.println(to);
 		return orderService.getRevenueByTime(from, to);
+	}
+	
+	
+	//Account
+	@GetMapping("getAccount6Month")
+	public List<ReportAccountMonth> getAccount6Month() {
+		return accountService.getAccount6Month();
+	}
+	
+	@GetMapping("getAccountByTime/{from}/{to}")
+	public List<ReportAccountMonth> getAccountByTime(@PathVariable("from") Date from, @PathVariable("to") Date to) {
+		return accountService.getAccountByTime(from, to);
+	}
+	
+	@GetMapping("getAccountNoOrder")
+	public List<ReportAccountMonth> getAccountNoOrder() {
+		return accountService.getAccountNoOrder();
+	}
+	
+	//Item
+	@GetMapping("getItem6Month")
+	public List<ReportItemMonth> getItem6Month() {
+		return orderService.getItem6Month();
+	}
+	
+	@GetMapping("getItemByTime/{from}/{to}")
+	public List<ReportItemMonth> getItemByTime(@PathVariable("from") Date from, @PathVariable("to") Date to) {
+		return orderService.getItemByTime(from, to);
+	}
+	
+	@GetMapping("getItemMonth")
+	public List<ReportItemDay> getItemMonth() {
+		return orderService.getItemMonth(Sort.by("createDate").descending());
+	}
+	
+	//Order
+	@GetMapping("getOrderMonth")
+	public List<ReportOrderDay> getOrderMonth() {
+		return orderService.getOrderMonth(Sort.by("createDate").descending());
+	}
+	
+	@GetMapping("getOrderByTime/{from}/{to}")
+	public List<ReportOrderMonth> getOrderByTime(@PathVariable("from") Date from, @PathVariable("to") Date to) {
+		return orderService.getOrderByTime(from, to);
+	}
+	
+	@GetMapping("getOrderCancelledYear")
+	public List<ReportOrderMonth> getOrderCancelledYear() {
+		return orderService.getOrderCancelledYear();
 	}
 }
