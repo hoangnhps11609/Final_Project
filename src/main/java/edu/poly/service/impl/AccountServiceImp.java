@@ -94,6 +94,22 @@ public class AccountServiceImp implements AccountService{
 		return adao.getAccountNoOrder();
 	}
 
+	@Override
+	public List<Double> getTopInAccount6Month() {
+		return adao.getTopInAccount6Month();
+	}
+
+	@Override
+	public List<Double> getTopInAccountNoOrder() {
+		// TODO Auto-generated method stub
+		return adao.getTopInAccountNoOrder();
+	}
+
+	@Override
+	public List<Double> getTopInAccountByTime(Date from, Date to) {
+		return adao.getTopInAccountByTime(from, to);
+	}
+
 	
 
 }

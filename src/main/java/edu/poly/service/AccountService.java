@@ -39,4 +39,10 @@ public interface AccountService {
 	List<ReportAccountMonth> getAccountByTime(Date from, Date to);
 
 	List<ReportAccountMonth> getAccountNoOrder();
+
+	List<Double> getTopInAccount6Month();
+
+	List<Double> getTopInAccountNoOrder();
+
+	List<Double> getTopInAccountByTime(Date from, Date to);
 }

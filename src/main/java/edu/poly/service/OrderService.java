@@ -94,4 +94,20 @@ public interface OrderService {
 	List<Double> getTopIn10Day();
 
 	List<Double> getTopInRevenueMonth();
+
+	List<Double> getTopInRevenueYear();
+
+	List<Double> getTopInRevenueByTime(Date from, Date to);
+
+	List<Long> getTopInItem6Month();
+
+	List<Long> getTopInMonth();
+
+	List<Double> getTopInItemByTime(Date from, Date to);
+
+	List<Long> getTopInOrderMonth();
+
+	List<Double> getTopInOrderByTime(Date from, Date to);
+
+	List<Long> getTopInOrderCancelled();
 }

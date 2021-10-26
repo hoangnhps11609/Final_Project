@@ -50,6 +50,22 @@ public interface AccountDAO extends JpaRepository<Account, String>{
 			+ "	and a.createDate between DATEADD(MONTH, -6, GETDATE()) and GETDATE()\r\n"
 			+ "group by MONTH(a.createDate), YEAR(a.createDate) order by month(a.createDate) desc")
 	List<ReportAccountMonth> getAccountNoOrder();
+
+	
+	
+	@Query("Select count(a) from Account a where a.createDate between DATEADD(MONTH, -6, GETDATE()) and GETDATE() group by MONTH(a.createDate), YEAR(a.createDate)  order by count(a) desc")
+	List<Double> getTopInAccount6Month();
+
+	
+	@Query("select count(a)\r\n"
+			+ "from Account a\r\n"
+			+ "where a.username not in (select distinct o.account.username from Order o	where o.status=3)\r\n"
+			+ "	and a.createDate between DATEADD(MONTH, -6, GETDATE()) and GETDATE()\r\n"
+			+ "group by MONTH(a.createDate), YEAR(a.createDate) order by count(a) desc")
+	List<Double> getTopInAccountNoOrder();
+
+	@Query("Select count(a) from Account a where a.createDate between ?1 and ?2 group by MONTH(a.createDate), YEAR(a.createDate)  order by count(a) desc")
+	List<Double> getTopInAccountByTime(Date from, Date to);
 	
 	
 //	@Query(value="select acc.*, o.sodonhang, o.Tongtien\r\n"

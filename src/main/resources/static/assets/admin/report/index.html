@@ -76,12 +76,12 @@
 						<tbody>
 							<tr ng-repeat="item in revenue10Day">
 								<th>{{item.day | date:'MM/dd/yyyy'}}</th>
-								<td>${{item.revenue | number:1}}</td>
+								<td>${{item.value | number:1}}</td>
 							</tr>
 						</tbody>
 					</table>
 					<p>
-						<button ng-click="showChart10DayRevenue()">Show Chart</button>
+						<button class="btn btn-outline-secondary col" ng-click="showChart10DayRevenue()">Show Chart</button>
 					</p>
 				</div>
 
@@ -99,12 +99,12 @@
 						<tbody>
 							<tr ng-repeat="item in revenueMonth">
 								<th>{{item.day | date:'MM/dd/yyyy'}}</th>
-								<td>${{item.revenue | number:1}}</td>
+								<td>${{item.value | number:1}}</td>
 							</tr>
 						</tbody>
 					</table>
 					<p>
-						<button ng-click="showChartMonthRevenue()">Show Chart</button>
+						<button class="btn btn-outline-secondary col" ng-click="showChartMonthRevenue()">Show Chart</button>
 					</p>
 				</div>
 
@@ -122,10 +122,13 @@
 						<tbody>
 							<tr ng-repeat="item in revenueYear">
 								<th>{{item.month}}/{{item.year}}</th>
-								<td>${{item.revenue | number:1}}</td>
+								<td>${{item.value | number:1}}</td>
 							</tr>
 						</tbody>
 					</table>
+					<p>
+						<button class="btn btn-outline-secondary col" ng-click="showChartYearRevenue()">Show Chart</button>
+					</p>
 				</div>
 
 				<div class="col-6 offset-3" ng-if="type =='TimeRevenue'">
@@ -145,10 +148,13 @@
 						<tbody>
 							<tr ng-repeat="item in revenueTime">
 								<th>{{item.month}}/{{item.year}}</th>
-								<td>${{item.revenue | number:1}}</td>
+								<td>${{item.value | number:1}}</td>
 							</tr>
 						</tbody>
 					</table>
+					<p>
+						<button class="btn btn-outline-secondary col" ng-click="showChartTimeRevenue(from, to)">Show Chart</button>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -189,11 +195,13 @@
 						<tbody>
 							<tr ng-repeat="item in account6Month">
 								<th>{{item.month}}/{{item.year}}</th>
-								<td>{{item.count}}</td>
+								<td>{{item.value}}</td>
 							</tr>
 						</tbody>
 					</table>
-					
+					<p>
+						<button class="btn btn-outline-secondary col" ng-click="showChart6MonthAccount()">Show Chart</button>
+					</p>
 				</div>
 				<div class="col-6 offset-3" ng-if="type =='TimeAccount'">
 					<div class="alert-info text-center text-info">
@@ -212,10 +220,13 @@
 						<tbody>
 							<tr ng-repeat="item in accountTime">
 								<th>{{item.month}}/{{item.year}}</th>
-								<td>{{item.count}}</td>
+								<td>{{item.value}}</td>
 							</tr>
 						</tbody>
 					</table>
+					<p>
+						<button class="btn btn-outline-secondary col" ng-click="showChartTimeAccount(from, to)">Show Chart</button>
+					</p>
 				</div>
 				<div class="col-6 offset-3" ng-if="type =='AccountNoOrder'">
 					<div class="alert-info text-center text-info">
@@ -234,10 +245,13 @@
 						<tbody>
 							<tr ng-repeat="item in accountNoOrder">
 								<th>{{item.month}}/{{item.year}}</th>
-								<td>{{item.count}}</td>
+								<td>{{item.value}}</td>
 							</tr>
 						</tbody>
 					</table>
+					<p>
+						<button class="btn btn-outline-secondary col" ng-click="showChartNoOrderAccount()">Show Chart</button>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -278,10 +292,13 @@
 						<tbody>
 							<tr ng-repeat="item in item6Month">
 								<th>{{item.month}}/{{item.year}}</th>
-								<td>{{item.sum}}</td>
+								<td>{{item.value}}</td>
 							</tr>
 						</tbody>
 					</table>
+					<p>
+						<button class="btn btn-outline-secondary col" ng-click="showChart6MonthItem()">Show Chart</button>
+					</p>
 				</div>
 				<div class="col-6 offset-3" ng-if="type =='MonthItem'">
 					<div class="alert-info text-center text-info">
@@ -297,10 +314,13 @@
 						<tbody>
 							<tr ng-repeat="item in itemMonth">
 								<th>{{item.day | date:'MM/dd/yyyy'}}</th>
-								<td>{{item.sum}}</td>
+								<td>{{item.value}}</td>
 							</tr>
 						</tbody>
 					</table>
+					<p>
+						<button class="btn btn-outline-secondary col" ng-click="showChartThisMonthItem()">Show Chart</button>
+					</p>
 				</div>
 				<div class="col-6 offset-3" ng-if="type =='TimeItem'">
 					<div class="alert-info text-center text-info">
@@ -319,10 +339,13 @@
 						<tbody>
 							<tr ng-repeat="item in itemTime">
 								<th>{{item.month}}/{{item.year}}</th>
-								<td>{{item.sum}}</td>
+								<td>{{item.value}}</td>
 							</tr>
 						</tbody>
 					</table>
+					<p>
+						<button class="btn btn-outline-secondary col" ng-click="showChartTimeItem(from, to)">Show Chart</button>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -341,7 +364,7 @@
 						<button class="btn btn-light col" style="font-weight: bolder">Order
 							Completed This Month</button>
 					</div>
-					<div class="col-3" ng-click="showModalItemByTime()">
+					<div class="col-3" ng-click="showModalOrderByTime()">
 						<button class="btn btn-light col" style="font-weight: bolder">Order
 							Completed By Time</button>
 					</div>
@@ -362,10 +385,13 @@
 						<tbody>
 							<tr ng-repeat="item in orderCancelledYear">
 								<th>{{item.month}}/{{item.year}}</th>
-								<td>{{item.count}}</td>
+								<td>{{item.value}}</td>
 							</tr>
 						</tbody>
 					</table>
+					<p>
+						<button class="btn btn-outline-secondary col" ng-click="showChartOrderCancelled()">Show Chart</button>
+					</p>
 				</div>
 				<div class="col-6 offset-3" ng-if="type =='MonthOrder'">
 					<div class="alert-info text-center text-info">
@@ -381,10 +407,13 @@
 						<tbody>
 							<tr ng-repeat="item in orderMonth">
 								<th>{{item.day | date:'MM/dd/yyyy'}}</th>
-								<td>{{item.count}}</td>
+								<td>{{item.value}}</td>
 							</tr>
 						</tbody>
 					</table>
+					<p>
+						<button class="btn btn-outline-secondary col" ng-click="showChartThisMonthOrder()">Show Chart</button>
+					</p>
 				</div>
 				<div class="col-6 offset-3" ng-if="type =='TimeOrder'">
 					<div class="alert-info text-center text-info">
@@ -403,10 +432,13 @@
 						<tbody>
 							<tr ng-repeat="item in orderTime">
 								<th>{{item.month}}/{{item.year}}</th>
-								<td>{{item.count}}</td>
+								<td>{{item.value}}</td>
 							</tr>
 						</tbody>
 					</table>
+					<p>
+						<button class="btn btn-outline-secondary col" ng-click="showChartTimeOrder(from, to)">Show Chart</button>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -438,7 +470,7 @@
 							ng-model="revenueByTime.to" />
 					</div>
 					<button ng-click="getRevenueByTime()"
-						class="btn btn-primary float-right">Get Revenue</button>
+						class="btn btn-success float-right">Get Revenue</button>
 				</div>
 			</div>
 		</div>
@@ -471,7 +503,7 @@
 							ng-model="accountByTime.to" />
 					</div>
 					<button ng-click="getAccountByTime()"
-						class="btn btn-primary float-right">Get Account</button>
+						class="btn btn-info float-right">Get Account</button>
 				</div>
 			</div>
 		</div>
@@ -503,9 +535,42 @@
 							ng-model="itemByTime.to" />
 					</div>
 					<button ng-click="getItemByTime()"
+						class="btn btn-warning float-right">Get Item</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Order Modal -->
+<div class="modal fade" id="OrderByTimeModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="false">
+	<div class="modal-dialog " role="document" style="max-width: 15%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalCenterTitle">Order By
+					Time</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="">
+					<div class="form-group">
+						<input type="date" placeholder="dd-mm-yyyy" class="form-control"
+							ng-model="orderByTime.from" />
+					</div>
+					<div class="form-group">
+						<input type="date" placeholder="dd-mm-yyyy" class="form-control"
+							ng-model="orderByTime.to" />
+					</div>
+					<button ng-click="getOrderByTime()"
 						class="btn btn-primary float-right">Get Order</button>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+

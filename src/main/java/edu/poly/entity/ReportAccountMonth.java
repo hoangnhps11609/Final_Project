@@ -20,5 +20,5 @@ public class ReportAccountMonth implements Serializable {
 	
 	Integer year;
 	
-	Long count;
+	Long value;
 }

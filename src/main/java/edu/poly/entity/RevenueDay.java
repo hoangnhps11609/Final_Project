@@ -18,5 +18,5 @@ public class RevenueDay implements Serializable {
 	@Id
 	Date day;
 	
-	Double revenue;
+	Double value;
 }

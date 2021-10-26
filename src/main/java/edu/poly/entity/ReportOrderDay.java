@@ -18,5 +18,5 @@ public class ReportOrderDay implements Serializable {
 	@Id
 	Date day;
 	
-	Long count;
+	Long value;
 }

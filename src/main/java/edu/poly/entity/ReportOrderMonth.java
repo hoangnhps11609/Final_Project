@@ -20,5 +20,5 @@ public class ReportOrderMonth implements Serializable {
 	
 	Integer year;
 	
-	Long count;
+	Long value;
 }

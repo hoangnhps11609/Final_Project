@@ -20,5 +20,5 @@ public class RevenueMonth implements Serializable {
 	
 	Integer year;
 	
-	Double revenue;
+	Double value;
 }

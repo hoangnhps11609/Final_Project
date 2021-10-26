@@ -239,5 +239,45 @@ public class OrderServiceImpl implements OrderService{
 		return dao.getTopInRevenueMonth();
 	}
 
+	@Override
+	public List<Double> getTopInRevenueYear() {
+		return dao.getTopInRevenueYear();
+	}
+
+	@Override
+	public List<Double> getTopInRevenueByTime(Date from, Date to) {
+		return dao.getTopInRevenueByTime(from, to);
+	}
+
+	@Override
+	public List<Long> getTopInItem6Month() {
+		return dao.getTopInItem6Month();
+	}
+
+	@Override
+	public List<Long> getTopInMonth() {
+		return dao.getTopInMonth();
+	}
+
+	@Override
+	public List<Double> getTopInItemByTime(Date from, Date to) {
+		return dao.getTopInItemByTime(from, to);
+	}
+
+	@Override
+	public List<Long> getTopInOrderMonth() {
+		return dao.getTopInOrderMonth();
+	}
+
+	@Override
+	public List<Double> getTopInOrderByTime(Date from, Date to) {
+		return dao.getTopInOrderByTime(from, to);
+	}
+
+	@Override
+	public List<Long> getTopInOrderCancelled() {
+		return dao.getTopInOrderCancelled();
+	}
+
 
 }

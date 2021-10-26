@@ -18,5 +18,5 @@ public class ReportItemDay implements Serializable {
 	@Id
 	Date day;
 	
-	Long sum;
+	Long value;
 }

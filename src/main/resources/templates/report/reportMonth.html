@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h2 align="center" class="py-4">[[${typeName}]]</h2>
+		<div class="row">
+			<div class="col-lg-8">
+				<div id="container" class="col"></div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="card card-hover">
+					<div class="text-center">
+						<table class="table table-striped text-center">
+							<thead class="text-center">
+								<tr style="position: relative;">
+									<th style="width: 10%">Month</th>
+									<th style="width: 25%" scope="col">[[${seriesName}]]</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="item: ${list}">
+									<th>[[${item.month}]]/[[${item.year}]]</th>
+									<td>[[${item.value}]]</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
+
+
+	<script th:inline="javascript">
+    $(function(){
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: [[${titleName}]]
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: [[${xValue}]],
+            crosshair: true
+        	
+        },
+        yAxis: {
+            min: 0,
+            max: [[${y}]],
+            title: {
+                text: [[${yName}]]
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: [[${seriesName}]],
+            data: [[${value}]]
+        }]
+      });
+    });
+</script>
+
+</body>
+</html>
+

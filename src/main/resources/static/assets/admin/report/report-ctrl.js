@@ -110,6 +110,16 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 		window.open(url, '_blank');
 	}
 	
+	$scope.showChartYearRevenue = function(){
+		url = "http://localhost:8080/report/revenue/thisYear"
+		window.open(url, "_blank");
+	}
+	
+	$scope.showChartTimeRevenue = function(from, to){
+		url = "http://localhost:8080/report/revenue/time/" + from + "/" + to
+		window.open(url, "_blank");
+	}
+	
 	///Account
 	$scope.getAccount6Month = function(){
 		$http.get("/rest/reports/getAccount6Month").then(resp => {
@@ -158,6 +168,21 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 			$scope.title= "Account";
 			$scope.message= "Number of account: Don't have any Order in 6 months ago";
 		});
+	}
+	
+	$scope.showChart6MonthAccount = function(){
+		url = "http://localhost:8080/report/account/6month"
+		window.open(url, '_blank');
+	}
+	
+	$scope.showChartNoOrderAccount = function(){
+		url = "http://localhost:8080/report/account/noOrder"
+		window.open(url, '_blank');
+	}
+	
+	$scope.showChartTimeAccount = function(from, to){
+		url = "http://localhost:8080/report/account/time/" + from + "/" + to
+		window.open(url, "_blank");
 	}
 	
 	//Items
@@ -210,6 +235,21 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 		});
 	}
 	
+	$scope.showChart6MonthItem = function(){
+		url = "http://localhost:8080/report/item/6month"
+		window.open(url, '_blank');
+	}
+	
+	$scope.showChartThisMonthItem = function(){
+		url = "http://localhost:8080/report/item/thisMonth"
+		window.open(url, '_blank');
+	}
+	
+	$scope.showChartTimeItem = function(from, to){
+		url = "http://localhost:8080/report/item/time/" + from + "/" + to
+		window.open(url, "_blank");
+	}
+	
 	
 	//Order
 	$scope.getOrderMonth = function(){
@@ -222,7 +262,7 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 	}
 	
 	$scope.showModalOrderByTime = function(){
-		$('#ItemByOrderModalCenter').appendTo("body").modal('show');
+		$('#OrderByTimeModalCenter').appendTo("body").modal('show');
 	}
 	
 	$scope.getOrderByTime = function() {
@@ -260,6 +300,18 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 			$scope.message= "Order Cancelled This Year";
 		});
 	}
+	$scope.showChartThisMonthOrder = function(){
+		url = "http://localhost:8080/report/order/thisMonth"
+		window.open(url, '_blank');
+	}
 	
+	$scope.showChartTimeOrder = function(from, to){
+		url = "http://localhost:8080/report/order/time/" + from + "/" + to
+		window.open(url, "_blank");
+	}
 	
+	$scope.showChartOrderCancelled = function(){
+		url = "http://localhost:8080/report/order/cancelled"
+		window.open(url, '_blank');
+	}
 });

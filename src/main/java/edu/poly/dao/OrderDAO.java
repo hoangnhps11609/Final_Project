@@ -85,22 +85,24 @@ public interface OrderDAO extends JpaRepository<Order, Long>{
 	@Query("Select New RevenueMonth(Month(o.createDate), Year(o.createDate), sum(o.total)) from Order o where o.status = 3 and YEAR(CreateDate) = YEAR(GETDATE()) group by Month(o.createDate), Year(o.createDate) order by month(o.createDate) desc")
 	List<RevenueMonth> getRevenueYear();
 
-
 	@Query("Select New RevenueMonth(Month(o.createDate), Year(o.createDate), sum(o.total)) from Order o where o.status = 3 and o.createDate between ?1 and ?2 group by Month(o.createDate), Year(o.createDate) order by month(o.createDate) desc")
 	List<RevenueMonth> getRevenueByTime(Date from, Date to);
 
+	
+	
 	@Query("Select New ReportItemMonth(Month(o.createDate), Year(o.createDate), sum(o.quantity)) from Order o where o.status = 3 and o.createDate between DATEADD(Month, -6, GETDATE()) and GETDATE() group by Month(o.createDate), Year(o.createDate)  order by month(o.createDate) desc")
 	List<ReportItemMonth> getItem6Month();
 
 	@Query("Select New ReportItemMonth(Month(o.createDate), Year(o.createDate), sum(o.quantity)) from Order o where o.status = 3 and o.createDate between ?1 and ?2 group by Month(o.createDate), Year(o.createDate)  order by month(o.createDate) desc")
 	List<ReportItemMonth> getItemByTime(Date from, Date to);
-
+	
 	@Query("Select New ReportItemDay(o.createDate, sum(o.quantity)) from Order o where o.status = 3 and MONTH(CreateDate) = MONTH(GETDATE()) and YEAR(CreateDate) = YEAR(GETDATE()) group by o.createDate")
 	List<ReportItemDay> getItemMonth(Sort sort);
 
+	
+	
 	@Query("Select New ReportOrderDay(o.createDate, count(o)) from Order o where o.status = 3 and MONTH(CreateDate) = MONTH(GETDATE()) and YEAR(CreateDate) = YEAR(GETDATE()) group by o.createDate")
 	List<ReportOrderDay> getOrderMonth(Sort sort);
-
 
 	@Query("Select New ReportOrderMonth(Month(o.createDate), Year(o.createDate), count(o)) from Order o where o.status = 3 and o.createDate between ?1 and ?2 group by Month(o.createDate), Year(o.createDate) order by month(o.createDate) desc")
 	List<ReportOrderMonth> getOrderByTime(Date from, Date to);
@@ -108,11 +110,42 @@ public interface OrderDAO extends JpaRepository<Order, Long>{
 	@Query("Select New ReportOrderMonth(Month(o.createDate), Year(o.createDate), count(o)) from Order o where o.status = 4 and YEAR(CreateDate) = YEAR(GETDATE()) group by Month(o.createDate), Year(o.createDate) order by month(o.createDate) desc")
 	List<ReportOrderMonth> getOrderCancelledYear();
 
+	
+	
 	@Query("Select sum(o.total) from Order o where o.status = 3 and o.createDate between DATEADD(DAY, -10, GETDATE()) and GETDATE() group by o.createDate order by sum(o.total) desc")
 	List<Double> getTopInDay();
 
 	@Query("Select sum(o.total) from Order o where o.status = 3 and MONTH(CreateDate) = MONTH(GETDATE()) and YEAR(CreateDate) = YEAR(GETDATE()) group by o.createDate order by sum(o.total) desc")
 	List<Double> getTopInRevenueMonth();
+
+	@Query("Select sum(o.total) from Order o where o.status = 3 and YEAR(CreateDate) = YEAR(GETDATE()) group by Month(o.createDate), Year(o.createDate) order by sum(o.total) desc")
+	List<Double> getTopInRevenueYear();
+
+	@Query("Select sum(o.total) from Order o where o.status = 3 and o.createDate between ?1 and ?2 group by Month(o.createDate), Year(o.createDate) order by sum(o.total) desc")
+	List<Double> getTopInRevenueByTime(Date from, Date to);
+
+
+	
+	@Query("Select sum(o.quantity) from Order o where o.status = 3 and o.createDate between DATEADD(Month, -6, GETDATE()) and GETDATE() group by Month(o.createDate), Year(o.createDate) order by sum(o.quantity) desc")
+	List<Long> getTopInItem6Month();
+
+	@Query("Select sum(o.quantity) from Order o where o.status = 3 and MONTH(CreateDate) = MONTH(GETDATE()) and YEAR(CreateDate) = YEAR(GETDATE()) group by o.createDate order by sum(o.quantity) desc")
+	List<Long> getTopInMonth();
+
+	@Query("Select sum(o.quantity) from Order o where o.status = 3 and o.createDate between ?1 and ?2 group by Month(o.createDate), Year(o.createDate)  order by sum(o.quantity) desc")
+	List<Double> getTopInItemByTime(Date from, Date to);
+
+
+	
+	
+	@Query("Select count(o) from Order o where o.status = 3 and MONTH(CreateDate) = MONTH(GETDATE()) and YEAR(CreateDate) = YEAR(GETDATE()) group by o.createDate order by count(o) desc")
+	List<Long> getTopInOrderMonth();
+
+	@Query("Select count(o) from Order o where o.status = 3 and o.createDate between ?1 and ?2 group by Month(o.createDate), Year(o.createDate) order by count(o) desc")
+	List<Double> getTopInOrderByTime(Date from, Date to);
+
+	@Query("Select count(o) from Order o where o.status = 4 and YEAR(CreateDate) = YEAR(GETDATE()) group by Month(o.createDate), Year(o.createDate) order by count(o) desc")
+	List<Long> getTopInOrderCancelled();
 	
 	
 
