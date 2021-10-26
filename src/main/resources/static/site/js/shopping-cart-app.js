@@ -94,6 +94,16 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		clear(){
 			this.items = []
 			this.saveToLocalStorage();
+			if(this.items >= 1){
+				this.items = []
+			}
+			else {
+				Swal.fire(
+				  'Cart is empty',
+				  '',
+				  'warning'
+				)
+			}
 		},
 		
 		//Tính thành tiền của một 1 sản phẩm
@@ -304,6 +314,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			//alert("Thêm mới thành công");
 			Swal.fire(
 			  'Comment successfully',
+			  '',
 			  'success'
 			)
 			location.href = "/product/detail/" + resp.data.product.id + "?sizepro=1";
@@ -311,6 +322,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			//alert("Lỗi thêm sản phẩm");
 			Swal.fire(
 			  'Error comment',
+			  '',
 			  'error'
 			)
 			console.log("Error", error);

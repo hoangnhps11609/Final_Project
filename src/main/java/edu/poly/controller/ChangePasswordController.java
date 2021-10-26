@@ -60,13 +60,16 @@ public class ChangePasswordController {
 			Account user = accDAO.findById(username).get();
 				if(!user.getPassword().equals(password)) {
 					model.addAttribute("message", "Wrong Password!");
+					return "redirect:/home/change-password";
 				}else {
 					if(newpassword.equals(confirmpassword)) {
 						user.setPassword(confirmpassword);
 						accDAO.save(user);
 						model.addAttribute("message", "Password is changed!");
+						return "redirect:/security/logoff";
 					}else {
 						model.addAttribute("message", "Password not match!");
+						return "redirect:/home/change-password";
 					}
 				}
 		} catch (Exception e) {
