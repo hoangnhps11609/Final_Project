@@ -203,7 +203,7 @@ app.controller("size-ctrl", function($scope, $http) {
 	}
 
 	//Xóa sản phẩm mới
-	scope.delete = function(item) {
+	$scope.delete = function(item) {
 		var name = item.name;
 		Swal.fire({
 			title: 'Are you sure delete ' + name + '?',
