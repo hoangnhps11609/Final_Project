@@ -10,12 +10,12 @@
 		<div class="row pt-3">
 			<div class="col-2">
 					<button class="btn btn-outline-warning"
-					style="width: 100%; font-weight: bolder" ng-click="XemTatCaCommentDaDoc()">Đã đọc
+					style="width: 100%; font-weight: bolder" ng-click="XemTatCaCommentDaDoc()">Read
 					</button>
 			</div>
 			<div class="col-2">
 					<button class="btn btn-outline-warning"
-					style="width: 100%; font-weight: bolder" ng-click="XemTatCaCommentChuaDoc()">Chưa đọc
+					style="width: 100%; font-weight: bolder" ng-click="XemTatCaCommentChuaDoc()">Unread
 					</button>
 			</div>
 		</div>
@@ -44,15 +44,15 @@
 				<tr ng-repeat="item in pager.items">
 					<td>{{item.id}}</td>
 				    <td ng-if="item.rate==1"><img ng-src="{{'/assets/images/star-1.png'}}"
-						width="30%" /></td>
+						width="20%" /></td>
 					  <td ng-if="item.rate==2"><img ng-src="{{'/assets/images/star-2.png'}}"
-						width="30%" /></td>
+						width="20%" /></td>
 						  <td ng-if="item.rate==3"><img ng-src="{{'/assets/images/star-3.png'}}"
-						width="30%" /></td>
+						width="20%" /></td>
 						  <td ng-if="item.rate==4"><img ng-src="{{'/assets/images/star-4.png'}}"
-						width="30%" /></td>
+						width="20%" /></td>
 						  <td ng-if="item.rate==5"><img ng-src="{{'/assets/images/star-5.png'}}"
-						width="30%" /></td>
+						width="20%" /></td>
 				    <td>{{item.content}}</td>
 					<td><img ng-src="{{'/assets/images/' + item.photo}}"
 						width="30%" /></td>

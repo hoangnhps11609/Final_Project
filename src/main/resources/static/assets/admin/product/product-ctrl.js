@@ -173,7 +173,11 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 
 	}
 	
-	$scope.test = function(c) {			
+	$scope.findbyCategory = function(c) {
+			$http.get("/rest/products/findCateoryName/${c}").then(resp => {
+			$scope.message = resp.data;
+		});
+			
 			$http.get(`/rest/products/productCate/${c}`).then(resp => {
 			$scope.items = resp.data;
 			

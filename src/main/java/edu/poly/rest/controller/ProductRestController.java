@@ -142,4 +142,6 @@ public class ProductRestController {
 	public List<ProductByColor> getProInColor(@PathVariable("id") Integer id){
 		return pService.getProInColor(id);
 	}
+	
+
 }

@@ -33,6 +33,7 @@ public interface ProductService {
 
 
 	void delete(Integer id);
+	
 
 
 	Page<Product> findByNameContaining(String name, Pageable pageable);

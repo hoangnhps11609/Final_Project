@@ -11,15 +11,17 @@
 					style="width: 100%; font-weight: bolder" ng-click="topProduct()">Top
 					Product</button>
 			</div>
+			
 		</div>
 		<div class="row pt-3 col-4">
 			Find By Category:
-			<select class="form-control" ng-model="form.category.id2" ng-change="test(form.category.id2)">
-				<option ng-repeat="item in cates" ng-value="item.id" >{{item.name}}</option>
+			<select class="form-control" ng-model="form.category.id2" ng-change="findbyCategory(form.category.id2)" style="font-weight: bold; border:solid 1px;">
+				<option ng-repeat="item in cates"  ng-value="item.id" style="font-weight: bold;" >{{item.name}}</option>
 			</select>
 		</div>
 	</div>
 	<div class="card-body">
+
 		<table class="table table-striped text-center">
 			<thead>
 				<tr>
