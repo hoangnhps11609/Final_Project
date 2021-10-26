@@ -63,7 +63,7 @@ app.controller("size-ctrl", function($scope, $http) {
 		var item = angular.copy($scope.form);
 		var name = item.name;
 		Swal.fire({
-			title: 'Confirm adding "' + name + '" to the size list?',
+			title: 'Confirm adding ' + name + ' to the size list?',
 			text: "",
 			icon: 'info',
 			showCancelButton: true,
@@ -78,7 +78,7 @@ app.controller("size-ctrl", function($scope, $http) {
 					$scope.initialize();
 					Swal.fire(
 						'Successfully!',
-						'Added "' + name + '" to size list.',
+						'Added ' + name + ' to size list.',
 						'success'
 					)
 
@@ -87,7 +87,7 @@ app.controller("size-ctrl", function($scope, $http) {
 				}).catch(error => {
 					Swal.fire(
 						'Create Failure!',
-						'Can not add "'   name + '" !',
+						'Can not add ' +  name + ' !',
 						'error'
 					)
 
@@ -168,7 +168,7 @@ app.controller("size-ctrl", function($scope, $http) {
 		var item = angular.copy($scope.form);
 		var name = item.name;
 		Swal.fire({
-			title: 'Confirm edit information "' + name + '" !',
+			title: 'Confirm edit information ' + name + ' !',
 			text: "New information will be saved to the size list",
 			icon: 'info',
 			showCancelButton: true,
@@ -184,14 +184,14 @@ app.controller("size-ctrl", function($scope, $http) {
 					$scope.initialize();
 					Swal.fire(
 						'Successfully!',
-						'Updated "' + name + '" to size list.',
+						'Updated ' + name + ' to size list.',
 						'success'
 					)
 					$(".nav-tabs a:eq(1)").tab('show');
 				}).catch(error => {
 					Swal.fire(
 						'Update Failure!',
-						'Can not update "'   name + '" !',
+						'Can not update '  + name + ' !',
 						'error'
 					)
 
@@ -204,9 +204,9 @@ app.controller("size-ctrl", function($scope, $http) {
 
 	//Xóa sản phẩm mới
 	scope.delete = function(item) {
-		ar name = item.name;
+		var name = item.name;
 		Swal.fire({
-			title: 'Are you sure delete "' + name + '"?',
+			title: 'Are you sure delete ' + name + '?',
 			text: "You won't be able to revert this!",
 			icon: 'warning',
 			showCancelButton: true,
@@ -221,14 +221,14 @@ app.controller("size-ctrl", function($scope, $http) {
 					$scope.reset();
 					Swal.fire(
 						'Deleted!',
-						'Size "'  + name + '" has been deleted.',
+						'Size '  + name + ' has been deleted.',
 						'success'
 					)
 					$scope.initialize();
 				}).catch(error => {
 					Swal.fire(
 						'Delete Failure!',
-						'Can not delete "' + name + '" !',
+						'Can not delete ' + name + ' !',
 						'error'
 					)
 

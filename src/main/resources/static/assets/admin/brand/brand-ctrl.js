@@ -336,15 +336,10 @@ app.controller("brand-ctrl", function($scope, $http, $window) {
 			this.page = this.count - 1;
 		}
 	}
-<<<<<<< HEAD
 
-
-	$scope.inventoryProduct = function() {
-=======
 	
 	
 	$scope.inventoryBrand = function(){
->>>>>>> 864f2a22a25dc08b36699e0da4ab4485f5c6ab92
 		$('#InventoryBrandModalCenter').appendTo("body").modal('show');
 		$http.get("/rest/brands/inventory").then(resp => {
 			$scope.inventories = resp.data;
