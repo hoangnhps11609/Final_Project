@@ -195,7 +195,7 @@
 												<td scope="row">[[${order.fullname}]]</td>
 												<td scope="row">[[${order.phone}]]</td>
 												<td scope="row">[[${order.address}]]</td>
-												<td scope="row">[[${order.createDate}]]</td>
+												<td scope="row">[[${#dates.format(order.createDate, 'MM/dd/yyyy')}]]</td>
 												<td scope="row">[[${order.quantity}]]</td>
 												<td scope="row"> $[[${#numbers.formatDecimal(order.total, 0, 'COMMA', 1, 'POINT')}]]</td>
 												<td><a th:href="@{|/order/detail/${order.id}|}"
