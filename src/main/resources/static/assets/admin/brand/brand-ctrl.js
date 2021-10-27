@@ -21,12 +21,16 @@ app.controller("brand-ctrl", function($scope, $http, $window) {
 	$scope.statistic = function() {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/brands/${statistic.from}`).then(resp => {
+		if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{	
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 			})
 			$(".nav a:eq(1)").tab('show');
 			document.getElementById("homes").style.display = "none";
 			document.getElementById("lists").style.display = "block";
+			}
 		}).catch(error => {
 			//alert('Error');
 			Swal.fire({
@@ -171,6 +175,51 @@ app.controller("brand-ctrl", function($scope, $http, $window) {
 
 
 
+	}
+	
+	
+	
+	$scope.viewProductTopBrand = function (item) {
+			$http.get(`/rest/products/topBrandSale/${item.id}`).then(resp => {
+				if(resp.data.length == 0){
+					$('#NoDataModalCenter').appendTo("body").modal('show');
+				}else{
+					$scope.ProTopBrandItems = resp.data;
+					$scope.category = item;
+					$('#ProductTopBrandModalCenter').appendTo("body").modal('show');
+					$('#TopBrandModalCenter').appendTo("body").modal('hide');
+					$http.get(`/rest/products/brand/count/${item.id}`).then(resp => {
+						$scope.sumProInCate = resp.data;
+				})
+			}
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
+
+		});
+	}
+	
+		$scope.closeOrderDetail = function(){
+		$('#ProductTopBrandModalCenter').appendTo("body").modal('hide');
+		$('#TopBrandModalCenter').appendTo("body").modal('show');
 	}
 
 	$scope.topBrand = function() {
@@ -455,6 +504,32 @@ app.controller("brand-ctrl", function($scope, $http, $window) {
 		},
 		get count() {
 			return Math.ceil(1.0 * $scope.inventories.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
+	
+	$scope.pagerProTopBrand = {
+		page: 0,
+		size: 3,
+		get ProTopBrandItems() {
+			var start = this.page * this.size;
+			return $scope.ProTopBrandItems.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.ProTopBrandItems.length / this.size);
 		}, first() {
 			this.page = 0;
 		}, prev() {

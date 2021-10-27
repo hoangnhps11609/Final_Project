@@ -5,7 +5,11 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 	$scope.initialize = function() {
 		//load blogcategories
 		$http.get("/rest/blogcategories").then(resp => {
+		if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{	
 			$scope.items = resp.data;
+			}
 		});
 
 	}

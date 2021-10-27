@@ -100,6 +100,9 @@ public interface ProductService {
 
 
 	List<TopSaleAllType> findProByTopCategorySale(String cateid);
+	
+	List<TopSaleAllType> findProByTopBrandSale(Integer cateid);
+
 
 
 }

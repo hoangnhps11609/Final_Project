@@ -55,6 +55,11 @@ public class ProductRestController {
 		return pService.findProByTopCategorySale(cateid);
 	}
 	
+	@GetMapping("topBrandSale/{cateid}")
+	public List<TopSaleAllType> topBrandSale(@PathVariable("cateid") Integer cateid) {
+		return pService.findProByTopBrandSale(cateid);
+	}
+	
 	
 	@GetMapping("/top")
 	public List<ProductTop> getBrandTop() {

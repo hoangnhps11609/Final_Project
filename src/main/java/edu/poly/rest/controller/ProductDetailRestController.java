@@ -88,6 +88,11 @@ public class ProductDetailRestController {
 		return productDetailService.getProductInTopColor(id);
 	}
 	
+	@GetMapping("topSize/{id}")
+	public List<TopSaleAllType> ProductInTopSize(@PathVariable("id") Integer id){
+		return productDetailService.getProductInTopSize(id);
+	}
+	
 	
 	
 	@GetMapping("color/count/{id}")

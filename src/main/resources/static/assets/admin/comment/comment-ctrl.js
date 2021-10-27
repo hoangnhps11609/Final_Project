@@ -28,7 +28,11 @@ app.controller("comment-ctrl", function ($scope, $http) {
 		$scope.search = function () {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/comments/${statistic.from}`).then(resp => {
+		if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{	
 			$scope.items = resp.data;
+			}
 
 		}).catch(error => {
 			//alert();

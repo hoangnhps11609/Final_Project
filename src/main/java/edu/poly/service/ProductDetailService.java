@@ -123,4 +123,6 @@ public interface ProductDetailService {
 	Long getCountProInSize(Integer id);
 
 	List<TopSaleAllType> getProductInTopColor(Integer id);
+	
+	List<TopSaleAllType> getProductInTopSize(Integer id);
 }

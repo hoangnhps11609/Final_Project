@@ -72,12 +72,16 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 	$scope.statistic = function() {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/products/${statistic.from}`).then(resp => {
+			if(resp.data.length == 0){
+			$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{	
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 			})
 			$(".nav a:eq(1)").tab('show');
 			document.getElementById("homes").style.display = "none";
 			document.getElementById("lists").style.display = "block";
+			}
 		}).catch(error => {
 			//alert();
 			Swal.fire({

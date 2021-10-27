@@ -13,10 +13,14 @@ app.controller("size-ctrl", function($scope, $http) {
 	$scope.search = function() {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/sizes/${statistic.from}`).then(resp => {
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{	
 			$scope.items = resp.data;
 			$(".nav a:eq(1)").tab('show');
 			document.getElementById("lists").style.display = "block";
 			document.getElementById("homes").style.display = "none";
+			}
 		}).catch(error => {
 			//alert();
 			Swal.fire({
@@ -126,7 +130,7 @@ app.controller("size-ctrl", function($scope, $http) {
 		});
 	}
 
-	$scope.viewProductToSizeTrenTop = function(item) {
+	$scope.viewProductfromSize = function(item) {
 		$http.get(`/rest/productdetails/size/${item.id}`).then(resp => {
 			$scope.ProSizeItems = resp.data;
 			$scope.color = item;
@@ -161,6 +165,41 @@ app.controller("size-ctrl", function($scope, $http) {
 
 
 
+	}
+	
+	$scope.viewProductToSizeTrenTop = function(item) {
+		$http.get(`/rest/productdetails/topSize/${item.id}`).then(resp => {
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
+				$scope.ProSizeItems = resp.data;
+				$scope.color = item;
+				$('#exampleModalCenterSize69').appendTo("body").modal('show');
+				$('#TopSizeModalCenter').appendTo("body").modal('hide');
+			}
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+
+			const Toast = Swal.mixin({
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
+			})
+
+			Toast.fire({
+				icon: 'warning',
+				title: 'Update failure'
+			})
+
+			console.log("Error", error);
+
+		});
 	}
 
 	//update sản phẩm mới

@@ -226,6 +226,13 @@ public class ProductServiceImp implements ProductService{
 	}
 
 
+	@Override
+	public List<TopSaleAllType> findProByTopBrandSale(Integer cateid) {
+		// TODO Auto-generated method stub
+		return productDAO.findProByTopBrandSale(cateid);
+	}
+
+
 
 
 

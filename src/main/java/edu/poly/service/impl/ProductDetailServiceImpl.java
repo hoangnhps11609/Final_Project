@@ -300,6 +300,12 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 		return productDetailDAO.getProductInTopColor(id);
 	}
 
+	@Override
+	public List<TopSaleAllType> getProductInTopSize(Integer id) {
+		// TODO Auto-generated method stub
+		return productDetailDAO.getProductInTopSize(id);
+	}
+
 
 
 	

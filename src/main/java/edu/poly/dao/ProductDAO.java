@@ -122,6 +122,11 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	@Query
 	("Select new TopSaleAllType(od.productDetail.product, sum(od.quantity)) From OrderDetail od where od.order.status=3 and od.productDetail.product.category.id = ?1 group by od.productDetail.product.id")
 	List<TopSaleAllType> findProByTopCategorySale(String cateid);
-
+	
+	@Query
+	("Select new TopSaleAllType(od.productDetail.product, sum(od.quantity)) From OrderDetail od where od.order.status=3 and od.productDetail.product.brand.id = ?1 group by od.productDetail.product.id")
+	List<TopSaleAllType> findProByTopBrandSale(Integer cateid);
+	
+	
 	
 }

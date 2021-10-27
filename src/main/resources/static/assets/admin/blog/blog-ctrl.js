@@ -5,11 +5,15 @@ app.controller("blog-ctrl", function($scope, $http) {
 
 	$scope.initialize = function() {
 		$http.get("/rest/blog").then(resp => {
+		if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 				item.createDate = new Date(item.createDate);
 				$scope.reset();
 			})
+			}
 		});
 
 	}
@@ -31,15 +35,19 @@ app.controller("blog-ctrl", function($scope, $http) {
 	$scope.statistic = function() {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/blog/${statistic.from}`).then(resp => {
+		if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
 			$scope.items = resp.data;
-
 			$scope.items.forEach(item => {
 				item.createDate = new Date(item.createDate);
 
 			})
+			
 			$(".nav a:eq(1)").tab('show');
 			document.getElementById("lists").style.display = "block";
 			document.getElementById("homes").style.display = "none";
+			}
 		}).catch(error => {
 			//alert('Error');
 			Swal.fire({

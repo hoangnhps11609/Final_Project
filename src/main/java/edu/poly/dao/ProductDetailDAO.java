@@ -123,5 +123,9 @@ public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 	("Select new TopSaleAllType(od.productDetail.product, sum(od.quantity)) from OrderDetail od where od.order.status = 3 and od.productDetail.color.id = ?1 group by od.productDetail.product.id")
 	List<TopSaleAllType> getProductInTopColor(Integer id);
 	
+	@Query
+	("Select new TopSaleAllType(od.productDetail.product, sum(od.quantity)) from OrderDetail od where od.order.status = 3 and od.productDetail.size.id = ?1 group by od.productDetail.product.id")
+	List<TopSaleAllType> getProductInTopSize(Integer id);
+	
 
 }
