@@ -10,11 +10,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import edu.poly.entity.ColorPro;
+import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductBySize;
 import edu.poly.entity.ProductDetail;
 import edu.poly.entity.SizePro;
+import edu.poly.entity.TopSaleAllType;
 @Repository
 public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 
@@ -116,6 +118,10 @@ public interface ProductDetailDAO extends JpaRepository<ProductDetail, Long> {
 	@Query
 	("SELECT sum(p.quantity) FROM ProductDetail p WHERE p.size.id= ?1 group by p.size")
 	Long getCountProInSize(Integer id);
+
+	@Query
+	("Select new TopSaleAllType(od.productDetail.product, sum(od.quantity)) from OrderDetail od where od.order.status = 3 and od.productDetail.color.id = ?1 group by od.productDetail.product.id")
+	List<TopSaleAllType> getProductInTopColor(Integer id);
 	
 
 }

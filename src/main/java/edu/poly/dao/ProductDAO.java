@@ -12,11 +12,13 @@ import org.springframework.stereotype.Repository;
 
 import edu.poly.entity.BrandInventory;
 import edu.poly.entity.BrandTop;
+import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductDetail;
 import edu.poly.entity.ProductInventory;
 import edu.poly.entity.ProductTop;
+import edu.poly.entity.TopSaleAllType;
 @Repository
 public interface ProductDAO extends JpaRepository<Product, Integer> {
 	
@@ -116,6 +118,10 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	@Query
 	("SELECT p FROM Product p WHERE p.category.id = ?1")
 	List<Product> findProductByCategory(String cateid);
+
+	@Query
+	("Select new TopSaleAllType(od.productDetail.product, sum(od.quantity)) From OrderDetail od where od.order.status=3 and od.productDetail.product.category.id = ?1 group by od.productDetail.product.id")
+	List<TopSaleAllType> findProByTopCategorySale(String cateid);
 
 	
 }

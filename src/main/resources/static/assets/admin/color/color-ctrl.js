@@ -5,7 +5,12 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 	$scope.initialize = function() {
 		//load categories
 		$http.get("/rest/colors").then(resp => {
-			$scope.items = resp.data;
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{	
+				$scope.items = resp.data;
+				$scope.message = "";
+			}
 		});
 
 	}
@@ -13,7 +18,11 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 	$scope.inventoryColor = function() {
 		$('#InventoryColorModalCenter').appendTo("body").modal('show');
 		$http.get("/rest/colors/inventory").then(resp => {
-			$scope.inventories = resp.data;
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{	
+				$scope.inventories = resp.data;
+			}
 		}).catch(error => {
 			alert(error);
 
@@ -42,7 +51,11 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 	$scope.topColor = function() {
 		$('#TopColorModalCenter').appendTo("body").modal('show');
 		$http.get("/rest/colors/top").then(resp => {
-			$scope.tops = resp.data;
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{	
+				$scope.tops = resp.data;
+			}
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 
@@ -71,10 +84,16 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 	$scope.search = function() {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/colors/${statistic.from}`).then(resp => {
-			$scope.items = resp.data;
-			$(".nav a:eq(1)").tab('show');
-			document.getElementById("lists").style.display = "block";
-			document.getElementById("homes").style.display = "none";
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{	
+				$scope.items = resp.data;
+				$(".nav a:eq(1)").tab('show');
+				document.getElementById("lists").style.display = "block";
+				document.getElementById("homes").style.display = "none";
+				$scope.statistic.from = "";
+				$scope.message = "Search by Keyword: " + statistic.from;
+			}
 		}).catch(error => {
 			//alert();
 			Swal.fire({
@@ -95,7 +114,6 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 		if (event.keyCode === 13) {
 			event.preventDefault();
 			$scope.search();
-
 		}
 	});
 
@@ -106,6 +124,7 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 	//Xóa form
 	$scope.reset = function() {
 		$route.reload();
+		$scope.isEdit = null;
 	}
 
 	//hiển thị lên form
@@ -115,6 +134,7 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 		$(".nav a:eq(0)").tab('show');
 		document.getElementById("homes").style.display = "block";
 		document.getElementById("lists").style.display = "none";
+		$scope.isEdit = "true";
 	}
 
 
@@ -244,15 +264,19 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 
 
 	$scope.viewProductFromColor = function(item) {
-		$http.get(`/rest/productdetails/color/count/${item.id}`).then(resp => {
-			$scope.sumProDet = resp.data;
-		})
 		$http.get(`/rest/products/color/${item.id}`).then(resp => {
-			$scope.ProCateItems = resp.data;
-			$scope.countPro = resp.data.length;
-			$scope.color = item;
-			$scope.rgb = "rgb(" + item.red + ", " + item.green + ", " + item.blue + ")"
-			$('#exampleModalCenter69').appendTo("body").modal('show');
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
+				$http.get(`/rest/productdetails/color/count/${item.id}`).then(resp => {
+					$scope.sumProDet = resp.data;
+				})
+				$scope.ProCateItems = resp.data;
+				$scope.countPro = resp.data.length;
+				$scope.color = item;
+				$scope.rgb = "rgb(" + item.red + ", " + item.green + ", " + item.blue + ")"
+				$('#exampleModalCenter69').appendTo("body").modal('show');
+			}
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 
@@ -283,13 +307,18 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 	}
 
 	$scope.viewProductToColorTrenTop = function(item) {
-		$http.get(`/rest/productdetails/color2/${item.id}`).then(resp => {
-			$scope.ProColorItems = resp.data;
-			$scope.color = item;
-			$('#exampleModalCenterColor22').appendTo("body").modal('show');
-			$http.get(`/rest/productdetails/color/count/${item.id}`).then(resp => {
-				$scope.sumProInColor = resp.data;
-			})
+		$http.get(`/rest/productdetails/topColor/${item.id}`).then(resp => {
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
+				$scope.ProColorItems = resp.data;
+				$scope.color = item;
+				$('#exampleModalCenterColor22').appendTo("body").modal('show');
+				$('#TopColorModalCenter').appendTo("body").modal('hide');
+				$http.get(`/rest/productdetails/color/count/${item.id}`).then(resp => {
+					$scope.sumProInColor = resp.data;
+				})
+			}
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 
@@ -313,28 +342,31 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 			console.log("Error", error);
 
 		});
-
-
-
-
 	}
-
-
+	
+	$scope.closeProductTop = function(){
+		$('#exampleModalCenterColor22').appendTo("body").modal('hide');
+		$('#TopColorModalCenter').appendTo("body").modal('show');
+	}
 
 
 	$scope.viewProDetail = function(item) {
 		$('#ProDetailModalCenter').appendTo("body").modal('show');
-		$http.get(`/rest/products/product/${item.id}`).then(resp => {
-			$scope.product = resp.data;
-		});
-		$http.get(`/rest/products/productdetail/count/${item.id}`).then(resp => {
-			$scope.countProDetail = resp.data;
-		});
+		$('#exampleModalCenter69').appendTo("body").modal('hide');
 		$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
-			$scope.ProDetailitems = resp.data;
-			$scope.countProDet = resp.data.length;
-			$('#ProDetailModalCenter').appendTo("body").modal('show');
-
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
+				$scope.ProDetailitems = resp.data;
+				$scope.countProDet = resp.data.length;
+				$('#ProDetailModalCenter').appendTo("body").modal('show');
+				$http.get(`/rest/products/product/${item.id}`).then(resp => {
+					$scope.product = resp.data;
+				});
+				$http.get(`/rest/products/productdetail/count/${item.id}`).then(resp => {
+					$scope.countProDetail = resp.data;
+				});
+			}
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 
@@ -358,6 +390,11 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 			console.log("Error", error);
 
 		});
+	}
+	
+	$scope.CloseProDetail = function(){
+		$('#ProDetailModalCenter').appendTo("body").modal('hide');
+		$('#exampleModalCenter69').appendTo("body").modal('show');
 	}
 
 
@@ -390,7 +427,7 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 
 	$scope.pager3 = {
 		page: 0,
-		size: 5,
+		size: 3,
 		get ProColorItems() {
 			var start = this.page * this.size;
 			return $scope.ProColorItems.slice(start, start + this.size);
@@ -416,7 +453,7 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 
 	$scope.pager2 = {
 		page: 0,
-		size: 5,
+		size: 3,
 		get ProCateItems() {
 			var start = this.page * this.size;
 			return $scope.ProCateItems.slice(start, start + this.size);

@@ -11,12 +11,13 @@ import org.springframework.stereotype.Service;
 
 import edu.poly.dao.ProductDAO;
 import edu.poly.service.ProductService;
-
+import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductDetail;
 import edu.poly.entity.ProductInventory;
 import edu.poly.entity.ProductTop;
+import edu.poly.entity.TopSaleAllType;
 
 @Service
 public class ProductServiceImp implements ProductService{
@@ -216,6 +217,12 @@ public class ProductServiceImp implements ProductService{
 	public List<Product> findProductByCategory(String cateid) {
 		// TODO Auto-generated method stub
 		return productDAO.findProductByCategory(cateid);
+	}
+
+
+	@Override
+	public List<TopSaleAllType> findProByTopCategorySale(String cateid) {
+		return productDAO.findProByTopCategorySale(cateid);
 	}
 
 

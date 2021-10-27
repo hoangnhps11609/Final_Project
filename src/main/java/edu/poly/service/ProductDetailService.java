@@ -16,6 +16,7 @@ import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductBySize;
 import edu.poly.entity.ProductDetail;
 import edu.poly.entity.SizePro;
+import edu.poly.entity.TopSaleAllType;
 
 public interface ProductDetailService {
 
@@ -120,4 +121,6 @@ public interface ProductDetailService {
 	Long getCountProInColor(Integer id);
 	
 	Long getCountProInSize(Integer id);
+
+	List<TopSaleAllType> getProductInTopColor(Integer id);
 }

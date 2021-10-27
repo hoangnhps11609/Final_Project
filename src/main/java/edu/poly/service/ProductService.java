@@ -7,11 +7,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductDetail;
 import edu.poly.entity.ProductInventory;
 import edu.poly.entity.ProductTop;
+import edu.poly.entity.TopSaleAllType;
 
 public interface ProductService {
 
@@ -95,6 +97,9 @@ public interface ProductService {
 	List<ProductInventory> findProductInventory();
 	
 	List<Product> findProductByCategory(String cateid);
+
+
+	List<TopSaleAllType> findProByTopCategorySale(String cateid);
 
 
 }

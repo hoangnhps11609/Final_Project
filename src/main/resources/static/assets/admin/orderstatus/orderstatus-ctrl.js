@@ -13,11 +13,15 @@ app.controller("orderstatus-ctrl", function($scope, $http, $window, $route) {
 	$scope.initialize = function() {
 		//load orders
 		$http.get("/rest/orders").then(resp => {
-			$scope.message="";
-			$scope.message1="";
-			$scope.items = resp.data;
-			$scope.items.forEach(item => {
-			})
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
+				$scope.message="";
+				$scope.message1="";
+				$scope.items = resp.data;
+				$scope.items.forEach(item => {
+				})
+			}
 		});
 	}
 	
@@ -33,55 +37,76 @@ app.controller("orderstatus-ctrl", function($scope, $http, $window, $route) {
 		$scope.findAllWaitingConfirm = function() {
 		//load orders
 		$http.get("/rest/orders/findAllWaitingConfirm").then(resp => {
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
 			$scope.items = resp.data;
 			$scope.message = "Waiting Comfirm Order";
 			$scope.message1= "";
+			$scope.bg = "bg-primary";
 			$scope.items.forEach(item => {
 			})
+			}
 		});
 	}
 	
 		$scope.findAllConfirmed = function() {
 		//load orders
 		$http.get("/rest/orders/findAllConfirmed").then(resp => {
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
 			$scope.items = resp.data;
 			$scope.message = "Confirmed Order";
 			$scope.message1= "";
+			$scope.bg = "bg-info";
 			$scope.items.forEach(item => {
-			})
+			})}
 		});
 	}
 	
 			$scope.findAllShipping = function() {
 		//load orders
 		$http.get("/rest/orders/findAllShipping").then(resp => {
+		if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
 			$scope.items = resp.data;
 			$scope.message = "Shipping Order";
 			$scope.message1= "";
+			$scope.bg = "bg-warning";
 			$scope.items.forEach(item => {
-			})
+			})}
 		});
 	}
 	
 			$scope.findAllComplete = function() {
 		//load orders
 		$http.get("/rest/orders/findAllComplete").then(resp => {
+		if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
 			$scope.items = resp.data;
 			$scope.message = "Completed Order";
 			$scope.message1= "";
+			$scope.bg = "bg-success";
 			$scope.items.forEach(item => {
-			})
+			})}
 		});
 	}
 	
 		$scope.findAllCancelOrder = function() {
 		//load orders
 		$http.get("/rest/orders/findAllCancelOrder").then(resp => {
+		if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
 			$scope.items = resp.data;
 			$scope.message = "Cancelled Order";
 			$scope.message1= "";
+			$scope.bg = "bg-danger";
 			$scope.items.forEach(item => {
-			})
+			})}
 		});
 	}
 
@@ -89,13 +114,17 @@ app.controller("orderstatus-ctrl", function($scope, $http, $window, $route) {
 		$scope.statistic = function () {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/orders/${statistic.from}`).then(resp => {
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
 			$scope.message = "Find by Keyword: '" + statistic.from + "'";
 			$scope.message1 = "";
 			$scope.statistic.from = "";
+			$scope.bg = "bg-secondary";
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 			})
-			$(".nav a:eq(2)").tab('show');
+			$(".nav a:eq(2)").tab('show');}
 		}).catch(error => {
 			//alert();
 			
@@ -121,10 +150,13 @@ app.controller("orderstatus-ctrl", function($scope, $http, $window, $route) {
 	//detail order
 	$scope.detail = function(item){
 		$http.get(`/rest/orders/myorder/${item.id}`).then(resp => {
+		if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
 			$scope.ODitems = resp.data;
 			$scope.order = item;
 			$('.bd-example-modal-lg').appendTo("body").modal('show');
-			
+			}
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 			
@@ -216,12 +248,15 @@ app.controller("orderstatus-ctrl", function($scope, $http, $window, $route) {
 	$scope.statistic1 = function() {
 		var statistic = angular.copy($scope.statistic1);
 		$http.get(`/rest/orders/statistic/${statistic.from1}/${statistic.to1}`).then(resp => {
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
 			$scope.items = resp.data;
 			$scope.from = statistic.from1;
 			$scope.to = statistic.to1;
 			$scope.message = "";
 			$scope.message1 = "Find by Date: From " + statistic.from1 + " To " + statistic.to1;
-			$('#findByDateModalCenter').appendTo("body").modal('hide');
+			$('#findByDateModalCenter').appendTo("body").modal('hide');}
 		}).catch(error => {
 			//alert("Lỗi tìm đơn hàng");
 			

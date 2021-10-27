@@ -110,4 +110,8 @@ public interface OrderService {
 	List<Double> getTopInOrderByTime(Date from, Date to);
 
 	List<Long> getTopInOrderCancelled();
+
+	Long getTotalProByUsernameandStatus(String username);
+
+	Double getTotalBillByUsernameandStatus(String username);
 }

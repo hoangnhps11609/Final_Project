@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductDetail;
+import edu.poly.entity.TopSaleAllType;
 import edu.poly.service.ProductDetailService;
 import edu.poly.service.ProductService;
 
@@ -80,10 +82,13 @@ public class ProductDetailRestController {
 		return productDetailService.TimTatCaSanPhamKhiColorBang(id);
 	}
 	
-	@GetMapping("color2/{id}")
-	public List<ProductDetail> TimTatCaSanPhamKhiColorBang2(@PathVariable("id") Integer id){
-		return productDetailService.TimTatCaSanPhamKhiColorBang(id);
+	
+	@GetMapping("topColor/{id}")
+	public List<TopSaleAllType> ProductInTopColor(@PathVariable("id") Integer id){
+		return productDetailService.getProductInTopColor(id);
 	}
+	
+	
 	
 	@GetMapping("color/count/{id}")
 	public Long getCountProInColor(@PathVariable("id") Integer id){

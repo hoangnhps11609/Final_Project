@@ -146,6 +146,13 @@ public interface OrderDAO extends JpaRepository<Order, Long>{
 
 	@Query("Select count(o) from Order o where o.status = 4 and YEAR(CreateDate) = YEAR(GETDATE()) group by Month(o.createDate), Year(o.createDate) order by count(o) desc")
 	List<Long> getTopInOrderCancelled();
+
+	@Query("Select sum(o.quantity) from Order o where o.status =3 and o.account.username = ?1")
+	Long getTotalProByUsernameandStatus(String username);
+
+
+	@Query("Select sum(o.total) from Order o where o.status =3 and o.account.username = ?1")
+	Double getTotalBillByUsernameandStatus(String username);
 	
 	
 

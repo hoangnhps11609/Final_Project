@@ -13,11 +13,13 @@ import org.springframework.stereotype.Service;
 import edu.poly.dao.ProductDetailDAO;
 import edu.poly.entity.Color;
 import edu.poly.entity.ColorPro;
+import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductBySize;
 import edu.poly.entity.ProductDetail;
 import edu.poly.entity.SizePro;
+import edu.poly.entity.TopSaleAllType;
 import edu.poly.service.ProductDetailService;
 @Service
 public class ProductDetailServiceImpl implements ProductDetailService{
@@ -291,6 +293,11 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 	public Long getCountProInSize(Integer id) {
 		// TODO Auto-generated method stub
 		return productDetailDAO.getCountProInSize(id);
+	}
+
+	@Override
+	public List<TopSaleAllType> getProductInTopColor(Integer id) {
+		return productDetailDAO.getProductInTopColor(id);
 	}
 
 

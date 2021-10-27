@@ -162,9 +162,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			var orderId = resp.data.id;
 			$http.put("/rest/orders/info/", orderId).then(resp =>{
 			
-			})
-				alert(resp.data.id);
-			
+			})			
 				//alert("Đặt hàng thành công!");
 				Swal.fire({
 				  icon: 'success',

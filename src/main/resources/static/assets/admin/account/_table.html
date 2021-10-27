@@ -3,7 +3,7 @@
 		<h3 class="noibacchu">List Account</h3>
 		<i class="fa fa-refresh " ng-click="initialize()"
 			style="font-size: 18px; position: absolute; right: 20px; top: 20px">
-			<span>Refresh</span>
+			<span>Show All</span>
 		</i>
 		<div class="row pt-3">
 			<div class="col-2">
@@ -16,7 +16,7 @@
 					style="width: 100%; font-weight: bolder" ng-click="LoyalCustomer()">Loyal
 					Customer</button>
 			</div>
-			<div class="offset-4 col-2">
+			<div class="offset-6 col-2">
 				<button class="btn btn-info"
 					style="width: 100%; font-weight: bolder" ng-click="findbyDate()">Find
 					by Date</button>
@@ -35,8 +35,11 @@
 			</div>
 		</div> -->
 		<div class="row p-2">
-			<div class="alert-success col px-0 text-center" ng-show="message">
-				<h5>{{message}}</h5>
+			<div class="bg-secondary text-light col px-0 py-1 text-center" ng-show="message">
+				<h3 style="font-weight: bolder">{{message}}</h3>
+			</div>
+			<div class="bg-secondary text-light col px-0 py-1 text-center" ng-show="to">
+				<h3 style="font-weight: bolder">Have {{countDate}} Accounts Created: {{from| date:'MM/dd/yyyy'}} - {{to| date:'MM/dd/yyyy'}}</h3>
 			</div>
 		</div>
 		<table class="table table-striped text-center">
@@ -44,10 +47,10 @@
 				<tr style="position: relative;">
 					<th style="width: 15%" scope="col">Photo</th>
 					<th style="width: 15%" scope="col">Username <br />(View Order)</th>
-					<th style="width: 15%" scope="col">Fullname</th>
+					<th style="width: 20%" scope="col">Fullname</th>
 					<th style="width: 10%" scope="col">Phone</th>
 					<th style="width: 15%" scope="col">Email</th>
-					<th style="width: 20%" scope="col">Address</th>
+					<th style="width: 15%" scope="col">Address</th>
 					<th style="width: 10%" scope="col">Createdate</th>
 					<th style="width: 20%"></th>
 				</tr>
@@ -61,7 +64,7 @@
 					<td>{{item.phone}}</td>
 					<td>{{item.email}}</td>
 					<td>{{item.address}}</td>
-					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
+					<td>{{item.createDate | date:'MM/dd/yyyy'}}</td>
 					<td>
 						<div class="btn-group btn-group-xs">
 							<button class="btn btn-warning mgr5px" ng-click="edit(item)">Edit</button>
@@ -88,12 +91,14 @@
 	<div class="modal-dialog modal-dialog-centered" role="document"
 		style="max-width: 60%">
 		<div class="modal-content">
-			<div class="modal-header bg-warning text-light">
-				<h5 class="modal-title" id="exampleModalLongTitle">{{title}}</h5>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+			<div class="modal-header bg-success text-light py-1">
+				<div class="col row">
+					<h5>{{title}}</h5>
+					<a type="button" class="close text-light pt-4 pr-0"  data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</a>
+				</div>
 			</div>
 			<div class="modal-body">
 				<table class="table table-striped text-center">
@@ -177,39 +182,33 @@
 	<div class="modal-dialog modal-dialog-centered" role="document"
 		style="max-width: 70%">
 		<div class="modal-content">
-			<div class="modal-header bg-warning">
+			<div class="modal-header bg-success text-light py-1">
 				<div class="col row">
-					<h5 class="modal-title text-light" id="exampleModalLongTitle">
-						Order of Account: <span
-							style="text-transform: uppercase; font-weight: bolder">{{account.username}}</span>
-					</h5>
-					<h5 class="modal-title text-light px-5" id="exampleModalLongTitle">
-						Sum of Product: <span
+					<h5>Order of Account: <span
+							style="text-transform: uppercase; font-weight: bolder">{{account.username}}</span></h5>
+					<h5 class="px-5">Sum of Product: <span
 							style="text-transform: uppercase; font-weight: bolder">{{totalPro}}
-							items</span>
-					</h5>
-					<h5 class="modal-title text-light" id="exampleModalLongTitle">
-						Sum of Bill: <span
-							style="text-transform: uppercase; font-weight: bolder">${{totalBill}}</span>
-					</h5>
-					<button type="button" class="close " data-dismiss="modal" ng-click="GoldenCustomer()"
+							items</span></h5>
+					<h5>Sum of Bill: <span
+							style="text-transform: uppercase; font-weight: bolder">${{totalBill|number:1}}</span></h5>
+					<a type="button" class="close text-light pt-4 pr-0"  data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
-					</button>
+					</a>
 				</div>
 			</div>
 			<div class="modal-body">
-				<table class="table table-striped text-center" ng-init="totalPro =0">
+				<table class="table table-striped text-center">
 					<thead>
 						<tr style="position: relative;">
-							<th style="width: 15%" scope="col">ID <br />(View Detail)
+							<th style="width: 10%" scope="col">ID <br />(View Detail)
 							</th>
-							<th style="width: 15%" scope="col">Receiver Name</th>
+							<th style="width: 20%" scope="col">Receiver Name</th>
 							<th style="width: 15%" scope="col">Receiver Phone</th>
-							<th style="width: 15%" scope="col">Receiver Address</th>
-							<th style="width: 20%" scope="col">Create Date</th>
-							<th style="width: 20%" scope="col">Quantity Product</th>
-							<th style="width: 20%" scope="col">Bill</th>
+							<th style="width: 20%" scope="col">Receiver Address</th>
+							<th style="width: 10%" scope="col">Create Date</th>
+							<th style="width: 15%" scope="col">Quantity Product</th>
+							<th style="width: 10%" scope="col">Total Bill</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -220,8 +219,8 @@
 							<td>{{item.phone}}</td>
 							<td>{{item.address}}</td>
 							<td>{{item.createDate}}</td>
-							<td ng-init="$parent.totalPro = $parent.totalPro + item.quantity">{{item.quantity}}</td>
-							<td ng-init="$parent.totalBill = $parent.totalBill + item.total">{{item.total}}</td>
+							<td>{{item.quantity}}</td>
+							<td>${{item.total}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -243,21 +242,24 @@
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document"
-		style="max-width: 70%">
+		style="max-width: 50%">
 		<div class="modal-content">
-			<div class="modal-header bg-warning">
+			<div class="modal-header bg-success text-light py-1">
 				<div class="col row">
-					<h5>Order ID: {{order.id}}</h5>
-					<h5 class="px-5">Quantity Item: {{order.quantity}}</h5>
-					<h5>Order Bill: ${{order.total|number:1}}</h5>
-					<button type="button" class="close " data-dismiss="modal" ng-click="closeOrderDetail()"
+					<h5>Order ID: <span
+							style="text-transform: uppercase; font-weight: bolder">{{order.id}}</span></h5>
+					<h5 class="px-5">Quantity: <span
+							style="text-transform: uppercase; font-weight: bolder">{{order.quantity}} Item</span></h5>
+					<h5>Order Bill: <span
+							style="text-transform: uppercase; font-weight: bolder">${{order.total|number:1}}</span></h5>
+					<a type="button" class="close text-light pt-4 pr-0"  data-dismiss="modal" ng-click="closeOrderDetail()"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
-					</button>
+					</a>
 				</div>
 			</div>
 			<div class="modal-body">
-				<table class="table table-striped">
+				<table class="table table-striped text-center">
 					<thead>
 						<tr>
 							<th scope="col">Image</th>
@@ -278,10 +280,10 @@
 							<td>{{item.productDetail.product.name}}</td>
 							<td>{{item.productDetail.color.name}} -
 								{{item.productDetail.size.name}}</td>
-							<td>${{item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:2}}
+							<td>${{item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:1}}
 							</td>
 							<td>{{item.quantity}}</td>
-							<td>${{item.quantity*item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:2}}
+							<td>${{item.quantity*item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:1}}
 							</td>
 						</tr>
 					</tbody>
@@ -299,3 +301,13 @@
 	</div>
 </div>
 
+<!-- No Data Modal -->
+<div class="modal fade" id="NoDataModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+      	<img ng-src="{{'/assets/images/nodata_1.png'}}" class="border" alt="" height="300px"/>
+      </div>
+    </div>
+  </div>
+</div>

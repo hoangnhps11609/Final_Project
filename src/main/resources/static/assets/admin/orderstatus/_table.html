@@ -96,7 +96,7 @@
 	</div>
 
 	<div class="card-body">
-		<div class="bg-secondary text-light py-2 text-center" ng-if="message"><h4>{{message}}</h4></div>
+		<div class="{{bg}} text-light py-2 text-center" ng-if="message"><h4>{{message}}</h4></div>
 		<div class="bg-secondary text-light py-2 text-center" ng-if="message1"><h4>Find by Date: {{to| date:'dd/MM/yyyy'}} - {{from| date:'dd/MM/yyyy'}}</h4></div>
 		<table class="table table-striped text-center">
 			<thead>
@@ -175,18 +175,24 @@
 					aria-hidden="true">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
-							<div class="card-header">
-								<h5>Order ID: {{order.id}}</h5>
-								<h5>Order Purchases: {{order.username}}</h5>
-								<h5>Quantity Items: {{order.quantity}}</h5>
-								<h5>Total Bill: ${{order.total | number: 1}}</h5>
-								<h5>Create Date: {{order.createDate| date:'dd-MM-yyyy'}}</h5>
-								<h5>Status: {{order.status == 0 ? 'Waiting Confirm' : order.status == 1 ? 'Confirmed' : order.status == 2 ? 'To Ship' : order.status == 3 ? 'Completed' : 'Cancelled Order'}}</h5>
-								<h5>Receiver Name: {{order.fullname}}</h5>
-								<h5>Receiver Phone: {{order.phone}}</h5>
-								<h5>Receiver Address: {{order.address}}</h5>
+							<div class="card-header bg-secondary text-light">
+								<h5>{{order.status == 0 ? 'Waiting Confirm' : order.status == 1 ? 'Confirmed' : order.status == 2 ? 'To Ship' : order.status == 3 ? 'Completed' : 'Cancelled Order'}}</h5>
 							</div>
-							<div class="card-body">
+							<div class="card-body py-1">
+								<div class="row col pb-2 text-center">
+									<div class="col-6">
+										Order ID: <span style="font-weight: bolder">{{order.id}}</span><br />
+										Order Purchases: <span style="font-weight: bolder">{{order.account.username}}</span><br />
+										Quantity Items: <span style="font-weight: bolder">{{order.quantity}} Items</span><br />
+										Total Bill: <span style="font-weight: bolder">${{order.total | number: 1}}</span><br />
+									</div>
+									<div class="col-6">
+										Receiver Name: <span style="font-weight: bolder">{{order.fullname}}</span><br />
+										Receiver Phone: <span style="font-weight: bolder">{{order.phone}}</span><br />
+										Receiver Address: <span style="font-weight: bolder">{{order.address}}</span><br />
+										Create Date: <span style="font-weight: bolder">{{order.createDate| date:'dd-MM-yyyy'}}</span><br />
+									</div>
+								</div>
 								<table class="table table-striped text-center">
 									<thead>
 										<tr>
@@ -338,4 +344,16 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+
+<!-- No Data Modal -->
+<div class="modal fade" id="NoDataModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+      	<img ng-src="{{'/assets/images/nodata_1.png'}}" class="border" alt="" height="300px"/>
+      </div>
+    </div>
+  </div>
 </div>

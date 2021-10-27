@@ -68,6 +68,18 @@ public class OrderRestController {
 		return orderlist;
 	}
 	
+	@GetMapping("/getTotalPro/{username}")
+	public Long getTotalPro(@PathVariable("username") String username){
+		Long totalPro = orderService.getTotalProByUsernameandStatus(username);
+		return totalPro;
+	}
+	
+	@GetMapping("/getTotalBill/{username}")
+	public Double getTotalBill(@PathVariable("username") String username){
+		Double totalBill = orderService.getTotalBillByUsernameandStatus(username);
+		return totalBill;
+	}
+	
 	@GetMapping("/statistic/{from}/{to}")
 	public List<Order> getByDate(@PathVariable("from") Date from, @PathVariable("to") Date to){
 		return orderService.findByDate(from, to);

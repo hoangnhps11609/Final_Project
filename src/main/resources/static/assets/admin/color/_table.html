@@ -4,7 +4,7 @@
 			<h3 class="noibacchu pl-2 ">List Color</h3>
 			<i ng-click="initialize()" class="fa fa-refresh"
 				style="font-size: 18px; position: absolute; right: 20px; top: 20px">
-				<span>Refresh</span>
+				<span>Show All</span>
 			</i>
 		</div>
 					<div class="row pt-3">
@@ -23,19 +23,25 @@
 	</div>
 
 	<div class="card-body">
+		<div class="p-2 bg-secondary text-light col px-0 py-1 text-center" ng-show="message">
+				<h3 style="font-weight: bolder">{{message}}</h3>
+		</div>
 		<table class="table table-striped text-center">
 			<thead>
 				<tr style="position: relative;">
+					<th></th><th></th>
+					<th></th>
 					<th scope="col">ID</th>
 					<th scope="col">Name <br />(Click to view Product)</th>
 					<th scope="col">Red</th>
 					<th scope="col">Green</th>
 					<th scope="col">Blue</th>
-					<th></th>
+					<th></th><th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="item in pager.items">
+					<th></th><th></th><th></th>
 					<td>{{item.id}}</td>
 					<td style="width: 250px"><a class="btn text-light" style="background-color:rgb({{item.red}}, {{item.green}}, {{item.blue}})" ng-click="viewProductFromColor(item)"
 						href="">{{item.name}}</a></td>
@@ -48,6 +54,7 @@
 							<button class="btn btn-danger" ng-click="delete(item)">Delete</button>
 						</div>
 					</td>
+					<th></th><th></th>
 				</tr>
 			</tbody>
 		</table>
@@ -67,7 +74,7 @@
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document"
-		style="max-width: 70%">
+		style="max-width: 50%">
 		<div class="modal-content">
 			<div class="modal-header" style="background-color: {{rgb}}">
 				<h5 class="modal-title text-light" id="exampleModalLongTitle">Product In {{color.name}}: {{countPro}} Products</h5>
@@ -124,23 +131,21 @@
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document"
-		style="max-width: 70%">
+		style="max-width: 50%">
 		<div class="modal-content">
-			<div class="modal-header">
-				<div class="col row">
-					<div class="col-4">
-						<h5>Product ID: {{product.id}}</h5>
-						<h5>Name: {{product.name}}</h5>
-						<h5>Available: {{product.available}}</h5>
-						<h5>Count ProductDetail: {{countProDet}}</h5>
-						<h5>Sum Inventory: {{countProDetail}}</h5>
-					</div>
-					<button type="button" class="close " data-dismiss="modal"
-						style="width: 20px; height: 20px" ng-click="closeProDetail()"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
+			<div class="modal-header bg-secondary text-light">
+				<h5>Product ID: <span
+							style="text-transform: uppercase; font-weight: bolder">{{product.id}}</span></h5>
+				<h5 class="pl-5">Product Name: <span
+							style="text-transform: uppercase; font-weight: bolder">{{product.name}}</span></h5>
+				<h5 class="pl-5">Count Product: <span
+							style="text-transform: uppercase; font-weight: bolder">{{countProDet}}</span></h5>
+				<h5 class="pl-5">Sum Inventory: <span
+							style="text-transform: uppercase; font-weight: bolder">{{countProDetail}}</span></h5>
+				<button type="button" class="close text-light" data-dismiss="modal" ng-click="CloseProDetail()"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
 			<div class="modal-body">
 				<table class="table table-striped text-center">
@@ -182,16 +187,14 @@
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document"
-		style="max-width: 70%">
+		style="max-width: 40%">
 		<div class="modal-content">
-			<div class="modal-header bg-warning">
-				<div class="col row">
-					<h5>Top Color</h5>
-					<button type="button" class="close " data-dismiss="modal"
-						ng-click="closeOrderDetail()" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
+			<div class="modal-header bg-secondary text-light">
+				<h5 class="modal-title" id="exampleModalLongTitleBrand">Top Color</h5>
+				<button type="button" class="close text-light" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
 			<div class="modal-body">
 				<table class="table table-striped text-center">
@@ -209,7 +212,7 @@
 						<tr ng-repeat="item in pagerTopColor.tops">
 							<th></th>
 							<td>{{item.color.id}}</td>
-							<td style="width: 250px"><a href="" class="btn btn-outline-primary" ng-click="viewProductToColorTrenTop(item.color)">{{item.color.name}}</a></td>
+							<td style="width: 250px"><a href="" class="btn text-light"  style="background-color:rgb({{item.color.red}}, {{item.color.green}}, {{item.color.blue}})" ng-click="viewProductToColorTrenTop(item.color)">{{item.color.name}}</a></td>
 							<td>{{item.seller}}</td>
 						</tr>
 					</tbody>
@@ -232,14 +235,12 @@
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document"
-		style="max-width: 70%">
+		style="max-width: 40%">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header text-light" style="background-color:rgb({{color.red}}, {{color.green}}, {{color.blue}})">
 				<h5 class="modal-title" id="exampleModalLongTitleBrand">ProductDetail Of
 					Color : {{color.name}}</h5>
-				<h5 class="modal-title px-5" id="exampleModalLongTitleBrand">Inventory:
-					{{sumProInColor}}</h5>
-				<button type="button" class="close" data-dismiss="modal"
+				<button type="button" class="close" data-dismiss="modal" ng-click="closeProductTop()"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -248,30 +249,27 @@
 				<table class="table table-striped text-center">
 					<thead>
 						<tr>
-							<th width="10%" scope="col">Image</th>
-							<th width="3%" scope="col">ID</th>
-							<th width="10%" scope="col">Name
-							</th>
-							<th width="10%" scope="col">Color</th>
-							<th width="10%" scope="col">Size</th>
-							<th width="10%" scope="col">Quantity</th>
-							<th width="10%" scope="col">Create Date</th>
-							<th width="10%" scope="col">Available</th>
+							<th scope="col">Image</th>
+							<th scope="col">Product ID</th>
+							<th scope="col">Product Name</th>
+							<th scope="col">Price</th>
+							<th scope="col">Discount</th>
+							<th scope="col">Gender</th>
+							<th scope="col">Brand</th>
+							<th scope="col">Quantity</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat="item in pager3.ProColorItems">
-							<td width="100px"><img
-								ng-src="{{'/assets/images/' + item.image}}" width="100%" /></td>
-							<td>{{item.id}}</td>
-							<td style="max-width: 250px">
-								{{item.product.name}}</td>
-							<td>{{item.color.name}}</td>
-							<td>{{item.size.name}}</td>
-							<td>{{item.quantity}}</td>
-							<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
-							<td>{{item.available}}</td>
-
+							<td width="150px"><img
+								ng-src="{{'/assets/images/' + item.product.image}}" width="100%" /></td>
+							<td>{{item.product.id}}</td>
+							<td>{{item.product.name}}</td>
+							<td>{{item.product.price}}</td>
+							<td>{{item.product.discount}}</td>
+							<td>{{item.product.gender.name}}</td>
+							<td>{{item.product.brand.name}}</td>
+							<td>{{item.value}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -293,16 +291,14 @@
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document"
-		style="max-width: 70%">
+		style="max-width: 40%">
 		<div class="modal-content">
-			<div class="modal-header bg-warning">
-				<div class="col row">
-					<h5>Inventory Color</h5>
-					<button type="button" class="close " data-dismiss="modal"
-						ng-click="closeOrderDetail()" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
+			<div class="modal-header bg-secondary text-light">
+				<h5 class="modal-title" id="exampleModalLongTitleBrand">Inventory Product</h5>
+				<button type="button" class="close text-light" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
 			<div class="modal-body">
 				<table class="table table-striped text-center">
@@ -320,7 +316,7 @@
 						<tr ng-repeat="item in InventoryColorModalCenter.inventories">
 							<th></th>
 							<td>{{item.color.id}}</td>
-							<td style="width: 250px"><a href="" class="btn btn-outline-primary" ng-click="viewProductToColorTrenTop(item.color)">{{item.color.name}}</a></td>
+							<td style="width: 250px"><a href="" class="btn text-light" style="background-color:rgb({{item.color.red}}, {{item.color.green}}, {{item.color.blue}})"  ng-click="viewProductFromColor(item.color)">{{item.color.name}}</a></td>
 							<td>{{item.inventory}}</td>
 						</tr>
 					</tbody>
@@ -336,4 +332,16 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+
+<!-- No Data Modal -->
+<div class="modal fade" id="NoDataModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+      	<img ng-src="{{'/assets/images/nodata_1.png'}}" class="border" alt="" height="300px"/>
+      </div>
+    </div>
+  </div>
 </div>

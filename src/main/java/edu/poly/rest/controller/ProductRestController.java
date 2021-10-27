@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.poly.entity.Account;
 import edu.poly.entity.BrandInventory;
 import edu.poly.entity.BrandTop;
+import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductByColor;
 import edu.poly.entity.ProductDetail;
 import edu.poly.entity.ProductInventory;
 import edu.poly.entity.ProductTop;
+import edu.poly.entity.TopSaleAllType;
 import edu.poly.service.ProductService;
 
 @CrossOrigin("*")
@@ -48,14 +50,17 @@ public class ProductRestController {
 		return pService.findByCategoryId(cateid, Sort.by("id").descending());
 	}
 	
+	@GetMapping("topCategorySale/{cateid}")
+	public List<TopSaleAllType> topCategorySale(@PathVariable("cateid") String cateid) {
+		return pService.findProByTopCategorySale(cateid);
+	}
+	
+	
 	@GetMapping("/top")
 	public List<ProductTop> getBrandTop() {
 		List<ProductTop> list = pService.findProductTop();
 		return list;
 	}
-	
-
-	
 
 	
 	@GetMapping("category/count/{cateid}")

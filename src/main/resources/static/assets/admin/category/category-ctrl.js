@@ -5,18 +5,32 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 	$scope.initialize = function () {
 		//load categories
 		$http.get("/rest/categories").then(resp => {
-			$scope.items = resp.data;
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
+				$scope.items = resp.data;
+				$scope.message = "";
+				$scope.to = null;
+			}
 		});
 
 	}
 	
-		$scope.search = function () {
+	$scope.search = function () {
 		var statistic = angular.copy($scope.statistic);
 		$http.get(`/rest/categories/${statistic.from}`).then(resp => {
-			$scope.items = resp.data;
-			$(".nav a:eq(1)").tab('show');
-			document.getElementById("lists").style.display = "block";
-			document.getElementById("homes").style.display = "none";
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
+				$scope.items = resp.data;
+				$(".nav a:eq(1)").tab('show');
+				$scope.message = "Search by Keyword: " + statistic.from;
+				$scope.to = null;
+				$scope.statistic.from = "";
+				$scope.message = "Search by Keyword: " + statistic.from;
+				document.getElementById("lists").style.display = "block";
+				document.getElementById("homes").style.display = "none";
+			}
 		}).catch(error => {
 			//alert();
 			Swal.fire({
@@ -32,20 +46,22 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 		});
 	}
 	
-		var input = document.getElementById("myInput");
+	var input = document.getElementById("myInput");
 	input.addEventListener("keyup", function (event) {
 		if (event.keyCode === 13) {
 			event.preventDefault();
 			$scope.search();
-
 		}
 	});
+	
 	//Khởi tạo
 	$scope.initialize();
 
 	//Xóa form
 	$scope.reset = function () {
+		$scope.initialize();
 		$scope.form = {};
+		$scope.isEdit = null;
 	}
 
 	//hiển thị lên form
@@ -54,6 +70,7 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 		$(".nav a:eq(0)").tab('show');
 		document.getElementById("homes").style.display = "block";
 		document.getElementById("lists").style.display = "none";
+		$scope.isEdit = "true";
 	}
 	
 
@@ -141,7 +158,6 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 	//Xóa sản phẩm mới
 	$scope.delete = function (item) {
 	var name = item.name;
-		
 			Swal.fire({
 			  title: 'Are you sure delete "' + name + '"?',
 			  text: "You won't be able to revert this!",
@@ -179,12 +195,17 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 	
 	$scope.viewProductToCate = function (item) {
 			$http.get(`/rest/products/category/${item.id}`).then(resp => {
-				$scope.ProCateItems = resp.data;
-				$scope.category = item;
-			$('#exampleModalCenter').appendTo("body").modal('show');
-			$http.get(`/rest/products/category/count/${item.id}`).then(resp => {
-				$scope.sumProInCate = resp.data;
-			})
+				if(resp.data.length == 0){
+					$('#NoDataModalCenter').appendTo("body").modal('show');
+				}else{
+					$scope.ProCateItems = resp.data;
+					$scope.category = item;
+				$('#exampleModalCenter').appendTo("body").modal('show');
+				$('#InventoryCategoryModalCenter').appendTo("body").modal('hide');
+				$http.get(`/rest/products/category/count/${item.id}`).then(resp => {
+					$scope.sumProInCate = resp.data;
+				})
+			}
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 			
@@ -208,10 +229,49 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 			console.log("Error", error);
 
 		});
-		
-		
+	}
+	
+	$scope.viewProductTopCate = function (item) {
+			$http.get(`/rest/products/topCategorySale/${item.id}`).then(resp => {
+				if(resp.data.length == 0){
+					$('#NoDataModalCenter').appendTo("body").modal('show');
+				}else{
+					$scope.ProTopCateItems = resp.data;
+					$scope.category = item;
+					$('#ProductTopCatelModalCenter').appendTo("body").modal('show');
+					$('#TopCategoryModalCenter').appendTo("body").modal('hide');
+					$http.get(`/rest/products/category/count/${item.id}`).then(resp => {
+						$scope.sumProInCate = resp.data;
+				})
+			}
+		}).catch(error => {
+			//alert("Lỗi cập nhật sản phẩm");
+			
+			const Toast = Swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 1500,
+			  timerProgressBar: true,
+			  didOpen: (toast) => {
+			    toast.addEventListener('mouseenter', Swal.stopTimer)
+			    toast.addEventListener('mouseleave', Swal.resumeTimer)
+			  }
+			})
+			
+			Toast.fire({
+			  icon: 'warning',
+			  title: 'Update failure'
+			})
+			
+			console.log("Error", error);
 
-
+		});
+	}
+	
+	$scope.closeOrderDetail = function(){
+		$('#ProductTopCatelModalCenter').appendTo("body").modal('hide');
+		$('#TopCategoryModalCenter').appendTo("body").modal('show');
 	}
 
 	$scope.pager = {
@@ -267,41 +327,15 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 	}
 	
 	
-	$scope.topCategory = function(){
-		$http.get(`/rest/products/category/${item.id}`).then(resp => {
-				$scope.ProCateItems = resp.data;
-				$scope.category = item;
-			$('#TopCategoryModalCenter').appendTo("body").modal('show');
-			
-		}).catch(error => {
-			//alert("Lỗi cập nhật sản phẩm");
-			
-			const Toast = Swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 1500,
-			  timerProgressBar: true,
-			  didOpen: (toast) => {
-			    toast.addEventListener('mouseenter', Swal.stopTimer)
-			    toast.addEventListener('mouseleave', Swal.resumeTimer)
-			  }
-			})
-			
-			Toast.fire({
-			  icon: 'warning',
-			  title: 'Update failure'
-			})
-			
-			console.log("Error", error);
-
-		});
-	}
 	
 	$scope.inventoryProduct = function(){
 		$('#InventoryCategoryModalCenter').appendTo("body").modal('show');
 		$http.get("/rest/categories/inventory").then(resp => {
-			$scope.inventories = resp.data;
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
+				$scope.inventories = resp.data;
+			}
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 			
@@ -327,10 +361,16 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 		});
 	}
 	
+	
+	
 	$scope.topCategory = function(){
 		$('#TopCategoryModalCenter').appendTo("body").modal('show');
 		$http.get("/rest/categories/top").then(resp => {
-			$scope.tops = resp.data;
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
+				$scope.tops = resp.data;
+			}
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 			
@@ -359,15 +399,18 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 	$scope.proDetail = function(item){
 		$('#exampleModalCenter').appendTo("body").modal('hide');
 		$http.get(`/rest/products/product/${item.id}`).then(resp => {
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
 				$scope.product = resp.data;
-			});
-		$http.get(`/rest/products/productdetail/count/${item.id}`).then(resp => {
-				$scope.countProDetail = resp.data;
-		});
-		$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
-			$scope.ProDetailitems = resp.data;
-			$('#ProDetailModalCenter').appendTo("body").modal('show');
-			
+				$http.get(`/rest/products/productdetail/count/${item.id}`).then(resp => {
+					$scope.countProDetail = resp.data;
+				});
+				$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
+					$scope.ProDetailitems = resp.data;
+				$('#ProDetailModalCenter').appendTo("body").modal('show');
+				});
+			}
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 			
@@ -396,15 +439,18 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 	$scope.proDetailofOrder = function(item){
 		$('#exampleModalCenter').appendTo("body").modal('hide');
 		$http.get(`/rest/products/product/${item.id}`).then(resp => {
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
 				$scope.product = resp.data;
-			});
-		$http.get(`/rest/products/productdetail/count/${item.id}`).then(resp => {
-				$scope.countProDetail = resp.data;
-		});
-		$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
-			$scope.ProDetailitems = resp.data;
-			$('#ProDetailModalCenter').appendTo("body").modal('show');
-			
+				$http.get(`/rest/products/productdetail/count/${item.id}`).then(resp => {
+					$scope.countProDetail = resp.data;
+				});
+				$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
+					$scope.ProDetailitems = resp.data;
+					$('#ProDetailModalCenter').appendTo("body").modal('show');
+				});
+			}
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 			
@@ -508,6 +554,31 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 		}
 	}
 	
+	$scope.pagerProTopCate = {
+		page: 0,
+		size: 3,
+		get ProTopCateItems() {
+			var start = this.page * this.size;
+			return $scope.ProTopCateItems.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.ProTopCateItems.length / this.size);
+		}, first() {
+			this.page = 0;
+		}, prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		}, next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		}, last() {
+			this.page = this.count - 1;
+		}
+	}
 	
 	
 	$scope.closeProDetail = function(){

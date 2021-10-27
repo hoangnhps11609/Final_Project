@@ -279,5 +279,15 @@ public class OrderServiceImpl implements OrderService{
 		return dao.getTopInOrderCancelled();
 	}
 
+	@Override
+	public Long getTotalProByUsernameandStatus(String username) {
+		return dao.getTotalProByUsernameandStatus(username);
+	}
+
+	@Override
+	public Double getTotalBillByUsernameandStatus(String username) {
+		return dao.getTotalBillByUsernameandStatus(username);
+	}
+
 
 }
