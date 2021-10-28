@@ -4,22 +4,45 @@ app.controller("comment-ctrl", function ($scope, $http) {
 
 	$scope.initialize = function () {
 		$http.get("/rest/comments").then(resp => {
+			$scope.message = "";		
 			$scope.items = resp.data;
+			
 		});
 
 	}
 	
+	
 	$scope.XemTatCaCommentChuaDoc = function () {
 		$http.get("/rest/comments/chuadoc").then(resp => {
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
+			$scope.message = "Search by: Unread";
+			
 			$scope.items = resp.data;
+			}
 		});
 
 	}
+	
+		$scope.XemContent = function (item) {		
+		alert(item.content);
+
+	}
+
+	
+	
 	
 		$scope.XemTatCaCommentDaDoc = function () {
 		//load categories
 		$http.get("/rest/comments/dadoc").then(resp => {
+			if(resp.data.length == 0){
+				$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
+			$scope.message = "Search by: Read";
+			
 			$scope.items = resp.data;
+			}
 		});
 
 	}
@@ -30,7 +53,10 @@ app.controller("comment-ctrl", function ($scope, $http) {
 		$http.get(`/rest/comments/${statistic.from}`).then(resp => {
 		if(resp.data.length == 0){
 				$('#NoDataModalCenter').appendTo("body").modal('show');
-			}else{	
+			}else{
+				$scope.message = "Search by Keyword: " + statistic.from;
+				$scope.to = null;
+				$scope.statistic.from = "";
 			$scope.items = resp.data;
 			}
 

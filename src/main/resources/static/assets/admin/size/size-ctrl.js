@@ -5,6 +5,8 @@ app.controller("size-ctrl", function($scope, $http) {
 	$scope.initialize = function() {
 		//load categories
 		$http.get("/rest/sizes").then(resp => {
+			$scope.message = "";
+			$scope.to = null;
 			$scope.items = resp.data;
 		});
 
@@ -15,7 +17,9 @@ app.controller("size-ctrl", function($scope, $http) {
 		$http.get(`/rest/sizes/${statistic.from}`).then(resp => {
 			if(resp.data.length == 0){
 				$('#NoDataModalCenter').appendTo("body").modal('show');
-			}else{	
+			}else{
+			$scope.message = "Search by Keyword: " + statistic.from;
+			
 			$scope.items = resp.data;
 			$(".nav a:eq(1)").tab('show');
 			document.getElementById("lists").style.display = "block";

@@ -1,3 +1,12 @@
+git<style>
+.text {
+  display: block;
+  width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+</style>
 <div class="card">
 	<div class="card-header">
 		<div class="row">
@@ -23,6 +32,12 @@
 	</div>
 
 	<div class="card-body">
+			<div class="row p-2">
+			<div class="bg-secondary text-light col px-0 py-1 text-center" ng-show="message">
+				<h3 style="font-weight: bolder">{{message}}</h3>
+			</div>
+		
+		</div>
 		<table class="table table-striped text-center">
 			<thead>
 				<tr style="position: relative;">
@@ -53,10 +68,10 @@
 						width="20%" /></td>
 						  <td ng-if="item.rate==5"><img ng-src="{{'/assets/images/star-5.png'}}"
 						width="20%" /></td>
-				    <td>{{item.content}}</td>
+				    <td style="color: green; font-weight: bold;"><span class="text" ng-mouseover="XemContent(item)">{{item.content}}</span></td>
 					<td><img ng-src="{{'/assets/images/' + item.photo}}"
 						width="30%" /></td>
-					<td>{{item.account.fullname}}</td>
+					<td >{{item.account.fullname}}</td>
 					<td>{{item.product.name}}</td>		
 					<td><img ng-src="{{'/assets/images/' + item.product.image}}"
 						width="50%" /></td>	
@@ -149,3 +164,15 @@
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+.text {
+	  display: block;
+	  width: 100px;
+	  overflow: hidden;
+	  white-space: nowrap;
+	  text-overflow: ellipsis;
+	}
+</script>
+

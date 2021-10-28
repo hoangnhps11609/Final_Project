@@ -12,11 +12,15 @@ app.controller("productdetail-ctrl", function($scope, $http, $window) {
 	$scope.initialize = function() {
 		//load products detail
 		$http.get("/rest/productdetails").then(resp => {
+			if(resp.data.length == 0){
+			$('#NoDataModalCenter').appendTo("body").modal('show');
+			}else{
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 				item.createDate = new Date(item.createDate);
 				$scope.reset();
 			})
+			}
 		});
 
 		//load products
@@ -56,7 +60,9 @@ app.controller("productdetail-ctrl", function($scope, $http, $window) {
 		$http.get(`/rest/productdetails/get/${statistic.from}`).then(resp => {
 			if(resp.data.length == 0){
 				$('#NoDataModalCenter').appendTo("body").modal('show');
-			}else{	
+			}else{
+			$scope.message = "Search by Keyword: " + statistic.from;
+			
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 			})

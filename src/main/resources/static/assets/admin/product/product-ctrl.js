@@ -74,7 +74,9 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 		$http.get(`/rest/products/${statistic.from}`).then(resp => {
 			if(resp.data.length == 0){
 			$('#NoDataModalCenter').appendTo("body").modal('show');
-			}else{	
+			}else{
+			$scope.message = "Search by Keyword: " + statistic.from;
+			
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 			})

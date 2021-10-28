@@ -107,6 +107,8 @@
 					<th scope="col" width="10%">Username Purchase</th>
 					<th scope="col" width="10%">Fullname Receiver</th>
 					<th scope="col" width="10%">Phone Receiver</th>
+					<th scope="col" width="10%">Payment</th>
+					
 					<th scope="col" width="10%">Update Date</th>
 					<th scope="col" width="20%">Address Receiver</th>
 					<th scope="col" width="10%">Status Order</th>
@@ -119,7 +121,8 @@
 					<td>{{item.account.username}}</td>
 					<td>{{item.fullname}}</td>
 					<td>{{item.phone}}</td>
-
+					<td ng:if="item.payment==false"><i class="fa fa-money" aria-hidden="true"></i></td>
+					<td ng:if="item.payment==true"><i class="fa fa-paypal" aria-hidden="true"></i></td>	
 					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 					<td>{{item.address}}</td>
 					<td ng:if="item.status==0" class="text-primary"

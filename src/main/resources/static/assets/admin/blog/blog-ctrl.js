@@ -8,6 +8,8 @@ app.controller("blog-ctrl", function($scope, $http) {
 		if(resp.data.length == 0){
 				$('#NoDataModalCenter').appendTo("body").modal('show');
 			}else{
+				$scope.message = "";
+				$scope.to = null;
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 				item.createDate = new Date(item.createDate);
@@ -38,6 +40,9 @@ app.controller("blog-ctrl", function($scope, $http) {
 		if(resp.data.length == 0){
 				$('#NoDataModalCenter').appendTo("body").modal('show');
 			}else{
+			$scope.message = "Search by Keyword: " + statistic.from;
+					$scope.to = null;
+				$scope.statistic.from = "";
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 				item.createDate = new Date(item.createDate);
