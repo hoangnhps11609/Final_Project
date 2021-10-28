@@ -125,4 +125,6 @@ public interface ProductDetailService {
 	List<TopSaleAllType> getProductInTopColor(Integer id);
 	
 	List<TopSaleAllType> getProductInTopSize(Integer id);
+
+	Long findPROID(Long id);
 }

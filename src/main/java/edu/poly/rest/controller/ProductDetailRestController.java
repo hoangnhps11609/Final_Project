@@ -110,7 +110,11 @@ public class ProductDetailRestController {
 		return productDetailService.TimTatCaSanPhamKhiSizeBang(id);
 	}
 	
-	
+	@GetMapping("/productId/{id}")
+	public Long getProductID(@PathVariable("id") Long id) {
+		System.out.println(id);
+		return productDetailService.findPROID(id);
+	}
 
 
 	

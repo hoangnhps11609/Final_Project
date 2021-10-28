@@ -306,6 +306,11 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 		return productDetailDAO.getProductInTopSize(id);
 	}
 
+	@Override
+	public Long findPROID(Long id) {
+		return productDetailDAO.findByProductId(id);
+	}
+
 
 
 	

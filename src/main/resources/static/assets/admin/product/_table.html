@@ -7,16 +7,19 @@
 		</i>
 		<div class="row pt-3">
 			<div class="col-2">
-					<button class="btn btn-outline-warning"
+				<button class="btn btn-outline-warning"
 					style="width: 100%; font-weight: bolder" ng-click="topProduct()">Top
 					Product</button>
 			</div>
-			
+
 		</div>
 		<div class="row pt-3 col-4">
-			Find By Category:
-			<select class="form-control" ng-model="form.category.id2" ng-change="findbyCategory(form.category.id2)" style="font-weight: bold; border:solid 1px;">
-				<option ng-repeat="item in cates"  ng-value="item.id" style="font-weight: bold;" >{{item.name}}</option>
+			Find By Category: <select class="form-control"
+				ng-model="form.category.id2"
+				ng-change="findbyCategory(form.category.id2)"
+				style="font-weight: bold; border: solid 1px;">
+				<option ng-repeat="item in cates" ng-value="item.id"
+					style="font-weight: bold;">{{item.name}}</option>
 			</select>
 		</div>
 	</div>
@@ -75,27 +78,31 @@
 </div>
 
 
-
-<div class="modal-body">
-	<div class="modal fade bd-example-modal-lg2" tabindex="-1"
-		role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg" style="max-width: 45%;">
-			<div class="modal-content">
-				<div class="card-header row">
-					<div class="col-4">
-						<h3>Detail of Product</h3>
-						<h5>ID: {{product.id}}</h5>
-						<h5>Name: {{product.name}}</h5>
-						<h5>Available: {{product.available}}</h5>
-						<h5>Quantity: {{sumPro}}</h5>
-					</div>
-
-					<div class="text-right text-bottom offset-5 col-3">
-						<button class="btn btn-warning mgr5px"
-							ng-click="adddetail(product)">Add New Detail</button>
-					</div>
+<div class="modal fade" id="viewAllModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle1"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" style="max-width: 50%;"
+		role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="col row">
+					<h5 class="pt-1">
+							Product ID: <span
+								style="text-transform: uppercase; font-weight: bolder">{{product.id}}</span>
+					</h5>
+					<h5 class="px-5 pt-1" style="width:420px">
+							Product Name: <span
+								style="text-transform: uppercase; font-weight: bolder">{{product.name}}</span>
+					</h5>
+					<h5 style="padding-right:130px" class="pt-1">
+							Quantity: <span
+								style="text-transform: uppercase; font-weight: bolder">{{sumPro}}</span>
+					</h5>
+					<button class="btn btn-warning" ng-click="adddetail(product)" >Add New Detail</button>
 				</div>
-				<div class="card-body text-center">
+			</div>
+				<div class="modal-body">
+				<div class="card-body">
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -117,27 +124,30 @@
 								<td>{{item1.createDate | date:'dd-MM-yyyy'}}</td>
 								<td>
 									<div class="btn-group btn-group-xs">
-										<button class="btn btn-warning mgr5px" ng-click="editPrDe(item1)">Edit</button>
+										<button class="btn btn-warning mgr5px"
+											ng-click="editPrDe(item1)">Edit</button>
 										<button class="btn btn-danger" ng-click="deletePrDe(item1)">Delete</button>
 									</div>
 								</td>
 							</tr>
 						</tbody>
 					</table>
-				</div>
-				<div class="card-footer text-muted text-center">
-					<button class="btn btn-primary" ng-click="pager2.first()">First</button>
-					<button class="btn btn-primary" ng-click="pager2.prev()">Prev</button>
-					<button class="btn btn-success">{{pager2.page2+1}} of
-						{{pager2.count}}</button>
-					<button class="btn btn-primary" ng-click="pager2.next()">Next</button>
-					<button class="btn btn-primary" ng-click="pager2.last()">Last</button>
+					<div class="text-center">
+						<button class="btn btn-primary" ng-click="pager2.first()">First</button>
+						<button class="btn btn-primary" ng-click="pager2.prev()">Prev</button>
+						<button class="btn btn-success">{{pager2.page2+1}} of
+							{{pager2.count}}</button>
+						<button class="btn btn-primary" ng-click="pager2.next()">Next</button>
+						<button class="btn btn-primary" ng-click="pager2.last()">Last</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 </div>
+</div>
+
+
 
 <div class="modal fade" id="exampleModalCenter1" tabindex="-1"
 	role="dialog" aria-labelledby="exampleModalCenterTitle1"
@@ -146,9 +156,10 @@
 		role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle1">Product Detail Control</h5>
-				<button type="button" class="close" data-dismiss="modal"  ng-click="viewall(product)"
-					aria-label="Close">
+				<h5 class="modal-title" id="exampleModalLongTitle1">Product
+					Detail Control</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					ng-click="viewall(product)" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
@@ -202,7 +213,7 @@
 										<div class="col-5 pr-0">
 											<select class="form-control" ng-model="form2.color.id">
 												<option class="text-light" ng-repeat="c in colors"
-													ng-value="c.id" style="background-color: rgb({{c.red}}, {{c.green}}, {{c.blue}})">{{c.name}}</option>
+													ng-value="c.id" style="background-color: rgb({{c.red}},{{c.green}},{{c.blue}}">{{c.name}}</option>
 											</select>
 										</div>
 										<div class="col-7">
@@ -236,8 +247,8 @@
 					</div>
 				</div>
 				<button ng-click="createD()" class="btn btn-primary">Create</button>
+
 				<button ng-click="updateD(item)" class="btn btn-success">Update</button>
-				<button class="btn btn-danger" ng-click="deleteD(form)">Delete</button>
 				<button ng-click="resetD()" class="btn btn-info">Reset</button>
 			</div>
 		</div>
@@ -270,7 +281,8 @@
 <div class="modal fade" id="createNewColoreModalCenter" tabindex="-1"
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document" style="max-width:40%">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+		style="max-width: 40%">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLongTitle">Create New
@@ -366,16 +378,18 @@
 						<tr ng-repeat="item in pagerTopProduct.tops">
 							<th></th>
 							<td>{{item.product.id}}</td>
-							<td style="width: 250px"><a href="" class="btn btn-outline-primary" ng-click="viewProductToBrandTrenTop(item.brand)">{{item.product.name}}</a></td>
+							<td style="width: 250px"><a href=""
+								class="btn btn-outline-primary"
+								ng-click="viewProductToBrandTrenTop(item.brand)">{{item.product.name}}</a></td>
 							<td>{{item.seller}}</td>
 						</tr>
 					</tbody>
 				</table>
-					<div class="card-footer text-muted text-center">
+				<div class="card-footer text-muted text-center">
 					<button class="btn btn-primary" ng-click="pagerTopProduct.first()">First</button>
 					<button class="btn btn-primary" ng-click="pagerTopProduct.prev()">Prev</button>
-					<button class="btn btn-success">{{pagerTopProduct.page+1}} of
-						{{pagerTopProduct.count}}</button>
+					<button class="btn btn-success">{{pagerTopProduct.page+1}}
+						of {{pagerTopProduct.count}}</button>
 					<button class="btn btn-primary" ng-click="pagerTopProduct.next()">Next</button>
 					<button class="btn btn-primary" ng-click="pagerTopProduct.last()">Last</button>
 				</div>
@@ -383,6 +397,8 @@
 		</div>
 	</div>
 </div>
+
+
 <!--Inventory Product-->
 <div class="modal fade" id="InventoryProductModalCenter" tabindex="-1"
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -415,18 +431,24 @@
 						<tr ng-repeat="item in pagerProductInventory.inventories">
 							<th></th>
 							<td>{{item.product.id}}</td>
-							<td style="width: 250px"><a href="" class="btn btn-outline-primary" ng-click="viewProductToBrandTrenTop(item.brand)">{{item.product.name}}</a></td>
+							<td style="width: 250px"><a href=""
+								class="btn btn-outline-primary"
+								ng-click="viewProductToBrandTrenTop(item.brand)">{{item.product.name}}</a></td>
 							<td>{{item.inventory}}</td>
 						</tr>
 					</tbody>
 				</table>
-						<div class="card-footer text-muted text-center">
-					<button class="btn btn-primary" ng-click="pagerProductInventory.first()">First</button>
-					<button class="btn btn-primary" ng-click="pagerProductInventory.prev()">Prev</button>
-					<button class="btn btn-success">{{pagerProductInventory.page+1}} of
-						{{pagerProductInventory.count}}</button>
-					<button class="btn btn-primary" ng-click="pagerProductInventory.next()">Next</button>
-					<button class="btn btn-primary" ng-click="pagerProductInventory.last()">Last</button>
+				<div class="card-footer text-muted text-center">
+					<button class="btn btn-primary"
+						ng-click="pagerProductInventory.first()">First</button>
+					<button class="btn btn-primary"
+						ng-click="pagerProductInventory.prev()">Prev</button>
+					<button class="btn btn-success">{{pagerProductInventory.page+1}}
+						of {{pagerProductInventory.count}}</button>
+					<button class="btn btn-primary"
+						ng-click="pagerProductInventory.next()">Next</button>
+					<button class="btn btn-primary"
+						ng-click="pagerProductInventory.last()">Last</button>
 				</div>
 			</div>
 		</div>
@@ -434,12 +456,15 @@
 </div>
 
 <!-- No Data Modal -->
-<div class="modal fade" id="NoDataModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body p-0">
-      	<img ng-src="{{'/assets/images/nodata_1.png'}}" class="border" alt="" height="300px"/>
-      </div>
-    </div>
-  </div>
+<div class="modal fade" id="NoDataModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-body p-0">
+				<img ng-src="{{'/assets/images/nodata_1.png'}}" class="border"
+					alt="" height="300px" />
+			</div>
+		</div>
+	</div>
 </div>

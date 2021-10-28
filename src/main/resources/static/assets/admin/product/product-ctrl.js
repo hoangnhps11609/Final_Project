@@ -168,13 +168,12 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 		$http.get(`/rest/products/getid/${a}`).then(resp => {
 			$scope.products2 = resp.data;
 			$scope.product = item;
+			$scope.resetD();
 		});
 		$('#exampleModalCenter1').appendTo("body").modal('show');
-		$scope.resetD();
-		$('.bd-example-modal-lg2').appendTo("body").modal('hide');
+		$('#viewAllModalCenter').appendTo("body").modal('hide');
 		document.getElementById('fee').value = '2';
-
-
+		
 	}
 	
 	$scope.findbyCategory = function(c) {
@@ -202,19 +201,16 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 
 
 	$scope.viewall = function(item) {
-	
 		$http.get(`/rest/products/productdetail/count/${item.id}`).then(resp => {
 					$scope.sumPro = resp.data;
-			});
-		
+		});
 		$http.get(`/rest/products/product/${item.id}`).then(resp => {
 			$scope.product = resp.data;
 		});		
 	
 		$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
 			$scope.ODitems = resp.data;
-
-			$('.bd-example-modal-lg2').appendTo("body").modal('show');
+			$('#viewAllModalCenter').appendTo("body").modal('show');
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 
@@ -632,7 +628,6 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 			$scope.initialize();
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items.splice(index, 1);
-			$('.bd-example-modal-lg2').appendTo("body").modal('hide');
 			Swal.fire({
 				title: 'Are you sure?',
 				text: "You won't be able to revert this!",
@@ -648,9 +643,9 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 						'Your file has been deleted.',
 						'success'
 					)
+					$('#viewAllModalCenter').appendTo("body").modal('hide');
 				}
 			})
-
 		}).catch(error => {
 			//alert("Lỗi xóa sản phẩm");
 			const Toast = Swal.mixin({
@@ -670,14 +665,13 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 			})
 			console.log("Error", error);
 		});
-		$scope.viewall();
 	}
 
 	$scope.editPrDe = function(item) {
 		$scope.form2 = angular.copy(item);
 		$scope.isEdit = "edit";
 		$('#exampleModalCenter1').appendTo("body").modal('show');
-		$('.bd-example-modal-lg2').appendTo("body").modal('hide');
+		$('#viewAllModalCenter').appendTo("body").modal('hide');
 	}
 
 	$scope.CreateNewCategory = function() {
@@ -723,8 +717,12 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 				icon: 'success',
 				title: 'Created in successfully'
 			})
-
-			$(".nav-tabs a:eq(1)").tab('show');
+			//load color
+			$http.get("/rest/colors").then(resp => {
+				$scope.colors = resp.data;
+			});
+			$('#exampleModalCenter1').appendTo("body").modal('show');
+			$('#createNewColoreModalCenter').appendTo("body").modal('hide');
 		}).catch(error => {
 			//alert("Lỗi thêm sản phẩm");
 
@@ -747,8 +745,6 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 
 			console.log("Error", error);
 		});
-		$('#createNewColoreModalCenter').appendTo("body").modal('hide');
-		$window.location.reload();
 	}
 	
 	$scope.pagerTopProduct = {
