@@ -30,7 +30,7 @@ public interface OrderDAO extends JpaRepository<Order, Long>{
 	List<Order> findByDate(Date from, Date to);
 	
 	@Query("SELECT o From Order o Where  o.account.username like ?1 or o.id like ?1")
-	List<Order> FindById(String valued);
+	List<Order> FindById(String valued, Sort sort);
 
 	@Query("SELECT o From Order o Where o.account.username=?1 and o.status = ?2")
 	Page<Order> findByUsernameandStatus(String username, Integer sid, Pageable pageable);
@@ -153,6 +153,9 @@ public interface OrderDAO extends JpaRepository<Order, Long>{
 
 	@Query("Select sum(o.total) from Order o where o.status =3 and o.account.username = ?1")
 	Double getTotalBillByUsernameandStatus(String username);
+
+	@Query("Select o from Order o where o.account.username = ?1 and o.payment = 1 order by o.id desc")
+	List<Order> findNewOrderByUsername(String username);
 	
 	
 

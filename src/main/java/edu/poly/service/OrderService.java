@@ -45,7 +45,7 @@ public interface OrderService {
 	
 	List<Order> findbyId(Long id);
 
-	List<Order> findbyId(String id);
+	List<Order> findbyId(String id, Sort sort);
 	
 	Page<Order> findByUsernameandStatus(String username, Integer sid, Pageable pageable);
 
@@ -114,4 +114,6 @@ public interface OrderService {
 	Long getTotalProByUsernameandStatus(String username);
 
 	Double getTotalBillByUsernameandStatus(String username);
+
+	List<Order> findNewOrderByUsername(String username);
 }

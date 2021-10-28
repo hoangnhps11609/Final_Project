@@ -108,9 +108,9 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public List<Order> findbyId(String id) {
+	public List<Order> findbyId(String id, Sort sort) {
 		// TODO Auto-generated method stub
-		return dao.FindById(id);
+		return dao.FindById(id, sort);
 	}
 
 	@Override
@@ -287,6 +287,11 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public Double getTotalBillByUsernameandStatus(String username) {
 		return dao.getTotalBillByUsernameandStatus(username);
+	}
+
+	@Override
+	public List<Order> findNewOrderByUsername(String username) {
+		return dao.findNewOrderByUsername(username);
 	}
 
 

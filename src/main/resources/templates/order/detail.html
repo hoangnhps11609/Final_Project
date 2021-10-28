@@ -41,11 +41,11 @@
 					</div>
 					<div class="card-body">
 						<div class="px-0 mx-auto">
-							<div class="card cardstatus">
+							<div class="card cardstatus pb-0">
 								<div class="row d-flex justify-content-between px-3 topstatus">
 									<div class="d-flex flex-column text-sm-left">
 										<h5>
-											<span class="text-primary font-weight-bold">Purchased
+											<span class="text-primary font-weight-bold">Order
 												Info: [[${order.id}]]</span>
 										</h5>
 										<p class="mb-1">
@@ -53,8 +53,8 @@
 												[[${order.account.username}]]</span>
 										</p>
 										<p class="mb-1">
-											Purchased Fullname:<span class="font-weight-bold">
-												[[${order.account.fullname}]]</span>
+											Total Bill:<span class="font-weight-bold">
+												$[[${#numbers.formatDecimal(order.total, 0, 'COMMA', 1, 'POINT')}]] for [[${order.quantity}]] <span th:text="${order.quantity > 1 ? 'Items' : 'Item'}"></span></span>
 										</p>
 										<p class="mb-1">
 											Expected Arrival:<span class="font-weight-bold">
@@ -157,24 +157,19 @@
 										<div class="d-flex flex-column">
 											<a th:href="@{|/order/list?sid=3|}">
 												<p class="font-weight-bold">
-													Order<br>Complete
+													Order<br>Completed
 												</p>
 											</a>
 										</div>
 									</div>
 								</div>
+								<div class="alert-danger p-0 m-0 py-3" th:if="${order.status == 4}">
+									<h3 class="text-center text-danger" style="font-weight:bolder">Order Cancelled</h3>
+								</div>
 							</div>
 						</div>
 	
-						<div class="alert-danger p-0 m-0 py-3" th:if="${order.status == 4}">
-							<h3 class="text-center text-danger" style="font-weight:bolder">Order Cancelled</h3>
-						</div>
 						
-						<div class="alert-info p-0 m-0 py-3">
-							<h3 class="text-center text-info" style="font-weight:bolder">Order Info</h3>
-							<h5 class="text-center text-info">Quantity Product: [[${order.quantity}]]</h5>
-							<h5 class="text-center text-info">Total: $[[${#numbers.formatDecimal(order.total, 0, 'COMMA', 1, 'POINT')}]]</h5>
-						</div>
 						
 						<div class="row">
 							<div class="col-lg-12">

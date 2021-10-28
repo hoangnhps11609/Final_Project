@@ -48,6 +48,8 @@ public class Order  implements Serializable{
 
 	Integer status;
 	
+	Boolean payment;
+	
 	@ManyToOne
 	@JoinColumn(name = "Username")
 	Account account;

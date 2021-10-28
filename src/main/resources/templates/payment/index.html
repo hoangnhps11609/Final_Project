@@ -1,0 +1,56 @@
+
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/index :: dynamic(~{::main})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<main>
+	<div class="breacrumb-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcrumb-text">
+						<a th:href="@{/home/index}"><i class="fa fa-home"></i> Home</a> <span>Confirmed
+							Payment</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="register-login-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="offset-4 col-4">
+						<div class="card">
+							<div class="card-body py-1 alert-dark">
+								<div class="row">
+									<img th:src="@{|/assets/images/paypal.jpg|}" alt="">
+								</div>
+								<hr />
+								<div class="col row pb-2">
+									<div class="col-1 px-0 offset-2">
+										<form method="post" th:action="@{/pay}"
+											enctype="multipart/form-data">
+											<input type="radio" name="price"
+												style="height: 35px; width: 35px; vertical-align: middle;"
+												th:value="*{totalBill}" onclick="submit()" />
+										</form>
+									</div>
+									<div class="col-9 pl-4 pt-1">
+										<h4 class="text-dark" style="font-weight:bolder">I'm not a robot</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+</html>

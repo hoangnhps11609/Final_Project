@@ -239,25 +239,22 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 				$http.delete(`/rest/colors/${item.id}`).then(resp => {
 					var index = $scope.items.findIndex(p => p.id == item.id);
 					$scope.items.splice(index, 1);
-					$scope.reset();
+					$(".nav a:eq(1)").tab('show');
 					$scope.initialize();
 					Swal.fire(
 						'Deleted!',
 						'Color "' + name + '" has been deleted.',
 						'success'
 					)
-
 				}).catch(error => {
 					Swal.fire(
 						'Delete Failure!',
 						'Can not delete "' + name + '" !',
 						'error'
 					)
-
 					console.log("Error", error);
 
 				});
-
 			}
 		})
 	}

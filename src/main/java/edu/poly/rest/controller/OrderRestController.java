@@ -44,16 +44,14 @@ public class OrderRestController {
 	
 	@GetMapping("revenue")
 	public Double getRevenue(){
-		System.out.println("sssss222");
 		Double revenue = orderService.getRevenue();
-		System.out.println(revenue);
 		return revenue;
 	}
 
 	
 	@GetMapping()
 	public List<Order> getAll() {
-		return orderService.findAll(Sort.by(Sort.Direction.DESC, "createDate"));
+		return orderService.findAll(Sort.by(Sort.Direction.DESC, "id"));
 	}	
 	
 	@GetMapping("/myorder/{id}")
@@ -104,48 +102,60 @@ public class OrderRestController {
 		return orderService.update(product);
 	}
 	
-	@PutMapping("/info")
+	@PutMapping("/info/cashOnDelivery")
 	public Order updateIndo(@RequestBody Long id) {
 		Double total = orderDetailService.getTotal(id);
 		Long quantity = orderDetailService.getQuantity(id);
 		Order order = orderService.findById(id);
 		order.setQuantity(quantity);
 		order.setTotal(total);
-		return orderService.update(order);
+		order.setPayment(false);
+		Order update = orderService.update(order);
+		return update;
 	}
 	
-	
+	@PutMapping("/info/paypal")
+	public Order updateInfo(@RequestBody Long id) {
+		Double total = orderDetailService.getTotal(id);
+		Long quantity = orderDetailService.getQuantity(id);
+		Order order = orderService.findById(id);
+		order.setQuantity(quantity);
+		order.setTotal(total);
+		order.setPayment(true);
+		Order update = orderService.update(order);
+		return update;
+	}
 	
 	@GetMapping("{valued}")
 	public List<Order> getbyName(@PathVariable("valued") String valued){
 		if(valued==null) {
 			return orderService.findAll(Sort.by(Sort.Direction.DESC, "id"));
 		}
-		return orderService.findbyId("%"+valued+"%");
+		return orderService.findbyId("%"+valued+"%", Sort.by(Sort.Direction.DESC, "id"));
 	}
 	
 	@GetMapping("findAllWaitingConfirm")
 	public List<Order> findAllWaitingConfirm () {
-		return orderService.findAllWaitingConfirm(Sort.by(Sort.Direction.DESC, "createDate"));
+		return orderService.findAllWaitingConfirm(Sort.by(Sort.Direction.DESC, "id"));
 	}
 	
 	@GetMapping("findAllConfirmed")
 	public List<Order> findAllConfirmed () {
-		return orderService.findAllConfirmed(Sort.by(Sort.Direction.DESC, "createDate"));
+		return orderService.findAllConfirmed(Sort.by(Sort.Direction.DESC, "id"));
 	}	
 	
 	@GetMapping("findAllShipping")
 	public List<Order> findAllShipping () {
-		return orderService.findAllShipping(Sort.by(Sort.Direction.DESC, "createDate"));
+		return orderService.findAllShipping(Sort.by(Sort.Direction.DESC, "id"));
 	}	
 	
 	@GetMapping("findAllComplete")
 	public List<Order> findAllComplete () {
-		return orderService.findAllComplete(Sort.by(Sort.Direction.DESC, "createDate"));
+		return orderService.findAllComplete(Sort.by(Sort.Direction.DESC, "id"));
 	}	
 	
 	@GetMapping("findAllCancelOrder")
 	public List<Order> findAllCancelOrder () {
-		return orderService.findAllCancelOrder(Sort.by(Sort.Direction.DESC, "createDate"));
+		return orderService.findAllCancelOrder(Sort.by(Sort.Direction.DESC, "id"));
 	}
 }

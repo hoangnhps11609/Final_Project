@@ -140,7 +140,9 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 	
 	$scope.cart.loadFormLocalStorage();
 
-
+	$scope.showPayment = function(){
+		$('#PaymentModalCenter').appendTo("body").modal('show');
+	}
 
 
 	$scope.order={
@@ -159,19 +161,44 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		purchase(){
 			var order = angular.copy(this);
 			$http.post("/rest/orders", order).then(resp => {
-			var orderId = resp.data.id;
-			$http.put("/rest/orders/info/", orderId).then(resp =>{
-			
-			})			
-				//alert("Đặt hàng thành công!");
+				var orderId = resp.data.id;
+				$http.put("/rest/orders/info/cashOnDelivery", orderId).then(resp =>{
+					//alert("Đặt hàng thành công!");
+					Swal.fire({
+					  icon: 'success',
+					  title: 'Order Success',
+					  text: 'Check your order at "My Orders"',
+					  //footer: '<a href="">Why do I have this issue?</a>'
+					})
+					$scope.cart.clear();
+					location.href = "/productdetail/update/" + resp.data.id;
+				})			
+			}).catch(error => {
+				//alert("Đặt hàng thất bại!")
 				Swal.fire({
-				  icon: 'success',
-				  title: 'Order Success',
-				  text: 'Check your order at "My Orders"',
+				  icon: 'error',
+				  title: 'Order error',
+				  text: 'Please check the information again!',
 				  //footer: '<a href="">Why do I have this issue?</a>'
 				})
+				console.log(error)
+			})
+		},
+		purchasePayment(){
+			var order = angular.copy(this);
+			$http.post("/rest/orders", order).then(resp => {
+				var orderId = resp.data.id;
+				$http.put("/rest/orders/info/paypal", orderId).then(resp =>{
+					location.href = "/pay/" + resp.data.id;
+				})			
+					//alert("Đặt hàng thành công!");
+					Swal.fire({
+					  icon: 'success',
+					  title: 'Order Success',
+					  text: 'Check your order at "My Orders"',
+					  //footer: '<a href="">Why do I have this issue?</a>'
+					})
 				$scope.cart.clear();
-				location.href = "/productdetail/update/" + resp.data.id;
 			}).catch(error => {
 				//alert("Đặt hàng thất bại!")
 				Swal.fire({
