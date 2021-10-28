@@ -1,10 +1,10 @@
-git<style>
+<style>
 .text {
-  display: block;
-  width: 100px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+	display: block;
+	width: 200px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 </style>
 <div class="card">
@@ -18,70 +18,74 @@ git<style>
 		</div>
 		<div class="row pt-3">
 			<div class="col-2">
-					<button class="btn btn-outline-warning"
-					style="width: 100%; font-weight: bolder" ng-click="XemTatCaCommentDaDoc()">Read
-					</button>
+				<button class="btn btn-outline-warning"
+					style="width: 100%; font-weight: bolder"
+					ng-click="XemTatCaCommentDaDoc()">Read</button>
 			</div>
 			<div class="col-2">
-					<button class="btn btn-outline-warning"
-					style="width: 100%; font-weight: bolder" ng-click="XemTatCaCommentChuaDoc()">Unread
-					</button>
+				<button class="btn btn-outline-warning"
+					style="width: 100%; font-weight: bolder"
+					ng-click="XemTatCaCommentChuaDoc()">Unread</button>
 			</div>
 		</div>
-		
+
 	</div>
 
 	<div class="card-body">
-			<div class="row p-2">
-			<div class="bg-secondary text-light col px-0 py-1 text-center" ng-show="message">
+		<div class="row p-2">
+			<div class="bg-secondary text-light col px-0 py-1 text-center"
+				ng-show="message">
 				<h3 style="font-weight: bolder">{{message}}</h3>
 			</div>
-		
+
 		</div>
 		<table class="table table-striped text-center">
 			<thead>
 				<tr style="position: relative;">
-					<th style="width: 5%" scope="col">ID</th>
-					<th style="width: 50%" scope="col">Rate</th>
-					<th style="width: 40%">Content</th>
-					<th style="width: 40%">Photo</th>
-					<th style="width: 40%">User</th>
-					<th style="width: 40%">Product Name</th>
-					<th style="width: 40%">Product Image</th>
-					<th style="width: 40%">Status</th>
-					<th style="width: 40%">CMT Date</th>
-					
-					
-								
+					<th style="width: 5%;">ID</th>
+					<th style="width: 5%;">Rate</th>
+					<th style="width: 15%;">Content</th>
+					<th style="width: 15%;">Photo</th>
+<!-- 					<th style="">User</th> -->
+					<th style="width: 20%;">Product Name</th>
+					<th style="width: 15%;">Product Image</th>
+					<th style="width: 15%;">Status</th>
+					<th style="width: 10%;">CMT Date</th>
+					<th></th>
+
+
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="item in pager.items">
 					<td>{{item.id}}</td>
-				    <td ng-if="item.rate==1"><img ng-src="{{'/assets/images/star-1.png'}}"
-						width="20%" /></td>
-					  <td ng-if="item.rate==2"><img ng-src="{{'/assets/images/star-2.png'}}"
-						width="20%" /></td>
-						  <td ng-if="item.rate==3"><img ng-src="{{'/assets/images/star-3.png'}}"
-						width="20%" /></td>
-						  <td ng-if="item.rate==4"><img ng-src="{{'/assets/images/star-4.png'}}"
-						width="20%" /></td>
-						  <td ng-if="item.rate==5"><img ng-src="{{'/assets/images/star-5.png'}}"
-						width="20%" /></td>
-				    <td style="color: green; font-weight: bold;"><span class="text" ng-mouseover="XemContent(item)">{{item.content}}</span></td>
+					<td ng-if="item.rate==1"><img
+						ng-src="{{'/assets/images/star-1.png'}}" style="width: 100%" /></td>
+					<td ng-if="item.rate==2"><img
+						ng-src="{{'/assets/images/star-2.png'}}" style="width: 100%" /></td>
+					<td ng-if="item.rate==3"><img
+						ng-src="{{'/assets/images/star-3.png'}}" style="width: 100%" /></td>
+					<td ng-if="item.rate==4"><img
+						ng-src="{{'/assets/images/star-4.png'}}" style="width: 100%" /></td>
+					<td ng-if="item.rate==5"><img
+						ng-src="{{'/assets/images/star-5.png'}}" style="width: 100%" /></td>
+					<td style="color: green; font-weight: bold;"><span
+						class="text" ng-click="XemContent(item)">{{item.content}}</span>
+					</td>
 					<td><img ng-src="{{'/assets/images/' + item.photo}}"
-						width="30%" /></td>
-					<td >{{item.account.fullname}}</td>
-					<td>{{item.product.name}}</td>		
+						width="50%;" /></td>
+<!-- 					<td>{{item.account.fullname}}</td> -->
+					<td>{{item.product.name}}</td>
 					<td><img ng-src="{{'/assets/images/' + item.product.image}}"
-						width="50%" /></td>	
+						style="width: 50%;" /></td>
 					<td ng-if="item.status==false" style="color: green;">Chưa đọc</td>
-					<td ng-if="item.status==true">Đã đọc</td>		
-					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
-						
+					<td ng-if="item.status==true">Đã đọc</td>
+					<td>{{item.createDate | date:'MM/dd/yyyy'}}</td>
+
 					<td>
 						<div class="btn-group btn-group-xs">
-							<button class="btn btn-warning mgr5px" ng-click="edit(item)">Open Product</button>
+							<button class="btn btn-warning mgr5px" ng-click="edit(item)">Open
+								Product</button>
 						</div>
 					</td>
 				</tr>
@@ -106,7 +110,8 @@ git<style>
 		style="max-width: 70%">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">Product Of Category : {{category.name}}</h5>
+				<h5 class="modal-title" id="exampleModalLongTitle">Product Of
+					Category : {{category.name}}</h5>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -114,7 +119,7 @@ git<style>
 			</div>
 			<div class="modal-body">
 				<table class="table table-striped">
-						<thead>
+					<thead>
 						<tr>
 							<th width="10%" scope="col">Image</th>
 							<th width="3%" scope="col">ID</th>
@@ -126,14 +131,14 @@ git<style>
 						</tr>
 					</thead>
 					<tbody>
-							<tr ng-repeat="item in pager2.ProCateItems">
+						<tr ng-repeat="item in pager2.ProCateItems">
 							<td width="100px"><img
 								ng-src="{{'/assets/images/' + item.image}}" width="100%" /></td>
 							<td>{{item.id}}</td>
 							<td style="max-width: 250px">{{item.product.name}}</td>
 							<td>{{item.color.name}}</td>
-							<td>{{item.size.name}}</td>		
-							<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>		
+							<td>{{item.size.name}}</td>
+							<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 							<td>{{item.quantity}}%</td>
 							<td></td>
 
@@ -155,14 +160,17 @@ git<style>
 </div>
 
 <!-- No Data Modal -->
-<div class="modal fade" id="NoDataModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body p-0">
-      	<img ng-src="{{'/assets/images/nodata_1.png'}}" class="border" alt="" height="300px"/>
-      </div>
-    </div>
-  </div>
+<div class="modal fade" id="NoDataModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-body p-0">
+				<img ng-src="{{'/assets/images/nodata_1.png'}}" class="border"
+					alt="" height="300px" />
+			</div>
+		</div>
+	</div>
 </div>
 
 

@@ -28,6 +28,11 @@ app.config(function ($routeProvider) {
 		}).when("/comment", {
 			templateUrl: "/assets/admin/comment/index.html",
 			controller: "comment-ctrl"
+			
+		}).when("/comments", {
+			templateUrl: "product/detailhtml",
+			controller: "comment-ctrl"
+		
 		}).when("/account", {
 			templateUrl: "/assets/admin/account/index.html",
 			controller: "account-ctrl"

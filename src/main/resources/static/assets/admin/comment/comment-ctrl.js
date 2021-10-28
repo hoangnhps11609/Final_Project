@@ -26,7 +26,29 @@ app.controller("comment-ctrl", function ($scope, $http) {
 	}
 	
 		$scope.XemContent = function (item) {		
-		alert(item.content);
+		//alert(item.content);
+		var id = item.id;
+		var content = item.content;
+		var uf = item.account.fullname;
+		var name = item.product.name;
+		var photo = item.photo;
+		
+		Swal.fire({
+		  title: '<strong>Comment Contend ID : ' + id + '  </strong>',
+		  inputValue: content,
+		  html:
+		  	'<label>Fullname: ' + uf + 
+		  	'<label>Product Name: ' + name + 
+//		  	'<img src="/assets/images/ + photo" alt="#">' + '</label>' +
+		  	'<textarea class="mt-2" cols="50" rows="7"> ' + content + '</textarea>',
+		  showCloseButton: true,
+		  showCancelButton: true,
+		  focusConfirm: false,
+		  confirmButtonText:
+//		  <a href="//sweetalert2.github.io">links</a>
+		    'Chưa gắn link được',
+		  confirmButtonAriaLabel: 'Thumbs up, great!',
+		})
 
 	}
 
