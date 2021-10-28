@@ -73,6 +73,8 @@ app.controller("blog-ctrl", function($scope, $http) {
 			createDate: new Date(),
 			images: '5aa47c07.png',
 		};
+				$scope.isEdit = null;
+		
 	}
 
 	//hiển thị lên form
@@ -81,6 +83,8 @@ app.controller("blog-ctrl", function($scope, $http) {
 		$(".nav a:eq(0)").tab('show');
 		document.getElementById("homes").style.display = "block";
 		document.getElementById("lists").style.display = "none";
+				$scope.isEdit = "true";
+		
 	}
 
 	//Thêm sản phẩm mới

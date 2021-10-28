@@ -5,6 +5,10 @@
 				style="font-size: 14px; position: absolute; right: 10px; top: 10px">
 				<span>Create New Product</span>
 		</a>
+			<i class="fa fa-refresh "  ng-click="reset()"
+			style="font-size: 18px; position: absolute; left: 10px; top: 10px">
+			<span>Create New</span>
+		</i>
 	</div>
 	<div class="card-body">
 		<div class="row">
@@ -21,9 +25,13 @@
 		</div>
 	</div>
 	<div class="card-footer text-muted borbot">
-		<button ng-click="create()" class="btn btn-primary">Create</button>
-		<button ng-click="update(item)" class="btn btn-success">Update</button>
-		<button class="btn btn-danger" ng-click="delete(form)">Delete</button>
-		<button ng-click="reset()" class="btn btn-info">Reset</button>
+			<div ng-if="isEdit == null" class="row">
+			<button ng-click="create()" class="btn btn-success offset-3 col-3 mr-2" style="font-weight:bolder">Create</button>
+			<button ng-click="reset()" class="btn btn-info col-3 ml-2" style="font-weight:bolder">Reset</button>
+		</div>
+		<div ng-if="isEdit == 'true'"  class="row">
+			<button ng-click="update(item)" class="btn btn-warning offset-3 col-3 mr-2" style="font-weight:bolder">Update</button>
+			<button class="btn btn-danger col-3 ml-2" style="font-weight:bolder" ng-click="delete(form)">Delete</button>
+		</div>
 	</div>
 </div>

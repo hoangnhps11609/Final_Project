@@ -54,6 +54,8 @@ app.controller("size-ctrl", function($scope, $http) {
 	//Xóa form
 	$scope.reset = function() {
 		$scope.form = {};
+				$scope.isEdit = null;
+		
 	}
 
 	//hiển thị lên form
@@ -62,6 +64,8 @@ app.controller("size-ctrl", function($scope, $http) {
 		$(".nav a:eq(0)").tab('show');
 		document.getElementById("homes").style.display = "block";
 		document.getElementById("lists").style.display = "none";
+				$scope.isEdit = "true";
+		
 	}
 
 

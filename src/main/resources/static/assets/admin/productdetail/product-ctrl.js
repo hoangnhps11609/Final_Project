@@ -62,7 +62,8 @@ app.controller("productdetail-ctrl", function($scope, $http, $window) {
 				$('#NoDataModalCenter').appendTo("body").modal('show');
 			}else{
 			$scope.message = "Search by Keyword: " + statistic.from;
-			
+			$scope.to = null;
+				$scope.statistic.from = "";
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 			})
@@ -97,6 +98,8 @@ app.controller("productdetail-ctrl", function($scope, $http, $window) {
 			image: '5aa47c07.png',
 			available: true
 		};
+				$scope.isEdit = null;
+		
 	}
 
 	//hiển thị lên form
@@ -105,6 +108,8 @@ app.controller("productdetail-ctrl", function($scope, $http, $window) {
 		$(".nav a:eq(0)").tab('show');
 		document.getElementById("homes").style.display = "block";
 		document.getElementById("lists").style.display = "none";
+				$scope.isEdit = "true";
+		
 	}
 
 	//Thêm sản phẩm mới

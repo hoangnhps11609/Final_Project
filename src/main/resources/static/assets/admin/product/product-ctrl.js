@@ -76,7 +76,8 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 			$('#NoDataModalCenter').appendTo("body").modal('show');
 			}else{
 			$scope.message = "Search by Keyword: " + statistic.from;
-			
+			$scope.to = null;
+			$scope.statistic.from = "";
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 			})
@@ -110,6 +111,9 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 			image: '5aa47c07.png',
 			available: true
 		};
+		
+				$scope.isEdit = null;
+		
 	}
 
 	$scope.reset2 = function() {
@@ -131,6 +135,8 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 		$(".nav a:eq(0)").tab('show');
 		document.getElementById("homes").style.display = "block";
 		document.getElementById("lists").style.display = "none";
+		$scope.isEdit = "true";
+		
 	}
 	
 	$scope.topProduct = function(){
