@@ -1,18 +1,17 @@
 <div class="card ">
 	<div class="card-header">
-		<h3 class="noibacchu">Product Edition</h3>
-		<i class="fa fa-refresh "  ng-click="reset()"
-			style="font-size: 18px; position: absolute; right: -100px; top: 20px">
-			<span>Create New</span>
-		</i>
-		<a ng-click="CreateNewCategory()" class="btn btn-outline-dark"
-				style="font-size: 14px; position: absolute; right: 155px; top: 10px">
-				<span>Create New Category</span>
-		</a>
 		<a ng-click="CreateNewBrand()" class="btn btn-outline-dark"
-				style="font-size: 14px; position: absolute; right: 10px; top: 10px">
+				style="font-size: 14px; position: absolute; left: 20px; top: 20px">
 				<span>Create New Brand</span>
 		</a>
+		<a ng-click="CreateNewCategory()" class="btn btn-outline-dark"
+				style="font-size: 14px; position: absolute; left: 175px; top: 20px">
+				<span>Create New Category</span></a>
+		<h3 class="noibacchu">Product Edition</h3>
+		<i class="fa fa-refresh "  ng-click="reset()"
+			style="font-size: 18px; position: absolute; right: 20px; top: 20px">
+			<span>Create New</span>
+		</i>
 	</div>
 	<div class="card-body">
 		<div class="row">
@@ -55,6 +54,7 @@
 					<div class="form-group col-sm-6">
 						<div>Category:</div>
 						<select class="form-control" ng-model="form.category.id" required="">
+							<option value="" disabled="disabled">Choose Category:</option>
 							<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
 						</select>
 					</div>
@@ -68,12 +68,14 @@
 					<div class="form-group col-sm-6">
 						<div>Gender:</div>
 						<select class="form-control" ng-model="form.gender.id" required="">
+							<option value="" disabled="disabled">Choose Gender:</option>
 							<option ng-repeat="g in genders" ng-value="g.id">{{g.name}}</option>
 						</select>
 					</div>
 					<div class="form-group col-sm-6">
 						<div>Brand:</div>
 						<select class="form-control" ng-model="form.brand.id" required="">
+							<option value="" disabled="disabled">Choose Brand:</option>
 							<option ng-repeat="b in brands" ng-value="b.id">{{b.name}}</option>
 						</select>
 					</div>
@@ -82,7 +84,7 @@
 				<div class="row">
 					<div class="form-group col-sm-12">
 						<div>Description:</div>
-						<textarea type="text" class="form-control" ng-model="form.description" rows="6	">	</textarea>
+						<textarea type="text" class="form-control" ng-model="form.description" rows="6">	</textarea>
 					</div>
 				</div>
 			</div>

@@ -115,12 +115,12 @@
 		<ul class="nav" id="myTab" role="tablist">
 			<li class="col-md-10">
 				<a onclick="home()" class="nav-link" id="home-tab" data-toggle="tab" data-target="#edit" role="tab"
-					aria-controls="home" aria-selected="true" style="width: 50%">
-					Product Detail Edition</a>
+					aria-controls="home" aria-selected="true" style="width: 38%">
+					ProDetail Edition</a>
 
 				<a onclick="list()" class="nav-link" id="profile-tab" data-toggle="tab" data-target="#list" role="tab"
-					aria-controls="profile" aria-selected="false" style="width: 50%">
-					List Product Detail</a>
+					aria-controls="profile" aria-selected="false" style="width: 43%">
+					List ProDetail</a>
 
 				<div id="homes" class="animation start-home"></div>
 				<div id="lists" class="animation1 start-home1"></div>
@@ -129,14 +129,11 @@
 		<div class="search-box1">
 			<input class="search-txt1" name="" type="text" id="myInput" class="form-control" ng-model="statistic.from"
 				placeholder="Search	" />
-			<a class="search-btn1">
-				<button style="opacity:0 ; z-index: 20" ng-click="statistic()"></button><i style="position: absolute;"
+			<a class="search-btn1" ng-click="statistic()">
+				<button style="opacity:0 ; z-index: 20"></button><i style="position: absolute;"
 					class="fa fa-search"></i>
 			</a>
-
-
 		</div>
-
 	</div>
 
 	<div class="tab-content" id="myTabContent">

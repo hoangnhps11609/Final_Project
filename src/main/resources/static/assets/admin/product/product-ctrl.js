@@ -24,6 +24,8 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 			$scope.items.forEach(item => {
 				item.createDate = new Date(item.createDate);
 				$scope.reset();
+				$scope.message = "";
+				$scope.to = null;
 			})
 		});
 
@@ -185,13 +187,11 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 	}
 	
 	$scope.findbyCategory = function(c) {
-			$http.get("/rest/products/findCateoryName/${c}").then(resp => {
-			$scope.message = resp.data;
+		$http.get(`/rest/products/findCategoryName/${c}`).then(resp => {
+			$scope.message = "Find By Category: " + resp.data.name;
 		});
-			
-			$http.get(`/rest/products/productCate/${c}`).then(resp => {
-			$scope.items = resp.data;
-			
+		$http.get(`/rest/products/productCate/${c}`).then(resp => {
+			$scope.items = resp.data;	
 		}).catch(error => {
 			alert(error);
 			Swal.fire({

@@ -19,6 +19,7 @@ app.controller("productdetail-ctrl", function($scope, $http, $window) {
 			$scope.items.forEach(item => {
 				item.createDate = new Date(item.createDate);
 				$scope.reset();
+				$scope.message = "";
 			})
 			}
 		});
@@ -384,8 +385,11 @@ app.controller("productdetail-ctrl", function($scope, $http, $window) {
 				icon: 'success',
 				title: 'Created in successfully'
 			})
-
-			$(".nav a:eq(1)").tab('show');
+			//load color
+			$http.get("/rest/colors").then(resp => {
+				$scope.colors = resp.data;
+			});
+			$('#createNewColoreModalCenter').appendTo("body").modal('hide');
 		}).catch(error => {
 			//alert("Lỗi thêm sản phẩm");
 
@@ -408,7 +412,5 @@ app.controller("productdetail-ctrl", function($scope, $http, $window) {
 
 			console.log("Error", error);
 		});
-		$('#createNewColoreModalCenter').appendTo("body").modal('hide');
-		$window.location.reload();
 	}
 });

@@ -19,7 +19,7 @@ app.controller("size-ctrl", function($scope, $http) {
 				$('#NoDataModalCenter').appendTo("body").modal('show');
 			}else{
 			$scope.message = "Search by Keyword: " + statistic.from;
-			
+			$scope.statistic.from = "";
 			$scope.items = resp.data;
 			$(".nav a:eq(1)").tab('show');
 			document.getElementById("lists").style.display = "block";
@@ -322,7 +322,7 @@ app.controller("size-ctrl", function($scope, $http) {
 		$http.get(`/rest/productdetails/size/${item.id}`).then(resp => {
 			$scope.ProCateItems = resp.data;
 			$scope.category = item;
-			$('#exampleModalCenter22').appendTo("body").modal('show');
+			$('#exampleModalCenterSize22').appendTo("body").modal('show');
 
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
@@ -355,7 +355,7 @@ app.controller("size-ctrl", function($scope, $http) {
 
 	$scope.pager3 = {
 		page: 0,
-		size: 5,
+		size: 3,
 		get ProSizeItems() {
 			var start = this.page * this.size;
 			return $scope.ProSizeItems.slice(start, start + this.size);
@@ -381,7 +381,7 @@ app.controller("size-ctrl", function($scope, $http) {
 
 	$scope.pager = {
 		page: 0,
-		size: 10,
+		size: 5,
 		get items() {
 			var start = this.page * this.size;
 			return $scope.items.slice(start, start + this.size);
@@ -459,7 +459,7 @@ app.controller("size-ctrl", function($scope, $http) {
 
 	$scope.pager2 = {
 		page: 0,
-		size: 5,
+		size: 3,
 		get ProCateItems() {
 			var start = this.page * this.size;
 			return $scope.ProCateItems.slice(start, start + this.size);

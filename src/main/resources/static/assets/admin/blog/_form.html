@@ -38,8 +38,9 @@
 						<input class="form-control" ng-model="form.name" required=""/>
 					</div>
 					<div class="form-group col-sm-6">
-						<div>Category Blog:</div>
+						<div>Blog Category:</div>
 						<select class="form-control"  ng-model="form.blogCategory.id" required="">
+							<option value="" disabled="disabled">Choose Blog Category</option>
 							<option ng-repeat="c in cates"  ng-value="c.id">{{c.name}}</option>
 						</select>
 					</div>

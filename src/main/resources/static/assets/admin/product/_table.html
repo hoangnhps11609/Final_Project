@@ -1,23 +1,18 @@
 <div class="card">
 	<div class="card-header">
+		<button class="btn btn-outline-warning"
+					style="width: 120px; font-weight: bolder; right: left0px; top: 20px" ng-click="topProduct()">Top
+					Product</button>
 		<h3 class="noibacchu">List Product</h3>
 		<i class="fa fa-refresh" ng-click="initialize()"
 			style="font-size: 18px; position: absolute; right: 20px; top: 20px">
-			<span>Refresh</span>
+			<span>Show All</span>
 		</i>
-		<div class="row pt-3">
-			<div class="col-2">
-				<button class="btn btn-outline-warning"
-					style="width: 100%; font-weight: bolder" ng-click="topProduct()">Top
-					Product</button>
-			</div>
-
-		</div>
-		<div class="row pt-3 col-4">
-			Find By Category: <select class="form-control"
-				ng-model="form.category.id2"
-				ng-change="findbyCategory(form.category.id2)"
+		<div class="row pt-3 col-3">
+			<select class="form-control"
+				ng-model="form.category.id2" ng-change="findbyCategory(form.category.id2)"
 				style="font-weight: bold; border: solid 1px;">
+				<option value="" disabled="disabled">Find By Category:</option>
 				<option ng-repeat="item in cates" ng-value="item.id"
 					style="font-weight: bold;">{{item.name}}</option>
 			</select>
@@ -355,11 +350,11 @@
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document"
-		style="max-width: 70%">
+		style="max-width: 40%">
 		<div class="modal-content">
 			<div class="modal-header bg-warning">
-				<div class="col row">
-					<h5>Top Brand</h5>
+				<div class="col row text-light">
+					<h5>Top Product</h5>
 					<button type="button" class="close " data-dismiss="modal"
 						ng-click="closeOrderDetail()" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -372,8 +367,7 @@
 						<tr style="position: relative;">
 							<th style="width: 10%"></th>
 							<th style="width: 25%" scope="col">ID</th>
-							<th style="width: 25%" scope="col">Name <br />(Click to
-								view Product)
+							<th style="width: 25%" scope="col">Name
 							</th>
 							<th>Seller</th>
 						</tr>
@@ -382,9 +376,7 @@
 						<tr ng-repeat="item in pagerTopProduct.tops">
 							<th></th>
 							<td>{{item.product.id}}</td>
-							<td style="width: 250px"><a href=""
-								class="btn btn-outline-primary"
-								ng-click="viewProductToBrandTrenTop(item.brand)">{{item.product.name}}</a></td>
+							<td style="width: 250px">{{item.product.name}}</td>
 							<td>{{item.seller}}</td>
 						</tr>
 					</tbody>

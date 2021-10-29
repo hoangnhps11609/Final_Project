@@ -73,6 +73,7 @@ app.controller("brand-ctrl", function($scope, $http, $window) {
 
 
 	$scope.proDetail = function(item) {
+		$('#exampleModalCenterBrand22').appendTo("body").modal('hide');
 		$('#exampleModalCenter').appendTo("body").modal('hide');
 		$http.get(`/rest/products/product/${item.id}`).then(resp => {
 			$scope.product = resp.data;
@@ -148,12 +149,18 @@ app.controller("brand-ctrl", function($scope, $http, $window) {
 			}
 		})
 	}
+	
+	$scope.closeProductInBrand = function(){
+		$('#exampleModalCenterBrand22').appendTo("body").modal('hide');
+		$('#InventoryBrandModalCenter').appendTo("body").modal('show');
+	}
 
 	$scope.viewProductToBrandTrenTop = function(item) {
 		$http.get(`/rest/products/brand/${item.id}`).then(resp => {
 			$scope.ProBrandItems = resp.data;
 			$scope.brand = item;
 			$('#exampleModalCenterBrand22').appendTo("body").modal('show');
+			$('#InventoryBrandModalCenter').appendTo("body").modal('hide');
 			$http.get(`/rest/products/brand/count/${item.id}`).then(resp => {
 				$scope.sumProInBrand = resp.data;
 			})
@@ -342,9 +349,8 @@ app.controller("brand-ctrl", function($scope, $http, $window) {
 	$scope.viewProductToBrand = function(item) {
 		$http.get(`/rest/products/brand/${item.id}`).then(resp => {
 			$scope.ProBrandItems = resp.data;
-
 			$('#exampleModalCenter').appendTo("body").modal('show');
-
+			$scope.brandName = item.name;
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
 
@@ -371,7 +377,7 @@ app.controller("brand-ctrl", function($scope, $http, $window) {
 
 	$scope.pager = {
 		page: 0,
-		size: 10,
+		size: 7,
 		get items() {
 			var start = this.page * this.size;
 			return $scope.items.slice(start, start + this.size);
@@ -428,7 +434,7 @@ app.controller("brand-ctrl", function($scope, $http, $window) {
 
 	$scope.pager2 = {
 		page: 0,
-		size: 5,
+		size: 3,
 		get ProBrandItems() {
 			var start = this.page * this.size;
 			return $scope.ProBrandItems.slice(start, start + this.size);

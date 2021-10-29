@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.poly.entity.Account;
 import edu.poly.entity.BrandInventory;
 import edu.poly.entity.BrandTop;
+import edu.poly.entity.Category;
 import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
 import edu.poly.entity.ProductByColor;
@@ -26,6 +27,7 @@ import edu.poly.entity.ProductDetail;
 import edu.poly.entity.ProductInventory;
 import edu.poly.entity.ProductTop;
 import edu.poly.entity.TopSaleAllType;
+import edu.poly.service.CategoryService;
 import edu.poly.service.ProductService;
 
 @CrossOrigin("*")
@@ -34,6 +36,9 @@ import edu.poly.service.ProductService;
 public class ProductRestController {
 	@Autowired
 	ProductService pService;
+	
+	@Autowired
+	CategoryService categoryService;
 	
 	@GetMapping()
 	public List<Product> getAll() {
@@ -93,13 +98,9 @@ public class ProductRestController {
 		return pService.findProductByCategory(cateid);
 	}
 	
-	
-	
-	
 	@PostMapping
 	public Product create(@RequestBody Product product) {
 		product.setAvailable(false);
-
 		return pService.create(product);
 	}
 	
@@ -153,5 +154,8 @@ public class ProductRestController {
 		return pService.getProInColor(id);
 	}
 	
-
+	@GetMapping("/findCategoryName/{id}")
+	public Category categoryName(@PathVariable("id") String id) {
+		return categoryService.findbyCateId(id);
+	}
 }

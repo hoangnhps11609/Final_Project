@@ -1,5 +1,5 @@
 <div class="card">
-	<div class="card-header"><h3 class="noibacchu">List Product Detail</h3><i  ng-click="initialize()" class="fa fa-refresh" style="font-size:18px; position: absolute; right: 20px; top: 20px"> <span>Refresh</span> </i>
+	<div class="card-header"><h3 class="noibacchu">List Product Detail</h3><i  ng-click="initialize()" class="fa fa-refresh" style="font-size:18px; position: absolute; right: 20px; top: 20px"> <span>Show All</span> </i>
 			<div class="row pt-3">
 			<div class="col-2">
 				<button class="btn btn-outline-warning"
@@ -32,7 +32,7 @@
 			<tbody>
 				<tr ng-repeat="item in pager.items">
 					<td>{{item.id}}</td>
-					<td style="width: 250px" ng-click="TimKiemTatCaSanPhamThuocSize(item)"><a
+					<td style="width: 250px"><a class="btn btn-outline-primary" ng-click="viewProductfromSize(item)"
 						href="">{{item.name}}</a></td>
 					<td>{{item.description}}</td>
 					
@@ -62,12 +62,12 @@
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document"
-		style="max-width: 70%">
+		style="max-width: 40%">
 		<div class="modal-content">
-			<div class="modal-header bg-warning">
+			<div class="modal-header bg-warning text-light">
 				<div class="col row">
 					<h5>Top Size</h5>
-					<button type="button" class="close " data-dismiss="modal"
+					<button type="button" class="close text-light" data-dismiss="modal"
 						ng-click="closeOrderDetail()" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -116,12 +116,12 @@
 	<div class="modal-dialog modal-dialog-centered" role="document"
 		style="max-width: 70%">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header bg-secondary text-light">
 				<h5 class="modal-title" id="exampleModalLongTitleBrand">ProductDetail Of
 					Size : {{color.name}}</h5>
 				<h5 class="modal-title px-5" id="exampleModalLongTitleBrand">Inventory:
 					{{sumProInSize}}</h5>
-				<button type="button" class="close" data-dismiss="modal"
+				<button type="button" class="close text-light" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -170,16 +170,17 @@
 	</div>
 </div>
 
+
 <div class="modal fade" id="exampleModalCenterSize69" tabindex="-1"
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document"
-		style="max-width: 70%">
+		style="max-width: 50%">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header bg-warning text-light">
 				<h5 class="modal-title" id="exampleModalLongTitleBrand">ProductDetail Of
 					Size : {{color.name}}</h5>
-				<button type="button" class="close" data-dismiss="modal"
+				<button type="button" class="close text-light" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -192,20 +193,19 @@
 							<th width="3%" scope="col">ID</th>
 							<th width="10%" scope="col">Name
 							</th>
-							<th width="10%" scope="col">Color</th>
-							<th width="10%" scope="col">Size</th>
-							<th width="10%" scope="col">Quantity</th>
-							<th width="10%" scope="col">Create Date</th>
-							<th width="10%" scope="col">Available</th>
+							<th width="10%" scope="col">Price</th>
+							<th width="10%" scope="col">Discount</th>
+							<th width="10%" scope="col">Gender</th>
+							<th width="10%" scope="col">Brand</th>
+							<th width="10%" scope="col">Seller</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat="item in pager3.ProSizeItems">
-							<td width="150px"><img
-								ng-src="{{'/assets/images/' + item.product.image}}" width="100%" /></td>
+							<td width="150px"><img ng-src="{{'/assets/images/' + item.product.image}}" width="100%" /></td>
 							<td>{{item.product.id}}</td>
 							<td>{{item.product.name}}</td>
-							<td>{{item.product.price}}</td>
+							<td>${{item.product.price | number:1}}</td>
 							<td>{{item.product.discount}}</td>
 							<td>{{item.product.gender.name}}</td>
 							<td>{{item.product.brand.name}}</td>
@@ -232,12 +232,12 @@
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document"
-		style="max-width: 70%">
+		style="max-width: 40%">
 		<div class="modal-content">
-			<div class="modal-header bg-warning">
+			<div class="modal-header bg-primary text-light">
 				<div class="col row">
 					<h5>Inventory Size</h5>
-					<button type="button" class="close " data-dismiss="modal"
+					<button type="button" class="close text-light" data-dismiss="modal"
 						ng-click="closeOrderDetail()" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
