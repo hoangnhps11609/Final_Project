@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,8 +26,10 @@ import edu.poly.entity.Account;
 import edu.poly.entity.Order;
 import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
+import edu.poly.entity.SmsRequest;
 import edu.poly.service.OrderDetailService;
 import edu.poly.service.OrderService;
+import edu.poly.service.SmsService;
 
 @CrossOrigin("*")
 @RestController
@@ -36,6 +40,9 @@ public class OrderRestController {
 	
 	@Autowired
 	OrderDetailService orderDetailService;
+	
+	@Autowired
+	   private SmsService smsservice;
 	
 	@PostMapping()
 	public Order create(@RequestBody JsonNode orderData) {		
@@ -85,21 +92,31 @@ public class OrderRestController {
 	
 	
 	@PutMapping("{id}")
-	public Order update2(@PathVariable("id") Long id, @RequestBody Order product) {
+	public Order update2(@PathVariable("id") Long id, @RequestBody Order order) {
 		Optional<Order> a = orderService.getChio(id);
-		product.setId(id);
+		order.setId(id);
 		if(a.get().getStatus()==0) {
-			product.setStatus(1);
+			order.setStatus(1);
 		}else if (a.get().getStatus()==1) {
-			product.setStatus(2);
+			String phoneNumber = "+84" + a.get().getPhone().substring(1);
+			SmsRequest sms = new SmsRequest(phoneNumber, "Fashi Fashion Shop: Hi " + a.get().getFullname() + ", Your Order now is shipping to address '" + a.get().getAddress() + "'. Thanks you for buying in Fashi!");
+			String status=smsservice.sendsms(sms);
+			if("sent".equals(status)||"queued".equals(status)){
+				order.setStatus(2);  
+				order.setFullname(a.get().getFullname());
+				order.setAddress(a.get().getAddress());
+				order.setCreateDate(a.get().getCreateDate());
+				order.setPhone(a.get().getPhone());
+				return orderService.update(order);
+			}
 		}else if(a.get().getStatus()==2) {
-			product.setStatus(3);
+			order.setStatus(3);
 		}
-		product.setFullname(a.get().getFullname());
-		product.setAddress(a.get().getAddress());
-		product.setCreateDate(a.get().getCreateDate());
-		product.setPhone(a.get().getPhone());
-		return orderService.update(product);
+		order.setFullname(a.get().getFullname());
+		order.setAddress(a.get().getAddress());
+		order.setCreateDate(a.get().getCreateDate());
+		order.setPhone(a.get().getPhone());
+		return orderService.update(order);
 	}
 	
 	@PutMapping("/info/cashOnDelivery")

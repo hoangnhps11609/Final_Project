@@ -106,6 +106,14 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			}
 		},
 		
+		clearPM(){
+			this.items = []
+			this.saveToLocalStorage();
+			if(this.items >= 1){
+				this.items = []
+			}
+		},
+		
 		//Tính thành tiền của một 1 sản phẩm
 		amt_of(item){},
 		
@@ -190,15 +198,8 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 				var orderId = resp.data.id;
 				$http.put("/rest/orders/info/paypal", orderId).then(resp =>{
 					location.href = "/pay/" + resp.data.id;
-				})			
-					//alert("Đặt hàng thành công!");
-					Swal.fire({
-					  icon: 'success',
-					  title: 'Order Success',
-					  text: 'Check your order at "My Orders"',
-					  //footer: '<a href="">Why do I have this issue?</a>'
-					})
-				$scope.cart.clear();
+				})	
+				$scope.cart.clearPM();
 			}).catch(error => {
 				//alert("Đặt hàng thất bại!")
 				Swal.fire({

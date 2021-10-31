@@ -207,7 +207,6 @@ app.controller("orderstatus-ctrl", function($scope, $http, $window, $route) {
 			    toast.addEventListener('mouseleave', Swal.resumeTimer)
 			  }
 			})
-			
 			Toast.fire({
 			  icon: 'success',
 			  title: 'Update in successfully'
@@ -221,7 +220,6 @@ app.controller("orderstatus-ctrl", function($scope, $http, $window, $route) {
 			}
 			}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
-			
 			const Toast = Swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -233,14 +231,12 @@ app.controller("orderstatus-ctrl", function($scope, $http, $window, $route) {
 			    toast.addEventListener('mouseleave', Swal.resumeTimer)
 			  }
 			})
-			
 			Toast.fire({
 			  icon: 'warning',
 			  title: 'Update failure'
 			})
 			
 			console.log("Error", error);
-
 		});
 	}
 
