@@ -367,5 +367,10 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 	//Khởi tạo
 	$scope.colorinitialize();
 	
+	
+	$scope.showWebcam = function(){
+		url = "http://localhost:8080/webcam"
+		window.open(url, '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=-1300,width=680,height=580");
+	}
 });
 

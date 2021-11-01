@@ -116,3 +116,32 @@
 .text-light{
 	color: white;
 }
+
+#container {
+   /* margin-top: 50px ;
+   /* margin: 0px auto;*/
+    width: 500px;
+    height: 375px;
+   /* border: 10px #333 solid; */
+    background-image: url(snapshots/download.jpg);
+    
+}
+#videoElement {
+    width: 500px;
+    height: 375px;
+  
+}
+.no-padding
+{
+  padding-left: 0;
+  padding-right: 0;
+
+}
+
+#f_style
+{
+    width: 100%;
+    height: 70%;  
+    margin-right: 10px; 
+  
+}

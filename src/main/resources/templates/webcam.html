@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<style>
+#container {
+    width: 450px;
+    height: 430px;
+    border: 10px rgb(4, 3, 65) solid;
+    background-image: url(snapshots/download.jpg);
+}
+
+#videoElement {
+    width: 100%;  
+}
+.no-padding
+{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+</style>
+
+
+</head>
+<body>
+  <!-- Button trigger modal -->
+<div class="px-5 py-3">
+  <button type="button" class="btn btn-primary col px-0" data-toggle="modal" data-target="#exampleModalCenter">
+    Take New Photo
+  </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div id="container"  name='cont' class="container-fluid no-padding">
+          <video autoplay="true" id="videoElement" name='vid'></video>
+           <a id="download" download="user.jpg">
+             <button onclick="myFunction(); download();" style="margin: 20px 180px auto " class="btn btn-primary" type="button" > <span aria-hidden="true">Capture</span></button></a>
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
+<canvas id="CANVAS" name="CANVAS" width="600" height="455" style="border:10px rgb(4, 3, 65) solid; margin-left: 30px;">Your browser does not support Canvas.</canvas>
+
+
+
+
+
+<script>
+  function download(){
+    var download = document.getElementById("download");
+    var image = document.getElementById("CANVAS").toDataURL("image/png")
+                    .replace("image/jpg", "image/octet-stream");
+        download.setAttribute("href", image);
+        // download.setAttribute("download","archive.png");
+    $('#exampleModalCenter').modal('hide');
+  }
+  var video = document.querySelector("#videoElement");
+ 
+if (navigator.mediaDevices.getUserMedia) 
+{       
+    navigator.mediaDevices.getUserMedia({video: true})
+  .then(function(stream) {
+    video.srcObject = stream;
+  })
+  .catch(function(err0r) {
+    console.log("Something went wrong!");
+  });
+var i=0;
+
+function myFunction() {
+  var x =  document.getElementById("CANVAS") ;
+  var ctx = x.getContext("2d");
+  ctx.fillStyle = "#FF0000";
+  
+  ctx.drawImage(video, 10, 10, 580, 435);
+
+  // ctx.fillRect(20, 20, 150, 100);
+
+  if (i <10)
+  {
+  document.body.appendChild(x);
+  i=i+1;
+};
+
+
+}
+
+}
+</script>
+
+    
+</body>
+</html>

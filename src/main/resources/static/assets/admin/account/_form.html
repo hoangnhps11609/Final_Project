@@ -1,7 +1,7 @@
 <div class="card ">
 	<div class="card-header">
 		<h3 class="noibacchu">Account Edition</h3>
-		<i class="fa fa-refresh "  ng-click="reset()"
+		<i class="fa fa-refresh " ng-click="reset()"
 			style="font-size: 18px; position: absolute; right: 20px; top: 20px">
 			<span>Create New</span>
 		</i>
@@ -30,16 +30,20 @@
 						</button>
 					</div>
 				</div>
+				<div class="text-center pt-2">
+					<a class="btn btn-success text-light col" style="font-weight: bolder;" ng-click="showWebcam()">Capture
+						New Picture</a>
+				</div>
 			</div>
 			<div class="col-8">
 				<div class="row">
 					<div class="form-group col-sm-6" ng-if="isEdit=='true'">
 						<div>Username:</div>
-						<input class="form-control" ng-model="form.username"  readonly/>
+						<input class="form-control" ng-model="form.username" readonly />
 					</div>
 					<div class="form-group col-sm-6" ng-if="isEdit==null">
 						<div>Username:</div>
-						<input class="form-control" ng-model="form.username"/>
+						<input class="form-control" ng-model="form.username" />
 					</div>
 					<div class="form-group col-sm-6">
 						<div>Password:</div>
@@ -75,12 +79,18 @@
 	</div>
 	<div class="card-footer text-muted borbot text-center">
 		<div ng-if="isEdit == null" class="row">
-			<button ng-click="create()" class="btn btn-success offset-3 col-3 mr-2" style="font-weight:bolder">Create</button>
-			<button ng-click="reset()" class="btn btn-info col-3 ml-2" style="font-weight:bolder">Reset</button>
+			<button ng-click="create()"
+				class="btn btn-success offset-3 col-3 mr-2"
+				style="font-weight: bolder">Create</button>
+			<button ng-click="reset()" class="btn btn-info col-3 ml-2"
+				style="font-weight: bolder">Reset</button>
 		</div>
-		<div ng-if="isEdit == 'true'"  class="row">
-			<button ng-click="update(item)" class="btn btn-warning offset-3 col-3 mr-2" style="font-weight:bolder">Update</button>
-			<button class="btn btn-danger col-3 ml-2" style="font-weight:bolder" ng-click="delete(form)">Delete</button>
+		<div ng-if="isEdit == 'true'" class="row">
+			<button ng-click="update(item)"
+				class="btn btn-warning offset-3 col-3 mr-2"
+				style="font-weight: bolder">Update</button>
+			<button class="btn btn-danger col-3 ml-2" style="font-weight: bolder"
+				ng-click="delete(form)">Delete</button>
 		</div>
 	</div>
 </div>
