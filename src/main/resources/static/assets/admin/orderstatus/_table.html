@@ -101,7 +101,7 @@
 		<table class="table table-striped text-center">
 			<thead>
 				<tr>
-					<th scope="col" width="10%">Order ID <br /> "View
+					<th scope="col" width="15%">Order ID <br /> "Click to view
 						Detail"
 					</th>
 					<th scope="col" width="10%">Username Purchase</th>
@@ -110,9 +110,9 @@
 					<th scope="col" width="10%">Payment</th>
 					
 					<th scope="col" width="10%">Update Date</th>
-					<th scope="col" width="10%">Address Receiver</th>
+					<th scope="col" width="20%">Address Receiver</th>
 					<th scope="col" width="10%">Status Order</th>
-					<th style="position: relative;" width="20%">Change Next Status</th>
+					<th style="position: relative;" width="15%">Change Next Status</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -121,8 +121,8 @@
 					<td>{{item.account.username}}</td>
 					<td>{{item.fullname}}</td>
 					<td>{{item.phone}}</td>
-					<td ng:if="item.payment==false"><span class="bg-warning text-light p-2" style="font-weight:bolder">COD</span></td>
-					<td ng:if="item.payment==true"><span class="bg-info text-light p-2" style="font-weight:bolder">Paypal</span></td>	
+					<td ng:if="item.payment==false"><i class="fa fa-money" aria-hidden="true"></i></td>
+					<td ng:if="item.payment==true"><i class="fa fa-paypal" aria-hidden="true"></i></td>	
 					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 					<td>{{item.address}}</td>
 					<td ng:if="item.status==0" class="text-primary"

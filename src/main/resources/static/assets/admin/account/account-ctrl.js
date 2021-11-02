@@ -1,4 +1,4 @@
-app.controller("account-ctrl", function($scope, $http, $window) {
+app.controller("account-ctrl", function($scope, $http) {
 
 
 	$scope.items = [];
@@ -472,11 +472,5 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 		}, last() {
 			this.page2 = this.count - 1;
 		}
-	}
-	
-	
-	$scope.showWebcam = function(){
-		url = "http://localhost:8080/webcam"
-		window.open(url, '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=-300,width=680,height=580");
 	}
 });

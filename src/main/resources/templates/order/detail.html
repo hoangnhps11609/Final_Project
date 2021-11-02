@@ -49,19 +49,16 @@
 												Info: [[${order.id}]]</span>
 										</h5>
 										<p class="mb-1">
-											Purchased Username: <span class="font-weight-bold">
+											Purchased Username:<span class="font-weight-bold">
 												[[${order.account.username}]]</span>
 										</p>
 										<p class="mb-1">
-											Total Bill: <span class="font-weight-bold">
+											Total Bill:<span class="font-weight-bold">
 												$[[${#numbers.formatDecimal(order.total, 0, 'COMMA', 1, 'POINT')}]] for [[${order.quantity}]] <span th:text="${order.quantity > 1 ? 'Items' : 'Item'}"></span></span>
 										</p>
 										<p class="mb-1">
-											Expected Arrival: <span class="font-weight-bold">
+											Expected Arrival:<span class="font-weight-bold">
 												[[${order.createDate}]]</span>
-										</p>
-										<p class="mb-1">
-											Payment: <span class="font-weight-bold"> [[${order.payment ? 'Paypal' : 'COD'}]]</span>
 										</p>
 									</div>
 									<div class="d-flex flex-column text-sm-right">

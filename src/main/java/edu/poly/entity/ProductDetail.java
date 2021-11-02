@@ -15,11 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
-
-import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -36,17 +31,12 @@ public class ProductDetail implements Serializable{
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Createdate")
-	@PastOrPresent
-	@NotEmpty
 	Date createDate = new Date();
 	
-	@NotEmpty
 	Long quantity;
 	
-	@Length(max = 50)
 	String image;
 	
-	@NotNull
 	Boolean available;
 	
 	@ManyToOne

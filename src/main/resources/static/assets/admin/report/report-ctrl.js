@@ -102,22 +102,22 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 	
 	$scope.showChart10DayRevenue = function(){
 		url = "http://localhost:8080/report/revenue/10daysAgo"
-		window.open(url, '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=-1600,width=1300,height=700");
+		window.open(url, '_blank');
 	}
 	
 	$scope.showChartMonthRevenue = function(){
 		url = "http://localhost:8080/report/revenue/thisMonth"
-		window.open(url, '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=-1600,width=1300,height=700");
+		window.open(url, '_blank');
 	}
 	
 	$scope.showChartYearRevenue = function(){
 		url = "http://localhost:8080/report/revenue/thisYear"
-		window.open(url, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=-1600,width=1300,height=700");
+		window.open(url, "_blank");
 	}
 	
 	$scope.showChartTimeRevenue = function(from, to){
 		url = "http://localhost:8080/report/revenue/time/" + from + "/" + to
-		window.open(url, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=-1600,width=1300,height=700");
+		window.open(url, "_blank");
 	}
 	
 	///Account
@@ -172,17 +172,17 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 	
 	$scope.showChart6MonthAccount = function(){
 		url = "http://localhost:8080/report/account/6month"
-		window.open(url, '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=-1600,width=1300,height=700");
+		window.open(url, '_blank');
 	}
 	
 	$scope.showChartNoOrderAccount = function(){
 		url = "http://localhost:8080/report/account/noOrder"
-		window.open(url, '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=-1600,width=1300,height=700");
+		window.open(url, '_blank');
 	}
 	
 	$scope.showChartTimeAccount = function(from, to){
 		url = "http://localhost:8080/report/account/time/" + from + "/" + to
-		window.open(url, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=-1600,width=1300,height=700");
+		window.open(url, "_blank");
 	}
 	
 	//Items
@@ -237,17 +237,17 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 	
 	$scope.showChart6MonthItem = function(){
 		url = "http://localhost:8080/report/item/6month"
-		window.open(url, '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=-1600,width=1300,height=700");
+		window.open(url, '_blank');
 	}
 	
 	$scope.showChartThisMonthItem = function(){
 		url = "http://localhost:8080/report/item/thisMonth"
-		window.open(url, '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=-1600,width=1300,height=700");
+		window.open(url, '_blank');
 	}
 	
 	$scope.showChartTimeItem = function(from, to){
 		url = "http://localhost:8080/report/item/time/" + from + "/" + to
-		window.open(url, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=-1600,width=1300,height=700");
+		window.open(url, "_blank");
 	}
 	
 	
@@ -302,16 +302,16 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 	}
 	$scope.showChartThisMonthOrder = function(){
 		url = "http://localhost:8080/report/order/thisMonth"
-		window.open(url, '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=-1600,width=1300,height=700");
+		window.open(url, '_blank');
 	}
 	
 	$scope.showChartTimeOrder = function(from, to){
 		url = "http://localhost:8080/report/order/time/" + from + "/" + to
-		window.open(url, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=-1600,width=1300,height=700");
+		window.open(url, "_blank");
 	}
 	
 	$scope.showChartOrderCancelled = function(){
 		url = "http://localhost:8080/report/order/cancelled"
-		window.open(url, '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=-1600,width=1300,height=700");
+		window.open(url, '_blank');
 	}
 });
