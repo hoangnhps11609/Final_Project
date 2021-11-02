@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
 
@@ -22,6 +23,7 @@ import lombok.Data;
 public class Authority  implements Serializable{
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotEmpty
 	private Integer id;
 	
 	@ManyToOne @JoinColumn(name = "Username")

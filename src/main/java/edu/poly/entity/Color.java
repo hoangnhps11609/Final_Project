@@ -9,6 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,15 +29,25 @@ import lombok.NoArgsConstructor;
 public class Color implements Serializable{
 	@Id	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotEmpty
 	Integer id;
-	
+
+	@NotBlank
+	@Length(max = 50)
 	String name;
-	
+
+	@NotEmpty
+	@Max(value = 255)
 	Integer red;
-	
+
+	@NotEmpty
+	@Max(value = 255)
 	Integer green;
-	
+
+	@NotEmpty
+	@Max(value = 255)
 	Integer blue;
+
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "color")

@@ -30,6 +30,10 @@
 						</button>
 					</div>
 				</div>
+				<div class="text-center pt-2">
+					<a class="btn btn-success text-light col" style="font-weight: bolder;" ng-click="showWebcam()">Capture
+						New Picture</a>
+				</div>
 			</div>
 			<div class="col-8">
 				<div class="row">
@@ -75,12 +79,18 @@
 	</div>
 	<div class="card-footer text-muted borbot text-center">
 		<div ng-if="isEdit == null" class="row">
-			<button ng-click="create()" class="btn btn-success offset-3 col-3 mr-2" style="font-weight:bolder">Create</button>
-			<button ng-click="reset()" class="btn btn-info col-3 ml-2" style="font-weight:bolder">Reset</button>
+			<button ng-click="create()"
+				class="btn btn-success offset-3 col-3 mr-2"
+				style="font-weight: bolder">Create</button>
+			<button ng-click="reset()" class="btn btn-info col-3 ml-2"
+				style="font-weight: bolder">Reset</button>
 		</div>
 		<div ng-if="isEdit == 'true'"  class="row">
-			<button ng-click="update(item)" class="btn btn-warning offset-3 col-3 mr-2" style="font-weight:bolder">Update</button>
-			<button class="btn btn-danger col-3 ml-2" style="font-weight:bolder" ng-click="delete(form)">Delete</button>
+			<button ng-click="update(item)"
+				class="btn btn-warning offset-3 col-3 mr-2"
+				style="font-weight: bolder">Update</button>
+			<button class="btn btn-danger col-3 ml-2" style="font-weight: bolder"
+				ng-click="delete(form)">Delete</button>
 		</div>
 	</div>
 </div>

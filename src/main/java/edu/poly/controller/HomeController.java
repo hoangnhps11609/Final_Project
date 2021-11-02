@@ -100,6 +100,16 @@ public class HomeController {
 		return "redirect:/assets/admin/index.html";
 	}
 	
+	@RequestMapping("/webcam")
+	public String webcam() {
+		return "/webcam";
+	}
+
+	@RequestMapping("/validate")
+	public String web() {
+		return "/validate";
+	}
+
 	
 //	@RequestMapping({"/", "/home/index"})
 //	public String home(Model model,

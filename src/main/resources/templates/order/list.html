@@ -180,11 +180,12 @@
 												<th>Order ID</th>
 												<th>Fullname</th>
 												<th>Phone Number</th>
-												<th width="300px">Address</th>
+												<th width="100px">Address</th>
 												<th>Create Date</th>
 												<th>Quantity</th>
 												<th>Total</th>
-												<th>Order Details</th>
+												<th>Payment</th>
+												<th>Details</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -197,7 +198,7 @@
 												<td scope="row">[[${order.address}]]</td>
 												<td scope="row">[[${#dates.format(order.createDate, 'MM/dd/yyyy')}]]</td>
 												<td scope="row">[[${order.quantity}]]</td>
-												<td scope="row"> $[[${#numbers.formatDecimal(order.total, 0, 'COMMA', 1, 'POINT')}]]</td>
+												<td scope="row"> <span class="text-info p-1" style="font-weight:bolder; border-radius:2px">[[${order.payment ? 'Paypal' : 'COD'}]]</span></td>
 												<td><a th:href="@{|/order/detail/${order.id}|}"
 													class="text-success">Detail </a></td>
 											</tr>
