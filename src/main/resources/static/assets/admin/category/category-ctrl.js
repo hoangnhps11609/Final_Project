@@ -54,6 +54,34 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 		}
 	});
 	
+	$scope.validateID = false;
+	$scope.validateName = false;
+	
+	
+	$scope.validateCategoryId = function (c) {
+		if(c.length == 4){
+			$scope.message1 = "";		
+			$scope.validateID = true;
+			
+		
+		}else{
+			$scope.message1 = "ID must equal 4 characters";		
+			$scope.validateID = false;
+			
+		}
+	}
+	
+	$scope.validateCategoryName = function (d) {
+		if(d.length == null  || d.length > 50 || d.length <= 0 || d.length < 3 ){	
+			$scope.message2 = "Name must more than 3 & less than 50 character";	
+			$scope.validateName = false;
+			
+		}else{
+			$scope.validateName = true;
+			$scope.message2 = "";
+		}
+	}
+	
 	//Khởi tạo
 	$scope.initialize();
 

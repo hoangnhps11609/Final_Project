@@ -46,29 +46,36 @@
 				</div>
 				<div class="form-group pt-1">
 					<div>Name:</div>
-					<input class="form-control" ng-model="form.name" required=""/>
+					<input class="form-control"  ng-model="form.name" ng-change="ValidateName(form.name)" required=""/>
+					<label style="color: red;">{{message1}}</label>
 				</div>
 				<div class="form-group">
 					<div>Red:</div>
-					<input class="form-control" ng-model="form.red" id="red"
+					<input class="form-control" ng-model="form.red" id="" ng-change="ValidateRed(form.red)"
 						value="red" required=""/>
+					<label style="color: red;">{{message2}}</label>
+						
 				</div>
 				<div class="form-group">
 					<div>Green:</div>
-					<input class="form-control" ng-model="form.green" id="green"
-						value="green" required=""/>
+					<input class="form-control" ng-model="form.green" id="green" ng-change="ValidateGreen(form.green)"
+						value="green" required=""  />
+						<label style="color: red;">{{message3}}</label>
+						
 				</div>
 				<div class="form-group">
 					<div>Blue:</div>
-					<input class="form-control" ng-model="form.blue" id="blue"
+					<input class="form-control" ng-model="form.blue" id="blue" ng-change="ValidateBlue(form.blue)"
 						value="blue" required=""/>
+					<label style="color: red;">{{message4}}</label>
+						
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="card-footer text-muted borbot text-center">
 		<div ng-if="isEdit == null" class="row">
-			<button ng-click="create()" class="btn btn-success offset-3 col-3 mr-2" style="font-weight:bolder">Create</button>
+			<button ng-if="vName == true && vRed == true && vBlue == true && vGreen == true" ng-click="create()" class="btn btn-success offset-3 col-3 mr-2" style="font-weight:bolder">Create</button>
 			<button ng-click="reset()" class="btn btn-info col-3 ml-2" style="font-weight:bolder">Reset</button>
 		</div>
 		<div ng-if="isEdit == 'true'"  class="row">

@@ -126,6 +126,76 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 		$route.reload();
 		$scope.isEdit = null;
 	}
+	$scope.vName = false;
+	
+	$scope.ValidateName = function(c) {
+		if(c.length < 2 || c.length > 50){
+			$scope.message1 = "Name must more than 2 & less than 50 characters";
+			$scope.vName = false;	
+		}else{
+			$scope.message1 = "";
+			$scope.vName = true;		
+		}
+	}
+	$scope.vRed = false;
+	
+	
+	$scope.ValidateRed = function(r) {
+	const characterRegex = /^\d+$/; 
+	const specialRegex = /^\d+$/;
+		if(r == null){
+			$scope.message2 = "Please not null";	
+			$scope.vRed = false;			
+		}else if (!r.match(characterRegex) || !r.match(specialRegex)){
+			$scope.message2 = "Only number please!";	
+			$scope.vRed = false;			
+		}else if(r > 255 || r < 0){
+			$scope.message2 = "Number from 0 to 255";	
+			$scope.vRed = false;			
+		}else{
+				$scope.vRed = true;			
+				$scope.message2 = "";	
+			}
+	}
+	
+	
+	$scope.vGreen = false;
+	$scope.ValidateGreen = function(g) {
+	const characterRegex = /^\d+$/; 
+	const specialRegex = /^\d+$/;
+		if(g == null){
+			$scope.message3 = "Please not null";	
+			$scope.vGreen = false;
+		}else if (!g.match(characterRegex) || !g.match(specialRegex)){
+			$scope.message3 = "Only number please!";	
+			$scope.vGreen = false;
+		}else if(g > 255 || g < 0){
+			$scope.message3 = "Number from 0 to 255";	
+				$scope.vGreen = false;
+		}else{
+				$scope.vGreen = true;
+				$scope.message3 = "";	
+			}
+	}
+	
+	$scope.vBlue = false;
+	$scope.ValidateBlue = function(b) {
+	const characterRegex = /^\d+$/; 
+	const specialRegex = /^\d+$/;
+		if(b == null){
+			$scope.message4 = "Please not null";	
+			$scope.vBlue = false;
+		}else if (!b.match(characterRegex) || !b.match(specialRegex)){
+			$scope.message4 = "Only number please!";	
+			$scope.vBlue = false;
+		}else if(b > 255 || b < 0){
+			$scope.message4 = "Number from 0 to 255";	
+			$scope.vBlue = false;
+		}else{
+			$scope.vBlue = true;
+				$scope.message4 = "";	
+			}
+	}
 
 	//hiển thị lên form
 	$scope.edit = function(item) {

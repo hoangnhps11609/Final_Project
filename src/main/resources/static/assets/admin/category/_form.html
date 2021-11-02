@@ -19,18 +19,21 @@
 				</div>
 				<div class="form-group"  ng-if="isEdit==null">
 					<div>Category ID:</div>
-					<input class="form-control" ng-model="form.id" required=""/>
+					<input class="form-control" ng-model="form.id" required="" ng-change="validateCategoryId(form.id)"/>
+					<label style="color: red;">{{message1}}</label>
+					
 				</div>
 				<div class="form-group">
 					<div>Name:</div>
-					<input class="form-control" ng-model="form.name" required=""/>
+					<input class="form-control" ng-model="form.name" required="" ng-change="validateCategoryName(form.name)"/>
+					<label style="color: red;">{{message2}}</label>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="card-footer text-muted borbot text-center">
-		<div ng-if="isEdit == null" class="row">
-			<button ng-click="create()" class="btn btn-success offset-3 col-3 mr-2" style="font-weight:bolder">Create</button>
+		<div ng-if="isEdit == null " class="row">
+			<button ng-if="validateName == true && validateID == true" ng-click="create()" class="btn btn-success offset-3 col-3 mr-2" style="font-weight:bolder">Create</button>
 			<button ng-click="reset()" class="btn btn-info col-3 ml-2" style="font-weight:bolder">Reset</button>
 		</div>
 		<div ng-if="isEdit == 'true'"  class="row">
