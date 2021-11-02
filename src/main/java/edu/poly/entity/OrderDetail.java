@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
 
@@ -22,8 +23,10 @@ public class OrderDetail  implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 	
+	@NotEmpty
 	Double price;
 	
+	@NotEmpty
 	Integer quantity;
 	
 	@ManyToOne

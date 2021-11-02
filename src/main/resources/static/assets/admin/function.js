@@ -86,4 +86,3 @@ if (navigator.mediaDevices.getUserMedia) {
 		};
 	}
 }
-

@@ -105,6 +105,11 @@ public class HomeController {
 		return "/webcam";
 	}
 	
+	@RequestMapping("/validate")
+	public String web() {
+		return "/validate";
+	}
+	
 	
 //	@RequestMapping({"/", "/home/index"})
 //	public String home(Model model,

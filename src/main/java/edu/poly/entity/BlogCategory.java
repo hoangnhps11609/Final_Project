@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,8 +24,11 @@ import lombok.Data;
 public class BlogCategory implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotEmpty
 	Integer id;
 	
+	@NotBlank
+	@Length(max = 50)
 	String name;
 	
 	@JsonIgnore

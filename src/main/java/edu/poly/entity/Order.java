@@ -15,8 +15,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -34,19 +39,31 @@ public class Order  implements Serializable{
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Createdate")
 	@UpdateTimestamp
+	@PastOrPresent
+	@NotEmpty
 	Date createDate = new Date();
 	
+	@NotEmpty
+	@Length(min=10)
 	String phone;
 	
 	Long quantity;
 	
 	Double total;
 	
+	@NotBlank
+	@NotEmpty
+	@Length(max = 200)
 	String address;
 	
+	@NotBlank
+	@NotEmpty
+	@Length(max = 50)
 	String fullname;
 
+	@NotNull
 	Integer status;
+	
 	
 	Boolean payment;
 	

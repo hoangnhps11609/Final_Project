@@ -14,8 +14,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.Length;
 
 import lombok.Data;
 @SuppressWarnings("serial")
@@ -25,20 +29,25 @@ import lombok.Data;
 public class Comment implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotEmpty
 	Integer id;
 	
+	@NotEmpty
+	@Max(value = 5)
 	Integer rate;
 	
+	@Length(max = 500)
 	String content;
 	
-	boolean status ;
+	@NotNull
+	boolean status;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Createdate")
 	@UpdateTimestamp
 	Date createDate = new Date();
 	
-	
+	@Length(max = 100)
 	String photo;
 	
 	@ManyToOne

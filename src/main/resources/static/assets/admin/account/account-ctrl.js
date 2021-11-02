@@ -477,6 +477,6 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 	
 	$scope.showWebcam = function(){
 		url = "http://localhost:8080/webcam"
-		window.open(url, '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=-1300,width=680,height=580");
+		window.open(url, '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=-300,width=680,height=580");
 	}
 });
