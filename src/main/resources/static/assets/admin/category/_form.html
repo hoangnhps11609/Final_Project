@@ -34,6 +34,8 @@
 	<div class="card-footer text-muted borbot text-center">
 		<div ng-if="isEdit == null " class="row">
 			<button ng-if="validateName == true && validateID == true" ng-click="create()" class="btn btn-success offset-3 col-3 mr-2" style="font-weight:bolder">Create</button>
+			<button ng-if="validateName == false || validateID == false" disabled="disabled" ng-click="create()" class="btn btn-success offset-3 col-3 mr-2" style="font-weight:bolder">Create</button>
+			
 			<button ng-click="reset()" class="btn btn-info col-3 ml-2" style="font-weight:bolder">Reset</button>
 		</div>
 		<div ng-if="isEdit == 'true'"  class="row">

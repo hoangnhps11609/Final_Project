@@ -59,16 +59,14 @@
 									<div class="row">
 										<div class="col-6">
 											<div class="group-input">
-												<label>Username *</label> <input ng-model="form.username"
-													required="" pattern="[a-z,A-Z,0-9]{3,25}"
-													title="Tên đăng nhập phải từ 6-25 ký tự">
+												<label>Username *</label>
+												 <input class="form-control" ng-model="form.username" ng-change="validateUsername(form.username)">
+												<label style="color: red; font-size: 13px">{{message1}}</label>
 											</div>
 										</div>
 										<div class="col-6">
 											<div class="group-input">
-												<label>Password *</label> <input type="password"ng-model="form.password" required=""
-													pattern="[a-z,A-Z,0-9]{3,25}"
-													title="Mật khẩu phải từ 6-25 ký tự">
+												<label>Password *</label> <input type="password"ng-model="form.password" required="">
 											</div>
 										</div>
 									</div>
@@ -76,9 +74,7 @@
 									<div class="row">
 										<div class="col-6">
 											<div class="group-input">
-												<label>Fullname *</label> <input ng-model="form.fullname"
-													required="" pattern="[a-z,A-Z]{1,50}"
-													title="Tên người dùng không được chứa số và ký tự đặc biệt">
+												<label>Fullname *</label> <input ng-model="form.fullname">
 											</div>
 										</div>
 										<div class="col-6">
@@ -92,15 +88,12 @@
 									<div class="row">
 										<div class="col-6">
 											<div class="group-input">
-												<label>Phone *</label> <input ng-model="form.phone"
-													required="" pattern="[0-9]{10}"
-													title="Sổ điện thoại phải đầu số là (09|03|07|08|05)+([0-9]{8}) ">
+												<label>Phone *</label> <input ng-model="form.phone">
 											</div>
 										</div>
 										<div class="col-6">
 											<div class="group-input">
-												<label>Address *</label> <input ng-model="form.address"
-													type="text" required="" pattern="[a-z,A-Z,0-9]{0,255}" title="Địa chỉ không được chứa ký tự đặc biệt">
+												<label>Address *</label> <input ng-model="form.address">
 											</div>
 										</div>
 									</div>

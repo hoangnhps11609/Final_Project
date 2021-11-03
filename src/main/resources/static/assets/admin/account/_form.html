@@ -43,34 +43,44 @@
 					</div>
 					<div class="form-group col-sm-6" ng-if="isEdit==null">
 						<div>Username:</div>
-						<input class="form-control" ng-model="form.username"/>
+						<input class="form-control" ng-model="form.username" ng-change="validateUsername(form.username)"/>
+						<label style="color: red; ">{{message1}}</label>
+						
 					</div>
 					<div class="form-group col-sm-6">
 						<div>Password:</div>
-						<input type="password" class="form-control"
+						<input type="password" class="form-control" ng-change="validatePassword(form.password)"
 							ng-model="form.password" required="" />
+						<label style="color: red;">{{message2}}</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<div>Fullname:</div>
-						<input class="form-control" ng-model="form.fullname" required="" />
+						<input class="form-control" ng-model="form.fullname" required="" ng-change="validateFullname(form.fullname)"/>
+						<label style="color: red;">{{message3}}</label>
+	
 					</div>
 					<div class="form-group col-sm-6">
 						<div>Email:</div>
-						<input type="email" class="form-control" ng-model="form.email"
+						<input  class="form-control" ng-model="form.email"  ng-change="validateEmail(form.email)"
 							required="" />
+						<label style="color: red;">{{message4}}</label>
+						
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<div>Phone:</div>
-						<input class="form-control" ng-model="form.phone" required="" />
+						<input class="form-control" ng-model="form.phone" required=""  ng-change="validatePhone(form.phone)"/>
+						<label style="color: red;">{{message5}}</label>			
 					</div>
 					<div class="form-group col-sm-6">
 						<div>Address:</div>
-						<input type="text" class="form-control" ng-model="form.address"
+						<input class="form-control" ng-model="form.address" ng-change="validateAddress(form.address)"
 							required="" />
+						<label style="color: red;">{{message6}}</label>			
+						
 					</div>
 
 				</div>
@@ -79,7 +89,10 @@
 	</div>
 	<div class="card-footer text-muted borbot text-center">
 		<div ng-if="isEdit == null" class="row">
-			<button ng-click="create()"
+			<button ng-if="vUsername == true && vPassword == true && vFullname ==true && vEmail == true && vPhone == true && vAddress == true" ng-click="create()"
+				class="btn btn-success offset-3 col-3 mr-2"
+				style="font-weight: bolder">Create</button>
+			<button ng-if="vUsername == false || vPassword == false|| vFullname ==false || vEmail == false || vPhone == false || vAddress == false" disabled="disabled" ng-click="create()"
 				class="btn btn-success offset-3 col-3 mr-2"
 				style="font-weight: bolder">Create</button>
 			<button ng-click="reset()" class="btn btn-info col-3 ml-2"

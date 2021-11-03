@@ -70,6 +70,92 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 		};
 		$scope.isEdit = null;
 	}
+	
+	$scope.vUsername = false;
+	$scope.validateUsername = function(u) {
+		const specialRegex = /^[A-Za-z0-9 ]+$/;
+		if( u.length < 6 || u.length > 25){
+			$scope.message1 = "Username must between 6 to 25 characters";
+			$scope.vUsername = false;	
+		}else if(!u.match(specialRegex)){
+			$scope.message1 = "Username not allow special character or symbol";
+			$scope.vUsername = false;
+		}else{
+				$scope.message1 = "";
+				$scope.vUsername = true;
+			
+		}
+	}
+	
+	$scope.vPassword = false;
+	$scope.validatePassword = function(p) {
+		if(p.length < 6 || p.length > 25){
+			$scope.message2 = "Password must between 6 to 25 characters";
+			$scope.vPassword = false;
+		}else{
+			$scope.message2 = "";
+			$scope.vPassword = true;
+		}
+	}
+
+	$scope.vFullname = false;
+	$scope.validateFullname = function(f) {
+		const specialRegex = /^[_A-z]*((-|\s)*[_A-z])*$/g;
+		if(f == null || f.length > 30){
+			$scope.message3 = "Name must be not null and less than 30 character";
+			$scope.vFullname = false;
+		}else if (f.match(specialRegex)){
+			$scope.vFullname = true;
+			$scope.message3 = "";	
+		}else{
+			$scope.message3 = "Name must not contain symbol or number";
+			$scope.vFullname = false;	
+		}
+	}
+	
+	$scope.vEmail = false;
+	$scope.validateEmail = function(e) {
+		const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+		if(e == null){
+			$scope.message4 = "Email cannot null";
+			$scope.vEmail = false;
+		}else if (!e.match(emailRegex)){
+			$scope.message4 = "Invalid Email";
+			$scope.vEmail = false;
+		}else{
+			$scope.message4 = "";
+			$scope.vEmail = true;	
+		}
+	}
+	
+	$scope.vPhone = false;
+	$scope.validatePhone = function(p) {
+		const phoneRegex = /(09|01[2|6|8|9])+([0-9]{8})\b/;
+		const numberRegex = /^\d+$/;
+	
+		if( !p.match(phoneRegex) || !p.match(numberRegex)){
+			$scope.message5 = "Invalid Phonenumber";
+			$scope.vPhone = false;
+		}else{
+			$scope.message5 = "";
+			$scope.vPhone = true;
+			}
+	}
+	
+	$scope.vAddress = false;
+	$scope.validateAddress = function(a) {	
+		if( a == null || a.length == null){
+			$scope.message6 = "Address cannot null";
+			$scope.vAddress = false;
+		}else{
+			$scope.message6 = "";
+			$scope.vAddress = true;
+			}
+	}
+	
+	
+
+	
 
 	//hiển thị lên form
 	$scope.edit = function(item) {
@@ -79,6 +165,8 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 		document.getElementById("lists").style.display = "none";
 		$scope.isEdit = "true";
 	}
+	
+	
 
 	//Thêm account mới
 	$scope.create = function() {
