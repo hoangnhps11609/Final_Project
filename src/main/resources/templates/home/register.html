@@ -60,13 +60,15 @@
 										<div class="col-6">
 											<div class="group-input">
 												<label>Username *</label>
-												 <input class="form-control" ng-model="form.username" ng-change="validateUsername(form.username)">
+												 <input class="form-control" ng-model="form.username" ng-change="validateRegisterUsername(form.username)">
 												<label style="color: red; font-size: 13px">{{message1}}</label>
 											</div>
 										</div>
 										<div class="col-6">
 											<div class="group-input">
-												<label>Password *</label> <input type="password"ng-model="form.password" required="">
+												<label>Password *</label> <input type="password"ng-model="form.password" ng-change="validateRegisterPassword(form.password)" required="">
+												<label style="color: red; font-size: 13px">{{message2}}</label>
+											
 											</div>
 										</div>
 									</div>
@@ -74,13 +76,17 @@
 									<div class="row">
 										<div class="col-6">
 											<div class="group-input">
-												<label>Fullname *</label> <input ng-model="form.fullname">
+												<label>Fullname *</label> <input ng-model="form.fullname" ng-change="validateRegisterFullname(form.fullname)">
+												<label style="color: red; font-size: 13px">{{message3}}</label>
+												
 											</div>
 										</div>
 										<div class="col-6">
 											<div class="group-input">
-												<label>Email *</label> <input ng-model="form.email"
-													type="email" required="" >
+												<label>Email *</label> <input ng-model="form.email" ng-change="validateRegisterEmail(form.email)"
+													 required="" >
+												<label style="color: red; font-size: 13px">{{message4}}</label>
+												
 											</div>
 										</div>
 									</div>
@@ -88,17 +94,22 @@
 									<div class="row">
 										<div class="col-6">
 											<div class="group-input">
-												<label>Phone *</label> <input ng-model="form.phone">
+												<label>Phone *</label> <input ng-model="form.phone" ng-change="validateRegisterPhone(form.phone)">
+												<label style="color: red; font-size: 13px">{{message5}}</label>
+												
 											</div>
 										</div>
 										<div class="col-6">
 											<div class="group-input">
-												<label>Address *</label> <input ng-model="form.address">
+												<label>Address *</label> <input ng-model="form.address" ng-change="validateRegisterAddress(form.address)">
+												<label style="color: red; font-size: 13px">{{message6}}</label>
 											</div>
 										</div>
 									</div>
 								</div>
-								<button class="site-btn register-btn" ng-click="create()"
+								<button ng-if="vUsername == true && vPassword == true && vFullname ==true && vEmail == true && vPhone == true && vAddress == true" class="site-btn register-btn" ng-click="create()"
+									style="margin-top: 20px;">REGISTER</button>
+								<button ng-if="vUsername == false || vPassword == false|| vFullname ==false || vEmail == false || vPhone == false || vAddress == false" disabled="disabled" class="site-btn register-btn" ng-click="create()"
 									style="margin-top: 20px;">REGISTER</button>
 							</div>
 						</form>

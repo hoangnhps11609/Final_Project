@@ -57,6 +57,34 @@ app.controller("size-ctrl", function($scope, $http) {
 				$scope.isEdit = null;
 		
 	}
+	$scope.vName = false;
+	$scope.validateName = function(n) {
+	const specialRegex = /^[A-Za-z0-9 ]+$/;
+		if(n == null){
+			$scope.vName = false;
+			$scope.message1 = "Name not allow null";	
+		}else if(!n.match(specialRegex)){
+			$scope.vName = false;
+			$scope.message1 = "Name not allow special characters";	
+		}else{
+			$scope.vName = true;
+			$scope.message1 = "";	
+		}
+		
+	}
+	
+	$scope.vMota = true;
+	$scope.validateMota = function(m) {
+		if(m.length > 250){
+			$scope.message2 = "Description do not over 250 character";	
+			$scope.vMota = false;	
+		}else{
+			$scope.vMota = true;
+			$scope.message2 = "";	
+		}
+			
+		
+	}
 
 	//hiển thị lên form
 	$scope.edit = function(item) {

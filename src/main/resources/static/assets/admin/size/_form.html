@@ -15,13 +15,17 @@
 				</div>
 				<div class="form-group">
 					<div>Name:</div>
-					<input class="form-control" ng-model="form.name" required=""/>
+					<input class="form-control" ng-model="form.name" required="" ng-change="validateName(form.name)"/>
+					<label style="color: red;">{{message1}}</label>
+					
 				</div>
 			</div>
 			<div class="offset-3 col-6">
 				<div class="form-group">
 					<div>Description:</div>
-					<input class="form-control"  ng-model="form.description" />
+					<textarea cols="5" class="form-control"  ng-model="form.description" ng-change="validateMota(form.description)"></textarea>
+					<label style="color: red;">{{message2}}</label>
+					
 				</div>
 			</div>
 			
@@ -29,8 +33,10 @@
 	</div>
 	<div class="card-footer text-muted borbot">
 			<div ng-if="isEdit == null" class="row">
-			<button ng-click="create()" class="btn btn-success offset-3 col-3 mr-2" style="font-weight:bolder">Create</button>
-			<button ng-click="reset()" class="btn btn-info col-3 ml-2" style="font-weight:bolder">Reset</button>
+			<button ng-if="vName == true && vMota == true" ng-click="create()" class="btn btn-success offset-3 col-3 mr-2" style="font-weight:bolder">Create</button>
+			<button ng-if="vName == false || vMota == false" disabled="disabled" ng-click="create()" class="btn btn-success offset-3 col-3 mr-2" style="font-weight:bolder">Create</button>
+			
+			<button  ng-click="reset()" class="btn btn-info col-3 ml-2" style="font-weight:bolder">Reset</button>
 		</div>
 		<div ng-if="isEdit == 'true'"  class="row">
 			<button ng-click="update(item)" class="btn btn-warning offset-3 col-3 mr-2" style="font-weight:bolder">Update</button>

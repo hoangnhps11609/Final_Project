@@ -60,6 +60,21 @@ app.controller("brand-ctrl", function($scope, $http, $window) {
 		$scope.isEdit = null;
 		
 	}
+	$scope.vName = false;
+	$scope.validateName = function(me) {
+		if(me == null){
+			$scope.message1 = "Name not allow null";
+			$scope.vName = false;		
+		}else if(me.length > 30){
+			$scope.message1 = "Name not over 30 characters";
+			$scope.vName = false;	
+		}else{
+			$scope.message1 = "";
+			$scope.vName = true;	
+		}
+
+		
+	}
 
 	//hiển thị lên form
 	$scope.edit = function(item) {

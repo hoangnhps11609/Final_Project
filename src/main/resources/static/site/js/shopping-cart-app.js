@@ -151,6 +151,95 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 	$scope.showPayment = function(){
 		$('#PaymentModalCenter').appendTo("body").modal('show');
 	}
+	
+	$scope.vUsername = false;
+	$scope.validateRegisterUsername = function(u) {
+		const specialRegex = /^[A-Za-z0-9 ]+$/;
+		if( u.length < 6 || u.length > 25){
+			$scope.message1 = "Username must between 6 to 25 characters";
+			$scope.vUsername = false;	
+		}else if(!u.match(specialRegex)){
+			$scope.message1 = "Username not allow special character or symbol";
+			$scope.vUsername = false;
+		}else{
+				$scope.message1 = "";
+				$scope.vUsername = true;
+			
+		}
+	}
+	
+	$scope.vPassword = false;
+	$scope.validateRegisterPassword = function(p) {
+		if(p.length < 6 || p.length > 25){
+			$scope.message2 = "Password must between 6 to 25 characters";
+			$scope.vPassword = false;
+		}else{
+			$scope.message2 = "";
+			$scope.vPassword = true;
+		}
+	}
+
+	$scope.vFullname = false;
+	$scope.validateRegisterFullname = function(f) {
+		const specialRegex = /^[_A-z]*((-|\s)*[_A-z])*$/g;
+		if(f == null || f.length > 30){
+			$scope.message3 = "Name must be not null and less than 30 character";
+			$scope.vFullname = false;
+		}else if (f.match(specialRegex)){
+			$scope.vFullname = true;
+			$scope.message3 = "";	
+		}else{
+			$scope.message3 = "Name must not contain symbol or number";
+			$scope.vFullname = false;	
+		}
+	}
+	 $('#tooltip-demo').tooltip()
+	
+	
+	$scope.OrderStatus = false;
+	$scope.orderStatus = function(s) {
+		$scope.OrderStatus = true;
+	}
+	
+	$scope.vEmail = false;
+	$scope.validateRegisterEmail = function(e) {
+		const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+		if(e == null){
+			$scope.message4 = "Email cannot null";
+			$scope.vEmail = false;
+		}else if (!e.match(emailRegex)){
+			$scope.message4 = "Invalid Email";
+			$scope.vEmail = false;
+		}else{
+			$scope.message4 = "";
+			$scope.vEmail = true;	
+		}
+	}
+	
+	$scope.vPhone = false;
+	$scope.validateRegisterPhone = function(p) {
+		const phoneRegex = /(09|01[2|6|8|9])+([0-9]{8})\b/;
+		const numberRegex = /^\d+$/;
+	
+		if( !p.match(phoneRegex) || !p.match(numberRegex)){
+			$scope.message5 = "Invalid Phonenumber";
+			$scope.vPhone = false;
+		}else{
+			$scope.message5 = "";
+			$scope.vPhone = true;
+			}
+	}
+	
+	$scope.vAddress = false;
+	$scope.validateRegisterAddress = function(a) {	
+		if( a == null || a.length == null || a.length <= 0){
+			$scope.message6 = "Address cannot null";
+			$scope.vAddress = false;
+		}else{
+			$scope.message6 = "";
+			$scope.vAddress = true;
+			}
+	}
 
 
 	$scope.order={

@@ -62,11 +62,14 @@
 									</div>
 									<div class="col-lg-6">
 										<label for="fir">Fullname</label> <input
-											ng-model="order.fullname" class="form-control">
+											ng-model="order.fullname" class="form-control" ng-change="validateRegisterFullname(order.fullname)">
+												<label style="color: red; font-size: 13px">{{message3}}</label>
 									</div>
 									<div class="col-lg-6">
-										<label for="fir">Phone</label> <input ng-model="order.phone"
-											name="phone" type="text" class="form-control">
+										<label for="fir">Phone</label> <input ng-model="order.phone" ng-change="validateRegisterPhone(order.phone)"
+											  class="form-control">
+										<label style="color: red; font-size: 13px">{{message5}}</label>
+									
 									</div>
 									<div class="col-lg-6">
 										<label for="last">Order Date</label>
@@ -75,8 +78,10 @@
 									</div>
 									<div class="col-lg-12">
 										<label for="cun-name">Shipping Address<span>*</span></label>
-										<textarea rows="4" cols="" ng-model="order.address"
+										<textarea rows="4" cols="" ng-model="order.address" ng-change="validateRegisterAddress(order.address)"
 											class="form-control"></textarea>
+									<label style="color: red; font-size: 13px">{{message6}}</label>
+										
 									</div>
 								</div>
 								<br>
@@ -107,19 +112,22 @@
 										</ul>
 										<div class="col row px-0 float-left">
 											<div class="col-1 pr-0" style="margin-bottom: 0">
-												<input ng-model="order.status" type="radio" value="0"
+												<input ng-model="order.status" type="radio" value="0" ng-click="orderStatus(order.status)"
 													class="pl-0" style="width: 15px; margin-bottom: 0"
 													name="status">
 											</div>
 											<div class="col-11 pt-2">
 												<label style="color: #e7ab3c; margin-bottom: 0">By
-													clicking, you are <b>"Agreeing"</b> to confirm Order
+													clicking, you are <b>"Agreeing"</b> to confirm Order <i class="fa fa-info-circle"  title="Please agree to place order successfully!"></i>
 												</label>
 											</div>
 										</div>
 										<div class="order-btn">
 											<button type="submit" style="margin-top: 0"
-												class=" site-btn place-btn" ng-click="showPayment()">Place
+												class=" site-btn place-btn" ng-if="vFullname == true && vPhone == true && vAddress == true && OrderStatus == true" ng-click="showPayment()">Place
+												Order</button>
+											<button type="submit" style="margin-top: 0"
+												class=" site-btn place-btn" ng-if="vFullname == false || vPhone == false || vAddress == false || OrderStatus == false" disabled="disabled" ng-click="showPayment()">Place
 												Order</button>
 										</div>
 									</div>
