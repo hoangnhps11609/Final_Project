@@ -58,6 +58,8 @@ app.controller("brand-ctrl", function($scope, $http, $window) {
 	$scope.reset = function() {
 		$scope.form = {};
 		$scope.isEdit = null;
+		$scope.message1 = "";
+		$scope.vName = false;
 		
 	}
 	$scope.vName = false;

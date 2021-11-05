@@ -54,7 +54,11 @@ app.controller("size-ctrl", function($scope, $http) {
 	//Xóa form
 	$scope.reset = function() {
 		$scope.form = {};
-				$scope.isEdit = null;
+		$scope.isEdit = null;
+		$scope.message1 = "";
+		$scope.message2 ="";
+		$scope.vName = false;
+		$scope.vMota = false;
 		
 	}
 	$scope.vName = false;

@@ -90,6 +90,12 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 		$scope.initialize();
 		$scope.form = {};
 		$scope.isEdit = null;
+		$scope.message1 = "";
+		$scope.message2 = "";
+		
+		$scope.validateID = false;
+		$scope.validateName = false;
+		
 	}
 
 	//hiển thị lên form

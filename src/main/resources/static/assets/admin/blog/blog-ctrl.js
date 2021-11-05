@@ -73,8 +73,49 @@ app.controller("blog-ctrl", function($scope, $http) {
 			createDate: new Date(),
 			images: '5aa47c07.png',
 		};
-				$scope.isEdit = null;
+		$scope.isEdit = null;
+		$scope.message1 ="";
+		$scope.message2 ="";
+		$scope.vName = false;
+		$scope.vCategory = false;
+		$scope.vContent = false;
 		
+		
+	}
+	$scope.vName = false;
+	$scope.validateName = function(n) {
+		if(n == null){
+			$scope.message1 = "Name not allow null";
+			$scope.vName = false;	
+		}else if(n.length > 50){
+			$scope.message1 = "Name not over 50 characters";
+			$scope.vName = false;	
+		}else{
+			$scope.message1 = "";
+			$scope.vName = true;	
+		}
+		
+	}
+	
+	$scope.vContent = false;
+	$scope.validateContent = function(c) {
+		if(c.length ==0 ){
+			$scope.message2 = "Content not allow null";
+			$scope.vContent = false;
+		}else{
+			$scope.message2 = "";
+			$scope.vContent = true;
+			
+		}
+			
+	}
+	
+	$scope.vCategory = false;
+	$scope.validateCategory = function(ca) {
+		if(!ca == 0){
+			$scope.vCategory = true;
+		}
+			
 	}
 
 	//hiển thị lên form

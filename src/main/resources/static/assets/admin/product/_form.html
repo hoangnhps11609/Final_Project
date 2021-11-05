@@ -42,39 +42,44 @@
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<div>Name:</div>
-						<input class="form-control" ng-model="form.name" required=""/>
+						<input class="form-control" ng-model="form.name" required="" ng-change="validateName(form.name)"/>
+						<label style="color: red;">{{message1}}</label>
 					</div>
 					<div class="form-group col-sm-6">
 						<div>Price:</div>
-						<input class="form-control" ng-model="form.price" required=""/>
+						<input class="form-control" ng-model="form.price" required="" ng-change="validatePrice(form.price)"/>
+						<label style="color: red;">{{message2}}</label>
+						
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<div>Category:</div>
-						<select class="form-control" ng-model="form.category.id" required="">
+						<select class="form-control" ng-model="form.category.id" required="" ng-change="validateCategory(form.category.id)">
 							<option value="" disabled="disabled">Choose Category:</option>
 							<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
 						</select>
 					</div>
 					<div class="form-group col-sm-6">
 						<div>Discount:</div>
-						<input type="number" class="form-control" ng-model="form.discount" required=""/>
+						<input  class="form-control" ng-model="form.discount" required="" ng-change="validateDiscount(form.discount)"/>
+						<label style="color: red;">{{message3}}</label>
+					
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<div>Gender:</div>
-						<select class="form-control" ng-model="form.gender.id" required="">
+						<select class="form-control" ng-model="form.gender.id" required="" ng-change="validateGender(form.gender.id)">
 							<option value="" disabled="disabled">Choose Gender:</option>
 							<option ng-repeat="g in genders" ng-value="g.id">{{g.name}}</option>
 						</select>
 					</div>
 					<div class="form-group col-sm-6">
 						<div>Brand:</div>
-						<select class="form-control" ng-model="form.brand.id" required="">
+						<select class="form-control" ng-model="form.brand.id" required="" ng-change="validateBrand(form.brand.id)">
 							<option value="" disabled="disabled">Choose Brand:</option>
 							<option ng-repeat="b in brands" ng-value="b.id">{{b.name}}</option>
 						</select>
@@ -84,7 +89,9 @@
 				<div class="row">
 					<div class="form-group col-sm-12">
 						<div>Description:</div>
-						<textarea type="text" class="form-control" ng-model="form.description" rows="6">	</textarea>
+						<textarea type="text" class="form-control" ng-model="form.description" rows="6" ng-change="validateMota(form.description)"></textarea>
+						<label style="color: red;">{{message4}}</label>
+						
 					</div>
 				</div>
 			</div>
@@ -92,7 +99,8 @@
 	</div>
 	<div class="card-footer text-muted">
 			<div ng-if="isEdit == null" class="row">
-			<button ng-click="create()" class="btn btn-success offset-3 col-3 mr-2" style="font-weight:bolder">Create</button>
+			<button ng-if="vName == true && vPrice == true && vCategory == true && vDiscount == true && vGender == true && vBrand == true && vMota == true" ng-click="create()" class="btn btn-success offset-3 col-3 mr-2" style="font-weight:bolder">Create</button>
+			<button ng-if="vName == false || vPrice == false || vCategory == false || vDiscount == false || vGender == false || vBrand == false || vMota == false" disabled="disabled" ng-click="create()" class="btn btn-success offset-3 col-3 mr-2" style="font-weight:bolder">Create</button>
 			<button ng-click="reset()" class="btn btn-info col-3 ml-2" style="font-weight:bolder">Reset</button>
 		</div>
 		<div ng-if="isEdit == 'true'"  class="row">

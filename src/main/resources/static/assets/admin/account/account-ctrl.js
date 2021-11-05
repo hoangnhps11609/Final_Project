@@ -1,6 +1,5 @@
 app.controller("account-ctrl", function($scope, $http, $window) {
 
-
 	$scope.items = [];
 	$scope.form = {};
 
@@ -69,6 +68,19 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 			photo: '5aa47c07.png'
 		};
 		$scope.isEdit = null;
+		$scope.message1 = "";
+		$scope.message2 = "";
+		$scope.message3 = "";
+		$scope.message4 = "";
+		$scope.message5 = "";
+		$scope.message6 = "";
+		$scope.vUsername = false;
+		$scope.vPassword = false;
+		$scope.vFullname = false;
+		$scope.vEmail = false;
+		$scope.vPhone = false;
+		$scope.vAddress = false;
+		
 	}
 	
 	$scope.vUsername = false;

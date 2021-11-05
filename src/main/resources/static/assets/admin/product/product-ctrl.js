@@ -113,10 +113,109 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 			image: '5aa47c07.png',
 			available: true
 		};
+		$scope.message1 = "";
+		$scope.message2 = "";
+		$scope.message3 = "";
+		$scope.message4 = "";
 		
-				$scope.isEdit = null;
+		$scope.vName = false;
+		$scope.vPrice = false;
+		$scope.vCategory = false;
+		$scope.vDiscount = false;
+		$scope.vGender = false;
+		$scope.vBrand = false;
+		$scope.vMota = false;
+		
+		
+		
+		
+		$scope.isEdit = null;	
+	}
+	$scope.vName = false;
+	$scope.validateName = function(n) {
+		if(n == null){
+			$scope.message1 = "Name not allow null";
+			$scope.vName = false;
+		}else if(n.length > 50){
+			$scope.message1 = "Name not over 50 characters";
+			$scope.vName = false;
+		}else{
+			$scope.message1 = "";
+			$scope.vName = true;
+		}
+	}
+	
+	$scope.vPrice = false;
+	$scope.validatePrice = function(p) {
+		const characterRegex = /^\d+$/; 
+		if(p == null){
+			$scope.message2 = "Price not allow null";
+			$scope.vPrice = false;
+		}else if(!p.match(characterRegex)){
+			$scope.message2 = "Number only";
+			$scope.vPrice = false;
+		}else{
+			$scope.message2 = "";
+			$scope.vPrice = true;
+		}
 		
 	}
+	
+	$scope.vCategory = false;
+	$scope.validateCategory = function(c) {
+		if(!c == 0){
+			$scope.vCategory = true;
+		}
+		
+	}
+	
+	$scope.vGender = false;
+	$scope.validateGender = function(g) {
+		if(!g == 0){
+			$scope.vGender = true;
+		}
+		
+	}
+	
+	$scope.vBrand = false;
+	$scope.validateBrand = function(b) {
+		if(!b == 0){
+			$scope.vBrand = true;
+		}
+		
+	}
+	
+	$scope.vDiscount = false;
+	$scope.validateDiscount = function(p) {
+		const characterRegex = /^\d+$/; 
+		if(p == null){
+			$scope.message3 = "Discount not allow null";
+			$scope.vDiscount = false;
+		}else if(!p.match(characterRegex)){
+			$scope.message3 = "Number only";
+			$scope.vDiscount = false;
+		}else{
+			$scope.message3 = "";
+			$scope.vDiscount = true;
+		}
+		
+	}
+	
+	$scope.vMota = false;
+	$scope.validateMota = function(m) {
+		if(m.length == 0){
+			$scope.message4 = "Description not allow null";
+			$scope.vMota = false;
+		}else if(m.length > 255){
+			$scope.message4 = "Description not over 255 characters";
+			$scope.vMota = false;
+		}else{
+			$scope.message4 = "";
+			$scope.vMota = true;
+		}
+		
+	}
+	
 
 	$scope.reset2 = function() {
 		$scope.form2 = {

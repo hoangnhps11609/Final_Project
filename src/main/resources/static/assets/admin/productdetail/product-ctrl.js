@@ -99,7 +99,52 @@ app.controller("productdetail-ctrl", function($scope, $http, $window) {
 			image: '5aa47c07.png',
 			available: true
 		};
-				$scope.isEdit = null;
+		$scope.message1 = "";
+		$scope.vProduct = false;
+		$scope.vSize = false;
+		$scope.vColor = false;
+		$scope.vQuantity = false;
+		
+		$scope.isEdit = null;
+		
+	}
+	$scope.vProduct = false;
+	$scope.validateProduct = function(p) {
+		if(!p == 0){
+			$scope.vProduct = true;
+		}
+		
+	}
+	
+	$scope.vSize = false;
+	$scope.validateSize = function(s) {
+		if(!s == 0){
+			$scope.vSize = true;
+		}
+		
+	}
+	
+	$scope.vColor = false;
+	$scope.validateColor = function(c) {
+		if(!c == 0){
+			$scope.vColor = true;
+		}
+		
+	}
+	
+	$scope.vQuantity = false;
+	$scope.validateQuantity = function(q) {
+		const characterRegex = /^\d+$/; 
+		if(q == null){
+			$scope.message1 = "Quantity not allow null";
+			$scope.vQuantity = false;
+		}else if(!q.match(characterRegex)){
+			$scope.message1 = "Number only";
+			$scope.vQuantity = false;
+		}else{
+			$scope.message1 = "";
+			$scope.vQuantity = true;
+		}
 		
 	}
 

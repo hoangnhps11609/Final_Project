@@ -20,7 +20,23 @@ app.controller("blogcategory-ctrl", function($scope, $http) {
 	//Xóa form
 	$scope.reset = function() {
 		$scope.form = {};
-				$scope.isEdit = null;
+		$scope.isEdit = null;
+		$scope.message1 ="";
+		$scope.vName = false;
+		
+	}
+	$scope.vName = false;
+	$scope.validateName = function(n) {
+		if(n == null){
+			$scope.message1 = "Name not allow null";
+			$scope.vName = false;
+		}else if(n.length > 50){
+			$scope.message1 = "Name not over 50 characters";
+			$scope.vName = false;
+		}else{
+			$scope.message1 = "";
+			$scope.vName = true;
+		}
 		
 	}
 
