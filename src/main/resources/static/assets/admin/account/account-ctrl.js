@@ -376,6 +376,30 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 	$scope.findbyDate = function() {
 		$('#AccountDuocTaoModalCenter').appendTo("body").modal('show');
 	}
+	
+	$scope.vForm = false;
+	$scope.vTo = false;
+	$scope.validateFrom = function(f) {
+		if(f == null){
+			$scope.vForm = false;
+		}else{
+			$scope.vForm = true;
+			$scope.setFrom = f;
+			
+		}
+	}
+	
+	$scope.validateTo = function(t) {
+		if(t == null){
+			$scope.vTo = false;
+		}else{
+			$scope.vTo = true;
+			$scope.setTo = t;
+		}
+	}
+	
+	
+	
 
 	$scope.detailOrder = function(account) {
 		$http.get(`/rest/orders/getorder/${account.username}`).then(resp => {

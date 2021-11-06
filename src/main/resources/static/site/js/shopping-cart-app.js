@@ -168,6 +168,10 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		}
 	}
 	
+	$scope.getprofile= function(remoteUser){
+		
+	}
+	
 	$scope.vPassword = false;
 	$scope.validateRegisterPassword = function(p) {
 		if(p.length < 6 || p.length > 25){

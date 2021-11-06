@@ -127,7 +127,7 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 		$scope.isEdit = null;
 	}
 	
-/*
+
 	$scope.vName = false;
 	$scope.ValidateName = function(c) {
 		if(c.length < 2 || c.length > 50){
@@ -197,7 +197,7 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 				$scope.message4 = "";	
 			}
 	}
-*/
+
 	//hiển thị lên form
 	$scope.edit = function(item) {
 		$scope.oldColor = "Old Color: rgb(" + item.red + ", " + item.green + ", " + item.blue + ")";

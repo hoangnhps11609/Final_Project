@@ -162,14 +162,19 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<input type="date" placeholder="dd-mm-yyyy" class="form-control"
-						ng-model="duoctao.from" />
+					From:<input type="date" placeholder="dd-mm-yyyy" class="form-control"
+						ng-model="duoctao.from" ng-change="validateFrom(duoctao.from)" />
 				</div>
 				<div class="form-group">
-					<input type="date" placeholder="dd-mm-yyyy" class="form-control"
-						ng-model="duoctao.to" />
+					To:<input type="date" placeholder="dd-mm-yyyy" class="form-control"
+						ng-model="duoctao.to"  ng-change="validateTo(duoctao.to)"/>
 				</div>
-				<button ng-click="duoctao()" class="btn btn-primary float-right">Search</button>
+				<button ng-if="vForm == true && vTo == true && setTo > setFrom" ng-click="duoctao()" class="btn btn-primary float-right">Search</button>
+				<button ng-if="vForm == false || vTo == false" disabled="disabled" ng-click="duoctao()" class="btn btn-primary float-right">Search</button>
+				<button ng-if="setTo < setFrom && vForm == true && vTo == true" disabled="disabled" ng-click="duoctao()" class="btn btn-primary float-right">Search</button>
+				
+				
+			
 			</div>
 		</div>
 	</div>

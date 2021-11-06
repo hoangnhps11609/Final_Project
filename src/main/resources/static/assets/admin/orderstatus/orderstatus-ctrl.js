@@ -50,6 +50,27 @@ app.controller("orderstatus-ctrl", function($scope, $http, $window, $route) {
 		});
 	}
 	
+		$scope.vForm = false;
+	$scope.vTo = false;
+	$scope.validateFrom = function(f) {
+		if(f == null){
+			$scope.vForm = false;
+		}else{
+			$scope.vForm = true;
+			$scope.setFrom = f;
+			
+		}
+	}
+	
+	$scope.validateTo = function(t) {
+		if(t == null){
+			$scope.vTo = false;
+		}else{
+			$scope.vTo = true;
+			$scope.setTo = t;
+		}
+	}
+	
 		$scope.findAllConfirmed = function() {
 		//load orders
 		$http.get("/rest/orders/findAllConfirmed").then(resp => {
