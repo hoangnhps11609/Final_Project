@@ -18,6 +18,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -379,7 +380,46 @@ public class ProductController {
 		model.addAttribute("productPage", resultPage);
 		model.addAttribute("size", pageSize);
 		model.addAttribute("size", pageSize);		
-		return "product/filter";
+		return "/product/filter";
+
+	}
+	
+	@GetMapping("/product/filter")
+	public String filter2(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+		String cateid = paramService.getString("cid", "");
+		String brandname = paramService.getString("brand", "");
+		String sizeproname = paramService.getString("sizepro", "");
+		String gendername = paramService.getString("gender", "");
+		String colorname = paramService.getString("color", "");
+		String min = paramService.getString("min", "");
+		String max = paramService.getString("max", "");
+		
+		int currentPage = page.orElse(1);
+		int pageSize = size.orElse(9999);
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("product.id").descending());
+		Page<ProductDetail> resultPage = null;
+
+		resultPage = productDetailService.filterProductDetail("%" + cateid, "%" + brandname, "%" + sizeproname, gendername + "%", "%" + colorname, Double.parseDouble(min), Double.parseDouble(max), pageable);
+
+		int totalPages = resultPage.getTotalPages();
+		if (totalPages > 0) {
+			int start = Math.max(1, currentPage - 2);
+			int end = Math.min(currentPage + 2, totalPages);
+
+			if (totalPages > 5) {
+				if (end == totalPages)
+					start = end - 5;
+				else if (start == 1)
+					end = start + 5;
+			}
+			List<Integer> pageNumbers = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		model.addAttribute("productPage", resultPage);
+		model.addAttribute("size", pageSize);
+		model.addAttribute("size", pageSize);		
+		return "/product/filter";
+
 	}
 	
 	

@@ -306,6 +306,23 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		}
 	}
 	
+	$scope.vMin = false;
+	$scope.validateMin = function(mi){
+		if(mi == null){
+			$scope.vMin = false;
+		}
+		$scope.sMin = mi;
+	}
+	
+	$scope.vMax = false;
+	$scope.validateMax = function(ma){
+	alert('min');
+		if(ma == null){
+			$scope.vMax = false;
+		}
+		$scope.sMax = ma;
+	}
+	
 	//Thêm account mới
 	$scope.create = function() {
 		var item = angular.copy($scope.form);

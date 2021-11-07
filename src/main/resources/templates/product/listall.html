@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{layout/index :: dynamic(~{::main})}">
+	th:replace="~{layout/index :: dynamic(~{::main})}" ng-controller="account-ctrl">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -49,8 +49,8 @@
 								<div class="filter-range-wrap">
 									<div class="range-slider">
 										<div class="price-input">
-											<input type="text" id="minamount" name="min"> 
-											<input type="text" id="maxamount" name="max">
+											<input  type="number" id="minamount" min="0" name="min"> 
+											<input type="number" id="maxamount" min="0" name="max" >
 										</div>
 									</div>
 									<div
@@ -63,7 +63,10 @@
 											class="ui-slider-handle ui-corner-all ui-state-default"></span>
 									</div>
 								</div>
-								<button class="filter-btn" style="border: none">Filter</button>
+								<button ng-if="vMax == true && vMin == true" class="filter-btn" style="border: none">Filter</button>
+								<button ng-if="vMax == false || vMin == false" class="filter-btn" style="border: none">Filter</button>
+								
+							
 							</form>
 						</div>
 
