@@ -125,6 +125,15 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 	$scope.reset = function() {
 		$route.reload();
 		$scope.isEdit = null;
+		$scope.vName = false;
+		$scope.vRed = false;
+		$scope.vGreen = false;
+		$scope.vBlue = false;
+		$scope.message1 = "";
+		$scope.message2 = "";
+		$scope.message3 = "";
+		$scope.message4 = "";
+		
 	}
 	
 
@@ -206,6 +215,10 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 		document.getElementById("homes").style.display = "block";
 		document.getElementById("lists").style.display = "none";
 		$scope.isEdit = "true";
+		$scope.vName = true;
+		$scope.vRed = true;
+		$scope.vGreen = true;
+		$scope.vBlue = true;
 	}
 
 

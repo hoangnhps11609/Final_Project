@@ -105,49 +105,51 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 		document.getElementById("homes").style.display = "block";
 		document.getElementById("lists").style.display = "none";
 		$scope.isEdit = "true";
+		$scope.validateName = true;
+		
 	}
 	
+	
 
-
-	//Thêm sản phẩm mới
-	$scope.create = function () {
+	//Thêm mới 
+	//deo hieu sao vẫn add duoc luon , vai ca loz
+	$scope.create = function() {
 		var item = angular.copy($scope.form);
-		var name = item.name;		
+		var name = item.name;	
+
 		Swal.fire({
-			  title: 'Confirm adding "' + name + '" to the category list?',
-			  text: "",
-			  icon: 'info',
-			  showCancelButton: true,
-			  confirmButtonColor: '#3085d6',
-			  cancelButtonColor: '#d33',
-			  confirmButtonText: 'Yes'
-			}).then((result) => {
-			  if (result.isConfirmed) {
+			title: 'Confirm adding "' + name + '" to the category list?',
+			text: "",
+			icon: 'info',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes'
+		}).then((result) => {
+			if (result.isConfirmed) {
 				$http.post(`/rest/categories`, item).then(resp => {
 					$scope.items.push(resp.data);
 					$scope.reset();
 					$scope.initialize();
-					
-				Swal.fire(
-			      'Successfully!',
-			      'Added "'+ name +'" to category list.',
-			      'success'
-			    )
-				$(".nav-tabs a:eq(1)").tab('show');
-		
-		}).catch(error => {
+					Swal.fire(
+						'Successfully!',
+						'Added "' + name + '" to category list.',
+						'success'
+					)
 
-			Swal.fire(
-			      'Create Failure!',
-			      'Can not add "'+ name +'" !',
-			      'error'
-			    )
-			
-			console.log("Error", error);
-		});
-		
+					$(".nav a:eq(1)").tab('show')
+				}).catch(error => {
+
+					Swal.fire(
+						'Create Failure!',
+						'Can not add "' + name + '" !',
+						'error'
+					)
+
+					console.log("Error", error);
+				});
 			}
-			})
+		})
 	}
 
 	//update sản phẩm mới

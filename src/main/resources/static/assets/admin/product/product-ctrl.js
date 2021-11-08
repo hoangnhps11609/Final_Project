@@ -238,6 +238,14 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 		document.getElementById("lists").style.display = "none";
 		$scope.isEdit = "true";
 		
+		$scope.vName = true;
+		$scope.vPrice = true;
+		$scope.vCategory = true;
+		$scope.vDiscount = true;
+		$scope.vGender = true;
+		$scope.vBrand = true;
+		$scope.vMota = true;
+		
 	}
 	
 	$scope.topProduct = function(){

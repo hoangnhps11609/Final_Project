@@ -225,7 +225,8 @@ app.controller("productdetail-ctrl", function($scope, $http, $window) {
 		$(".nav a:eq(0)").tab('show');
 		document.getElementById("homes").style.display = "block";
 		document.getElementById("lists").style.display = "none";
-				$scope.isEdit = "true";
+		$scope.isEdit = "true";
+		$scope.vQuantity = true;
 		
 	}
 

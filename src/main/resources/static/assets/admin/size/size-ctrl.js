@@ -97,7 +97,8 @@ app.controller("size-ctrl", function($scope, $http) {
 		document.getElementById("homes").style.display = "block";
 		document.getElementById("lists").style.display = "none";
 				$scope.isEdit = "true";
-		
+		$scope.vName = true;
+		$scope.vMota = true	
 	}
 
 

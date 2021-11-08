@@ -176,6 +176,11 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 		document.getElementById("homes").style.display = "block";
 		document.getElementById("lists").style.display = "none";
 		$scope.isEdit = "true";
+		$scope.vPassword = true;
+		$scope.vFullname = true;
+		$scope.vEmail = true;
+		$scope.vPhone = true;
+		$scope.vAddress = true;
 	}
 	
 	
