@@ -222,8 +222,39 @@
 						<div class="row float-right pr-3"
 							th:if="${order.status == 0 || order.status == 1}">
 							<a class="btn text-light" style="background-color: #e7ab3c"
-								th:href="@{|/order/delete/${order.id}|}">Cancel Order</a>
+								th:data-id="${order.id}" th:data-name="${order.id}"
+								onclick="showConfirmModalDialog(this.getAttribute('data-id'), this.getAttribute('data-name'))">Cancel Order</a>
 						</div>
+						<script>
+							function showConfirmModalDialog(id, name){
+								$('#orderID').text(name);
+								$('#yesOption').attr('href', '/order/delete/' + id);
+								$('#confirmationId').modal('show');
+							}
+						</script>
+						<!-- Modal -->
+								<div class="modal fade" id="confirmationId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												Do you want to cancel Order: <span id="orderID"></span>?
+											</div>
+											<div class="modal-footer">
+												<a id="yesOption" type="button" class="btn btn-danger">Yes</a>
+												<button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+											</div>
+										</div>
+									</div>
+								</div>
+						
+						
+						
 					</div>
 					<div class="card-footer text-center alert-warning">Thank you
 						for purchasing our items, thank you more</div>

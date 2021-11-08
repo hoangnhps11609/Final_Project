@@ -586,7 +586,7 @@
 										th:src="@{|/assets/images/${p.image}|}" alt="" width=363px;
 										height=444px>
 									</a>
-									<div class="sale">Sale: [[${p.discount}]]%</div>
+									<div class="sale" th:if="${p.discount != 0}">Sale: [[${p.discount}]]%</div>
 									<div class="icon">
 										<i class="icon_heart_alt"></i>
 									</div>

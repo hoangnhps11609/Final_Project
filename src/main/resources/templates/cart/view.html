@@ -78,7 +78,7 @@
 											</div>
 										</td>
 										<td class="total-price first-row">
-											{{item.qty*item.product.price*(1-item.product.discount*0.01)|number:1}}</td>
+											${{item.qty*item.product.price*(1-item.product.discount*0.01)|number:1}}</td>
 										<td class="close-td first-row"><i class="ti-close"
 											ng-click="cart.remove(item.id)"></i></td>
 									</tr>
