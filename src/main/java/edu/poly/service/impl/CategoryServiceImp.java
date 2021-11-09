@@ -1,6 +1,7 @@
 package edu.poly.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -65,6 +66,11 @@ public class CategoryServiceImp implements CategoryService{
 	@Override
 	public List<CategoryTop> findCategoryTop() {
 		return cdao.findCategoryTop();
+	}
+
+	@Override
+	public Optional<Category> getChio(String id) {
+		return cdao.getChio(id);
 	}
 
 

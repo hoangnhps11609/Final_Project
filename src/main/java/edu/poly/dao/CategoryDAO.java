@@ -1,6 +1,7 @@
 package edu.poly.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,5 +29,9 @@ public interface CategoryDAO extends JpaRepository<Category, String>{
 	@Query
 	("SELECT new CategoryTop(od.productDetail.product.category, sum(od.quantity)) FROM OrderDetail od where od.order.status = 3 group by od.productDetail.product.category")
 	List<CategoryTop> findCategoryTop();
-
+	
+	
+	@Query
+	("SELECT c FROM Category c WHERE c.id = ?1")
+	Optional<Category> getChio(String id);
 }

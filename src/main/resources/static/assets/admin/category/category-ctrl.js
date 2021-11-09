@@ -116,7 +116,6 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
 		var name = item.name;	
-
 		Swal.fire({
 			title: 'Confirm adding "' + name + '" to the category list?',
 			text: "",
@@ -184,7 +183,6 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 			      'Can not update "'+ name +'" !',
 			      'error'
 			    )
-				
 			console.log("Error", error);
 		});
 			}

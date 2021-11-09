@@ -1,6 +1,7 @@
 package edu.poly.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
 
@@ -32,6 +33,9 @@ public interface CategoryService {
 	List<CategoryInventory> findCategoryInventory();
 
 	List<CategoryTop> findCategoryTop();
+	
+	Optional<Category> getChio(String id);
+
 
 
 

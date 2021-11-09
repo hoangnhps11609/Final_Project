@@ -1,6 +1,7 @@
 package edu.poly.rest.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -56,7 +57,18 @@ public class CategoryRestController {
 	
 	@PostMapping
 	public Category create(@RequestBody Category category) {
-		return cService.create(category);
+		// kho wa ma 
+		try {
+			String check = category.getId();
+			Optional<Category> c = cService.getChio(check);
+			if(c.isPresent()) {
+				return cService.create(null);
+			}else {
+				return cService.create(category);
+			}
+			}catch(Exception ex) {
+				return cService.create(null);
+			}
 	}
 	
 	@PutMapping("{id}")
