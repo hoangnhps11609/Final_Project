@@ -58,17 +58,17 @@ public class CategoryRestController {
 	@PostMapping
 	public Category create(@RequestBody Category category) {
 		// kho wa ma 
-		try {
-			String check = category.getId();
-			Optional<Category> c = cService.getChio(check);
-			if(c.isPresent()) {
-				return cService.create(null);
-			}else {
+	//	try {
+			//String check = category.getId();
+			//Optional<Category> c = cService.getChio(check);
+			//if(c.isPresent()) {
+				//return cService.create(null);
+			//}else {
 				return cService.create(category);
-			}
-			}catch(Exception ex) {
-				return cService.create(null);
-			}
+			//}
+			//}catch(Exception ex) {
+				//return cService.create(null);
+			//}
 	}
 	
 	@PutMapping("{id}")
