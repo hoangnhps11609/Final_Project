@@ -102,7 +102,7 @@
 					<tbody>
 						<tr ng-repeat="item in pager2.ProCateItems">
 							<td width="100px"><img
-								ng-src="{{'/assets/images/' + item.image}}" width="100%" /></td>
+								ng-src="{{item.image ? '/assets/images/' + item.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 							<td>{{item.id}}</td>
 							<td style="max-width: 250px"><a href=""
 								ng-click="proDetail(item)" class="btn btn-outline-primary">{{item.name}}</a></td>
@@ -246,7 +246,7 @@
 					<h5 class="px-5">Proudct Name: <span
 							style="text-transform: uppercase; font-weight: bolder">{{product.name}}</span>
 					</h5>
-					<a type="button" class="close text-light pt-3 pr-0"  data-dismiss="modal" ng-click="closeOrderDetail()"
+					<a type="button" class="close text-light pt-3 pr-0"  data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</a>
@@ -266,7 +266,7 @@
 					<tbody>
 						<tr ng-repeat="item in pagerProDet.ProDetailitems">
 							<td width="150px"><img
-								ng-src="{{'/assets/images/' + item.image}}" width="100%" /></td>
+								ng-src="{{item.image ? '/assets/images/' + item.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 							<td>{{item.color.name}}</td>
 							<td>{{item.size.name}}</td>
 							<td ng-init="$parent.totalPro = $parent.totalPro + item.quantity">{{item.quantity}}</td>
@@ -322,7 +322,7 @@
 					<tbody>
 						<tr ng-repeat="item in pagerProTopCate.ProTopCateItems">
 							<td width="150px"><img
-								ng-src="{{'/assets/images/' + item.product.image}}" width="100%" /></td>
+								ng-src="{{item.product.image ? '/assets/images/' + item.product.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 							<td>{{item.product.id}}</td>
 							<td>{{item.product.name}}</td>
 							<td>{{item.product.price}}</td>

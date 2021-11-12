@@ -8,13 +8,13 @@
 			style="font-size: 18px; position: absolute; right: 20px; top: 20px">
 			<span>Show All</span>
 		</i>
-		<div class="row pt-3 col-3">
+		<div class="col-3 pt-3">
 			<select class="form-control"
 				ng-model="form.category.id2" ng-change="findbyCategory(form.category.id2)"
 				style="font-weight: bold; border: solid 1px;">
 				<option value="" disabled="disabled">Find By Category:</option>
 				<option ng-repeat="item in cates" ng-value="item.id"
-					style="font-weight: bold;">{{item.name}}</option>
+					style="font-weight: bold;">Find By {{item.name}}</option>
 			</select>
 		</div>
 	</div>
@@ -44,7 +44,7 @@
 			<tbody>
 				<tr ng-repeat="item in pager.items">
 					<td width="100px"><img
-						ng-src="{{'/assets/images/' + item.image}}" width="100%" /></td>
+						ng-src="{{item.image ? '/assets/images/' + item.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 					<td>{{item.id}}</td>
 					<td style="max-width: 250px" ng-click="viewall(item)"><a
 						href="">{{item.name}}</a></td>
@@ -102,7 +102,7 @@
 			</div>
 				<div class="modal-body">
 				<div class="card-body">
-					<table class="table table-striped">
+					<table class="table table-striped text-center">
 						<thead>
 							<tr>
 								<th scope="col">Image</th>
@@ -110,13 +110,13 @@
 								<th scope="col">Size</th>
 								<th scope="col">Quantity</th>
 								<th scope="col">Create Date</th>
-								<th style="position: relative;"></th>
+								<th ></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr ng-repeat="item1 in pager2.ODitems">
-								<td width="150px"><img
-									ng-src="{{'/assets/images/' + item1.image}}" width="100%" /></td>
+								<td width="200px"><img
+									ng-src="{{item1.image ? '/assets/images/' + item1.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 								<td>{{item1.color.name}}</td>
 								<td>{{item1.size.name}}</td>
 								<td>{{item1.quantity}}</td>

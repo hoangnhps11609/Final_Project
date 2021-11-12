@@ -108,7 +108,7 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	List<ProductByColor> getProInColor(Integer id);
 	
 	@Query
-	("SELECT new ProductTop(od.productDetail.product, sum(od.quantity)) FROM OrderDetail od where od.order.status = 3 group by od.productDetail.product")
+	("SELECT new ProductTop(od.productDetail.product, sum(od.quantity)) FROM OrderDetail od where od.order.status = 3 group by od.productDetail.product order by sum(od.quantity) desc")
 	List<ProductTop> findProductTop();
 	
 	@Query

@@ -124,7 +124,7 @@
 					<tbody>
 						<tr ng-repeat="item in pager2.ProCateItems">
 							<td width="100px"><img
-								ng-src="{{'/assets/images/' + item.image}}" width="100%" /></td>
+								ng-src="{{item.image ? '/assets/images/' + item.image  : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 							<td>{{item.id}}</td>
 							<td style="max-width: 250px">{{item.product.name}}</td>
 							<td>{{item.color.name}}</td>
@@ -180,7 +180,7 @@
 			<div class="modal-body">
 				<div class="col row pl-4">
 					<div class="col-4">
-						<img ng-src="{{'/assets/images/' + comment.photo}}" width="100%" />
+						<img ng-src="{{comment.photo ? '/assets/images/' + comment.photo : '/assets/images/5aa47c07.png'}}" width="100%" />
 					</div>
 					<div class="col-8">
 						<div class="col">

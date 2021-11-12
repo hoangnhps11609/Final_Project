@@ -57,7 +57,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="item in filtered = (pager.items | filter: query)">
-					<td><img ng-src="{{'/assets/images/' + item.photo}}"
+					<td><img ng-src="{{item.photo ? '/assets/images/' + item.photo  : '/assets/images/5aa47c07.png'}}"
 						width="50%" /></td>
 					<td ng-click="detailOrder(item)"><a href="" class="btn btn-outline-success">{{item.username}}</a></td>
 					<td>{{item.fullname}}</td>
@@ -116,7 +116,7 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="item in pager1.countOrders">
-							<td><img ng-src="{{'/assets/images/' + item.account.photo}}"
+							<td><img ng-src="{{item.account.photo ? '/assets/images/' + item.account.photo  : '/assets/images/5aa47c07.png'}}"
 								width="50%" /></td>
 							<td>{{item.account.username}}</td>
 							<td>{{item.account.fullname}}</td>
@@ -279,7 +279,7 @@
 					<tbody>
 						<tr ng-repeat="item in pager3.ODitems">
 							<td width="150px"><img
-								ng-src="{{'/assets/images/' + item.productDetail.image}}"
+								ng-src="{{item.productDetail ? '/assets/images/' + item.productDetail.image : '/assets/images/5aa47c07.png'}}"
 								width="100%" /></td>
 							<td>{{item.productDetail.product.id}}</td>
 							<td>{{item.productDetail.product.name}}</td>

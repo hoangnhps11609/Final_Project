@@ -217,7 +217,7 @@
 									<tbody>
 										<tr ng-repeat="item in pager2.ODitems">
 											<td width="150px"><img
-												ng-src="{{'/assets/images/' + item.productDetail.image}}"
+												ng-src="{{item.productDetail.image ? '/assets/images/' + item.productDetail.image : '/assets/images/5aa47c07.png'}}"
 												width="100%" /></td>
 											<td>{{item.productDetail.product.id}}</td>
 											<td>{{item.productDetail.product.name}}</td>

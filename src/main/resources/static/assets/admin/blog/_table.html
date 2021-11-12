@@ -17,8 +17,7 @@
 					<th style="width: 14%" scope="col">CreateDate</th>
 					<th style="width: 14%" scope="col">Images</th>
 					<th style="width: 14%" scope="col">BlogCategory</th>
-					<th style="width: 14%; position:relative"><img style="width: 100px;height: 80px;position: absolute;top: -17px;right: 37px"
-							src="/assets/images/xenoel1.png" alt="">
+					<th style="width: 14%; position:relative">
 					</th>
 				</tr>
 			</thead>
@@ -28,7 +27,7 @@
 					<td>{{item.name}}</td>
 					<td>{{item.content}}</td>
 					<td style="width: 120px;">{{item.createDate | date:'dd-MM-yyyy'}}</td>
-					<td><img ng-src="{{'/assets/images/' + item.images}}" width="100%" /></td>
+					<td><img ng-src="{{item.images ? '/assets/images/' + item.images : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 					<td>{{item.blogCategory.name}}</td>
 					<td>
 						<div class="btn-group btn-group-xs">

@@ -144,7 +144,7 @@
 					<tbody>
 						<tr ng-repeat="item in pager3.ProSizeItems">
 							<td width="100px"><img
-								ng-src="{{'/assets/images/' + item.image}}" width="100%" /></td>
+								ng-src="{{item.image ? '/assets/images/' + item.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 							<td>{{item.id}}</td>
 							<td style="max-width: 250px">
 								{{item.product.name}}</td>
@@ -202,7 +202,7 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="item in pager3.ProSizeItems">
-							<td width="150px"><img ng-src="{{'/assets/images/' + item.product.image}}" width="100%" /></td>
+							<td width="150px"><img ng-src="{{item.product.image ? '/assets/images/' + item.product.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 							<td>{{item.product.id}}</td>
 							<td>{{item.product.name}}</td>
 							<td>${{item.product.price | number:1}}</td>

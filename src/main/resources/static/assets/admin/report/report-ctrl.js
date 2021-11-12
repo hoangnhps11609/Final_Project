@@ -48,6 +48,7 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 			$scope.type = "10DayRevenue";
 			$scope.title= "Revenue";
 			$scope.message= "Revenue 10 Days Ago";
+			$scope.count = resp.data.length;
 		});
 	}
 	
@@ -56,6 +57,7 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 			$scope.revenueMonth = resp.data;
 			$scope.type = "MonthRevenue";
 			$scope.title= "Revenue";
+			$scope.count = resp.data.length;
 			$scope.message= "Revenue This Month";
 		});
 	}
@@ -66,6 +68,7 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 			$scope.type = "YearRevenue";
 			$scope.title= "Revenue";
 			$scope.message= "Revenue This Year";
+			$scope.count = resp.data.length;
 		});
 	}
 	
@@ -80,6 +83,7 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 			$scope.from = revenueTime.from;
 			$scope.to = revenueTime.to;
 			$scope.type = "TimeRevenue";
+			$scope.count = resp.data.length;
 			$scope.title= "Revenue";
 			$scope.message = "";
 			$('#RevenueByTimeModalCenter').appendTo("body").modal('hide');
@@ -126,6 +130,7 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 			$scope.account6Month = resp.data;
 			$scope.type = "Account6Month";
 			$scope.title= "Account";
+			$scope.count = resp.data.length;
 			$scope.message= "New account in 6 months ago";
 		});
 	}
@@ -140,6 +145,7 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 			$scope.accountTime = resp.data;
 			$scope.from = accountTime.from;
 			$scope.to = accountTime.to;
+			$scope.count = resp.data.length;
 			$scope.type = "TimeAccount";
 			$scope.title= "Account";
 			$scope.message = "";
@@ -166,6 +172,7 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 			$scope.accountNoOrder = resp.data;
 			$scope.type = "AccountNoOrder";
 			$scope.title= "Account";
+			$scope.count = resp.data.length;
 			$scope.message= "Number of account: Don't have any Order in 6 months ago";
 		});
 	}
@@ -191,6 +198,7 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 			$scope.item6Month = resp.data;
 			$scope.type = "Item6Month";
 			$scope.title= "Item";
+			$scope.count = resp.data.length;
 			$scope.message= "Item Seller in 6 months ago";
 		});
 	}
@@ -200,6 +208,7 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 			$scope.itemMonth = resp.data;
 			$scope.type = "MonthItem";
 			$scope.title= "Item";
+			$scope.count = resp.data.length;
 			$scope.message= "Item This Month";
 		});
 	}
@@ -214,6 +223,7 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 			$scope.itemTime = resp.data;
 			$scope.from = itemTime.from;
 			$scope.to = itemTime.to;
+			$scope.count = resp.data.length;
 			$scope.type = "TimeItem";
 			$scope.title= "Item";
 			$scope.message = "";
@@ -256,6 +266,7 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 		$http.get("/rest/reports/getOrderMonth").then(resp => {
 			$scope.orderMonth = resp.data;
 			$scope.type = "MonthOrder";
+			$scope.count = resp.data.length;
 			$scope.title= "Order";
 			$scope.message= "Order This Month";
 		});
@@ -273,6 +284,7 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 			$scope.to = orderTime.to;
 			$scope.type = "TimeOrder";
 			$scope.title= "Order";
+			$scope.count = resp.data.length;
 			$scope.message = "";
 			$('#OrderByTimeModalCenter').appendTo("body").modal('hide');
 		}).catch(error => {
@@ -297,6 +309,7 @@ app.controller("report-ctrl", function($scope, $http, $location, $window) {
 			$scope.orderCancelledYear = resp.data;
 			$scope.type = "YearOrderCancelled";
 			$scope.title= "Order";
+			$scope.count = resp.data.length;
 			$scope.message= "Order Cancelled This Year";
 		});
 	}

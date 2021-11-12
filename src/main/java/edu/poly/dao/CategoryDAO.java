@@ -23,11 +23,11 @@ public interface CategoryDAO extends JpaRepository<Category, String>{
 	List<Category> findbyName(String valued);
 
 	@Query
-	("SELECT new CategoryInventory(pd.product.category, sum(pd.quantity)) FROM ProductDetail pd group by pd.product.category")
+	("SELECT new CategoryInventory(pd.product.category, sum(pd.quantity)) FROM ProductDetail pd group by pd.product.category order by sum(pd.quantity) desc")
 	List<CategoryInventory> findCategoryInventory();
 
 	@Query
-	("SELECT new CategoryTop(od.productDetail.product.category, sum(od.quantity)) FROM OrderDetail od where od.order.status = 3 group by od.productDetail.product.category")
+	("SELECT new CategoryTop(od.productDetail.product.category, sum(od.quantity)) FROM OrderDetail od where od.order.status = 3 group by od.productDetail.product.category order by sum(od.quantity) desc")
 	List<CategoryTop> findCategoryTop();
 	
 	

@@ -26,7 +26,7 @@
 					<td>{{item.id}}</td>
 					<td style="font-weight: bold;">{{item.product.name}}</td>
 					<td width="150px" height="160px">
-						<img ng-src="{{'/assets/images/' + item.image}}" width="100%" height="100%"/>
+						<img ng-src="{{item.image ? '/assets/images/' + item.image : '/assets/images/5aa47c07.png'}}" width="100%" height="100%"/>
 					</td>
 					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 					<td>{{item.quantity}}</td>

@@ -101,7 +101,7 @@
 					<tbody>
 						<tr ng-repeat="item in pager2.ProCateItems">
 							<td width="100px"><img
-								ng-src="{{'/assets/images/' + item.product.image}}" width="100%" /></td>
+								ng-src="{{item.product.image ? '/assets/images/' + item.product.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 							<td>{{item.product.id}}</td>
 							<td style="max-width: 250px"><a href="" ng-click="viewProDetail(item.product)" class="btn btn-outline-primary">{{item.product.name}}</a></td>
 							<td>{{item.product.price}}</td>
@@ -161,7 +161,7 @@
 					<tbody>
 						<tr ng-repeat="item in pagerProDet.ProDetailitems">
 							<td width="150px"><img
-								ng-src="{{'/assets/images/' + item.image}}" width="100%" /></td>
+								ng-src="{{item.image ? '/assets/images/' + item.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 							<td><span class="p-2 text-light" style="background-color:rgb({{item.color.red}}, {{item.color.green}}, {{item.color.blue}})">{{item.color.name}}</span></td>
 							<td>{{item.size.name}}</td>
 							<td ng-init="$parent.totalPro = $parent.totalPro + item.quantity">{{item.quantity}}</td>
@@ -262,7 +262,7 @@
 					<tbody>
 						<tr ng-repeat="item in pager3.ProColorItems">
 							<td width="150px"><img
-								ng-src="{{'/assets/images/' + item.product.image}}" width="100%" /></td>
+								ng-src="{{item.product.image ? '/assets/images/' + item.product.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 							<td>{{item.product.id}}</td>
 							<td>{{item.product.name}}</td>
 							<td>{{item.product.price}}</td>

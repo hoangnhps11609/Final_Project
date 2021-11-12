@@ -39,6 +39,7 @@
 			</div>
 		</div>
 
+		<!-- Revenue -->
 		<div ng-if="title == 'Revenue'" class="border">
 			<div class="bg-success text-light text-center py-2">
 				<h1>REVENUE STATISTIC</h1>
@@ -62,7 +63,10 @@
 				</div>
 			</div>
 			<div class="row pt-3">
-				<div class="col-6 offset-3" ng-if="type =='10DayRevenue'">
+				<div class="alert-danger text-center text-danger col mx-4 mb-3" ng-if="count == 0">
+						<h3 class="p-3">Don't Have Any Data</h3>
+				</div>
+				<div class="col-6 offset-3" ng-if="type =='10DayRevenue' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">{{message}}</h3>
 					</div>
@@ -85,7 +89,7 @@
 					</p>
 				</div>
 
-				<div class="col-6 offset-3" ng-if="type =='MonthRevenue'">
+				<div class="col-6 offset-3" ng-if="type =='MonthRevenue' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">{{message}}</h3>
 					</div>
@@ -108,7 +112,7 @@
 					</p>
 				</div>
 
-				<div class="col-6 offset-3" ng-if="type =='YearRevenue'">
+				<div class="col-6 offset-3" ng-if="type =='YearRevenue' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">{{message}}</h3>
 					</div>
@@ -131,7 +135,7 @@
 					</p>
 				</div>
 
-				<div class="col-6 offset-3" ng-if="type =='TimeRevenue'">
+				<div class="col-6 offset-3" ng-if="type =='TimeRevenue' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">
 							Revenue By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}}
@@ -181,7 +185,10 @@
 				</div>
 			</div>
 			<div class="row pt-3">
-				<div class="col-6 offset-3" ng-if="type =='Account6Month'">
+				<div class="alert-danger text-center text-danger col mx-4 mb-3" ng-if="count == 0">
+						<h3 class="p-3">Don't Have Any Data</h3>
+				</div>
+				<div class="col-6 offset-3" ng-if="type =='Account6Month' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">{{message}}</h3>
 					</div>
@@ -203,7 +210,7 @@
 						<button class="btn btn-outline-secondary col" ng-click="showChart6MonthAccount()">Show Chart</button>
 					</p>
 				</div>
-				<div class="col-6 offset-3" ng-if="type =='TimeAccount'">
+				<div class="col-6 offset-3" ng-if="type =='TimeAccount' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">
 							Account By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}}
@@ -228,7 +235,7 @@
 						<button class="btn btn-outline-secondary col" ng-click="showChartTimeAccount(from, to)">Show Chart</button>
 					</p>
 				</div>
-				<div class="col-6 offset-3" ng-if="type =='AccountNoOrder'">
+				<div class="col-6 offset-3" ng-if="type =='AccountNoOrder' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">
 							Number of New Account: <br />Don't have any Order in 6 months
@@ -278,7 +285,10 @@
 				</div>
 			</div>
 			<div class="row pt-3">
-				<div class="col-6 offset-3" ng-if="type =='Item6Month'">
+				<div class="alert-danger text-center text-danger col mx-4 mb-3" ng-if="count == 0">
+						<h3 class="p-3">Don't Have Any Data</h3>
+				</div>
+				<div class="col-6 offset-3" ng-if="type =='Item6Month' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">{{message}}</h3>
 					</div>
@@ -300,7 +310,7 @@
 						<button class="btn btn-outline-secondary col" ng-click="showChart6MonthItem()">Show Chart</button>
 					</p>
 				</div>
-				<div class="col-6 offset-3" ng-if="type =='MonthItem'">
+				<div class="col-6 offset-3" ng-if="type =='MonthItem' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">{{message}}</h3>
 					</div>
@@ -322,7 +332,7 @@
 						<button class="btn btn-outline-secondary col" ng-click="showChartThisMonthItem()">Show Chart</button>
 					</p>
 				</div>
-				<div class="col-6 offset-3" ng-if="type =='TimeItem'">
+				<div class="col-6 offset-3" ng-if="type =='TimeItem' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">
 							Item By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}} -
@@ -371,7 +381,10 @@
 				</div>
 			</div>
 			<div class="row pt-3">
-				<div class="col-6 offset-3" ng-if="type =='YearOrderCancelled'">
+				<div class="alert-danger text-center text-danger col mx-4 mb-3" ng-if="count == 0">
+						<h3 class="p-3">Don't Have Any Data</h3>
+				</div>
+				<div class="col-6 offset-3" ng-if="type =='YearOrderCancelled' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">{{message}}</h3>
 					</div>
@@ -393,7 +406,7 @@
 						<button class="btn btn-outline-secondary col" ng-click="showChartOrderCancelled()">Show Chart</button>
 					</p>
 				</div>
-				<div class="col-6 offset-3" ng-if="type =='MonthOrder'">
+				<div class="col-6 offset-3" ng-if="type =='MonthOrder' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">{{message}}</h3>
 					</div>
@@ -415,7 +428,7 @@
 						<button class="btn btn-outline-secondary col" ng-click="showChartThisMonthOrder()">Show Chart</button>
 					</p>
 				</div>
-				<div class="col-6 offset-3" ng-if="type =='TimeOrder'">
+				<div class="col-6 offset-3" ng-if="type =='TimeOrder' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">
 							Order By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}} -
