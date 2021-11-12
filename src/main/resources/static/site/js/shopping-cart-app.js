@@ -17,17 +17,33 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		//Thêm sản phẩm vào giỏ hàng
 		add(id){
 			var item = this.items.find(item => item.id == id);
-			if(item){
-				item.qty++;
-				this.saveToLocalStorage();
-			}
-			else {
-				$http.get(`/rest/productdetails/${id}`).then(resp => {
-					resp.data.qty = 1;
-					this.items.push(resp.data);
-					this.saveToLocalStorage();
-				})
-			}
+					if(item){
+						$http.get(`/rest/productdetails/${id}`).then(resp => {
+							$scope.proDe = resp.data;
+							if(item.qty < $scope.proDe.quantity){
+								item.qty++;
+								this.saveToLocalStorage();
+							}else{
+								item.qty;
+								this.saveToLocalStorage();
+								//alert("Out-Of-Stock Product!")
+								Swal.fire('Out-Of-Stock Product')
+							}
+						})
+					}
+					else {
+						$http.get(`/rest/productdetails/${id}`).then(resp => {
+						$scope.proDe = resp.data;
+							if($scope.proDe.quantity > 0){
+								resp.data.qty = 1;
+								this.items.push(resp.data);
+								this.saveToLocalStorage();
+							}else{
+								//alert("Out-Of-Stock Product!")
+								Swal.fire('Out-Of-Stock Product')
+							}
+						})
+					}
 			//alert("Thêm sản phẩm vào giỏ hàng thành công")
 			Swal.fire(
 			  'Thanks!',
@@ -77,7 +93,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 					item.qty--;
 					this.saveToLocalStorage();
 				}else{
-					this.items.splice(item, 1);
+					Swal.fire('Min Quantity is 1');
 					this.saveToLocalStorage();
 				}
 			}
@@ -86,24 +102,41 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		//Xóa sản phẩm khỏi giỏ hàng
 		remove(id){
 			var index = this.items.findIndex(item => item.id == id);
-			this.items.splice(index, 1);
-			this.saveToLocalStorage();
+			Swal.fire({
+				title: 'Are you sure delete?',
+				text: "You won't be able to revert this!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, delete it!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					this.items.splice(index, 1);
+					this.saveToLocalStorage();
+					location.href = "http://localhost:8080/cart/view";
+				}
+			})	
+			
 		},
 		
 		//Xóa sạch các mặt hàng trong giỏ
 		clear(){
-			this.items = []
-			this.saveToLocalStorage();
-			if(this.items >= 1){
-				this.items = []
-			}
-			else {
-				Swal.fire(
-				  'Cart is empty',
-				  '',
-				  'warning'
-				)
-			}
+			Swal.fire({
+				title: 'Are you sure clear Cart?',
+				text: "You won't be able to revert this!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, delete it!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					this.items = []
+					this.saveToLocalStorage();
+					location.href = "http://localhost:8080/cart/view";
+				}
+			})	
 		},
 		
 		clearPM(){
@@ -481,6 +514,10 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 	$scope.showWebcam = function(){
 		url = "http://localhost:8080/webcam"
 		window.open(url, '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=-1300,width=680,height=580");
+	}
+	
+	$scope.viewDetailInCart = function(item){
+		location.href = "/product/detail/" + item + "?sizepro=1";
 	}
 });
 

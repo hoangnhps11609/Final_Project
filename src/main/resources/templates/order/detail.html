@@ -209,7 +209,7 @@
 													0, 'COMMA', 1, 'POINT')}]]</td>
 												<td th:if="${order.status == 3 || order.status == 4}">
 													<a class="btn text-light" style="background-color: #e7ab3c"
-													th:attr="ng-click=@{|cart.addcart(*{productDetail.id})|}">Buy
+													th:attr="ng-click=@{|cart.add(*{productDetail.id})|}">Buy
 														Again</a>
 												</td>
 											</tr>
