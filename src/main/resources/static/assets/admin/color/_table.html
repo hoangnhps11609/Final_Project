@@ -78,7 +78,7 @@
 		<div class="modal-content">
 			<div class="modal-header" style="background-color: {{rgb}}">
 				<h5 class="modal-title text-light" id="exampleModalLongTitle">Product In {{color.name}}: {{countPro}} Products</h5>
-				<h5 class="modal-title text-light px-5" id="exampleModalLongTitle">Sum Inventory: {{sumProDet}} Items</h5>
+				<h5 class="modal-title text-light px-5" id="exampleModalLongTitle">Sum Inventory: {{sumProDet}} {{sumProDet>1 ? 'Items' : 'Item'}}</h5>
 				<button type="button" class="close text-light" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -104,8 +104,8 @@
 								ng-src="{{item.product.image ? '/assets/images/' + item.product.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 							<td>{{item.product.id}}</td>
 							<td style="max-width: 250px"><a href="" ng-click="viewProDetail(item.product)" class="btn btn-outline-primary">{{item.product.name}}</a></td>
-							<td>{{item.product.price}}</td>
-							<td>{{item.product.discount}}</td>
+							<td>${{item.product.price}}</td>
+							<td>{{item.product.discount}}%</td>
 							<td>{{item.product.category.name}}</td>
 							<td>{{item.product.brand.name}}</td>
 							<td>{{item.product.gender.name}}</td>
@@ -134,14 +134,10 @@
 		style="max-width: 50%">
 		<div class="modal-content">
 			<div class="modal-header bg-secondary text-light">
-				<h5>Product ID: <span
-							style="text-transform: uppercase; font-weight: bolder">{{product.id}}</span></h5>
-				<h5 class="pl-5">Product Name: <span
-							style="text-transform: uppercase; font-weight: bolder">{{product.name}}</span></h5>
-				<h5 class="pl-5">Count Product: <span
-							style="text-transform: uppercase; font-weight: bolder">{{countProDet}}</span></h5>
-				<h5 class="pl-5">Sum Inventory: <span
-							style="text-transform: uppercase; font-weight: bolder">{{countProDetail}}</span></h5>
+				<h5>Product ID: <span>{{product.id}}</span></h5>
+				<h5 class="pl-5">Product Name: <span>{{product.name}}</span></h5>
+				<h5 class="pl-5">Count Product: <span>{{countProDet}} {{countProDet>1 ? 'Items' : 'Item'}}</span></h5>
+				<h5 class="pl-5">Sum Inventory: <span>{{countProDetail}} {{countProDetail>1 ? 'Items' : 'Item'}}</span></h5>
 				<button type="button" class="close text-light" data-dismiss="modal" ng-click="CloseProDetail()"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -164,7 +160,7 @@
 								ng-src="{{item.image ? '/assets/images/' + item.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 							<td><span class="p-2 text-light" style="background-color:rgb({{item.color.red}}, {{item.color.green}}, {{item.color.blue}})">{{item.color.name}}</span></td>
 							<td>{{item.size.name}}</td>
-							<td ng-init="$parent.totalPro = $parent.totalPro + item.quantity">{{item.quantity}}</td>
+							<td ng-init="$parent.totalPro = $parent.totalPro + item.quantity">{{item.quantity}} {{item.quantity>1?'Items':'Item'}}</td>
 							<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 						</tr>
 					</tbody>
@@ -213,7 +209,7 @@
 							<th></th>
 							<td>{{item.color.id}}</td>
 							<td style="width: 250px"><a href="" class="btn text-light"  style="background-color:rgb({{item.color.red}}, {{item.color.green}}, {{item.color.blue}})" ng-click="viewProductToColorTrenTop(item.color)">{{item.color.name}}</a></td>
-							<td>{{item.seller}}</td>
+							<td>{{item.seller}} {{item.seller>1?'Items':'Item'}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -235,10 +231,10 @@
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document"
-		style="max-width: 40%">
+		style="max-width: 50%">
 		<div class="modal-content">
 			<div class="modal-header text-light" style="background-color:rgb({{color.red}}, {{color.green}}, {{color.blue}})">
-				<h5 class="modal-title" id="exampleModalLongTitleBrand">ProductDetail Of
+				<h5 class="modal-title" id="exampleModalLongTitleBrand">Product Detail Of
 					Color : {{color.name}}</h5>
 				<button type="button" class="close" data-dismiss="modal" ng-click="closeProductTop()"
 					aria-label="Close">
@@ -265,11 +261,11 @@
 								ng-src="{{item.product.image ? '/assets/images/' + item.product.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 							<td>{{item.product.id}}</td>
 							<td>{{item.product.name}}</td>
-							<td>{{item.product.price}}</td>
-							<td>{{item.product.discount}}</td>
+							<td>${{item.product.price}}</td>
+							<td>{{item.product.discount}}%</td>
 							<td>{{item.product.gender.name}}</td>
 							<td>{{item.product.brand.name}}</td>
-							<td>{{item.value}}</td>
+							<td>{{item.value}} {{item.value>1?'Items':'Item'}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -317,7 +313,7 @@
 							<th></th>
 							<td>{{item.color.id}}</td>
 							<td style="width: 250px"><a href="" class="btn text-light" style="background-color:rgb({{item.color.red}}, {{item.color.green}}, {{item.color.blue}})"  ng-click="viewProductFromColor(item.color)">{{item.color.name}}</a></td>
-							<td>{{item.inventory}}</td>
+							<td>{{item.inventory}} {{item.inventory>1?'Items':'Item'}}</td>
 						</tr>
 					</tbody>
 				</table>

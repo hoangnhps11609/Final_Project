@@ -90,7 +90,7 @@
 							<th></th>
 							<td>{{item.size.id}}</td>
 							<td style="width: 250px"><a href="" class="btn btn-outline-primary" ng-click="viewProductToSizeTrenTop(item.size)">{{item.size.name}}</a></td>
-							<td>{{item.seller}}</td>
+							<td>{{item.seller}} {{item.seller>1?'Items':'Item'}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -120,7 +120,7 @@
 				<h5 class="modal-title" id="exampleModalLongTitleBrand">ProductDetail Of
 					Size : {{color.name}}</h5>
 				<h5 class="modal-title px-5" id="exampleModalLongTitleBrand">Inventory:
-					{{sumProInSize}}</h5>
+					{{sumProInSize}} {{sumProInSize>1?'Items':'Item'}}</h5>
 				<button type="button" class="close text-light" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -150,9 +150,9 @@
 								{{item.product.name}}</td>
 							<td>{{item.color.name}}</td>
 							<td>{{item.size.name}}</td>
-							<td>{{item.quantity}}</td>
+							<td>{{item.quantity}} {{item.quantity>1?'Items':'Item'}}</td>
 							<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
-							<td>{{item.available}}</td>
+							<td>{{item.available?'Seller':'Out Of Stock'}}</td>
 
 						</tr>
 					</tbody>
@@ -178,7 +178,7 @@
 		style="max-width: 50%">
 		<div class="modal-content">
 			<div class="modal-header bg-warning text-light">
-				<h5 class="modal-title" id="exampleModalLongTitleBrand">ProductDetail Of
+				<h5 class="modal-title" id="exampleModalLongTitleBrand">Product Detail Of
 					Size : {{color.name}}</h5>
 				<button type="button" class="close text-light" data-dismiss="modal"
 					aria-label="Close">
@@ -206,10 +206,10 @@
 							<td>{{item.product.id}}</td>
 							<td>{{item.product.name}}</td>
 							<td>${{item.product.price | number:1}}</td>
-							<td>{{item.product.discount}}</td>
+							<td>{{item.product.discount}}%</td>
 							<td>{{item.product.gender.name}}</td>
 							<td>{{item.product.brand.name}}</td>
-							<td>{{item.value}}</td>
+							<td>{{item.value}} {{item.value>1?'Items':'Item'}}</td>
 
 						</tr>
 					</tbody>
@@ -260,7 +260,7 @@
 							<th></th>
 							<td>{{item.size.id}}</td>
 							<td style="width: 250px"><a href="" class="btn btn-outline-primary" ng-click="viewProductfromSize(item.size)">{{item.size.name}}</a></td>
-							<td>{{item.inventory}}</td>
+							<td>{{item.inventory}} {{item.inventory>1?'Items':'Item'}}</td>
 						</tr>
 					</tbody>
 				</table>

@@ -68,7 +68,7 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 				$scope.message1 = "";
 				$scope.validateID = true;
 			}else{
-				$scope.message1 = "Username was registered";
+				$scope.message1 = "Category ID already exists";
 				$scope.validateID = false;
 			}
 			})

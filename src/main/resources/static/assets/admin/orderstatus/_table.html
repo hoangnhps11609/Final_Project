@@ -192,7 +192,7 @@
 									<div class="col-6">
 										Order ID: <span style="font-weight: bolder">{{order.id}}</span><br />
 										Order Purchases: <span style="font-weight: bolder">{{order.account.username}}</span><br />
-										Quantity Items: <span style="font-weight: bolder">{{order.quantity}} Items</span><br />
+										Quantity Items: <span style="font-weight: bolder">{{order.quantity}} {{order.quantity>1?'Items':'Item'}}</span><br />
 										Total Bill: <span style="font-weight: bolder">${{order.total | number: 1}}</span><br />
 									</div>
 									<div class="col-6">
@@ -225,7 +225,7 @@
 												{{item.productDetail.size.name}}</td>
 											<td>${{item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:1}}
 											</td>
-											<td>{{item.quantity}}</td>
+											<td>{{item.quantity}} {{item.quantity>1?'Items':'Item'}}</td>
 											<td>${{item.quantity*item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:1}}
 											</td>
 										</tr>

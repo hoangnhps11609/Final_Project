@@ -46,16 +46,13 @@
 					<td width="100px"><img
 						ng-src="{{item.image ? '/assets/images/' + item.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 					<td>{{item.id}}</td>
-					<td style="max-width: 250px" ng-click="viewall(item)"><a
-						href="">{{item.name}}</a></td>
-					<td>{{item.price | number:1}}</td>
+					<td style="max-width: 250px" ng-click="viewall(item)"><a href="" class="btn btn-outline-primary">{{item.name}}</a></td>
+					<td>${{item.price | number:1}}</td>
 					<td>{{item.discount}}%</td>
 					<td>{{item.category.name}}</td>
 					<td>{{item.gender.name}}</td>
 					<td>{{item.brand.name}}</td>
-					<td>{{item.available}}</td>
-
-
+					<td>{{item.available?'Seller':'Out Of Stock'}}</td>
 					<td>
 						<div class="btn-group btn-group-xs">
 							<button class="btn btn-warning mgr5px" ng-click="edit(item)">Edit</button>
@@ -83,25 +80,21 @@
 	<div class="modal-dialog modal-dialog-centered" style="max-width: 50%;"
 		role="document">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header bg-secondary text-light">
 				<div class="col row">
 					<h5 class="pt-1">
-							Product ID: <span
-								style="text-transform: uppercase; font-weight: bolder">{{product.id}}</span>
+							Product ID: <span>{{product.id}}</span>
 					</h5>
-					<h5 class="px-5 pt-1" style="width:420px">
-							Product Name: <span
-								style="text-transform: uppercase; font-weight: bolder">{{product.name}}</span>
+					<h5 class="px-5 pt-1">
+							Product Name: <span>{{product.name}}</span>
 					</h5>
-					<h5 style="padding-right:130px" class="pt-1">
-							Quantity: <span
-								style="text-transform: uppercase; font-weight: bolder">{{sumPro}}</span>
+					<h5 style="padding-right:150px" class="pt-1">
+							Quantity: <span>{{sumPro}} {{sumPro>1?'Items':'Item'}}</span>
 					</h5>
 					<button class="btn btn-warning" ng-click="adddetail(product)" >Add New Detail</button>
 				</div>
 			</div>
-				<div class="modal-body">
-				<div class="card-body">
+			<div class="modal-body">
 					<table class="table table-striped text-center">
 						<thead>
 							<tr>
@@ -119,7 +112,7 @@
 									ng-src="{{item1.image ? '/assets/images/' + item1.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 								<td>{{item1.color.name}}</td>
 								<td>{{item1.size.name}}</td>
-								<td>{{item1.quantity}}</td>
+								<td>{{item1.quantity}} {{item1.quantity>1?'Items':'Item'}}</td>
 								<td>{{item1.createDate | date:'dd-MM-yyyy'}}</td>
 								<td>
 									<div class="btn-group btn-group-xs">
@@ -143,8 +136,6 @@
 			</div>
 		</div>
 	</div>
-</div>
-</div>
 
 
 
@@ -377,7 +368,7 @@
 							<th></th>
 							<td>{{item.product.id}}</td>
 							<td style="width: 250px">{{item.product.name}}</td>
-							<td>{{item.seller}}</td>
+							<td>{{item.seller}} {{item.seller>1?'Items':'Item'}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -430,7 +421,7 @@
 							<td style="width: 250px"><a href=""
 								class="btn btn-outline-primary"
 								ng-click="viewProductToBrandTrenTop(item.brand)">{{item.product.name}}</a></td>
-							<td>{{item.inventory}}</td>
+							<td>{{item.inventory}} {{item.inventory>1?'Items':'Item'}}</td>
 						</tr>
 					</tbody>
 				</table>

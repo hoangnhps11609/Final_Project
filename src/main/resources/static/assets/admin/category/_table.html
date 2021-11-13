@@ -76,7 +76,7 @@
 					<h5>Product Of Category : <span
 							style="text-transform: uppercase; font-weight: bolder">{{category.name}}</span></h5>
 					<h5 class="px-5">Inventory: <span
-							style="text-transform: uppercase; font-weight: bolder">{{sumProInCate}} Item</span></h5>
+							style="text-transform: uppercase; font-weight: bolder">{{sumProInCate}} {{sumProInCate > 1 ? 'Items' : 'Item'}}</span></h5>
 					<a type="button" class="close text-light pt-3 pr-0"  data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -110,7 +110,7 @@
 							<td>{{item.discount}}%</td>
 							<td>{{item.gender.name}}</td>
 							<td>{{item.brand.name}}</td>
-							<td>{{item.available}}</td>
+							<td>{{item.available ? 'Seller' : 'Out Of Stock'}}</td>
 
 						</tr>
 					</tbody>
@@ -162,7 +162,7 @@
 							<th></th>
 							<td>{{item.category.id}}</td>
 							<td style="width: 250px"><a href="" class="btn btn-outline-primary" ng-click="viewProductTopCate(item.category)">{{item.category.name}}</a></td>
-							<td>{{item.seller}}</td>
+							<td>{{item.seller}} {{item.seller>1?'Items':'Item'}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -212,7 +212,7 @@
 							<th></th>
 							<td>{{item.category.id}}</td>
 							<td style="width: 250px"><a href="" class="btn btn-outline-primary" ng-click="viewProductToCate(item.category)">{{item.category.name}}</a></td>
-							<td>{{item.inventory}}</td>
+							<td>{{item.inventory}} {{item.inventory>1?'Items':'Item'}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -269,7 +269,7 @@
 								ng-src="{{item.image ? '/assets/images/' + item.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 							<td>{{item.color.name}}</td>
 							<td>{{item.size.name}}</td>
-							<td ng-init="$parent.totalPro = $parent.totalPro + item.quantity">{{item.quantity}}</td>
+							<td ng-init="$parent.totalPro = $parent.totalPro + item.quantity">{{item.quantity}} {{item.quantity>1?'Items':'Item'}}</td>
 							<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 						</tr>
 					</tbody>
@@ -329,7 +329,7 @@
 							<td>{{item.product.discount}}</td>
 							<td>{{item.product.gender.name}}</td>
 							<td>{{item.product.brand.name}}</td>
-							<td>{{item.value}}</td>
+							<td>{{item.value}} {{item.value>1?'Items':'Item'}}</td>
 						</tr>
 					</tbody>
 				</table>

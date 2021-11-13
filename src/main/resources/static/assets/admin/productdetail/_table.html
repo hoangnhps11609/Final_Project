@@ -16,9 +16,7 @@
 					<th scope="col" >Quantity</th>
 					<th scope="col" >Size</th>
 					<th scope="col" >Color</th>
-					<th style="position: relative;"><img style="width: 100px;height: 80px;position: absolute;top: -17px;right: 37px" 
-						src="/assets/images/xenoel1.png" alt="">
-					</th>
+					<th style="position: relative;"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -29,7 +27,7 @@
 						<img ng-src="{{item.image ? '/assets/images/' + item.image : '/assets/images/5aa47c07.png'}}" width="100%" height="100%"/>
 					</td>
 					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
-					<td>{{item.quantity}}</td>
+					<td>{{item.quantity}} {{item.quantity>1?'Items':'Item'}}</td>
 					<td>{{item.size.name}}</td>
 					<td>{{item.color.name}}</td>
 					<td>

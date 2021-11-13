@@ -39,7 +39,7 @@
 				<h3 style="font-weight: bolder">{{message}}</h3>
 			</div>
 			<div class="bg-secondary text-light col px-0 py-1 text-center" ng-show="to">
-				<h3 style="font-weight: bolder">Have {{countDate}} Accounts Created: {{from| date:'MM/dd/yyyy'}} - {{to| date:'MM/dd/yyyy'}}</h3>
+				<h3 style="font-weight: bolder">Have {{countDate}} {{countDate > 1 ? 'Account' : 'Accounts'}} Created: {{from| date:'MM/dd/yyyy'}} - {{to| date:'MM/dd/yyyy'}}</h3>
 			</div>
 		</div>
 		<table class="table table-striped text-center">
@@ -59,7 +59,7 @@
 				<tr ng-repeat="item in filtered = (pager.items | filter: query)">
 					<td><img ng-src="{{item.photo ? '/assets/images/' + item.photo  : '/assets/images/5aa47c07.png'}}"
 						width="50%" /></td>
-					<td ng-click="detailOrder(item)"><a href="" class="btn btn-outline-success">{{item.username}}</a></td>
+					<td ng-click="detailOrder(item)"><a href="" class="btn btn-outline-primary">{{item.username}}</a></td>
 					<td>{{item.fullname}}</td>
 					<td>{{item.phone}}</td>
 					<td>{{item.email}}</td>
@@ -121,7 +121,7 @@
 							<td>{{item.account.username}}</td>
 							<td>{{item.account.fullname}}</td>
 							<td>{{item.account.phone}}</td>
-							<td>{{item.count}}</td>
+							<td>{{item.count}} {{item.count>1 ? 'Orders' : 'Order'}}</td>
 							<td ng-show="item.count >= 7"><button
 									ng-click="detailOrder(item.account)"
 									class="btn btn-outline-warning"
@@ -171,10 +171,7 @@
 				</div>
 				<button ng-if="vForm == true && vTo == true && setTo > setFrom" ng-click="duoctao()" class="btn btn-primary float-right">Search</button>
 				<button ng-if="vForm == false || vTo == false" disabled="disabled" ng-click="duoctao()" class="btn btn-primary float-right">Search</button>
-				<button ng-if="setTo < setFrom && vForm == true && vTo == true" disabled="disabled" ng-click="duoctao()" class="btn btn-primary float-right">Search</button>
-				
-				
-			
+				<button ng-if="setTo < setFrom && vForm == true && vTo == true" disabled="disabled" ng-click="duoctao()" class="btn btn-primary float-right">Search</button>		
 			</div>
 		</div>
 	</div>
@@ -192,8 +189,7 @@
 					<h5>Order of Account: <span
 							style="text-transform: uppercase; font-weight: bolder">{{account.username}}</span></h5>
 					<h5 class="px-5">Sum of Product: <span
-							style="text-transform: uppercase; font-weight: bolder">{{totalPro}}
-							items</span></h5>
+							style="text-transform: uppercase; font-weight: bolder">{{totalPro}} {{totalPro >1 ? 'Items' : 'Item'}}</span></h5>
 					<h5>Sum of Bill: <span
 							style="text-transform: uppercase; font-weight: bolder">${{totalBill|number:1}}</span></h5>
 					<a type="button" class="close text-light pt-4 pr-0"  data-dismiss="modal"
@@ -224,7 +220,7 @@
 							<td>{{item.phone}}</td>
 							<td>{{item.address}}</td>
 							<td>{{item.createDate}}</td>
-							<td>{{item.quantity}}</td>
+							<td>{{item.quantity}} {{item.quantity>1 ?'Items':'Item'}}</td>
 							<td>${{item.total|number:1}}</td>
 						</tr>
 					</tbody>
@@ -254,7 +250,7 @@
 					<h5>Order ID: <span
 							style="text-transform: uppercase; font-weight: bolder">{{order.id}}</span></h5>
 					<h5 class="px-5">Quantity: <span
-							style="text-transform: uppercase; font-weight: bolder">{{order.quantity}} Item</span></h5>
+							style="text-transform: uppercase; font-weight: bolder">{{order.quantity}} {{order.quantity >1 ? 'Items' : 'Item'}}</span></h5>
 					<h5>Order Bill: <span
 							style="text-transform: uppercase; font-weight: bolder">${{order.total|number:1}}</span></h5>
 					<a type="button" class="close text-light pt-4 pr-0"  data-dismiss="modal" ng-click="closeOrderDetail()"
@@ -287,7 +283,7 @@
 								{{item.productDetail.size.name}}</td>
 							<td>${{item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:1}}
 							</td>
-							<td>{{item.quantity}}</td>
+							<td>{{item.quantity}} {{item.quantity>1 ? 'Items':'Item'}}</td>
 							<td>${{item.quantity*item.productDetail.product.price*(1-item.productDetail.product.discount*0.01)|number:1}}
 							</td>
 						</tr>

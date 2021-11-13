@@ -91,11 +91,11 @@
 							<td>{{item.id}}</td>
 							<td style="max-width: 250px"><a href=""
 								ng-click="proDetail(item)" class="btn btn-outline-primary">{{item.name}}</a></td>
-							<td>{{item.price | number:1}}</td>
+							<td>${{item.price | number:1}}</td>
 							<td>{{item.discount}}%</td>
 							<td>{{item.category.name}}</td>
 							<td>{{item.gender.name}}</td>
-							<td>{{item.available}}</td>
+							<td>{{item.available?'Seller':'Out Of Stock'}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -145,7 +145,7 @@
 							<th></th>
 							<td>{{item.brand.id}}</td>
 							<td style="width: 250px"><a href="" class="btn btn-outline-primary" ng-click="viewProductTopBrand(item.brand)">{{item.brand.name}}</a></td>
-							<td>{{item.seller}}</td>
+							<td>{{item.seller}} {{item.seller>1?'Items':'Item'}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -173,7 +173,7 @@
 				<h5 class="modal-title" id="exampleModalLongTitleBrand">Product Of
 					Brand : {{brand.name}}</h5>
 				<h5 class="modal-title px-5" id="exampleModalLongTitleBrand">Inventory:
-					{{sumProInBrand}}</h5>
+					{{sumProInBrand}} {{sumProInBrand>1?'Items':'Item'}}</h5>
 				<button type="button" class="close text-light" data-dismiss="modal" ng-click="closeProductInBrand()"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -206,7 +206,7 @@
 							<td>{{item.discount}}%</td>
 							<td>{{item.gender.name}}</td>
 							<td>{{item.category.name}}</td>
-							<td>{{item.available}}</td>
+							<td>{{item.available?'Seller':'Out Of Stock'}}</td>
 
 						</tr>
 					</tbody>
@@ -256,7 +256,7 @@
 							<th></th>
 							<td>{{item.brand.id}}</td>
 							<td style="width: 250px"><a href="" class="btn btn-outline-primary" ng-click="viewProductToBrandTrenTop(item.brand)">{{item.brand.name}}</a></td>
-							<td>{{item.inventory}}</td>
+							<td>{{item.inventory}} {{item.inventory>1?'Items':'Item'}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -284,7 +284,7 @@
 			<div class="modal-header bg-secondary text-light">
 				<h5 class="modal-title" id="exampleModalLongTitleBrand">Product ID: {{product.id}}</h5>
 				<h5 class="modal-title px-5" id="exampleModalLongTitleBrand">Name: {{product.name}}</h5>
-				<h5 class="modal-title" id="exampleModalLongTitleBrand">Quantity: {{countProDetail}} </h5>
+				<h5 class="modal-title" id="exampleModalLongTitleBrand">Quantity: {{countProDetail}} {{countProDetail>1?'Items':'Item'}}</h5>
 				<button type="button" class="close text-light" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -307,7 +307,7 @@
 								ng-src="{{item.image ? '/assets/images/' + item.image : '/assets/images/5aa47c07.png'}}" width="100%" /></td>
 							<td>{{item.color.name}}</td>
 							<td>{{item.size.name}}</td>
-							<td ng-init="$parent.totalPro = $parent.totalPro + item.quantity">{{item.quantity}}</td>
+							<td ng-init="$parent.totalPro = $parent.totalPro + item.quantity">{{item.quantity}} {{item.quantity>1?'Items':'Item'}}</td>
 							<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 						</tr>
 					</tbody>
@@ -363,11 +363,11 @@
 							<td>{{item.product.id}}</td>
 							<td style="max-width: 250px"><a href=""
 								ng-click="proDetail(item.product)" class="btn btn-outline-primary">{{item.product.name}}</a></td>
-							<td>{{item.product.price}}</td>
-							<td>{{item.product.discount}}</td>
+							<td>${{item.product.price}}</td>
+							<td>{{item.product.discount}}%</td>
 							<td>{{item.product.gender.name}}</td>
 							<td>{{item.product.category.name}}</td>
-							<td>{{item.value}}</td>
+							<td>{{item.value}} {{item.value>1?'Items':'Item'}}</td>
 						</tr>
 					</tbody>
 				</table>
