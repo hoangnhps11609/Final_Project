@@ -110,6 +110,11 @@ public class AccountServiceImp implements AccountService{
 		return adao.getTopInAccountByTime(from, to);
 	}
 
+	@Override
+	public Account findValidation(String validation) {
+		return adao.findValidation(validation);
+	}
+
 	
 
 }

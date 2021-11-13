@@ -51,9 +51,16 @@ public class AccountRestController {
 	
 	@GetMapping("get/{username}")
 	public Account getOne(@PathVariable("username") String username) {
-		return accService.findById(username);
+		Account acc = accService.findById(username);
+		return acc;
 	}
 	
+	
+	@GetMapping("getValidation/{validation}")
+	public Account getUsername(@PathVariable("validation") String validation) {
+		Account acc = accService.findValidation(validation);
+		return acc;
+	}
 	
 	
 	@PostMapping

@@ -66,6 +66,10 @@ public interface AccountDAO extends JpaRepository<Account, String>{
 
 	@Query("Select count(a) from Account a where a.createDate between ?1 and ?2 group by MONTH(a.createDate), YEAR(a.createDate)  order by count(a) desc")
 	List<Double> getTopInAccountByTime(Date from, Date to);
+
+	
+	@Query("Select DISTINCT a from Account a where a.username = ?1 or a.phone = ?1 or a.email = ?1")
+	Account findValidation(String validation);
 	
 	
 //	@Query(value="select acc.*, o.sodonhang, o.Tongtien\r\n"

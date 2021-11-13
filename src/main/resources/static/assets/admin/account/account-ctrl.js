@@ -92,9 +92,15 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 			$scope.message1 = "Username not allow special character or symbol";
 			$scope.vUsername = false;
 		}else{
+			$http.get(`/rest/accounts/getValidation/${u}`).then(resp => {
+			if(resp.data.length == 0){
 				$scope.message1 = "";
 				$scope.vUsername = true;
-			
+			}else{
+				$scope.message1 = "Username was registered";
+				$scope.vUsername = false;
+			}
+			})
 		}
 	}
 	
@@ -111,7 +117,7 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 
 	$scope.vFullname = false;
 	$scope.validateFullname = function(f) {
-		const specialRegex = /^[_A-z]*((-|\s)*[_A-z])*$/g;
+		const specialRegex = /^[^*?&!@#$%()^_+={}|\:";'<>?,.0-9~`]{0,30}$/;
 		if(f == null || f.length > 30){
 			$scope.message3 = "Name must be not null and less than 30 character";
 			$scope.vFullname = false;
@@ -134,8 +140,15 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 			$scope.message4 = "Invalid Email";
 			$scope.vEmail = false;
 		}else{
-			$scope.message4 = "";
-			$scope.vEmail = true;	
+			$http.get(`/rest/accounts/getValidation/${e}`).then(resp => {
+			if(resp.data.length == 0){
+				$scope.message4 = "";
+				$scope.vEmail = true;
+			}else{
+				$scope.message4 = "Email was registered";
+				$scope.vEmail = false;
+			}
+			})
 		}
 	}
 	
@@ -148,9 +161,16 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 			$scope.message5 = "Invalid Phonenumber";
 			$scope.vPhone = false;
 		}else{
-			$scope.message5 = "";
-			$scope.vPhone = true;
-			}
+			$http.get(`/rest/accounts/getValidation/${p}`).then(resp => {
+				if(resp.data.length == 0){
+					$scope.message5 = "";
+					$scope.vPhone = true;
+				}else{
+					$scope.message5 = "Number Phone was registered";
+					$scope.vPhone = false;
+				}
+			})
+		}
 	}
 	
 	$scope.vAddress = false;

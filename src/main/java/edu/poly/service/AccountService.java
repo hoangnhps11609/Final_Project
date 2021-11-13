@@ -45,4 +45,6 @@ public interface AccountService {
 	List<Double> getTopInAccountNoOrder();
 
 	List<Double> getTopInAccountByTime(Date from, Date to);
+
+	Account findValidation(String validation);
 }
