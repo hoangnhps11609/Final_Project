@@ -186,7 +186,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 	}
 	
 	$scope.vUsername = false;
-	$scope.validateRegisterUsername = function(u) {
+	$scope.validateUsername = function(u) {
 		const specialRegex = /^[A-Za-z0-9 ]+$/;
 		if( u.length < 6 || u.length > 25){
 			$scope.message1 = "Username must between 6 to 25 characters";
@@ -195,11 +195,18 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			$scope.message1 = "Username not allow special character or symbol";
 			$scope.vUsername = false;
 		}else{
+			$http.get(`/rest/accounts/getValidation/${u}`).then(resp => {
+			if(resp.data.length == 0){
 				$scope.message1 = "";
 				$scope.vUsername = true;
-			
+			}else{
+				$scope.message1 = "Username was registered";
+				$scope.vUsername = false;
+			}
+			})
 		}
 	}
+	
 	
 	$scope.getprofile= function(remoteUser){
 		
@@ -218,8 +225,8 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 
 	$scope.vFullname = false;
 	$scope.validateRegisterFullname = function(f) {
-		const specialRegex = /^[_A-z]*((-|\s)*[_A-z])*$/g;
-		if(f == null || f.length > 30){
+		const specialRegex = /^[^*?&!@#$%()^_+={}|\:";'<>?,.0-9~`]{0,30}$/;
+		if(f.length == 0 || f.length > 30){
 			$scope.message3 = "Name must be not null and less than 30 character";
 			$scope.vFullname = false;
 		}else if (f.match(specialRegex)){
@@ -248,8 +255,15 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			$scope.message4 = "Invalid Email";
 			$scope.vEmail = false;
 		}else{
-			$scope.message4 = "";
-			$scope.vEmail = true;	
+			$http.get(`/rest/accounts/getValidation/${e}`).then(resp => {
+			if(resp.data.length == 0){
+				$scope.message4 = "";
+				$scope.vEmail = true;
+			}else{
+				$scope.message4 = "Email was registered";
+				$scope.vEmail = false;
+			}
+			})
 		}
 	}
 	
@@ -262,9 +276,16 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			$scope.message5 = "Invalid Phonenumber";
 			$scope.vPhone = false;
 		}else{
-			$scope.message5 = "";
-			$scope.vPhone = true;
-			}
+			$http.get(`/rest/accounts/getValidation/${p}`).then(resp => {
+				if(resp.data.length == 0){
+					$scope.message5 = "";
+					$scope.vPhone = true;
+				}else{
+					$scope.message5 = "Number Phone was registered";
+					$scope.vPhone = false;
+				}
+			})
+		}
 	}
 	
 	$scope.vAddress = false;

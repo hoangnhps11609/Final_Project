@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.poly.entity.Account;
 import edu.poly.entity.Category;
 import edu.poly.entity.CategoryInventory;
 import edu.poly.entity.CategoryTop;
@@ -43,6 +44,12 @@ public class CategoryRestController {
 	public List<CategoryInventory> getCategoryInventory() {
 		List<CategoryInventory> list = cService.findCategoryInventory();
 		return list;
+	}
+	
+	@GetMapping("getValidation/{validation}")
+	public Category getID(@PathVariable("validation") String validation) {
+		Category cate = cService.findValidation(validation);
+		return cate;
 	}
 	
 	@GetMapping("getcate/{id}")

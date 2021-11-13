@@ -73,5 +73,11 @@ public class CategoryServiceImp implements CategoryService{
 		return cdao.getChio(id);
 	}
 
+	@Override
+	public Category findValidation(String validation) {
+		// TODO Auto-generated method stub
+		return cdao.findValidation(validation);
+	}
+
 
 }

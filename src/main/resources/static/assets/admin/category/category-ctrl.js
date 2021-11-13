@@ -59,16 +59,22 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 	
 	
 	$scope.validateCategoryId = function (c) {
-		if(c.length == 4){
-			$scope.message1 = "";		
-			$scope.validateID = true;
-			
-		
-		}else{
+		if(c.length > 4 || c.length < 4){
 			$scope.message1 = "ID must equal 4 characters";		
 			$scope.validateID = false;
+		}else{
+			$http.get(`/rest/categories/getValidation/${c}`).then(resp => {
+			if(resp.data.length == 0){
+				$scope.message1 = "";
+				$scope.validateID = true;
+			}else{
+				$scope.message1 = "Username was registered";
+				$scope.validateID = false;
+			}
+			})
 			
 		}
+		
 	}
 	
 	$scope.validateCategoryName = function (d) {

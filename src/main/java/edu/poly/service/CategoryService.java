@@ -34,6 +34,8 @@ public interface CategoryService {
 
 	List<CategoryTop> findCategoryTop();
 	
+	Category findValidation(String validation);
+
 	Optional<Category> getChio(String id);
 
 
