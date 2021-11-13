@@ -186,7 +186,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 	}
 	
 	$scope.vUsername = false;
-	$scope.validateUsername = function(u) {
+	$scope.validateRegisterUsername = function(u) {
 		const specialRegex = /^[A-Za-z0-9 ]+$/;
 		if( u.length < 6 || u.length > 25){
 			$scope.message1 = "Username must between 6 to 25 characters";
