@@ -61,15 +61,12 @@ app.controller("size-ctrl", function($scope, $http) {
 		$scope.vMota = false;
 		
 	}
+	
 	$scope.vName = false;
 	$scope.validateName = function(n) {
-	const specialRegex = /^[A-Za-z0-9 ]+$/;
 		if(n == null){
 			$scope.vName = false;
 			$scope.message1 = "Name not allow null";	
-		}else if(!n.match(specialRegex)){
-			$scope.vName = false;
-			$scope.message1 = "Name not allow special characters";	
 		}else{
 			$scope.vName = true;
 			$scope.message1 = "";	
