@@ -139,6 +139,8 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			})	
 		},
 		
+		
+		
 		clearPM(){
 			this.items = []
 			this.saveToLocalStorage();
@@ -325,7 +327,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 					  text: 'Check your order at "My Orders"',
 					  //footer: '<a href="">Why do I have this issue?</a>'
 					})
-					$scope.cart.clear();
+					$scope.cart.clearPM();
 					location.href = "/productdetail/update/" + resp.data.id;
 				})			
 			}).catch(error => {
