@@ -82,16 +82,20 @@
 		<div class="modal-content">
 			<div class="modal-header bg-secondary text-light">
 				<div class="col row">
-					<h5 class="pt-1">
+					<div class="col-10 row floast-left">
+						<h5 class="pt-1">
 							Product ID: <span>{{product.id}}</span>
-					</h5>
-					<h5 class="px-5 pt-1">
-							Product Name: <span>{{product.name}}</span>
-					</h5>
-					<h5 style="padding-right:150px" class="pt-1">
-							Quantity: <span>{{sumPro}} {{sumPro>1?'Items':'Item'}}</span>
-					</h5>
-					<button class="btn btn-warning" ng-click="adddetail(product)" >Add New Detail</button>
+						</h5>
+						<h5 class="px-5 pt-1">
+								Product Name: <span>{{product.name}}</span>
+						</h5>
+						<h5 class="pt-1">
+								Quantity: <span>{{sumPro}} {{sumPro>1?'Items':'Item'}}</span>
+						</h5>
+					</div>
+					<div class="col-2 float-right">
+						<button class="btn btn-warning" ng-click="adddetail(product)" >Add New Detail</button>					
+					</div>					
 				</div>
 			</div>
 			<div class="modal-body">
@@ -180,33 +184,36 @@
 							</div>
 						</div>
 						<div class="col-8">
-							<div class="row">
+							<div class="row" ng-show="isEdit == false">
 								<div class="form-group col-sm-12">
 									<div>Product ID</div>
-									<select class="form-control" id="move" name="move"
+									<select class="form-control" id="move" name="move" 
 										ng-model="form2.product.id">
+										<option value="" disabled="disabled">Choose Product</option>
 										<option ng-repeat="b in products2" ng-value="b.id">{{b.name}}</option>
 									</select>
 								</div>
 							</div>
 
 							<div class="row">
-								<div class="form-group col-sm-6">
+								<div class="form-group col-sm-5">
 									<div>Size:</div>
 									<select class="form-control" ng-model="form2.size.id">
+										<option value="" disabled="disabled">Choose Size</option>
 										<option ng-repeat="s in sizes" ng-value="s.id">{{s.name}}</option>
 									</select>
 								</div>
-								<div class="form-group col-sm-6">
+								<div class="form-group col-sm-7">
 									<div>Color:</div>
 									<div class="row">
-										<div class="col-5 pr-0">
+										<div class="col-6 pr-0">
 											<select class="form-control" ng-model="form2.color.id">
+												<option value="" disabled="disabled">Choose Color</option>
 												<option class="text-light" ng-repeat="c in colors"
 													ng-value="c.id" style="background-color: rgb({{c.red}},{{c.green}},{{c.blue}}">{{c.name}}</option>
 											</select>
 										</div>
-										<div class="col-7">
+										<div class="col-6">
 											<button class="btn btn-outline-dark"
 												style="width: 100%; font-weight: bolder"
 												ng-click="CreateNewColorModal()">Create New Color</button>
@@ -218,7 +225,7 @@
 							<div class="row">
 								<div class="form-group col-sm-6">
 									<div>Quantity:</div>
-									<input type="number" class="form-control"
+									<input type="number" class="form-control" min=0
 										ng-model="form2.quantity" />
 								</div>
 								<div class="form-group col-sm-6">
@@ -236,10 +243,11 @@
 						</div>
 					</div>
 				</div>
-				<button ng-click="createD()" class="btn btn-primary">Create</button>
-
-				<button ng-click="updateD(item)" class="btn btn-success">Update</button>
-				<button ng-click="resetD()" class="btn btn-info">Reset</button>
+				<div class="text-center">
+					<button ng-click="createD()" ng-if="isEdit == false" class="btn btn-primary col-2">Create</button>
+					<button ng-click="updateD(item)" ng-if="isEdit ==true" class="btn btn-success col-2">Update</button>
+					<button ng-click="resetD()" class="btn btn-info col-2">Reset</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -298,39 +306,43 @@
 								ng-model="form.id" hidden="hidden" />
 						</div>
 						<div class="row pb-2">
-							<div class="col-12">
-								<div class="row pl-2" style="height: 21px;">
-									New Color:
-									<p style="height: 21px;">&nbsp</p>
-									<p id="show2" class="pr-2 m-0" style="height: 21px;"></p>
-								</div>
-								<div id="color" style="height: 35px;"></div>
-							</div>
+							<div class="col-6">
+						<div class="row pl-2" style="height: 21px;">Color In Picture: <p style="height: 21px;">&nbsp</p><p id="show2" class="pr-2 m-0" style="height: 21px;"></p></div>
+						<div id="color" style="height: 35px;"></div>
+					</div>
+					<div class="col-6">
+						<div style="height: 21px;">Color: </div>
+						<div class="mr-0" style="background-color: rgb({{form.red}},{{form.green}},{{form.blue}}); height: 35px;"></div>
+					</div>
 						</div>
 						<div class="form-group pt-1">
 							<div>Name:</div>
-							<input class="form-control" ng-model="form.name" />
+							<input class="form-control" ng-model="form.name"  ng-change="ValidateColorName(form.name)"/>
+							<label style="color: red;">{{messageColorName}}</label>
 						</div>
 						<div class="form-group">
 							<div>Red:</div>
-							<input class="form-control" ng-model="form.red" id="red"
+							<input class="form-control" ng-model="form.red" id="red" ng-change="ValidateRed(form.red)" 
 								value="red" />
+							<label style="color: red;">{{messageRed}}</label>
 						</div>
 						<div class="form-group">
 							<div>Green:</div>
-							<input class="form-control" ng-model="form.green" id="green"
+							<input class="form-control" ng-model="form.green" id="green" ng-change="ValidateGreen(form.green)" 
 								value="green" />
+							<label style="color: red;">{{messageGreen}}</label>
 						</div>
 						<div class="form-group">
 							<div>Blue:</div>
-							<input class="form-control" ng-model="form.blue" id="blue"
+							<input class="form-control" ng-model="form.blue" id="blue" ng-change="ValidateBlue(form.blue)" 
 								value="blue" />
+							<label style="color: red;">{{messageBlue}}</label>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button ng-click="createColor()" class="btn btn-primary">Create</button>
+				<div class="text-center">
+					<button ng-click="createColor()" ng-show="vColorName == true && vRed == true && vGreen == true && vBlue == true" class="btn btn-primary col">Create</button>
+				</div>
 			</div>
 		</div>
 	</div>

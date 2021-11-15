@@ -56,29 +56,26 @@ public class GloballInterceptor implements HandlerInterceptor {
 		request.setAttribute("colors", colorService.findAll());
 		request.setAttribute("sizesforshoes", sizeService.findSizeByCate("Size For Shoes:" + "%"));
 		request.setAttribute("sizesforclothings", sizeService.findSizeByCate("Size For Clothings:" + "%"));
-//		List<Integer> listFalse = productService.findAvaiableFalse();
-//		for(int i = 0; i <= listFalse.size(); i++) {
-//			Product product = productService.findById(listFalse.get(i));
-//			product.setAvailable(false);
-//			productService.update(product);
-//			return;
-//		}
 		
-//		List<Integer> listTrue = productService.findAvaiableTrue();
-//		System.out.println(listTrue.get(1));
-//		for(int j = 0; j <= listTrue.size(); j++) {
-//			Product product = productService.findById(listTrue.get(j));
-//			product.setAvailable(true);
-//			productService.update(product);
-//			return;
-//		}
-//		
+		List<Integer> listFalse = productService.findAvaiableFalse();
+		for(int i = 0; i < listFalse.size(); i++) {
+			Product product = productService.findById(listFalse.get(i));
+			product.setAvailable(false);
+			productService.update(product);
+		}
 		
-//		List<Product> listTrue = productService.findAvaiableTrue();
-//		for(int i = 0; i <= listTrue.size(); i++) {
-//			Product product = listTrue.get(i);
-//			product.setAvailable(true);
-//			productService.update(product);
-//		}
+		List<Integer> listTrue = productService.findAvaiableTrue();
+		for(int j = 0; j < listTrue.size(); j++) {
+			Product product = productService.findById(listTrue.get(j));
+			product.setAvailable(true);
+			productService.update(product);
+		}
+		
+		List<Product> listNull = productService.findNullPD();
+		for(int i = 0; i < listNull.size(); i++) {
+			Product product = listNull.get(i);
+			product.setAvailable(false);
+			productService.update(product);
+		}
 	}
 }

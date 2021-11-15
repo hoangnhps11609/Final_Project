@@ -104,9 +104,14 @@ public interface ProductService {
 	List<TopSaleAllType> findProByTopBrandSale(Integer cateid);
 
 
-//	List<Integer> findAvaiableTrue();
-//
-//	List<Integer> findAvaiableFalse();
+
+
+	List<Integer> findAvaiableTrue();
+
+	List<Integer> findAvaiableFalse();
+
+
+	List<Product> findNullPD();
 
 
 

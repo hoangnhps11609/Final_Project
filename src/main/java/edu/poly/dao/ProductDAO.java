@@ -127,18 +127,18 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	("Select new TopSaleAllType(od.productDetail.product, sum(od.quantity)) From OrderDetail od where od.order.status=3 and od.productDetail.product.brand.id = ?1 group by od.productDetail.product.id")
 	List<TopSaleAllType> findProByTopBrandSale(Integer cateid);
 
-//	@Query
-//	("Select pd.product.id from ProductDetail pd group by pd.product.id having sum(pd.quantity) = 0")
-//	List<Integer> findAvaiableFalse();
+	@Query
+	("Select pd.product.id from ProductDetail pd group by pd.product.id having sum(pd.quantity) = 0")
+	List<Integer> findAvaiableFalse();
 
 
-//	@Query
-//	("select p from Product p where p.id not in(select distinct pd.product.id from ProductDetail pd)")
-//	List<Integer> findNullPD();
+	@Query
+	("select p from Product p where p.id not in(select distinct pd.product.id from ProductDetail pd)")
+	List<Product> findNullPD();
 	
-//	@Query
-//	("Select distinct pd.product.id from ProductDetail pd group by pd.product.id having sum(pd.quantity) > 0")
-//	List<Integer> findAvaiableTrue();
+	@Query
+	("Select distinct pd.product.id from ProductDetail pd group by pd.product.id having sum(pd.quantity) > 0")
+	List<Integer> findAvaiableTrue();
 
 	
 }

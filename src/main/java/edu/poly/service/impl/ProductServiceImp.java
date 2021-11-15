@@ -233,17 +233,23 @@ public class ProductServiceImp implements ProductService{
 	}
 
 
-//	@Override
-//	public List<Integer> findAvaiableFalse() {
-//		return productDAO.findAvaiableFalse();
-//	}
-//	
-//	@Override
-//	public List<Integer> findAvaiableTrue() {
-//		return productDAO.findAvaiableTrue();
-//	}
-//
-//
+	@Override
+	public List<Integer> findAvaiableFalse() {
+		return productDAO.findAvaiableFalse();
+	}
+	
+	@Override
+	public List<Integer> findAvaiableTrue() {
+		return productDAO.findAvaiableTrue();
+	}
+
+
+	@Override
+	public List<Product> findNullPD() {
+		return productDAO.findNullPD();
+	}
+
+
 
 
 }

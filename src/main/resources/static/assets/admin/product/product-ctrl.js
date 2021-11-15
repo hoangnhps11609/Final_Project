@@ -118,6 +118,16 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 		$scope.message3 = "";
 		$scope.message4 = "";
 		
+		$scope.messageColorName = "";
+		$scope.messageRed = "";
+		$scope.messageGreen = "";
+		$scope.messageBlue = "";
+		
+		
+		$scope.vColorName = false;
+		$scope.vRed = false;
+		$scope.vGreen = false;
+		$scope.vBlue = false;
 		$scope.vName = false;
 		$scope.vPrice = false;
 		$scope.vCategory = false;
@@ -285,6 +295,7 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 		$http.get(`/rest/products/getid/${a}`).then(resp => {
 			$scope.products2 = resp.data;
 			$scope.product = item;
+			$scope.isEdit = false;
 			$scope.resetD();
 		});
 		$('#exampleModalCenter1').appendTo("body").modal('show');
@@ -740,9 +751,6 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 	//Xóa sản phẩm mới
 	$scope.deletePrDe = function(item) {
 		$http.delete(`/rest/productdetails/${item.id}`).then(resp => {
-			$scope.initialize();
-			var index = $scope.items.findIndex(p => p.id == item.id);
-			$scope.items.splice(index, 1);
 			Swal.fire({
 				title: 'Are you sure?',
 				text: "You won't be able to revert this!",
@@ -758,6 +766,9 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 						'Your file has been deleted.',
 						'success'
 					)
+					$scope.initialize();
+					var index = $scope.items.findIndex(p => p.id == item.id);
+					$scope.items.splice(index, 1);
 					$('#viewAllModalCenter').appendTo("body").modal('hide');
 				}
 			})
@@ -784,7 +795,7 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 
 	$scope.editPrDe = function(item) {
 		$scope.form2 = angular.copy(item);
-		$scope.isEdit = "edit";
+		$scope.isEdit = true;
 		$('#exampleModalCenter1').appendTo("body").modal('show');
 		$('#viewAllModalCenter').appendTo("body").modal('hide');
 	}
@@ -815,6 +826,7 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 		$http.post(`/rest/colors`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
+			$scope.isEdit=true;
 			//alert("Thêm mới thành công");
 			const Toast = Swal.mixin({
 				toast: true,
@@ -887,4 +899,75 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 			this.page = this.count - 1;
 		}
 	}
+	
+	$scope.vColorName = false;
+	$scope.ValidateColorName = function(c) {
+		if(c.length < 2 || c.length > 50){
+			$scope.messageColorName = "Name must more than 2 & less than 50 characters";
+			$scope.vColorName = false;	
+		}else{
+			$scope.messageColorName = "";
+			$scope.vColorName = true;		
+		}
+	}
+	$scope.vRed = false;
+	
+	
+	$scope.ValidateRed = function(r) {
+	const characterRegex = /^\d+$/; 
+	const specialRegex = /^\d+$/;
+		if(r == null){
+			$scope.messageRed = "Please not null";	
+			$scope.vRed = false;			
+		}else if (!r.match(characterRegex) || !r.match(specialRegex)){
+			$scope.messageRed = "Only number please!";	
+			$scope.vRed = false;			
+		}else if(r > 255 || r < 0){
+			$scope.messageRed = "Number from 0 to 255";	
+			$scope.vRed = false;			
+		}else{
+				$scope.vRed = true;			
+				$scope.messageRed = "";	
+			}
+	}
+	
+	
+	$scope.vGreen = false;
+	$scope.ValidateGreen = function(g) {
+	const characterRegex = /^\d+$/; 
+	const specialRegex = /^\d+$/;
+		if(g == null){
+			$scope.messageGreen = "Please not null";	
+			$scope.vGreen = false;
+		}else if (!g.match(characterRegex) || !g.match(specialRegex)){
+			$scope.messageGreen = "Only number please!";	
+			$scope.vGreen = false;
+		}else if(g > 255 || g < 0){
+			$scope.messageGreen = "Number from 0 to 255";	
+				$scope.vGreen = false;
+		}else{
+				$scope.vGreen = true;
+				$scope.messageGreen = "";	
+			}
+	}
+	
+	$scope.vBlue = false;
+	$scope.ValidateBlue = function(b) {
+	const characterRegex = /^\d+$/; 
+	const specialRegex = /^\d+$/;
+		if(b == null){
+			$scope.messageBlue = "Please not null";	
+			$scope.vBlue = false;
+		}else if (!b.match(characterRegex) || !b.match(specialRegex)){
+			$scope.messageBlue = "Only number please!";	
+			$scope.vBlue = false;
+		}else if(b > 255 || b < 0){
+			$scope.messageBlue = "Number from 0 to 255";	
+			$scope.vBlue = false;
+		}else{
+			$scope.vBlue = true;
+				$scope.messageBlue = "";	
+			}
+	}
+	
 });

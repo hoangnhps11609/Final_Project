@@ -271,7 +271,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 	
 	$scope.vPhone = false;
 	$scope.validateRegisterPhone = function(p) {
-		const phoneRegex = /(09|01[2|6|8|9])+([0-9]{8})\b/;
+		const phoneRegex = /^(032|033|034|035|036|037|038|039|070|079|077|076|078|083|084|085|081|082|050|051|052|053|054|055|056|057|058|059|086|096|097|098|088|091|094|089|090|093|092|099)+([0-9]{7})$/;
 		const numberRegex = /^\d+$/;
 	
 		if( !p.match(phoneRegex) || !p.match(numberRegex)){
