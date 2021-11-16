@@ -158,8 +158,8 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 	$scope.vPrice = false;
 	$scope.validatePrice = function(p) {
 		const characterRegex = /^\d+$/; 
-		if(p == null){
-			$scope.message2 = "Price not allow null";
+		if(p == null || p == 0){
+			$scope.message2 = "Price Invalid";
 			$scope.vPrice = false;
 		}else if(!p.match(characterRegex)){
 			$scope.message2 = "Number only";
@@ -198,8 +198,8 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 	$scope.vDiscount = false;
 	$scope.validateDiscount = function(p) {
 		const characterRegex = /^\d+$/; 
-		if(p == null){
-			$scope.message3 = "Discount not allow null";
+		if(p == null || p < 0 || p > 99){
+			$scope.message3 = "Discount Invalid";
 			$scope.vDiscount = false;
 		}else if(!p.match(characterRegex)){
 			$scope.message3 = "Number only";

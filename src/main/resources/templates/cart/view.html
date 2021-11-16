@@ -58,7 +58,7 @@
 											${{item.product.price*(1-item.product.discount*0.01)|number:1}}
 											<div ng-if="item.product.discount > 0"
 												style="text-decoration: line-through; font-size: 14px; color: rgb(224, 224, 224);">
-												${{item.product.price}}</div>
+												${{item.product.price|number:1}}</div>
 										</td>
 										<td class="p-price first-row text-dark">{{item.size.name}}
 											- {{item.color.name}}</td>

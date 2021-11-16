@@ -43,6 +43,7 @@ public class Account  implements Serializable{
 
 	@NotEmpty
 	@Email
+	@Length(max = 50)
 	String email;
 
 	@NotEmpty
@@ -62,6 +63,7 @@ public class Account  implements Serializable{
 	Date createDate = new Date();
 
 	@NotEmpty
+	@Length(max = 250)
 	String address;
 
 

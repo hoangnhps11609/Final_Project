@@ -130,7 +130,11 @@ public class ProductController {
 			resultPage = productservice.findByPriceContaining(min, max, pageable);
 			model.addAttribute("max", max);
 			model.addAttribute("min", min);
-			model.addAttribute("findby", "Find by Price: to " + min + "$ from " + max + "$");
+			if(max > min) {
+				model.addAttribute("findby", "Find by Price: to " + min + "$ from " + max + "$");
+			}else {
+				model.addAttribute("findby", "Min, Max price Invalid, please check and search again!");
+			}
 		} else if (search != null) {
 			resultPage = productservice.findByKeyword("%" + search + "%", pageable);
 			model.addAttribute("search", search);

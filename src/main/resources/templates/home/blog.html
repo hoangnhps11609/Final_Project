@@ -123,7 +123,7 @@
 								<p>Show [[${blogPage.number*size
 									+ 1 }]] - [[${blogPage.number*size
 									+ blogPage.numberOfElements}]] Of
-									[[${blogPage.totalElements}]] Blog</p>
+									[[${blogPage.totalElements}]] Blogs</p>
 							</div>
 						</div>
 						</div>
@@ -140,7 +140,7 @@
 										<h4 th:utext="${blog.name}"></h4>
 									</a>
 									<p>
-										[[${blog.BlogCategory.name}]] <span><i class="fa fa-calendar-o"></i> [[${blog.createDate}]]</span>
+										[[${blog.BlogCategory.name}]] <span><i class="fa fa-calendar-o"></i>[[${#dates.format(blog.createDate, 'MM-dd-yyyy')}]]</span>
 									</p>
 								</div>
 							</div>

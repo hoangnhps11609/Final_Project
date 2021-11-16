@@ -31,13 +31,13 @@
 						<table class="table table-striped text-center">
 							<thead class="text-center">
 								<tr style="position: relative;">
-									<th style="width: 10%">Day(yyyy/MM/dd)</th>
+									<th style="width: 10%">Day(MM-dd-yyyy)</th>
 									<th style="width: 25%" scope="col">[[${seriesName}]]</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="item: ${list}">
-									<th>[[${item.day}]]</th>
+									<th>[[${#dates.format(item.day, 'MM-dd-yyyy')}]]</th>
 									<td>[[${item.value}]]</td>
 								</tr>
 							</tbody>

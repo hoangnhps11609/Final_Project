@@ -84,10 +84,28 @@ public class HomeController {
 		model.addAttribute("mShoesList", mShoesList);
 		List<Product> mAccessList = productService.findByCategoryIdandGender("1003", 1);
 		model.addAttribute("mAccessList", mAccessList);
-		
 		List<Blog> blog = blogService.findAll();
 		model.addAttribute("blogs", blog);
+		List<Integer> listFalse = productService.findAvaiableFalse();
+		for(int i = 0; i < listFalse.size(); i++) {
+			Product product = productService.findById(listFalse.get(i));
+			product.setAvailable(false);
+			productService.update(product);
+		}
 		
+		List<Integer> listTrue = productService.findAvaiableTrue();
+		for(int j = 0; j < listTrue.size(); j++) {
+			Product product = productService.findById(listTrue.get(j));
+			product.setAvailable(true);
+			productService.update(product);
+		}
+		
+		List<Product> listNull = productService.findNullPD();
+		for(int i = 0; i < listNull.size(); i++) {
+			Product product = listNull.get(i);
+			product.setAvailable(false);
+			productService.update(product);
+		}
 		return "home/home";
 	}
 	

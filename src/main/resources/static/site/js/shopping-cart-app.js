@@ -120,6 +120,13 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			
 		},
 		
+		//Xóa sản phẩm khỏi giỏ hàng header
+		removeHD(id){
+			var index = this.items.findIndex(item => item.id == id);
+			this.items.splice(index, 1);
+			this.saveToLocalStorage();
+		},
+		
 		//Xóa sạch các mặt hàng trong giỏ
 		clear(){
 			Swal.fire({
@@ -292,8 +299,8 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 	
 	$scope.vAddress = false;
 	$scope.validateRegisterAddress = function(a) {	
-		if( a == null || a.length == null || a.length <= 0){
-			$scope.message6 = "Address cannot null";
+		if( a == null || a.length == null || a.length <= 0 || a.length > 200){
+			$scope.message6 = "Address invalid";
 			$scope.vAddress = false;
 		}else{
 			$scope.message6 = "";

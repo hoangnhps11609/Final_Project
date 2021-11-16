@@ -73,13 +73,13 @@
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
-								<th style="width: 10%">Day(MM/dd/yyyy)</th>
+								<th style="width: 10%">Day(MM-dd-yyyy)</th>
 								<th style="width: 25%" scope="col">Revenue</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr ng-repeat="item in revenue10Day">
-								<th>{{item.day | date:'MM/dd/yyyy'}}</th>
+								<th>{{item.day | date:'MM-dd-yyyy'}}</th>
 								<td>${{item.value | number:1}}</td>
 							</tr>
 						</tbody>
@@ -96,13 +96,13 @@
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
-								<th style="width: 10%">Day(MM/dd/yyyy)</th>
+								<th style="width: 10%">Day(MM-dd-yyyy)</th>
 								<th style="width: 25%" scope="col">Revenue</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr ng-repeat="item in revenueMonth">
-								<th>{{item.day | date:'MM/dd/yyyy'}}</th>
+								<th>{{item.day | date:'MM-dd-yyyy'}}</th>
 								<td>${{item.value | number:1}}</td>
 							</tr>
 						</tbody>
@@ -138,8 +138,8 @@
 				<div class="col-6 offset-3" ng-if="type =='TimeRevenue' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">
-							Revenue By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}}
-							- {{to| date:'MM/dd/yyyy'}}
+							Revenue By Time (MM-dd-yyyy): <br />{{from| date:'dd-MM-yyyy'}}
+							- {{to| date:'dd-MM-yyyy'}}
 						</h3>
 					</div>
 					<table class="table table-striped text-center">
@@ -213,8 +213,8 @@
 				<div class="col-6 offset-3" ng-if="type =='TimeAccount' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">
-							Account By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}}
-							- {{to| date:'MM/dd/yyyy'}}
+							Account By Time (MM-dd-yyyy): <br />{{from| date:'dd-MM-yyyy'}}
+							- {{to| date:'dd-MM-yyyy'}}
 						</h3>
 					</div>
 					<table class="table table-striped text-center">
@@ -317,13 +317,13 @@
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
-								<th style="width: 10%">Day(MM/dd/yyyy)</th>
+								<th style="width: 10%">Day(MM-dd-yyyy)</th>
 								<th style="width: 25%" scope="col">Item</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr ng-repeat="item in itemMonth">
-								<th>{{item.day | date:'MM/dd/yyyy'}}</th>
+								<th>{{item.day | date:'MM-dd-yyyy'}}</th>
 								<td>{{item.value}}</td>
 							</tr>
 						</tbody>
@@ -335,8 +335,8 @@
 				<div class="col-6 offset-3" ng-if="type =='TimeItem' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">
-							Item By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}} -
-							{{to| date:'MM/dd/yyyy'}}
+							Item By Time (MM-dd-yyyy): <br />{{from| date:'dd-MM-yyyy'}} -
+							{{to| date:'dd-MM-yyyy'}}
 						</h3>
 					</div>
 					<table class="table table-striped text-center">
@@ -413,13 +413,13 @@
 					<table class="table table-striped text-center">
 						<thead>
 							<tr style="position: relative;">
-								<th style="width: 10%">Day(MM/dd/yyyy)</th>
+								<th style="width: 10%">Day(MM-dd-yyyy)</th>
 								<th style="width: 25%" scope="col">Orders</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr ng-repeat="item in orderMonth">
-								<th>{{item.day | date:'MM/dd/yyyy'}}</th>
+								<th>{{item.day | date:'MM-dd-yyyy'}}</th>
 								<td>{{item.value}}</td>
 							</tr>
 						</tbody>
@@ -431,8 +431,8 @@
 				<div class="col-6 offset-3" ng-if="type =='TimeOrder' && count > 0">
 					<div class="alert-info text-center text-info">
 						<h3 class="p-3">
-							Order By Time (MM/dd/yyyy): <br />{{from| date:'MM/dd/yyyy'}} -
-							{{to| date:'MM/dd/yyyy'}}
+							Order By Time (MM-dd-yyyy): <br />{{from| date:'MM-dd-yyyy'}} -
+							{{to| date:'MM-dd-yyyy'}}
 						</h3>
 					</div>
 					<table class="table table-striped text-center">

@@ -64,9 +64,9 @@ app.controller("size-ctrl", function($scope, $http) {
 	
 	$scope.vName = false;
 	$scope.validateName = function(n) {
-		if(n == null){
+		if(n == null || n.length > 50){
 			$scope.vName = false;
-			$scope.message1 = "Name not allow null";	
+			$scope.message1 = "Name not null or longer than 50 characters";	
 		}else{
 			$scope.vName = true;
 			$scope.message1 = "";	

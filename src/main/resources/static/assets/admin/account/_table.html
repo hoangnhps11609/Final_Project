@@ -64,7 +64,7 @@
 					<td>{{item.phone}}</td>
 					<td>{{item.email}}</td>
 					<td>{{item.address}}</td>
-					<td>{{item.createDate | date:'MM/dd/yyyy'}}</td>
+					<td>{{item.createDate | date:'MM-dd-yyyy'}}</td>
 					<td>
 						<div class="btn-group btn-group-xs">
 							<button class="btn btn-warning mgr5px" ng-click="edit(item)">Edit</button>
@@ -150,7 +150,7 @@
 <div class="modal fade" id="AccountDuocTaoModalCenter" tabindex="-1"
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="false">
-	<div class="modal-dialog " role="document" style="max-width: 15%">
+	<div class="modal-dialog " role="document" style="max-width: 20%">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalCenterTitle">Find
@@ -161,6 +161,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
+				<label style="color: red;" ng-if="vForm == false || vTo == false || setTo < setFrom">Invalid Start Date or End Date</label>
 				<div class="form-group">
 					From:<input type="date" placeholder="dd-mm-yyyy" class="form-control"
 						ng-model="duoctao.from" ng-change="validateFrom(duoctao.from)" />
@@ -219,7 +220,7 @@
 							<td>{{item.fullname}}</td>
 							<td>{{item.phone}}</td>
 							<td>{{item.address}}</td>
-							<td>{{item.createDate}}</td>
+							<td>{{item.createDate | date:'MM-dd-yyyy'}}</td>
 							<td>{{item.quantity}} {{item.quantity>1 ?'Items':'Item'}}</td>
 							<td>${{item.total|number:1}}</td>
 						</tr>

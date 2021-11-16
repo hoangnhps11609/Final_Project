@@ -13,7 +13,7 @@
 						<div class="blog-detail-title">
 							<h2 th:text="*{name}"></h2>
 							<p>
-								<o th:text="*{BlogCategory.name}"></o> - <span th:text="*{createDate}"></span>
+								<o th:text="*{BlogCategory.name}"></o> - <span th:text="*{#dates.format(createDate, 'MM-dd-yyyy')}"></span>
 							</p>
 						</div>
 						<div class="blog-large-pic">

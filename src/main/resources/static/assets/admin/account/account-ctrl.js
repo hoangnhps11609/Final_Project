@@ -136,19 +136,24 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 		if(e == null){
 			$scope.message4 = "Email cannot null";
 			$scope.vEmail = false;
-		}else if (!e.match(emailRegex)){
-			$scope.message4 = "Invalid Email";
+		}else if (!e.match(emailRegex) || e.length > 50){
+			$scope.message4 = "Invalid email or longer than 50 characters";
 			$scope.vEmail = false;
 		}else{
-			$http.get(`/rest/accounts/getValidation/${e}`).then(resp => {
-			if(resp.data.length == 0){
+			if($scope.isEdit == 'true'){
 				$scope.message4 = "";
 				$scope.vEmail = true;
 			}else{
-				$scope.message4 = "Email was registered";
-				$scope.vEmail = false;
+				$http.get(`/rest/accounts/getValidation/${e}`).then(resp => {
+					if(resp.data.length == 0){
+						$scope.message4 = "";
+						$scope.vEmail = true;
+					}else{
+						$scope.message4 = "Email was registered";
+						$scope.vEmail = false;
+					}
+				})
 			}
-			})
 		}
 	}
 	
@@ -161,22 +166,27 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 			$scope.message5 = "Invalid Phonenumber";
 			$scope.vPhone = false;
 		}else{
-			$http.get(`/rest/accounts/getValidation/${p}`).then(resp => {
-				if(resp.data.length == 0){
-					$scope.message5 = "";
-					$scope.vPhone = true;
-				}else{
-					$scope.message5 = "Number Phone was registered";
-					$scope.vPhone = false;
-				}
-			})
+			if($scope.isEdit == 'true'){
+				$scope.message5 = "";
+				$scope.vPhone = true;
+			}else{
+				$http.get(`/rest/accounts/getValidation/${p}`).then(resp => {
+					if(resp.data.length == 0){
+						$scope.message5 = "";
+						$scope.vPhone = true;
+					}else{
+						$scope.message5 = "Number Phone was registered";
+						$scope.vPhone = false;
+					}
+				})
+			}
 		}
 	}
 	
 	$scope.vAddress = false;
 	$scope.validateAddress = function(a) {	
-		if( a == null || a.length == null){
-			$scope.message6 = "Address cannot null";
+		if( a == null || a.length == null || a.length > 250){
+			$scope.message6 = "Address invalid or longer than 250 characters";
 			$scope.vAddress = false;
 		}else{
 			$scope.message6 = "";
@@ -398,6 +408,7 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 	
 	$scope.vForm = false;
 	$scope.vTo = false;
+	
 	$scope.validateFrom = function(f) {
 		if(f == null){
 			$scope.vForm = false;

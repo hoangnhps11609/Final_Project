@@ -34,7 +34,7 @@
 		<div class="modal fade" id="findByDateModalCenter" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalCenterTitle"
 			aria-hidden="false">
-			<div class="modal-dialog " role="document" style="max-width: 15%">
+			<div class="modal-dialog " role="document" style="max-width: 20%">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalCenterTitle">Find
@@ -46,6 +46,7 @@
 					</div>
 					<div class="modal-body">
 						<div class="">
+							<label style="color: red;" ng-if="vForm == false || vTo == false || setTo < setFrom">Invalid Start Date or End Date</label>
 							<div class="form-group">
 								<input type="date" placeholder="dd-mm-yyyy" class="form-control"
 									ng-model="statistic1.from1"  ng-change="validateFrom(statistic1.from1)" />
@@ -103,7 +104,7 @@
 
 	<div class="card-body">
 		<div class="{{bg}} text-light py-2 text-center" ng-if="message"><h4>{{message}}</h4></div>
-		<div class="bg-secondary text-light py-2 text-center" ng-if="message1"><h4>Find by Date: {{to| date:'dd/MM/yyyy'}} - {{from| date:'dd/MM/yyyy'}}</h4></div>
+		<div class="bg-secondary text-light py-2 text-center" ng-if="message1"><h4>Find by Date: {{to| date:'dd-MM-yyyy'}} - {{from| date:'dd-MM-yyyy'}}</h4></div>
 		<table class="table table-striped text-center">
 			<thead>
 				<tr>
@@ -116,7 +117,7 @@
 					<th scope="col" width="10%">Payment</th>
 					
 					<th scope="col" width="10%">Update Date</th>
-					<th scope="col" width="10%">Address Receiver</th>
+					<th style="max-width:200px">Address Receiver</th>
 					<th scope="col" width="10%">Status Order</th>
 					<th style="position: relative;" width="20%">Change Next Status</th>
 				</tr>
@@ -130,7 +131,7 @@
 					<td ng:if="item.payment==false"><span class="bg-warning text-light p-2" style="font-weight:bolder">COD</span></td>
 					<td ng:if="item.payment==true"><span class="bg-info text-light p-2" style="font-weight:bolder">Paypal</span></td>	
 					<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
-					<td>{{item.address}}</td>
+					<td style="max-width:200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{item.address}}</td>
 					<td ng:if="item.status==0" class="text-primary"
 						style="font-weight: bolder">Waiting for Confirm</td>
 					<td ng:if="item.status==1" class="text-info"
@@ -188,7 +189,7 @@
 								<h5>{{order.status == 0 ? 'Waiting Confirm' : order.status == 1 ? 'Confirmed' : order.status == 2 ? 'To Ship' : order.status == 3 ? 'Completed' : 'Cancelled Order'}}</h5>
 							</div>
 							<div class="card-body py-1">
-								<div class="row col pb-2 text-center">
+								<div class="row pb-2">
 									<div class="col-6">
 										Order ID: <span style="font-weight: bolder">{{order.id}}</span><br />
 										Order Purchases: <span style="font-weight: bolder">{{order.account.username}}</span><br />
@@ -198,7 +199,7 @@
 									<div class="col-6">
 										Receiver Name: <span style="font-weight: bolder">{{order.fullname}}</span><br />
 										Receiver Phone: <span style="font-weight: bolder">{{order.phone}}</span><br />
-										Receiver Address: <span style="font-weight: bolder">{{order.address}}</span><br />
+										Receiver Address: <span style="font-weight: bolder; overflow: hidden; text-overflow:ellipsis; white-space: nowrap;" class="row col">{{order.address}}</span><br />
 										Create Date: <span style="font-weight: bolder">{{order.createDate| date:'dd-MM-yyyy'}}</span><br />
 									</div>
 								</div>

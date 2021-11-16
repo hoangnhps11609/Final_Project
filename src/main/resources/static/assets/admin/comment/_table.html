@@ -188,7 +188,7 @@
 							<div class="col pt-1">Fullname: <span	style="text-transform: uppercase; font-weight: bolder">{{comment.account.fullname}}</span></div>
 							<div class="col pt-1">Product ID: <span	style="text-transform: uppercase; font-weight: bolder">{{comment.product.id}}</span></div>
 							<div class="col pt-1">Product Name: <span	style="text-transform: uppercase; font-weight: bolder">{{comment.product.name}}</span></div>
-							<div class="col pt-1">CreateDate: <span	style="text-transform: uppercase; font-weight: bolder">{{comment.createDate}}</span></div>
+							<div class="col pt-1">CreateDate: <span	style="text-transform: uppercase; font-weight: bolder">{{comment.createDate|date:'dd-MM-yyyy'}}</span></div>
 							<div class="col pt-1">Rate: 
 								<span style="text-transform: uppercase; font-weight: bolder" ng-if="comment.rate==5">Excellent</span>
 								<span style="text-transform: uppercase; font-weight: bolder" ng-if="comment.rate==4">Very Good</span>
