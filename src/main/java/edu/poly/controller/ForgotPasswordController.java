@@ -49,7 +49,6 @@ public class ForgotPasswordController {
 		String subject = "Send your Password!";
 		String body = "Your Password: ";
 		String randomPassword = RandomString.make(6);
-		
 		try {
 			Account user = dao.findById(username).get();
 				if(!user.getEmail().equals(email)) {
@@ -59,10 +58,12 @@ public class ForgotPasswordController {
 					dao.save(user);
 					mailer.send(email, subject, body+randomPassword);
 					model.addAttribute("message", "Please check your Email!");
+					return "security/login";
 				}
 		} catch (Exception e) {
 			model.addAttribute("message", "Account invalid!");
-		}
-		return "home/forgot-password";
+			return "home/forgot-password";
+		}		
+		return null;
 	}
 }

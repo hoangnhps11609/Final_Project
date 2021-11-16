@@ -32,6 +32,7 @@ public class SecurityController {
 	
 	@RequestMapping("/security/login/form")
 	public String loginForm(Model model) {
+		model.addAttribute("message", "");
 		return "security/login";
 	}
 	
@@ -42,6 +43,7 @@ public class SecurityController {
 	
 	@RequestMapping("/security/login/error")
 	public String loginError(Model model) {
+		model.addAttribute("message1", "Login failed!");
 		return "security/login";
 	}
 	
