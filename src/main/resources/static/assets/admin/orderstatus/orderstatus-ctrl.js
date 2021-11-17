@@ -18,6 +18,7 @@ app.controller("orderstatus-ctrl", function($scope, $http, $window, $route) {
 			}else{
 				$scope.message="";
 				$scope.message1="";
+				$scope.statistic.from = "";
 				$scope.items = resp.data;
 				$scope.items.forEach(item => {
 				})

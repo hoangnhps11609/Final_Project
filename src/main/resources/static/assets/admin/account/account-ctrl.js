@@ -21,6 +21,7 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 				$scope.items = resp.data;
 				$scope.count = resp.data.length;
 				$scope.message = "";
+				$scope.statistic.from = "";
 				$scope.to = null;
 				$scope.items.forEach(item => {
 				})

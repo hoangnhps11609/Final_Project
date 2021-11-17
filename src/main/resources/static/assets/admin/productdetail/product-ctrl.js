@@ -20,6 +20,7 @@ app.controller("productdetail-ctrl", function($scope, $http, $window) {
 				item.createDate = new Date(item.createDate);
 				$scope.reset();
 				$scope.message = "";
+				$scope.statistic.from = "";
 			})
 			}
 		});

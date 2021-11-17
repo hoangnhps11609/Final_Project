@@ -11,6 +11,7 @@ app.controller("category-ctrl", function ($scope, $http, $window) {
 				$scope.items = resp.data;
 				$scope.message = "";
 				$scope.to = null;
+				$scope.statistic.from = "";
 			}
 		});
 

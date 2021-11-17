@@ -7,6 +7,7 @@ app.controller("brand-ctrl", function($scope, $http, $window) {
 		$http.get("/rest/brands").then(resp => {
 				$scope.message = "";
 				$scope.to = null;
+			$scope.statistic.from = "";
 			$scope.items = resp.data;
 		});
 

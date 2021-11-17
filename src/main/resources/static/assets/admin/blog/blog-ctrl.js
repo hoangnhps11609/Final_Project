@@ -10,6 +10,7 @@ app.controller("blog-ctrl", function($scope, $http) {
 			}else{
 				$scope.message = "";
 				$scope.to = null;
+				$scope.statistic.from = "";
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 				item.createDate = new Date(item.createDate);

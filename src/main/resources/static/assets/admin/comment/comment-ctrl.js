@@ -6,7 +6,7 @@ app.controller("comment-ctrl", function ($scope, $http) {
 		$http.get("/rest/comments").then(resp => {
 			$scope.message = "";		
 			$scope.items = resp.data;
-			
+			$scope.statistic.from = "";
 		});
 
 	}

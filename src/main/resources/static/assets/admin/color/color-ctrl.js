@@ -10,6 +10,7 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 			}else{	
 				$scope.items = resp.data;
 				$scope.message = "";
+				$scope.statistic.from = "";
 			}
 		});
 
