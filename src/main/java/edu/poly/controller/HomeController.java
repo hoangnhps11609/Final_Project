@@ -2,6 +2,8 @@ package edu.poly.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -66,24 +68,11 @@ public class HomeController {
 	@Autowired
 	BlogService blogService;
 	
+	@Autowired
+	HttpServletRequest request;
+	
 	@RequestMapping({"/", "/home/index"})
-	public String home(Model model) {
-		List<Product> wmCloList = productService.findByCategoryIdandGender("1000", 2);
-		model.addAttribute("wmCloList", wmCloList);
-		List<Product> wmHandbagList = productService.findByCategoryIdandGender("1001", 2);
-		model.addAttribute("wmHandbagList", wmHandbagList);
-		List<Product> wmShoesList = productService.findByCategoryIdandGender("1002", 2);
-		model.addAttribute("wmShoesList", wmShoesList);
-		List<Product> wmAccessList = productService.findByCategoryIdandGender("1003", 2);
-		model.addAttribute("wmAccessList", wmAccessList);
-		List<Product> mCloList = productService.findByCategoryIdandGender("1000", 1);
-		model.addAttribute("mCloList", mCloList);
-		List<Product> mHandbagList = productService.findByCategoryIdandGender("1001", 1);
-		model.addAttribute("mHandbagList", mHandbagList);
-		List<Product> mShoesList = productService.findByCategoryIdandGender("1002", 1);
-		model.addAttribute("mShoesList", mShoesList);
-		List<Product> mAccessList = productService.findByCategoryIdandGender("1003", 1);
-		model.addAttribute("mAccessList", mAccessList);
+	public String home(Model model) {		
 		List<Blog> blog = blogService.findAll();
 		model.addAttribute("blogs", blog);
 		List<Integer> listFalse = productService.findAvaiableFalse();

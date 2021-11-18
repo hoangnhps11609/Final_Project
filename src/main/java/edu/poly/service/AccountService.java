@@ -2,6 +2,7 @@ package edu.poly.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
 
@@ -47,4 +48,10 @@ public interface AccountService {
 	List<Double> getTopInAccountByTime(Date from, Date to);
 
 	Account findValidation(String validation);
+
+	<S extends Account> S save(S account);
+	
+	Optional<Account> findByUsername(String id);
+
+	Account login(String username, String password);
 }
