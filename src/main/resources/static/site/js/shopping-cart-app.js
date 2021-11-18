@@ -188,6 +188,11 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		
 	}
 	
+		//load voucher
+	$http.get("/rest/vouchers").then(resp => {
+			$scope.vouchers = resp.data;
+	});
+	
 	$scope.cart.loadFormLocalStorage();
 
 	$scope.showPayment = function(){
@@ -216,9 +221,10 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		}
 	}
 	
+	$scope.vouchers = [];
 	
-	$scope.getprofile= function(remoteUser){
-		
+	$scope.voucherGet= function(vc){
+		alert(vc);
 	}
 	
 	$scope.vPassword = false;

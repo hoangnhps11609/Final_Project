@@ -83,6 +83,10 @@
 									<label style="color: red; font-size: 13px">{{message6}}</label>
 										
 									</div>
+									<select class="form-control"  ng-model="voucher.name"  ng-change="voucherGet(v.value)">
+									<option  value="" disabled="disabled">Choose available voucher:</option>
+									<option  ng-repeat="v in vouchers" ng-value="v.id">-{{v.value}}$ | {{v.name}}</option>
+								</select>
 								</div>
 								<br>
 
@@ -107,9 +111,11 @@
 										</ul>
 										<ul class="order-table mb-4">
 											<li class="total-price text-info">Quantity <span class="text-info">{{cart.count}} {{cart.count>1?'Items':'Item'}}</span></li>
+											<li >Voucher <span class="text-info">{{v.value}}</span></li>
 											<li class="total-price" style="color:#e7ab3c">Total <span
 												ng-model="order.total">${{cart.amount|number:1}}</span></li>
 										</ul>
+									
 										<div class="col row px-0 float-left">
 											<div class="col-1 pr-0" style="margin-bottom: 0">
 												<input ng-model="order.status" type="radio" value="0" ng-click="orderStatus(order.status)"
