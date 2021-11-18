@@ -29,18 +29,18 @@
                         	<p style="color: red; font-style: italic; font-size: 13pt;">[[${message1}]]</p>
                             <div class="group-input">
                                 <label>Username or email address *</label>
-                                <input type="text" name="username" required="" pattern="[a-z,A-Z,0-9]{3,25}" title="Tên đăng nhập phải từ 3-25 ký tự">
+                                <input type="text" name="username" pattern="[a-z,A-Z,0-9]{3,25}" title="Username Invalid">
                             </div>
                             <div class="group-input">
                                 <label>Password *</label>
-                                <input type="password" name="password" required="" pattern="[a-z,A-Z,0-9]{3,25}" title="Mật khẩu phải từ 3-25 ký tự">
+                                <input type="password" name="password">
                             </div>
                             <div class="group-input gi-check">
                                 <div class="gi-more">
-                                    <label for="save-pass">
-                                        Save Password
-                                        <input type="checkbox" id="save-pass">
-                                        <span class="checkmark"></span>
+                                    <label for="save-pass" class="pl-0">
+                                        Login with:
+                                        <a href="/oauth2/authorization/google" class="text-dark px-1">Google</a> 
+										<a href="/oauth2/authorization/facebook" class="text-dark">Facebook</a>
                                     </label>
                                     <a th:href="@{/home/forgot-password}"class="forget-pass">Forgot your Password</a>
                                 </div>

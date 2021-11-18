@@ -3,21 +3,29 @@ package edu.poly.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.microsoft.sqlserver.jdbc.StringUtils;
 
 import edu.poly.dao.AccountDAO;
 import edu.poly.service.AccountService;
 import edu.poly.entity.Account;
 import edu.poly.entity.CountOrderOfAccount;
 import edu.poly.entity.ReportAccountMonth;
+
 @Service
 public class AccountServiceImp implements AccountService{
 
 	@Autowired
 	AccountDAO adao;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Override
 	public Account findById(String username){
@@ -115,6 +123,34 @@ public class AccountServiceImp implements AccountService{
 		return adao.findValidation(validation);
 	}
 
+	@Override
+	public <S extends Account> S save(S account) {
+		Optional<Account> optExist = findByUsername(account.getUsername());
+		if (optExist.isPresent()) {
+			if (StringUtils.isEmpty(account.getPassword())) {
+				account.setPassword(optExist.get().getPassword());
+			} else {
+				account.setPassword(bCryptPasswordEncoder.encode(account.getPassword()));
+			}
+		}else {
+			account.setPassword(bCryptPasswordEncoder.encode(account.getPassword()));	
+		}
+		return adao.save(account);
+	}
 	
+	@Override
+	public Account login(String username, String password) {
+		Optional<Account> optExist = findByUsername(username);
+		if (optExist.isPresent() && bCryptPasswordEncoder.matches(password, optExist.get().getPassword())) {
+			optExist.get().setPassword("");
+			return optExist.get();
+		}
+		return null;
+	}
 
+	
+	@Override
+	public Optional<Account> findByUsername(String id) {
+		return adao.findById(id);
+	}
 }

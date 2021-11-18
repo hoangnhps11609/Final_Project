@@ -66,10 +66,12 @@
 													</div>
 													<div class="group-input gi-check">
 														<div class="gi-more">
-															<label for="save-pass"> Save Password <input
-																type="checkbox" id="save-pass"> <span
-																class="checkmark"></span>
-															</label> <a th:href="@{/home/forgot-password}"
+															<label for="save-pass" class="pl-0">
+						                                        Login with:
+						                                        <a href="/oauth2/authorization/google" class="text-dark px-1">Google</a> 
+																<a href="/oauth2/authorization/facebook" class="text-dark">Facebook</a>
+						                                    </label>
+															<a th:href="@{/home/forgot-password}"
 																class="forget-pass">Forgot your Password</a>
 														</div>
 													</div>

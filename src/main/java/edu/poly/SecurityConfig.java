@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
@@ -29,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	BCryptPasswordEncoder pe;
+	
 	
 	//cung cấp nguồn dữ liệu đăng nhập
 	@Override
@@ -74,6 +76,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.logout()
 			.logoutUrl("/security/logoff")
 			.logoutSuccessUrl("/security/logoff/success");
+		
+		// OAuth2 Login
+				http.oauth2Login().loginPage("/security/login/form")
+					.defaultSuccessUrl("/oauth2/login/success", true)
+					.failureUrl("/security/login/error")
+					.authorizationEndpoint()
+					.baseUri("/oauth2/authorization");
 	}
 	
 	//CƠ chế mã háo mật khẩu

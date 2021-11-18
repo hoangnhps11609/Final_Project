@@ -46,20 +46,20 @@ public class ForgotPasswordController {
 	public String change(Model model) {
 		String email = paramService.getString("email", "");
 		String username = paramService.getString("username", "");
-		String subject = "Send your Password!";
-		String body = "Your Password: ";
+		Account user = dao.findById(username).get();
+		String subject = "Fashi Shop: Send your Password";
 		String randomPassword = RandomString.make(6);
+		String body = "Dear " + user.getFullname() + "!\n" + "Thank you for contacting Fashi Fashion Shop. We are pleased to announce that your new password is: " + randomPassword;
 		try {
-			Account user = dao.findById(username).get();
-				if(!user.getEmail().equals(email)) {
-					model.addAttribute("message", "Wrong Email!");
-				}else {
-					user.setPassword(randomPassword);
-					dao.save(user);
-					mailer.send(email, subject, body+randomPassword);
-					model.addAttribute("message", "Please check your Email!");
-					return "security/login";
-				}
+			if(!user.getEmail().equals(email)) {
+				model.addAttribute("message", "Wrong Email!");
+			}else {
+				user.setPassword(randomPassword);
+				dao.save(user);
+				mailer.send(email, subject, body);
+				model.addAttribute("message", "Please check your Email!");
+				return "security/login";
+			}
 		} catch (Exception e) {
 			model.addAttribute("message", "Account invalid!");
 			return "home/forgot-password";
