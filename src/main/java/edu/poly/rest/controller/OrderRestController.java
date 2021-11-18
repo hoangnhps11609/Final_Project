@@ -93,20 +93,31 @@ public class OrderRestController {
 	@PutMapping("{id}")
 	public Order update2(@PathVariable("id") Long id, @RequestBody Order order) {
 		Optional<Order> a = orderService.getChio(id);
+		String beginNumberPhone = a.get().getPhone().substring(0, 3);
 		order.setId(id);
 		if(a.get().getStatus()==0) {
 			order.setStatus(1);
 		}else if (a.get().getStatus()==1) {
-			String phoneNumber = "+84" + a.get().getPhone().substring(1);
-			SmsRequest sms = new SmsRequest(phoneNumber, "Fashi Fashion Shop: Hi " + a.get().getFullname() + ", Your Order now is shipping to address '" + a.get().getAddress() + "'. Thanks you for buying in Fashi!");
-			String status=smsservice.sendsms(sms);
-			if("sent".equals(status)||"queued".equals(status)){
+			if (beginNumberPhone.equals("090")||beginNumberPhone.equals("093")||beginNumberPhone.equals("089")||beginNumberPhone.equals("070")||beginNumberPhone.equals("079")||beginNumberPhone.equals("078")||beginNumberPhone.equals("077")||beginNumberPhone.equals("076")) {
+				
 				order.setStatus(2);  
 				order.setFullname(a.get().getFullname());
 				order.setAddress(a.get().getAddress());
 				order.setCreateDate(a.get().getCreateDate());
 				order.setPhone(a.get().getPhone());
 				return orderService.update(order);
+			} else {
+				String phoneNumber = "+84" + a.get().getPhone().substring(1);
+				SmsRequest sms = new SmsRequest(phoneNumber, "Fashi Fashion Shop: Hi " + a.get().getFullname() + ", Your Order now is shipping to address '" + a.get().getAddress() + "'. Thanks you for buying in Fashi!");
+				String status=smsservice.sendsms(sms);
+				if("sent".equals(status)||"queued".equals(status)){
+					order.setStatus(2);  
+					order.setFullname(a.get().getFullname());
+					order.setAddress(a.get().getAddress());
+					order.setCreateDate(a.get().getCreateDate());
+					order.setPhone(a.get().getPhone());
+					return orderService.update(order);
+				}
 			}
 		}else if(a.get().getStatus()==2) {
 			order.setStatus(3);
