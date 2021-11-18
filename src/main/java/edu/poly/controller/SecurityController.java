@@ -82,6 +82,7 @@ public class SecurityController {
 	
 	@RequestMapping("/security/login/success")
 	public String loginSuccess(Model model) {
+		model.addAttribute("message1", "Login successfully!");
 		return "home/home";
 	}
 	
@@ -102,7 +103,7 @@ public class SecurityController {
 	}
 	
 	@RequestMapping("/oauth2/login/success")
-	public String success(OAuth2AuthenticationToken oauth2) throws MessagingException {
+	public String success(Model model, OAuth2AuthenticationToken oauth2) throws MessagingException {
 		userService.loginFromOAutḥ̣̣2(oauth2);
 		String username = request.getRemoteUser();
 		Optional<Account> account = accountService.findByUsername(username);
@@ -123,6 +124,7 @@ public class SecurityController {
 			accountService.create(item);
 			mailer.send(username, subject, body);
 		}
+		model.addAttribute("message1", "Login successfully!");
 		return "home/home";
 	}
 }

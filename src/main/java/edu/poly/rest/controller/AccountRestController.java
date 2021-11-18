@@ -65,8 +65,7 @@ public class AccountRestController {
 	
 	@PostMapping
 	public Account create(@RequestBody Account account) {
-	
-		return accService.create(account);
+		return accService.save(account);
 	}
 	
 	@PutMapping("{id}")
