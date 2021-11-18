@@ -39,4 +39,39 @@ public class VoucherRestController {
 		return vcService.findAll();
 	}
 	
+	@GetMapping("/getnewvoucher")
+	public List<Voucher> getNewVoucher(){
+		return vcService.getNewVoucher();
+	}
+	
+	@GetMapping("/getusedvoucher")
+	public List<Voucher> getUsedVoucher(){
+		return vcService.getUsedVoucher();
+	}
+	
+	@GetMapping("/findby/{keyword}")
+	public List<Voucher> findByKeyword(@PathVariable("keyword") String keyword){
+		return vcService.findVoucherByKeyword("%"+keyword+"%");
+	}
+	
+	@PostMapping
+	public Voucher create(@RequestBody Voucher account) {
+		return vcService.create(account);
+	}
+	
+	@DeleteMapping("{id}")
+	public void delete(@PathVariable("id") Integer id) {
+		vcService.delete(id);
+	}
+	
+	@PutMapping("{id}")
+	public Voucher update(@PathVariable("id") Integer id, @RequestBody Voucher voucher) {
+		return vcService.update(voucher);
+	}
+	
+	@GetMapping("getValidation/{validation}")
+	public Voucher getVCName(@PathVariable("validation") String validation) {
+		Voucher vc = vcService.findVoucherByName(validation);
+		return vc;
+	}
 }

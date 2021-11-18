@@ -1,0 +1,62 @@
+<div class="card ">
+	<div class="card-header">
+		<h3 class="noibacchu">Voucher Edition</h3>
+		<i class="fa fa-refresh "  ng-click="reset()"
+			style="font-size: 18px; position: absolute; right: 20px; top: 20px">
+			<span>Create New</span>
+		</i>
+	</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="offset-3 col-6">
+				<div class="form-group" >
+					<div>Voucher ID:</div>
+					<input class="form-control" ng-model="form.id" required="" readonly="readonly"/>
+				</div>
+				<div class="form-group">
+					<div>Name:</div>
+					<input class="form-control" ng-model="form.name" required="" ng-change="validateName(form.name)"/>
+					<label style="color: red;">{{message1}}</label>
+				</div>
+				<div class="form-group">
+					<div>Value:</div>
+					<input class="form-control" ng-model="form.value" required="" ng-change="validateValue(form.value)"/>
+					<label style="color: red;">{{message2}}</label>
+				</div>
+				<div class="form-group">
+					<div>Available:</div>
+						<label class="radio-inline px-3"> <input
+							ng-model="form.status" checked ng-value="true" ng-click="validateStatus()"
+							name="status" type="radio" />Yes
+						</label> <label class="radio-inline"> <input
+							ng-model="form.status" ng-value="false"  name="status" ng-click="validateStatus()"
+							type="radio" />No
+						</label>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="card-footer text-muted borbot text-center">
+		<div ng-if="isEdit == null" class="row">
+			<button ng-if="vName == true && vValue == true && vStatus == true" ng-click="create()"
+				class="btn btn-success offset-3 col-3 mr-2"
+				style="font-weight: bolder">Create</button>
+			<button ng-if="vName == false || vValue == false || vStatus == false " disabled="disabled" ng-click="create()"
+				class="btn btn-success offset-3 col-3 mr-2"
+				style="font-weight: bolder">Create</button>
+			<button ng-click="reset()" class="btn btn-info col-3 ml-2"
+				style="font-weight: bolder">Reset</button>
+		</div>
+		<div ng-if="isEdit == 'true'"  class="row">
+			<button ng-if="vName == true && vValue == true && vStatus == true"  ng-click="update(item)"
+				class="btn btn-warning offset-3 col-3 mr-2"
+				style="font-weight: bolder">Update</button>
+			<button ng-if="vName == false || vValue == false || vStatus == false " disabled="disabled" ng-click="update(item)"
+				class="btn btn-warning offset-3 col-3 mr-2"
+				style="font-weight: bolder">Update</button>
+			<button class="btn btn-danger col-3 ml-2" style="font-weight: bolder"
+				ng-click="delete(form)">Delete</button>
+		</div>
+	</div>
+</div>

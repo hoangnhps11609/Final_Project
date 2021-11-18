@@ -15,5 +15,15 @@ import edu.poly.entity.Voucher;
 @Repository
 public interface VoucherDAO extends JpaRepository<Voucher, Integer>{
 
+	@Query("Select a From Voucher a Where a.status = true")
+	List<Voucher> getNewVoucher();
 	
+	@Query("Select a From Voucher a Where a.status = false")
+	List<Voucher> getUsedVoucher();
+	
+	@Query("Select a From Voucher a Where a.name like ?1")
+	List<Voucher> findVoucherByKeyword(String keyword);
+	
+	@Query("Select a From Voucher a Where a.name = ?1")
+	Voucher findVoucherByName(String name);
 }

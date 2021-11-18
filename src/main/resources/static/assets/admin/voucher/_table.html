@@ -1,0 +1,84 @@
+<div class="card">
+	<div class="card-header">
+		<h3 class="noibacchu">List Voucher</h3>
+		<i class="fa fa-refresh " ng-click="initialize()"
+			style="font-size: 18px; position: absolute; right: 20px; top: 20px">
+			<span>Show All</span>
+		</i>
+		<div class="row pt-3">
+			<div class="col-2">
+				<button class="btn btn-outline-warning"
+					style="width: 100%; font-weight: bolder"
+					ng-click="NewVoucher()">New</button>
+			</div>
+			<div class="col-2">
+				<button class="btn btn-outline-warning"
+					style="width: 100%; font-weight: bolder"
+					ng-click="UsedVoucher()">Used</button>
+			</div>
+			
+				<div class="offset-6 col-2">
+				<button class="btn btn-info"
+					style="width: 100%; font-weight: bolder" ng-click="findbyDate()">Send Vouchers</button>
+			</div>
+		</div>
+		
+	</div>
+	<div class="card-body">
+		
+		<div class="row p-2">
+			<div class="bg-secondary text-light col px-0 py-1 text-center" ng-show="message">
+				<h3 style="font-weight: bolder">{{message}}</h3>
+			</div>
+		</div>
+		<table class="table table-striped text-center">
+			<thead>
+				<tr style="position: relative;">
+					<th style="width: 15%" scope="col">ID</th>
+					<th style="width: 15%" scope="col">Name</th>
+					<th style="width: 20%" scope="col">Value</th>
+					<th style="width: 10%" scope="col">Status</th>
+					<th style="width: 20%"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in filtered = (pager.items | filter: query)">
+					<td>{{item.id}}</td>
+					<td>{{item.name}}</td>
+					<td>{{item.value}}</td>
+					<td style="color: green;" ng-if="item.status == true">New</td>
+					<td style="color: red;" ng-if="item.status == false">Used</td>
+					
+					<td>
+						<div class="btn-group btn-group-xs">
+							<button class="btn btn-warning mgr5px" ng-click="edit(item)">Edit</button>
+							<button class="btn btn-danger" ng-click="delete(item)">Delete</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="card-footer text-muted text-center">
+		<button class="btn btn-primary" ng-click="pager.first()">First</button>
+		<button class="btn btn-primary" ng-click="pager.prev()">Prev</button>
+		<button class="btn btn-success">{{pager.page+1}} of
+			{{pager.count}}</button>
+		<button class="btn btn-primary" ng-click="pager.next()">Next</button>
+		<button class="btn btn-primary" ng-click="pager.last()">Last</button>
+	</div>
+</div>
+
+
+
+
+<!-- No Data Modal -->
+<div class="modal fade" id="NoDataModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+      	<img ng-src="{{'/assets/images/nodata_1.png'}}" class="border" alt="" height="300px"/>
+      </div>
+    </div>
+  </div>
+</div>

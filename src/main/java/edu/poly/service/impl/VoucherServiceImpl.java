@@ -29,6 +29,47 @@ public class VoucherServiceImpl implements VoucherService{
 		return vcDAO.findAll();
 	}
 
+	@Override
+	public List<Voucher> getNewVoucher() {
+		// TODO Auto-generated method stub
+		return vcDAO.getNewVoucher();
+	}
+
+	@Override
+	public List<Voucher> getUsedVoucher() {
+		// TODO Auto-generated method stub
+		return vcDAO.getUsedVoucher();
+	}
+
+	@Override
+	public List<Voucher> findVoucherByKeyword(String keyword) {
+		// TODO Auto-generated method stub
+		return vcDAO.findVoucherByKeyword(keyword);
+	}
+
+	@Override
+	public Voucher create(Voucher voucher) {
+		// TODO Auto-generated method stub
+		return vcDAO.save(voucher);
+	}
+
+	@Override
+	public void delete(Integer id) {
+		vcDAO.deleteById(id);
+	}
+
+	@Override
+	public Voucher update(Voucher voucher) {
+		// TODO Auto-generated method stub
+		return vcDAO.save(voucher);
+	}
+
+	@Override
+	public Voucher findVoucherByName(String name) {
+		// TODO Auto-generated method stub
+		return vcDAO.findVoucherByName(name);
+	}
+
 	
 
 	

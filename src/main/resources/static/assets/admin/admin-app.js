@@ -39,6 +39,9 @@ app.config(function ($routeProvider) {
 		}).when("/order", {
 			templateUrl: "/assets/admin/order/index.html",
 			controller: "order-ctrl"
+		}).when("/voucher", {
+			templateUrl: "/assets/admin/voucher/index.html",
+			controller: "voucher-ctrl"
 		}).when("/orderstatus", {
 			templateUrl: "/assets/admin/orderstatus/index.html",
 			controller: "orderstatus-ctrl"

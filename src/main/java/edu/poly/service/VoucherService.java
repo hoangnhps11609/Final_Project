@@ -12,5 +12,16 @@ import edu.poly.entity.Voucher;
 
 public interface VoucherService {
 	List<Voucher> findAll();
+	List<Voucher> getNewVoucher();
+	List<Voucher> getUsedVoucher();
+	List<Voucher> findVoucherByKeyword(String keyword);
+	Voucher create(Voucher account);
+	void delete(Integer id);
+	Voucher update(Voucher voucher);
+	Voucher findVoucherByName(String name);
+
+
+
+
 
 }
