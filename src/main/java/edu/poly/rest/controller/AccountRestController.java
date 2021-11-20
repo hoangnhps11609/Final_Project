@@ -19,8 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.poly.entity.Account;
 import edu.poly.entity.CountOrderOfAccount;
 import edu.poly.entity.Order;
+import edu.poly.entity.SmsRequest;
+import edu.poly.entity.Voucher;
 import edu.poly.service.AccountService;
 import edu.poly.service.OrderService;
+import edu.poly.service.SmsService;
+import edu.poly.service.VoucherService;
+import net.bytebuddy.utility.RandomString;
 
 import java.util.Optional;
 
@@ -34,6 +39,12 @@ public class AccountRestController {
 	
 	@Autowired
 	OrderService orderService;
+	
+	@Autowired
+	private SmsService smsservice;
+	
+	@Autowired
+	VoucherService vcService;
 	
 	@GetMapping
 	public List<Account> getAccounts(@RequestParam("admin")Optional<Boolean> admin){
@@ -65,8 +76,20 @@ public class AccountRestController {
 	
 	@PostMapping
 	public Account create(@RequestBody Account account) {
-//		return accService.save(account);
-		return accService.create(account);
+		Account newAccount = accService.create(account);
+		String randomCode = RandomString.make(15);
+		Voucher voucher = new Voucher();
+		voucher.setStatus(true);
+		voucher.setName(randomCode);
+		voucher.setValue(10.0);
+		vcService.create(voucher);
+		String beginNumberPhone = account.getPhone().substring(0, 3);
+		if (!beginNumberPhone.equals("090")||!beginNumberPhone.equals("093")||!beginNumberPhone.equals("089")||!beginNumberPhone.equals("070")||!beginNumberPhone.equals("079")||!beginNumberPhone.equals("078")||!beginNumberPhone.equals("077")||!beginNumberPhone.equals("076")) {
+			String phoneNumber = "+84" + account.getPhone().substring(1);
+			SmsRequest sms = new SmsRequest(phoneNumber, "Fashi Fashion Shop: Hi " + account.getFullname() + ", Welcome to Fashi, we sended a Voucher $10 for new account. " + "Voucher Code: " + randomCode + ". Thanks you for buying in Fashi!");
+			smsservice.sendsms(sms);
+		}
+		return newAccount;
 	}
 	
 	@PutMapping("{id}")

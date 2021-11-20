@@ -93,24 +93,24 @@ public class VoucherRestController {
 		return vcService.getVoucher(name);
 	}
 	
-	@GetMapping("/sendVoucherHPBD")
-	public List<Account> sendVoucherHPBD() {
-		List<Account> listacc = accountService.listHPBD(new Date());
-		for(int i=0; i<listacc.size(); i++) {
-			String randomCode = RandomString.make(15);
-			Voucher voucher = new Voucher();
-			voucher.setStatus(true);
-			voucher.setName(randomCode);
-			voucher.setValue(10.0);
-			vcService.create(voucher);
-			Account account = accountService.findById(listacc.get(i).getUsername());
-			String beginNumberPhone = account.getPhone().substring(0, 3);
-			if (!beginNumberPhone.equals("090")||!beginNumberPhone.equals("093")||!beginNumberPhone.equals("089")||!beginNumberPhone.equals("070")||!beginNumberPhone.equals("079")||!beginNumberPhone.equals("078")||!beginNumberPhone.equals("077")||!beginNumberPhone.equals("076")) {
-				String phoneNumber = "+84" + account.getPhone().substring(1);
-				SmsRequest sms = new SmsRequest(phoneNumber, "Fashi Fashion Shop: Hi " + account.getFullname() + ", Happy Birthday to you, we sended a Voucher $10. " + "Voucher Code: " + randomCode + ". Thanks you for buying in Fashi!");
-				smsservice.sendsms(sms);
-			}
-		}
-		return null;
-	}
+//	@GetMapping("/sendVoucherHPBD")
+//	public List<Account> sendVoucherHPBD() {
+//		List<Account> listacc = accountService.listHPBD(new Date());
+//		for(int i=0; i<listacc.size(); i++) {
+//			String randomCode = RandomString.make(15);
+//			Voucher voucher = new Voucher();
+//			voucher.setStatus(true);
+//			voucher.setName(randomCode);
+//			voucher.setValue(10.0);
+//			vcService.create(voucher);
+//			Account account = accountService.findById(listacc.get(i).getUsername());
+//			String beginNumberPhone = account.getPhone().substring(0, 3);
+//			if (!beginNumberPhone.equals("090")||!beginNumberPhone.equals("093")||!beginNumberPhone.equals("089")||!beginNumberPhone.equals("070")||!beginNumberPhone.equals("079")||!beginNumberPhone.equals("078")||!beginNumberPhone.equals("077")||!beginNumberPhone.equals("076")) {
+//				String phoneNumber = "+84" + account.getPhone().substring(1);
+//				SmsRequest sms = new SmsRequest(phoneNumber, "Fashi Fashion Shop: Hi " + account.getFullname() + ", Happy Birthday to you, we sended a Voucher $10. " + "Voucher Code: " + randomCode + ". Thanks you for buying in Fashi!");
+//				smsservice.sendsms(sms);
+//			}
+//		}
+//		return null;
+//	}
 }

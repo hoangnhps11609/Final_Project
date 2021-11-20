@@ -62,10 +62,6 @@ public class Account  implements Serializable{
 	@NotEmpty
 	Date createDate = new Date();
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name = "birthday")
-	@PastOrPresent
-	Date birthday;
 
 	@NotEmpty
 	@Length(max = 250)

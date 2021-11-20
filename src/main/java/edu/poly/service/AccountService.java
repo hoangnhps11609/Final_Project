@@ -55,5 +55,4 @@ public interface AccountService {
 
 	Account login(String username, String password);
 
-	List<Account> listHPBD(Date date);
 }

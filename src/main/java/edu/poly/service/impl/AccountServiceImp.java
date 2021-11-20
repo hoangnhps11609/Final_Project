@@ -154,8 +154,5 @@ public class AccountServiceImp implements AccountService{
 		return adao.findById(id);
 	}
 
-	@Override
-	public List<Account> listHPBD(Date date) {
-		return adao.listHPBD(date);
-	}
+
 }
