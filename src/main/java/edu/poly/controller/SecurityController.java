@@ -29,9 +29,11 @@ import org.springframework.web.servlet.ModelAndView;
 import edu.poly.dao.AccountDAO;
 import edu.poly.entity.Account;
 import edu.poly.entity.Gender;
+import edu.poly.entity.Voucher;
 import edu.poly.service.AccountService;
 import edu.poly.service.GenderService;
 import edu.poly.service.UserService;
+import edu.poly.service.VoucherService;
 import edu.poly.service.impl.MailerServiceImpl;
 import edu.poly.utils.ParamService;
 import edu.poly.utils.SessionService;
@@ -53,6 +55,9 @@ public class SecurityController {
 	
 	@Autowired
 	HttpServletRequest request;
+	
+	@Autowired
+	VoucherService vcService;
 	
 	@RequestMapping("/security/login/form")
 	public String loginForm(Model model) {
@@ -107,10 +112,16 @@ public class SecurityController {
 		userService.loginFromOAutḥ̣̣2(oauth2);
 		String username = request.getRemoteUser();
 		Optional<Account> account = accountService.findByUsername(username);
-		String subject = "Fashi Shop: Created New Account";
-		String randomPassword = RandomString.make(6);
-		String body = "Dear Customer! Welcome to Fashi Fashion Shop. \nWe have created a Account for you. \n" + "Your username: " + username + ".\n Your Password: " + randomPassword;
 		if (account.isEmpty()) {
+			String subject = "Fashi Shop: Created New Account";
+			String randomPassword = RandomString.make(6);
+			String randomCode = RandomString.make(15);
+			Voucher voucher = new Voucher();
+			voucher.setStatus(true);
+			voucher.setName(randomCode);
+			voucher.setValue(10.0);
+			String body = "Dear Customer! Welcome to Fashi Fashion Shop. \nWe have created a Account for you. \n" + "Your username: " + username + ".\n Your Password: " + randomPassword + ". And voucher $10: " + randomCode;
+			
 			Account item = new Account();
 			item.setUsername(username);
 			item.setPassword(randomPassword);
@@ -121,6 +132,7 @@ public class SecurityController {
 			item.setPhone("0900000000");
 			item.setCreateDate(new Date());
 			item.setAddress(username);
+			vcService.create(voucher);
 			accountService.create(item);
 			mailer.send(username, subject, body);
 		}

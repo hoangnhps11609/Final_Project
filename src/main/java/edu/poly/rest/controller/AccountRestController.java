@@ -83,6 +83,8 @@ public class AccountRestController {
 		voucher.setName(randomCode);
 		voucher.setValue(10.0);
 		vcService.create(voucher);
+		
+		
 		String beginNumberPhone = account.getPhone().substring(0, 3);
 		if (!beginNumberPhone.equals("090")||!beginNumberPhone.equals("093")||!beginNumberPhone.equals("089")||!beginNumberPhone.equals("070")||!beginNumberPhone.equals("079")||!beginNumberPhone.equals("078")||!beginNumberPhone.equals("077")||!beginNumberPhone.equals("076")) {
 			String phoneNumber = "+84" + account.getPhone().substring(1);
