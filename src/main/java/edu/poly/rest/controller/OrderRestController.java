@@ -157,6 +157,8 @@ public class OrderRestController {
 		Long quantity = orderDetailService.getQuantity(id);
 		Order order = orderService.findById(id);
 		order.setTotal(total);
+		order.setPay(total);
+		order.setVoucher(null);
 		order.setQuantity(quantity);
 		order.setPayment(false);
 		Order update = orderService.update(order);
@@ -169,6 +171,8 @@ public class OrderRestController {
 		Long quantity = orderDetailService.getQuantity(id);
 		Order order = orderService.findById(id);
 		order.setQuantity(quantity);
+		order.setPay(total);
+		order.setVoucher(null);
 		order.setTotal(total);
 		order.setPayment(true);
 		Order update = orderService.update(order);
@@ -182,7 +186,9 @@ public class OrderRestController {
 		Long quantity = orderDetailService.getQuantity(id);
 		Order order = orderService.findById(id);
 		order.setQuantity(quantity);
-		order.setTotal(total-vouchers.getValue());
+		order.setTotal(total);
+		order.setVoucher(vouchers);
+		order.setPay(total-vouchers.getValue());
 		order.setPayment(true);
 		Order update = orderService.update(order);
 		vouchers.setStatus(false);

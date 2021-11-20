@@ -173,38 +173,34 @@
 							</div>
 
 							<div class="col">
-								<div class="cart-table">
+								<div class="cart-table mb-2">
 									<table style="width: 1138px">
 										<thead>
 											<tr>
-												<th>Order ID</th>
+												<th>Order ID <br />(View Detail)</th>
 												<th>Fullname</th>
 												<th>Phone Number</th>
 												<th style="max-width:200px">Address</th>
 												<th>Create Date</th>
-												<th>Quantity</th>
-												<th>Total</th>
 												<th>Payment</th>
-												<th>Details</th>
+												<th>Total</th>
+												<th>V.Value</th>
+												<th>Pay</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr th:each="order, state: ${orderPage.content}">
-												<!-- 													<td scope="row">[[${state.index +1}]]</td> -->
-
-												<td scope="row">[[${order.id}]]</td>
-												<td style="max-width:200px; overflow: hidden; text-overflow: ellipsis;">[[${order.fullname}]]</td>
-												<td scope="row">[[${order.phone}]]</td>
-												<td style="max-width:200px; overflow: hidden; text-overflow: ellipsis;">[[${order.address}]]</td>
-												<td scope="row">[[${#dates.format(order.createDate, 'MM-dd-yyyy')}]]</td>
-												<td scope="row">[[${order.quantity}]]</td>
-												<td scope="row">$[[*{#numbers.formatDecimal(order.total, 0, 'COMMA', 1, 'POINT')}]]</td>
-												<td scope="row"> <span class="text-info p-1" style="font-weight:bolder; border-radius:2px">[[${order.payment ? 'Paypal' : 'COD'}]]</span></td>
-												<td><a th:href="@{|/order/detail/${order.id}|}"
-													class="text-success">Detail </a></td>
+												<td scope="row" class="py-2"><a th:href="@{|/order/detail/${order.id}|}" class="text-success btn btn-outline-success">[[${order.id}]]</a></td>
+												<td style="max-width:200px; overflow: hidden; text-overflow: ellipsis;" class="pb-0">[[${order.fullname}]]</td>
+												<td scope="row" class="py-2">[[${order.phone}]]</td>
+												<td style="max-width:200px; overflow: hidden; text-overflow: ellipsis;" class="py-2">[[${order.address}]]</td>
+												<td scope="row" class="py-2">[[${#dates.format(order.createDate, 'MM-dd-yyyy')}]]</td>
+												<td scope="row" class="py-2"> <span class="text-info p-1" style="font-weight:bolder; border-radius:2px">[[${order.payment ? 'Paypal' : 'COD'}]]</span></td>
+												<td scope="row" class="py-2">$[[*{#numbers.formatDecimal(order.total, 0, 'COMMA', 1, 'POINT')}]]</td>
+												<td scope="row" class="py-2">[[${order.voucher == null ? 'Null' : '$' + order.voucher.value}]]</td>
+												<td scope="row" class="py-2">$[[*{#numbers.formatDecimal(order.pay, 0, 'COMMA', 1, 'POINT')}]]</td>
 											</tr>
 										</tbody>
-
 									</table>
 								</div>
 							</div>

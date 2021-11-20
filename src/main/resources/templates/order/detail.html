@@ -55,6 +55,14 @@
 												$[[${#numbers.formatDecimal(order.total, 0, 'COMMA', 1, 'POINT')}]] for [[${order.quantity}]] <span th:text="${order.quantity > 1 ? 'Items' : 'Item'}"></span></span>
 										</p>
 										<p class="mb-1">
+											Voucher Value: <span class="font-weight-bold">
+												[[${order.voucher == null ? 'Null' : '$' + order.voucher.value}]]</span>
+										</p>
+										<p class="mb-1">
+											Pay: <span class="font-weight-bold">
+												$[[${#numbers.formatDecimal(order.pay, 0, 'COMMA', 1, 'POINT')}]]</span>
+										</p>
+										<p class="mb-1">
 											Expected Arrival: <span class="font-weight-bold">
 												[[${#dates.format(order.createDate, 'MM-dd-yyyy')}]]</span>
 										</p>
