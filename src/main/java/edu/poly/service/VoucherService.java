@@ -12,7 +12,7 @@ import edu.poly.entity.ReportAccountMonth;
 import edu.poly.entity.Voucher;
 
 public interface VoucherService {
-	List<Voucher> findAll();
+	List<Voucher> findAll(Sort sort);
 	
 	List<Voucher> getNewVoucher();
 	

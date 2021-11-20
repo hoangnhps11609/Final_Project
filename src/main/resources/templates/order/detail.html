@@ -63,10 +63,6 @@
 												$[[${#numbers.formatDecimal(order.pay, 0, 'COMMA', 1, 'POINT')}]]</span>
 										</p>
 										<p class="mb-1">
-											Expected Arrival: <span class="font-weight-bold">
-												[[${#dates.format(order.createDate, 'MM-dd-yyyy')}]]</span>
-										</p>
-										<p class="mb-1">
 											Payment: <span class="font-weight-bold"> [[${order.payment ? 'Paypal' : 'COD'}]]</span>
 										</p>
 									</div>
@@ -82,6 +78,10 @@
 										<p class="mb-1">
 											Receiver Phone:<span class="font-weight-bold">
 												[[${order.phone}]]</span>
+										</p>
+										<p class="mb-1">
+											Expected Arrival: <span class="font-weight-bold">
+												[[${#dates.format(order.createDate, 'MM-dd-yyyy')}]]</span>
 										</p>
 										<p>
 											Receiver Address:<span class="font-weight-bold">

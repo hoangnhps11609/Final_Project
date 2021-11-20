@@ -45,7 +45,7 @@ public class PaymentController {
 	@GetMapping("/pay/{orderId}")
 	public String index(Model model, @PathVariable("orderId") Long orderId){
 		Order order = orderService.findById(orderId);
-		model.addAttribute("totalBill", order.getTotal());
+		model.addAttribute("totalBill", order.getPay());
 		return "payment/index";
 	}
 	

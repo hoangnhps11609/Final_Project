@@ -70,41 +70,12 @@ app.controller("voucher-ctrl", function($scope, $http, $window) {
 		$scope.message2 = "";
 		$scope.message3 = "";
 		$scope.message4 = "";
-		$scope.vName = false;
 		$scope.vValue = false;
-		$scope.vStatus = false;
 		
 		
 		
 	}
 	
-	$scope.vName = false;
-	$scope.validateName = function(n) {
-		if( n == null){
-			$scope.message1 = "Name not allow null";
-			$scope.vName = false;
-		}else if(n.length > 10){
-			$scope.message1 = "Name not more than 10 characters";
-			$scope.vName = false;
-		}else{
-			if($scope.isEdit == 'true'){
-				$scope.message1 = "";
-				$scope.vName = true;
-			}else{
-				$http.get(`/rest/vouchers/getValidation/${n}`).then(resp => {
-				if(resp.data.length == 0){
-					$scope.message1 = "";
-					$scope.vName = true;
-				}else{
-					$scope.message1 = "VC Name already existed";
-					$scope.vName = false;
-				}
-				})
-			}
-			
-			
-		}
-	}
 	
 	$scope.vValue = false;
 	$scope.validateValue = function(v) {
@@ -121,17 +92,6 @@ app.controller("voucher-ctrl", function($scope, $http, $window) {
 			
 		}
 	}
-	
-	$scope.vStatus = false;
-	$scope.validateStatus = function() {
-		$scope.vStatus = true;	
-	}
-
-
-	
-	
-
-	
 
 	//hiển thị lên form
 	$scope.edit = function(item) {
@@ -140,9 +100,7 @@ app.controller("voucher-ctrl", function($scope, $http, $window) {
 		document.getElementById("homes").style.display = "block";
 		document.getElementById("lists").style.display = "none";
 		$scope.isEdit = "true";
-		$scope.vName = true;
 		$scope.vValue = true;
-		$scope.vStatus = true;
 	}
 	
 	
@@ -150,9 +108,9 @@ app.controller("voucher-ctrl", function($scope, $http, $window) {
 	//Thêm account mới
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
-		var name = item.name;
+		var value = item.value;
 		Swal.fire({
-			title: 'Confirm adding "' + name + '" to the voucher list?',
+			title: 'Confirm adding voucher with value "$' + value + '" to the voucher list?',
 			text: "",
 			icon: 'info',
 			showCancelButton: true,
@@ -167,7 +125,7 @@ app.controller("voucher-ctrl", function($scope, $http, $window) {
 					$scope.initialize();
 					Swal.fire(
 						'Successfully!',
-						'Added "' + name + '" to voucher list.',
+						'Added voucher with value "$' + value + '" to voucher list.',
 						'success'
 					)
 
@@ -176,7 +134,7 @@ app.controller("voucher-ctrl", function($scope, $http, $window) {
 
 					Swal.fire(
 						'Create Failure!',
-						'Can not add "' + name + '" !',
+						'Can not add voucher with value "$' + value + '" !',
 						'error'
 					)
 
@@ -321,6 +279,9 @@ app.controller("voucher-ctrl", function($scope, $http, $window) {
 	}
 
 
+	$scope.happyBirthdayVoucher = function(){
+		alert("dsad");
+	}
 		
 		
 

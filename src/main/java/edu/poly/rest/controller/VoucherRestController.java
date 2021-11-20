@@ -23,6 +23,7 @@ import edu.poly.entity.Voucher;
 import edu.poly.service.AccountService;
 import edu.poly.service.OrderService;
 import edu.poly.service.VoucherService;
+import net.bytebuddy.utility.RandomString;
 
 import java.util.Optional;
 
@@ -36,7 +37,7 @@ public class VoucherRestController {
 
 	@GetMapping()
 	public List<Voucher> getByDate(){
-		return vcService.findAll();
+		return vcService.findAll(Sort.by("id").descending());
 	}
 	
 	@GetMapping("/getnewvoucher")
@@ -56,6 +57,9 @@ public class VoucherRestController {
 	
 	@PostMapping
 	public Voucher create(@RequestBody Voucher account) {
+		String randomCode = RandomString.make(15);
+		account.setStatus(true);
+		account.setName(randomCode);
 		return vcService.create(account);
 	}
 	

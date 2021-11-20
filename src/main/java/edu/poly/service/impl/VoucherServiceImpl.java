@@ -25,9 +25,8 @@ public class VoucherServiceImpl implements VoucherService{
 	VoucherDAO vcDAO;
 	
 	@Override
-	public List<Voucher> findAll() {
-	
-		return vcDAO.findAll();
+	public List<Voucher> findAll(Sort sort) {
+		return vcDAO.findAll(sort);
 	}
 
 	@Override

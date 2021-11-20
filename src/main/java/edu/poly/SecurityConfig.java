@@ -58,6 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/admin/**").hasAnyRole("STAF","DIRE")
 			.antMatchers("/rest/authorities").hasRole("DIRE")
 			.antMatchers("/rest/reports/*").hasRole("DIRE")
+			.antMatchers("/rest/vouchers/*").hasRole("DIRE")
 			.antMatchers("/reports/*").hasRole("DIRE")
 			.anyRequest().permitAll();
 		http.formLogin()
