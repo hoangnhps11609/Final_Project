@@ -111,7 +111,6 @@
 										</ul>
 										<ul class="order-table mb-4">
 											<li class="total-price">Quantity: {{cart.count}} {{cart.count>1?'Items':'Item'}}<span class="text-dark">Order Total: ${{cart.amount|number:1}}</span></li>
-											<li ng-if="voucher.value > 0" class="total-price" style="color:#e7ab3c">Order Total <span>${{cart.amount|number:1}}</span></li>
 											<li ng-if="voucher.value > 0">Voucher Value<span class="text-info">${{voucher.value}}<span class="text-danger float-right" ng-click="deleteVoucher()">(Delete)</span></span></li>
 											<li class="total-price" style="color:#e7ab3c">Pay<span>${{cart.amount-voucher.value|number:1}}</span></li>
 										</ul>
