@@ -57,8 +57,8 @@ public class AccountRestController {
 	
 	
 	@GetMapping("getValidation/{validation}")
-	public Account getUsername(@PathVariable("validation") String validation) {
-		Account acc = accService.findValidation(validation);
+	public List<Account> getUsername(@PathVariable("validation") String validation) {
+		List<Account> acc = accService.findValidation(validation);
 		return acc;
 	}
 	

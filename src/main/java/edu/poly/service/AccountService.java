@@ -47,7 +47,7 @@ public interface AccountService {
 
 	List<Double> getTopInAccountByTime(Date from, Date to);
 
-	Account findValidation(String validation);
+	List<Account> findValidation(String validation);
 
 	<S extends Account> S save(S account);
 	

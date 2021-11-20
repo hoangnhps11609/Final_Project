@@ -68,8 +68,8 @@ public interface AccountDAO extends JpaRepository<Account, String>{
 	List<Double> getTopInAccountByTime(Date from, Date to);
 
 	
-	@Query("Select DISTINCT a from Account a where a.username = ?1 or a.phone = ?1 or a.email = ?1")
-	Account findValidation(String validation);
+	@Query("Select a from Account a where a.username = ?1 or a.phone = ?1 or a.email = ?1")
+	List<Account> findValidation(String validation);
 	
 	
 //	@Query(value="select acc.*, o.sodonhang, o.Tongtien\r\n"

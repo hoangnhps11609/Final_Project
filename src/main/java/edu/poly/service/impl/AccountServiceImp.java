@@ -119,7 +119,7 @@ public class AccountServiceImp implements AccountService{
 	}
 
 	@Override
-	public Account findValidation(String validation) {
+	public List<Account> findValidation(String validation) {
 		return adao.findValidation(validation);
 	}
 

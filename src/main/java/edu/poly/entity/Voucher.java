@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,4 +41,6 @@ public class Voucher{
 	
 	Boolean status;
 
+	@OneToOne(mappedBy = "voucher")
+    Order order;
 }

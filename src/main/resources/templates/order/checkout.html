@@ -77,26 +77,26 @@
 											date:'MM-dd-yyyy'}}</div>
 									</div>
 									<div class="col-lg-12">
-										<label for="cun-name">Shipping Address*<span>*</span></label>
+										<label for="cun-name">Shipping Address*</label>
 										<textarea rows="4" cols="" ng-model="order.address" ng-change="validateRegisterAddress(order.address)"
 											class="form-control mb-0"></textarea>
 									<label style="color: red; font-size: 13px">{{message6}}</label>
 										
 									</div>
-									<select class="form-control"  ng-model="voucher.name"  ng-change="voucherGet(v.value)">
-									<option  value="" disabled="disabled">Choose available voucher:</option>
-									<option  ng-repeat="v in vouchers" ng-value="v.id">-{{v.value}}$ | {{v.name}}</option>
-								</select>
+									<div class="discount-coupon col-12">
+										<form action="#" class="coupon-form">
+											<input type="text" placeholder="Enter your codes" ng-model="form.name">
+											<button type="submit" class="site-btn coupon-btn" ng-click="voucher()">Apply</button>
+										</form>
+									</div>
 								</div>
 								<br>
 
 							</div>
 							<div class="col-lg-6">
-
 								<div class="place-order" th:fragment="shopping_cart">
 									<div class="checkout-content voucher">
-										<input type="text" placeholder="Enter Your Coupon Code"
-											style="height: 46px !important; font-size: 18px;">
+										
 									</div>
 									<h4>Your Order</h4>
 
@@ -110,10 +110,10 @@
 											</li>
 										</ul>
 										<ul class="order-table mb-4">
-											<li class="total-price text-info">Quantity <span class="text-info">{{cart.count}} {{cart.count>1?'Items':'Item'}}</span></li>
-											<li >Voucher <span class="text-info">{{v.value}}</span></li>
-											<li class="total-price" style="color:#e7ab3c">Total <span
-												ng-model="order.total">${{cart.amount|number:1}}</span></li>
+											<li class="total-price">Quantity: {{cart.count}} {{cart.count>1?'Items':'Item'}}<span class="text-dark">Order Total: ${{cart.amount|number:1}}</span></li>
+											<li ng-if="voucher.value > 0" class="total-price" style="color:#e7ab3c">Order Total <span>${{cart.amount|number:1}}</span></li>
+											<li ng-if="voucher.value > 0">Voucher Value<span class="text-info">${{voucher.value}}<span class="text-danger float-right" ng-click="deleteVoucher()">(Delete)</span></span></li>
+											<li class="total-price" style="color:#e7ab3c">Pay<span>${{cart.amount-voucher.value|number:1}}</span></li>
 										</ul>
 									
 										<div class="col row px-0 float-left">

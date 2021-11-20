@@ -369,12 +369,18 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 			image: '5aa47c07.png',
 			available: true
 		};
+		$('#exampleModalCenter1').appendTo("body").modal('hide');
+		$scope.isEdit = false;
+		$('#exampleModalCenter1').appendTo("body").modal('show');
 	}
 
 	$scope.createD = function() {
 		var item = angular.copy($scope.form2);
 		$http.post(`/rest/productdetails`, item).then(resp => {
 			resp.data.createDate = new Date(resp.data.createDate)
+			$http.put(`/rest/products/get/${item.product.id}`, item).then(resp => {
+				$scope.initialize();
+			})
 			$scope.ODitems.push(resp.data);
 			$scope.resetD();
 			//alert("Thêm mới thành công");

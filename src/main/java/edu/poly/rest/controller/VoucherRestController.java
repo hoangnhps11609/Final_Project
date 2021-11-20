@@ -70,8 +70,14 @@ public class VoucherRestController {
 	}
 	
 	@GetMapping("getValidation/{validation}")
-	public Voucher getVCName(@PathVariable("validation") String validation) {
-		Voucher vc = vcService.findVoucherByName(validation);
+	public List<Voucher> getVCName(@PathVariable("validation") String validation) {
+		List<Voucher> vc = vcService.findVoucherByName(validation);
 		return vc;
+	}
+	
+	
+	@GetMapping("{name}")
+	public  Voucher getVoucher(@PathVariable("name") String name) {
+		return vcService.getVoucher(name);
 	}
 }

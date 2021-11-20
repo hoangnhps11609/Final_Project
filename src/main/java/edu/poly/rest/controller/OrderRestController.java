@@ -25,9 +25,11 @@ import edu.poly.entity.Order;
 import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
 import edu.poly.entity.SmsRequest;
+import edu.poly.entity.Voucher;
 import edu.poly.service.OrderDetailService;
 import edu.poly.service.OrderService;
 import edu.poly.service.SmsService;
+import edu.poly.service.VoucherService;
 
 @CrossOrigin("*")
 @RestController
@@ -41,6 +43,9 @@ public class OrderRestController {
 	
 	@Autowired
 	private SmsService smsservice;
+	
+	@Autowired
+	VoucherService vcService;
 
 	
 	@PostMapping()
@@ -129,13 +134,30 @@ public class OrderRestController {
 		return orderService.update(order);
 	}
 	
-	@PutMapping("/info/cashOnDelivery")
-	public Order updateIndo(@RequestBody Long id) {
+	@PutMapping("/info/cashOnDelivery/{voucher}")
+	public Order updateIndo(@RequestBody Long id, @PathVariable("voucher") String voucher) {
+		Voucher vouchers = vcService.getVoucher(voucher);
 		Double total = orderDetailService.getTotal(id);
 		Long quantity = orderDetailService.getQuantity(id);
 		Order order = orderService.findById(id);
-		order.setQuantity(quantity);
+		order.setPay(total-vouchers.getValue());
 		order.setTotal(total);
+		order.setVoucher(vouchers);
+		order.setQuantity(quantity);
+		order.setPayment(false);
+		Order update = orderService.update(order);
+		vouchers.setStatus(false);
+		Voucher updateVoucher = vcService.update(vouchers);
+		return update;
+	}
+	
+	@PutMapping("/info/cashOnDelivery")
+	public Order updateBt(@RequestBody Long id) {
+		Double total = orderDetailService.getTotal(id);
+		Long quantity = orderDetailService.getQuantity(id);
+		Order order = orderService.findById(id);
+		order.setTotal(total);
+		order.setQuantity(quantity);
 		order.setPayment(false);
 		Order update = orderService.update(order);
 		return update;
@@ -150,6 +172,21 @@ public class OrderRestController {
 		order.setTotal(total);
 		order.setPayment(true);
 		Order update = orderService.update(order);
+		return update;
+	}
+	
+	@PutMapping("/info/paypal/{voucher}")
+	public Order updateInfo(@RequestBody Long id, @PathVariable("voucher") String voucher) {
+		Voucher vouchers = vcService.getVoucher(voucher);
+		Double total = orderDetailService.getTotal(id);
+		Long quantity = orderDetailService.getQuantity(id);
+		Order order = orderService.findById(id);
+		order.setQuantity(quantity);
+		order.setTotal(total-vouchers.getValue());
+		order.setPayment(true);
+		Order update = orderService.update(order);
+		vouchers.setStatus(false);
+		Voucher updateVoucher = vcService.update(vouchers);
 		return update;
 	}
 	

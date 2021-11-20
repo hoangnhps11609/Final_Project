@@ -3,6 +3,7 @@ package edu.poly.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -65,9 +66,14 @@ public class VoucherServiceImpl implements VoucherService{
 	}
 
 	@Override
-	public Voucher findVoucherByName(String name) {
+	public List<Voucher> findVoucherByName(String name) {
 		// TODO Auto-generated method stub
 		return vcDAO.findVoucherByName(name);
+	}
+
+	@Override
+	public Voucher getVoucher(String name) {
+		return vcDAO.getVoucher(name);
 	}
 
 	

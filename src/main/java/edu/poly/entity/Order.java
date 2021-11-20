@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -50,6 +51,8 @@ public class Order  implements Serializable{
 	Long quantity;
 
 	Double total;
+	
+	Double pay;
 
 	@NotBlank
 	@NotEmpty
@@ -74,5 +77,9 @@ public class Order  implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy = "order")
 	List<OrderDetail> orderDetails;
+	
+	@OneToOne
+    @JoinColumn(name = "voucherid")
+    Voucher voucher;
 
 }

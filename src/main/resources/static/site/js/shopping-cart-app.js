@@ -9,6 +9,10 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 //	  imageHeight: 338,
 //	  imageAlt: 'Custom image',
 //	})
+
+	$scope.form = {};
+	
+	
 	
 	/*QUẢN LÝ GIỎ HÀNG*/
 	$scope.cart = {
@@ -328,6 +332,24 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 	}
 
 
+	$scope.voucher = function(){
+		var voucher = angular.copy($scope.form);
+		$http.get(`/rest/vouchers/${voucher.name}`).then(resp => {
+			if(resp.data.length == 0){
+				$scope.voucher = null;
+				Swal.fire('Voucher Invalid');
+			}else{
+				$scope.voucher = resp.data;
+				Swal.fire('Voucher ' + voucher.name + ' is added!');
+			}
+		});
+	}
+	
+	$scope.deleteVoucher = function(){
+		$scope.voucher = null;
+		$scope.form.name = "";
+	}
+
 	$scope.order={
 		createDate: new Date(),
 		address: "",
@@ -342,20 +364,35 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			});
 		},
 		purchase(){
-			var order = angular.copy(this);
+			var order = angular.copy(this); 
+			var voucher = $scope.voucher;
 			$http.post("/rest/orders", order).then(resp => {
 				var orderId = resp.data.id;
-				$http.put("/rest/orders/info/cashOnDelivery", orderId).then(resp =>{
-					//alert("Đặt hàng thành công!");
-					Swal.fire({
-					  icon: 'success',
-					  title: 'Order Success',
-					  text: 'Check your order at "My Orders"',
-					  //footer: '<a href="">Why do I have this issue?</a>'
-					})
-					$scope.cart.clearPM();
-					location.href = "/productdetail/update/" + resp.data.id;
-				})			
+				if(voucher == null){
+					$http.put(`/rest/orders/info/cashOnDelivery`, orderId).then(resp =>{
+						//alert("Đặt hàng thành công!");
+						Swal.fire({
+						  icon: 'success',
+						  title: 'Order Success',
+						  text: 'Check your order at "My Orders"',
+						  //footer: '<a href="">Why do I have this issue?</a>'
+						})
+						$scope.cart.clearPM();
+						location.href = "/productdetail/update/" + resp.data.id;
+					})			
+				}else{
+					$http.put(`/rest/orders/info/cashOnDelivery/${voucher.name}`, orderId).then(resp =>{
+						//alert("Đặt hàng thành công!");
+						Swal.fire({
+						  icon: 'success',
+						  title: 'Order Success',
+						  text: 'Check your order at "My Orders"',
+						  //footer: '<a href="">Why do I have this issue?</a>'
+						})
+						$scope.cart.clearPM();
+						location.href = "/productdetail/update/" + resp.data.id;
+					})			
+				}
 			}).catch(error => {
 				//alert("Đặt hàng thất bại!")
 				Swal.fire({
@@ -367,14 +404,25 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 				console.log(error)
 			})
 		},
+		
+		
 		purchasePayment(){
 			var order = angular.copy(this);
+			var voucher = $scope.voucher;
 			$http.post("/rest/orders", order).then(resp => {
 				var orderId = resp.data.id;
-				$http.put("/rest/orders/info/paypal", orderId).then(resp =>{
-					location.href = "/pay/" + resp.data.id;
-				})	
-				$scope.cart.clearPM();
+				if(voucher == null){
+					$http.put(`/rest/orders/info/paypal`, orderId).then(resp =>{
+						location.href = "/pay/" + resp.data.id;
+						$scope.cart.clearPM();
+					})	
+				}else{
+					$http.put(`/rest/orders/info/paypal/${voucher.name}`, orderId).then(resp =>{
+						location.href = "/pay/" + resp.data.id;
+						$scope.cart.clearPM();
+					})	
+				}
+				
 			}).catch(error => {
 				//alert("Đặt hàng thất bại!")
 				Swal.fire({
