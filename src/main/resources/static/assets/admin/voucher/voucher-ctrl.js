@@ -280,10 +280,11 @@ app.controller("voucher-ctrl", function($scope, $http, $window) {
 
 
 	$scope.happyBirthdayVoucher = function(){
-		alert("dsad");
+		$http.get("/rest/vouchers/sendVoucherHPBD").then(resp => {
+			$scope.sendHPBD = "false";
+			$scope.initialize();
+			Swal.fire('Send Successfully!');
+		})
 	}
-		
-		
-
 
 });

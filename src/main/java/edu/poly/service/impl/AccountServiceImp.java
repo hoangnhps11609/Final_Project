@@ -153,4 +153,9 @@ public class AccountServiceImp implements AccountService{
 	public Optional<Account> findByUsername(String id) {
 		return adao.findById(id);
 	}
+
+	@Override
+	public List<Account> listHPBD(Date date) {
+		return adao.listHPBD(date);
+	}
 }

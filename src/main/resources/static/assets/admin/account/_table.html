@@ -45,14 +45,14 @@
 		<table class="table table-striped text-center">
 			<thead>
 				<tr style="position: relative;">
-					<th style="width: 15%" scope="col">Photo</th>
-					<th style="width: 15%" scope="col">Username <br />(View Order)</th>
-					<th style="width: 20%" scope="col">Fullname</th>
-					<th style="width: 10%" scope="col">Phone</th>
-					<th style="width: 15%" scope="col">Email</th>
-					<th style="width: 15%" scope="col">Address</th>
-					<th style="width: 10%" scope="col">Createdate</th>
-					<th style="width: 20%"></th>
+					<th scope="col">Photo</th>
+					<th scope="col">Username <br />(View Order)</th>
+					<th scope="col">Fullname</th>
+					<th scope="col">Phone</th>
+					<th scope="col">Email</th>
+					<th scope="col">Address</th>
+					<th scope="col">Birthday</th>
+					<th scope="col">Createdate</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -64,6 +64,7 @@
 					<td>{{item.phone}}</td>
 					<td>{{item.email}}</td>
 					<td>{{item.address}}</td>
+					<td>{{item.birthday | date:'MM-dd-yyyy'}}</td>
 					<td>{{item.createDate | date:'MM-dd-yyyy'}}</td>
 					<td>
 						<div class="btn-group btn-group-xs">

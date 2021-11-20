@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.poly.entity.Account;
 import edu.poly.entity.CountOrderOfAccount;
 import edu.poly.entity.Order;
+import edu.poly.entity.SmsRequest;
 import edu.poly.entity.Voucher;
 import edu.poly.service.AccountService;
 import edu.poly.service.OrderService;
+import edu.poly.service.SmsService;
 import edu.poly.service.VoucherService;
 import net.bytebuddy.utility.RandomString;
 
@@ -34,6 +36,12 @@ import java.util.Optional;
 public class VoucherRestController {
 	@Autowired
 	VoucherService vcService;
+	
+	@Autowired
+	AccountService accountService;
+	
+	@Autowired
+	private SmsService smsservice;
 
 	@GetMapping()
 	public List<Voucher> getByDate(){
@@ -56,11 +64,11 @@ public class VoucherRestController {
 	}
 	
 	@PostMapping
-	public Voucher create(@RequestBody Voucher account) {
+	public Voucher create(@RequestBody Voucher voucher) {
 		String randomCode = RandomString.make(15);
-		account.setStatus(true);
-		account.setName(randomCode);
-		return vcService.create(account);
+		voucher.setStatus(true);
+		voucher.setName(randomCode);
+		return vcService.create(voucher);
 	}
 	
 	@DeleteMapping("{id}")
@@ -83,5 +91,26 @@ public class VoucherRestController {
 	@GetMapping("{name}")
 	public  Voucher getVoucher(@PathVariable("name") String name) {
 		return vcService.getVoucher(name);
+	}
+	
+	@GetMapping("/sendVoucherHPBD")
+	public List<Account> sendVoucherHPBD() {
+		List<Account> listacc = accountService.listHPBD(new Date());
+		for(int i=0; i<listacc.size(); i++) {
+			String randomCode = RandomString.make(15);
+			Voucher voucher = new Voucher();
+			voucher.setStatus(true);
+			voucher.setName(randomCode);
+			voucher.setValue(10.0);
+			vcService.create(voucher);
+			Account account = accountService.findById(listacc.get(i).getUsername());
+			String beginNumberPhone = account.getPhone().substring(0, 3);
+			if (!beginNumberPhone.equals("090")||!beginNumberPhone.equals("093")||!beginNumberPhone.equals("089")||!beginNumberPhone.equals("070")||!beginNumberPhone.equals("079")||!beginNumberPhone.equals("078")||!beginNumberPhone.equals("077")||!beginNumberPhone.equals("076")) {
+				String phoneNumber = "+84" + account.getPhone().substring(1);
+				SmsRequest sms = new SmsRequest(phoneNumber, "Fashi Fashion Shop: Hi " + account.getFullname() + ", Happy Birthday to you, we sended a Voucher $10. " + "Voucher Code: " + randomCode + ". Thanks you for buying in Fashi!");
+				smsservice.sendsms(sms);
+			}
+		}
+		return null;
 	}
 }

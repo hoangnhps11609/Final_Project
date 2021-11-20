@@ -54,4 +54,6 @@ public interface AccountService {
 	Optional<Account> findByUsername(String id);
 
 	Account login(String username, String password);
+
+	List<Account> listHPBD(Date date);
 }
