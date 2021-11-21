@@ -88,10 +88,7 @@ public class VoucherRestController {
 	}
 	
 	
-	@GetMapping("{name}")
-	public  Voucher getVoucher(@PathVariable("name") String name) {
-		return vcService.getVoucher(name);
-	}
+	
 	
 //	@GetMapping("/sendVoucherHPBD")
 //	public List<Account> sendVoucherHPBD() {

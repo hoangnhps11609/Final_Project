@@ -228,4 +228,10 @@ public class OrderRestController {
 	public List<Order> findAllCancelOrder () {
 		return orderService.findAllCancelOrder(Sort.by(Sort.Direction.DESC, "id"));
 	}
+	
+	
+	@GetMapping("/vouchers/{name}")
+	public  Voucher getVoucher(@PathVariable("name") String name) {
+		return vcService.getVoucher(name);
+	}
 }

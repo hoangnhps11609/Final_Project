@@ -13,7 +13,6 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 	$scope.form = {};
 	
 	
-	
 	/*QUẢN LÝ GIỎ HÀNG*/
 	$scope.cart = {
 		items:[],
@@ -225,11 +224,6 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 		}
 	}
 	
-	$scope.vouchers = [];
-	
-	$scope.voucherGet= function(vc){
-		alert(vc);
-	}
 	
 	$scope.vPassword = false;
 	$scope.validateRegisterPassword = function(p) {
@@ -332,19 +326,22 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 	}
 
 
-	$scope.voucher = function(){
-		var voucher = angular.copy($scope.form);
-		$http.get(`/rest/vouchers/${voucher.name}`).then(resp => {
-			if(resp.data.length == 0){
-				$scope.voucher = null;
-				Swal.fire('Voucher Invalid');
-			}else if($scope.cart.amount < resp.data.value*5){
-				Swal.fire('This voucher is not use with bill less ' + resp.data.value*5);
-			}else{
-				$scope.voucher = resp.data;
-				Swal.fire('Voucher ' + voucher.name + ' is added!');
-			}
-		});
+	$scope.voucherValue = function(){
+		var vouchername = angular.copy($scope.form);
+		if($scope.form.name == null){
+			Swal.fire('Voucher Code is not Null');
+		}else{
+			$http.get(`/rest/orders/vouchers/${vouchername.name}`).then(resp => {
+				if(resp.data.length == 0){
+					Swal.fire('Voucher Invalid');
+				}else if($scope.cart.amount < resp.data.value*5){
+					Swal.fire('This voucher is not use with bill less $' + resp.data.value*5);
+				}else{
+					$scope.voucher = resp.data;
+					Swal.fire('Voucher $' + $scope.voucher.value + ' is added!');
+				}
+			});
+		}
 	}
 	
 	$scope.deleteVoucher = function(){
