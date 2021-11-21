@@ -52,7 +52,6 @@ public class Account  implements Serializable{
 	@NotEmpty
 	Boolean activated = true;
 
-	@NotEmpty
 	@Length(min=10)
 	String phone;
 

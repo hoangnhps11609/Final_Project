@@ -120,18 +120,18 @@ public class SecurityController {
 			voucher.setStatus(true);
 			voucher.setName(randomCode);
 			voucher.setValue(10.0);
-			String body = "Dear Customer! Welcome to Fashi Fashion Shop. \nWe have created a Account for you. \n" + "Your username: " + username + ".\n Your Password: " + randomPassword + ". And voucher $10: " + randomCode;
+			String body = "Dear Customer! Welcome to Fashi Fashion Shop. \nWe have created a Account for you. \n" + "Your username: " + username + ".\n Your Password: " + randomPassword + ". And voucher $10: " + randomCode + " is used for Bill than $50!";
 			
 			Account item = new Account();
 			item.setUsername(username);
 			item.setPassword(randomPassword);
-			item.setFullname(username);
+			item.setFullname("Null Fullname");
 			item.setEmail(username);
 			item.setPhoto("5aa47c07.png");
 			item.setActivated(true);
-			item.setPhone("0900000000");
+			item.setPhone(null);
 			item.setCreateDate(new Date());
-			item.setAddress(username);
+			item.setAddress("Null address");
 			vcService.create(voucher);
 			accountService.create(item);
 			mailer.send(username, subject, body);

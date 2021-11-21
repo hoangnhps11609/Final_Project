@@ -338,6 +338,8 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			if(resp.data.length == 0){
 				$scope.voucher = null;
 				Swal.fire('Voucher Invalid');
+			}else if($scope.cart.amount < resp.data.value*5){
+				Swal.fire('This voucher is not use with bill less ' + resp.data.value*5);
 			}else{
 				$scope.voucher = resp.data;
 				Swal.fire('Voucher ' + voucher.name + ' is added!');
