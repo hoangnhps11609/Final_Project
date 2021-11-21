@@ -25,9 +25,12 @@ import edu.poly.service.AccountService;
 import edu.poly.service.OrderService;
 import edu.poly.service.SmsService;
 import edu.poly.service.VoucherService;
+import edu.poly.service.impl.MailerServiceImpl;
 import net.bytebuddy.utility.RandomString;
 
 import java.util.Optional;
+
+import javax.mail.MessagingException;
 
 
 @CrossOrigin("*")
@@ -45,6 +48,9 @@ public class AccountRestController {
 	
 	@Autowired
 	VoucherService vcService;
+	
+	@Autowired
+	MailerServiceImpl mailer;
 	
 	@GetMapping
 	public List<Account> getAccounts(@RequestParam("admin")Optional<Boolean> admin){
@@ -75,7 +81,7 @@ public class AccountRestController {
 	
 	
 	@PostMapping
-	public Account create(@RequestBody Account account) {
+	public Account create(@RequestBody Account account) throws MessagingException {
 		Account newAccount = accService.create(account);
 		String randomCode = RandomString.make(15);
 		Voucher voucher = new Voucher();
@@ -83,10 +89,12 @@ public class AccountRestController {
 		voucher.setName(randomCode);
 		voucher.setValue(10.0);
 		vcService.create(voucher);
-		
-		
 		String beginNumberPhone = account.getPhone().substring(0, 3);
-		if (!beginNumberPhone.equals("090")||!beginNumberPhone.equals("093")||!beginNumberPhone.equals("089")||!beginNumberPhone.equals("070")||!beginNumberPhone.equals("079")||!beginNumberPhone.equals("078")||!beginNumberPhone.equals("077")||!beginNumberPhone.equals("076")) {
+		if (beginNumberPhone.equals("090")||beginNumberPhone.equals("093")||beginNumberPhone.equals("089")||beginNumberPhone.equals("070")||beginNumberPhone.equals("079")||beginNumberPhone.equals("078")||beginNumberPhone.equals("077")||beginNumberPhone.equals("076")) {
+			String subject = "Fashi Shop: Created New Account";
+			String body = "Dear Customer! Welcome to Fashi Fashion Shop. \nWe have created a Account for you. \n" + "Your username: " + account.getUsername() + ".\n Your Password: " + account.getPassword() + ". And voucher $10: " + randomCode + " is used for Bill than $50!";
+			mailer.send(account.getEmail(), subject, body);
+		}else {
 			String phoneNumber = "+84" + account.getPhone().substring(1);
 			SmsRequest sms = new SmsRequest(phoneNumber, "Fashi Fashion Shop: Hi " + account.getFullname() + ", Welcome to Fashi, we sended a Voucher $10 for new account. " + "Voucher Code: " + randomCode + " is used for Bill than $50. Thanks you for buying in Fashi!");
 			smsservice.sendsms(sms);
