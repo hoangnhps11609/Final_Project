@@ -349,4 +349,34 @@ app.controller("orderstatus-ctrl", function($scope, $http, $window, $route) {
 			this.page2 = this.count-1;
 		}
 	}
+	
+	$scope.cancelledOrder = function(order){
+		Swal.fire({
+			title: 'Click "YES" to confirm that you have called the customer!',
+			text: "Receiver: " + order.phone + ". Purchaser: " + order.account.phone,
+			on: 'info',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				$http.put(`/rest/orders/cancalledOrder/${order.id}`, order).then(resp => {
+					Swal.fire(
+						'Successfully!',
+						'Updated "' + order.id + '" completed.',
+						'success'
+					)
+					$('.bd-example-modal-lg').appendTo("body").modal('hide');
+					$scope.findAllCancelOrder();
+				}).catch(error => {
+					Swal.fire(
+						'Update Failure!',
+						'Can not update "' + order.id  +  '" !',
+						'error'
+					)
+				})
+			}
+		})
+	}
 });

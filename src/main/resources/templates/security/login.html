@@ -26,7 +26,6 @@
                     <div class="login-form">
                         <h2>Login</h2>
                         <form th:action="@{/security/login/form}" method="post">
-                        	<p style="color: red; font-style: italic; font-size: 13pt;">[[${message1}]]</p>
                             <div class="group-input">
                                 <label>Username or email address *</label>
                                 <input type="text" name="username" pattern="[a-z,A-Z,0-9]{3,25}" title="Username Invalid">

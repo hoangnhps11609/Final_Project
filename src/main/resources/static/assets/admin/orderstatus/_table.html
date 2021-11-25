@@ -184,8 +184,13 @@
 					aria-hidden="true">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
-							<div class="card-header bg-secondary text-light">
-								<h5>{{order.status == 0 ? 'Waiting Confirm' : order.status == 1 ? 'Confirmed' : order.status == 2 ? 'To Ship' : order.status == 3 ? 'Completed' : 'Cancelled Order'}}</h5>
+							<div class="card-header bg-secondary text-light row" style="margin: 0;">
+								<div class="col-10">
+									<h5>{{order.status == 0 ? 'Waiting Confirm' : order.status == 1 ? 'Confirmed' : order.status == 2 ? 'To Ship' : order.status == 3 ? 'Completed' : 'Cancelled Order'}}</h5>
+								</div>
+								<div class="col-2 float-right" ng-if="order.status == 2">
+									<button class="btn btn-warning" ng-click="cancelledOrder(order)" >Cancelled Order</button>					
+								</div>	
 							</div>
 							<div class="card-body py-1">
 								<div class="row pb-2">

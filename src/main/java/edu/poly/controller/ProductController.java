@@ -126,7 +126,7 @@ public class ProductController {
 			model.addAttribute("cid", categoryID);
 			Category catename = categoryService.findbyCateId(categoryID);
 			model.addAttribute("findby", "Find by Category: " + catename.getName());
-		} else if (max != null) {
+		} else if (max != null && min != null) {
 			resultPage = productservice.findByPriceContaining(min, max, pageable);
 			model.addAttribute("max", max);
 			model.addAttribute("min", min);

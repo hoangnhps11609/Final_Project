@@ -356,8 +356,9 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 				$scope.ProCateItems = resp.data;
 				$scope.countPro = resp.data.length;
 				$scope.color = item;
-				$scope.rgb = "rgb(" + item.red + ", " + item.green + ", " + item.blue + ")"
-				$('#exampleModalCenter69').appendTo("body").modal('show');
+				$scope.rgb = "rgb(" + item.red + ", " + item.green + ", " + item.blue + ")";
+				$('#InventoryColorModalCenter').appendTo("body").modal('hide');
+				$('#ProductModalCenter').appendTo("body").modal('show');
 			}
 		}).catch(error => {
 			//alert("Lỗi cập nhật sản phẩm");
@@ -395,7 +396,7 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 			}else{
 				$scope.ProColorItems = resp.data;
 				$scope.color = item;
-				$('#exampleModalCenterColor22').appendTo("body").modal('show');
+				$('#testModalCenterColor').appendTo("body").modal('show');
 				$('#TopColorModalCenter').appendTo("body").modal('hide');
 				$http.get(`/rest/productdetails/color/count/${item.id}`).then(resp => {
 					$scope.sumProInColor = resp.data;
@@ -427,21 +428,20 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 	}
 	
 	$scope.closeProductTop = function(){
-		$('#exampleModalCenterColor22').appendTo("body").modal('hide');
+		$('#testModalCenterColor').appendTo("body").modal('hide');
 		$('#TopColorModalCenter').appendTo("body").modal('show');
 	}
 
 
 	$scope.viewProDetail = function(item) {
-		$('#ProDetailModalCenter').appendTo("body").modal('show');
-		$('#exampleModalCenter69').appendTo("body").modal('hide');
+		$('#productDetailModalCenter').appendTo("body").modal('show');
+		$('#ProductModalCenter').appendTo("body").modal('hide');
 		$http.get(`/rest/productdetails/getdetail/${item.id}`).then(resp => {
 			if(resp.data.length == 0){
 				$('#NoDataModalCenter').appendTo("body").modal('show');
 			}else{
 				$scope.ProDetailitems = resp.data;
 				$scope.countProDet = resp.data.length;
-				$('#ProDetailModalCenter').appendTo("body").modal('show');
 				$http.get(`/rest/products/product/${item.id}`).then(resp => {
 					$scope.product = resp.data;
 				});
@@ -475,8 +475,8 @@ app.controller("color-ctrl", function($scope, $http, $route) {
 	}
 	
 	$scope.CloseProDetail = function(){
-		$('#ProDetailModalCenter').appendTo("body").modal('hide');
-		$('#exampleModalCenter69').appendTo("body").modal('show');
+		$('#productDetailModalCenter').appendTo("body").modal('hide');
+		$('#ProductModalCenter').appendTo("body").modal('show');
 	}
 
 
