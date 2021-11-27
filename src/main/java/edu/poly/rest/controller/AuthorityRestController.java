@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.poly.*;
 import edu.poly.authority.service.AuthorityService;
+import edu.poly.entity.Account;
 import edu.poly.entity.Authority;
+import edu.poly.service.AccountService;
 
 @CrossOrigin("*")
 @RestController
@@ -24,6 +26,9 @@ import edu.poly.entity.Authority;
 public class AuthorityRestController {
 	@Autowired
 	AuthorityService auService;
+	
+	@Autowired
+	AccountService accService;
 	
 	@GetMapping
 	public List<Authority> findAll(@RequestParam("admin")Optional<Boolean> admin){
@@ -41,5 +46,13 @@ public class AuthorityRestController {
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable("id") Integer id) {
 		auService.delete(id);
+	}
+	
+	@GetMapping("{valued}")
+	public List<Account> getListAccountByValued(@PathVariable("valued") String valued){
+		if(valued==null) {
+			return accService.findAll();
+		}
+		return accService.findListByUsername("%"+valued+"%");	
 	}
 }

@@ -1,6 +1,70 @@
+<style>
+	.search-box1 {
+		position: absolute;
+		top: 25px;
+		right: 0px;
+		transform: translate(-10%, -50%);
+		background: #2f3640;
+		height: 40px;
+		border-radius: 40px;
+		padding-left: 5px;
+		padding-right: 10px;
+		z-index: 10;
+		margin-right: -20px;
+	}
+
+
+	.search-btn1 {
+		color: #1abc9c;
+		float: right;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		background: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: 0.4s;
+		margin: 5px;
+		margin-right: 0px;
+	}
+
+	.search-txt1 {
+		border: none;
+		background: none;
+		outline: none;
+		float: left;
+		padding: 0 6px;
+		color: white;
+		font-size: 16px;
+		transition: 0.4s;
+		line-height: 40px;
+		width: 240px;
+
+
+	}
+</style>
+
 <div class="card" style=" margin: 20px auto; width: 80%">
-	<div class="card-header" style="background: #34495e; color: white;"><h5>Authorizing</h5></div>
+	<div class="card-header" style="background-color: #34495e; color: white">
+		<h5>Authorizing</h5>
+		<div class="search-box1">
+			<input class="search-txt1" name="" type="text" id="myInput" class="form-control" ng-model="statistic.from"
+				placeholder="Search	" />
+			<a class="search-btn1" ng-click="search()">
+				<button style="opacity:0 ; z-index: 20;"></button><i style="position: absolute; color:gray;"
+					class="fa fa-search"></i>
+			</a>
+
+
+		</div>
+	</div>
 	<div class="card-body">
+		<div class="row p-2">
+			<div class="bg-secondary text-light col px-0 py-1 text-center" ng-show="message">
+				<h3 style="font-weight: bolder">{{message}}</h3>
+			</div>
+		</div>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -11,7 +75,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="acc in admins">
+				<tr ng-repeat="acc in pager.admins">
 					<th scope="row">{{acc.username}}</th>
 					<th scope="row">{{acc.fullname}}</th>
 					<th scope="row">{{acc.phone}}</th>
@@ -22,5 +86,25 @@
 				</tr>
 			</tbody>
 		</table>
+		<div class="text-muted text-center float-center">
+			<button class="btn btn-primary" ng-click="pager.first()">First</button>
+			<button class="btn btn-primary" ng-click="pager.prev()">Prev</button>
+			<button class="btn btn-success">{{pager.page+1}} of
+				{{pager.count}}</button>
+			<button class="btn btn-primary" ng-click="pager.next()">Next</button>
+			<button class="btn btn-primary" ng-click="pager.last()">Last</button>
+		</div>
 	</div>
+</div>
+
+
+<!-- No Data Modal -->
+<div class="modal fade" id="NoDataModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+      	<img ng-src="{{'/assets/images/nodata_1.png'}}" class="border" alt="" height="300px"/>
+      </div>
+    </div>
+  </div>
 </div>

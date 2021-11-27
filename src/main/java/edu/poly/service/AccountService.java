@@ -55,4 +55,6 @@ public interface AccountService {
 
 	Account login(String username, String password);
 
+	List<Account> findListByUsername(String string);
+
 }

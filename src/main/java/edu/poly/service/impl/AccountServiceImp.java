@@ -154,5 +154,10 @@ public class AccountServiceImp implements AccountService{
 		return adao.findById(id);
 	}
 
+	@Override
+	public List<Account> findListByUsername(String string) {
+		return adao.findListByUsername(string);
+	}
+
 
 }

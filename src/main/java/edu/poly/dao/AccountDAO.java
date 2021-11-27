@@ -72,6 +72,10 @@ public interface AccountDAO extends JpaRepository<Account, String>{
 	List<Account> findValidation(String validation);
 
 
+	@Query("SELECT a FROM Account a where a.username like ?1")
+	List<Account> findListByUsername(String string);
+
+
 //	@Query("Select a from Account a where a.birthday = ?1")
 //	List<Account> listHPBD(Date date);
 	
