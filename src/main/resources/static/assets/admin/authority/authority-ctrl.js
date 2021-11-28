@@ -20,6 +20,7 @@ app.controller("authority-ctrl", function($scope, $http, $location) {
 		}).catch(error => {
 			$location.path("/unauthorized");
 		})
+		$scope.message="";
 	}
 
 	$scope.initialize();
@@ -98,6 +99,7 @@ app.controller("authority-ctrl", function($scope, $http, $location) {
 			}else{
 				$scope.admins = resp.data;
 				$scope.message = "Search by Keyword: " + statistic.from;
+				$scope.statistic.from = "";
 			}
 		}).catch(error => {
 			//alert();

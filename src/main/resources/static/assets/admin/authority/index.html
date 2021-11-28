@@ -55,12 +55,16 @@
 				<button style="opacity:0 ; z-index: 20;"></button><i style="position: absolute; color:gray;"
 					class="fa fa-search"></i>
 			</a>
-
-
 		</div>
 	</div>
 	<div class="card-body">
-		<div class="row p-2">
+		<div class="row float-right">
+			<i class="fa fa-refresh pb-3 pr-2 col" ng-click="initialize()"
+				style="font-size: 18px;">
+				<span>Show All</span>
+			</i>
+		</div>
+		<div class="row p-2 col">
 			<div class="bg-secondary text-light col px-0 py-1 text-center" ng-show="message">
 				<h3 style="font-weight: bolder">{{message}}</h3>
 			</div>
