@@ -41,7 +41,4 @@ public class Voucher{
 	
 	Boolean status;
 
-	@JsonIgnore
-	@OneToOne(mappedBy = "voucher")
-    Order order;
 }
