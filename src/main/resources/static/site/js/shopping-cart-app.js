@@ -615,5 +615,11 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 	$scope.viewDetailInCart = function(item){
 		location.href = "/product/detail/" + item + "?sizepro=1";
 	}
+	
+	
+	$scope.ChangeOrderInfo = function(orderId){
+		alert(orderId);
+		alert("dasds");
+	}
 });
 

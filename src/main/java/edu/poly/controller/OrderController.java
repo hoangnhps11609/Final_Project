@@ -1,5 +1,6 @@
 package edu.poly.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -134,11 +135,11 @@ public class OrderController {
 	
 	@RequestMapping("/order/delete/{id}")
 	public String delete(@PathVariable("id") Long id, Model model) {
-		System.out.println(id);
 		Order dto = orderService.findById(id);		
 		Order entity = new Order();
 		BeanUtils.copyProperties(dto, entity);
 		entity.setStatus(4);
+		entity.setNoted("Customer cancelled order: " + new Date());
 		orderService.save(entity);
 		List<OrderDetail> listOrDe = orderDetailService.findByOrder(id);
 		for(int i=0; i<listOrDe.size(); i++) {

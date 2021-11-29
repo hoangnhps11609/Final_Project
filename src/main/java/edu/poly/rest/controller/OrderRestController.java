@@ -126,6 +126,7 @@ public class OrderRestController {
 			}
 		}else if(a.get().getStatus()==2) {
 			order.setStatus(3);
+			order.setNoted("Order Completed: " + new Date());
 		}
 		order.setFullname(a.get().getFullname());
 		order.setAddress(a.get().getAddress());
@@ -238,6 +239,7 @@ public class OrderRestController {
 	@PutMapping("/cancalledOrder/{id}")
 	public Order cancelledOrder(@PathVariable("id") Long id, @RequestBody Order order) {
 		order.setStatus(4);
+		order.setNoted("Failed delivery: " + new Date());
 		orderService.update(order);
 		return null;
 	}

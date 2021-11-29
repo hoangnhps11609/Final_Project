@@ -70,6 +70,8 @@ public class Order  implements Serializable{
 
 	Boolean payment;
 	
+	String noted;
+	
 	@ManyToOne
 	@JoinColumn(name = "Username")
 	Account account;

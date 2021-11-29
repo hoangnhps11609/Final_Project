@@ -1,5 +1,6 @@
 package edu.poly.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -81,6 +82,7 @@ public class PaymentController {
 		Order order = orderService.findById(idNewOrder);
 		System.out.println(order.getId() + "sad" +  idNewOrder);
 		order.setStatus(4);
+		order.setNoted("Failed payment: " + new Date());
 		orderService.save(order);
 		return "payment/cancel";
 	}
