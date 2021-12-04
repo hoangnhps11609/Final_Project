@@ -210,7 +210,52 @@
 													</button>
 												</div>
 												<div class="modal-body">
-													<div class="product-slider owl-carousel">
+													<div class="product-list text-center col" th:if="${prodetail.size < 3}">
+														<div class="product-item col-4 float-left" th:each="p:${prodetail}">
+															<div class="pi-pic" style="width: 349px; height: 427px">
+																<a> <img th:src="@{|/assets/images/${p.image}|}"
+																	width=349px; height=427px alt="">
+																</a>
+																<div class="sale pp-sale">Size: [[${p.size.name}]]</div>
+
+																<div class="icon">
+																	<div class="pd-color">
+																		<div class="pd-color-choose">
+																			<div class="cc-item">
+																				<label for="cc-violet"
+																					th:style="'--color:' + 'rgb(' + @{${p.color.red}} + ',' + @{${p.color.green}} + ',' + @{${p.color.blue}} + ')'"
+																					class="cc-yellow"></label>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<ul>
+																	<li class="quick-view col m-0 p-0"><a
+																		th:attr="ng-click=@{|cart.add(${p.id})|}"
+																		class="btn-warning text-light">+ ADD TO CARD</a></li>
+																</ul>
+															</div>
+															<div class="pi-text">
+																<div class="catagory-name">
+																	<h4>[[${p.product.name}]]</h4>
+																</div>
+
+																<div class="catagory-name">Size:
+																	[[${p.size.name}]]</div>
+
+																<div class="catagory-name">Color:
+																	[[${p.color.name}]]</div>
+																<div class="catagory-name">Quantity:
+																	[[${p.quantity}]]</div>
+																<div class="product-price">
+																	$[[${#numbers.formatDecimal(p.product.price*(1-p.product.discount*0.01),
+																	0, 'COMMA', 1, 'POINT')}]]<span
+																		th:if="${p.product.discount != 0.0}">$[[${p.product.price}]]</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="product-slider owl-carousel" th:if="${prodetail.size > 2}">
 														<div class="product-item" th:each="p:${prodetail}">
 															<div class="pi-pic" style="width: 349px; height: 427px">
 																<a> <img th:src="@{|/assets/images/${p.image}|}"

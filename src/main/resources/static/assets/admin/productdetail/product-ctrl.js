@@ -207,8 +207,8 @@ app.controller("productdetail-ctrl", function($scope, $http, $window) {
 	$scope.vQuantity = false;
 	$scope.validateQuantity = function(q) {
 		const characterRegex = /^\d+$/; 
-		if(q == null){
-			$scope.message1 = "Quantity not allow null";
+		if(q == null || q == 0){
+			$scope.message1 = "Quantity not allow null or equal 0";
 			$scope.vQuantity = false;
 		}else if(!q.match(characterRegex)){
 			$scope.message1 = "Number only";

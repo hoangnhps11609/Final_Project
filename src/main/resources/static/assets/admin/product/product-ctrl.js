@@ -977,4 +977,44 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 			}
 	}
 	
+	$scope.vQuantity = false;
+	$scope.validateQuantity = function(q) {
+		const characterRegex = /^\d+$/; 
+		if(q == null || q == 0){
+			$scope.message1 = "Quantity not allow null or equal 0";
+			$scope.vQuantity = false;
+		}else if(!q.match(characterRegex)){
+			$scope.message1 = "Number only";
+			$scope.vQuantity = false;
+		}else{
+			$scope.message1 = "";
+			$scope.vQuantity = true;
+		}
+		
+	}
+	
+	
+	$scope.vProduct = false;
+	$scope.validateProduct = function(p) {
+		if(!p == 0){
+			$scope.vProduct = true;
+		}
+		
+	}
+	
+	$scope.vSize = false;
+	$scope.validateSize = function(s) {
+		if(!s == 0){
+			$scope.vSize = true;
+		}
+		
+	}
+	
+	$scope.vColor = false;
+	$scope.validateColor = function(c) {
+		if(!c == 0){
+			$scope.vColor = true;
+		}
+		
+	}
 });

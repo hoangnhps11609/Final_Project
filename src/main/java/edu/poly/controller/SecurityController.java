@@ -112,6 +112,8 @@ public class SecurityController {
 		userService.loginFromOAutḥ̣̣2(oauth2);
 		String username = request.getRemoteUser();
 		Optional<Account> account = accountService.findByUsername(username);
+		String fullname = oauth2.getPrincipal().getAttribute("name");
+        String email = oauth2.getPrincipal().getAttribute("email");
 		if (account.isEmpty()) {
 			String subject = "Fashi Shop: Created New Account";
 			String randomPassword = RandomString.make(6);
@@ -125,8 +127,8 @@ public class SecurityController {
 			Account item = new Account();
 			item.setUsername(username);
 			item.setPassword(randomPassword);
-			item.setFullname("Null Fullname");
-			item.setEmail(username);
+			item.setFullname(fullname);
+			item.setEmail(email);
 			item.setPhoto("5aa47c07.png");
 			item.setActivated(true);
 			item.setPhone(null);
