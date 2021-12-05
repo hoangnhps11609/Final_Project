@@ -186,7 +186,7 @@ app.controller("blog-ctrl", function($scope, $http) {
 			confirmButtonText: 'Yes'
 		}).then((result) => {
 			if (result.isConfirmed) {
-				$http.put(`/rest/blog/${item.id}`, item).then(resp => {
+				$http.put(`/rest/blog/up/${item.id}`, item).then(resp => {
 					var index = $scope.items.findIndex(p => p.id == item.id);
 					$scope.items[index] = item;
 					$scope.reset();

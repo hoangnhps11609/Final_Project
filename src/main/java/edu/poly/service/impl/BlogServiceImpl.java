@@ -193,7 +193,7 @@ public class BlogServiceImpl implements BlogService{
 	@Override
 	public Blog update(Blog blog) {
 		// TODO Auto-generated method stub
-		return null;
+		return blogDAO.save(blog);
 	}
 
 	@Override

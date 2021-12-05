@@ -49,6 +49,11 @@ public class BlogRestController {
 		return bService.update(blog);
 	}
 	
+	@PutMapping("up/{id}")
+	public Blog update3(@PathVariable("id") Integer id, @RequestBody Blog blog) {
+		return bService.update(blog);
+	}
+	
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable("id") Integer id) {
 		bService.deleteById(id);
