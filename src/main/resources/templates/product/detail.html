@@ -210,7 +210,7 @@
 													</button>
 												</div>
 												<div class="modal-body">
-													<div class="product-list text-center col" th:if="${prodetail.size < 3}">
+													<div class="product-list text-center col" th:if="${prodetail.size < 4}">
 														<div class="product-item col-4 float-left" th:each="p:${prodetail}">
 															<div class="pi-pic" style="width: 349px; height: 427px">
 																<a> <img th:src="@{|/assets/images/${p.image}|}"
@@ -230,9 +230,9 @@
 																	</div>
 																</div>
 																<ul>
-																	<li class="quick-view col m-0 p-0"><a
-																		th:attr="ng-click=@{|cart.add(${p.id})|}"
-																		class="btn-warning text-light">+ ADD TO CARD</a></li>
+																	<li class="quick-view col m-0 p-0" th:attr="ng-click=@{|cart.add(${p.id})|}">
+																		<a class="btn-warning text-light">+ ADD TO CARD</a>
+																	</li>
 																</ul>
 															</div>
 															<div class="pi-text">
@@ -255,7 +255,7 @@
 															</div>
 														</div>
 													</div>
-													<div class="product-slider owl-carousel" th:if="${prodetail.size > 2}">
+													<div class="product-slider owl-carousel" th:if="${prodetail.size > 3}">
 														<div class="product-item" th:each="p:${prodetail}">
 															<div class="pi-pic" style="width: 349px; height: 427px">
 																<a> <img th:src="@{|/assets/images/${p.image}|}"
@@ -275,9 +275,9 @@
 																	</div>
 																</div>
 																<ul>
-																	<li class="quick-view col m-0 p-0"><a
-																		th:attr="ng-click=@{|cart.add(${p.id})|}"
-																		class="btn-warning text-light">+ ADD TO CARD</a></li>
+																	<li class="quick-view col m-0 p-0" th:attr="ng-click=@{|cart.add(${p.id})|}">
+																		<a class="btn-warning text-light">+ ADD TO CARD</a>
+																	</li>
 																</ul>
 															</div>
 															<div class="pi-text">

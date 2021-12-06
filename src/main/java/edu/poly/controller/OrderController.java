@@ -37,6 +37,7 @@ import edu.poly.service.OrderDetailService;
 import edu.poly.service.OrderService;
 import edu.poly.service.ProductDetailService;
 import edu.poly.service.ProductService;
+import edu.poly.service.VoucherService;
 
 @Controller
 public class OrderController {
@@ -51,6 +52,9 @@ public class OrderController {
 
 	@Autowired
 	GenderService genderService;
+	
+	@Autowired
+	VoucherService voucherService;
 	
 	@Autowired
 	ProductDetailService productDetailService;
@@ -141,6 +145,10 @@ public class OrderController {
 		entity.setStatus(4);
 		entity.setNoted("Customer cancelled order: " + new Date());
 		orderService.save(entity);
+		if(dto.getVoucher() != null) {
+			dto.getVoucher().setStatus(true);
+			voucherService.update(dto.getVoucher());
+		}
 		List<OrderDetail> listOrDe = orderDetailService.findByOrder(id);
 		for(int i=0; i<listOrDe.size(); i++) {
 			int OrDeQuan = listOrDe.get(i).getQuantity();
