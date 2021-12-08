@@ -21,6 +21,7 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 				$scope.items = resp.data;
 				$scope.count = resp.data.length;
 				$scope.message = "";
+				$scope.message1="";
 				$scope.statistic.from = "";
 				$scope.to = null;
 				$scope.items.forEach(item => {
@@ -505,7 +506,8 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 				$scope.from = duoctao.from;
 				$scope.to = duoctao.to;
 				$scope.countDate = resp.data.length;
-				$scope.message = null;
+				$scope.message = "";
+				$scope.message1 = "Find by Date: From " + duoctao.from + " To " + duoctao.to;
 				$('#AccountDuocTaoModalCenter').appendTo("body").modal('hide');
 			}
 		}).catch(error => {

@@ -88,23 +88,23 @@
 	</div>
 	<div class="card-footer text-muted borbot text-center">
 		<div ng-if="isEdit == null" class="row">
-			<button ng-if="vUsername == true && vPassword == true && vFullname ==true && vEmail == true && vPhone == true && vAddress == true" ng-click="create()"
+			<button ng-if="vUsername == true && vPassword == true && vFullname ==true && vEmail == true && vPhone == true && vAddress == true" ng-click="create()"  onclick="removeUpload()"
 				class="btn btn-success offset-3 col-3 mr-2"
 				style="font-weight: bolder">Create</button>
-			<button ng-if="vUsername == false || vPassword == false|| vFullname ==false || vEmail == false || vPhone == false || vAddress == false" disabled="disabled" ng-click="create()"
+			<button ng-if="vUsername == false || vPassword == false|| vFullname ==false || vEmail == false || vPhone == false || vAddress == false" disabled="disabled" ng-click="create()"  onclick="removeUpload()"
 				class="btn btn-success offset-3 col-3 mr-2"
 				style="font-weight: bolder">Create</button>
-			<button ng-click="reset()" class="btn btn-info col-3 ml-2"
+			<button ng-click="reset()" class="btn btn-info col-3 ml-2"  onclick="removeUpload()"
 				style="font-weight: bolder">Reset</button>
 		</div>
 		<div ng-if="isEdit == 'true'"  class="row">
-			<button ng-if="vPassword == true && vFullname ==true && vEmail == true && vPhone == true && vAddress == true" ng-click="update(item)"
+			<button ng-if="vPassword == true && vFullname ==true && vEmail == true && vPhone == true && vAddress == true" ng-click="update(item)"  onclick="removeUpload()"
 				class="btn btn-warning offset-3 col-3 mr-2"
 				style="font-weight: bolder">Update</button>
-			<button ng-if="vPassword == false|| vFullname ==false || vEmail == false || vPhone == false || vAddress == false" disabled="disabled" ng-click="update(item)"
+			<button ng-if="vPassword == false|| vFullname ==false || vEmail == false || vPhone == false || vAddress == false" disabled="disabled" ng-click="update(item)"  onclick="removeUpload()"
 				class="btn btn-warning offset-3 col-3 mr-2"
 				style="font-weight: bolder">Update</button>
-			<button class="btn btn-danger col-3 ml-2" style="font-weight: bolder"
+			<button class="btn btn-danger col-3 ml-2" style="font-weight: bolder"  onclick="removeUpload()"
 				ng-click="delete(form)">Delete</button>
 		</div>
 	</div>

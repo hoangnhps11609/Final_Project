@@ -244,9 +244,9 @@
 					</div>
 				</div>
 				<div class="text-center">
-					<button ng-click="createD()" ng-if="isEdit == false" class="btn btn-primary col-2">Create</button>
-					<button ng-click="updateD(item)" ng-if="isEdit ==true" class="btn btn-success col-2">Update</button>
-					<button ng-click="resetD()" class="btn btn-info col-2">Reset</button>
+					<button ng-click="createD()" ng-if="isEdit == false" class="btn btn-primary col-6" onclick="removeUpload()">Create</button>
+					<button ng-click="updateD(item)" ng-if="isEdit ==true" class="btn btn-success col-6"onclick="removeUpload()">Update</button>
+<!-- 					<button ng-click="resetD()" class="btn btn-info col-2" onclick="removeUpload()">Reset</button> -->
 				</div>
 			</div>
 		</div>
@@ -341,7 +341,7 @@
 					</div>
 				</div>
 				<div class="text-center">
-					<button ng-click="createColor()" ng-show="vColorName == true && vRed == true && vGreen == true && vBlue == true" class="btn btn-primary col">Create</button>
+					<button ng-click="createColor()" ng-show="vColorName == true && vRed == true && vGreen == true && vBlue == true" class="btn btn-primary col" onclick="removeUpload()">Create</button>
 				</div>
 			</div>
 		</div>

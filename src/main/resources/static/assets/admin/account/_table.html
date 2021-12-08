@@ -38,7 +38,7 @@
 			<div class="bg-secondary text-light col px-0 py-1 text-center" ng-show="message">
 				<h3 style="font-weight: bolder">{{message}}</h3>
 			</div>
-			<div class="bg-secondary text-light col px-0 py-1 text-center" ng-show="to">
+			<div class="bg-secondary text-light col px-0 py-1 text-center" ng-if="message1">
 				<h3 style="font-weight: bolder">Have {{countDate}} {{countDate > 1 ? 'Account' : 'Accounts'}} Created: {{from| date:'MM/dd/yyyy'}} - {{to| date:'MM/dd/yyyy'}}</h3>
 			</div>
 		</div>
