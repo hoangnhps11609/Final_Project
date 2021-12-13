@@ -396,13 +396,6 @@ app.controller("productdetail-ctrl", function($scope, $http, $window) {
 					toast.addEventListener('mouseleave', Swal.resumeTimer)
 				}
 			})
-
-			Toast.fire({
-				icon: 'warning',
-				title: 'Upload image failure'
-			})
-
-			console.log("Error", error);
 		})
 	}
 

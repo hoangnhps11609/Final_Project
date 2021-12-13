@@ -237,12 +237,6 @@ app.controller("blog-ctrl", function($scope, $http) {
 				}
 			})
 
-			Toast.fire({
-				icon: 'warning',
-				title: 'Upload image failure'
-			})
-
-			console.log("Error", error);
 		})
 	}
 

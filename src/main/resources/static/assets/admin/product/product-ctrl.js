@@ -663,12 +663,6 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 				}
 			})
 
-			Toast.fire({
-				icon: 'warning',
-				title: 'Upload image failure'
-			})
-
-			console.log("Error", error);
 		})
 	}
 	$scope.imageChanged2 = function(files) {
@@ -693,13 +687,6 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 					toast.addEventListener('mouseleave', Swal.resumeTimer)
 				}
 			})
-
-			Toast.fire({
-				icon: 'warning',
-				title: 'Upload image failure'
-			})
-
-			console.log("Error", error);
 		})
 	}
 

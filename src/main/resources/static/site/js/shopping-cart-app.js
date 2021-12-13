@@ -561,13 +561,13 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
         }).then(resp =>{
             $scope.form.photo = resp.data.name;
         }).catch(error => {
-        	 Swal.fire({
-				  icon: 'error',
-				  title: 'Error image',
-				  //text: '',
-				  //footer: '<a href="">Why do I have this issue?</a>'
-				})
-            console.log("Error", error);
+//        	 Swal.fire({
+//				  icon: 'error',
+//				  title: 'Error image',
+//				  //text: '',
+//				  //footer: '<a href="">Why do I have this issue?</a>'
+//				})
+//            console.log("Error", error);
         })
     }
     
