@@ -53,6 +53,14 @@ public class OrderRestController {
 		return orderService.create(orderData);
 	}
 	
+	@PostMapping("paypal")
+	public Order createPaypal(@RequestBody JsonNode orderData) {
+		Order order = orderService.create(orderData);
+		order.setStatus(4);
+		order.setNoted("Failed payment: " + new Date());
+		return orderService.update(order);
+	}
+	
 	@GetMapping("revenue")
 	public Double getRevenue(){
 		Double revenue = orderService.getRevenue();
@@ -193,7 +201,7 @@ public class OrderRestController {
 		order.setPayment(true);
 		Order update = orderService.update(order);
 		vouchers.setStatus(false);
-		Voucher updateVoucher = vcService.update(vouchers);
+		vcService.update(vouchers);
 		return update;
 	}
 	

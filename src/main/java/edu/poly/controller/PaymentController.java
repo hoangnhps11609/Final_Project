@@ -76,14 +76,6 @@ public class PaymentController {
 
 	@GetMapping(URL_PAYPAL_CANCEL)
 	public String cancelPay(){
-		String username = request.getRemoteUser();
-		List<Order> listOrderofACC = orderService.findNewOrderByUsername(username);
-		Long idNewOrder = listOrderofACC.get(0).getId();
-		Order order = orderService.findById(idNewOrder);
-		System.out.println(order.getId() + "sad" +  idNewOrder);
-		order.setStatus(4);
-		order.setNoted("Failed payment: " + new Date());
-		orderService.save(order);
 		return "payment/cancel";
 	}
 
@@ -92,8 +84,13 @@ public class PaymentController {
 		try {
 			Payment payment = paypalService.executePayment(paymentId, payerId);
 			if(payment.getState().equals("approved")){
+				String username = request.getRemoteUser();
+				List<Order> listOrderofACC = orderService.findNewOrderByUsername(username);
+				Long idNewOrder = listOrderofACC.get(0).getId();
+				Order order = orderService.findById(idNewOrder);
+				order.setStatus(0);
+				orderService.save(order);
 				return "payment/success";
-				
 			}
 		} catch (PayPalRESTException e) {
 			log.error(e.getMessage());

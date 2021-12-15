@@ -182,7 +182,7 @@ public class ProductController {
 			Pageable pageable = PageRequest.of(currentPage - 1, pageSize, sortprr);
 			resultPage = productservice.findAllTrue(pageable);
 		}else {
-			Sort sortprr = Sort.by("id").ascending();
+			Sort sortprr = Sort.by("id").descending();
 			model.addAttribute("sortPr", sortType);
 			Pageable pageable = PageRequest.of(currentPage - 1, pageSize, sortprr);
 			resultPage = productservice.findAllTrue(pageable);
