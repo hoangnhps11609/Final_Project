@@ -46,9 +46,9 @@ app.controller("authority-ctrl", function($scope, $http, $location) {
 	$scope.grant_authority = function(authority) {
 		$http.post(`/rest/authorities`, authority).then(resp => {
 			$scope.authorities.push(resp.data);
-			alert("Cấp quyền sử dụng thành công");
+			alert("Permission to use completed");
 		}).catch(error => {
-			alert("Cấp quyền sử dụng thất bại!");
+			alert("Permission to use failed");
 			console.log("Error", error);
 		})
 	}
@@ -58,9 +58,9 @@ app.controller("authority-ctrl", function($scope, $http, $location) {
 		$http.delete(`/rest/authorities/${authority.id}`).then(resp => {
 			var index = $scope.authorities.findIndex(a => a.id == authority.id);
 			$scope.authorities.splice(index, 1);
-			alert("Thu quyền sử dụng thành công");
+			alert("Acquiring the right to use successfully");
 		}).catch(error => {
-			alert("Thu quyền sử dụng thất bại!");
+			alert("Failed to acquire usage rights!");
 			console.log("Error", error);
 		})
 	}

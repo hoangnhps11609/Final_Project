@@ -122,11 +122,11 @@
 							<td>{{item.account.fullname}}</td>
 							<td>{{item.account.phone}}</td>
 							<td>{{item.count}} {{item.count>1 ? 'Orders' : 'Order'}}</td>
-							<td ng-show="item.count >= 7"><button
+							<td ng-show="item.count >= 15"><button
 									ng-click="detailOrder(item.account)"
 									class="btn btn-outline-warning"
 									style="font-weight: bolder; font-size: 16px">Golden</button></td>
-							<td ng-show="item.count >= 5 && item.count < 7"><button
+							<td ng-show="item.count >= 5 && item.count < 15"><button
 									ng-click="detailOrder(item.account)"
 									class="btn btn-outline-info"
 									style="font-weight: bolder; font-size: 16px">Silver</button></td>

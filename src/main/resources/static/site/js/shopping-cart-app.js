@@ -409,7 +409,6 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			var order = angular.copy(this);
 			var voucher = $scope.voucher;
 			$http.post("/rest/orders/paypal", order).then(resp => {
-				alert("dsad");
 				var orderId = resp.data.id;
 				if(voucher == null){
 					$http.put(`/rest/orders/info/paypal`, orderId).then(resp =>{

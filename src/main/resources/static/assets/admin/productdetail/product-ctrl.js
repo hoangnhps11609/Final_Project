@@ -176,7 +176,6 @@ app.controller("productdetail-ctrl", function($scope, $http, $window) {
 		$scope.vSize = false;
 		$scope.vColor = false;
 		$scope.vQuantity = false;
-		
 		$scope.isEdit = null;
 		
 	}
@@ -257,7 +256,7 @@ app.controller("productdetail-ctrl", function($scope, $http, $window) {
 						'Added "' + id + '" to product detail list.',
 						'success'
 					)
-					$(".nav-tabs a:eq(1)").tab('show');
+					$(".nav a:eq(1)").tab('show');
 				}).catch(error => {
 					Swal.fire(
 						'Create Failure!',
@@ -478,7 +477,6 @@ app.controller("productdetail-ctrl", function($scope, $http, $window) {
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/colors`, item).then(resp => {
 			$scope.items.push(resp.data);
-			$scope.reset();
 			//alert("Thêm mới thành công");
 			const Toast = Swal.mixin({
 				toast: true,

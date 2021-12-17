@@ -819,8 +819,6 @@ app.controller("product-ctrl", function($scope, $http, $window) {
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/colors`, item).then(resp => {
 			$scope.items.push(resp.data);
-			$scope.reset();
-			$scope.isEdit=true;
 			//alert("Thêm mới thành công");
 			const Toast = Swal.mixin({
 				toast: true,

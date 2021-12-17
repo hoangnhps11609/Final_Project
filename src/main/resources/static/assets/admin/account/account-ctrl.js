@@ -391,7 +391,7 @@ app.controller("account-ctrl", function($scope, $http, $window) {
 			$('#NoDataModalCenter').appendTo("body").modal('show');
 		}else{	
 			$scope.items = resp.data;
-			$scope.message = "Loyal Customer: " + resp.data.length + " Accounts"
+			$scope.message = "Loyal Customer(6 months): " + resp.data.length + " Accounts"
 			$scope.to = null;
 		}
 		});
