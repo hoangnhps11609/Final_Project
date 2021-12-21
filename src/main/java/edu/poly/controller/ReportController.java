@@ -256,7 +256,7 @@ public class ReportController {
 		model.addAttribute("list", list);
 		model.addAttribute("seriesName", "Order");
 		model.addAttribute("typeName", "Order Statistic");
-		model.addAttribute("titleName", "Order Cancelled In 6 Months Ago");
+		model.addAttribute("titleName", "Order Cancelled In Year");
 		return "report/reportMonth";
 	}
 }
